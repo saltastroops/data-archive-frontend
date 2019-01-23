@@ -1,7 +1,7 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
-import 'bulma'
+import 'bulma/css/bulma.css'
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
@@ -18,7 +18,9 @@ const client = new ApolloClient({
 });
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <App />
+        <div className={'container'}>
+            <App />
+        </div>
     </ApolloProvider>,
     document.getElementById("root")
 );
