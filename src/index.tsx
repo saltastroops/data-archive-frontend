@@ -13,7 +13,7 @@ import * as serviceWorker from "./registerServiceWorker";
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: gqlEndpoint
+    uri: process.env.REACT_APP_GQL_ENDPOINT
   })
 });
 ReactDOM.render(
