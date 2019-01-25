@@ -1,10 +1,10 @@
-#Setting up for development
+# Setting up for development
 
 Clone from [github](https://github.com/Eb-Zeero/da-frontend)
 
-##Step 1: Getting started
+## Step 1: Getting started
 
-###Cloning the code 
+### Cloning the code 
 
 To clone the data archive frontend code to your development machine, you need to run the following command given that 
 you have `git` installed on your machine
@@ -26,7 +26,7 @@ yarn start
 ```
 On the terminal or command line given that you have nodejs installed globally on the development machine
 
-###Git
+### Git
 
 Development is done on the main repository created by saltastoops who will never modify or commit the code. Other 
 collaborators to the repository will only be allowed to commit to new branch they created which in not development 
@@ -47,7 +47,7 @@ locally and on Github.
 
 All pull request to the development should be version.
 
-### travis cli
+### Travis cli
 
 Once you do a git push travis will run
 It will clone the repository and run `yarn install` on the root directory after all dependency are installed it will run
@@ -56,9 +56,9 @@ It will clone the repository and run `yarn install` on the root directory after 
 Make sure you check travis after sometime to insure that all the linting is fine and tests are passing.
 If travis is failing, please fix all the linting and test and commit all changes and  push to the same branch as before.
 
-##Step 2: Setting up environment variables
+## Step 2: Setting up environment variables
 
-###GraphQL
+### GraphQL
 
 ```text
 REACT_APP_GQL_ENDPOINT=graphQL api endpoint 
@@ -71,7 +71,7 @@ For production it should be added on `.env.production` and the value should be p
  
 
 
-###Sentry env
+### Sentry env
 This environment variables should be added to the `.env.production` file.
 
 Having DSN like this: `https://xxxxxxxxxxxxxxxxxxxxxxxxxx@sentry.io/yyyyy` found in the sentry project
@@ -82,7 +82,7 @@ REACT_APP_SENTRY_APP=A DSN application number. Is the yyy part on the DSN
 Do not include the the Sentry environment variable on `.env` file. Because Sentry should only run on production not 
 during development and testing.
 
-###Other 
+### Other 
 
 Other environment variable should be added starting with `REACT_APP_` so that they can be picked up automatically by 
 react.
@@ -92,13 +92,13 @@ there are four files `.env, .env.development, .env.production` and `.env.test` a
 - `.env.development` is for development environment variable.
 - `.env.production` is for production environment variable.
 
-##Step 3: Running and testing the application
+## Step 3: Running and testing the application
 
 To run the application use command `yarn start` on the root directory of this project.
 To run all the tests of this application use command `yarn test` on the root directory of this project.
  
 
-#Deployment
+# Deployment
 
 Deployment Error tracking will will be monitored by Sentry.
 learn more about [sentry here](https://sentry.io/welcome/).
