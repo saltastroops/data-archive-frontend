@@ -1,10 +1,10 @@
-setting up for development
-==========================
+#Setting up for development
 
 Clone from [github](https://github.com/Eb-Zeero/da-frontend)
 
-Step 1: Cloning the code and running it
----------------------------------------
+##Step 1: Getting started
+
+###Cloning the code 
 
 To clone the data archive frontend code to your development machine, you need to run the following command given that 
 you have `git` installed on your machine
@@ -20,7 +20,78 @@ To start run the current or cloned progress of the frontend you have to run
 
 ```cfml
 cd da-frontend
+yarn install
 yarn start
 
 ```
-on the termimal or command line given that you have nodejs installed globally on the development machine
+On the terminal or command line given that you have nodejs installed globally on the development machine
+
+###Git
+
+Development is done on the main repository created by saltastoops who will never modify or commit the code. Other 
+collaborators to the repository will only be allowed to commit to new branch they created which in not development 
+branch or main branch.
+ 
+Push this branch to Github, making sure that it is pushed to a branch of the same 
+name.
+
+Make a pull request from the branch to development in Github.
+
+Someone else checks the pull request
+
+That person may pull the branch to their own machine, fix obvious errors, commit their changes and make a new pull 
+request.
+
+Once work on a branch other than master or development is done, delete it both 
+locally and on Github.
+
+All pull request to the development should be version. 
+
+##Step 2: Setting up environment variables
+
+###GraphQL
+
+```text
+REACT_APP_GQL_ENDPOINT=graphQL api endpoint 
+```
+This environment variables should be added to accordingly
+
+For development it should be added on `.env.development` and the value should be development value.
+For testing it should be added on `.env.test` and the value should be testing value and.
+For production it should be added on `.env.production` and the value should be production value.
+ 
+
+
+###Sentry env
+This environment variables should be added to the `.env.production` file.
+
+Having DSN like this: `https://xxxxxxxxxxxxxxxxxxxxxxxxxx@sentry.io/yyyyy` found in the sentry project
+```text
+REACT_APP_SENTRY_KEY=A DSN key. Is the xxx part on the DSN
+REACT_APP_SENTRY_APP=A DSN application number. Is the yyy part on the DSN 
+```
+Do not include the the Sentry environment variable on `.env` file. Because Sentry should only run on production not 
+during development and testing.
+
+###Other 
+
+Other environment variable should be added starting with `REACT_APP_` so that they can be picked up automatically by 
+react.
+there are four files `.env, .env.development, .env.production` and `.env.test` as the file names suggest they should be 
+- `.env` is for general environment variable
+- `.env.test` is for testing environment variable
+- `.env.development` is for development environment variable
+- `.env.production` is for production environment variable
+
+##Step 3: Running and testing the application
+
+To run the application use command
+
+```cfml
+yarn start
+```
+
+#Deployment
+
+Deployment Error tracking will will be monitored by Sentry.
+learn more about [sentry here](https://sentry.io/welcome/).
