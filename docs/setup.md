@@ -45,7 +45,16 @@ request.
 Once work on a branch other than master or development is done, delete it both 
 locally and on Github.
 
-All pull request to the development should be version. 
+All pull request to the development should be version.
+
+### travis cli
+
+Once you do a git push travis will run
+It will clone the repository and run `yarn install` on the root directory after all dependency are installed it will run
+`yarn run lint` to check all the linting of the code and finally run `yarn test` to run all the tests in the project. 
+ 
+Make sure you check travis after sometime to insure that all the linting is fine and tests are passing.
+If travis is failing, please fix all the linting and test and commit all changes and  push to the same branch as before.
 
 ##Step 2: Setting up environment variables
 
@@ -78,18 +87,16 @@ during development and testing.
 Other environment variable should be added starting with `REACT_APP_` so that they can be picked up automatically by 
 react.
 there are four files `.env, .env.development, .env.production` and `.env.test` as the file names suggest they should be 
-- `.env` is for general environment variable
-- `.env.test` is for testing environment variable
-- `.env.development` is for development environment variable
-- `.env.production` is for production environment variable
+- `.env` is for general environment variable.
+- `.env.test` is for testing environment variable.
+- `.env.development` is for development environment variable.
+- `.env.production` is for production environment variable.
 
 ##Step 3: Running and testing the application
 
-To run the application use command
-
-```cfml
-yarn start
-```
+To run the application use command `yarn start` on the root directory of this project.
+To run all the tests of this application use command `yarn test` on the root directory of this project.
+ 
 
 #Deployment
 
