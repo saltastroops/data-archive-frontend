@@ -10,9 +10,11 @@ import App from "./App";
 
 import * as serviceWorker from "./registerServiceWorker";
 
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_DSN
-});
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_DSN
+  });
+}
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
