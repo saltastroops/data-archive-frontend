@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/browser";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
@@ -5,7 +6,6 @@ import "bulma/css/bulma.css";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
-import * as Sentry from "@sentry/browser";
 import App from "./App";
 
 import * as serviceWorker from "./registerServiceWorker";
