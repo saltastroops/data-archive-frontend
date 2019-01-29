@@ -102,15 +102,3 @@ To run all the tests of this application use command `yarn test` on the root dir
 
 Deployment Error tracking will will be monitored by Sentry.
 learn more about [sentry here](https://sentry.io/welcome/).
-
-# Packages.
-
-## Application
-
-React
-Apollo
-Bulma
-
-## Development
-## Testing
-

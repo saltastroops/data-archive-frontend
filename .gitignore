@@ -25,6 +25,4 @@ yarn.lock
 #IDE
 .idea/*
 
-# ENV
-*.env*
 
