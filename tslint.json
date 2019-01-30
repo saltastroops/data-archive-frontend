@@ -1,11 +1,6 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "rules": {
-    "member-access": {
-      "severity": "off"
-    },
-    "no-console": [false],
-    "jsx-no-lambda": false,
     "indent": [
       true,
       "spaces",
