@@ -12,7 +12,7 @@ import * as serviceWorker from "./registerServiceWorker";
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: process.env.REACT_APP_GRAPHQL_URI
+    uri: process.env.REACT_APP_BACKEND_URI
   })
 });
 ReactDOM.render(
