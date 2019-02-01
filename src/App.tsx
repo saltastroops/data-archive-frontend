@@ -1,10 +1,8 @@
 import * as React from "react";
 
-import SendMessage from "./components/SendMessage";
-
 class App extends React.Component {
   public render() {
-    return <SendMessage />;
+    return <h1>Here be content!</h1>;
   }
 }
 
