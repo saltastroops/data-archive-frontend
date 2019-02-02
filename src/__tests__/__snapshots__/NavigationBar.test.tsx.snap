@@ -1,0 +1,445 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationBar shows the correct content when the user is a non-administrator 1`] = `
+<nav
+  className="navbar "
+>
+  <div
+    className="navbar-brand"
+  >
+    <a
+      aria-expanded="false"
+      aria-label="menu"
+      className="navbar-burger burger "
+      onClick={[Function]}
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+  <div
+    className="navbar-menu "
+  >
+    <div
+      className="navbar-start"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/"
+      >
+        <Route
+          path="\\\\/"
+        >
+          <Link
+            aria-current="page"
+            className="navbar-item active"
+            replace={false}
+            style={Object {}}
+            to="/"
+          >
+            <a
+              aria-current="page"
+              className="navbar-item active"
+              href="/"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              Search
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/data-requests"
+      >
+        <Route
+          path="\\\\/data-requests"
+        >
+          <Link
+            aria-current={null}
+            className="navbar-item"
+            replace={false}
+            to="/data-requests"
+          >
+            <a
+              aria-current={null}
+              className="navbar-item"
+              href="/data-requests"
+              onClick={[Function]}
+            >
+              Data Requests
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+    </div>
+    <div
+      className="navbar-end"
+    >
+      <div
+        className="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          className="navbar-link"
+        >
+          Hello User
+        </a>
+        <div
+          className="navbar-dropdown"
+        >
+          <NavLink
+            activeClassName="active"
+            aria-current="page"
+            className="navbar-item"
+            to="/account"
+          >
+            <Route
+              path="\\\\/account"
+            >
+              <Link
+                aria-current={null}
+                className="navbar-item"
+                replace={false}
+                to="/account"
+              >
+                <a
+                  aria-current={null}
+                  className="navbar-item"
+                  href="/account"
+                  onClick={[Function]}
+                >
+                  Account
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+          <a
+            className="navbar-item"
+            data-test="logout"
+            onClick={[MockFunction]}
+          >
+            Logout
+          </a>
+        </div>
+      </div>
+      <span
+        className="navbar-item"
+      >
+        CART
+      </span>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`NavigationBar shows the correct content when the user is an administrator 1`] = `
+<nav
+  className="navbar "
+>
+  <div
+    className="navbar-brand"
+  >
+    <a
+      aria-expanded="false"
+      aria-label="menu"
+      className="navbar-burger burger "
+      onClick={[Function]}
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+  <div
+    className="navbar-menu "
+  >
+    <div
+      className="navbar-start"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/"
+      >
+        <Route
+          path="\\\\/"
+        >
+          <Link
+            aria-current="page"
+            className="navbar-item active"
+            replace={false}
+            style={Object {}}
+            to="/"
+          >
+            <a
+              aria-current="page"
+              className="navbar-item active"
+              href="/"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              Search
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/data-requests"
+      >
+        <Route
+          path="\\\\/data-requests"
+        >
+          <Link
+            aria-current={null}
+            className="navbar-item"
+            replace={false}
+            to="/data-requests"
+          >
+            <a
+              aria-current={null}
+              className="navbar-item"
+              href="/data-requests"
+              onClick={[Function]}
+            >
+              Data Requests
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/admin"
+      >
+        <Route
+          path="\\\\/admin"
+        >
+          <Link
+            aria-current={null}
+            className="navbar-item"
+            replace={false}
+            to="/admin"
+          >
+            <a
+              aria-current={null}
+              className="navbar-item"
+              href="/admin"
+              onClick={[Function]}
+            >
+              Admin
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+    </div>
+    <div
+      className="navbar-end"
+    >
+      <div
+        className="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          className="navbar-link"
+        >
+          Hello User
+        </a>
+        <div
+          className="navbar-dropdown"
+        >
+          <NavLink
+            activeClassName="active"
+            aria-current="page"
+            className="navbar-item"
+            to="/account"
+          >
+            <Route
+              path="\\\\/account"
+            >
+              <Link
+                aria-current={null}
+                className="navbar-item"
+                replace={false}
+                to="/account"
+              >
+                <a
+                  aria-current={null}
+                  className="navbar-item"
+                  href="/account"
+                  onClick={[Function]}
+                >
+                  Account
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+          <a
+            className="navbar-item"
+            data-test="logout"
+            onClick={[MockFunction]}
+          >
+            Logout
+          </a>
+        </div>
+      </div>
+      <span
+        className="navbar-item"
+      >
+        CART
+      </span>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`NavigationBar shows the correct content when the user is not logged in 1`] = `
+<nav
+  className="navbar "
+>
+  <div
+    className="navbar-brand"
+  >
+    <a
+      aria-expanded="false"
+      aria-label="menu"
+      className="navbar-burger burger "
+      onClick={[Function]}
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+  <div
+    className="navbar-menu "
+  >
+    <div
+      className="navbar-start"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item"
+        to="/"
+      >
+        <Route
+          path="\\\\/"
+        >
+          <Link
+            aria-current="page"
+            className="navbar-item active"
+            replace={false}
+            style={Object {}}
+            to="/"
+          >
+            <a
+              aria-current="page"
+              className="navbar-item active"
+              href="/"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              Search
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+    </div>
+    <div
+      className="navbar-end"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item button is-primary"
+        to="/login"
+      >
+        <Route
+          path="\\\\/login"
+        >
+          <Link
+            aria-current={null}
+            className="navbar-item button is-primary"
+            replace={false}
+            to="/login"
+          >
+            <a
+              aria-current={null}
+              className="navbar-item button is-primary"
+              href="/login"
+              onClick={[Function]}
+            >
+              <strong>
+                Login
+              </strong>
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      ( /* Button for registering */ }
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="navbar-item button is-outlined"
+        to="/register"
+      >
+        <Route
+          path="\\\\/register"
+        >
+          <Link
+            aria-current={null}
+            className="navbar-item button is-outlined"
+            replace={false}
+            to="/register"
+          >
+            <a
+              aria-current={null}
+              className="navbar-item button is-outlined"
+              href="/register"
+              onClick={[Function]}
+            >
+              Register
+            </a>
+          </Link>
+        </Route>
+      </NavLink>
+      <span
+        className="navbar-item"
+      >
+        CART
+      </span>
+    </div>
+  </div>
+</nav>
+`;
