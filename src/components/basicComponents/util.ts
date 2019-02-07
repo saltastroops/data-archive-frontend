@@ -195,6 +195,7 @@ const checkDateFormatError = (date: string) => {
   }
   return error;
 };
+
 const checkNameFormatError = (name: string) => {
   let error = "";
   const nameReg = /^[a-zA-Z0-9 ]*$/;
@@ -203,6 +204,7 @@ const checkNameFormatError = (name: string) => {
   }
   return error;
 };
+
 const checkValueFormatError = (value: string) => {
   let error = "";
   const dateReg = /^[1-9]\d*(\.\d+)?$/;
