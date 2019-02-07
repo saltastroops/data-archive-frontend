@@ -1,83 +1,114 @@
 import * as React from "react";
-import styled from "styled-components";
-import DACheckbox from "../basicComponents/DACheckbox";
-import DAInput from "../basicComponents/DAInput";
-import DASelect from "../basicComponents/DASelect";
-
-const PaddedTile = styled.div.attrs({
-  className: "is-child tile"
-})`
-  && {
-    padding: 1px;
-  }
-`;
-const TargetParent = styled.div.attrs({
-  className: "tile is-parent is-vertical"
-})`
-  && {
-    padding: 1px;
-    background-color: #f6f7e1;
-  }
-`;
-const HorizontalField = styled.div.attrs({
-  className: "is-child is-parent is-horizontal field"
-})`
-  && {
-    padding: 1px;
-    background-color: #f6f7e1;
-  }
-`;
+import {
+  InnerItem,
+  InnerItemLabel,
+  MainGrid,
+  SubGrid
+} from "../basicComponents/Grids";
+import InputField from "../basicComponents/InputField";
+import { IName, IValue } from "../basicComponents/SearchFormInterface";
+import SelectField from "../basicComponents/SelectField";
 
 interface ITargetSearchForm {
-  name?: string;
-  other?: string;
+  targetName: IName;
+  ra: IValue;
+  dec: IValue;
+  radius: IValue;
+  radiusUnits: IValue;
+  resolver: IValue;
 }
 
 const TargetSearchForm = (props: ITargetSearchForm) => {
-  // const {name} = props;
+  const { targetName, ra, dec, radius, radiusUnits, resolver } = props;
   return (
-    <TargetParent>
-      <HorizontalField>
-        <PaddedTile>
-          <DAInput name={"title"} label={"Tittle name"} />
-        </PaddedTile>
-        <PaddedTile>
-          <DASelect
-            options={["Simbad", "Other"]}
-            name={"resolver"}
-            label={"Resolver"}
-          />
-        </PaddedTile>
-      </HorizontalField>
-      <HorizontalField>
-        <PaddedTile>
-          <DAInput name={"ra"} label={"RA"} />
-        </PaddedTile>
-        <PaddedTile>
-          <DAInput name={"dec"} label={"DEC"} />
-        </PaddedTile>
-      </HorizontalField>
-      <HorizontalField>
-        <PaddedTile>
-          <DAInput name={"radius"} label={"Search radius"} />
-        </PaddedTile>
-        <PaddedTile>
-          <DASelect
-            options={["Arc seconds", "arc minutes", "degrees"]}
-            name={"radiusUnits"}
-            label={"Radius units"}
-          />
-        </PaddedTile>
-      </HorizontalField>
-      <HorizontalField>
-        <PaddedTile>
-          <DACheckbox name={"radius1"} label={"Search radius1"} />
-        </PaddedTile>
-        <PaddedTile>
-          <DACheckbox name={"radiusUnits1"} label={"Radius units1"} />
-        </PaddedTile>
-      </HorizontalField>
-    </TargetParent>
+    <>
+      <MainGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>Target name</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <InputField
+              name={"targetName"}
+              value={targetName.name}
+              error={targetName.error}
+              onChange={targetName.onChange}
+            />
+          </InnerItem>
+        </SubGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>Resolver</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <SelectField
+              options={["Simbad", "Other"]}
+              name={"resolver"}
+              value={resolver.value}
+              onChange={resolver.onChange}
+            />
+          </InnerItem>
+        </SubGrid>
+      </MainGrid>
+
+      <MainGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>RA</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <InputField
+              name={"ra"}
+              value={ra.value}
+              onChange={ra.onChange}
+              error={ra.error}
+            />
+          </InnerItem>
+        </SubGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>DEC</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <InputField
+              name={"dec"}
+              value={dec.value}
+              onChange={dec.onChange}
+              error={dec.error}
+            />
+          </InnerItem>
+        </SubGrid>
+      </MainGrid>
+
+      <MainGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>Search radius</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <InputField
+              name={"radius"}
+              value={radius.value}
+              onChange={radius.onChange}
+              error={radius.error}
+            />
+          </InnerItem>
+        </SubGrid>
+        <SubGrid>
+          <InnerItemLabel>
+            <p>Radius units</p>
+          </InnerItemLabel>
+          <InnerItem>
+            <SelectField
+              options={["Arc seconds", "arc minutes", "degrees"]}
+              name={"radiusUnits"}
+              onChange={radiusUnits.onChange}
+              value={radiusUnits.value}
+            />
+          </InnerItem>
+        </SubGrid>
+      </MainGrid>
+    </>
   );
 };
 export default TargetSearchForm;

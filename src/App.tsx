@@ -1,8 +1,9 @@
 import * as React from "react";
+import SearchForm from "./components/SearchForm";
 
 class App extends React.Component {
   public render() {
-    return <h1>Here be content!</h1>;
+    return <SearchForm />;
   }
 }
 
