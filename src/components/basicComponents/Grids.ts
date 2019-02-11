@@ -31,6 +31,12 @@ const DataGrid = styled.div.attrs({
   border: 1px solid rgba(224, 237, 249, 0.5);
   text-align: center;
 `;
+const ButtonGrid = styled.div.attrs({
+  className: "grid-item"
+})`
+  border: 1px solid rgba(255, 255, 255, 0);
+  text-align: left;
+`;
 const TelescopeGrid = styled.div.attrs({
   className: "grid-item"
 })`
@@ -87,5 +93,6 @@ export {
   InnerItemLabel,
   InnerItem,
   SubGrid,
-  MainGrid
+  MainGrid,
+  ButtonGrid
 };

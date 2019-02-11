@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectField render correctly 1`] = `
+<div
+  className="control  select"
+>
+  <select
+    id="undefined"
+  >
+    <option
+      key="aaa"
+    >
+      aaa
+    </option>
+    <option
+      key="bbb"
+    >
+      bbb
+    </option>
+    <option
+      key="ccc"
+    >
+      ccc
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField render correctly 2`] = `
+<div
+  className="control  select"
+>
+  <select
+    id="name"
+    name="name"
+    value="value"
+  >
+    <option
+      key="aaa"
+    >
+      aaa
+    </option>
+    <option
+      key="bbb"
+    >
+      bbb
+    </option>
+    <option
+      key="ccc"
+    >
+      ccc
+    </option>
+  </select>
+</div>
+`;

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  ButtonGrid,
   DataGrid,
   ParentGrid,
   ProposalGrid,
@@ -147,13 +148,15 @@ class SearchForm extends React.Component {
               onChange={this.onChange}
             />
           </DataGrid>
+          <ButtonGrid>
+            <input
+              className="button is-primary"
+              type="button"
+              value="search"
+              onClick={this.SearchArchive}
+            />
+          </ButtonGrid>
         </ParentGrid>
-        <input
-          className="button is-primary"
-          type="button"
-          value="search"
-          onClick={this.SearchArchive}
-        />
       </>
     );
   }

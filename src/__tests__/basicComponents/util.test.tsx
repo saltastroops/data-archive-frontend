@@ -198,7 +198,7 @@ describe("Generate error if value has error", () => {
         obsDate: {
           error: "",
           onChange,
-          value: "11-yui"
+          value: "11-year"
         },
         pi: {
           error: "",
