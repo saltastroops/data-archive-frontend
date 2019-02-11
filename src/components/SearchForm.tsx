@@ -8,10 +8,10 @@ import {
   TelescopeGrid
 } from "./basicComponents/Grids";
 import { updateState, validateQuery } from "./basicComponents/util";
-import DataSearchForm from "./SearchFormComponents/DataSearchForm";
-import ProposalSearchForm from "./SearchFormComponents/ProposalSearchForm";
-import TargetSearchForm from "./SearchFormComponents/TargetSearchForm";
-import TelescopeSearchForm from "./SearchFormComponents/TelescopeSearchForm";
+import DataSearchForm from "./searchFormComponents/DataSearchForm";
+import ProposalSearchForm from "./searchFormComponents/ProposalSearchForm";
+import TargetSearchForm from "./searchFormComponents/TargetSearchForm";
+import TelescopeSearchForm from "./searchFormComponents/TelescopeSearchForm";
 
 class SearchForm extends React.Component {
   public onChange = (

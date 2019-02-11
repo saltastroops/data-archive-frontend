@@ -196,7 +196,7 @@ const checkDateFormatError = (date: string) => {
   return error;
 };
 
-const checkNameFormatError = (name: string) => {
+export const checkNameFormatError = (name: string) => {
   let error = "";
   const nameReg = /^[a-zA-Z0-9 ]*$/;
   if (name !== "" && !name.match(nameReg)) {
@@ -261,4 +261,5 @@ const validateQuery = (state: any) => {
     }
   };
 };
+
 export { updateState, validateQuery };
