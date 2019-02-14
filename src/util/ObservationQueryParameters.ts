@@ -16,8 +16,8 @@
  *     Telescope (and instrument) details.
  */
 export interface IObservationQueryParameters {
-  general?: IGeneral;
-  target?: ITarget;
+  general: IGeneral;
+  target: ITarget;
   telescope: ITelescope;
 }
 
@@ -72,6 +72,7 @@ export interface ITarget {
   declination?: string;
   errors: {
     declination?: string;
+    resolver?: string;
     rightAscension?: string;
     searchConeRadius?: string;
     searchConeRadiusUnits?: string;
@@ -85,8 +86,6 @@ export interface ITarget {
 
 // TELESCOPES
 
-export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
-
 /**
  * An interface for query parameters related to a telescope.
  *
@@ -98,7 +97,7 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  name: TelescopeName;
+  name: "Lesedi" | "SALT" | "1.9 m";
 }
 
 /**
@@ -108,10 +107,12 @@ export interface ITelescope {
  * -----------
  * instrument:
  *     A SALT instrument.
+ * name:
+ *     The string "SALT".
  */
 export interface ISALT extends ITelescope {
-  name: "SALT";
   instrument?: IInstrument;
+  name: "SALT";
 }
 
 /**
@@ -120,24 +121,28 @@ export interface ISALT extends ITelescope {
  * Properties:
  * -----------
  * instrument:
- *     A SALT instrument.
+ *     An instrument used on Lesedi.
+ * name:
+ *     The string "Lesedi".
  */
 export interface ILesedi extends ITelescope {
-  name: "Lesedi";
   instrument?: IInstrument;
+  name: "Lesedi";
 }
 
 /**
- * An interface for query parameters related to SALT.
+ * An interface for query parameters related to the 1.9 m Telescope.
  *
  * Properties:
  * -----------
  * instrument:
- *     A SALT instrument.
+ *     An instrument used on the 1./9 m Telescope.
+ * name:
+ *     The string "1.9 m".
  */
-export interface ILesedi extends ITelescope {
-  name: "Lesedi";
+export interface I1Dot9Metre extends ITelescope {
   instrument?: IInstrument;
+  name: "1.9 m";
 }
 
 // INSTRUMENTS
@@ -169,9 +174,10 @@ export interface IInstrument {
  *     Exposure time.
  * filter:
  *     Filter.
+ * name:
+ *     The string "Salticam".
  */
 export interface ISalticam extends IInstrument {
-  name: "Salticam";
   detectorMode?: "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
@@ -180,6 +186,7 @@ export interface ISalticam extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
+  name: "Salticam";
 }
 
 /**
@@ -195,9 +202,10 @@ export interface ISalticam extends IInstrument {
  *     Exposure time.
  * filter:
  *     Filter.
+ * name:
+ *     The string "RSS".
  */
 export interface IRSS extends IInstrument {
-  name: "RSS";
   detectorMode?: "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
@@ -206,6 +214,7 @@ export interface IRSS extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
+  name: "RSS";
 }
 
 /**
@@ -219,9 +228,10 @@ export interface IRSS extends IInstrument {
  *     Exposure time.
  * mode:
  *     Resolution mode.
+ * name:
+ *     The string "HRS".
  */
 export interface IHRS extends IInstrument {
-  name: "HRS";
   errors: {
     exposureTime?: string;
     mode?: string;
@@ -232,6 +242,7 @@ export interface IHRS extends IInstrument {
     | "Medium Resolution"
     | "High Resolution"
     | "High Stability";
+  name: "HRS";
 }
 
 /**
@@ -245,15 +256,17 @@ export interface IHRS extends IInstrument {
  *     Exposure time.
  * filter:
  *     Filter.
+ * name:
+ *     The string "HIPPO".
  */
 export interface IHIPPO extends IInstrument {
-  name: "HIPPO";
   errors: {
     exposureTime?: string;
     filter?: string;
   };
   exposureTime?: string;
   filter?: string;
+  name: "HIPPO";
 }
 
 /**
@@ -267,13 +280,15 @@ export interface IHIPPO extends IInstrument {
  *     Exposure time.
  * filter:
  *     Filter.
+ * name:
+ *     The string "SHOC".
  */
 export interface ISHOC extends IInstrument {
-  name: "SHOC";
   errors: {
     exposureTime?: string;
     filter?: string;
   };
   exposureTime?: string;
   filter?: string;
+  name: "SHOC";
 }
