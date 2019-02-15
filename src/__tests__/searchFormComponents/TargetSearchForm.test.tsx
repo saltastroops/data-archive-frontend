@@ -1,10 +1,10 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
-import TargetSearchForm, {
+import TargetForm, {
   ITargetSearchForm
-} from "../../components/searchFormComponents/TargetSearchForm";
+} from "../../components/searchFormComponents/TargetForm";
 
-describe("TargetSearchForm", () => {
+describe("TargetForm", () => {
   const props: ITargetSearchForm = {
     dec: { value: "0" },
     ra: { value: "0" },
@@ -13,9 +13,9 @@ describe("TargetSearchForm", () => {
     resolver: { value: "0" },
     targetName: { name }
   };
-  const wrapper = mount(<TargetSearchForm {...props} />);
+  const wrapper = mount(<TargetForm {...props} />);
   it("should render", () => {
-    const shal = shallow(<TargetSearchForm {...props} />);
+    const shal = shallow(<TargetForm {...props} />);
     expect(shal).toBeDefined();
   });
   it("should contains 4 inputs and 2 selects", () => {
