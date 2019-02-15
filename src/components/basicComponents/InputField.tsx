@@ -24,7 +24,7 @@ const InputField = (props: IDAInputProps) => {
         onChange={onChange}
         placeholder={placeholder}
       />
-      <p>{error}</p>
+      <p style={{ color: "red" }}>{error}</p>
     </div>
   );
 };

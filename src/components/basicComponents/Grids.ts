@@ -57,9 +57,8 @@ const SubGrid = styled.div.attrs({
   className: "sub-grid"
 })`
   && {
-    display: grid;
-    grid-template-columns: 30% auto;
-    padding: 10px;
+    text-align: left;
+    padding-left: 10px;
   }
 `;
 const SubGrid4 = styled.div.attrs({
@@ -68,19 +67,16 @@ const SubGrid4 = styled.div.attrs({
   && {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    padding: 10px;
+    padding-left: 10px;
   }
 `;
 const InnerItem = styled.div.attrs({
   className: "inner-item"
-})`
-  text-align: left;
-`;
+})``;
 const InnerItemLabel = styled.div.attrs({
   className: "inner-item-label"
 })`
-  text-align: right;
-  margin-right: 15px;
+  text-align: left;
 `;
 
 export {

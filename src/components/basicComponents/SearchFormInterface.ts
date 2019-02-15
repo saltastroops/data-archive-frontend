@@ -1,3 +1,5 @@
+import * as React from "react";
+
 export interface IValue {
   value: string | undefined;
   error?: string | undefined;
@@ -7,7 +9,7 @@ export interface IValue {
 }
 export interface IName {
   name: string;
-  error?: string | undefined;
+  error?: string;
   onChange?: (
     e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
   ) => void;
@@ -30,13 +32,17 @@ export interface ITitle {
 }
 
 // data _________________________________
-interface Idata {
+
+export interface IData {
+  dataTypes: string[];
+  selectedDataType: string;
   arcs: boolean;
   biases: boolean;
-  dataType: string[];
   flats: boolean;
-  selectedDataType: boolean;
   standards: boolean;
+  onChange: (
+    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
+  ) => void;
 }
 // proposal____________________________________
 interface IObsDate {
@@ -51,52 +57,76 @@ interface IProposalTitle {
 interface IPi {
   proposalCode: ICode;
 }
-interface IProposal {
+export interface IProposal {
   onsDate: IObsDate;
   pi: IPi;
   proposalCode: IProposalCode;
   proposalTitle: IProposalTitle;
+  onChange: (
+    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
+  ) => void;
 }
 // target_________________________________________
-interface IRa {
-  ra: IValue;
-}
-interface IDec {
-  dec: IValue;
-}
-interface ITargetName {
-  targetName: IValue;
-}
-interface IResolver {
-  resolver: IValue;
-}
-interface IRadius {
-  radius: IValue;
-}
-interface IRadiusUnits {
-  radiusUnits: IValue;
-}
-interface ITarget {
-  ra: IRa;
-  dec: IDec;
-  radius: IRadius;
-  radiusUnits: IRadiusUnits;
-  targetName: ITargetName;
-  resolver: IResolver;
+
+export interface ITarget {
+  ra?: string;
+  dec?: string;
+  radius?: string;
+  radiusUnits?: string;
+  name?: string;
+  resolver?: string;
+  errors: {
+    ra?: string;
+    radius?: string;
+    name?: string;
+    dec?: string;
+  };
 }
 
 // telescope_______________________________________
 
 interface ITelescope {
-  otherInstruments: string[];
-  saltInstruments: string[];
-  selectedInstrument: string;
-  selectedTelescope: string;
-  telescopes: string[];
+  name: string;
+}
+
+export interface ISALT extends ITelescope {
+  instrument: string;
+}
+
+interface IInstrumentsDetails {
+  mode?: string;
+  filter?: string;
+  detectorMode?: string;
+  exposureMode?: string;
+}
+export interface ITelescopeDetails {
+  telescope: string;
+  instrument: string;
+  instrumentDetails: any;
+}
+
+export interface IInstrumentsMode {
+  bvit: {
+    filter: string;
+    mode: string;
+  };
+  hippo: {};
+  hrs: {
+    mode: string;
+  };
+  rss: {
+    detectorMode: string;
+    mode: string;
+  };
+  satlicam: {
+    detectorMode: string;
+  };
+  shoc: {};
+  spupMic: {};
 }
 
 export interface IState {
-  data: Idata;
+  data: IData;
   proposal: IProposal;
   target: ITarget;
   telescope: ITelescope;

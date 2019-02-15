@@ -1,114 +1,115 @@
 import * as React from "react";
 import {
-  InnerItem,
-  InnerItemLabel,
-  MainGrid,
-  SubGrid
-} from "../basicComponents/Grids";
+  validateDec,
+  validateName,
+  validateRa,
+  validateRadius
+} from "../../utils/targetValidators";
+import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
-import { IName, IValue } from "../basicComponents/SearchFormInterface";
+import { ITarget } from "../basicComponents/SearchFormInterface";
 import SelectField from "../basicComponents/SelectField";
 
-interface ITargetSearchForm {
-  targetName: IName;
-  ra: IValue;
-  dec: IValue;
-  radius: IValue;
-  radiusUnits: IValue;
-  resolver: IValue;
-}
-
-const TargetSearchForm = (props: ITargetSearchForm) => {
-  const { targetName, ra, dec, radius, radiusUnits, resolver } = props;
-  return (
-    <>
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+class TargetSearchForm extends React.Component<
+  { target: ITarget; onChange: any },
+  any
+> {
+  render() {
+    const { target, onChange } = this.props;
+    const targetChange = (
+      e: React.FormEvent<HTMLSelectElement | HTMLInputElement>
+    ) => {
+      const name = e.currentTarget.name;
+      const value = e.currentTarget.value;
+      onChange({
+        ...target,
+        [name]: value,
+        errors: {
+          ...target.errors,
+          [name]: ""
+        }
+      });
+    };
+    return (
+      <>
+        <MainGrid>
+          <SubGrid>
             <p>Target name</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
-              name={"targetName"}
-              value={targetName.name}
-              error={targetName.error}
-              onChange={targetName.onChange}
+              name={"name"}
+              value={target.name || ""}
+              error={target.errors.name}
+              onChange={targetChange}
             />
-          </InnerItem>
-        </SubGrid>
-        <SubGrid>
-          <InnerItemLabel>
+          </SubGrid>
+          <SubGrid>
             <p>Resolver</p>
-          </InnerItemLabel>
-          <InnerItem>
             <SelectField
-              options={["Simbad", "Other"]}
+              options={["Simbad", "NED", "VizieR"]}
               name={"resolver"}
-              value={resolver.value}
-              onChange={resolver.onChange}
+              value={target.resolver || "Simbad"}
+              onChange={targetChange}
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
+          </SubGrid>
+        </MainGrid>
 
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+        <MainGrid>
+          <SubGrid>
             <p>RA</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
               name={"ra"}
-              value={ra.value}
-              onChange={ra.onChange}
-              error={ra.error}
+              value={target.ra || ""}
+              onChange={targetChange}
+              error={target.errors.ra}
             />
-          </InnerItem>
-        </SubGrid>
-        <SubGrid>
-          <InnerItemLabel>
+          </SubGrid>
+          <SubGrid>
             <p>DEC</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
               name={"dec"}
-              value={dec.value}
-              onChange={dec.onChange}
-              error={dec.error}
+              value={target.dec || ""}
+              onChange={targetChange}
+              error={target.errors.dec}
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+          </SubGrid>
+        </MainGrid>
+        <MainGrid>
+          <SubGrid>
             <p>Search radius</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
               name={"radius"}
-              value={radius.value}
-              onChange={radius.onChange}
-              error={radius.error}
+              value={target.radius || ""}
+              onChange={targetChange}
+              error={target.errors.radius}
             />
-          </InnerItem>
-        </SubGrid>
-        <SubGrid>
-          <InnerItemLabel>
+          </SubGrid>
+          <SubGrid>
             <p>Radius units</p>
-          </InnerItemLabel>
-          <InnerItem>
             <SelectField
               options={["Arc seconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
-              onChange={radiusUnits.onChange}
-              value={radiusUnits.value}
+              onChange={targetChange}
+              value={target.radiusUnits || "Arc seconds"}
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-    </>
-  );
+          </SubGrid>
+        </MainGrid>
+      </>
+    );
+  }
+}
+
+export const validateTarget = (
+  target: any,
+  onChange: (value: ITarget) => void
+) => {
+  onChange({
+    ...target,
+    errors: {
+      dec: validateDec(target.dec),
+      name: validateName(target.dec),
+      ra: validateRa(target.ra),
+      radius: validateRadius(target.radius)
+    }
+  });
 };
 export default TargetSearchForm;

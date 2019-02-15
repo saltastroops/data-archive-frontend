@@ -7,10 +7,13 @@ import {
   TargetGrid,
   TelescopeGrid
 } from "./basicComponents/Grids";
-import { updateState, validateQuery } from "./basicComponents/util";
+import { ITarget } from "./basicComponents/SearchFormInterface";
+import { updateState } from "./basicComponents/util";
 import DataSearchForm from "./searchFormComponents/DataSearchForm";
 import ProposalSearchForm from "./searchFormComponents/ProposalSearchForm";
-import TargetSearchForm from "./searchFormComponents/TargetSearchForm";
+import TargetSearchForm, {
+  validateTarget
+} from "./searchFormComponents/TargetSearchForm";
 import TelescopeSearchForm from "./searchFormComponents/TelescopeSearchForm";
 
 class SearchForm extends React.Component {
@@ -18,17 +21,42 @@ class SearchForm extends React.Component {
     e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
   ) => {
     // e.preventDefault();
+
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     const newState = updateState(this.state, name, value);
     this.setState(() => newState);
   };
-
-  public SearchArchive = () => {
-    const newState = validateQuery(this.state);
+  public changeTelescope = (value: any) => {
+    const newState = {
+      ...this.state,
+      telescope: {
+        ...value
+      }
+    };
     this.setState(() => newState);
   };
-  state = {
+  public targetChange = (value: any) => {
+    const newState = {
+      ...this.state,
+      target: {
+        ...value
+      }
+    };
+    this.setState(() => newState);
+  };
+
+  public SearchArchive = () => {
+    const newState = validateTarget(this.state.target, this.targetChange);
+    this.setState(() => newState);
+  };
+
+  public state: {
+    data: any;
+    proposal: any;
+    target: ITarget;
+    telescope: any;
+  } = {
     data: {
       arcs: false,
       biases: false,
@@ -60,65 +88,19 @@ class SearchForm extends React.Component {
       }
     },
     target: {
-      dec: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      ra: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      radius: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      radiusUnits: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      resolver: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      targetName: {
-        error: "",
-        name: "",
-        onChange: this.onChange
-      }
+      errors: {}
     },
-    telescope: {
-      otherInstruments: ["any", "Hippo", "SHOC", "SpupMic"],
-      saltInstruments: ["any", "HRS", "RSS", "BVIT", "SALTICAM"],
-      selectedInstrument: "any",
-      selectedTelescope: "any",
-      telescopes: ["any", "SALT", "Lesedi", "1.9 inch"]
-    }
+    telescope: {}
   };
-
   public render() {
-    const { target, proposal, telescope, data } = this.state;
-    const instruments =
-      telescope.selectedTelescope === "SALT"
-        ? telescope.saltInstruments
-        : telescope.otherInstruments;
-    console.log(this.state);
+    const { target, proposal, data, telescope } = this.state;
+
+    console.log("STATE: ", this.state);
     return (
       <>
         <ParentGrid>
           <TargetGrid>
-            <TargetSearchForm
-              targetName={target.targetName}
-              ra={target.ra}
-              dec={target.dec}
-              radius={target.radius}
-              radiusUnits={target.radiusUnits}
-              resolver={target.resolver}
-            />
+            <TargetSearchForm target={target} onChange={this.targetChange} />
           </TargetGrid>
           <ProposalGrid>
             <ProposalSearchForm
@@ -130,11 +112,8 @@ class SearchForm extends React.Component {
           </ProposalGrid>
           <TelescopeGrid>
             <TelescopeSearchForm
-              telescopes={telescope.telescopes}
-              instruments={instruments}
-              selectedInstrument={telescope.selectedInstrument}
-              selectedTelescope={telescope.selectedTelescope}
-              onChange={this.onChange}
+              telescope={telescope}
+              onChange={this.changeTelescope}
             />
           </TelescopeGrid>
           <DataGrid>

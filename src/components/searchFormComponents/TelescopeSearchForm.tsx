@@ -1,84 +1,63 @@
 import * as React from "react";
-import {
-  InnerItem,
-  InnerItemLabel,
-  MainGrid,
-  SubGrid
-} from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import { MainGrid, SubGrid } from "../basicComponents/Grids";
+import SelectField from "../basicComponents/SelectField2";
+import LesediForm from "./telescopes/LesediForm";
+import OneNineMForm from "./telescopes/OneNineM";
+import SaltForm from "./telescopes/SaltForm";
 
-interface ITelescopeSearchForm {
-  telescopes: string[];
-  instruments: string[];
-  selectedTelescope: string;
-  selectedInstrument: string;
-  onChange: (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => void;
-}
-
-const TelescopeSearchForm = (props: ITelescopeSearchForm) => {
-  const {
-    telescopes,
-    instruments,
-    selectedInstrument,
-    selectedTelescope,
-    onChange
-  } = props;
-
-  if (selectedTelescope !== "any") {
+class TelescopeSearchForm extends React.Component<
+  { telescope: any; onChange: any },
+  any
+> {
+  render() {
+    const { telescope, onChange } = this.props;
+    const changeTelescope = (e: React.FormEvent<HTMLSelectElement>) => {
+      const value = e.currentTarget.value;
+      onChange({
+        name: value
+      });
+    };
+    const changeInstrument = (value: any) => {
+      onChange({
+        ...telescope,
+        instrument: {
+          ...value
+        }
+      });
+    };
+    const name = telescope.name || { name: "" };
     return (
       <>
         <MainGrid>
           <SubGrid>
-            <InnerItemLabel>
-              <p>Telescope</p>
-            </InnerItemLabel>
-            <InnerItem>
-              <SelectField
-                options={telescopes}
-                name={"telescope"}
-                onChange={onChange}
-                value={selectedTelescope}
-              />
-            </InnerItem>
-          </SubGrid>
-          <SubGrid>
-            <InnerItemLabel>
-              <p>Instrument</p>
-            </InnerItemLabel>
-            <InnerItem>
-              <SelectField
-                options={instruments}
-                name={"instrument"}
-                onChange={onChange}
-                value={selectedInstrument}
-              />
-            </InnerItem>
+            <p>Telescope</p>
+            <SelectField
+              name={"telescope"}
+              options={["any", "SALT", "1.9 m", "Lesedi"]}
+              onChange={changeTelescope}
+            />
           </SubGrid>
         </MainGrid>
+        {name === "SALT" && (
+          <SaltForm
+            details={telescope.instrument || { instrument: "" }}
+            onChange={changeInstrument}
+          />
+        )}
+        {name === "Lesedi" && (
+          <LesediForm
+            details={telescope.instrument || { instrument: "" }}
+            onChange={changeInstrument}
+          />
+        )}
+        {name === "1.9 m" && (
+          <OneNineMForm
+            details={telescope.instrument || { instrument: "" }}
+            onChange={changeInstrument}
+          />
+        )}
       </>
     );
   }
-
-  return (
-    <>
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
-            <p>Telescope</p>
-          </InnerItemLabel>
-          <InnerItem>
-            <SelectField
-              options={telescopes}
-              name={"telescope"}
-              onChange={onChange}
-              value={selectedTelescope}
-            />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-    </>
-  );
-};
+}
 export default TelescopeSearchForm;

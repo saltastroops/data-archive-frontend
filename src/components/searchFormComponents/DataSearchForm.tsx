@@ -46,7 +46,7 @@ const DataSearchForm = (props: IDataSearchForm) => {
       <MainGrid>
         <SubGrid>
           <InnerItemLabel>
-            <p>Reduse / raw</p>
+            <p>Reduce/raw</p>
           </InnerItemLabel>
           <InnerItem>
             <SelectField
