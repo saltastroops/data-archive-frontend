@@ -1,4 +1,5 @@
 import * as React from "react";
+import { IGeneral } from "../utils/ObservationQueryParameters";
 import {
   ButtonGrid,
   DataGrid,
@@ -13,7 +14,6 @@ import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm from "./searchFormComponents/ProposalForm";
 import TargetForm, { validateTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm from "./searchFormComponents/TelescopeForm";
-import { IGeneral } from "../utils/ObservationQueryParameters";
 
 class SearchForm extends React.Component {
   public onChange = (
@@ -122,15 +122,7 @@ class SearchForm extends React.Component {
             />
           </TelescopeGrid>
           <DataGrid>
-            <DataForm
-              dataTypes={data.dataType}
-              selectedDataType={data.selectedDataType}
-              arcs={data.arcs}
-              biases={data.biases}
-              flats={data.flats}
-              standards={data.standards}
-              onChange={this.onChange}
-            />
+            <DataForm data={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
             <input

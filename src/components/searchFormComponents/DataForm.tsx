@@ -1,113 +1,112 @@
 import * as React from "react";
 import styled from "styled-components";
-import {
-  InnerItem,
-  InnerItemLabel,
-  MainGrid,
-  SubGrid,
-  SubGrid4
-} from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import { IGeneral } from "../../utils/ObservationQueryParameters";
+import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
+import SelectField from "../basicComponents/SelectField2";
 
 const LargeCheckbox = styled.input.attrs({
-  className: "is-checkradio",
+  className: "checkbox",
   type: "checkbox"
 })`
   && {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 `;
 
-interface IDataSearchForm {
-  dataTypes: string[];
-  selectedDataType: string;
-  arcs: boolean;
-  biases: boolean;
-  flats: boolean;
-  standards: boolean;
-  onChange: (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => void;
-}
-
-const DataForm = (props: IDataSearchForm) => {
-  const {
-    dataTypes,
-    onChange,
-    selectedDataType,
-    arcs,
-    biases,
-    flats,
-    standards
-  } = props;
-  return (
-    <>
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+class DataForm extends React.Component<
+  { data: IGeneral; onChange: (value: IGeneral) => void },
+  any
+> {
+  /*
+  event type need to be 'any' because React.FormEvent<HTMLInputElement> types does not have 'target.checked' property
+  */
+  change = (e: any) => {
+    // fooling type scripts
+    const name = e.currentTarget.name;
+    let value;
+    if (e.currentTarget.type === "checkbox") {
+      value = e.target.checked;
+    } else {
+      value = e.currentTarget.value;
+    }
+    this.props.onChange({
+      ...this.props.data,
+      [name]: value
+    });
+  };
+  render() {
+    const {
+      errors,
+      arcs,
+      biases,
+      flats,
+      standards,
+      dataType
+    } = this.props.data;
+    console.log("AAAAA: ", arcs);
+    return (
+      <>
+        <MainGrid>
+          <SubGrid>
             <p>Reduce/raw</p>
-          </InnerItemLabel>
-          <InnerItem>
             <SelectField
-              options={dataTypes}
+              options={["any", "reduced", "raw"]}
               name={"dataType"}
-              onChange={onChange}
-              value={selectedDataType}
+              onChange={this.change}
+              value={dataType}
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-      <MainGrid>
-        <SubGrid>
-          <InnerItem>
-            <h5 className={"title is-5"}>Include</h5>
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-      <SubGrid4>
-        <InnerItem>
-          <label className={"is-horizontal is-ancestor"}>
-            <LargeCheckbox checked={arcs} onChange={onChange} name={"arcs"} />
-            <div className={"label-field"}>
-              <label className={"label"}>arcs</label>
-            </div>
-          </label>
-        </InnerItem>
-        <InnerItem>
+          </SubGrid>
+        </MainGrid>
+        <MainGrid>
+          <SubGrid>
+            <h5 className={"title is-5"}>Include:</h5>
+          </SubGrid>
+        </MainGrid>
+        <SubGrid4>
           <label>
-            <LargeCheckbox
-              checked={biases}
-              onChange={onChange}
-              name={"biases"}
-            />
-            <div className={"label-field"}>
-              <label className={"label"}>biases</label>
-            </div>
+            <Span>
+              <LargeCheckbox
+                checked={arcs || false}
+                onChange={this.change}
+                name={"arcs"}
+              />
+            </Span>
+            <Span>Arcs</Span>
           </label>
-        </InnerItem>
-        <InnerItem>
           <label>
-            <LargeCheckbox checked={flats} onChange={onChange} name={"flats"} />
-            <div className={"label-field"}>
-              <label className={"label"}>flats</label>
-            </div>
+            <Span>
+              <LargeCheckbox
+                checked={biases || false}
+                onChange={this.change}
+                name={"biases"}
+              />
+            </Span>
+            <Span>Biases</Span>
           </label>
-        </InnerItem>
-        <InnerItem>
           <label>
-            <LargeCheckbox
-              checked={standards}
-              onChange={onChange}
-              name="standards"
-            />
-            <div className={"label-field"}>
-              <label className={"label"}>standards</label>
-            </div>
+            <Span>
+              <LargeCheckbox
+                checked={flats || false}
+                onChange={this.change}
+                name={"flats"}
+              />
+            </Span>
+            <Span>Flats</Span>
           </label>
-        </InnerItem>
-      </SubGrid4>
-    </>
-  );
-};
+          <label>
+            <Span>
+              <LargeCheckbox
+                checked={standards || false}
+                onChange={this.change}
+                name={"standards"}
+              />
+            </Span>
+            <Span>Standards</Span>
+          </label>
+        </SubGrid4>
+      </>
+    );
+  }
+}
 export default DataForm;

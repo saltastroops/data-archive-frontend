@@ -67,9 +67,17 @@ const SubGrid4 = styled.div.attrs({
   && {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    padding-left: 10px;
   }
 `;
+const Span = styled.span.attrs({
+  className: "span"
+})`
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+`;
+
 const InnerItem = styled.div.attrs({
   className: "inner-item"
 })``;
@@ -90,5 +98,6 @@ export {
   InnerItem,
   SubGrid,
   MainGrid,
-  ButtonGrid
+  ButtonGrid,
+  Span
 };
