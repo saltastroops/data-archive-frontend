@@ -1,11 +1,9 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
-import TargetForm, {
-  ITargetSearchForm
-} from "../../components/searchFormComponents/TargetForm";
+import TargetForm from "../../components/searchFormComponents/TargetForm";
 
 describe("TargetForm", () => {
-  const props: ITargetSearchForm = {
+  const props: any = {
     dec: { value: "0" },
     ra: { value: "0" },
     radius: { value: "0" },
