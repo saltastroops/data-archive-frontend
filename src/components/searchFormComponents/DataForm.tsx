@@ -31,7 +31,7 @@ interface IDataSearchForm {
   ) => void;
 }
 
-const DataSearchForm = (props: IDataSearchForm) => {
+const DataForm = (props: IDataSearchForm) => {
   const {
     dataTypes,
     onChange,
@@ -110,4 +110,4 @@ const DataSearchForm = (props: IDataSearchForm) => {
     </>
   );
 };
-export default DataSearchForm;
+export default DataForm;
