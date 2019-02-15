@@ -9,12 +9,10 @@ import {
 } from "./basicComponents/Grids";
 import { ITarget } from "./basicComponents/SearchFormInterface";
 import { updateState } from "./basicComponents/util";
-import DataSearchForm from "./searchFormComponents/DataSearchForm";
-import ProposalSearchForm from "./searchFormComponents/ProposalSearchForm";
-import TargetSearchForm, {
-  validateTarget
-} from "./searchFormComponents/TargetSearchForm";
-import TelescopeSearchForm from "./searchFormComponents/TelescopeSearchForm";
+import DataForm from "./searchFormComponents/DataForm";
+import ProposalForm from "./searchFormComponents/ProposalForm";
+import TargetForm, { validateTarget } from "./searchFormComponents/TargetForm";
+import TelescopeForm from "./searchFormComponents/TelescopeForm";
 import { IGeneral } from "../utils/ObservationQueryParameters";
 
 class SearchForm extends React.Component {
@@ -112,22 +110,19 @@ class SearchForm extends React.Component {
       <>
         <ParentGrid>
           <TargetGrid>
-            <TargetSearchForm target={target} onChange={this.targetChange} />
+            <TargetForm target={target} onChange={this.targetChange} />
           </TargetGrid>
           <ProposalGrid>
-            <ProposalSearchForm
-              proposal={general}
-              onChange={this.generalChange}
-            />
+            <ProposalForm proposal={general} onChange={this.generalChange} />
           </ProposalGrid>
           <TelescopeGrid>
-            <TelescopeSearchForm
+            <TelescopeForm
               telescope={telescope}
               onChange={this.changeTelescope}
             />
           </TelescopeGrid>
           <DataGrid>
-            <DataSearchForm
+            <DataForm
               dataTypes={data.dataType}
               selectedDataType={data.selectedDataType}
               arcs={data.arcs}

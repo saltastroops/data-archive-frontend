@@ -10,7 +10,7 @@ import InputField from "../basicComponents/InputField";
 import { ITarget } from "../basicComponents/SearchFormInterface";
 import SelectField from "../basicComponents/SelectField";
 
-class TargetSearchForm extends React.Component<
+class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
   any
 > {
@@ -112,4 +112,4 @@ export const validateTarget = (
     }
   });
 };
-export default TargetSearchForm;
+export default TargetForm;

@@ -3,7 +3,7 @@ import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 
-class ProposalSearchForm extends React.Component<
+class ProposalForm extends React.Component<
   { proposal: IGeneral; onChange: (value: IGeneral) => void },
   any
 > {
@@ -71,4 +71,4 @@ class ProposalSearchForm extends React.Component<
     );
   }
 }
-export default ProposalSearchForm;
+export default ProposalForm;

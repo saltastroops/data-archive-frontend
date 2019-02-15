@@ -5,7 +5,7 @@ import LesediForm from "./telescopes/LesediForm";
 import OneNineMForm from "./telescopes/OneNineM";
 import SaltForm from "./telescopes/SaltForm";
 
-class TelescopeSearchForm extends React.Component<
+class TelescopeForm extends React.Component<
   { telescope: any; onChange: any },
   any
 > {
@@ -60,4 +60,4 @@ class TelescopeSearchForm extends React.Component<
     );
   }
 }
-export default TelescopeSearchForm;
+export default TelescopeForm;
