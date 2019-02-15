@@ -4,9 +4,7 @@ interface IDAInputProps {
   name?: string | undefined;
   value?: string | undefined;
   error?: string | undefined;
-  onChange?: (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => void;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
   placeholder?: string | undefined;
 }
 

@@ -15,6 +15,7 @@ import TargetSearchForm, {
   validateTarget
 } from "./searchFormComponents/TargetSearchForm";
 import TelescopeSearchForm from "./searchFormComponents/TelescopeSearchForm";
+import { IGeneral } from "../utils/ObservationQueryParameters";
 
 class SearchForm extends React.Component {
   public onChange = (
@@ -45,6 +46,15 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
+  public generalChange = (value: IGeneral) => {
+    const newState = {
+      ...this.state,
+      general: {
+        ...value
+      }
+    };
+    this.setState(() => newState);
+  };
 
   public SearchArchive = () => {
     const newState = validateTarget(this.state.target, this.targetChange);
@@ -53,6 +63,7 @@ class SearchForm extends React.Component {
 
   public state: {
     data: any;
+    general: IGeneral;
     proposal: any;
     target: ITarget;
     telescope: any;
@@ -65,6 +76,7 @@ class SearchForm extends React.Component {
       selectedDataType: "any",
       standards: false
     },
+    general: { errors: {} },
     proposal: {
       obsDate: {
         error: "",
@@ -93,7 +105,7 @@ class SearchForm extends React.Component {
     telescope: {}
   };
   public render() {
-    const { target, proposal, data, telescope } = this.state;
+    const { target, general, data, telescope } = this.state;
 
     console.log("STATE: ", this.state);
     return (
@@ -104,10 +116,8 @@ class SearchForm extends React.Component {
           </TargetGrid>
           <ProposalGrid>
             <ProposalSearchForm
-              proposalCode={proposal.proposalCode}
-              proposalTitle={proposal.proposalTitle}
-              pi={proposal.pi}
-              obsDate={proposal.obsDate}
+              proposal={general}
+              onChange={this.generalChange}
             />
           </ProposalGrid>
           <TelescopeGrid>

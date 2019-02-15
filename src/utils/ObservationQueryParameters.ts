@@ -40,10 +40,24 @@ export interface IObservationQueryParameters {
 export interface IGeneral {
   errors: {
     observationNight?: string;
+    principalInvestigator?: string;
+    proposalCode?: string;
+    proposalTitle?: string;
+    arcs?: string;
+    biases?: string;
+    flats?: string;
+    standards?: string;
+    dataType?: string;
   };
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
+  proposalTitle?: string;
+  arcs?: boolean;
+  biases?: boolean;
+  flats?: boolean;
+  standards?: boolean;
+  dataType?: "any" | "reduced" | "raw";
 }
 
 /**

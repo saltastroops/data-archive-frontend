@@ -1,97 +1,74 @@
 import * as React from "react";
-import styled from "styled-components";
-import {
-  InnerItem,
-  InnerItemLabel,
-  MainGrid,
-  SubGrid
-} from "../basicComponents/Grids";
+import { IGeneral } from "../../utils/ObservationQueryParameters";
+import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
-import {
-  ICode,
-  IName,
-  ITitle,
-  IValue
-} from "../basicComponents/SearchFormInterface";
 
-const Columns = styled.div.attrs({
-  className: "columns field"
-})`
-  && {
-    background-color: ;
-  }
-`;
-
-interface IProposalSearchForm {
-  proposalCode: ICode;
-  proposalTitle: ITitle;
-  pi: IName;
-  obsDate: IValue;
-}
-
-const ProposalSearchForm = (props: IProposalSearchForm) => {
-  const { proposalCode, proposalTitle, pi, obsDate } = props;
-  return (
-    <>
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+class ProposalSearchForm extends React.Component<
+  { proposal: IGeneral; onChange: (value: IGeneral) => void },
+  any
+> {
+  change = (e: React.FormEvent<HTMLInputElement>) => {
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
+    this.props.onChange({
+      ...this.props.proposal,
+      [name]: value
+    });
+  };
+  render() {
+    const {
+      errors,
+      principalInvestigator,
+      observationNight,
+      proposalCode,
+      proposalTitle
+    } = this.props.proposal;
+    return (
+      <>
+        <MainGrid>
+          <SubGrid>
             <p>Proposal Code</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
-              error={proposalCode.error}
+              error={errors.proposalCode}
               name={"proposalCode"}
-              onChange={proposalCode.onChange}
-              value={proposalCode.code}
+              onChange={this.change}
+              value={proposalCode}
             />
-          </InnerItem>
-        </SubGrid>
-        <SubGrid>
-          <InnerItemLabel>
-            <p>P.I</p>
-          </InnerItemLabel>
-          <InnerItem>
+          </SubGrid>
+          <SubGrid>
+            <p>Principal investigator</p>
             <InputField
-              name={"pi"}
-              value={pi.name}
-              error={pi.error}
-              onChange={pi.onChange}
+              name={"principalInvestigator"}
+              value={principalInvestigator || ""}
+              error={errors.principalInvestigator || ""}
+              onChange={this.change}
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
+          </SubGrid>
+        </MainGrid>
 
-      <MainGrid>
-        <SubGrid>
-          <InnerItemLabel>
+        <MainGrid>
+          <SubGrid>
             <p>Proposal title</p>
-          </InnerItemLabel>
-          <InnerItem>
             <InputField
               name={"proposalTitle"}
-              value={proposalTitle.title}
-              error={proposalTitle.error}
-              onChange={proposalTitle.onChange}
+              value={proposalTitle}
+              error={errors.proposalTitle}
+              onChange={this.change}
             />
-          </InnerItem>
-        </SubGrid>
-        <SubGrid>
-          <InnerItemLabel>
-            <p>Obs date</p>
-          </InnerItemLabel>
-          <InnerItem>
+          </SubGrid>
+          <SubGrid>
+            <p>Observation night</p>
             <InputField
-              name={"obsDate"}
-              value={obsDate.value}
-              error={obsDate.error}
-              onChange={obsDate.onChange}
+              name={"observationNight"}
+              value={observationNight}
+              error={errors.observationNight}
+              onChange={this.change}
               placeholder="dd-mm-yyyy"
             />
-          </InnerItem>
-        </SubGrid>
-      </MainGrid>
-    </>
-  );
-};
+          </SubGrid>
+        </MainGrid>
+      </>
+    );
+  }
+}
 export default ProposalSearchForm;
