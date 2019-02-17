@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generalWhereConstraint should map a Principal Investigator to a contains constraint 1`] = `
+Array [
+  Object {
+    "CONTAINS": Object {
+      "column": "A.PrincipalInvestigator",
+      "value": "Doe",
+    },
+  },
+]
+`;
+
+exports[`generalWhereConstraint should map a proposal code to a contains constraint 1`] = `
+Array [
+  Object {
+    "CONTAINS": Object {
+      "column": "A.ProposalCode",
+      "value": "2-SCI",
+    },
+  },
+]
+`;
+
+exports[`generalWhereConstraint should map an observation night to a greater than and less than constraint spanning one night 1`] = `
+Array [
+  Object {
+    "GREATER_THAN": Object {
+      "column": "A.ObsNight",
+      "value": "2019-02-17",
+    },
+  },
+  Object {
+    "LESS_THAN": Object {
+      "column": "A.ObsNight",
+      "value": "2019-02-18",
+    },
+  },
+]
+`;
+
+exports[`generalWhereConstraint should map input data correctly 1`] = `
+Array [
+  Object {
+    "GREATER_THAN": Object {
+      "column": "A.ObsNight",
+      "value": "2019-05-13",
+    },
+  },
+  Object {
+    "LESS_THAN": Object {
+      "column": "A.ObsNight",
+      "value": "2019-05-14",
+    },
+  },
+  Object {
+    "CONTAINS": Object {
+      "column": "A.PrincipalInvestigator",
+      "value": "Sipho",
+    },
+  },
+  Object {
+    "CONTAINS": Object {
+      "column": "A.ProposalCode",
+      "value": "2019-1-SCI-042",
+    },
+  },
+]
+`;
