@@ -165,11 +165,11 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     // Cone search
     conditions.push(
       withinRadius({
-        declinationColumn: TARGET_DECLINATION,
-        rightAscensionColumn: TARGET_RIGHT_ASCENSION,
-        rightAscension: rightAscensions[0],
         declination: declinations[0],
-        radius
+        declinationColumn: TARGET_DECLINATION,
+        radius,
+        rightAscension: rightAscensions[0],
+        rightAscensionColumn: TARGET_RIGHT_ASCENSION
       })
     );
   } else {
