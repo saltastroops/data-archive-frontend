@@ -1,4 +1,53 @@
-// TypeScript interfaces describing the state of the search form
+/**
+ * An interface marking a where condition.
+ */
+export interface IWhereCondition {}
+
+/**
+ * An interface describing a target position.
+ *
+ * Properties:
+ * -----------
+ * declinations:
+ *     An array of 0, 1 or 2 declinations, in degrees. If there are two
+ *     declinations, they are taken to be the ends of an interval.
+ * rightAscensions:
+ *     An array of 0, 1 or 2 right ascensions, in degrees. If there are two
+ *     right ascensions, they are taken to be the ends of an interval.
+ * searchConeRadius:
+ *     The radius for a cone search, in degrees.
+ */
+export interface ITargetPosition {
+  rightAscensions: number[];
+  declinations: number[];
+  searchConeRadius: number;
+}
+
+/**
+ * An interface describing the arguments for the WITHIN_RADIUS operator.
+ *
+ * Properties:
+ * -----------
+ * declination:
+ *     The declination of the centre position, in degrees.
+ * declinationColumn:
+ *     The name of the declination column.
+ * radius:
+ *     The radius of the search cone.
+ * rightAscension:
+ *     The right ascension of the centre position, in degrees.
+ * rightAscensionColumn:
+ *     The name of the right ascension column.
+ */
+export interface IWithinRadiusArguments {
+  declination: number;
+  declinationColumn: string;
+  radius: number;
+  rightAscension: number;
+  rightAscensionColumn: string;
+}
+
+// Interfaces describing the state of the search form
 
 /**
  * An interface describing the React state of the observation query form.
