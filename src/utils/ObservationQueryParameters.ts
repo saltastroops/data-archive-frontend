@@ -85,6 +85,7 @@ export interface IGeneral {
 export interface ITarget {
   declination?: string;
   errors: {
+    name?: string;
     declination?: string;
     resolver?: string;
     rightAscension?: string;
@@ -92,7 +93,7 @@ export interface ITarget {
     searchConeRadiusUnits?: string;
   };
   name?: string;
-  resolver?: string;
+  resolver?: "Simbad" | "NED" | "VizieR";
   rightAscension?: string;
   searchConeRadius?: string;
   searchConeRadiusUnits?: string;

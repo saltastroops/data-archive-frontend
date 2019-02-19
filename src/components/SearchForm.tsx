@@ -1,5 +1,9 @@
 import * as React from "react";
-import { IGeneral, ITelescope } from "../utils/ObservationQueryParameters";
+import {
+  IGeneral,
+  ITarget,
+  ITelescope
+} from "../utils/ObservationQueryParameters";
 import {
   ButtonGrid,
   DataGrid,
@@ -8,7 +12,6 @@ import {
   TargetGrid,
   TelescopeGrid
 } from "./basicComponents/Grids";
-import { ITarget } from "./basicComponents/SearchFormInterface";
 import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm, {
   validatedProposal
@@ -57,11 +60,10 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
-  public searchArchive = () => {
-    const target = validatedTarget(this.state.target);
+  public searchArchive = async () => {
+    const target = await validatedTarget(this.state.target);
     const general = validatedProposal(this.state.general);
     const telescope = validatedTelescope(this.state.telescope);
-
     this.setState(() => ({
       ...this.state,
       general,

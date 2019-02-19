@@ -53,6 +53,14 @@ const MainGrid = styled.div.attrs({
     padding: 10px;
   }
 `;
+const InnerMainGrid = styled.div.attrs({
+  className: "inner-main-grid"
+})`
+  && {
+    display: grid;
+    grid-template-columns: 40% 40%;
+  }
+`;
 const SubGrid = styled.div.attrs({
   className: "sub-grid"
 })`
@@ -99,5 +107,6 @@ export {
   SubGrid,
   MainGrid,
   ButtonGrid,
-  Span
+  Span,
+  InnerMainGrid
 };

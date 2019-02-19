@@ -1,19 +1,52 @@
 import * as React from "react";
+import targetPosition from "target-position";
+import { ITarget } from "../../utils/ObservationQueryParameters";
 import {
   validateDec,
   validateName,
   validateRa,
   validateRadius
 } from "../../utils/validators";
-import { MainGrid, SubGrid } from "../basicComponents/Grids";
+import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
-import { ITarget } from "../basicComponents/SearchFormInterface";
 import SelectField from "../basicComponents/SelectField2";
 
 class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
   any
 > {
+  resolve = () => {
+    const { target, onChange } = this.props;
+    const resolver = target.resolver || "Simbad";
+
+    targetPosition(target.name || "", [resolver])
+      .then(p => {
+        if (p) {
+          onChange({
+            ...target,
+            declination: `${p.declination}`,
+            rightAscension: `${p.rightAscension}`
+          });
+        } else {
+          onChange({
+            ...target,
+            errors: {
+              ...target.errors,
+              name: `Target ${target.name} Could not be resolved.`
+            }
+          });
+        }
+      })
+      .catch(err => {
+        onChange({
+          ...target,
+          errors: {
+            ...target.errors,
+            name: err.message
+          }
+        });
+      });
+  };
   render() {
     const { target, onChange } = this.props;
     const targetChange = (
@@ -38,38 +71,51 @@ class TargetForm extends React.Component<
             <InputField
               name={"name"}
               value={target.name || ""}
-              error={target.errors.name}
+              error={target.errors.name || ""}
               onChange={targetChange}
             />
           </SubGrid>
           <SubGrid>
-            <p>Resolver</p>
-            <SelectField
-              options={["Simbad", "NED", "VizieR"]}
-              name={"resolver"}
-              value={target.resolver || "Simbad"}
-              onChange={targetChange}
-            />
+            <InnerMainGrid>
+              <SubGrid>
+                <p>Resolver</p>
+                <SelectField
+                  options={["Simbad", "NED", "VizieR"]}
+                  name={"resolver"}
+                  value={target.resolver || "Simbad"}
+                  onChange={targetChange}
+                />
+              </SubGrid>
+              <SubGrid>
+                <br />
+                <input
+                  className="button is-info"
+                  type="button"
+                  value="resolve"
+                  onClick={this.resolve}
+                />
+              </SubGrid>
+            </InnerMainGrid>
           </SubGrid>
         </MainGrid>
 
         <MainGrid>
           <SubGrid>
-            <p>RA</p>
+            <p>Right ascension</p>
             <InputField
-              name={"ra"}
-              value={target.ra || ""}
+              name={"rightAscension"}
+              value={target.rightAscension || ""}
               onChange={targetChange}
-              error={target.errors.ra}
+              error={target.errors.rightAscension}
             />
           </SubGrid>
           <SubGrid>
-            <p>DEC</p>
+            <p>Declination</p>
             <InputField
-              name={"dec"}
-              value={target.dec || ""}
+              name={"declination"}
+              value={target.declination || ""}
               onChange={targetChange}
-              error={target.errors.dec}
+              error={target.errors.declination}
             />
           </SubGrid>
         </MainGrid>
@@ -77,10 +123,10 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Search radius</p>
             <InputField
-              name={"radius"}
-              value={target.radius || ""}
+              name={"searchConeRadius"}
+              value={target.searchConeRadius || ""}
               onChange={targetChange}
-              error={target.errors.radius}
+              error={target.errors.searchConeRadius}
             />
           </SubGrid>
           <SubGrid>
@@ -89,7 +135,7 @@ class TargetForm extends React.Component<
               options={["Arc seconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
-              value={target.radiusUnits || "Arc seconds"}
+              value={target.searchConeRadiusUnits || "Arc seconds"}
             />
           </SubGrid>
         </MainGrid>
@@ -98,14 +144,41 @@ class TargetForm extends React.Component<
   }
 }
 
-export const validatedTarget = (target: ITarget) => {
+export const validatedTarget = async (target: ITarget) => {
+  let ff;
+  if (target.name && target.name !== "") {
+    ff = await targetPosition(target.name, [target.resolver || "Simbad"])
+      .then(p => {
+        if (p) {
+          return {
+            declination:
+              `${p.declination}` !== target.declination
+                ? `Target name is given and resolves to different value with ${target.resolver ||
+                    "Simbad"} `
+                : "",
+            rightAscension:
+              `${p.rightAscension}` !== target.rightAscension
+                ? `Target name is given and resolves to different value with ${target.resolver ||
+                    "Simbad"} `
+                : ""
+          };
+        }
+      })
+      .catch();
+  }
   return {
     ...target,
     errors: {
-      dec: validateDec(target.dec || ""),
+      declination:
+        ff && ff.declination
+          ? ff.declination
+          : validateDec(target.declination || ""),
       name: validateName(target.name || ""),
-      ra: validateRa(target.ra || ""),
-      radius: validateRadius(target.radius || "")
+      rightAscension:
+        ff && ff.rightAscension
+          ? ff.rightAscension
+          : validateRa(target.rightAscension || ""),
+      searchConeRadius: validateRadius(target.searchConeRadius || "")
     }
   };
 };

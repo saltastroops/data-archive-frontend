@@ -137,17 +137,5 @@ export const validateDate = (date: string) => {
   if (!regs || !moment(date).isValid()) {
     return "You have an invalid date";
   }
-
-  console.log(
-    "\n\n",
-    moment(date, "DD-MM-YYYY").isValid(),
-    moment(date, "DD/MM/YYYY").isValid(),
-    moment(date, "DD.MM.YYYY").isValid(),
-    moment(date, "YYYY-MM-DD").isValid(),
-    moment(date, "YYYY/MM/DD").isValid(),
-    moment(date, "YYYY.MM.DD").isValid(),
-    "\n\n"
-  );
-
   return "";
 };
