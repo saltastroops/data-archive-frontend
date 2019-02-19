@@ -1,69 +1,355 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generalWhereConstraint should map a Principal Investigator to a contains constraint 1`] = `
-Array [
-  Object {
-    "CONTAINS": Object {
-      "column": "A.PrincipalInvestigator",
-      "value": "Doe",
+exports[`generalWhereCondition should map a Principal Investigator to a contains condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "CONTAINS": Object {
+        "column": "A.PrincipalInvestigator",
+        "value": "Doe",
+      },
     },
-  },
-]
+  ],
+}
 `;
 
-exports[`generalWhereConstraint should map a proposal code to a contains constraint 1`] = `
-Array [
-  Object {
-    "CONTAINS": Object {
-      "column": "A.ProposalCode",
-      "value": "2-SCI",
+exports[`generalWhereCondition should map a proposal code to a contains condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "CONTAINS": Object {
+        "column": "A.ProposalCode",
+        "value": "2-SCI",
+      },
     },
-  },
-]
+  ],
+}
 `;
 
-exports[`generalWhereConstraint should map an observation night to a greater than and less than constraint spanning one night 1`] = `
-Array [
-  Object {
-    "GREATER_THAN": Object {
-      "column": "A.ObsNight",
-      "value": "2019-02-17",
+exports[`generalWhereCondition should map an observation night to a greater equal and less equal condition spanning one night 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_THAN": Object {
+        "column": "A.ObsNight",
+        "value": "2019-02-17",
+      },
     },
-  },
-  Object {
-    "LESS_THAN": Object {
-      "column": "A.ObsNight",
-      "value": "2019-02-18",
+    Object {
+      "LESS_THAN": Object {
+        "column": "A.ObsNight",
+        "value": "2019-02-18",
+      },
     },
-  },
-]
+  ],
+}
 `;
 
-exports[`generalWhereConstraint should map input data correctly 1`] = `
-Array [
-  Object {
-    "GREATER_THAN": Object {
-      "column": "A.ObsNight",
-      "value": "2019-05-13",
+exports[`generalWhereCondition should map input data correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_THAN": Object {
+        "column": "A.ObsNight",
+        "value": "2019-05-13",
+      },
     },
-  },
-  Object {
-    "LESS_THAN": Object {
-      "column": "A.ObsNight",
-      "value": "2019-05-14",
+    Object {
+      "LESS_THAN": Object {
+        "column": "A.ObsNight",
+        "value": "2019-05-14",
+      },
     },
-  },
-  Object {
-    "CONTAINS": Object {
-      "column": "A.PrincipalInvestigator",
-      "value": "Sipho",
+    Object {
+      "CONTAINS": Object {
+        "column": "A.PrincipalInvestigator",
+        "value": "Sipho",
+      },
     },
-  },
-  Object {
-    "CONTAINS": Object {
-      "column": "A.ProposalCode",
-      "value": "2019-1-SCI-042",
+    Object {
+      "CONTAINS": Object {
+        "column": "A.ProposalCode",
+        "value": "2019-1-SCI-042",
+      },
     },
-  },
-]
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map a single position to a within condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "WITHIN_RADIUS": Object {
+        "declination": -5,
+        "declinationColumn": "Target.Declination",
+        "radius": 0.04,
+        "rightAscension": 17,
+        "rightAscensionColumn": "Target.RightAscension",
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -0.55,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -0.45,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 5,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 9,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -0.55,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -0.45,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 3`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 4`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 5`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 115,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 200,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 12.95,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 13.05,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 12.95,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 13.05,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 12,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": 13,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 3`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 4,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 355,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 4`] = `
+Object {
+  "AND": Array [
+    Object {
+      "OR": Array [
+        Object {
+          "AND": Array [
+            Object {
+              "GREATER_EQUAL": Object {
+                "column": "Target.RightAscension",
+                "value": 355,
+              },
+            },
+            Object {
+              "LESS_EQUAL": Object {
+                "column": "Target.RightAscension",
+                "value": 360,
+              },
+            },
+          ],
+        },
+        Object {
+          "AND": Array [
+            Object {
+              "GREATER_EQUAL": Object {
+                "column": "Target.RightAscension",
+                "value": 0,
+              },
+            },
+            Object {
+              "LESS_EQUAL": Object {
+                "column": "Target.RightAscension",
+                "value": 4,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 5`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 4,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.RightAscension",
+        "value": 355,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -11,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "Target.Declination",
+        "value": -12,
+      },
+    },
+  ],
+}
 `;
