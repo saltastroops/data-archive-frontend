@@ -1,4 +1,6 @@
+import moment from "moment";
 import * as React from "react";
+import { IGeneral, ITelescope } from "../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import SelectField from "../basicComponents/SelectField2";
 import LesediForm from "./telescopes/LesediForm";
@@ -60,4 +62,11 @@ class TelescopeForm extends React.Component<
     );
   }
 }
+
+export const validatedTelescope = (telescope: ITelescope) => {
+  return {
+    ...telescope,
+    errors: {}
+  };
+};
 export default TelescopeForm;

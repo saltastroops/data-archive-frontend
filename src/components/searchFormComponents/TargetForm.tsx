@@ -4,11 +4,11 @@ import {
   validateName,
   validateRa,
   validateRadius
-} from "../../utils/targetValidators";
+} from "../../utils/validators";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import { ITarget } from "../basicComponents/SearchFormInterface";
-import SelectField from "../basicComponents/SelectField";
+import SelectField from "../basicComponents/SelectField2";
 
 class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
@@ -98,18 +98,15 @@ class TargetForm extends React.Component<
   }
 }
 
-export const validateTarget = (
-  target: any,
-  onChange: (value: ITarget) => void
-) => {
-  onChange({
+export const validatedTarget = (target: ITarget) => {
+  return {
     ...target,
     errors: {
-      dec: validateDec(target.dec),
-      name: validateName(target.dec),
-      ra: validateRa(target.ra),
-      radius: validateRadius(target.radius)
+      dec: validateDec(target.dec || ""),
+      name: validateName(target.name || ""),
+      ra: validateRa(target.ra || ""),
+      radius: validateRadius(target.radius || "")
     }
-  });
+  };
 };
 export default TargetForm;

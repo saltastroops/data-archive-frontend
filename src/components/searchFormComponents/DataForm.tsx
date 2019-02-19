@@ -21,15 +21,20 @@ class DataForm extends React.Component<
   /*
   event type need to be 'any' because React.FormEvent<HTMLInputElement> types does not have 'target.checked' property
   */
-  change = (e: any) => {
+  changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     // fooling type scripts
     const name = e.currentTarget.name;
-    let value;
-    if (e.currentTarget.type === "checkbox") {
-      value = e.target.checked;
-    } else {
-      value = e.currentTarget.value;
-    }
+    const value = e.target.checked;
+    this.props.onChange({
+      ...this.props.data,
+      [name]: value
+    });
+  };
+  changeSelect = (e: React.FormEvent<HTMLSelectElement>) => {
+    // fooling type scripts
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
+
     this.props.onChange({
       ...this.props.data,
       [name]: value
@@ -44,7 +49,6 @@ class DataForm extends React.Component<
       standards,
       dataType
     } = this.props.data;
-    console.log("AAAAA: ", arcs);
     return (
       <>
         <MainGrid>
@@ -53,7 +57,7 @@ class DataForm extends React.Component<
             <SelectField
               options={["any", "reduced", "raw"]}
               name={"dataType"}
-              onChange={this.change}
+              onChange={this.changeSelect}
               value={dataType}
             />
           </SubGrid>
@@ -68,7 +72,7 @@ class DataForm extends React.Component<
             <Span>
               <LargeCheckbox
                 checked={arcs || false}
-                onChange={this.change}
+                onChange={this.changeCheckbox}
                 name={"arcs"}
               />
             </Span>
@@ -78,7 +82,7 @@ class DataForm extends React.Component<
             <Span>
               <LargeCheckbox
                 checked={biases || false}
-                onChange={this.change}
+                onChange={this.changeCheckbox}
                 name={"biases"}
               />
             </Span>
@@ -88,7 +92,7 @@ class DataForm extends React.Component<
             <Span>
               <LargeCheckbox
                 checked={flats || false}
-                onChange={this.change}
+                onChange={this.changeCheckbox}
                 name={"flats"}
               />
             </Span>
@@ -98,7 +102,7 @@ class DataForm extends React.Component<
             <Span>
               <LargeCheckbox
                 checked={standards || false}
-                onChange={this.change}
+                onChange={this.changeCheckbox}
                 name={"standards"}
               />
             </Span>

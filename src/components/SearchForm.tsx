@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IGeneral } from "../utils/ObservationQueryParameters";
+import { IGeneral, ITelescope } from "../utils/ObservationQueryParameters";
 import {
   ButtonGrid,
   DataGrid,
@@ -9,24 +9,26 @@ import {
   TelescopeGrid
 } from "./basicComponents/Grids";
 import { ITarget } from "./basicComponents/SearchFormInterface";
-import { updateState } from "./basicComponents/util";
 import DataForm from "./searchFormComponents/DataForm";
-import ProposalForm from "./searchFormComponents/ProposalForm";
-import TargetForm, { validateTarget } from "./searchFormComponents/TargetForm";
-import TelescopeForm from "./searchFormComponents/TelescopeForm";
+import ProposalForm, {
+  validatedProposal
+} from "./searchFormComponents/ProposalForm";
+import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
+import TelescopeForm, {
+  validatedTelescope
+} from "./searchFormComponents/TelescopeForm";
 
 class SearchForm extends React.Component {
-  public onChange = (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => {
-    // e.preventDefault();
-
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
-    const newState = updateState(this.state, name, value);
-    this.setState(() => newState);
+  public state: {
+    general: IGeneral;
+    target: ITarget;
+    telescope: ITelescope;
+  } = {
+    general: { errors: {} },
+    target: { errors: {} },
+    telescope: {}
   };
-  public changeTelescope = (value: any) => {
+  public telescopeChange = (value: ITelescope) => {
     const newState = {
       ...this.state,
       telescope: {
@@ -35,7 +37,8 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
-  public targetChange = (value: any) => {
+  public targetChange = (value: ITarget) => {
+    console.log(value);
     const newState = {
       ...this.state,
       target: {
@@ -54,56 +57,21 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
-  public SearchArchive = () => {
-    const newState = validateTarget(this.state.target, this.targetChange);
-    this.setState(() => newState);
+  public searchArchive = () => {
+    const target = validatedTarget(this.state.target);
+    const general = validatedProposal(this.state.general);
+    const telescope = validatedTelescope(this.state.telescope);
+
+    this.setState(() => ({
+      ...this.state,
+      general,
+      target,
+      telescope
+    }));
   };
 
-  public state: {
-    data: any;
-    general: IGeneral;
-    proposal: any;
-    target: ITarget;
-    telescope: any;
-  } = {
-    data: {
-      arcs: false,
-      biases: false,
-      dataType: ["any", "reduced", "raw"],
-      flats: false,
-      selectedDataType: "any",
-      standards: false
-    },
-    general: { errors: {} },
-    proposal: {
-      obsDate: {
-        error: "",
-        onChange: this.onChange,
-        value: ""
-      },
-      pi: {
-        error: "",
-        name: "",
-        onChange: this.onChange
-      },
-      proposalCode: {
-        code: "",
-        error: "",
-        onChange: this.onChange
-      },
-      proposalTitle: {
-        error: "",
-        onChange: this.onChange,
-        title: ""
-      }
-    },
-    target: {
-      errors: {}
-    },
-    telescope: {}
-  };
   public render() {
-    const { target, general, data, telescope } = this.state;
+    const { target, general, telescope } = this.state;
 
     console.log("STATE: ", this.state);
     return (
@@ -118,7 +86,7 @@ class SearchForm extends React.Component {
           <TelescopeGrid>
             <TelescopeForm
               telescope={telescope}
-              onChange={this.changeTelescope}
+              onChange={this.telescopeChange}
             />
           </TelescopeGrid>
           <DataGrid>
@@ -129,7 +97,7 @@ class SearchForm extends React.Component {
               className="button is-primary"
               type="button"
               value="search"
-              onClick={this.SearchArchive}
+              onClick={this.searchArchive}
             />
           </ButtonGrid>
         </ParentGrid>

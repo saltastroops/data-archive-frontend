@@ -111,7 +111,7 @@ export interface ITarget {
  *     Telescope name.
  */
 export interface ITelescope {
-  name: "Lesedi" | "SALT" | "1.9 m";
+  name?: "Lesedi" | "SALT" | "1.9 m";
 }
 
 /**
