@@ -1,14 +1,8 @@
 import {
-  generalWhereCondition,
-  targetWhereCondition,
-  telescopeWhereCondition,
-  SALT_ID,
-  saltWhereCondition,
-  salticamWhereCondition,
-  rssWhereCondition,
-  hrsWhereCondition,
-  whereCondition
-} from "../util/query/whereCondition";
+  DEFAULT_COORDINATE_SEARCH_RADIUS,
+  MAXIMUM_COORDINATE_SEARCH_RADIUS,
+  parseTargetPosition
+} from "../util/query/parse";
 import {
   IGeneral,
   IHRS,
@@ -19,23 +13,29 @@ import {
   ITarget
 } from "../util/query/types";
 import {
-  DEFAULT_COORDINATE_SEARCH_RADIUS,
-  MAXIMUM_COORDINATE_SEARCH_RADIUS,
-  parseTargetPosition
-} from "../util/query/parse";
+  generalWhereCondition,
+  hrsWhereCondition,
+  rssWhereCondition,
+  SALT_ID,
+  salticamWhereCondition,
+  saltWhereCondition,
+  targetWhereCondition,
+  telescopeWhereCondition,
+  whereCondition
+} from "../util/query/whereCondition";
 
 describe("whereCondition", () => {
   it("should map query parameters correctly", () => {
     const general: IGeneral = {
       errors: {},
       observationNight: "2019-02-19",
-      proposalCode: "SCI",
-      principalInvestigator: "John"
+      principalInvestigator: "John",
+      proposalCode: "SCI"
     };
     const target: ITarget = {
+      declination: "-42",
       errors: {},
       rightAscension: "12.34",
-      declination: "-42",
       searchConeRadius: "0.01",
       searchConeRadiusUnits: "degrees"
     };
@@ -117,9 +117,9 @@ describe("targetWhereCondition", () => {
   it("should map a single position to a within condition", () => {
     expect(
       targetWhereCondition({
+        declination: "-5",
         errors: {},
         rightAscension: "17",
-        declination: "-5",
         searchConeRadius: "0.04",
         searchConeRadiusUnits: "degrees"
       })
@@ -132,9 +132,9 @@ describe("targetWhereCondition", () => {
     ).toMatchSnapshot();
     expect(
       targetWhereCondition({
+        declination: "12 .. 13",
         errors: {},
-        rightAscension: "13",
-        declination: "12 .. 13"
+        rightAscension: "13"
       })
     ).toMatchSnapshot();
     expect(
@@ -145,9 +145,9 @@ describe("targetWhereCondition", () => {
     ).toMatchSnapshot();
     expect(
       targetWhereCondition({
+        declination: "-12 .. -11",
         errors: {},
-        rightAscension: "4 ... 355",
-        declination: "-12 .. -11"
+        rightAscension: "4 ... 355"
       })
     ).toMatchSnapshot();
   });
@@ -158,22 +158,22 @@ describe("targetWhereCondition", () => {
     ).toMatchSnapshot();
     expect(
       targetWhereCondition({
+        declination: "-0.5",
         errors: {},
-        rightAscension: "5 .. 9",
-        declination: "-0.5"
+        rightAscension: "5 .. 9"
       })
     ).toMatchSnapshot();
     expect(
-      targetWhereCondition({ errors: {}, declination: "-10 .. 12" })
+      targetWhereCondition({ declination: "-10 .. 12", errors: {} })
     ).toMatchSnapshot();
     expect(
-      targetWhereCondition({ errors: {}, declination: "12 .. -10" })
+      targetWhereCondition({ declination: "12 .. -10", errors: {} })
     ).toMatchSnapshot();
     expect(
       targetWhereCondition({
+        declination: "10 .. 12",
         errors: {},
-        rightAscension: "115 .. 200",
-        declination: "10 .. 12"
+        rightAscension: "115 .. 200"
       })
     ).toMatchSnapshot();
   });
@@ -249,15 +249,21 @@ describe("saltWhereCondition", () => {
 
 describe("salticamWhereCondition", () => {
   // TODO: Add unit tests
-  it("should work", () => {});
+  it("should work", () => {
+    // to be filled with life
+  });
 });
 
 describe("rssWhereCondition", () => {
   // TODO: Add unit tests
-  it("should work", () => {});
+  it("should work", () => {
+    // to be filled with life
+  });
 });
 
 describe("hrsWhereCondition", () => {
   // TODO: Add unit tests
-  it("should work", () => {});
+  it("should work", () => {
+    // to be filled with life
+  });
 });

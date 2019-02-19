@@ -1,15 +1,4 @@
 import {
-  IGeneral,
-  IHRS,
-  IObservationQueryParameters,
-  IRSS,
-  ISALT,
-  ISalticam,
-  ITarget,
-  ITelescope,
-  IWhereCondition
-} from "./types";
-import {
   and,
   contains,
   equals,
@@ -23,6 +12,17 @@ import {
   withinRadius
 } from "./operators";
 import { parseDate, parseTargetPosition, trim } from "./parse";
+import {
+  IGeneral,
+  IHRS,
+  IObservationQueryParameters,
+  IRSS,
+  ISALT,
+  ISalticam,
+  ITarget,
+  ITelescope,
+  IWhereCondition
+} from "./types";
 
 const GENERAL_OBSERVATION_NIGHT = "A.ObsNight";
 
@@ -165,8 +165,8 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     // Cone search
     conditions.push(
       withinRadius({
-        rightAscensionColumn: TARGET_RIGHT_ASCENSION,
         declinationColumn: TARGET_DECLINATION,
+        rightAscensionColumn: TARGET_RIGHT_ASCENSION,
         rightAscension: rightAscensions[0],
         declination: declinations[0],
         radius

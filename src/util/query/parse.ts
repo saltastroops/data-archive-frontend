@@ -66,7 +66,7 @@ export function parseDate(date: string) {
 export function parseTargetPosition(target: ITarget): ITargetPosition {
   // Parse the right ascension(s)
   let rightAscensionValues: number[] = [];
-  let rightAscension = trim(target.rightAscension);
+  const rightAscension = trim(target.rightAscension);
   if (rightAscension) {
     const rightAscensions = rightAscension.split(/\s*\.{2,}\s*/);
 
@@ -82,7 +82,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
 
     // Prevent zero-length ranges
     if (
-      rightAscensionValues.length == 2 &&
+      rightAscensionValues.length === 2 &&
       rightAscensionValues[0] === rightAscensionValues[1]
     ) {
       throw new Error("The right ascension range must not have length 0.");
@@ -91,7 +91,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
 
   // Parse the declination(s)
   let declinationValues: number[] = [];
-  let declination = trim(target.declination);
+  const declination = trim(target.declination);
   if (declination) {
     const declinations = declination.split(/\s*\.{2,}\s*/);
 
@@ -107,7 +107,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
 
     // Prevent zero-length ranges
     if (
-      declinationValues.length == 2 &&
+      declinationValues.length === 2 &&
       declinationValues[0] === declinationValues[1]
     ) {
       throw new Error("The declination range must not have length 0.");
@@ -117,8 +117,8 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   // There is no need to proceed if there are no coordinates
   if (!rightAscension && !declination) {
     return {
-      rightAscensions: [],
       declinations: [],
+      rightAscensions: [],
       searchConeRadius: 0
     };
   }
@@ -220,8 +220,8 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   }
 
   return {
-    rightAscensions: rightAscensionValues,
     declinations: declinationValues,
+    rightAscensions: rightAscensionValues,
     searchConeRadius: searchConeRadiusValue
   };
 }

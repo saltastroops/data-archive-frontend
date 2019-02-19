@@ -1,7 +1,9 @@
 /**
  * An interface marking a where condition.
  */
+/* tslint:disable:no-empty-interface */
 export interface IWhereCondition {}
+/* tslint:enable:no-empty-interface */
 
 /**
  * An interface describing a target position.

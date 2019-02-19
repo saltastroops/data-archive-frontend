@@ -49,23 +49,23 @@ describe("parseTargetPosition", () => {
   it("should parse right ascensions correctly", () => {
     expect(
       parseTargetPosition({
+        declination: "17",
         errors: {},
-        rightAscension: "0",
-        declination: "17"
+        rightAscension: "0"
       }).rightAscensions[0]
     ).toBeCloseTo(0);
     expect(
       parseTargetPosition({
+        declination: "17",
         errors: {},
-        rightAscension: "113.67",
-        declination: "17"
+        rightAscension: "113.67"
       }).rightAscensions[0]
     ).toBeCloseTo(113.67);
     expect(
       parseTargetPosition({
+        declination: "17",
         errors: {},
-        rightAscension: "360",
-        declination: "17"
+        rightAscension: "360"
       }).rightAscensions[0]
     ).toBeCloseTo(360);
   });
@@ -73,40 +73,40 @@ describe("parseTargetPosition", () => {
   it("should parse right ascension ranges correctly", () => {
     expect(
       parseTargetPosition({
+        declination: "0 .. 1",
         errors: {},
-        rightAscension: "0 .. 67.9",
-        declination: "0 .. 1"
+        rightAscension: "0 .. 67.9"
       }).rightAscensions[0]
     ).toBeCloseTo(0);
     expect(
       parseTargetPosition({
+        declination: "0 .. 1",
         errors: {},
-        rightAscension: "0 .. 67.9",
-        declination: "0 .. 1"
+        rightAscension: "0 .. 67.9"
       }).rightAscensions[1]
     ).toBeCloseTo(67.9);
 
     expect(
       parseTargetPosition({
+        declination: "0 .. 1",
         errors: {},
-        rightAscension: "113.67 .. 110",
-        declination: "0 .. 1"
+        rightAscension: "113.67 .. 110"
       }).rightAscensions[0]
     ).toBeCloseTo(113.67);
     expect(
       parseTargetPosition({
+        declination: "0 .. 1",
         errors: {},
-        rightAscension: "113.67 .. 110",
-        declination: "0 .. 1"
+        rightAscension: "113.67 .. 110"
       }).rightAscensions[1]
     ).toBeCloseTo(110);
   });
 
   it("should apply a default right ascension range width", () => {
     let rightAscensions = parseTargetPosition({
+      declination: "-7 .. -6",
       errors: {},
-      rightAscension: "23",
-      declination: "-7 .. -6"
+      rightAscension: "23"
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       23 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -118,9 +118,9 @@ describe("parseTargetPosition", () => {
     );
 
     rightAscensions = parseTargetPosition({
+      declination: "-7 .. -6",
       errors: {},
-      rightAscension: "0",
-      declination: "-7 .. -6"
+      rightAscension: "0"
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       360 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -129,9 +129,9 @@ describe("parseTargetPosition", () => {
     expect(rightAscensions[1]).toBeCloseTo(DEFAULT_COORDINATE_SEARCH_RADIUS, 6);
 
     rightAscensions = parseTargetPosition({
+      declination: "-7 .. -6",
       errors: {},
-      rightAscension: "360",
-      declination: "-7 .. -6"
+      rightAscension: "360"
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       360 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -179,9 +179,9 @@ describe("parseTargetPosition", () => {
   it("should parse declinations correctly", () => {
     expect(
       parseTargetPosition({
+        declination: "-90",
         errors: {},
-        rightAscension: "9",
-        declination: "-90"
+        rightAscension: "9"
       }).declinations[0]
     ).toBeCloseTo(-90);
     expect(
@@ -190,16 +190,16 @@ describe("parseTargetPosition", () => {
     ).toBeCloseTo(0);
     expect(
       parseTargetPosition({
+        declination: "23.8",
         errors: {},
-        rightAscension: "9",
-        declination: "23.8"
+        rightAscension: "9"
       }).declinations[0]
     ).toBeCloseTo(23.8);
     expect(
       parseTargetPosition({
+        declination: "90",
         errors: {},
-        rightAscension: "9",
-        declination: "90"
+        rightAscension: "9"
       }).declinations[0]
     ).toBeCloseTo(90);
   });
@@ -207,40 +207,40 @@ describe("parseTargetPosition", () => {
   it("should parse declination ranges correctly", () => {
     expect(
       parseTargetPosition({
+        declination: "-11.6 .. 5.98",
         errors: {},
-        rightAscension: "14 .. 15",
-        declination: "-11.6 .. 5.98"
+        rightAscension: "14 .. 15"
       }).declinations[0]
     ).toBeCloseTo(-11.6);
     expect(
       parseTargetPosition({
+        declination: "-11.6 .. 5.98",
         errors: {},
-        rightAscension: "14 .. 15",
-        declination: "-11.6 .. 5.98"
+        rightAscension: "14 .. 15"
       }).declinations[1]
     ).toBeCloseTo(5.98);
 
     expect(
       parseTargetPosition({
+        declination: "67.3 .. -8.76",
         errors: {},
-        rightAscension: "14 .. 15",
-        declination: "67.3 .. -8.76"
+        rightAscension: "14 .. 15"
       }).declinations[0]
     ).toBeCloseTo(-8.76);
     expect(
       parseTargetPosition({
+        declination: "67.3 .. -8.76",
         errors: {},
-        rightAscension: "14 .. 15",
-        declination: "67.3 .. -8.76"
+        rightAscension: "14 .. 15"
       }).declinations[1]
     ).toBeCloseTo(67.3);
   });
 
   it("should apply a default declination range width", () => {
     let declinations = parseTargetPosition({
+      declination: "-8",
       errors: {},
-      rightAscension: "17 .. 18",
-      declination: "-8"
+      rightAscension: "17 .. 18"
     }).declinations;
     expect(declinations[0]).toBeCloseTo(
       -8 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -252,9 +252,9 @@ describe("parseTargetPosition", () => {
     );
 
     declinations = parseTargetPosition({
+      declination: "-90",
       errors: {},
-      rightAscension: "17 .. 18",
-      declination: "-90"
+      rightAscension: "17 .. 18"
     }).declinations;
     expect(declinations[0]).toBeCloseTo(-90, 6);
     expect(declinations[1]).toBeCloseTo(
@@ -263,9 +263,9 @@ describe("parseTargetPosition", () => {
     );
 
     declinations = parseTargetPosition({
+      declination: "90",
       errors: {},
-      rightAscension: "17 .. 18",
-      declination: "90"
+      rightAscension: "17 .. 18"
     }).declinations;
     expect(declinations[0]).toBeCloseTo(
       90 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -273,7 +273,7 @@ describe("parseTargetPosition", () => {
     );
     expect(declinations[1]).toBeCloseTo(90, 6);
 
-    declinations = parseTargetPosition({ errors: {}, declination: "-8" })
+    declinations = parseTargetPosition({ declination: "-8", errors: {} })
       .declinations;
     expect(declinations[0]).toBeCloseTo(
       -8 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -284,7 +284,7 @@ describe("parseTargetPosition", () => {
       6
     );
 
-    declinations = parseTargetPosition({ errors: {}, declination: "-90" })
+    declinations = parseTargetPosition({ declination: "-90", errors: {} })
       .declinations;
     expect(declinations[0]).toBeCloseTo(-90, 6);
     expect(declinations[1]).toBeCloseTo(
@@ -292,7 +292,7 @@ describe("parseTargetPosition", () => {
       6
     );
 
-    declinations = parseTargetPosition({ errors: {}, declination: "90" })
+    declinations = parseTargetPosition({ declination: "90", errors: {} })
       .declinations;
     expect(declinations[0]).toBeCloseTo(
       90 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -315,8 +315,8 @@ describe("parseTargetPosition", () => {
 
     f = () =>
       parseTargetPosition({
-        errors: {},
         declination: "3 .. 5",
+        errors: {},
         searchConeRadius: "2",
         searchConeRadiusUnits: "arcminutes"
       });
@@ -326,9 +326,9 @@ describe("parseTargetPosition", () => {
   it("should throw an error if the search cone radius is not valid", () => {
     const f = () =>
       parseTargetPosition({
+        declination: "1",
         errors: {},
         rightAscension: "1",
-        declination: "1",
         searchConeRadius: "hjudeth",
         searchConeRadiusUnits: "degrees"
       });
@@ -338,9 +338,9 @@ describe("parseTargetPosition", () => {
   it("should throw an error if the search cone radius is not positive", () => {
     let f = () =>
       parseTargetPosition({
+        declination: "1",
         errors: {},
         rightAscension: "1",
-        declination: "1",
         searchConeRadius: "-13",
         searchConeRadiusUnits: "arcseconds"
       });
@@ -348,9 +348,9 @@ describe("parseTargetPosition", () => {
 
     f = () =>
       parseTargetPosition({
+        declination: "1",
         errors: {},
         rightAscension: "1",
-        declination: "1",
         searchConeRadius: "0",
         searchConeRadiusUnits: "arcseconds"
       });
@@ -358,11 +358,11 @@ describe("parseTargetPosition", () => {
   });
 
   it("should throw an error if the search cone radius is too large", () => {
-    let f = () =>
+    const f = () =>
       parseTargetPosition({
+        declination: "1",
         errors: {},
         rightAscension: "1",
-        declination: "1",
         searchConeRadius: "" + (MAXIMUM_COORDINATE_SEARCH_RADIUS + 0.0001),
         searchConeRadiusUnits: "degrees"
       });
@@ -372,9 +372,9 @@ describe("parseTargetPosition", () => {
   it("should use a default search cone radius", () => {
     expect(
       parseTargetPosition({
+        declination: "9",
         errors: {},
-        rightAscension: "100",
-        declination: "9"
+        rightAscension: "100"
       }).searchConeRadius
     ).toBeCloseTo(DEFAULT_COORDINATE_SEARCH_RADIUS, 6);
   });
@@ -384,9 +384,9 @@ describe("parseTargetPosition", () => {
   it("should throw an error if a search cone radius is given without units", () => {
     const f = () =>
       parseTargetPosition({
+        declination: "-8",
         errors: {},
         rightAscension: "1",
-        declination: "-8",
         searchConeRadius: "6"
       });
     expect(f).toThrow(/supply.*units/);
@@ -395,9 +395,9 @@ describe("parseTargetPosition", () => {
   it("should throw an error if invalid search cone radius units are given", () => {
     const f = () =>
       parseTargetPosition({
+        declination: "-17",
         errors: {},
         rightAscension: "4",
-        declination: "-17",
         searchConeRadius: "7",
         searchConeRadiusUnits: "uxfghj"
       });
@@ -407,27 +407,27 @@ describe("parseTargetPosition", () => {
   it("should apply the search cone radius units correctly", () => {
     expect(
       parseTargetPosition({
+        declination: "0",
         errors: {},
         rightAscension: "0",
-        declination: "0",
         searchConeRadius: "0.0234",
         searchConeRadiusUnits: "degrees"
       }).searchConeRadius
     ).toBeCloseTo(0.0234);
     expect(
       parseTargetPosition({
+        declination: "0",
         errors: {},
         rightAscension: "0",
-        declination: "0",
         searchConeRadius: "1.8",
         searchConeRadiusUnits: "arcminutes"
       }).searchConeRadius
     ).toBeCloseTo(0.03);
     expect(
       parseTargetPosition({
+        declination: "0",
         errors: {},
         rightAscension: "0",
-        declination: "0",
         searchConeRadius: "180",
         searchConeRadiusUnits: "arcseconds"
       }).searchConeRadius
