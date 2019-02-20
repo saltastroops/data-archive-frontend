@@ -1,14 +1,25 @@
 import moment from "moment";
 
-const isFloat = (value: string) => {
-  const floatRegex = /^-?\d+(?:[.,]\d*?)?$/;
+/**
+ * A method used to check if the given value(string) is a floating point number
+ *
+ * Properties:
+ * -----------
+ * value:
+ *     A string value to tested.
+ * return:
+ *    Boolean
+ *        True if the value is a float else false.
+ */
+export const isFloat = (value: string) => {
+  const floatRegex = /^-?\d+(?:[.,]\d*?)?$/; // check optional sign, check decimal and check optional "." or "," followed by optional decimal
   if (!floatRegex.test(value)) {
     return false;
   }
   return !isNaN(parseFloat(value));
 };
 
-const raTimeError = (time: string) => {
+export const raTimeError = (time: string) => {
   // regular expression to match required time format
   const re = /^(\d{1,2}):(\d{2}):(\d{2})([ap]m)?$/;
 
@@ -38,7 +49,7 @@ const raTimeError = (time: string) => {
   }
 };
 
-const raDmsError = (dms: string) => {
+export const raDmsError = (dms: string) => {
   let error = "";
   const decArray = dms.split(/[^0-9\-.,]+/).filter(d => d !== "");
   decArray.forEach(r => {
@@ -117,25 +128,24 @@ export const validateRa = (ra: string) => {
   return error;
 };
 
-export const validateRadius = (radius: string) => {
-  if (
-    radius.replace(/\s/g, "") === "" ||
-    radius === null ||
-    radius === undefined
-  ) {
-    return "";
-  }
-  return isFloat(radius) ? "" : "This should only be a floating point number.";
-};
-
+/**
+ * This method test is string can is a date
+ *
+ * Properties:
+ * -----------
+ * date:
+ *     A string value to tested.
+ * return:
+ *    Error if string can not be a date. else nothing
+ */
 export const validateDate = (date: string) => {
   if (date.replace(/\s/g, "") === "" || date === null || date === undefined) {
-    return "";
+    return;
   }
   const re = /^(\d{2,4})\W(\d{2})\W(\d{2,4})$/;
   const regs: any = date.match(re);
   if (!regs || !moment(date).isValid()) {
     return "You have an invalid date";
   }
-  return "";
+  return;
 };

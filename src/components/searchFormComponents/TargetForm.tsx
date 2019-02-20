@@ -2,14 +2,14 @@ import * as React from "react";
 import targetPosition from "target-position";
 import { ITarget } from "../../utils/ObservationQueryParameters";
 import {
+  isFloat,
   validateDec,
   validateName,
-  validateRa,
-  validateRadius
+  validateRa
 } from "../../utils/validators";
 import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
-import SelectField from "../basicComponents/SelectField2";
+import SelectField from "../basicComponents/SelectField";
 
 class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
@@ -144,10 +144,14 @@ class TargetForm extends React.Component<
   }
 }
 
+/**
+ */
 export const validatedTarget = async (target: ITarget) => {
-  let ff;
+  let raDecChangeError;
   if (target.name && target.name !== "") {
-    ff = await targetPosition(target.name, [target.resolver || "Simbad"])
+    raDecChangeError = await targetPosition(target.name, [
+      target.resolver || "Simbad"
+    ])
       .then(p => {
         if (p) {
           return {
@@ -170,15 +174,17 @@ export const validatedTarget = async (target: ITarget) => {
     ...target,
     errors: {
       declination:
-        ff && ff.declination
-          ? ff.declination
+        raDecChangeError && raDecChangeError.declination
+          ? raDecChangeError.declination
           : validateDec(target.declination || ""),
       name: validateName(target.name || ""),
       rightAscension:
-        ff && ff.rightAscension
-          ? ff.rightAscension
+        raDecChangeError && raDecChangeError.rightAscension
+          ? raDecChangeError.rightAscension
           : validateRa(target.rightAscension || ""),
-      searchConeRadius: validateRadius(target.searchConeRadius || "")
+      searchConeRadius: isFloat(target.searchConeRadius || "")
+        ? ""
+        : "This should only be a floating point number."
     }
   };
 };

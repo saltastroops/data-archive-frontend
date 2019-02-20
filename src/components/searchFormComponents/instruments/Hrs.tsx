@@ -1,24 +1,6 @@
 import * as React from "react";
-import {
-  InnerItem,
-  InnerItemLabel,
-  MainGrid,
-  SubGrid
-} from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField2";
-
-interface IHrs {
-  selectedMode: string;
-  onChange: (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => void;
-}
-interface IHrsMode {
-  selectedMode: string;
-  onChange: (
-    e: React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLInputElement>
-  ) => void;
-}
+import { MainGrid, SubGrid } from "../../basicComponents/Grids";
+import SelectField from "../../basicComponents/SelectField";
 
 const Hrs = (props: any) => {
   const { onChange, details } = props;

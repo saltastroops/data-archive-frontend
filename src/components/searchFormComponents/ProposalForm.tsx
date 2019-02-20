@@ -1,10 +1,9 @@
-import moment from "moment";
 import * as React from "react";
 import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { validateDate } from "../../utils/validators";
+import DateField from "../basicComponents/DateField";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
-import DateField from "../basicComponents/DateField";
 
 class ProposalForm extends React.Component<
   { proposal: IGeneral; onChange: (value: IGeneral) => void },

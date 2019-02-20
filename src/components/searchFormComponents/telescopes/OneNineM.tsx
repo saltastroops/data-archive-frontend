@@ -1,11 +1,9 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField2";
+import SelectField from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
-import Salticam from "../instruments/Salticam";
-import { saltInstrumentsSwitcher } from "./SaltForm";
 
 export const oneNineMInstrumentsSwitcher = (
   details: any,

@@ -1,8 +1,7 @@
-import moment from "moment";
 import * as React from "react";
-import { IGeneral, ITelescope } from "../../utils/ObservationQueryParameters";
+import { ITelescope } from "../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField2";
+import SelectField from "../basicComponents/SelectField";
 import LesediForm from "./telescopes/LesediForm";
 import OneNineMForm from "./telescopes/OneNineM";
 import SaltForm from "./telescopes/SaltForm";

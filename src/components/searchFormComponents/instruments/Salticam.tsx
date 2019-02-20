@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField2";
+import SelectField from "../../basicComponents/SelectField";
 
 const Salticam = (props: any) => {
   const { onChange, details } = props;

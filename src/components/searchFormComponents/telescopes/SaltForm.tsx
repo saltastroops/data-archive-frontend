@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField2";
+import SelectField from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";

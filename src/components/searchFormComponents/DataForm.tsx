@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField2";
+import SelectField from "../basicComponents/SelectField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
