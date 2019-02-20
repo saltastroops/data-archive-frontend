@@ -2,6 +2,7 @@ import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import InputField from "../../../components/basicComponents/InputField";
+const onChange = jest.fn();
 
 describe("InpuField", () => {
   const wrapper = shallow(<InputField />);
@@ -19,6 +20,14 @@ describe("InpuField", () => {
     const input = wrapper.find("input").get(0);
     expect(input.props.type).toEqual("text");
   });
+
+  it("should call onChange", () => {
+    const changer = shallow(<InputField onChange={onChange} />);
+    const input = changer.find("input");
+    input.find("input").simulate("change", {});
+    expect(onChange).toBeCalled();
+  });
+
   it("render correctly", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
     expect(

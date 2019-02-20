@@ -1,0 +1,361 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InpuField render correctly 1`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input  undefined"
+    id="undefined"
+    type="text"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`InpuField render correctly 2`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input  is-danger"
+    id="undefined"
+    title="it has error"
+    type="text"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    it has error
+  </p>
+</div>
+`;
+
+exports[`InpuField render correctly 3`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input  undefined"
+    id="name"
+    name="name"
+    placeholder="holder"
+    type="text"
+    value="value"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`TargetForm render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        error=""
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <input
+            className="button is-info"
+            onClick={[Function]}
+            type="button"
+            value="resolve"
+          />
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        name="searchConeRadius"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+        value="Arc seconds"
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`TargetForm render correctly 2`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        error=""
+        name="name"
+        onChange={[Function]}
+        value="hello"
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <input
+            className="button is-info"
+            onClick={[Function]}
+            type="button"
+            value="resolve"
+          />
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        name="searchConeRadius"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+        value="Arc seconds"
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`TargetForm render correctly 3`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        error="this is an error"
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <input
+            className="button is-info"
+            onClick={[Function]}
+            type="button"
+            value="resolve"
+          />
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        name="searchConeRadius"
+        onChange={[Function]}
+        value="12.1"
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+        value="Arc seconds"
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
