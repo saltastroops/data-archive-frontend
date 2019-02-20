@@ -32,7 +32,7 @@ class TargetForm extends React.Component<
             ...target,
             errors: {
               ...target.errors,
-              name: `Target ${target.name} Could not be resolved.`
+              name: `The target name ${target.name} could not be resolved.`
             }
           });
         }
@@ -132,10 +132,10 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Radius units</p>
             <SelectField
-              options={["Arc seconds", "arc minutes", "degrees"]}
+              options={["Arcseconds", "Arcminutes", "Degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
-              value={target.searchConeRadiusUnits || "Arc seconds"}
+              value={target.searchConeRadiusUnits || "Arcseconds"}
             />
           </SubGrid>
         </MainGrid>
@@ -157,13 +157,15 @@ export const validatedTarget = async (target: ITarget) => {
           return {
             declination:
               `${p.declination}` !== target.declination
-                ? `Target name is given and resolves to different value with ${target.resolver ||
-                    "Simbad"} `
+                ? `The declination differs from that returned by ${
+                    target.resolver
+                  } for ${target.name}.`
                 : "",
             rightAscension:
               `${p.rightAscension}` !== target.rightAscension
-                ? `Target name is given and resolves to different value with ${target.resolver ||
-                    "Simbad"} `
+                ? `The right ascension differs from that returned by ${
+                    target.resolver
+                  } for ${target.name}.`
                 : ""
           };
         }
@@ -184,7 +186,7 @@ export const validatedTarget = async (target: ITarget) => {
           : validateRa(target.rightAscension || ""),
       searchConeRadius: isFloat(target.searchConeRadius || "")
         ? ""
-        : "This should only be a floating point number."
+        : "The search radius must be a positive number."
     }
   };
 };

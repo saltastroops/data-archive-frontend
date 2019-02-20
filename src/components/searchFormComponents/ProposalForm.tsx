@@ -36,7 +36,7 @@ class ProposalForm extends React.Component<
       <>
         <MainGrid>
           <SubGrid>
-            <p>Proposal Code</p>
+            <p>Proposal code</p>
             <InputField
               error={errors.proposalCode}
               name={"proposalCode"}

@@ -96,7 +96,7 @@ class SearchForm extends React.Component {
             <input
               className="button is-primary"
               type="button"
-              value="search"
+              value="Search"
               onClick={this.searchArchive}
             />
           </ButtonGrid>
