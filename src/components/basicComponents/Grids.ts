@@ -11,21 +11,21 @@ const ParentGrid = styled.div.attrs({
   }
 `;
 const TargetGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item target-form"
 })`
   background-color: #f6f7e1;
   border: 1px solid rgba(246, 247, 225, 0.5);
   text-align: center;
 `;
 const ProposalGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item proposal-form"
 })`
   background-color: #f2fffb;
   border: 1px solid rgba(242, 255, 251, 0.5);
   text-align: center;
 `;
 const DataGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item data-form"
 })`
   background-color: #e0edf9;
   border: 1px solid rgba(224, 237, 249, 0.5);
@@ -38,7 +38,7 @@ const ButtonGrid = styled.div.attrs({
   text-align: left;
 `;
 const TelescopeGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item telescope-form"
 })`
     background-color: #fff4fa;
     border: 1px solid rgba(255, 244, 250), 0.5);

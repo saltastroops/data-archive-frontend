@@ -143,7 +143,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
-            "className": "grid-item",
+            "className": "grid-item target-form",
           },
         ],
         "componentStyle": ComponentStyle {
@@ -182,7 +182,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [
             Object {
-              "className": "grid-item",
+              "className": "grid-item target-form",
             },
           ],
           "componentStyle": ComponentStyle {
@@ -258,7 +258,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
-            "className": "grid-item",
+            "className": "grid-item proposal-form",
           },
         ],
         "componentStyle": ComponentStyle {
@@ -297,7 +297,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [
             Object {
-              "className": "grid-item",
+              "className": "grid-item proposal-form",
             },
           ],
           "componentStyle": ComponentStyle {
@@ -373,7 +373,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
-            "className": "grid-item",
+            "className": "grid-item data-form",
           },
         ],
         "componentStyle": ComponentStyle {
@@ -412,7 +412,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [
             Object {
-              "className": "grid-item",
+              "className": "grid-item data-form",
             },
           ],
           "componentStyle": ComponentStyle {
@@ -488,7 +488,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
-            "className": "grid-item",
+            "className": "grid-item telescope-form",
           },
         ],
         "componentStyle": ComponentStyle {
@@ -527,7 +527,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [
             Object {
-              "className": "grid-item",
+              "className": "grid-item telescope-form",
             },
           ],
           "componentStyle": ComponentStyle {

@@ -74,8 +74,6 @@ class SearchForm extends React.Component {
 
   public render() {
     const { target, general, telescope } = this.state;
-
-    console.log("STATE: ", this.state);
     return (
       <>
         <ParentGrid>
