@@ -9,7 +9,7 @@ import {
   SubGrid,
   TargetGrid,
   TelescopeGrid
-} from "../../components/basicComponents/Grids";
+} from "../../../components/basicComponents/Grids";
 
 describe("Styled components Grids ", () => {
   it("should render any Grid", () => {
@@ -23,15 +23,15 @@ describe("Styled components Grids ", () => {
     expect(shallow(<MainGrid />)).toBeDefined();
     expect(shallow(<SubGrid />)).toBeDefined();
   });
-  // it("should match snapshot", () => {
-  //   // const wrapper = );
-  //   expect(shallow(<ParentGrid />)).toMatchSnapshot();
-  //   expect(shallow(<TargetGrid />)).toMatchSnapshot();
-  //   expect(shallow(<ProposalGrid />)).toMatchSnapshot();
-  //   expect(shallow(<DataGrid />)).toMatchSnapshot();
-  //   expect(shallow(<TelescopeGrid />)).toMatchSnapshot();
-  //   expect(shallow(<ButtonGrid />)).toMatchSnapshot();
-  //   expect(shallow(<MainGrid />)).toMatchSnapshot();
-  //   expect(shallow(<SubGrid />)).toMatchSnapshot();
-  // });
+  it("should match snapshot", () => {
+    // const wrapper = );
+    expect(shallow(<ParentGrid />)).toMatchSnapshot();
+    expect(shallow(<TargetGrid />)).toMatchSnapshot();
+    expect(shallow(<ProposalGrid />)).toMatchSnapshot();
+    expect(shallow(<DataGrid />)).toMatchSnapshot();
+    expect(shallow(<TelescopeGrid />)).toMatchSnapshot();
+    expect(shallow(<ButtonGrid />)).toMatchSnapshot();
+    expect(shallow(<MainGrid />)).toMatchSnapshot();
+    expect(shallow(<SubGrid />)).toMatchSnapshot();
+  });
 });

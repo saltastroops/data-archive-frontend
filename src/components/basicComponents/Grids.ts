@@ -86,15 +86,6 @@ const Span = styled.span.attrs({
   }
 `;
 
-const InnerItem = styled.div.attrs({
-  className: "inner-item"
-})``;
-const InnerItemLabel = styled.div.attrs({
-  className: "inner-item-label"
-})`
-  text-align: left;
-`;
-
 export {
   ParentGrid,
   ProposalGrid,
@@ -102,8 +93,6 @@ export {
   DataGrid,
   TargetGrid,
   SubGrid4,
-  InnerItemLabel,
-  InnerItem,
   SubGrid,
   MainGrid,
   ButtonGrid,
