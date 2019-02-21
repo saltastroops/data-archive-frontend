@@ -1,6 +1,6 @@
 import * as React from "react";
 import targetPosition from "target-position";
-import { ITarget } from "../../utils/ObservationQueryParameters";
+import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import {
   isFloat,
   validateDeclination,
@@ -8,7 +8,12 @@ import {
   validateRightAscension,
   validateSearchConeRadius
 } from "../../utils/validators";
-import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
+import {
+  InnerMainGrid,
+  MainGrid,
+  Spinner,
+  SubGrid
+} from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
@@ -16,13 +21,22 @@ class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
   any
 > {
+  state = { loading: false };
+  stateSet = (loading: boolean) => {
+    this.setState(() => ({
+      loading
+    }));
+  };
   resolve = async () => {
     const { target, onChange } = this.props;
+    this.stateSet(true);
     const resolver = target.resolver || "Simbad";
+    onChange({
+      ...target
+    });
 
     try {
       const p = await targetPosition(target.name || "", [resolver]);
-
       if (p) {
         onChange({
           ...target,
@@ -32,10 +46,12 @@ class TargetForm extends React.Component<
       } else {
         onChange({
           ...target,
+          declination: ``,
           errors: {
             ...target.errors,
             name: `Target ${target.name} Could not be resolved.`
-          }
+          },
+          rightAscension: ``
         });
       }
     } catch (err) {
@@ -47,9 +63,11 @@ class TargetForm extends React.Component<
         }
       });
     }
+    this.stateSet(false);
   };
   render() {
     const { target, onChange } = this.props;
+    const { loading } = this.state;
     const targetChange = (
       e: React.FormEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
@@ -70,6 +88,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Target name</p>
             <InputField
+              loading={loading}
               name={"name"}
               value={target.name || ""}
               error={target.errors.name || ""}
@@ -89,12 +108,16 @@ class TargetForm extends React.Component<
               </SubGrid>
               <SubGrid>
                 <br />
-                <input
-                  className="button is-info"
+                <button
+                  className={`button is-info ${loading &&
+                    "is-loading disable"}`}
                   type="button"
-                  value="resolve"
                   onClick={this.resolve}
-                />
+                  title={`${loading ? "Loading." : ""}`}
+                  disabled={loading}
+                >
+                  resolve
+                </button>
               </SubGrid>
             </InnerMainGrid>
           </SubGrid>
@@ -104,6 +127,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Right ascension</p>
             <InputField
+              loading={loading}
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={targetChange}
@@ -113,6 +137,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Declination</p>
             <InputField
+              loading={loading}
               name={"declination"}
               value={target.declination || ""}
               onChange={targetChange}

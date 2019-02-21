@@ -1,7 +1,9 @@
+import * as React from "react";
 import styled from "styled-components";
 
 const ParentGrid = styled.div.attrs({
-  className: "grid-container"
+  className: "grid-container",
+  disable: true
 })`
   && {
     display: grid;
@@ -86,6 +88,8 @@ const Span = styled.span.attrs({
   }
 `;
 
+const Spinner = () => <div className="signal" />;
+
 export {
   ParentGrid,
   ProposalGrid,
@@ -97,5 +101,6 @@ export {
   MainGrid,
   ButtonGrid,
   Span,
+  Spinner,
   InnerMainGrid
 };

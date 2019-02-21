@@ -84,6 +84,7 @@ export interface IGeneral {
  */
 export interface ITarget {
   declination?: string;
+  loading?: string;
   errors: {
     name?: string;
     declination?: string;

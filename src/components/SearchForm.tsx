@@ -9,6 +9,7 @@ import {
   DataGrid,
   ParentGrid,
   ProposalGrid,
+  Spinner,
   TargetGrid,
   TelescopeGrid
 } from "./basicComponents/Grids";
@@ -26,8 +27,10 @@ class SearchForm extends React.Component {
     general: IGeneral;
     target: ITarget;
     telescope: ITelescope;
+    loading: boolean;
   } = {
     general: { errors: {} },
+    loading: false,
     target: { errors: {} },
     telescope: {}
   };
@@ -61,21 +64,31 @@ class SearchForm extends React.Component {
   };
 
   public searchArchive = async () => {
+    this.setState(() => ({
+      ...this.state,
+      loading: true
+    }));
     const target = await validatedTarget(this.state.target);
     const general = validatedProposal(this.state.general);
     const telescope = validatedTelescope(this.state.telescope);
     this.setState(() => ({
       ...this.state,
       general,
+      loading: false,
       target,
       telescope
     }));
   };
 
   public render() {
-    const { target, general, telescope } = this.state;
+    const { target, general, telescope, loading } = this.state;
     return (
       <>
+        {loading && (
+          <div className="dimScreen">
+            <Spinner />
+          </div>
+        )}
         <ParentGrid>
           <TargetGrid>
             <TargetForm target={target} onChange={this.targetChange} />
