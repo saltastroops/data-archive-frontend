@@ -1,68 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InpuField render correctly 1`] = `
-<div
-  className="control"
->
-  <input
-    className="is-label input  undefined"
-    id="undefined"
-    type="text"
-  />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`InpuField render correctly 2`] = `
-<div
-  className="control"
->
-  <input
-    className="is-label input  is-danger"
-    id="undefined"
-    title="it has error"
-    type="text"
-  />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
-  >
-    it has error
-  </p>
-</div>
-`;
-
-exports[`InpuField render correctly 3`] = `
-<div
-  className="control"
->
-  <input
-    className="is-label input  undefined"
-    id="name"
-    name="name"
-    placeholder="holder"
-    type="text"
-    value="value"
-  />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
-  />
-</div>
-`;
-
 exports[`TargetForm render correctly 1`] = `
 <Fragment>
   <styled.div>
@@ -72,6 +9,7 @@ exports[`TargetForm render correctly 1`] = `
       </p>
       <InputField
         error=""
+        loading={false}
         name="name"
         onChange={[Function]}
         value=""
@@ -98,12 +36,15 @@ exports[`TargetForm render correctly 1`] = `
         </styled.div>
         <styled.div>
           <br />
-          <input
-            className="button is-info"
+          <button
+            className="button is-info false"
+            disabled={false}
             onClick={[Function]}
+            title=""
             type="button"
-            value="resolve"
-          />
+          >
+            resolve
+          </button>
         </styled.div>
       </styled.div>
     </styled.div>
@@ -114,6 +55,7 @@ exports[`TargetForm render correctly 1`] = `
         Right ascension
       </p>
       <InputField
+        loading={false}
         name="rightAscension"
         onChange={[Function]}
         value=""
@@ -124,6 +66,7 @@ exports[`TargetForm render correctly 1`] = `
         Declination
       </p>
       <InputField
+        loading={false}
         name="declination"
         onChange={[Function]}
         value=""
@@ -155,7 +98,6 @@ exports[`TargetForm render correctly 1`] = `
             "degrees",
           ]
         }
-        value="Arc seconds"
       />
     </styled.div>
   </styled.div>
@@ -171,6 +113,7 @@ exports[`TargetForm render correctly 2`] = `
       </p>
       <InputField
         error=""
+        loading={false}
         name="name"
         onChange={[Function]}
         value="hello"
@@ -197,12 +140,15 @@ exports[`TargetForm render correctly 2`] = `
         </styled.div>
         <styled.div>
           <br />
-          <input
-            className="button is-info"
+          <button
+            className="button is-info false"
+            disabled={false}
             onClick={[Function]}
+            title=""
             type="button"
-            value="resolve"
-          />
+          >
+            resolve
+          </button>
         </styled.div>
       </styled.div>
     </styled.div>
@@ -213,6 +159,7 @@ exports[`TargetForm render correctly 2`] = `
         Right ascension
       </p>
       <InputField
+        loading={false}
         name="rightAscension"
         onChange={[Function]}
         value=""
@@ -223,6 +170,7 @@ exports[`TargetForm render correctly 2`] = `
         Declination
       </p>
       <InputField
+        loading={false}
         name="declination"
         onChange={[Function]}
         value=""
@@ -254,7 +202,6 @@ exports[`TargetForm render correctly 2`] = `
             "degrees",
           ]
         }
-        value="Arc seconds"
       />
     </styled.div>
   </styled.div>
@@ -270,6 +217,7 @@ exports[`TargetForm render correctly 3`] = `
       </p>
       <InputField
         error="this is an error"
+        loading={false}
         name="name"
         onChange={[Function]}
         value=""
@@ -296,12 +244,15 @@ exports[`TargetForm render correctly 3`] = `
         </styled.div>
         <styled.div>
           <br />
-          <input
-            className="button is-info"
+          <button
+            className="button is-info false"
+            disabled={false}
             onClick={[Function]}
+            title=""
             type="button"
-            value="resolve"
-          />
+          >
+            resolve
+          </button>
         </styled.div>
       </styled.div>
     </styled.div>
@@ -312,6 +263,7 @@ exports[`TargetForm render correctly 3`] = `
         Right ascension
       </p>
       <InputField
+        loading={false}
         name="rightAscension"
         onChange={[Function]}
         value=""
@@ -322,6 +274,7 @@ exports[`TargetForm render correctly 3`] = `
         Declination
       </p>
       <InputField
+        loading={false}
         name="declination"
         onChange={[Function]}
         value=""
@@ -353,7 +306,6 @@ exports[`TargetForm render correctly 3`] = `
             "degrees",
           ]
         }
-        value="Arc seconds"
       />
     </styled.div>
   </styled.div>

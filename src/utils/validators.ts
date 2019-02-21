@@ -32,7 +32,7 @@ export const raTimeError = (time: string) => {
     }
     // seconds value between 0 and 59
     if (regs[3] > 59) {
-      return "Invalid value for minutes: " + regs[3];
+      return "Invalid value for seconds: " + regs[3];
     }
     return;
   } else {
@@ -126,7 +126,7 @@ export const validateName = (name: string) => {
 };
 
 /**
- * This method test if string is a right ascension
+ * This method test if string is a right ascension for range values need to separated by '..'
  * It only accept two notation HH:MM:SS and degrees else error
  *
  * @param ra:
@@ -141,7 +141,7 @@ export const validateRightAscension = (ra: string) => {
   }
   if (isFloat(ra)) {
     return 0 <= parseFloat(ra) && parseFloat(ra) <= 360
-      ? ""
+      ? undefined
       : "Declination should be between 0 and 360 degrees";
   }
   const ras = ra.split("..");
@@ -154,12 +154,12 @@ export const validateRightAscension = (ra: string) => {
       const ra1 = ras[1].trim();
       if (isFloat(ra0)) {
         return 0 <= parseFloat(ra0) && parseFloat(ra0) <= 360
-          ? ""
+          ? undefined
           : "Declination should be between 0 and 360 degrees";
       }
       if (isFloat(ra1)) {
         return 0 <= parseFloat(ra1) && parseFloat(ra1) <= 360
-          ? ""
+          ? undefined
           : "Declination should be between 0 and 360 degrees";
       }
       error = raTimeError(ra1) || raTimeError(ra0) || "";
@@ -167,18 +167,21 @@ export const validateRightAscension = (ra: string) => {
         return error;
       }
     }
-    error = raTimeError(ra) || "";
-    if (error !== "") {
-      return error;
+    if (ras.length === 1) {
+      error = raTimeError(ra) || "";
+      if (error !== "") {
+        return error;
+      }
     }
   } catch (e) {
-    error = 'Invalid right ascension please use degrees or "HH:MM:SS"';
+    return 'Invalid right ascension please use degrees or "HH:MM:SS"';
   }
-  return error;
+  return;
 };
 
 /**
- * This method test if string can is a date
+ * This method test if string can is a date(s)
+ * Date range is separated by '..'
  *
  * @param date:
  *     A string value to tested.
@@ -186,7 +189,7 @@ export const validateRightAscension = (ra: string) => {
  *    Error if string can not be a date. else nothing
  */
 export const validateDate = (date: string) => {
-  if (date.trim() === "" || date === null || date === undefined) {
+  if (date === null || date === undefined || date.trim() === "") {
     return;
   }
   const re = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -202,8 +205,8 @@ export const validateDate = (date: string) => {
     if (
       !day0.match(re) ||
       !day1.match(re) ||
-      !moment(day0, "YYYY-MM-DD", true).isValid ||
-      !moment(day1, "YYYY-MM-DD", true).isValid
+      !moment(day0, "YYYY-MM-DD", true).isValid() ||
+      !moment(day1, "YYYY-MM-DD", true).isValid()
     ) {
       return "You have an invalid date.";
     }
@@ -211,7 +214,7 @@ export const validateDate = (date: string) => {
   if (dates.length === 1) {
     if (
       !date.match(re) ||
-      (!moment(date, "YYYY-MM-DD", true).isValid && !regs)
+      (!moment(date, "YYYY-MM-DD", true).isValid() || !regs)
     ) {
       return "You have an invalid date.";
     }
