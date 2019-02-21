@@ -3,9 +3,10 @@ import targetPosition from "target-position";
 import { ITarget } from "../../utils/ObservationQueryParameters";
 import {
   isFloat,
-  validateDec,
+  validateDeclination,
   validateName,
-  validateRa
+  validateRightAscension,
+  validateSearchConeRadius
 } from "../../utils/validators";
 import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
@@ -15,37 +16,37 @@ class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
   any
 > {
-  resolve = () => {
+  resolve = async () => {
     const { target, onChange } = this.props;
     const resolver = target.resolver || "Simbad";
 
-    targetPosition(target.name || "", [resolver])
-      .then(p => {
-        if (p) {
-          onChange({
-            ...target,
-            declination: `${p.declination}`,
-            rightAscension: `${p.rightAscension}`
-          });
-        } else {
-          onChange({
-            ...target,
-            errors: {
-              ...target.errors,
-              name: `Target ${target.name} Could not be resolved.`
-            }
-          });
-        }
-      })
-      .catch(err => {
+    try {
+      const p = await targetPosition(target.name || "", [resolver]);
+
+      if (p) {
+        onChange({
+          ...target,
+          declination: `${p.declination}`,
+          rightAscension: `${p.rightAscension}`
+        });
+      } else {
         onChange({
           ...target,
           errors: {
             ...target.errors,
-            name: err.message
+            name: `Target ${target.name} Could not be resolved.`
           }
         });
+      }
+    } catch (err) {
+      onChange({
+        ...target,
+        errors: {
+          ...target.errors,
+          name: err.message
+        }
       });
+    }
   };
   render() {
     const { target, onChange } = this.props;
@@ -135,7 +136,7 @@ class TargetForm extends React.Component<
               options={["Arc seconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
-              value={target.searchConeRadiusUnits || "Arc seconds"}
+              value={target.searchConeRadiusUnits}
             />
           </SubGrid>
         </MainGrid>
@@ -176,15 +177,13 @@ export const validatedTarget = async (target: ITarget) => {
       declination:
         raDecChangeError && raDecChangeError.declination
           ? raDecChangeError.declination
-          : validateDec(target.declination || ""),
+          : validateDeclination(target.declination || ""),
       name: validateName(target.name || ""),
       rightAscension:
         raDecChangeError && raDecChangeError.rightAscension
           ? raDecChangeError.rightAscension
-          : validateRa(target.rightAscension || ""),
-      searchConeRadius: isFloat(target.searchConeRadius || "")
-        ? ""
-        : "This should only be a floating point number."
+          : validateRightAscension(target.rightAscension || ""),
+      searchConeRadius: validateSearchConeRadius(target.searchConeRadius || "")
     }
   };
 };

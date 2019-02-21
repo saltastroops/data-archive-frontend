@@ -67,7 +67,7 @@ class ProposalForm extends React.Component<
           </SubGrid>
           <SubGrid>
             <p>Observation night</p>
-            <DateField
+            <InputField
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
