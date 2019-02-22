@@ -1,0 +1,710 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm Component renders the RegistrationForm having unpopulated props with no errors 1`] = `
+<MockedProvider
+  addTypename={true}
+>
+  <ApolloProvider
+    client={
+      ApolloClient {
+        "__operations_cache__": Map {},
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "cacheKeyRoot": CacheKeyNode {
+            "children": null,
+            "key": null,
+          },
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "resultCaching": true,
+          },
+          "data": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "silenceBroadcast": false,
+          "storeReader": StoreReader {
+            "cacheKeyRoot": CacheKeyNode {
+              "children": null,
+              "key": null,
+            },
+            "executeSelectionSet": [Function],
+            "executeStoreQuery": [Function],
+          },
+          "storeWriter": StoreWriter {},
+          "typenameDocumentCache": Map {},
+          "watches": Set {},
+        },
+        "defaultOptions": Object {},
+        "disableNetworkFetches": false,
+        "link": ApolloLink {
+          "request": [Function],
+        },
+        "mutate": [Function],
+        "query": [Function],
+        "queryDeduplication": true,
+        "reFetchObservableQueries": [Function],
+        "resetStore": [Function],
+        "resetStoreCallbacks": Array [],
+        "ssrMode": false,
+        "store": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": CacheKeyNode {
+              "children": null,
+              "key": null,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "cacheKeyRoot": CacheKeyNode {
+                "children": null,
+                "key": null,
+              },
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
+          },
+        },
+        "version": "2.5.0-verify.4",
+        "watchQuery": [Function],
+      }
+    }
+  >
+    <RegistrationForm
+      userInput={
+        Object {
+          "affiliation": "",
+          "confirmPassword": "",
+          "email": "",
+          "familyName": "",
+          "givenName": "",
+          "password": "",
+          "username": "",
+        }
+      }
+    >
+      <Mutation
+        mutation={
+          Object {
+            "definitions": Array [
+              Object {
+                "directives": Array [],
+                "kind": "OperationDefinition",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "SIGNUP_MUTATION",
+                },
+                "operation": "mutation",
+                "selectionSet": Object {
+                  "kind": "SelectionSet",
+                  "selections": Array [
+                    Object {
+                      "alias": undefined,
+                      "arguments": Array [
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "familyName",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "familyName",
+                            },
+                          },
+                        },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "givenName",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "givenName",
+                            },
+                          },
+                        },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "username",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "username",
+                            },
+                          },
+                        },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "email",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "email",
+                            },
+                          },
+                        },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "affiliation",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "affiliation",
+                            },
+                          },
+                        },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "password",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "password",
+                            },
+                          },
+                        },
+                      ],
+                      "directives": Array [],
+                      "kind": "Field",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "signup",
+                      },
+                      "selectionSet": Object {
+                        "kind": "SelectionSet",
+                        "selections": Array [
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "id",
+                            },
+                            "selectionSet": undefined,
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+                "variableDefinitions": Array [
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "familyName",
+                      },
+                    },
+                  },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "givenName",
+                      },
+                    },
+                  },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "username",
+                      },
+                    },
+                  },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "email",
+                      },
+                    },
+                  },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "affiliation",
+                      },
+                    },
+                  },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "String",
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "password",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+            "kind": "Document",
+            "loc": Object {
+              "end": 375,
+              "start": 0,
+            },
+          }
+        }
+        variables={
+          Object {
+            "affiliation": "",
+            "confirmPassword": "",
+            "email": "",
+            "familyName": "",
+            "givenName": "",
+            "password": "",
+            "username": "",
+          }
+        }
+      >
+        <styled.form
+          onSubmit={[Function]}
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "column is-4 is-offset-4",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": true,
+                  "lastClassName": "LoyGl",
+                  "rules": Array [
+                    "
+  && {
+    padding: 1px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.form",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "form",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onSubmit={[Function]}
+          >
+            <form
+              className="sc-bdVaJa column is-4 is-offset-4 LoyGl"
+              onSubmit={[Function]}
+            >
+              <styled.h1>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "title is-3",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "RJwfL",
+                        "rules": Array [
+                          "
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.h1",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "h1",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <h1
+                    className="sc-bwzfXH title is-3 RJwfL"
+                  >
+                    Create your account
+                  </h1>
+                </StyledComponent>
+              </styled.h1>
+              <RegistrationInputField
+                label="Given name (first name)"
+                name="givenName"
+                onChange={[Function]}
+                type="text"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="givenName+Given name (first name)"
+                  >
+                    Given name (first name)
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="givenName input"
+                      id="givenName"
+                      name="givenName"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Family name (surname)"
+                name="familyName"
+                onChange={[Function]}
+                type="text"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="familyName+Family name (surname)"
+                  >
+                    Family name (surname)
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="familyName input"
+                      id="familyName"
+                      name="familyName"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Email address"
+                name="email"
+                onChange={[Function]}
+                type="text"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="email+Email address"
+                  >
+                    Email address
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="email input"
+                      id="email"
+                      name="email"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Username"
+                name="username"
+                onChange={[Function]}
+                type="text"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="username+Username"
+                  >
+                    Username
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="username input"
+                      id="username"
+                      name="username"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Affiliation"
+                name="affiliation"
+                onChange={[Function]}
+                placeholder="E.g. University of Cape Town"
+                type="text"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="affiliation+Affiliation"
+                  >
+                    Affiliation
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="affiliation input"
+                      id="affiliation"
+                      name="affiliation"
+                      onChange={[Function]}
+                      placeholder="E.g. University of Cape Town"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Password"
+                name="password"
+                onChange={[Function]}
+                placeholder="At least 7 characters"
+                type="password"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="password+Password"
+                  >
+                    Password
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="password input"
+                      id="password"
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="At least 7 characters"
+                      type="password"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <RegistrationInputField
+                label="Re-enter password "
+                name="confirmPassword"
+                onChange={[Function]}
+                type="password"
+                value=""
+              >
+                <div
+                  className="field"
+                >
+                  <label
+                    className="label"
+                    htmlFor="confirmPassword+Re-enter password "
+                  >
+                    Re-enter password 
+                    :
+                  </label>
+                  <div
+                    className="control is-child"
+                  >
+                    <input
+                      className="confirmPassword input"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      onChange={[Function]}
+                      type="password"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </RegistrationInputField>
+              <button
+                className="signUp button is-success is-fullwidth is-rounded"
+              >
+                Sign up
+              </button>
+            </form>
+          </StyledComponent>
+        </styled.form>
+      </Mutation>
+    </RegistrationForm>
+  </ApolloProvider>
+</MockedProvider>
+`;

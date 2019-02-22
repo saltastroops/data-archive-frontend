@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationInputField Component renders the RegistrationInputField having populated props with no errors 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+    htmlFor="username+Username"
+  >
+    Username
+    :
+  </label>
+  <div
+    className="control is-child"
+  >
+    <input
+      className="username input"
+      id="username+Username"
+      name="username"
+      onChange={[Function]}
+      placeholder=""
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`RegistrationInputField Component renders the RegistrationInputField having unpopulated props with no errors 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+    htmlFor="undefined+undefined"
+  >
+    :
+  </label>
+  <div
+    className="control is-child"
+  >
+    <input
+      className="undefined input"
+      id="undefined+undefined"
+    />
+  </div>
+</div>
+`;
