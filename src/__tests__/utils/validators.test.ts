@@ -176,9 +176,26 @@ describe("validateRightAscension", () => {
     expect(validateRightAscension("20.5 .. 20")).toBe(undefined);
     expect(validateRightAscension("320 .. 20")).toBe(undefined);
   });
+  it("Special character return error", () => {
+    expect(validateRightAscension("!@#:23:123")).toContain(
+      "should be in degrees or HH:MM:SS only"
+    );
+    expect(validateRightAscension("2/*~`'")).toContain(
+      "should be in degrees or HH:MM:SS only"
+    );
+    expect(validateRightAscension("`~!@#$%^&*()_-+={[}]?/>.<,*-+")).toContain(
+      "should be in degrees or HH:MM:SS only"
+    );
+    expect(validateRightAscension("`")).toContain(
+      "should be in degrees or HH:MM:SS only"
+    );
+    expect(validateRightAscension("20:34")).toContain(
+      "degrees or HH:MM:SS only"
+    );
+  });
 });
 
-describe("validateRightAscension", () => {
+describe("validateDeclination", () => {
   it("Should return error if ra is not a correct format", () => {
     expect(validateDeclination("hello")).toContain(
       "degrees or Degree:minutes:seconds"
@@ -191,6 +208,20 @@ describe("validateRightAscension", () => {
     );
     expect(validateDeclination("any thing")).toContain(
       "degrees or Degree:minutes:seconds"
+    );
+  });
+  it("Special character return error", () => {
+    expect(validateDeclination("!@#:23:123")).toContain(
+      "be in degrees or Degree:minutes:seconds"
+    );
+    expect(validateDeclination("2/*~`'")).toContain(
+      "be in degrees or Degree:minutes:seconds"
+    );
+    expect(validateDeclination("`~!@#$%^&*()_-+={[}]?/>.<,*-+")).toContain(
+      "be in degrees or Degree:minutes:seconds"
+    );
+    expect(validateDeclination("`")).toContain(
+      "be in degrees or Degree:minutes:seconds"
     );
   });
   it("Should give appropriate message", () => {

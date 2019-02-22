@@ -16,7 +16,15 @@ export const isFloat = (value: string) => {
   return !isNaN(parseFloat(value));
 };
 
-export const raTimeError = (time: string) => {
+/**
+ * This method check is given right ascension is within range and a correct time format (HH:MM:SS)
+ *
+ * @param time
+ *    String representing Degrees arc minutes arc seconds
+ * @return String/undefined
+ *    String Error ifvtime can't be verified to be a aa valid time else nothing
+ */
+const raTimeError = (time: string) => {
   // regular expression to match required time format
   const re = /^(\d+):(\d+):(\d+)$/;
 
@@ -42,6 +50,11 @@ export const raTimeError = (time: string) => {
 
 /**
  * This method check is given declination is within range
+ *
+ * @param degree
+ *    String a float number
+ * @return
+ *    Error or nothing/undefined
  */
 const validateDecDegrees = (degree: string) => {
   if (parseFloat(degree) < -90 || parseFloat(degree) > 90) {
@@ -52,19 +65,27 @@ const validateDecDegrees = (degree: string) => {
 
 /**
  * This method check is given declination is within range and a correct DMS
+ *
+ * @param dms
+ *    String representing Degrees arc minutes arc seconds
+ * @return String/undefined
+ *    String Error if dms can't be verified to be a aa valid DMS else nothing
  */
 const validateDecDms = (dms: string) => {
-  const decs = dms.split(/[^0-9]+/).filter(d => d !== "");
+  const decs = dms.split(/[^0-9]+/).filter(d => d !== ""); // Split string at none numbers and remove white space and empty string
   if (!decs || decs.length !== 3) {
+    // expecting 3 numbers separated by any thing else it should fail
     return "Declination should be in degrees or Degree:minutes:seconds";
   }
   if (-90 > parseFloat(decs[0]) || parseFloat(decs[0]) > 90) {
+    // degress are between -90 and 90
     return "Declination should be between -90D 0M 0S and 90D 0M 0S degrees.\n";
   }
   if (
     (parseFloat(decs[0]) === 90 || parseFloat(decs[0]) === -90) &&
     (parseFloat(decs[1]) !== 0 || parseFloat(decs[2]) !== 0)
   ) {
+    //
     return "Declination should be between -90D 0M 0S and 90D 0M 0S degrees.\n";
   }
   if (
