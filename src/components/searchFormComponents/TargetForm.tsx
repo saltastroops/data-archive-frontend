@@ -157,6 +157,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Radius units</p>
             <SelectField
+              className={"radius-units-select"}
               options={["Arc seconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}

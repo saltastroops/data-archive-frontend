@@ -94,6 +94,7 @@ exports[`TargetForm render correctly 1`] = `
         Radius units
       </p>
       <SelectField
+        className="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
         options={
@@ -203,6 +204,7 @@ exports[`TargetForm render correctly 2`] = `
         Radius units
       </p>
       <SelectField
+        className="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
         options={
@@ -312,6 +314,7 @@ exports[`TargetForm render correctly 3`] = `
         Radius units
       </p>
       <SelectField
+        className="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
         options={

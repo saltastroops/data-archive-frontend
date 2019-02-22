@@ -8,18 +8,21 @@ describe("Search Form", () => {
   it("should render", () => {
     expect(wrapper).toBeDefined();
   });
+
   it("Should always renders a div of class name grid-container", () => {
     const mainDiv = wrapper.find("div");
     expect(mainDiv.length).toBeGreaterThan(0);
     const mainContainer = wrapper.find("div.grid-container");
     expect(mainContainer.length).toEqual(1);
   });
+
   it("should contain five grid-item and one button", () => {
     const items = wrapper.find("div.grid-item");
     expect(items.length).toEqual(5);
     const button = wrapper.find("input.is-primary");
     expect(button.length).toEqual(1);
   });
+
   it("should contain target, proposal, telescope and data form", () => {
     const target = wrapper.find("div.target-form");
     expect(target.length).toEqual(1);
@@ -31,7 +34,7 @@ describe("Search Form", () => {
     expect(data.length).toEqual(1);
   });
 
-  it("Should update state when typing on target form", () => {
+  it("Should update state when typing", () => {
     let value: any;
     const targetForm = wrapper.find("input.target-name-input");
     const targetName = targetForm.find("input");
