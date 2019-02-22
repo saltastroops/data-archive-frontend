@@ -108,7 +108,6 @@ const validateDecDms = (dms: string) => {
  * @return
  *    Error if string can not be a declination. else nothing
  */
-
 export const validateDeclination = (dec: string) => {
   if (dec.trim() === "" || dec === null || dec === undefined) {
     return;
@@ -142,8 +141,8 @@ export const validateDeclination = (dec: string) => {
   return;
 };
 
-export const validateName = (name: string) => {
-  return "";
+export const validateName = () => {
+  return;
 };
 
 /**

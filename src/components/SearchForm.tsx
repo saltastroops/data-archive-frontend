@@ -44,7 +44,6 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
   public targetChange = (value: ITarget) => {
-    console.log(value);
     const newState = {
       ...this.state,
       target: {

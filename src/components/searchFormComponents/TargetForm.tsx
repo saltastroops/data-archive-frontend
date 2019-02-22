@@ -1,19 +1,13 @@
 import * as React from "react";
 import targetPosition from "target-position";
-import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
+import { ITarget } from "../../utils/ObservationQueryParameters";
 import {
-  isFloat,
   validateDeclination,
   validateName,
   validateRightAscension,
   validateSearchConeRadius
 } from "../../utils/validators";
-import {
-  InnerMainGrid,
-  MainGrid,
-  Spinner,
-  SubGrid
-} from "../basicComponents/Grids";
+import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
@@ -69,10 +63,10 @@ class TargetForm extends React.Component<
     const { target, onChange } = this.props;
     const { loading } = this.state;
     const targetChange = (
-      e: React.FormEvent<HTMLSelectElement | HTMLInputElement>
+      e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
-      const name = e.currentTarget.name;
-      const value = e.currentTarget.value;
+      const name = e.target.name;
+      const value = e.target.value || "";
       onChange({
         ...target,
         [name]: value,
@@ -88,6 +82,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Target name</p>
             <InputField
+              className="target-name-input"
               loading={loading}
               name={"name"}
               value={target.name || ""}
@@ -100,6 +95,7 @@ class TargetForm extends React.Component<
               <SubGrid>
                 <p>Resolver</p>
                 <SelectField
+                  className={"resolver-select"}
                   options={["Simbad", "NED", "VizieR"]}
                   name={"resolver"}
                   value={target.resolver || "Simbad"}
@@ -127,6 +123,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Right ascension</p>
             <InputField
+              className="right-ascension-input"
               loading={loading}
               name={"rightAscension"}
               value={target.rightAscension || ""}
@@ -137,6 +134,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Declination</p>
             <InputField
+              className="declination-input"
               loading={loading}
               name={"declination"}
               value={target.declination || ""}
@@ -149,6 +147,7 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Search radius</p>
             <InputField
+              className="search-cone-radius-input"
               name={"searchConeRadius"}
               value={target.searchConeRadius || ""}
               onChange={targetChange}
@@ -203,7 +202,7 @@ export const validatedTarget = async (target: ITarget) => {
         raDecChangeError && raDecChangeError.declination
           ? raDecChangeError.declination
           : validateDeclination(target.declination || ""),
-      name: validateName(target.name || ""),
+      name: validateName(),
       rightAscension:
         raDecChangeError && raDecChangeError.rightAscension
           ? raDecChangeError.rightAscension

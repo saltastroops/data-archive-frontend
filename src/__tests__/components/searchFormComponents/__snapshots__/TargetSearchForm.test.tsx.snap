@@ -8,6 +8,7 @@ exports[`TargetForm render correctly 1`] = `
         Target name
       </p>
       <InputField
+        className="target-name-input"
         error=""
         loading={false}
         name="name"
@@ -22,6 +23,7 @@ exports[`TargetForm render correctly 1`] = `
             Resolver
           </p>
           <SelectField
+            className="resolver-select"
             name="resolver"
             onChange={[Function]}
             options={
@@ -55,6 +57,7 @@ exports[`TargetForm render correctly 1`] = `
         Right ascension
       </p>
       <InputField
+        className="right-ascension-input"
         loading={false}
         name="rightAscension"
         onChange={[Function]}
@@ -66,6 +69,7 @@ exports[`TargetForm render correctly 1`] = `
         Declination
       </p>
       <InputField
+        className="declination-input"
         loading={false}
         name="declination"
         onChange={[Function]}
@@ -79,6 +83,7 @@ exports[`TargetForm render correctly 1`] = `
         Search radius
       </p>
       <InputField
+        className="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
         value=""
@@ -112,6 +117,7 @@ exports[`TargetForm render correctly 2`] = `
         Target name
       </p>
       <InputField
+        className="target-name-input"
         error=""
         loading={false}
         name="name"
@@ -126,6 +132,7 @@ exports[`TargetForm render correctly 2`] = `
             Resolver
           </p>
           <SelectField
+            className="resolver-select"
             name="resolver"
             onChange={[Function]}
             options={
@@ -159,6 +166,7 @@ exports[`TargetForm render correctly 2`] = `
         Right ascension
       </p>
       <InputField
+        className="right-ascension-input"
         loading={false}
         name="rightAscension"
         onChange={[Function]}
@@ -170,6 +178,7 @@ exports[`TargetForm render correctly 2`] = `
         Declination
       </p>
       <InputField
+        className="declination-input"
         loading={false}
         name="declination"
         onChange={[Function]}
@@ -183,6 +192,7 @@ exports[`TargetForm render correctly 2`] = `
         Search radius
       </p>
       <InputField
+        className="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
         value=""
@@ -216,6 +226,7 @@ exports[`TargetForm render correctly 3`] = `
         Target name
       </p>
       <InputField
+        className="target-name-input"
         error="this is an error"
         loading={false}
         name="name"
@@ -230,6 +241,7 @@ exports[`TargetForm render correctly 3`] = `
             Resolver
           </p>
           <SelectField
+            className="resolver-select"
             name="resolver"
             onChange={[Function]}
             options={
@@ -263,6 +275,7 @@ exports[`TargetForm render correctly 3`] = `
         Right ascension
       </p>
       <InputField
+        className="right-ascension-input"
         loading={false}
         name="rightAscension"
         onChange={[Function]}
@@ -274,6 +287,7 @@ exports[`TargetForm render correctly 3`] = `
         Declination
       </p>
       <InputField
+        className="declination-input"
         loading={false}
         name="declination"
         onChange={[Function]}
@@ -287,6 +301,7 @@ exports[`TargetForm render correctly 3`] = `
         Search radius
       </p>
       <InputField
+        className="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
         value="12.1"
