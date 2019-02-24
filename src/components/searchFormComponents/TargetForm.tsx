@@ -83,7 +83,7 @@ class TargetForm extends React.Component<
             <p>Target name</p>
             <InputField
               className="target-name-input"
-              loading={loading}
+              disabled={loading}
               name={"name"}
               value={target.name || ""}
               error={target.errors.name || ""}
@@ -124,7 +124,7 @@ class TargetForm extends React.Component<
             <p>Right ascension</p>
             <InputField
               className="right-ascension-input"
-              loading={loading}
+              disabled={loading}
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={targetChange}
@@ -135,7 +135,7 @@ class TargetForm extends React.Component<
             <p>Declination</p>
             <InputField
               className="declination-input"
-              loading={loading}
+              disabled={loading}
               name={"declination"}
               value={target.declination || ""}
               onChange={targetChange}
@@ -158,7 +158,7 @@ class TargetForm extends React.Component<
             <p>Radius units</p>
             <SelectField
               className={"radius-units-select"}
-              options={["Arc seconds", "arc minutes", "degrees"]}
+              options={["Arcseconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
