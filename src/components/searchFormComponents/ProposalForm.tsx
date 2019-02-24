@@ -1,7 +1,6 @@
 import * as React from "react";
 import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { validateDate } from "../../utils/validators";
-import DateField from "../basicComponents/DateField";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 
@@ -9,7 +8,7 @@ class ProposalForm extends React.Component<
   { proposal: IGeneral; onChange: (value: IGeneral) => void },
   any
 > {
-  change = (e: React.FormEvent<HTMLInputElement>) => {
+  change = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     this.props.onChange({
@@ -20,9 +19,6 @@ class ProposalForm extends React.Component<
         [name]: ""
       }
     });
-  };
-  onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    return (e.type = "date");
   };
   render() {
     const {
@@ -67,7 +63,7 @@ class ProposalForm extends React.Component<
           </SubGrid>
           <SubGrid>
             <p>Observation night</p>
-            <DateField
+            <InputField
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}

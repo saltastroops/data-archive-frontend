@@ -4,7 +4,7 @@ interface IDASelectProps {
   className?: string;
   name?: string;
   options: string[];
-  onChange?: (e: React.FormEvent<HTMLSelectElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   value?: string;
 }
 

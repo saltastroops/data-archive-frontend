@@ -5,8 +5,9 @@ exports[`InpuField render correctly 1`] = `
   className="control"
 >
   <input
-    className="is-label input  undefined"
+    className="is-label input undefined undefined"
     id="undefined"
+    name="undefined"
     type="text"
   />
   <p
@@ -24,8 +25,9 @@ exports[`InpuField render correctly 2`] = `
   className="control"
 >
   <input
-    className="is-label input  is-danger"
+    className="is-label input undefined is-danger"
     id="undefined"
+    name="undefined"
     title="it has error"
     type="text"
   />
@@ -46,7 +48,7 @@ exports[`InpuField render correctly 3`] = `
   className="control"
 >
   <input
-    className="is-label input  undefined"
+    className="is-label input undefined undefined"
     id="name"
     name="name"
     placeholder="holder"

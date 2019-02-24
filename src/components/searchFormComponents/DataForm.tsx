@@ -30,7 +30,7 @@ class DataForm extends React.Component<
       [name]: value
     });
   };
-  changeSelect = (e: React.FormEvent<HTMLSelectElement>) => {
+  changeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // fooling type scripts
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
@@ -41,14 +41,7 @@ class DataForm extends React.Component<
     });
   };
   render() {
-    const {
-      errors,
-      arcs,
-      biases,
-      flats,
-      standards,
-      dataType
-    } = this.props.data;
+    const { arcs, biases, flats, standards, dataType } = this.props.data;
     return (
       <>
         <MainGrid>
