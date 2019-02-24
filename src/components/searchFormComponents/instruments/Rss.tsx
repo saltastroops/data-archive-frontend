@@ -1,6 +1,7 @@
+import { detect } from "async";
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
 const Rss = (props: any) => {
   const { onChange, details } = props;
@@ -13,40 +14,45 @@ const Rss = (props: any) => {
       [name]: value
     });
   };
+  const modes = [
+    "Fabry Perot",
+    "FP polarimetry",
+    "Imaging",
+    "Polarimetric imaging",
+    "MOS",
+    "MOS polarimetry",
+    "Spectropolarimetry",
+    "Spectroscopy"
+  ];
+  const detectorModes = [
+    "Normal",
+    "Frame Transfer",
+    "Slot Mode",
+    "Shuffle",
+    "Drift Scan"
+  ];
   return (
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "Fabry Perot",
-            "FP polarimetry",
-            "Imaging",
-            "Polarimetric imaging",
-            "MOS",
-            "MOS polarimetry",
-            "Spectropolarimetry",
-            "Spectroscopy"
-          ]}
-          name={"mode"}
-          onChange={change}
-        />
+        <SelectField name={"mode"} onChange={change}>
+          <AnyOption />
+          {modes.map(mode => (
+            <option key={mode} value={mode}>
+              {mode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
       <SubGrid>
         <p>Detector Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "Normal",
-            "Frame Transfer",
-            "Slot Mode",
-            "Shuffle",
-            "Drift Scan"
-          ]}
-          name={"detectorMode"}
-          onChange={change}
-        />
+        <SelectField name={"detectorMode"} onChange={change}>
+          {detectorModes.map(detectorMode => (
+            <option key={detectorMode} value={detectorMode}>
+              {detectorMode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );

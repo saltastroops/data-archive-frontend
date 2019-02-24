@@ -1,6 +1,7 @@
+import { detect } from "async";
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
 const Salticam = (props: any) => {
   const { onChange, details } = props;
@@ -13,21 +14,19 @@ const Salticam = (props: any) => {
       [name]: value
     });
   };
+  const detectorModes = ["Normal", "Slot Mode", "Drift Scan", "Frame Transfer"];
   return (
     <MainGrid>
       <SubGrid>
         <p>Detector Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "Normal",
-            "Slot Mode",
-            "Drift Scan",
-            "Frame Transfer"
-          ]}
-          name={"detectorMode"}
-          onChange={change}
-        />
+        <SelectField name={"detectorMode"} onChange={change}>
+          <AnyOption />
+          {detectorModes.map(detectorMode => (
+            <option key={detectorMode} value={detectorMode}>
+              {detectorMode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );

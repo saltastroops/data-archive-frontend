@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
@@ -41,16 +41,20 @@ const SaltForm = (props: any) => {
       ...value
     });
   };
+  const instruments = ["HRS", "RSS", "BVIT", "Salticam"];
   return (
     <>
       <MainGrid>
         <SubGrid>
           <p>Instrument</p>
-          <SelectField
-            options={["any", "HRS", "RSS", "BVIT", "SALTICAM"]}
-            name={"instrument"}
-            onChange={changeInstrument}
-          />
+          <SelectField name={"instrument"} onChange={changeInstrument}>
+            <AnyOption />
+            {instruments.map(instrument => (
+              <option key={instrument} value={instrument}>
+                {instrument}
+              </option>
+            ))}
+          </SelectField>
         </SubGrid>
       </MainGrid>
       {saltInstrumentsSwitcher(details, changeMode)}

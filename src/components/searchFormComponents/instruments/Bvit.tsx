@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
 const Bvit = (props: any) => {
   const { onChange, details } = props;
@@ -13,23 +13,31 @@ const Bvit = (props: any) => {
       [name]: value
     });
   };
+  const modes = ["Imaging", "Streaming"];
+  const filters = ["B", "H-alpha", "Open", "R", "U", "V"];
   return (
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField
-          options={["any", "imaging", "streaming"]}
-          name={"mode"}
-          onChange={change}
-        />
+        <SelectField name={"mode"} onChange={change}>
+          <AnyOption />
+          {modes.map(mode => (
+            <option key={mode} value={mode}>
+              {mode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
       <SubGrid>
         <p>Filter</p>
-        <SelectField
-          options={["any", "B", "H-alpha", "open", "R", "U", "V"]}
-          name={"filter"}
-          onChange={change}
-        />
+        <SelectField name={"filter"} onChange={change}>
+          <AnyOption />
+          {filters.map(filter => (
+            <option key={filter} value={filter}>
+              {filter}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );

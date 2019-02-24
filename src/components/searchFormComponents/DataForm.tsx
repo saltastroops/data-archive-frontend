@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../basicComponents/SelectField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -48,11 +48,13 @@ class DataForm extends React.Component<
           <SubGrid>
             <p>Reduce/raw</p>
             <SelectField
-              options={["any", "reduced", "raw"]}
               name={"dataType"}
               onChange={this.changeSelect}
               value={dataType}
-            />
+            >
+              <AnyOption />
+              <option value="reduced">Reduced</option>
+            </SelectField>
           </SubGrid>
         </MainGrid>
         <MainGrid>

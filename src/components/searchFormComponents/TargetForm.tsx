@@ -96,11 +96,14 @@ class TargetForm extends React.Component<
                 <p>Resolver</p>
                 <SelectField
                   className={"resolver-select"}
-                  options={["Simbad", "NED", "VizieR"]}
                   name={"resolver"}
                   value={target.resolver || "Simbad"}
                   onChange={targetChange}
-                />
+                >
+                  <option value="Simbad">Simbad</option>
+                  <option value="NED">NED</option>
+                  <option value="VizieR">VizieR</option>
+                </SelectField>
               </SubGrid>
               <SubGrid>
                 <br />
@@ -158,11 +161,14 @@ class TargetForm extends React.Component<
             <p>Radius units</p>
             <SelectField
               className={"radius-units-select"}
-              options={["Arcseconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
-            />
+            >
+              <option value="arcseconds">Arcseconds</option>
+              <option value="arcminutes">Arcminutes</option>
+              <option value="degrees">Degrees</option>
+            </SelectField>
           </SubGrid>
         </MainGrid>
       </>

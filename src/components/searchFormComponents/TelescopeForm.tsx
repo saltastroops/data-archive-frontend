@@ -1,10 +1,12 @@
 import * as React from "react";
 import { ITelescope } from "../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../basicComponents/SelectField";
 import LesediForm from "./telescopes/LesediForm";
 import OneNineMForm from "./telescopes/OneNineM";
 import SaltForm from "./telescopes/SaltForm";
+
+const TELESCOPES = ["SALT", "1.9 m", "Lesedi"];
 
 class TelescopeForm extends React.Component<
   { telescope: any; onChange: any },
@@ -32,11 +34,14 @@ class TelescopeForm extends React.Component<
         <MainGrid>
           <SubGrid>
             <p>Telescope</p>
-            <SelectField
-              name={"telescope"}
-              options={["any", "SALT", "1.9 m", "Lesedi"]}
-              onChange={changeTelescope}
-            />
+            <SelectField name={"telescope"} onChange={changeTelescope}>
+              <AnyOption />
+              {TELESCOPES.map(t => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </SelectField>
           </SubGrid>
         </MainGrid>
         {name === "SALT" && (

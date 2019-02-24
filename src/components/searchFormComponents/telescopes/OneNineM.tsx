@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
@@ -11,13 +11,13 @@ export const oneNineMInstrumentsSwitcher = (
 ) => {
   const instrument = details.name;
   switch (instrument) {
-    case "SpupMic": {
+    case "SpUpNIC": {
       return <Rss details={details} onChange={onChange} />;
     }
-    case "Hippo": {
+    case "HIPPO": {
       return <Hrs details={details} onChange={onChange} />;
     }
-    case "Shoc": {
+    case "SHOC": {
       return <Bvit details={details} onChange={onChange} />;
     }
     default:
@@ -37,16 +37,20 @@ const OneNineMForm = (props: any) => {
       ...value
     });
   };
+  const instruments = ["HIPPO", "SHOC", "SpUpNIC"];
   return (
     <>
       <MainGrid>
         <SubGrid>
           <p>Instrument</p>
-          <SelectField
-            options={["any", "Hippo", "Shoc", "SpupMic"]}
-            name={"instrument"}
-            onChange={changeInstrument}
-          />
+          <SelectField name={"instrument"} onChange={changeInstrument}>
+            <AnyOption />
+            {instruments.map(instrument => (
+              <option key={instrument} value={instrument}>
+                {instrument}
+              </option>
+            ))}
+          </SelectField>
         </SubGrid>
       </MainGrid>
       {oneNineMInstrumentsSwitcher(details, changeMode)}

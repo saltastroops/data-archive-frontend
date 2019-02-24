@@ -1,24 +1,24 @@
 import * as React from "react";
 
-interface IDASelectProps {
-  className?: string;
-  name?: string;
-  options: string[];
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  value?: string;
-}
+interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
-const SelectField = (props: IDASelectProps) => {
-  const { options, name, onChange, value, className } = props;
+const SelectField = (props: ISelectProps) => {
+  const { className, children, ...rest } = props;
   return (
-    <div className={`control  select ${className}`}>
-      <select id={`${name}`} onChange={onChange} value={value} name={name}>
-        {options.map(option => {
-          return <option key={option}>{option}</option>;
-        })}
-      </select>
+    <div className={`control select ${className}`}>
+      <select {...rest}>{props.children}</select>
     </div>
   );
 };
 
 export default SelectField;
+
+/**
+ * The "any" option. The key attribute has the value "any" and the value
+ * attribute has the value "".
+ */
+export const AnyOption = () => (
+  <option key="any" value="">
+    Any
+  </option>
+);

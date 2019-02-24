@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
 const Hrs = (props: any) => {
   const { onChange, details } = props;
@@ -13,22 +13,25 @@ const Hrs = (props: any) => {
       [name]: value
     });
   };
+  const modes = [
+    "High Resolution",
+    "High Stability",
+    "Int Cal Fibre",
+    "Low Resolution",
+    "Medium Resolution"
+  ];
   return (
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "HIGH RESOLUTION",
-            "HIGH STABILITY",
-            "INT CAL FIBRE",
-            "LOW RESOLUTION",
-            "MEDIUM RESOLUTION"
-          ]}
-          name={"mode"}
-          onChange={change}
-        />
+        <SelectField name={"mode"} onChange={change}>
+          <AnyOption />
+          {modes.map(mode => (
+            <option key={mode} value={mode.toUpperCase()}>
+              {mode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );
