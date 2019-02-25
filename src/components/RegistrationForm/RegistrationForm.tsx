@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
+import { SIGNUP_MUTATION } from "../../graphql/Mutations";
 import { validateRegistrationField } from "../../util/RegistrationFormValidation";
 import RegistrationInputField from "./RegistrationInputField";
-import { SIGNUP_MUTATION } from "../../graphql/Mutations";
 
 const RegistrationFormParent = styled.form.attrs({
   className: "column is-4 is-offset-4"
@@ -125,9 +125,11 @@ class RegistrationForm extends React.Component<IRegistrationForm> {
             >
               <Heading>Create your account</Heading>
               {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
-              {errors.map(error => (
-                <ErrorMessage key={error}>Error: {error}</ErrorMessage>
+
+              {errors.map(err => (
+                <ErrorMessage key={err}>Error: {err}</ErrorMessage>
               ))}
+
               <RegistrationInputField
                 name={"givenName"}
                 label={"Given name (first name)"}

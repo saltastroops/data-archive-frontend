@@ -96,8 +96,8 @@ describe("Registration form validation", () => {
     // Submitting passwords that do not match.
     const unMatchedPassword = {
       ...userInput,
-      password: "unmatched",
-      confirmPassword: "notmatched"
+      confirmPassword: "notmatched",
+      password: "unmatched"
     };
 
     // Expect meaningful error message

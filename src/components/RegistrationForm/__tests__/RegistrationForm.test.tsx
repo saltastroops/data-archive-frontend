@@ -1,9 +1,9 @@
-import * as React from "react";
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
+import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
-import RegistrationForm from "../RegistrationForm";
 import { SIGNUP_MUTATION } from "../../../graphql/Mutations";
+import RegistrationForm from "../RegistrationForm";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
@@ -79,7 +79,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the affiliation input field value changes.
     inputTyping(wrapper, "affiliation", "University of Cape Town");
@@ -150,7 +150,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the givenName input field value changes.
     inputTyping(wrapper, "givenName", "");
@@ -184,7 +184,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the familyName input field value changes.
     inputTyping(wrapper, "familyName", "");
@@ -218,7 +218,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the emailAddress input field value changes.
     inputTyping(wrapper, "email", "invalid$email&address");
@@ -252,7 +252,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the username input field value changes.
     inputTyping(wrapper, "username", "sJ");
@@ -286,7 +286,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the password input field value changes.
     inputTyping(wrapper, "password", "short");
@@ -330,7 +330,7 @@ describe("RegistrationForm Component", () => {
     instance.setState({ userInput: updatedState });
 
     // Spy on the setState function.
-    let setState = jest.spyOn(instance, "setState");
+    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the password input field value changes.
     inputTyping(wrapper, "password", "securepassword");
