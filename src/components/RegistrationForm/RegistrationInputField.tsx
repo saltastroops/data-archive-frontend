@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface IDAInputProps {
+interface IRegistrationInputProps {
   label?: string;
   name?: string;
   onChange?: any;
@@ -9,7 +9,7 @@ interface IDAInputProps {
   value?: string;
 }
 
-const RegistrationInputField = (props: IDAInputProps) => {
+const RegistrationInputField = (props: IRegistrationInputProps) => {
   const { label, name, onChange, placeholder, type, value } = props;
   return (
     <div className={"field"}>
