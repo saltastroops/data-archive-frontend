@@ -1,15 +1,23 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import { IBVIT } from "../../../utils/ObservationQueryParameters";
 
-const Bvit = (props: any) => {
+interface BvitProps {
+  details: IBVIT;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting HRS-related search parameters.
+ */
+const Bvit = (props: BvitProps) => {
   const { onChange, details } = props;
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
       ...details,
-      ...details.instrument,
       [name]: value
     });
   };

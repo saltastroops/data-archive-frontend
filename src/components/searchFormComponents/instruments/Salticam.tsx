@@ -1,20 +1,30 @@
-import { detect } from "async";
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import { ISalticam } from "../../../utils/ObservationQueryParameters";
 
-const Salticam = (props: any) => {
+interface ISalticamProps {
+  details: ISalticam;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting Salticam-related search parameters.
+ */
+const Salticam = (props: ISalticamProps) => {
   const { onChange, details } = props;
+
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
       ...details,
-      ...details.instrument,
       [name]: value
     });
   };
+
   const detectorModes = ["Normal", "Slot Mode", "Drift Scan", "Frame Transfer"];
+
   return (
     <MainGrid>
       <SubGrid>
@@ -31,4 +41,5 @@ const Salticam = (props: any) => {
     </MainGrid>
   );
 };
+
 export default Salticam;

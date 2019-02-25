@@ -5,31 +5,59 @@ import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
 import Salticam from "../instruments/Salticam";
+import {
+  IBVIT,
+  IHRS,
+  IInstrument,
+  IRSS,
+  ISALT,
+  ISalticam
+} from "../../../utils/ObservationQueryParameters";
 
+/**
+ * Return the form for a given instrument.
+ *
+ * Parameters:
+ * -----------
+ * instrument:
+ *     The instrument.
+ *
+ * Returns:
+ * --------
+ * The form component.
+ */
 export const saltInstrumentsSwitcher = (
-  details: any,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  instrument: IInstrument,
+  onChange: (value: any) => void
 ) => {
-  const instrument = details.name;
-  switch (instrument) {
+  const name = instrument && instrument.name;
+  switch (name) {
     case "RSS": {
-      return <Rss details={details} onChange={onChange} />;
+      return <Rss details={instrument as IRSS} onChange={onChange} />;
     }
     case "HRS": {
-      return <Hrs details={details} onChange={onChange} />;
+      return <Hrs details={instrument as IHRS} onChange={onChange} />;
     }
     case "BVIT": {
-      return <Bvit details={details} onChange={onChange} />;
+      return <Bvit details={instrument as IBVIT} onChange={onChange} />;
     }
-    case "SALTICAM": {
-      return <Salticam details={details} onChange={onChange} />;
+    case "Salticam": {
+      return <Salticam details={instrument as ISalticam} onChange={onChange} />;
     }
     default:
       return <></>;
   }
 };
 
-const SaltForm = (props: any) => {
+interface ISaltFormProps {
+  details: ISALT;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting SALT-related search parameters.
+ */
+const SaltForm = (props: ISaltFormProps) => {
   const { details, onChange } = props;
   const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
@@ -57,7 +85,7 @@ const SaltForm = (props: any) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {saltInstrumentsSwitcher(details, changeMode)}
+      {saltInstrumentsSwitcher(details.instrument, changeMode)}
     </>
   );
 };

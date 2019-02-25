@@ -2,18 +2,28 @@ import { detect } from "async";
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import { IInstrument, IRSS } from "../../../utils/ObservationQueryParameters";
 
-const Rss = (props: any) => {
+interface IRssProps {
+  details: IRSS;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form selecting RSS-related search parameters.
+ */
+const Rss = (props: IRssProps) => {
   const { onChange, details } = props;
-  const change = (e: React.FormEvent<HTMLSelectElement>) => {
+
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
       ...details,
-      ...details.instrument,
       [name]: value
     });
   };
+
   const modes = [
     "Fabry Perot",
     "FP polarimetry",
@@ -24,6 +34,7 @@ const Rss = (props: any) => {
     "Spectropolarimetry",
     "Spectroscopy"
   ];
+
   const detectorModes = [
     "Normal",
     "Frame Transfer",
@@ -31,6 +42,7 @@ const Rss = (props: any) => {
     "Shuffle",
     "Drift Scan"
   ];
+
   return (
     <MainGrid>
       <SubGrid>

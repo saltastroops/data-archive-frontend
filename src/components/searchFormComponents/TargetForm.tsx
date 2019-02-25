@@ -181,8 +181,8 @@ class TargetForm extends React.Component<
 }
 
 /**
- * Validate given target-related search parameters and, if need be, add error
- * messages to them.
+ * Validate the given target-related search parameters and, if need be, add
+ * error messages to them.
  */
 export const validatedTarget = async (target: ITarget) => {
   // Check that the target name and any given coordinates are consistent

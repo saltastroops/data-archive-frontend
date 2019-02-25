@@ -34,11 +34,11 @@ import TelescopeForm, {
  * telescope:
  *     Telescope-related parameters
  */
-// TODO: Remove loading
+// TODO: Remove loading, replace with IObservationQueryParameters
 interface ISearchFormState {
   general: IGeneral;
   target: ITarget;
-  telescope: ITelescope;
+  telescope?: ITelescope;
   loading: boolean;
 }
 
@@ -47,11 +47,10 @@ interface ISearchFormState {
  * initiating the search.
  */
 class SearchForm extends React.Component<{}, ISearchFormState> {
-  public state = {
+  public state: ISearchFormState = {
     general: { errors: {} },
     loading: false,
-    target: { errors: {} },
-    telescope: {}
+    target: { errors: {} }
   };
 
   /**

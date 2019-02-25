@@ -4,40 +4,73 @@ import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
+import {
+  IBVIT,
+  IHRS,
+  IInstrument,
+  ILesedi,
+  InstrumentName,
+  IRSS,
+  ISalticam
+} from "../../../utils/ObservationQueryParameters";
 
+/**
+ * Return the form for a given instrument.
+ *
+ * Parameters:
+ * -----------
+ * instrument:
+ *     The instrument.
+ *
+ * Returns:
+ * --------
+ * The form component.
+ */
 export const lesediInstrumentsSwitcher = (
-  details: any,
+  instrument: IInstrument,
   onChange: (e: React.FormEvent<HTMLSelectElement>) => void
 ) => {
-  const instrument = details.name;
-  switch (instrument) {
+  const name = instrument && instrument.name;
+  switch (name) {
     case "SpUpNIC": {
-      return <Rss details={details} onChange={onChange} />;
+      return <Rss details={instrument as IRSS} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hrs details={details} onChange={onChange} />;
+      return <Hrs details={instrument as IHRS} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Bvit details={details} onChange={onChange} />;
+      return <Bvit details={instrument as IBVIT} onChange={onChange} />;
     }
     default:
       return <></>;
   }
 };
 
-const LesediForm = (props: any) => {
+interface ILesediFormProps {
+  details: ILesedi;
+  onChange: (value: any) => any;
+}
+
+/**
+ * A form for selecting Lesedi-related search parameters.
+ */
+const LesediForm = (props: ILesediFormProps) => {
   const { details, onChange } = props;
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+
+  // Function for changing the instrument
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };
+
+  // Function for changing the instrument mode
   const changeMode = (value: any) => {
     onChange({
       ...details,
       ...value
     });
   };
-  const instruments = ["HIPPO", "SHOC", "SpUpNIC"];
+  const instruments: InstrumentName[] = ["HIPPO", "SHOC", "SpUpNIC"];
   return (
     <>
       <MainGrid>
@@ -53,7 +86,7 @@ const LesediForm = (props: any) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {lesediInstrumentsSwitcher(details, changeMode)}
+      {lesediInstrumentsSwitcher(details.instrument, changeMode)}
     </>
   );
 };
