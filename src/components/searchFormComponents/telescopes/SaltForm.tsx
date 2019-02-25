@@ -33,16 +33,18 @@ export const saltInstrumentsSwitcher = (
   const name = instrument && instrument.name;
   switch (name) {
     case "RSS": {
-      return <Rss details={instrument as IRSS} onChange={onChange} />;
+      return <Rss rss={instrument as IRSS} onChange={onChange} />;
     }
     case "HRS": {
-      return <Hrs details={instrument as IHRS} onChange={onChange} />;
+      return <Hrs hrs={instrument as IHRS} onChange={onChange} />;
     }
     case "BVIT": {
-      return <Bvit details={instrument as IBVIT} onChange={onChange} />;
+      return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
     }
     case "Salticam": {
-      return <Salticam details={instrument as ISalticam} onChange={onChange} />;
+      return (
+        <Salticam salticam={instrument as ISalticam} onChange={onChange} />
+      );
     }
     default:
       return <></>;
@@ -50,7 +52,7 @@ export const saltInstrumentsSwitcher = (
 };
 
 interface ISaltFormProps {
-  details: ISALT;
+  salt: ISALT;
   onChange: (value: any) => void;
 }
 
@@ -58,14 +60,14 @@ interface ISaltFormProps {
  * A form for selecting SALT-related search parameters.
  */
 const SaltForm = (props: ISaltFormProps) => {
-  const { details, onChange } = props;
+  const { salt, onChange } = props;
   const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };
   const changeMode = (value: any) => {
     onChange({
-      ...details,
+      ...salt,
       ...value
     });
   };
@@ -85,7 +87,7 @@ const SaltForm = (props: ISaltFormProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {saltInstrumentsSwitcher(details.instrument, changeMode)}
+      {saltInstrumentsSwitcher(salt.instrument, changeMode)}
     </>
   );
 };

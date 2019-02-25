@@ -4,7 +4,7 @@ import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import { IHRS } from "../../../utils/ObservationQueryParameters";
 
 interface IHrsProps {
-  details: IHRS;
+  hrs: IHRS;
   onChange: (value: any) => void;
 }
 
@@ -14,13 +14,13 @@ interface IHrsProps {
  * @constructor
  */
 const Hrs = (props: IHrsProps) => {
-  const { onChange, details } = props;
+  const { onChange, hrs } = props;
 
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...details,
+      ...hrs,
       [name]: value
     });
   };

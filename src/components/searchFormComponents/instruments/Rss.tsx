@@ -5,7 +5,7 @@ import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import { IInstrument, IRSS } from "../../../utils/ObservationQueryParameters";
 
 interface IRssProps {
-  details: IRSS;
+  rss: IRSS;
   onChange: (value: any) => void;
 }
 
@@ -13,13 +13,13 @@ interface IRssProps {
  * A form selecting RSS-related search parameters.
  */
 const Rss = (props: IRssProps) => {
-  const { onChange, details } = props;
+  const { onChange, rss } = props;
 
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...details,
+      ...rss,
       [name]: value
     });
   };

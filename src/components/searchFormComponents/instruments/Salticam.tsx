@@ -4,7 +4,7 @@ import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import { ISalticam } from "../../../utils/ObservationQueryParameters";
 
 interface ISalticamProps {
-  details: ISalticam;
+  salticam: ISalticam;
   onChange: (value: any) => void;
 }
 
@@ -12,13 +12,13 @@ interface ISalticamProps {
  * A form for selecting Salticam-related search parameters.
  */
 const Salticam = (props: ISalticamProps) => {
-  const { onChange, details } = props;
+  const { onChange, salticam } = props;
 
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...details,
+      ...salticam,
       [name]: value
     });
   };

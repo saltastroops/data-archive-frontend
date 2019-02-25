@@ -65,17 +65,17 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           </SubGrid>
         </MainGrid>
         {name === "SALT" && (
-          <SaltForm details={telescope as ISALT} onChange={changeInstrument} />
+          <SaltForm salt={telescope as ISALT} onChange={changeInstrument} />
         )}
         {name === "Lesedi" && (
           <LesediForm
-            details={telescope as ILesedi}
+            lesedi={telescope as ILesedi}
             onChange={changeInstrument}
           />
         )}
         {name === "1.9 m" && (
           <OneNineMForm
-            details={telescope as IOneNineM}
+            oneNineM={telescope as IOneNineM}
             onChange={changeInstrument}
           />
         )}

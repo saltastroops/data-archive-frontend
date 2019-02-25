@@ -33,13 +33,13 @@ export const lesediInstrumentsSwitcher = (
   const name = instrument && instrument.name;
   switch (name) {
     case "SpUpNIC": {
-      return <Rss details={instrument as IRSS} onChange={onChange} />;
+      return <Rss rss={instrument as IRSS} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hrs details={instrument as IHRS} onChange={onChange} />;
+      return <Hrs hrs={instrument as IHRS} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Bvit details={instrument as IBVIT} onChange={onChange} />;
+      return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
     }
     default:
       return <></>;
@@ -47,7 +47,7 @@ export const lesediInstrumentsSwitcher = (
 };
 
 interface ILesediFormProps {
-  details: ILesedi;
+  lesedi: ILesedi;
   onChange: (value: any) => any;
 }
 
@@ -55,7 +55,7 @@ interface ILesediFormProps {
  * A form for selecting Lesedi-related search parameters.
  */
 const LesediForm = (props: ILesediFormProps) => {
-  const { details, onChange } = props;
+  const { lesedi, onChange } = props;
 
   // Function for changing the instrument
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -66,7 +66,7 @@ const LesediForm = (props: ILesediFormProps) => {
   // Function for changing the instrument mode
   const changeMode = (value: any) => {
     onChange({
-      ...details,
+      ...lesedi,
       ...value
     });
   };
@@ -86,7 +86,7 @@ const LesediForm = (props: ILesediFormProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {lesediInstrumentsSwitcher(details.instrument, changeMode)}
+      {lesediInstrumentsSwitcher(lesedi.instrument, changeMode)}
     </>
   );
 };

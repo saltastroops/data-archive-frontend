@@ -4,40 +4,68 @@ import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
+import {
+  InstrumentName,
+  IOneNineM
+} from "../../../utils/ObservationQueryParameters";
 
+/**
+ * Return the form for a given instrument.
+ *
+ * Parameters:
+ * -----------
+ * instrument:
+ *     The instrument.
+ *
+ * Returns:
+ * --------
+ * The form component.
+ */
 export const oneNineMInstrumentsSwitcher = (
-  details: any,
+  oneNineM: any,
   onChange: (e: React.FormEvent<HTMLSelectElement>) => void
 ) => {
-  const instrument = details.name;
+  const instrument = oneNineM.name;
   switch (instrument) {
     case "SpUpNIC": {
-      return <Rss details={details} onChange={onChange} />;
+      return <Rss rss={oneNineM} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hrs details={details} onChange={onChange} />;
+      return <Hrs hrs={oneNineM} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Bvit details={details} onChange={onChange} />;
+      return <Bvit bvit={oneNineM} onChange={onChange} />;
     }
     default:
       return <></>;
   }
 };
 
-const OneNineMForm = (props: any) => {
-  const { details, onChange } = props;
+interface IOneNineMProps {
+  oneNineM: IOneNineM;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting search parameters related to the 1.9 m Telescope.
+ */
+const OneNineMForm = (props: IOneNineMProps) => {
+  const { oneNineM, onChange } = props;
+
   const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };
+
   const changeMode = (value: any) => {
     onChange({
-      ...details,
+      ...oneNineM,
       ...value
     });
   };
-  const instruments = ["HIPPO", "SHOC", "SpUpNIC"];
+
+  const instruments: InstrumentName[] = ["HIPPO", "SHOC", "SpUpNIC"];
+
   return (
     <>
       <MainGrid>
@@ -53,7 +81,7 @@ const OneNineMForm = (props: any) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {oneNineMInstrumentsSwitcher(details, changeMode)}
+      {oneNineMInstrumentsSwitcher(oneNineM, changeMode)}
     </>
   );
 };
