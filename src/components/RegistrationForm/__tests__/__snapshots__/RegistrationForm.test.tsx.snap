@@ -374,7 +374,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 375,
+              "end": 377,
               "start": 0,
             },
           }

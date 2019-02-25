@@ -16,7 +16,7 @@ exports[`RegistrationInputField Component renders the RegistrationInputField hav
   >
     <input
       className="username input"
-      id="username+Username"
+      id="username"
       name="username"
       onChange={[Function]}
       placeholder=""
@@ -41,7 +41,6 @@ exports[`RegistrationInputField Component renders the RegistrationInputField hav
   >
     <input
       className="undefined input"
-      id="undefined+undefined"
     />
   </div>
 </div>
