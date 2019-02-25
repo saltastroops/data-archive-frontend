@@ -142,7 +142,7 @@ export const validateDeclination = (dec: string) => {
 };
 
 export const validateName = () => {
-  return;
+  return "";
 };
 
 /**

@@ -11,9 +11,13 @@ import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
+/**
+ * A form for providing target-related search parameters for an observation
+ * search.
+ */
 class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
-  any
+  { loading: boolean }
 > {
   state = { loading: false };
   stateSet = (loading: boolean) => {
@@ -177,24 +181,29 @@ class TargetForm extends React.Component<
 }
 
 /**
+ * Validate given target-related search parameters and, if need be, add error
+ * messages to them.
  */
 export const validatedTarget = async (target: ITarget) => {
+  // Check that the target name and any given coordinates are consistent
+  // TODO: Don't enforce exact equality for floats.
+  // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
     raDecChangeError = await targetPosition(target.name, [
       target.resolver || "Simbad"
     ])
-      .then(p => {
-        if (p) {
+      .then(position => {
+        if (position) {
           return {
             declination:
-              `${p.declination}` !== target.declination
-                ? `Target name is given and resolves to different value with ${target.resolver ||
+              `${position.declination}` !== target.declination
+                ? `The given target name resolves to a different declination with ${target.resolver ||
                     "Simbad"} `
                 : "",
             rightAscension:
-              `${p.rightAscension}` !== target.rightAscension
-                ? `Target name is given and resolves to different value with ${target.resolver ||
+              `${position.rightAscension}` !== target.rightAscension
+                ? `The given target name resolves to a different right ascension with ${target.resolver ||
                     "Simbad"} `
                 : ""
           };
@@ -202,6 +211,8 @@ export const validatedTarget = async (target: ITarget) => {
       })
       .catch();
   }
+
+  // Return the search parameters with the errors found
   return {
     ...target,
     errors: {
