@@ -42,7 +42,7 @@ export const lesediInstrumentsSwitcher = (
       return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
     }
     default:
-      return <></>;
+      return null;
   }
 };
 

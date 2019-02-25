@@ -47,7 +47,7 @@ export const saltInstrumentsSwitcher = (
       );
     }
     default:
-      return <></>;
+      return null;
   }
 };
 

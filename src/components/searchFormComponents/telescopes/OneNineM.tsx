@@ -37,7 +37,7 @@ export const oneNineMInstrumentsSwitcher = (
       return <Bvit bvit={oneNineM} onChange={onChange} />;
     }
     default:
-      return <></>;
+      return null;
   }
 };
 
