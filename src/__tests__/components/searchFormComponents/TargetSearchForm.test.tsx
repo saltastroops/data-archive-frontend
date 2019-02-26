@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import SearchForm from "../../../components/SearchForm";
 import TargetForm from "../../../components/searchFormComponents/TargetForm";
 
 const onChange = jest.fn();
@@ -80,7 +81,12 @@ describe("TargetForm", () => {
   });
 });
 
-describe("TargetForm onChange", () => {
+describe("Target form on change", () => {
+  it("should find target change defined on target search form", () => {
+    // jest.spyOn(SearchForm.prototype, 'targetChange');
+    SearchForm.prototype.targetChange = jest.fn();
+    expect(SearchForm.prototype.targetChange).toBeDefined();
+  });
   const wrapper = mount(
     <TargetForm target={{ errors: {} }} onChange={onChange} />
   );

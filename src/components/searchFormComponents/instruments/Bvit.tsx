@@ -1,17 +1,17 @@
 import * as React from "react";
+import { IBVIT } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { IBVIT } from "../../../utils/ObservationQueryParameters";
 
-interface BvitProps {
+interface IBvitProps {
   bvit: IBVIT;
   onChange: (value: any) => void;
 }
 
 /**
- * A form for selecting HRS-related search parameters.
+ * A form for selecting BVIT-related search parameters.
  */
-const Bvit = (props: BvitProps) => {
+const Bvit = (props: IBvitProps) => {
   const { onChange, bvit } = props;
 
   // Function for handling change events

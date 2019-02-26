@@ -94,7 +94,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
   };
 
   /**
-   * Perform an observation with the currently selected aearch parameters.
+   * Perform an observation with the currently selected search parameters.
    */
   public searchArchive = async () => {
     this.setState(() => ({

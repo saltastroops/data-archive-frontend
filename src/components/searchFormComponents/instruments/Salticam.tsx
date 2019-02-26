@@ -1,7 +1,7 @@
 import * as React from "react";
+import { ISalticam } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { ISalticam } from "../../../utils/ObservationQueryParameters";
 
 interface ISalticamProps {
   salticam: ISalticam;
