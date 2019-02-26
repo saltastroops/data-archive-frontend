@@ -12,6 +12,7 @@ const ParentGrid = styled.div.attrs({
     gap: 20px;
   }
 `;
+
 const TargetGrid = styled.div.attrs({
   className: "grid-item target-form"
 })`
@@ -19,6 +20,7 @@ const TargetGrid = styled.div.attrs({
   border: 1px solid rgba(246, 247, 225, 0.5);
   text-align: center;
 `;
+
 const ProposalGrid = styled.div.attrs({
   className: "grid-item proposal-form"
 })`
@@ -26,6 +28,7 @@ const ProposalGrid = styled.div.attrs({
   border: 1px solid rgba(242, 255, 251, 0.5);
   text-align: center;
 `;
+
 const DataGrid = styled.div.attrs({
   className: "grid-item data-form"
 })`
@@ -39,13 +42,15 @@ const ButtonGrid = styled.div.attrs({
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: left;
 `;
+
 const TelescopeGrid = styled.div.attrs({
   className: "grid-item telescope-form"
 })`
-    background-color: #fff4fa;
-    border: 1px solid rgba(255, 244, 250), 0.5);
-    text-align: center;
+  background-color: #fff4fa;
+  border: 1px solid rgba(255, 244, 250, 0.5);
+  text-align: center;
 `;
+
 const MainGrid = styled.div.attrs({
   className: "main-grid"
 })`
@@ -55,6 +60,7 @@ const MainGrid = styled.div.attrs({
     padding: 10px;
   }
 `;
+
 const InnerMainGrid = styled.div.attrs({
   className: "inner-main-grid"
 })`
@@ -63,6 +69,7 @@ const InnerMainGrid = styled.div.attrs({
     grid-template-columns: 40% 40%;
   }
 `;
+
 const SubGrid = styled.div.attrs({
   className: "sub-grid"
 })`
@@ -71,6 +78,7 @@ const SubGrid = styled.div.attrs({
     padding-left: 10px;
   }
 `;
+
 const SubGrid4 = styled.div.attrs({
   className: "sub-grid4"
 })`
@@ -79,6 +87,7 @@ const SubGrid4 = styled.div.attrs({
     grid-template-columns: auto auto auto auto;
   }
 `;
+
 const Span = styled.span.attrs({
   className: "span"
 })`
