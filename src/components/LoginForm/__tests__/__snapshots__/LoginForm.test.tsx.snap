@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Component renders the LoginForm component having unpopulated props with no errors 1`] = `
+<LoginForm
+  errors={Array []}
+  userInput={
+    Object {
+      "password": "",
+      "username": "",
+    }
+  }
+>
+  <styled.form
+    onSubmit={[Function]}
+  >
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "column is-4 is-offset-4",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bdVaJa",
+            "isStatic": true,
+            "lastClassName": "LoyGl",
+            "rules": Array [
+              "
+  && {
+    padding: 1px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.form",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bdVaJa",
+          "target": "form",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+      onSubmit={[Function]}
+    >
+      <form
+        className="sc-bdVaJa column is-4 is-offset-4 LoyGl"
+        onSubmit={[Function]}
+      >
+        <styled.h1>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "title is-3",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bwzfXH",
+                  "isStatic": true,
+                  "lastClassName": "RJwfL",
+                  "rules": Array [
+                    "
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.h1",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bwzfXH",
+                "target": "h1",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <h1
+              className="sc-bwzfXH title is-3 RJwfL"
+            >
+              Login Here
+            </h1>
+          </StyledComponent>
+        </styled.h1>
+        <LoginInputField
+          label="Username"
+          name="username"
+          onChange={[Function]}
+          type="text"
+          value=""
+        >
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+              htmlFor="username+Username"
+            >
+              Username
+              :
+            </label>
+            <div
+              className="control is-child"
+            >
+              <input
+                className="username input"
+                id="username"
+                name="username"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </LoginInputField>
+        <LoginInputField
+          label="Password"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        >
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+              htmlFor="password+Password"
+            >
+              Password
+              :
+            </label>
+            <div
+              className="control is-child"
+            >
+              <input
+                className="password input"
+                id="password"
+                name="password"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+        </LoginInputField>
+        <button
+          className="signIn button is-success is-fullwidth is-rounded"
+        >
+          Sign in
+        </button>
+      </form>
+    </StyledComponent>
+  </styled.form>
+</LoginForm>
+`;

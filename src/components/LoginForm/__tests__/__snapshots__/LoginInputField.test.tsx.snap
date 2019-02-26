@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginInputField Component renders the LoginInputField having populated props with no errors 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+    htmlFor="username+Username"
+  >
+    Username
+    :
+  </label>
+  <div
+    className="control is-child"
+  >
+    <input
+      className="username input"
+      id="username"
+      name="username"
+      onChange={[Function]}
+      placeholder=""
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`LoginInputField Component renders the LoginInputField having unpopulated props with no errors 1`] = `
+<div
+  className="field"
+>
+  <label
+    className="label"
+    htmlFor="undefined+undefined"
+  >
+    :
+  </label>
+  <div
+    className="control is-child"
+  >
+    <input
+      className="undefined input"
+    />
+  </div>
+</div>
+`;
