@@ -23,7 +23,7 @@ import {
  */
 export const oneNineMInstrumentsSwitcher = (
   oneNineM: any,
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  onChange: (value: any) => void
 ) => {
   const instrument = oneNineM.name;
   switch (instrument) {
@@ -52,12 +52,14 @@ interface IOneNineMProps {
 const OneNineMForm = (props: IOneNineMProps) => {
   const { oneNineM, onChange } = props;
 
+  // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };
 
-  const changeMode = (value: any) => {
+  // Function for handling changes to instrument-related search parameters
+  const changeInstrumentParameters = (value: any) => {
     onChange({
       ...oneNineM,
       ...value
@@ -81,7 +83,7 @@ const OneNineMForm = (props: IOneNineMProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {oneNineMInstrumentsSwitcher(oneNineM, changeMode)}
+      {oneNineMInstrumentsSwitcher(oneNineM, changeInstrumentParameters)}
     </>
   );
 };
