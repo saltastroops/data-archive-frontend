@@ -4,10 +4,16 @@ import { validateDate } from "../../utils/validators";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 
-class ProposalForm extends React.Component<
-  { proposal: IGeneral; onChange: (value: IGeneral) => void },
-  any
-> {
+interface IProposalFormProps {
+  proposal: IGeneral;
+  onChange: (value: IGeneral) => void;
+}
+
+/**
+ * A form for selecting general search parameters.
+ */
+class ProposalForm extends React.Component<IProposalFormProps, {}> {
+  // Function for handling input changes.
   change = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
@@ -20,6 +26,7 @@ class ProposalForm extends React.Component<
       }
     });
   };
+
   render() {
     const {
       errors,
@@ -28,6 +35,7 @@ class ProposalForm extends React.Component<
       proposalCode,
       proposalTitle
     } = this.props.proposal;
+
     return (
       <>
         <MainGrid>

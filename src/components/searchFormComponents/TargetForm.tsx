@@ -11,23 +11,33 @@ import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
+interface ITargetFormProps {
+  target: ITarget;
+  onChange: (value: ITarget) => any;
+}
+
+interface ITargetFormState {
+  loading: boolean;
+}
+
 /**
  * A form for providing target-related search parameters for an observation
  * search.
  */
-class TargetForm extends React.Component<
-  { target: ITarget; onChange: any },
-  { loading: boolean }
-> {
+class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
   state = { loading: false };
-  stateSet = (loading: boolean) => {
+
+  // Function for updating the loading property of the state
+  updateLoadingStatus = (loading: boolean) => {
     this.setState(() => ({
       loading
     }));
   };
+
+  // Function for resolving the target name to a position
   resolve = async () => {
     const { target, onChange } = this.props;
-    this.stateSet(true);
+    this.updateLoadingStatus(true);
     const resolver = target.resolver || "Simbad";
     onChange({
       ...target
@@ -61,11 +71,14 @@ class TargetForm extends React.Component<
         }
       });
     }
-    this.stateSet(false);
+    this.updateLoadingStatus(false);
   };
+
   render() {
     const { target, onChange } = this.props;
     const { loading } = this.state;
+
+    // Function for handling changes made to the search parameters
     const targetChange = (
       e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
@@ -80,6 +93,8 @@ class TargetForm extends React.Component<
         }
       });
     };
+
+    // TODO: Replace class names with data-test
     return (
       <>
         <MainGrid>
@@ -229,4 +244,5 @@ export const validatedTarget = async (target: ITarget) => {
     }
   };
 };
+
 export default TargetForm;
