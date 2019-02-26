@@ -22,6 +22,11 @@ export interface IObservationQueryParameters {
 }
 
 /**
+ * The available calibration types.
+ */
+export type CalibrationType = "arc" | "bias" | "flat" | "standard";
+
+/**
  * An interface for query parameters related to general information.
  *
  * Properties:
@@ -35,6 +40,8 @@ export interface IObservationQueryParameters {
  *     Identifier of the proposal to which the observation belongs.
  * proposalTitle:
  *     Title of the proposal to which the observation belongs.
+ * calibrations:
+ *     Calibration types to include in the search results
  *
  */
 export interface IGeneral {
@@ -43,21 +50,13 @@ export interface IGeneral {
     principalInvestigator?: string;
     proposalCode?: string;
     proposalTitle?: string;
-    arcs?: string;
-    biases?: string;
-    flats?: string;
-    standards?: string;
-    dataType?: string;
+    calibrations?: string;
   };
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
-  arcs?: boolean;
-  biases?: boolean;
-  flats?: boolean;
-  standards?: boolean;
-  dataType?: "any" | "reduced" | "raw";
+  calibrations: Set<CalibrationType>;
 }
 
 /**
