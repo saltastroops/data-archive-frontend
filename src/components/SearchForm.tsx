@@ -100,9 +100,12 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
       ...this.state,
       loading: true
     }));
+
+    // Add errors to the search parameter details
     const target = await validatedTarget(this.state.target);
     const general = validatedProposal(this.state.general);
     const telescope = validatedTelescope(this.state.telescope);
+
     this.setState(() => ({
       ...this.state,
       general,
