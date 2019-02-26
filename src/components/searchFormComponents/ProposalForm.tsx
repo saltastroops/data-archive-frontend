@@ -32,7 +32,7 @@ class ProposalForm extends React.Component<
       <>
         <MainGrid>
           <SubGrid>
-            <p>Proposal Code</p>
+            <p>Proposal code</p>
             <InputField
               className={"proposal-code-input"}
               error={errors.proposalCode}

@@ -1,34 +1,50 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import { IHRS } from "../../../utils/ObservationQueryParameters";
 
-const Hrs = (props: any) => {
-  const { onChange, details } = props;
+interface IHrsProps {
+  hrs: IHRS;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting HRS-related search parameters.
+ * @param props
+ * @constructor
+ */
+const Hrs = (props: IHrsProps) => {
+  const { onChange, hrs } = props;
+
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...details,
-      ...details.instrument,
+      ...hrs,
       [name]: value
     });
   };
+
+  const modes = [
+    "High Resolution",
+    "High Stability",
+    "Int Cal Fibre",
+    "Low Resolution",
+    "Medium Resolution"
+  ];
+
   return (
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "HIGH RESOLUTION",
-            "HIGH STABILITY",
-            "INT CAL FIBRE",
-            "LOW RESOLUTION",
-            "MEDIUM RESOLUTION"
-          ]}
-          name={"mode"}
-          onChange={change}
-        />
+        <SelectField name={"mode"} onChange={change}>
+          <AnyOption />
+          {modes.map(mode => (
+            <option key={mode} value={mode.toUpperCase()}>
+              {mode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );

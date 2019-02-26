@@ -1,52 +1,70 @@
+import { detect } from "async";
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import { IInstrument, IRSS } from "../../../utils/ObservationQueryParameters";
 
-const Rss = (props: any) => {
-  const { onChange, details } = props;
-  const change = (e: React.FormEvent<HTMLSelectElement>) => {
+interface IRssProps {
+  rss: IRSS;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form selecting RSS-related search parameters.
+ */
+const Rss = (props: IRssProps) => {
+  const { onChange, rss } = props;
+
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...details,
-      ...details.instrument,
+      ...rss,
       [name]: value
     });
   };
+
+  const modes = [
+    "Fabry Perot",
+    "FP polarimetry",
+    "Imaging",
+    "Polarimetric imaging",
+    "MOS",
+    "MOS polarimetry",
+    "Spectropolarimetry",
+    "Spectroscopy"
+  ];
+
+  const detectorModes = [
+    "Normal",
+    "Frame Transfer",
+    "Slot Mode",
+    "Shuffle",
+    "Drift Scan"
+  ];
+
   return (
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "Fabry Perot",
-            "FP polarimetry",
-            "Imaging",
-            "Polarimetric imaging",
-            "MOS",
-            "MOS polarimetry",
-            "Spectropolarimetry",
-            "Spectroscopy"
-          ]}
-          name={"mode"}
-          onChange={change}
-        />
+        <SelectField name={"mode"} onChange={change}>
+          <AnyOption />
+          {modes.map(mode => (
+            <option key={mode} value={mode}>
+              {mode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
       <SubGrid>
         <p>Detector Mode</p>
-        <SelectField
-          options={[
-            "any",
-            "Normal",
-            "Frame Transfer",
-            "Slot Mode",
-            "Shuffle",
-            "Drift Scan"
-          ]}
-          name={"detectorMode"}
-          onChange={change}
-        />
+        <SelectField name={"detectorMode"} onChange={change}>
+          {detectorModes.map(detectorMode => (
+            <option key={detectorMode} value={detectorMode}>
+              {detectorMode}
+            </option>
+          ))}
+        </SelectField>
       </SubGrid>
     </MainGrid>
   );

@@ -22,18 +22,40 @@ import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
 
-class SearchForm extends React.Component {
-  public state: {
-    general: IGeneral;
-    target: ITarget;
-    telescope: ITelescope;
-    loading: boolean;
-  } = {
+/**
+ * State of the search form. This is used to populate all the child forms.
+ *
+ * Properties:
+ * -----------
+ * general:
+ *     General proposal and observation parameters
+ * target:
+ *     Target-related parameters
+ * telescope:
+ *     Telescope-related parameters
+ */
+// TODO: Remove loading, replace with IObservationQueryParameters
+interface ISearchFormState {
+  general: IGeneral;
+  target: ITarget;
+  telescope?: ITelescope;
+  loading: boolean;
+}
+
+/**
+ * A form for defining search parameters for an observation search, and for
+ * initiating the search.
+ */
+class SearchForm extends React.Component<{}, ISearchFormState> {
+  public state: ISearchFormState = {
     general: { errors: {} },
     loading: false,
-    target: { errors: {} },
-    telescope: {}
+    target: { errors: {} }
   };
+
+  /**
+   * Handle changes of telescope-related parameters.
+   */
   public telescopeChange = (value: ITelescope) => {
     const newState = {
       ...this.state,
@@ -43,6 +65,10 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
+
+  /**
+   * Handle changes of target-related parameters.
+   */
   public targetChange = (value: ITarget) => {
     const newState = {
       ...this.state,
@@ -52,6 +78,10 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
+
+  /**
+   * Handle changes of general parameters.
+   */
   public generalChange = (value: IGeneral) => {
     const newState = {
       ...this.state,
@@ -62,6 +92,9 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
+  /**
+   * Perform an observation with the currently selected search parameters.
+   */
   public searchArchive = async () => {
     this.setState(() => ({
       ...this.state,
@@ -108,7 +141,7 @@ class SearchForm extends React.Component {
             <input
               className="button is-primary"
               type="button"
-              value="search"
+              value="Search"
               onClick={this.searchArchive}
             />
           </ButtonGrid>

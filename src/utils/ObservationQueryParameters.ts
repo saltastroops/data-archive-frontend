@@ -18,7 +18,7 @@
 export interface IObservationQueryParameters {
   general: IGeneral;
   target: ITarget;
-  telescope: ITelescope;
+  telescope?: ITelescope;
 }
 
 /**
@@ -103,6 +103,11 @@ export interface ITarget {
 // TELESCOPES
 
 /**
+ * The supported telescope names.
+ */
+export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
+
+/**
  * An interface for query parameters related to a telescope.
  *
  * This serves as a placeholder for more concrete interfaces such as ISALT.
@@ -113,7 +118,7 @@ export interface ITarget {
  *     Telescope name.
  */
 export interface ITelescope {
-  name?: "Lesedi" | "SALT" | "1.9 m";
+  name: TelescopeName;
 }
 
 /**
@@ -127,7 +132,7 @@ export interface ITelescope {
  *     The string "SALT".
  */
 export interface ISALT extends ITelescope {
-  instrument?: IInstrument;
+  instrument: IInstrument;
   name: "SALT";
 }
 
@@ -142,7 +147,7 @@ export interface ISALT extends ITelescope {
  *     The string "Lesedi".
  */
 export interface ILesedi extends ITelescope {
-  instrument?: IInstrument;
+  instrument: IInstrument;
   name: "Lesedi";
 }
 
@@ -156,12 +161,24 @@ export interface ILesedi extends ITelescope {
  * name:
  *     The string "1.9 m".
  */
-export interface I1Dot9Metre extends ITelescope {
-  instrument?: IInstrument;
+export interface IOneNineM extends ITelescope {
+  instrument: IInstrument;
   name: "1.9 m";
 }
 
 // INSTRUMENTS
+
+/**
+ * The available instrument names.
+ */
+export type InstrumentName =
+  | "Salticam"
+  | "RSS"
+  | "HRS"
+  | "BVIT"
+  | "SpUpNIC"
+  | "SHOC"
+  | "HIPPO";
 
 /**
  * An interface for query parameters related to an instrument.
@@ -174,7 +191,7 @@ export interface I1Dot9Metre extends ITelescope {
  *     Telescope name.
  */
 export interface IInstrument {
-  name: string;
+  name: InstrumentName;
 }
 
 /**
@@ -259,6 +276,11 @@ export interface IHRS extends IInstrument {
     | "High Resolution"
     | "High Stability";
   name: "HRS";
+}
+
+export interface IBVIT extends IInstrument {
+  errors: {};
+  name: "BVIT";
 }
 
 /**

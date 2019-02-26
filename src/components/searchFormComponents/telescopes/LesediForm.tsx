@@ -1,55 +1,92 @@
 import * as React from "react";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import Bvit from "../instruments/Bvit";
 import Hrs from "../instruments/Hrs";
 import Rss from "../instruments/Rss";
+import {
+  IBVIT,
+  IHRS,
+  IInstrument,
+  ILesedi,
+  InstrumentName,
+  IRSS,
+  ISalticam
+} from "../../../utils/ObservationQueryParameters";
 
+/**
+ * Return the form for a given instrument.
+ *
+ * Parameters:
+ * -----------
+ * instrument:
+ *     The instrument.
+ *
+ * Returns:
+ * --------
+ * The form component.
+ */
 export const lesediInstrumentsSwitcher = (
-  details: any,
+  instrument: IInstrument,
   onChange: (e: React.FormEvent<HTMLSelectElement>) => void
 ) => {
-  const instrument = details.name;
-  switch (instrument) {
-    case "SpupMic": {
-      return <Rss details={details} onChange={onChange} />;
+  const name = instrument && instrument.name;
+  switch (name) {
+    case "SpUpNIC": {
+      return <Rss rss={instrument as IRSS} onChange={onChange} />;
     }
-    case "Hippo": {
-      return <Hrs details={details} onChange={onChange} />;
+    case "HIPPO": {
+      return <Hrs hrs={instrument as IHRS} onChange={onChange} />;
     }
-    case "Shoc": {
-      return <Bvit details={details} onChange={onChange} />;
+    case "SHOC": {
+      return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
     }
     default:
-      return <></>;
+      return null;
   }
 };
 
-const LesediForm = (props: any) => {
-  const { details, onChange } = props;
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+interface ILesediFormProps {
+  lesedi: ILesedi;
+  onChange: (value: any) => any;
+}
+
+/**
+ * A form for selecting Lesedi-related search parameters.
+ */
+const LesediForm = (props: ILesediFormProps) => {
+  const { lesedi, onChange } = props;
+
+  // Function for changing the instrument
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };
+
+  // Function for changing the instrument mode
   const changeMode = (value: any) => {
     onChange({
-      ...details,
+      ...lesedi,
       ...value
     });
   };
+  const instruments: InstrumentName[] = ["HIPPO", "SHOC", "SpUpNIC"];
   return (
     <>
       <MainGrid>
         <SubGrid>
           <p>Instrument</p>
-          <SelectField
-            options={["any", "Hippo", "Shoc", "SpupMic"]}
-            name={"instrument"}
-            onChange={changeInstrument}
-          />
+          <SelectField name={"instrument"} onChange={changeInstrument}>
+            <AnyOption />
+            {instruments.map(instrument => (
+              <option key={instrument} value={instrument}>
+                {instrument}
+              </option>
+            ))}
+          </SelectField>
         </SubGrid>
       </MainGrid>
-      {lesediInstrumentsSwitcher(details, changeMode)}
+      {lesediInstrumentsSwitcher(lesedi.instrument, changeMode)}
     </>
   );
 };

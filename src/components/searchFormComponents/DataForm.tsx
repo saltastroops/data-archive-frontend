@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { IGeneral } from "../../utils/ObservationQueryParameters";
 import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../basicComponents/SelectField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -49,11 +49,13 @@ class DataForm extends React.Component<
             <p>Reduce/raw</p>
             <SelectField
               className={"data-type-select"}
-              options={["any", "reduced", "raw"]}
               name={"dataType"}
               onChange={this.changeSelect}
               value={dataType}
-            />
+            >
+              <AnyOption />
+              <option value="reduced">Reduced</option>
+            </SelectField>
           </SubGrid>
         </MainGrid>
         <MainGrid>
@@ -65,7 +67,6 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"arcs-checkbox"}
                 checked={arcs || false}
                 onChange={this.changeCheckbox}
                 name={"arcs"}
@@ -76,7 +77,6 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"biases-checkbox"}
                 checked={biases || false}
                 onChange={this.changeCheckbox}
                 name={"biases"}
@@ -87,7 +87,6 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"flats-checkbox"}
                 checked={flats || false}
                 onChange={this.changeCheckbox}
                 name={"flats"}
@@ -98,7 +97,6 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"standards-checkbox"}
                 checked={standards || false}
                 onChange={this.changeCheckbox}
                 name={"standards"}

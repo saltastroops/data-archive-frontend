@@ -11,9 +11,13 @@ import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
+/**
+ * A form for providing target-related search parameters for an observation
+ * search.
+ */
 class TargetForm extends React.Component<
   { target: ITarget; onChange: any },
-  any
+  { loading: boolean }
 > {
   state = { loading: false };
   stateSet = (loading: boolean) => {
@@ -83,7 +87,7 @@ class TargetForm extends React.Component<
             <p>Target name</p>
             <InputField
               className="target-name-input"
-              loading={loading}
+              disabled={loading}
               name={"name"}
               value={target.name || ""}
               error={target.errors.name || ""}
@@ -96,11 +100,14 @@ class TargetForm extends React.Component<
                 <p>Resolver</p>
                 <SelectField
                   className={"resolver-select"}
-                  options={["Simbad", "NED", "VizieR"]}
                   name={"resolver"}
                   value={target.resolver || "Simbad"}
                   onChange={targetChange}
-                />
+                >
+                  <option value="Simbad">Simbad</option>
+                  <option value="NED">NED</option>
+                  <option value="VizieR">VizieR</option>
+                </SelectField>
               </SubGrid>
               <SubGrid>
                 <br />
@@ -124,7 +131,7 @@ class TargetForm extends React.Component<
             <p>Right ascension</p>
             <InputField
               className="right-ascension-input"
-              loading={loading}
+              disabled={loading}
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={targetChange}
@@ -135,7 +142,7 @@ class TargetForm extends React.Component<
             <p>Declination</p>
             <InputField
               className="declination-input"
-              loading={loading}
+              disabled={loading}
               name={"declination"}
               value={target.declination || ""}
               onChange={targetChange}
@@ -158,11 +165,14 @@ class TargetForm extends React.Component<
             <p>Radius units</p>
             <SelectField
               className={"radius-units-select"}
-              options={["Arc seconds", "arc minutes", "degrees"]}
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
-            />
+            >
+              <option value="arcseconds">Arcseconds</option>
+              <option value="arcminutes">Arcminutes</option>
+              <option value="degrees">Degrees</option>
+            </SelectField>
           </SubGrid>
         </MainGrid>
       </>
@@ -171,24 +181,29 @@ class TargetForm extends React.Component<
 }
 
 /**
+ * Validate the given target-related search parameters and, if need be, add
+ * error messages to them.
  */
 export const validatedTarget = async (target: ITarget) => {
+  // Check that the target name and any given coordinates are consistent
+  // TODO: Don't enforce exact equality for floats.
+  // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
     raDecChangeError = await targetPosition(target.name, [
       target.resolver || "Simbad"
     ])
-      .then(p => {
-        if (p) {
+      .then(position => {
+        if (position) {
           return {
             declination:
-              `${p.declination}` !== target.declination
-                ? `Target name is given and resolves to different value with ${target.resolver ||
+              `${position.declination}` !== target.declination
+                ? `The given target name resolves to a different declination with ${target.resolver ||
                     "Simbad"} `
                 : "",
             rightAscension:
-              `${p.rightAscension}` !== target.rightAscension
-                ? `Target name is given and resolves to different value with ${target.resolver ||
+              `${position.rightAscension}` !== target.rightAscension
+                ? `The given target name resolves to a different right ascension with ${target.resolver ||
                     "Simbad"} `
                 : ""
           };
@@ -196,6 +211,8 @@ export const validatedTarget = async (target: ITarget) => {
       })
       .catch();
   }
+
+  // Return the search parameters with the errors found
   return {
     ...target,
     errors: {
