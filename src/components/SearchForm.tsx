@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  CalibrationType,
   IGeneral,
   ITarget,
   ITelescope
@@ -48,7 +49,7 @@ interface ISearchFormState {
  */
 class SearchForm extends React.Component<{}, ISearchFormState> {
   public state: ISearchFormState = {
-    general: { errors: {} },
+    general: { calibrations: new Set<CalibrationType>(), errors: {} },
     loading: false,
     target: { errors: {} }
   };
@@ -138,7 +139,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
             />
           </TelescopeGrid>
           <DataGrid>
-            <DataForm data={general} onChange={this.generalChange} />
+            <DataForm general={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
             <input
