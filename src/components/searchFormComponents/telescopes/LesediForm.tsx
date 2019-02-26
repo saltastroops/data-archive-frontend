@@ -70,7 +70,9 @@ const LesediForm = (props: ILesediFormProps) => {
       ...value
     });
   };
+
   const instruments: InstrumentName[] = ["HIPPO", "SHOC", "SpUpNIC"];
+
   return (
     <>
       <MainGrid>
