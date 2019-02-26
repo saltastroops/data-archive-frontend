@@ -1,8 +1,8 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
 import SearchForm from "../../../components/SearchForm";
+import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
 
 const onChange = jest.fn();
 
