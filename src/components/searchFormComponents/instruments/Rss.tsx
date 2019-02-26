@@ -60,6 +60,7 @@ const Rss = (props: IRssProps) => {
       <SubGrid>
         <p>Detector Mode</p>
         <SelectField name={"detectorMode"} onChange={change}>
+          <AnyOption />
           {detectorModes.map(detectorMode => (
             <option key={detectorMode} value={detectorMode}>
               {detectorMode}
