@@ -15,6 +15,7 @@ interface IRssProps {
 const Rss = (props: IRssProps) => {
   const { onChange, rss } = props;
 
+  // Function for handling change events
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;

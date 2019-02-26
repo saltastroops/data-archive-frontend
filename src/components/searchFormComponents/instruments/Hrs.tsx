@@ -17,7 +17,7 @@ const Hrs = (props: IHrsProps) => {
   const { onChange, hrs } = props;
 
   // Function for handling change events
-  const change = (e: React.FormEvent<HTMLSelectElement>) => {
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({

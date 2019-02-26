@@ -23,7 +23,7 @@ import {
  */
 export const oneNineMInstrumentsSwitcher = (
   oneNineM: any,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 ) => {
   const instrument = oneNineM.name;
   switch (instrument) {
@@ -52,7 +52,7 @@ interface IOneNineMProps {
 const OneNineMForm = (props: IOneNineMProps) => {
   const { oneNineM, onChange } = props;
 
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };

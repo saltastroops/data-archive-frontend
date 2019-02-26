@@ -28,7 +28,7 @@ import {
  */
 export const lesediInstrumentsSwitcher = (
   instrument: IInstrument,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 ) => {
   const name = instrument && instrument.name;
   switch (name) {

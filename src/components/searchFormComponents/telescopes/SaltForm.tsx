@@ -61,7 +61,7 @@ interface ISaltFormProps {
  */
 const SaltForm = (props: ISaltFormProps) => {
   const { salt, onChange } = props;
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
     onChange({ name: value });
   };

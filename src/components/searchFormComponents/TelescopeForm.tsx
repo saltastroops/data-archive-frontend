@@ -27,7 +27,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     const { telescope, onChange } = this.props;
 
     // Function for updating telescope-related parameters
-    const changeTelescope = (e: React.FormEvent<HTMLSelectElement>) => {
+    const changeTelescope = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const value = e.currentTarget.value;
       onChange({
         name: value
