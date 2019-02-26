@@ -28,10 +28,10 @@ interface IDataFormProps {
 class DataForm extends React.Component<IDataFormProps, {}> {
   // Add or remove the calibration type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name as CalibrationType;
+    const name = e.currentTarget.name as CalibrationType;
 
     const updated = new Set<CalibrationType>(this.props.general.calibrations);
-    if (e.target.checked) {
+    if (e.currentTarget.checked) {
       updated.add(name);
     } else {
       updated.delete(name);
