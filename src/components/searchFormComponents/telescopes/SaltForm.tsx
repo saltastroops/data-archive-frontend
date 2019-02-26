@@ -67,7 +67,7 @@ const SaltForm = (props: ISaltFormProps) => {
   };
   const changeMode = (value: any) => {
     onChange({
-      ...salt,
+      ...salt.instrument,
       ...value
     });
   };

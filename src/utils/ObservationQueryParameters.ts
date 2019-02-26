@@ -330,3 +330,27 @@ export interface ISHOC extends IInstrument {
   filter?: string;
   name: "SHOC";
 }
+
+/**
+ * An interface for query parameters related to "SpUpNIC".
+ *
+ * Properties:
+ * -----------
+ * errors:
+ *     Errors.
+ * exposureTime:
+ *     Exposure time.
+ * filter:
+ *     Filter.
+ * name:
+ *     The string "SpUpNIC".
+ */
+export interface ISpUpNIC extends IInstrument {
+  errors: {
+    exposureTime?: string;
+    filter?: string;
+  };
+  exposureTime?: string;
+  filter?: string;
+  name: "SpUpNIC";
+}

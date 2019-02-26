@@ -1,13 +1,17 @@
 import * as React from "react";
 import {
+  IHIPPO,
+  IInstrument,
   InstrumentName,
-  IOneNineM
+  IOneNineM,
+  ISHOC,
+  ISpUpNIC
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Bvit from "../instruments/Bvit";
-import Hrs from "../instruments/Hrs";
-import Rss from "../instruments/Rss";
+import Hippo from "../instruments/Hippo";
+import Shoc from "../instruments/Shoc";
+import SpUpNIC from "../instruments/SpUpNIC";
 
 /**
  * Return the form for a given instrument.
@@ -22,19 +26,19 @@ import Rss from "../instruments/Rss";
  * The form component.
  */
 export const oneNineMInstrumentsSwitcher = (
-  oneNineM: any,
+  instrument: IInstrument,
   onChange: (e: React.FormEvent<HTMLSelectElement>) => void
 ) => {
-  const instrument = oneNineM.name;
-  switch (instrument) {
+  const name = instrument && instrument.name;
+  switch (name) {
     case "SpUpNIC": {
-      return <Rss rss={oneNineM} onChange={onChange} />;
+      return <SpUpNIC spUpNic={instrument as ISpUpNIC} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hrs hrs={oneNineM} onChange={onChange} />;
+      return <Hippo hippo={instrument as IHIPPO} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Bvit bvit={oneNineM} onChange={onChange} />;
+      return <Shoc shoc={instrument as ISHOC} onChange={onChange} />;
     }
     default:
       return null;
@@ -52,14 +56,15 @@ interface IOneNineMProps {
 const OneNineMForm = (props: IOneNineMProps) => {
   const { oneNineM, onChange } = props;
 
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
     onChange({ name: value });
   };
 
   const changeMode = (value: any) => {
+    console.log("XXX: ", oneNineM);
     onChange({
-      ...oneNineM,
+      ...oneNineM.instrument,
       ...value
     });
   };
@@ -81,7 +86,7 @@ const OneNineMForm = (props: IOneNineMProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {oneNineMInstrumentsSwitcher(oneNineM, changeMode)}
+      {oneNineMInstrumentsSwitcher(oneNineM.instrument, changeMode)}
     </>
   );
 };

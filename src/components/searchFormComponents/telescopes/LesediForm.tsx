@@ -1,18 +1,19 @@
 import * as React from "react";
-import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Bvit from "../instruments/Bvit";
-import Hrs from "../instruments/Hrs";
-import Rss from "../instruments/Rss";
 import {
   IBVIT,
-  IHRS,
+  IHIPPO,
   IInstrument,
   ILesedi,
   InstrumentName,
   IRSS,
-  ISalticam
+  ISHOC,
+  ISpUpNIC
 } from "../../../utils/ObservationQueryParameters";
+import { MainGrid, SubGrid } from "../../basicComponents/Grids";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import SpUpNIC from "../instruments/SpUpNIC";
+import Hippo from "../instruments/Hippo";
+import Shoc from "../instruments/Shoc";
 
 /**
  * Return the form for a given instrument.
@@ -28,18 +29,18 @@ import {
  */
 export const lesediInstrumentsSwitcher = (
   instrument: IInstrument,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 ) => {
   const name = instrument && instrument.name;
   switch (name) {
     case "SpUpNIC": {
-      return <Rss rss={instrument as IRSS} onChange={onChange} />;
+      return <SpUpNIC spUpNic={instrument as ISpUpNIC} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hrs hrs={instrument as IHRS} onChange={onChange} />;
+      return <Hippo hippo={instrument as IHIPPO} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
+      return <Shoc shoc={instrument as ISHOC} onChange={onChange} />;
     }
     default:
       return null;
@@ -66,7 +67,7 @@ const LesediForm = (props: ILesediFormProps) => {
   // Function for changing the instrument mode
   const changeMode = (value: any) => {
     onChange({
-      ...lesedi,
+      ...lesedi.instrument,
       ...value
     });
   };
