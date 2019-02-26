@@ -16,6 +16,7 @@ interface IHrsProps {
 const Hrs = (props: IHrsProps) => {
   const { onChange, hrs } = props;
 
+  // Function for handling change events
   const change = (e: React.FormEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
