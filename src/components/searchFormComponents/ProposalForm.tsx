@@ -9,8 +9,8 @@ class ProposalForm extends React.Component<
   any
 > {
   change = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
+    const name = e.target.name;
+    const value = e.target.value;
     this.props.onChange({
       ...this.props.proposal,
       [name]: value,
@@ -34,6 +34,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Proposal Code</p>
             <InputField
+              className={"proposal-code-input"}
               error={errors.proposalCode}
               name={"proposalCode"}
               onChange={this.change}
@@ -43,6 +44,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Principal investigator</p>
             <InputField
+              className={"principal-investigator-input"}
               name={"principalInvestigator"}
               value={principalInvestigator || ""}
               error={errors.principalInvestigator || ""}
@@ -55,6 +57,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Proposal title</p>
             <InputField
+              className={"proposal-title-input"}
               name={"proposalTitle"}
               value={proposalTitle || ""}
               error={errors.proposalTitle}
@@ -64,6 +67,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Observation night</p>
             <InputField
+              className={"observation-night-input"}
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
