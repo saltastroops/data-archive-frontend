@@ -1,5 +1,17 @@
 import * as React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
+import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+
+const Heading = styled.h1.attrs({
+  className: "title is-3"
+})`
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+`;
 
 class App extends React.Component {
   public render() {
@@ -13,9 +25,18 @@ class App extends React.Component {
       username: ""
     };
     return (
-      <div>
-        <RegistrationForm userInput={initUserInput} />
-      </div>
+      <Router>
+        <div>
+          <Heading>SALT/SAAO Data Archive</Heading>
+          <Route path="/" exact={true} component={RegistrationForm} />
+          <Route path="/login" exact={true} component={LoginForm} />
+          <Route
+            path="/userpage"
+            exact={true}
+            render={props => <Heading>You are logged in</Heading>}
+          />
+        </div>
+      </Router>
     );
   }
 }

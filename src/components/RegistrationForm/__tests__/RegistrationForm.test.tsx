@@ -13,25 +13,31 @@ function inputTyping(wrapper: any, name: string, value: string) {
 }
 
 // Initial userInput state
-const userInput = {
-  affiliation: "",
-  confirmPassword: "",
-  email: "",
-  familyName: "",
-  givenName: "",
-  password: "",
-  username: ""
+const initialState = {
+  errors: [],
+  userInput: {
+    affiliation: "",
+    confirmPassword: "",
+    email: "",
+    familyName: "",
+    givenName: "",
+    password: "",
+    username: ""
+  }
 };
 
 // Updated userInput state
 const updatedState = {
-  affiliation: "University of Cape Town",
-  confirmPassword: "securepassword",
-  email: "valid@email.address",
-  familyName: "Smith",
-  givenName: "John",
-  password: "securepassword",
-  username: "sj"
+  errors: [],
+  userInput: {
+    affiliation: "UCT",
+    confirmPassword: "securepassword",
+    email: "valid@email.address",
+    familyName: "Smith",
+    givenName: "John",
+    password: "securepassword",
+    username: "sj"
+  }
 };
 
 // sign up mock mutation
@@ -40,14 +46,14 @@ const mocks = [
     request: {
       query: SIGNUP_MUTATION,
       variables: {
-        ...updatedState
+        ...updatedState.userInput
       }
     },
     result: {
       data: {
         signup: {
           __typename: "User",
-          ...updatedState,
+          ...updatedState.userInput,
           id: "1"
         }
       }
@@ -60,18 +66,24 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={initialState.userInput}
+          errors={initialState.errors}
+        />
       </MockedProvider>
     );
     // Expect the snapshot to match the RegistrationForm component.
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("displays no errors if submitted inputs are all valid", () => {
+  it("displays no errors if submitted inputs are all valid", async () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -82,7 +94,7 @@ describe("RegistrationForm Component", () => {
     const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the affiliation input field value changes.
-    inputTyping(wrapper, "affiliation", "University of Cape Town");
+    inputTyping(wrapper, "affiliation", "UCT");
     // Simulate state change when the confirmPassword input field value changes.
     inputTyping(wrapper, "confirmPassword", "securepassword");
     // Simulate state change when the emailAddress input field value changes.
@@ -100,9 +112,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(7);
 
     // Expect the property affiliation of the state to have been updated with the correct value.
-    expect(instance.state.userInput.affiliation).toBe(
-      "University of Cape Town"
-    );
+    expect(instance.state.userInput.affiliation).toBe("UCT");
 
     // Expect the property confirmPassword of the state to have been updated with the correct value.
     expect(instance.state.userInput.confirmPassword).toBe("securepassword");
@@ -138,8 +148,11 @@ describe("RegistrationForm Component", () => {
   it("displays error message if submitted ivalid given name", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
-      <MockedProvider mocks={mocks}>
-        <RegistrationForm userInput={userInput} />
+      <MockedProvider>
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -147,7 +160,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -173,7 +186,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -181,7 +197,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -207,7 +223,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -215,7 +234,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -241,7 +260,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -249,7 +271,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -275,7 +297,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -283,7 +308,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -319,7 +344,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          userInput={updatedState.userInput}
+          errors={updatedState.errors}
+        />
       </MockedProvider>
     );
 
@@ -327,7 +355,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");

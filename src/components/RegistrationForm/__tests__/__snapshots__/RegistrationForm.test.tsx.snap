@@ -96,6 +96,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
     }
   >
     <RegistrationForm
+      errors={Array []}
       userInput={
         Object {
           "affiliation": "",
@@ -697,6 +698,8 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
               </RegistrationInputField>
               <button
                 className="signUp button is-success is-fullwidth is-rounded"
+                disabled={false}
+                type="submit"
               >
                 Sign up
               </button>
