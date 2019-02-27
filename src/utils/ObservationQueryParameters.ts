@@ -60,6 +60,16 @@ export interface IGeneral {
 }
 
 /**
+ * The available target name resolvers.
+ */
+export type TargetResolver = "Simbad" | "NED" | "VizieR";
+
+/**
+ * The available units for the search cone radius.
+ */
+export type SearchConeRadiusUnits = "arcseconds" | "arcminutes" | "degrees";
+
+/**
  * An interface for query parameters related to target details.
  *
  * Properties:
@@ -93,10 +103,10 @@ export interface ITarget {
     searchConeRadiusUnits?: string;
   };
   name?: string;
-  resolver?: "Simbad" | "NED" | "VizieR";
+  resolver: TargetResolver;
   rightAscension?: string;
   searchConeRadius?: string;
-  searchConeRadiusUnits?: string;
+  searchConeRadiusUnits: SearchConeRadiusUnits;
 }
 
 // TELESCOPES

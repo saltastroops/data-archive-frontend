@@ -1,6 +1,9 @@
 import * as React from "react";
 import targetPosition from "target-position";
-import { ITarget } from "../../utils/ObservationQueryParameters";
+import {
+  ITarget,
+  SearchConeRadiusUnits
+} from "../../utils/ObservationQueryParameters";
 import {
   validateDeclination,
   validateName,
@@ -38,7 +41,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
   resolve = async () => {
     const { target, onChange } = this.props;
     this.updateLoadingStatus(true);
-    const resolver = target.resolver || "Simbad";
+    const resolver = target.resolver;
     onChange({
       ...target
     });
@@ -104,8 +107,8 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               className="target-name-input"
               disabled={loading}
               name={"name"}
-              value={target.name || ""}
-              error={target.errors.name || ""}
+              value={target.name}
+              error={target.errors.name}
               onChange={targetChange}
             />
           </SubGrid>
@@ -116,7 +119,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 <SelectField
                   className={"resolver-select"}
                   name={"resolver"}
-                  value={target.resolver || "Simbad"}
+                  value={target.resolver}
                   onChange={targetChange}
                 >
                   <option value="Simbad">Simbad</option>
@@ -148,7 +151,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               className="right-ascension-input"
               disabled={loading}
               name={"rightAscension"}
-              value={target.rightAscension || ""}
+              value={target.rightAscension}
               onChange={targetChange}
               error={target.errors.rightAscension}
             />
@@ -159,7 +162,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               className="declination-input"
               disabled={loading}
               name={"declination"}
-              value={target.declination || ""}
+              value={target.declination}
               onChange={targetChange}
               error={target.errors.declination}
             />
@@ -171,7 +174,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <InputField
               className="search-cone-radius-input"
               name={"searchConeRadius"}
-              value={target.searchConeRadius || ""}
+              value={target.searchConeRadius}
               onChange={targetChange}
               error={target.errors.searchConeRadius}
             />
@@ -205,21 +208,21 @@ export const validatedTarget = async (target: ITarget) => {
   // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
-    raDecChangeError = await targetPosition(target.name, [
-      target.resolver || "Simbad"
-    ])
+    raDecChangeError = await targetPosition(target.name, [target.resolver])
       .then(position => {
         if (position) {
           return {
             declination:
               `${position.declination}` !== target.declination
-                ? `The given target name resolves to a different declination with ${target.resolver ||
-                    "Simbad"} `
+                ? `The given target name resolves to a different declination with ${
+                    target.resolver
+                  }.`
                 : "",
             rightAscension:
               `${position.rightAscension}` !== target.rightAscension
-                ? `The given target name resolves to a different right ascension with ${target.resolver ||
-                    "Simbad"} `
+                ? `The given target name resolves to a different right ascension with ${
+                    target.resolver
+                  }.`
                 : ""
           };
         }

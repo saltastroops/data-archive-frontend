@@ -8,61 +8,52 @@ const onChange = jest.fn();
 
 describe("TargetForm", () => {
   const wrapper = mount(
-    <TargetForm target={{ errors: {} }} onChange={onChange} />
+    <TargetForm
+      target={{
+        errors: {},
+        resolver: "Simbad",
+        searchConeRadiusUnits: "arcseconds"
+      }}
+      onChange={onChange}
+    />
   );
 
   it("should render", () => {
     expect(wrapper).toBeDefined();
   });
 
-  it("should contains 4 inputs and 2 selects and a button", () => {
-    const inputs = wrapper.find("input.input");
-    expect(inputs.length).toEqual(4);
-    const select = wrapper.find("select");
-    expect(select.length).toEqual(2);
-    const button = wrapper.find("button.button");
-    expect(button.length).toEqual(1);
-  });
-
-  it("should contains input of name (name, resolver, rightAscension, declination, searchConeRadius and radiusUnits", () => {
-    const name = wrapper.find("input").get(0).props.name;
-    expect(name).toEqual("name");
-
-    const resolver = wrapper.find("select").get(0).props.name;
-    expect(resolver).toEqual("resolver");
-
-    const rightAscension = wrapper.find("input").get(1).props.name;
-    expect(rightAscension).toEqual("rightAscension");
-
-    const declination = wrapper.find("input").get(2).props.name;
-    expect(declination).toEqual("declination");
-
-    const searchConeRadius = wrapper.find("input").get(3).props.name;
-    expect(searchConeRadius).toEqual("searchConeRadius");
-
-    const radiusUnits = wrapper.find("select").get(1).props.name;
-    expect(radiusUnits).toEqual("radiusUnits");
-  });
-
-  it("render correctly", () => {
-    expect(
-      toJson(
-        shallow(<TargetForm target={{ errors: {} }} onChange={onChange} />)
-      )
-    ).toMatchSnapshot();
+  it("should render correctly", () => {
     expect(
       toJson(
         shallow(
           <TargetForm
             target={{
               errors: {},
-              name: "hello"
+              resolver: "Simbad",
+              searchConeRadiusUnits: "arcseconds"
             }}
             onChange={onChange}
           />
         )
       )
     ).toMatchSnapshot();
+
+    expect(
+      toJson(
+        shallow(
+          <TargetForm
+            target={{
+              errors: {},
+              name: "NGC 1234",
+              resolver: "Simbad",
+              searchConeRadiusUnits: "arcseconds"
+            }}
+            onChange={onChange}
+          />
+        )
+      )
+    ).toMatchSnapshot();
+
     expect(
       toJson(
         shallow(
@@ -71,7 +62,9 @@ describe("TargetForm", () => {
               errors: {
                 name: "this is an error"
               },
-              searchConeRadius: "12.1"
+              resolver: "Simbad",
+              searchConeRadius: "12.1",
+              searchConeRadiusUnits: "arcminutes"
             }}
             onChange={onChange}
           />
@@ -88,7 +81,14 @@ describe("Target form on change", () => {
     expect(SearchForm.prototype.targetChange).toBeDefined();
   });
   const wrapper = mount(
-    <TargetForm target={{ errors: {} }} onChange={onChange} />
+    <TargetForm
+      target={{
+        errors: {},
+        resolver: "Simbad",
+        searchConeRadiusUnits: "arcseconds"
+      }}
+      onChange={onChange}
+    />
   );
   it("should call onChange with targetName", () => {
     const target = wrapper.find("input.target-name-input");
