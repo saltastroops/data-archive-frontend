@@ -62,8 +62,8 @@ describe("Search Form", () => {
 
   it("Should update state when change a select", () => {
     let value: any;
-    const resolverForm = wrapper.find("div.resolver-select");
-    const resolver = resolverForm.find("select");
+    const resolverSelect = wrapper.find("div.resolver-select");
+    const resolver = resolverSelect.find("select");
     value = "NED";
     const event = { target: { value, name: "resolver" } };
     resolver.simulate("change", event);
