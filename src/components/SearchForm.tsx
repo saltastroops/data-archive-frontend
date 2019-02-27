@@ -51,7 +51,11 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
   public state: ISearchFormState = {
     general: { calibrations: new Set<CalibrationType>(), errors: {} },
     loading: false,
-    target: { errors: {} }
+    target: {
+      errors: {},
+      resolver: "Simbad",
+      searchConeRadiusUnits: "arcseconds"
+    }
   };
 
   /**

@@ -1,6 +1,9 @@
 import * as React from "react";
 import targetPosition from "target-position";
-import { ITarget } from "../../utils/ObservationQueryParameters";
+import {
+  ITarget,
+  SearchConeRadiusUnits
+} from "../../utils/ObservationQueryParameters";
 import {
   validateDeclination,
   validateName,
@@ -38,7 +41,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
   resolve = async () => {
     const { target, onChange } = this.props;
     this.updateLoadingStatus(true);
-    const resolver = target.resolver || "Simbad";
+    const resolver = target.resolver;
     onChange({
       ...target
     });
@@ -101,11 +104,11 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Target name</p>
             <InputField
-              className="target-name-input"
+              data-test="target-name-input"
               disabled={loading}
               name={"name"}
-              value={target.name || ""}
-              error={target.errors.name || ""}
+              value={target.name}
+              error={target.errors.name}
               onChange={targetChange}
             />
           </SubGrid>
@@ -114,9 +117,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               <SubGrid>
                 <p>Resolver</p>
                 <SelectField
-                  className={"resolver-select"}
+                  data-test={"resolver-select"}
                   name={"resolver"}
-                  value={target.resolver || "Simbad"}
+                  value={target.resolver}
                   onChange={targetChange}
                 >
                   <option value="Simbad">Simbad</option>
@@ -145,10 +148,10 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Right ascension</p>
             <InputField
-              className="right-ascension-input"
+              data-test="right-ascension-input"
               disabled={loading}
               name={"rightAscension"}
-              value={target.rightAscension || ""}
+              value={target.rightAscension}
               onChange={targetChange}
               error={target.errors.rightAscension}
             />
@@ -156,10 +159,10 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Declination</p>
             <InputField
-              className="declination-input"
+              data-test="declination-input"
               disabled={loading}
               name={"declination"}
-              value={target.declination || ""}
+              value={target.declination}
               onChange={targetChange}
               error={target.errors.declination}
             />
@@ -169,9 +172,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Search radius</p>
             <InputField
-              className="search-cone-radius-input"
+              data-test="search-cone-radius-input"
               name={"searchConeRadius"}
-              value={target.searchConeRadius || ""}
+              value={target.searchConeRadius}
               onChange={targetChange}
               error={target.errors.searchConeRadius}
             />
@@ -179,7 +182,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Radius units</p>
             <SelectField
-              className={"radius-units-select"}
+              data-test="radius-units-select"
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
@@ -205,21 +208,21 @@ export const validatedTarget = async (target: ITarget) => {
   // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
-    raDecChangeError = await targetPosition(target.name, [
-      target.resolver || "Simbad"
-    ])
+    raDecChangeError = await targetPosition(target.name, [target.resolver])
       .then(position => {
         if (position) {
           return {
             declination:
               `${position.declination}` !== target.declination
-                ? `The given target name resolves to a different declination with ${target.resolver ||
-                    "Simbad"} `
+                ? `The given target name resolves to a different declination with ${
+                    target.resolver
+                  }.`
                 : "",
             rightAscension:
               `${position.rightAscension}` !== target.rightAscension
-                ? `The given target name resolves to a different right ascension with ${target.resolver ||
-                    "Simbad"} `
+                ? `The given target name resolves to a different right ascension with ${
+                    target.resolver
+                  }.`
                 : ""
           };
         }
