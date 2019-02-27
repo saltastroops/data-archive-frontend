@@ -72,7 +72,7 @@ const SaltForm = (props: ISaltFormProps) => {
   // Function for handling changes to instrument-related search parameters
   const changeInstrumentParameters = (value: any) => {
     onChange({
-      ...salt,
+      ...salt.instrument,
       ...value
     });
   };
