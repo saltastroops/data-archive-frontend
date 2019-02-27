@@ -202,8 +202,8 @@ describe("Telescope form rendering", () => {
           <TelescopeForm
             onChange={onChange}
             telescope={{
-              name: "SALT",
-              instrument: { name: "RSS", mode: "Fabry Perot" }
+              instrument: { name: "RSS", mode: "Fabry Perot" },
+              name: "SALT"
             }}
           />
         )
@@ -215,12 +215,12 @@ describe("Telescope form rendering", () => {
           <TelescopeForm
             onChange={onChange}
             telescope={{
-              name: "SALT",
               instrument: {
-                name: "RSS",
+                detectorMode: "Normal",
                 mode: "Fabry Perot",
-                detectorMode: "Normal"
-              }
+                name: "RSS"
+              },
+              name: "SALT"
             }}
           />
         )

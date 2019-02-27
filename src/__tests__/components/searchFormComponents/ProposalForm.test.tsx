@@ -1,7 +1,6 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SearchForm from "../../../components/SearchForm";
 import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
 import { CalibrationType } from "../../../utils/ObservationQueryParameters";
 

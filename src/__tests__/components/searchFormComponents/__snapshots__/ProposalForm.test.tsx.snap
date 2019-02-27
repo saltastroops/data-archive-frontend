@@ -8,7 +8,7 @@ exports[`Proposal Form render correctly 1`] = `
         Proposal code
       </p>
       <InputField
-        className="proposal-code-input"
+        data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
         value=""
@@ -19,7 +19,7 @@ exports[`Proposal Form render correctly 1`] = `
         Principal investigator
       </p>
       <InputField
-        className="principal-investigator-input"
+        data-test="principal-investigator-input"
         error=""
         name="principalInvestigator"
         onChange={[Function]}
@@ -33,7 +33,7 @@ exports[`Proposal Form render correctly 1`] = `
         Proposal title
       </p>
       <InputField
-        className="proposal-title-input"
+        data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
         value=""
@@ -44,7 +44,7 @@ exports[`Proposal Form render correctly 1`] = `
         Observation night
       </p>
       <InputField
-        className="observation-night-input"
+        data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
         value=""
@@ -62,7 +62,7 @@ exports[`Proposal Form render correctly 2`] = `
         Proposal code
       </p>
       <InputField
-        className="proposal-code-input"
+        data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
         value=""
@@ -73,7 +73,7 @@ exports[`Proposal Form render correctly 2`] = `
         Principal investigator
       </p>
       <InputField
-        className="principal-investigator-input"
+        data-test="principal-investigator-input"
         error=""
         name="principalInvestigator"
         onChange={[Function]}
@@ -87,7 +87,7 @@ exports[`Proposal Form render correctly 2`] = `
         Proposal title
       </p>
       <InputField
-        className="proposal-title-input"
+        data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
         value="hello"
@@ -98,7 +98,7 @@ exports[`Proposal Form render correctly 2`] = `
         Observation night
       </p>
       <InputField
-        className="observation-night-input"
+        data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
         value=""
@@ -116,8 +116,8 @@ exports[`Proposal Form render correctly 3`] = `
         Proposal code
       </p>
       <InputField
-        className="proposal-code-input"
-        error="this is an error"
+        data-test="proposal-code-input"
+        error="invalid proposal code"
         name="proposalCode"
         onChange={[Function]}
         value="Code1"
@@ -128,8 +128,8 @@ exports[`Proposal Form render correctly 3`] = `
         Principal investigator
       </p>
       <InputField
-        className="principal-investigator-input"
-        error="this is an error"
+        data-test="principal-investigator-input"
+        error="invalid Principal Investigator"
         name="principalInvestigator"
         onChange={[Function]}
         value=""
@@ -142,8 +142,8 @@ exports[`Proposal Form render correctly 3`] = `
         Proposal title
       </p>
       <InputField
-        className="proposal-title-input"
-        error="this is an error"
+        data-test="proposal-title-input"
+        error="invalid proposal title"
         name="proposalTitle"
         onChange={[Function]}
         value=""
@@ -154,7 +154,7 @@ exports[`Proposal Form render correctly 3`] = `
         Observation night
       </p>
       <InputField
-        className="observation-night-input"
+        data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
         value=""
