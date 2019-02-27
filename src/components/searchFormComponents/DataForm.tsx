@@ -28,10 +28,10 @@ interface IDataFormProps {
 class DataForm extends React.Component<IDataFormProps, {}> {
   // Add or remove the calibration type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.currentTarget.name as CalibrationType;
+    const name = e.target.name as CalibrationType;
 
     const updated = new Set<CalibrationType>(this.props.general.calibrations);
-    if (e.currentTarget.checked) {
+    if (e.target.checked) {
       updated.add(name);
     } else {
       updated.delete(name);
@@ -56,6 +56,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             <Span>
               <LargeCheckbox
                 checked={calibrations.has("arc")}
+                data-test="arcs-checkbox"
                 onChange={this.changeCheckbox}
                 name="arc"
               />
@@ -66,6 +67,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             <Span>
               <LargeCheckbox
                 checked={calibrations.has("bias")}
+                data-test="biases-checkbox"
                 onChange={this.changeCheckbox}
                 name="bias"
               />
@@ -76,6 +78,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             <Span>
               <LargeCheckbox
                 checked={calibrations.has("flat")}
+                data-test="flats-checkbox"
                 onChange={this.changeCheckbox}
                 name="flat"
               />
@@ -86,6 +89,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             <Span>
               <LargeCheckbox
                 checked={calibrations.has("standard")}
+                data-test="standards-checkbox"
                 onChange={this.changeCheckbox}
                 name="standard"
               />
