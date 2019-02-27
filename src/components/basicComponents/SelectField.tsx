@@ -12,7 +12,7 @@ interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 const SelectField = (props: ISelectProps) => {
   const { className, children, ...rest } = props;
   return (
-    <div className={`control select ${className}`}>
+    <div className={`control select ${className || ""}`}>
       <select {...rest}>{props.children}</select>
     </div>
   );
