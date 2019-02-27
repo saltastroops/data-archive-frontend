@@ -331,7 +331,7 @@ export interface ISHOC extends IInstrument {
 }
 
 /**
- * An interface for query parameters related to "SpUpNIC".
+ * An interface for query parameters related to SpUpNIC.
  *
  * Properties:
  * -----------
