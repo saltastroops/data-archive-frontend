@@ -1,4 +1,5 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 import * as React from "react";
 import {
   ButtonGrid,
@@ -13,7 +14,6 @@ import {
 
 describe("Grids ", () => {
   it("should render all grids", () => {
-    // const wrapper = );
     expect(shallow(<ParentGrid />)).toBeDefined();
     expect(shallow(<TargetGrid />)).toBeDefined();
     expect(shallow(<ProposalGrid />)).toBeDefined();
@@ -25,14 +25,14 @@ describe("Grids ", () => {
   });
 
   it("should render all grids correctly", () => {
-    // const wrapper = );
-    expect(shallow(<ParentGrid />)).toMatchSnapshot();
-    expect(shallow(<TargetGrid />)).toMatchSnapshot();
-    expect(shallow(<ProposalGrid />)).toMatchSnapshot();
-    expect(shallow(<DataGrid />)).toMatchSnapshot();
-    expect(shallow(<TelescopeGrid />)).toMatchSnapshot();
-    expect(shallow(<ButtonGrid />)).toMatchSnapshot();
-    expect(shallow(<MainGrid />)).toMatchSnapshot();
-    expect(shallow(<SubGrid />)).toMatchSnapshot();
+    // Use mount instead of shallow for better snapshots
+    expect(toJson(mount(<ParentGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<TargetGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<ProposalGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<DataGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<TelescopeGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<ButtonGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<MainGrid />))).toMatchSnapshot();
+    expect(toJson(mount(<SubGrid />))).toMatchSnapshot();
   });
 });
