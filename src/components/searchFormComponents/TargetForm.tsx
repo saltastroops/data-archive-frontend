@@ -104,7 +104,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Target name</p>
             <InputField
-              className="target-name-input"
+              data-test="target-name-input"
               disabled={loading}
               name={"name"}
               value={target.name}
@@ -117,7 +117,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               <SubGrid>
                 <p>Resolver</p>
                 <SelectField
-                  className={"resolver-select"}
+                  data-test={"resolver-select"}
                   name={"resolver"}
                   value={target.resolver}
                   onChange={targetChange}
@@ -148,7 +148,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Right ascension</p>
             <InputField
-              className="right-ascension-input"
+              data-test="right-ascension-input"
               disabled={loading}
               name={"rightAscension"}
               value={target.rightAscension}
@@ -159,7 +159,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Declination</p>
             <InputField
-              className="declination-input"
+              data-test="declination-input"
               disabled={loading}
               name={"declination"}
               value={target.declination}
@@ -172,7 +172,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Search radius</p>
             <InputField
-              className="search-cone-radius-input"
+              data-test="search-cone-radius-input"
               name={"searchConeRadius"}
               value={target.searchConeRadius}
               onChange={targetChange}
@@ -182,7 +182,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           <SubGrid>
             <p>Radius units</p>
             <SelectField
-              className={"radius-units-select"}
+              data-test="radius-units-select"
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
