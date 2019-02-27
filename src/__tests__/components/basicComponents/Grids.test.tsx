@@ -11,8 +11,8 @@ import {
   TelescopeGrid
 } from "../../../components/basicComponents/Grids";
 
-describe("Styled components Grids ", () => {
-  it("should render any Grid", () => {
+describe("Grids ", () => {
+  it("should render all grids", () => {
     // const wrapper = );
     expect(shallow(<ParentGrid />)).toBeDefined();
     expect(shallow(<TargetGrid />)).toBeDefined();
@@ -23,7 +23,8 @@ describe("Styled components Grids ", () => {
     expect(shallow(<MainGrid />)).toBeDefined();
     expect(shallow(<SubGrid />)).toBeDefined();
   });
-  it("should match snapshot", () => {
+
+  it("should render all grids correctly", () => {
     // const wrapper = );
     expect(shallow(<ParentGrid />)).toMatchSnapshot();
     expect(shallow(<TargetGrid />)).toMatchSnapshot();
