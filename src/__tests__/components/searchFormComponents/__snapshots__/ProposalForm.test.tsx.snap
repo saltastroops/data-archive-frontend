@@ -5,7 +5,7 @@ exports[`Proposal Form render correctly 1`] = `
   <styled.div>
     <styled.div>
       <p>
-        Proposal Code
+        Proposal code
       </p>
       <InputField
         className="proposal-code-input"
@@ -59,7 +59,7 @@ exports[`Proposal Form render correctly 2`] = `
   <styled.div>
     <styled.div>
       <p>
-        Proposal Code
+        Proposal code
       </p>
       <InputField
         className="proposal-code-input"
@@ -113,7 +113,7 @@ exports[`Proposal Form render correctly 3`] = `
   <styled.div>
     <styled.div>
       <p>
-        Proposal Code
+        Proposal code
       </p>
       <InputField
         className="proposal-code-input"

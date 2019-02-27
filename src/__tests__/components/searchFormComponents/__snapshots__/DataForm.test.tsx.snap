@@ -11,14 +11,14 @@ exports[`Data Form render correctly 1`] = `
         className="data-type-select"
         name="dataType"
         onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
+      >
+        <AnyOption />
+        <option
+          value="reduced"
+        >
+          Reduced
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
   <styled.div>
@@ -98,14 +98,14 @@ exports[`Data Form render correctly 2`] = `
         className="data-type-select"
         name="dataType"
         onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
+      >
+        <AnyOption />
+        <option
+          value="reduced"
+        >
+          Reduced
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
   <styled.div>
@@ -185,14 +185,14 @@ exports[`Data Form render correctly 3`] = `
         className="data-type-select"
         name="dataType"
         onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
+      >
+        <AnyOption />
+        <option
+          value="reduced"
+        >
+          Reduced
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
   <styled.div>

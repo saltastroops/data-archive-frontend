@@ -5,17 +5,8 @@ exports[`InpuField render correctly 1`] = `
   className="control"
 >
   <input
-    className="is-label input undefined undefined"
-    id="undefined"
-    name="undefined"
+    className="input undefined undefined"
     type="text"
-  />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
   />
 </div>
 `;
@@ -25,21 +16,12 @@ exports[`InpuField render correctly 2`] = `
   className="control"
 >
   <input
-    className="is-label input undefined is-danger"
-    id="undefined"
-    name="undefined"
-    title="it has error"
+    className="input undefined is-danger"
     type="text"
   />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
-  >
+  <styled.p>
     it has error
-  </p>
+  </styled.p>
 </div>
 `;
 
@@ -48,19 +30,11 @@ exports[`InpuField render correctly 3`] = `
   className="control"
 >
   <input
-    className="is-label input undefined undefined"
-    id="name"
+    className="input undefined undefined"
     name="name"
     placeholder="holder"
     type="text"
     value="value"
-  />
-  <p
-    style={
-      Object {
-        "color": "red",
-      }
-    }
   />
 </div>
 `;

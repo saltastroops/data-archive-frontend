@@ -1,52 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SelectField render correctly 1`] = `
-<div
-  className="control  select undefined"
+<SelectField
+  name="name"
 >
-  <select
-    id="undefined"
+  <div
+    className="control select undefined"
   >
-    <option
-      key="aaa"
+    <select
+      name="name"
     >
-      aaa
-    </option>
-    <option
-      key="bbb"
-    >
-      bbb
-    </option>
-    <option
-      key="ccc"
-    >
-      ccc
-    </option>
-  </select>
-</div>
+      <AnyOption>
+        <option
+          key="any"
+          value=""
+        >
+          Any
+        </option>
+      </AnyOption>
+      <option
+        key="aaa"
+        value="aaa"
+      >
+        aaa
+      </option>
+      <option
+        key="bbb"
+        value="bbb"
+      >
+        bbb
+      </option>
+      <option
+        key="ccc"
+        value="ccc"
+      >
+        ccc
+      </option>
+    </select>
+  </div>
+</SelectField>
 `;
 
 exports[`SelectField render correctly 2`] = `
 <div
-  className="control  select undefined"
+  className="control select undefined"
 >
   <select
-    id="name"
     name="name"
-    value="value"
   >
+    <AnyOption />
     <option
       key="aaa"
+      value="aaa"
     >
       aaa
     </option>
     <option
       key="bbb"
+      value="bbb"
     >
       bbb
     </option>
     <option
       key="ccc"
+      value="ccc"
     >
       ccc
     </option>

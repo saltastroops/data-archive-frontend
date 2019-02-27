@@ -67,6 +67,7 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
+                id="arcs-checkbox"
                 checked={arcs || false}
                 onChange={this.changeCheckbox}
                 name={"arcs"}
@@ -77,6 +78,7 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
+                id="biases-checkbox"
                 checked={biases || false}
                 onChange={this.changeCheckbox}
                 name={"biases"}
@@ -87,6 +89,7 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
+                id="flats-checkbox"
                 checked={flats || false}
                 onChange={this.changeCheckbox}
                 name={"flats"}
@@ -97,6 +100,7 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
+                id="standards-checkbox"
                 checked={standards || false}
                 onChange={this.changeCheckbox}
                 name={"standards"}

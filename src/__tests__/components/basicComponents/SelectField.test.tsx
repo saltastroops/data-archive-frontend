@@ -1,10 +1,21 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SelectField from "../../../components/basicComponents/SelectField";
+import SelectField, {
+  AnyOption
+} from "../../../components/basicComponents/SelectField";
 
 describe("SelectField", () => {
-  const wrapper = shallow(<SelectField options={["aaa", "bbb", "ccc"]} />);
+  const wrapper = mount(
+    <SelectField name="name">
+      <AnyOption />
+      {["aaa", "bbb", "ccc"].map(t => (
+        <option key={t} value={t}>
+          {t}
+        </option>
+      ))}
+    </SelectField>
+  );
   it("should render", () => {
     expect(wrapper).toBeDefined();
   });
@@ -14,14 +25,14 @@ describe("SelectField", () => {
     expect(divs.length).toBeGreaterThan(0);
   });
   it("always contains a select tag.", () => {
-    const select = wrapper.find("select");
+    const select = wrapper.find("div.select");
     expect(select.length).toEqual(1);
-    const options = wrapper.find("select");
+    const options = wrapper.find("div.select");
     expect(options.children().length).toBeGreaterThan(0);
   });
   it("select tag children are options and greater than 0.", () => {
     const options = wrapper.find("select");
-    expect(options.children().get(0).type).toEqual("option");
+    expect(options.children().get(1).type).toEqual("option");
     expect(options.children().length).toBeGreaterThan(0);
   });
   it("render correctly", () => {
@@ -29,11 +40,14 @@ describe("SelectField", () => {
     expect(
       toJson(
         shallow(
-          <SelectField
-            options={["aaa", "bbb", "ccc"]}
-            name="name"
-            value="value"
-          />
+          <SelectField name="name">
+            <AnyOption />
+            {["aaa", "bbb", "ccc"].map(t => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </SelectField>
         )
       )
     ).toMatchSnapshot();
