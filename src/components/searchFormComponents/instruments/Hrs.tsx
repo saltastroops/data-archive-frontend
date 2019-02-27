@@ -1,7 +1,7 @@
 import * as React from "react";
+import { IHRS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { IHRS } from "../../../utils/ObservationQueryParameters";
 
 interface IHrsProps {
   hrs: IHRS;

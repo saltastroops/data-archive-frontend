@@ -82,8 +82,8 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
     const targetChange = (
       e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
-      const name = e.currentTarget.name;
-      const value = e.currentTarget.value || "";
+      const name = e.target.name;
+      const value = e.target.value || "";
       onChange({
         ...target,
         [name]: value,

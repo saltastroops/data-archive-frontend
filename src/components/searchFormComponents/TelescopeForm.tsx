@@ -20,7 +20,7 @@ interface ITelescopeFormProps {
 }
 
 /**
- * A form for selecting telesvope-related search parameters.
+ * A form for selecting telescope-related search parameters.
  */
 class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
   render() {
@@ -28,7 +28,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
 
     // Function for updating telescope-related parameters
     const changeTelescope = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const value = e.currentTarget.value;
+      const value = e.target.value;
       onChange({
         name: value
       });

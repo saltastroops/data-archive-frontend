@@ -9,9 +9,9 @@ import {
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import SpUpNIC from "../instruments/SpUpNIC";
 import Hippo from "../instruments/Hippo";
 import Shoc from "../instruments/Shoc";
+import SpUpNIC from "../instruments/SpUpNIC";
 
 /**
  * Return the form for a given instrument.

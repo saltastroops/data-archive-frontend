@@ -1,8 +1,7 @@
-import { detect } from "async";
 import * as React from "react";
+import { IRSS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { IInstrument, IRSS } from "../../../utils/ObservationQueryParameters";
 
 interface IRssProps {
   rss: IRSS;

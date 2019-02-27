@@ -117,7 +117,7 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  name: TelescopeName;
+  name?: TelescopeName;
 }
 
 /**
