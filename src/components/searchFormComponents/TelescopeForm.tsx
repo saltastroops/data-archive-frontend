@@ -35,12 +35,11 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     };
 
     // Function for updating instrument-related properties
-    const changeInstrument = (value: any) => {
+    const changeTelescopeParameter = (key: string, value: any) => {
+      console.log({ key, value });
       onChange({
         ...telescope,
-        instrument: {
-          ...value
-        }
+        [key]: value
       });
     };
 
@@ -65,18 +64,21 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           </SubGrid>
         </MainGrid>
         {name === "SALT" && (
-          <SaltForm salt={telescope as ISALT} onChange={changeInstrument} />
+          <SaltForm
+            salt={telescope as ISALT}
+            onChange={changeTelescopeParameter}
+          />
         )}
         {name === "Lesedi" && (
           <LesediForm
             lesedi={telescope as ILesedi}
-            onChange={changeInstrument}
+            onChange={changeTelescopeParameter}
           />
         )}
         {name === "1.9 m" && (
           <OneNineMForm
             oneNineM={telescope as IOneNineM}
-            onChange={changeInstrument}
+            onChange={changeTelescopeParameter}
           />
         )}
       </>

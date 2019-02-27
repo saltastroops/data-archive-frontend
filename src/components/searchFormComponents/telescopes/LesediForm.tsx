@@ -1,11 +1,9 @@
 import * as React from "react";
 import {
-  IBVIT,
   IHIPPO,
   IInstrument,
   ILesedi,
   InstrumentName,
-  IRSS,
   ISHOC,
   ISpUpNIC
 } from "../../../utils/ObservationQueryParameters";
@@ -49,7 +47,7 @@ export const lesediInstrumentsSwitcher = (
 
 interface ILesediFormProps {
   lesedi: ILesedi;
-  onChange: (value: any) => any;
+  onChange: (key: string, value: any) => void;
 }
 
 /**
@@ -61,12 +59,12 @@ const LesediForm = (props: ILesediFormProps) => {
   // Function for changing the instrument
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
-    onChange({ name: value });
+    onChange("instrument", { name: value });
   };
 
   // Function for changing the instrument mode
   const changeMode = (value: any) => {
-    onChange({
+    onChange("instrument", {
       ...lesedi.instrument,
       ...value
     });

@@ -43,7 +43,7 @@ export const oneNineMInstrumentsSwitcher = (
 
 interface IOneNineMProps {
   oneNineM: IOneNineM;
-  onChange: (value: any) => void;
+  onChange: (key: string, value: any) => void;
 }
 
 /**
@@ -55,12 +55,12 @@ const OneNineMForm = (props: IOneNineMProps) => {
   // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
-    onChange({ name: value });
+    onChange("instrument", { name: value });
   };
 
   // Function for handling changes to instrument-related search parameters
   const changeInstrumentParameters = (value: any) => {
-    onChange({
+    onChange("instrument", {
       ...oneNineM,
       ...value
     });
