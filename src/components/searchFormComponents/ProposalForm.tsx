@@ -42,7 +42,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
           <SubGrid>
             <p>Proposal code</p>
             <InputField
-              className={"proposal-code-input"}
+              data-test="proposal-code-input"
               error={errors.proposalCode}
               name={"proposalCode"}
               onChange={this.change}
@@ -52,7 +52,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
           <SubGrid>
             <p>Principal investigator</p>
             <InputField
-              className={"principal-investigator-input"}
+              data-test="principal-investigator-input"
               name={"principalInvestigator"}
               value={principalInvestigator || ""}
               error={errors.principalInvestigator || ""}
@@ -65,7 +65,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
           <SubGrid>
             <p>Proposal title</p>
             <InputField
-              className={"proposal-title-input"}
+              data-test="proposal-title-input"
               name={"proposalTitle"}
               value={proposalTitle || ""}
               error={errors.proposalTitle}
@@ -75,7 +75,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
           <SubGrid>
             <p>Observation night</p>
             <InputField
-              className={"observation-night-input"}
+              data-test="observation-night-input"
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
