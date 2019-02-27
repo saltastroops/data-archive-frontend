@@ -118,10 +118,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
 
   public render() {
     const { target, general, telescope, loading } = this.state;
-    console.log("STATE: ", this.state);
-    general.calibrations.forEach(e => {
-      console.log("General: ", e);
-    });
+
     return (
       <>
         {loading && (
