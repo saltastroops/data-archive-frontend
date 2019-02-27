@@ -3,46 +3,38 @@ import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchForm from "../../../components/SearchForm";
 import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
+import { CalibrationType } from "../../../utils/ObservationQueryParameters";
 
 const onChange = jest.fn();
 
 describe("Proposal Form", () => {
-  const wrapper = mount(
-    <ProposalForm proposal={{ errors: {} }} onChange={onChange} />
-  );
-  it("should render correctly", () => {
-    expect(wrapper).toBeDefined();
-  });
-  it("should contains 4 input fields", () => {
-    const inputs = wrapper.find("input.input");
-    expect(inputs.length).toEqual(4);
-  });
-
-  it("should contain inputs with names (proposalCode, proposalTitle, observationNight and principalInvestigator)", () => {
-    const proposalCode = wrapper.find("input.input").get(0).props.name;
-    expect(proposalCode).toEqual("proposalCode");
-
-    const proposalTitle = wrapper.find("input.input").get(2).props.name;
-    expect(proposalTitle).toEqual("proposalTitle");
-
-    const observationNight = wrapper.find("input.input").get(3).props.name;
-    expect(observationNight).toEqual("observationNight");
-
-    const principalInvestigator = wrapper.find("input.input").get(1).props.name;
-    expect(principalInvestigator).toEqual("principalInvestigator");
+  it("should render", () => {
+    expect(
+      <ProposalForm
+        proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+        onChange={onChange}
+      />
+    ).toBeDefined();
   });
 
   it("render correctly", () => {
     expect(
       toJson(
-        shallow(<ProposalForm proposal={{ errors: {} }} onChange={onChange} />)
+        shallow(
+          <ProposalForm
+            proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+            onChange={onChange}
+          />
+        )
       )
     ).toMatchSnapshot();
+
     expect(
       toJson(
         shallow(
           <ProposalForm
             proposal={{
+              calibrations: new Set<CalibrationType>(),
               errors: {},
               proposalTitle: "hello"
             }}
@@ -56,10 +48,11 @@ describe("Proposal Form", () => {
         shallow(
           <ProposalForm
             proposal={{
+              calibrations: new Set<CalibrationType>(),
               errors: {
-                principalInvestigator: "this is an error",
-                proposalCode: "this is an error",
-                proposalTitle: "this is an error"
+                principalInvestigator: "invalid Principal Investigator",
+                proposalCode: "invalid proposal code",
+                proposalTitle: "invalid proposal title"
               },
               proposalCode: "Code1"
             }}
@@ -72,24 +65,50 @@ describe("Proposal Form", () => {
 });
 
 describe("Proposal form on change", () => {
-  const wrapper = mount(
-    <ProposalForm proposal={{ errors: {} }} onChange={onChange} />
-  );
-  it("should find proposal general defined on proposal search form", () => {
-    // jest.spyOn(SearchForm.prototype, 'targetChange');
-    SearchForm.prototype.generalChange = jest.fn();
-    expect(SearchForm.prototype.generalChange).toBeDefined();
-  });
+  it("should call onChange with the correct value", () => {
+    const wrapper = mount(
+      <ProposalForm
+        proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+        onChange={onChange}
+      />
+    );
 
-  it("should call onChange with any thing", () => {
-    const piForm = wrapper.find("input.principal-investigator-input");
-    const pi = piForm.find("input");
+    // Principal investigator
+
+    const pi = wrapper.find('input[data-test="principal-investigator-input"]');
     pi.simulate("change", {
-      target: { value: "hello", name: "principalInvestigator" }
+      target: { value: "John Doe", name: "principalInvestigator" }
     });
     expect(onChange).toBeCalledWith({
+      calibrations: new Set<CalibrationType>(),
       errors: { principalInvestigator: "" },
-      principalInvestigator: "hello"
+      principalInvestigator: "John Doe"
+    });
+
+    // Proposal code
+
+    const proposalCode = wrapper.find('input[data-test="proposal-code-input"]');
+    proposalCode.simulate("change", {
+      target: { value: "2019-1-SCI-042", name: "proposalCode" }
+    });
+    expect(onChange).toBeCalledWith({
+      calibrations: new Set<CalibrationType>(),
+      errors: { proposalCode: "" },
+      proposalCode: "2019-1-SCI-042"
+    });
+
+    // Proposal title
+
+    const proposalTitle = wrapper.find(
+      'input[data-test="proposal-title-input"]'
+    );
+    proposalTitle.simulate("change", {
+      target: { value: "2019-1-SCI-042", name: "proposalTitle" }
+    });
+    expect(onChange).toBeCalledWith({
+      calibrations: new Set<CalibrationType>(),
+      errors: { proposalTitle: "" },
+      proposalTitle: "2019-1-SCI-042"
     });
   });
 });
