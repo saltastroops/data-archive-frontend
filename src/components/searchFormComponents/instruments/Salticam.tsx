@@ -14,7 +14,8 @@ interface ISalticamProps {
 const Salticam = (props: ISalticamProps) => {
   const { onChange, salticam } = props;
 
-  const change = (e: React.FormEvent<HTMLSelectElement>) => {
+  // Function for handling change events
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({

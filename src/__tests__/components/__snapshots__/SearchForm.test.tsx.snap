@@ -18,6 +18,7 @@ exports[`Search Form render correctly 1`] = `
         onChange={[Function]}
         proposal={
           Object {
+            "calibrations": Set {},
             "errors": Object {},
           }
         }
@@ -30,8 +31,9 @@ exports[`Search Form render correctly 1`] = `
     </styled.div>
     <styled.div>
       <DataForm
-        data={
+        general={
           Object {
+            "calibrations": Set {},
             "errors": Object {},
           }
         }

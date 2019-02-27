@@ -4,25 +4,6 @@ exports[`Data Form render correctly 1`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-      >
-        <AnyOption />
-        <option
-          value="reduced"
-        >
-          Reduced
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <styled.div>
-    <styled.div>
       <h5
         className="title is-5"
       >
@@ -34,9 +15,9 @@ exports[`Data Form render correctly 1`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -49,7 +30,7 @@ exports[`Data Form render correctly 1`] = `
         <styled.input
           checked={false}
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -62,7 +43,7 @@ exports[`Data Form render correctly 1`] = `
         <styled.input
           checked={false}
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -75,7 +56,7 @@ exports[`Data Form render correctly 1`] = `
         <styled.input
           checked={false}
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>
@@ -91,25 +72,6 @@ exports[`Data Form render correctly 2`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-      >
-        <AnyOption />
-        <option
-          value="reduced"
-        >
-          Reduced
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <styled.div>
-    <styled.div>
       <h5
         className="title is-5"
       >
@@ -121,9 +83,9 @@ exports[`Data Form render correctly 2`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -136,7 +98,7 @@ exports[`Data Form render correctly 2`] = `
         <styled.input
           checked={false}
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -149,7 +111,7 @@ exports[`Data Form render correctly 2`] = `
         <styled.input
           checked={false}
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -160,9 +122,9 @@ exports[`Data Form render correctly 2`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>
@@ -178,25 +140,6 @@ exports[`Data Form render correctly 3`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-      >
-        <AnyOption />
-        <option
-          value="reduced"
-        >
-          Reduced
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <styled.div>
-    <styled.div>
       <h5
         className="title is-5"
       >
@@ -208,9 +151,9 @@ exports[`Data Form render correctly 3`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -221,9 +164,9 @@ exports[`Data Form render correctly 3`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -234,9 +177,9 @@ exports[`Data Form render correctly 3`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={true}
+          checked={false}
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -249,7 +192,7 @@ exports[`Data Form render correctly 3`] = `
         <styled.input
           checked={false}
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>

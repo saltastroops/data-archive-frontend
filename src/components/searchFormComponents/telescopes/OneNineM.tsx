@@ -1,17 +1,13 @@
 import * as React from "react";
 import {
-  IHIPPO,
-  IInstrument,
   InstrumentName,
-  IOneNineM,
-  ISHOC,
-  ISpUpNIC
+  IOneNineM
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Hippo from "../instruments/Hippo";
-import Shoc from "../instruments/Shoc";
-import SpUpNIC from "../instruments/SpUpNIC";
+import Bvit from "../instruments/Bvit";
+import Hrs from "../instruments/Hrs";
+import Rss from "../instruments/Rss";
 
 /**
  * Return the form for a given instrument.
@@ -26,19 +22,19 @@ import SpUpNIC from "../instruments/SpUpNIC";
  * The form component.
  */
 export const oneNineMInstrumentsSwitcher = (
-  instrument: IInstrument,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  oneNineM: any,
+  onChange: (value: any) => void
 ) => {
-  const name = instrument && instrument.name;
-  switch (name) {
+  const instrument = oneNineM.name;
+  switch (instrument) {
     case "SpUpNIC": {
-      return <SpUpNIC spUpNic={instrument as ISpUpNIC} onChange={onChange} />;
+      return <Rss rss={oneNineM} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hippo hippo={instrument as IHIPPO} onChange={onChange} />;
+      return <Hrs hrs={oneNineM} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Shoc shoc={instrument as ISHOC} onChange={onChange} />;
+      return <Bvit bvit={oneNineM} onChange={onChange} />;
     }
     default:
       return null;
@@ -47,7 +43,7 @@ export const oneNineMInstrumentsSwitcher = (
 
 interface IOneNineMProps {
   oneNineM: IOneNineM;
-  onChange: (value: any) => void;
+  onChange: (key: string, value: any) => void;
 }
 
 /**
@@ -56,15 +52,16 @@ interface IOneNineMProps {
 const OneNineMForm = (props: IOneNineMProps) => {
   const { oneNineM, onChange } = props;
 
+  // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    onChange({ name: value });
+    const value = e.currentTarget.value;
+    onChange("instrument", { name: value });
   };
 
-  const changeMode = (value: any) => {
-    console.log("XXX: ", oneNineM);
-    onChange({
-      ...oneNineM.instrument,
+  // Function for handling changes to instrument-related search parameters
+  const changeInstrumentParameters = (value: any) => {
+    onChange("instrument", {
+      ...oneNineM,
       ...value
     });
   };
@@ -86,7 +83,7 @@ const OneNineMForm = (props: IOneNineMProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {oneNineMInstrumentsSwitcher(oneNineM.instrument, changeMode)}
+      {oneNineMInstrumentsSwitcher(oneNineM, changeInstrumentParameters)}
     </>
   );
 };

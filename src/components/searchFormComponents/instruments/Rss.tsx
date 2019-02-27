@@ -1,8 +1,7 @@
-import { detect } from "async";
 import * as React from "react";
+import { IRSS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { IInstrument, IRSS } from "../../../utils/ObservationQueryParameters";
 
 interface IRssProps {
   rss: IRSS;
@@ -15,6 +14,7 @@ interface IRssProps {
 const Rss = (props: IRssProps) => {
   const { onChange, rss } = props;
 
+  // Function for handling change events
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
@@ -59,6 +59,7 @@ const Rss = (props: IRssProps) => {
       <SubGrid>
         <p>Detector Mode</p>
         <SelectField name={"detectorMode"} onChange={change}>
+          <AnyOption />
           {detectorModes.map(detectorMode => (
             <option key={detectorMode} value={detectorMode}>
               {detectorMode}

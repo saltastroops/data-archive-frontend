@@ -1,7 +1,7 @@
 import * as React from "react";
+import { IHRS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { IHRS } from "../../../utils/ObservationQueryParameters";
 
 interface IHrsProps {
   hrs: IHRS;
@@ -16,7 +16,8 @@ interface IHrsProps {
 const Hrs = (props: IHrsProps) => {
   const { onChange, hrs } = props;
 
-  const change = (e: React.FormEvent<HTMLSelectElement>) => {
+  // Function for handling change events
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({

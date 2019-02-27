@@ -9,6 +9,7 @@ import {
   IBVIT,
   IHRS,
   IInstrument,
+  InstrumentName,
   IRSS,
   ISALT,
   ISalticam
@@ -53,7 +54,7 @@ export const saltInstrumentsSwitcher = (
 
 interface ISaltFormProps {
   salt: ISALT;
-  onChange: (value: any) => void;
+  onChange: (key: string, value: any) => void;
 }
 
 /**
@@ -61,17 +62,23 @@ interface ISaltFormProps {
  */
 const SaltForm = (props: ISaltFormProps) => {
   const { salt, onChange } = props;
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+
+  // Function for handling instrument selection
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
-    onChange({ name: value });
+    onChange("instrument", { name: value });
   };
-  const changeMode = (value: any) => {
-    onChange({
+
+  // Function for handling changes to instrument-related search parameters
+  const changeInstrumentParameters = (value: any) => {
+    onChange("instrument", {
       ...salt.instrument,
       ...value
     });
   };
-  const instruments = ["HRS", "RSS", "BVIT", "Salticam"];
+
+  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "Salticam"];
+
   return (
     <>
       <MainGrid>
@@ -87,7 +94,7 @@ const SaltForm = (props: ISaltFormProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {saltInstrumentsSwitcher(salt.instrument, changeMode)}
+      {saltInstrumentsSwitcher(salt.instrument, changeInstrumentParameters)}
     </>
   );
 };
