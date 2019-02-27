@@ -5,7 +5,6 @@ import {
   IGeneral
 } from "../../utils/ObservationQueryParameters";
 import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
-import SelectField, { AnyOption } from "../basicComponents/SelectField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",

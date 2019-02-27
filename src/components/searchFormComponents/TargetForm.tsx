@@ -1,9 +1,6 @@
 import * as React from "react";
 import targetPosition from "target-position";
-import {
-  ITarget,
-  SearchConeRadiusUnits
-} from "../../utils/ObservationQueryParameters";
+import { ITarget } from "../../utils/ObservationQueryParameters";
 import {
   validateDeclination,
   validateName,
@@ -105,9 +102,10 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <p>Target name</p>
             <InputField
               data-test="target-name-input"
+              className="target-name-input"
               disabled={loading}
               name={"name"}
-              value={target.name}
+              value={target.name || ""}
               error={target.errors.name}
               onChange={targetChange}
             />
@@ -118,6 +116,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 <p>Resolver</p>
                 <SelectField
                   data-test={"resolver-select"}
+                  className={"resolver-select"}
                   name={"resolver"}
                   value={target.resolver}
                   onChange={targetChange}
