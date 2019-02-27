@@ -1,5 +1,7 @@
 import moment from "moment";
 
+// TODO: Update once parse methods are available in util
+
 /**
  * A method used to check if the given value(string) is a floating point number
  *
