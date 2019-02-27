@@ -1,8 +1,167 @@
 import {
   DEFAULT_COORDINATE_SEARCH_RADIUS,
   MAXIMUM_COORDINATE_SEARCH_RADIUS,
+  parseDeclination,
+  parseRightAscension,
   parseTargetPosition
 } from "../util/query/parse";
+
+describe("parseRightAscension", () => {
+  it("should parse valid degree values correctly", () => {
+    expect(parseRightAscension("0")).toBeCloseTo(0, 8);
+
+    expect(parseRightAscension("0.")).toBeCloseTo(0, 8);
+
+    expect(parseRightAscension("  117.345\n")).toBeCloseTo(117.345, 8);
+
+    expect(parseRightAscension("360")).toBeCloseTo(360, 8);
+
+    expect(parseRightAscension("\n360.\t")).toBeCloseTo(360, 8);
+  });
+
+  it("should parse valid hour, minute, second values correctly", () => {
+    expect(parseRightAscension("0h 00m 00s")).toBeCloseTo(0, 8);
+
+    expect(parseRightAscension("00 0 00s")).toBeCloseTo(0, 8);
+
+    expect(parseRightAscension("3.5h")).toBeCloseTo(52.5, 8);
+
+    expect(parseRightAscension("00001 h\n0002 003")).toBeCloseTo(15.5125, 8);
+
+    expect(parseRightAscension("01 h 02 3")).toBeCloseTo(15.5125, 8);
+
+    expect(parseRightAscension("01s 02h 3m")).toBeCloseTo(15.5125, 8);
+
+    expect(parseRightAscension("\n1 -2 -3\t")).toBeCloseTo(15.5125, 8);
+
+    expect(parseRightAscension("09:14:56.89")).toBeCloseTo(138.737041666667, 8);
+
+    expect(parseRightAscension("24h00m00s")).toBeCloseTo(360, 8);
+  });
+
+  it("should reject invalid values", () => {
+    let f = () => parseRightAscension("xyz");
+    expect(f).toThrow("xyz");
+
+    f = () => parseRightAscension("a0");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("1 2 3 4");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("-3.967");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("360.0001");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("700");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("-9h 5m 8s");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("1h 60m 1s");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("1h 2m 60s");
+    expect(f).toThrow();
+
+    f = () => parseRightAscension("24h 0m 0.001s");
+    expect(f).toThrow();
+  });
+});
+
+describe("parseDeclination", () => {
+  it("should parse valid degree values correctly", () => {
+    expect(parseDeclination("0")).toBeCloseTo(0, 8);
+
+    expect(parseDeclination("-90")).toBeCloseTo(-90, 8);
+
+    expect(parseDeclination("90")).toBeCloseTo(90, 8);
+
+    expect(parseDeclination("-34.5678")).toBeCloseTo(-34.5678, 8);
+
+    expect(parseDeclination("+23.9234")).toBeCloseTo(23.9234, 8);
+
+    expect(parseDeclination("-0.65123")).toBeCloseTo(-0.65123, 8);
+
+    expect(parseDeclination("\n0.65123\t")).toBeCloseTo(0.65123, 8);
+
+    expect(parseDeclination("+0.65123")).toBeCloseTo(0.65123, 8);
+
+    expect(parseDeclination("+03.9234")).toBeCloseTo(3.9234, 8);
+  });
+
+  it("should parse valid degree, arcminute, arcsecond values correctly", () => {
+    expect(parseDeclination("-78° 14′ 34.1″")).toBeCloseTo(-78.24277777778);
+
+    expect(parseDeclination("-78″ 14° 34.1′")).toBeCloseTo(-78.24277777778);
+
+    expect(parseDeclination("-78d 14m 34.1s")).toBeCloseTo(-78.24277777778);
+
+    expect(parseDeclination("-78d14m34.1s")).toBeCloseTo(-78.24277777778);
+
+    expect(parseDeclination("-78 14 34.1")).toBeCloseTo(-78.24277777778);
+
+    expect(parseDeclination("-0 30 5")).toBeCloseTo(-0.501388888889);
+
+    expect(parseDeclination("0 30 5")).toBeCloseTo(0.501388888889);
+
+    expect(parseDeclination("  \t +0 30 5\n")).toBeCloseTo(0.501388888889);
+
+    expect(parseDeclination("+0 -30 -5")).toBeCloseTo(0.501388888889);
+
+    expect(parseDeclination("1 2 3")).toBeCloseTo(1.034166666667);
+
+    expect(parseDeclination("01 02 03")).toBeCloseTo(1.034166666667);
+
+    expect(parseDeclination("+50deg")).toBeCloseTo(50);
+
+    expect(parseDeclination("+50deg40arcmin")).toBeCloseTo(50.66666667);
+
+    expect(parseDeclination("+50deg40arcmin36arcsec")).toBeCloseTo(50.67666667);
+
+    expect(parseDeclination("000050 0040 00036")).toBeCloseTo(50.67666667);
+
+    expect(parseDeclination("+50deg")).toBeCloseTo(50);
+  });
+
+  it("should reject invalid values", () => {
+    let f = () => expect(parseDeclination("xyz"));
+    expect(f).toThrow("xyz");
+
+    f = () => expect(parseDeclination("-xyz"));
+    expect(f).toThrow("-xyz");
+
+    f = () => expect(parseDeclination("-15.98 4 7"));
+    expect(f).toThrow("-15.98 4 7");
+
+    f = () => expect(parseDeclination("7 13.8 7"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("6 60 8"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("6 9 60"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("-90.0001"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("90.0001"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("-90 0 0.0001"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("90 0 0.0001"));
+    expect(f).toThrow();
+
+    f = () => expect(parseDeclination("1 2 3 4"));
+    expect(f).toThrow();
+  });
+});
 
 describe("parseTargetPosition", () => {
   // right ascension

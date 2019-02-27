@@ -1,3 +1,4 @@
+import isNumber from "is-number";
 import moment from "moment";
 import { ITarget, ITargetPosition } from "./types";
 
@@ -246,20 +247,250 @@ export function trim(value: string | null | undefined) {
   return value;
 }
 
-// TODO: Replace with preoper parsing
+/**
+ * Parse a string as a right ascension.
+ *
+ * The right ascension may be given as a number of degrees between 0 and 360
+ * degrees or in hours, minutes and seconds.
+ *
+ * When giving the right ascension as hours, minutes and seconds, you may use
+ * any non-digit as separator - including minus signs. So, for example, the
+ * strings "1h 2m 3s", "1h2m3s", "1 2 3", "1 -2 -3" and "1s 2h 3m" all refer to
+ * the same right ascension.
+ *
+ * Minutes and seconds may be omitted; a default 0 is assumed. If no minutes and
+ * seconds are included, the following rules are used to distinguish between
+ * degrees and hours:
+ *
+ * 1. If no units are given, the value is assumed to be in degrees.
+ * 2. In all other cases the value is assumed to be in hours.
+ *
+ * It is not possible to just omit the minutes,
+ *
+ * Examples for valid numbers of degrees:
+ *
+ * 0
+ * 5.78
+ * 167
+ * 218.0754
+ * 360
+ *
+ * Examples for valid hour, second, minute strings:
+ *
+ * 0h00m00s
+ * 0h 00m 00s
+ * 07 08m 9.87
+ * 4.89h
+ * 4.89 h
+ * 4.89 hours
+ * 4.89 H
+ * 4 7
+ * 7 8 9.87
+ * 7 -8 -9.87 (interpreted as 7h 8h 9.87s)
+ * 23-14-59.9
+ * 24 00 00
+ *
+ * The right ascension is returned in degrees. An error is thrown if the given
+ * value is invalid.
+ *
+ * Parameters:
+ * -----------
+ * ra:
+ *     Right ascension, in degrees or hours, minutes, seconds.
+ *
+ * Returns:
+ * --------
+ * The right ascension in degrees.
+ */
+export function parseRightAscension(ra: string): number {
+  const trimmedRA = ra.trim();
 
-function parseRightAscension(ra: string): number {
-  const raValue = parseFloat(ra);
-  if (isNaN(raValue) || raValue < 0 || raValue > 360) {
-    throw new Error(`${ra} is not a valid right ascension.`);
+  const ERROR = `${trimmedRA} is not a valid right ascension. Right ascensions must be given as a number of degrees or as hours, minutes and seconds. The value must be between 0 and 360 degrees (24 hours).`;
+
+  let value = 0;
+  if (isNumber(trimmedRA)) {
+    value += parseFloat(trimmedRA);
+  } else {
+    // Hours
+    const [hours, minutes, seconds, ...rest] = trimmedRA.split(/[^\d.]+/);
+    if (!isNumber(hours)) {
+      throw new Error(ERROR);
+    }
+    if (hours.match(/^\d+$/)) {
+      value += 15 * parseInt(hours, 10);
+    } else {
+      if (minutes) {
+        // Float values are only allowed if there are no minutes
+        throw new Error(ERROR);
+      }
+      value += 15 * parseFloat(hours);
+    }
+
+    // Minutes
+    if (minutes) {
+      if (!minutes.match(/^\d+$/)) {
+        throw new Error(ERROR);
+      }
+      const minuteValue = parseInt(minutes, 10);
+      if (minuteValue > 59) {
+        throw new Error(ERROR);
+      }
+      value += (15 * minuteValue) / 60;
+    }
+
+    // Arcseconds
+    if (seconds) {
+      if (!isNumber(seconds)) {
+        throw new Error(ERROR);
+      }
+      const secondValue = parseFloat(seconds);
+      if (secondValue >= 60) {
+        throw new Error(ERROR);
+      }
+      value += (15 * secondValue) / 3600;
+    }
+
+    // Make sure no content is left in the string
+    if (rest[0]) {
+      throw new Error(ERROR);
+    }
   }
-  return raValue;
+
+  // Check that the value lies in the valid range
+  if (value < 0 || value > 360) {
+    throw new Error(ERROR);
+  }
+
+  return value;
 }
 
-function parseDeclination(dec: string): number {
-  const decValue = parseFloat(dec);
-  if (isNaN(decValue) || decValue < -90 || decValue > 90) {
-    throw new Error(`${dec} is not a valid declination.`);
+/**
+ * Parse a string to a declination.
+ *
+ * The declination may be given as a number of degrees or as degrees, arcminutes
+ * and arcseconds. It must be between -90 and 90 degrees.
+ *
+ * When giving the declination in degrees, arcminutes and arcseconds, you may
+ * use any non-digit other than the dot as separator - including minus signs. So
+ * So, for example, the strings "1° 2′ 3″", "1d2m3s", "1 2 3", "1 -2 -3" and
+ * "1″ 2° 3′" all refer to the same declination.
+ *
+ * Arcnminutes and arcseconds may be omitted; a default of 0 is assumed. It is
+ * not a possible to just omit arcminutes.
+ *
+ * Examples for valid numbers of degrees:
+ *
+ * -90
+ * -53.246
+ * 0
+ * 7.957d
+ * 8.0°
+ * +15
+ * 90
+ *
+ * Examples for valid degrees, arcminutes, arcseconds:
+ *
+ * -78° 06′ 05″
+ * -78 6 5
+ * -14 8
+ * -11 -8 -34 (interpreted as -11° 08′ 34″)
+ * -0 17 8
+ * 0 0 01
+ * +0008 06
+ * 88d 17m 1s
+ *
+ * Examples for invalid values:
+ *
+ * -90.001
+ * 90.001
+ * 15 7.
+ * 15 7.988
+ * 15 h 7.988 s
+ *
+ * The declination is returned in degrees. An error is thrown if the given value
+ * is invalid.
+ *
+ * Parameters:
+ * -----------
+ * dec:
+ *     Declination, in degrees or as degrees, arcminutes, arcseconds.
+ *
+ * Returns:
+ * --------
+ * The declination, in degrees.
+ */
+export function parseDeclination(dec: string): number {
+  const trimmedDec = dec.trim();
+
+  const ERROR = `${trimmedDec} is not a valid declination. Declinations must be given as a number of degrees or as degrees, arcminutes and arcseconds. The value must be between -90 and 90 degrees.`;
+
+  // Get the sign and the absolute value
+  const regex = /^[+-]?(\d.*)$/;
+  const matches = trimmedDec.match(regex);
+  if (!matches) {
+    throw new Error(ERROR);
   }
-  return decValue;
+  const signFactor = trimmedDec.startsWith("-") ? -1 : 1;
+  const absolute = matches[1];
+
+  let value = 0;
+  if (isNumber(absolute)) {
+    value += parseFloat(absolute);
+  } else {
+    // Degrees
+    const [degrees, arcminutes, arcseconds, ...rest] = absolute.split(
+      /[^\d.]+/
+    );
+    if (!isNumber(degrees)) {
+      throw new Error(ERROR);
+    }
+    if (degrees.match(/^\d+$/)) {
+      value += parseInt(degrees, 10);
+    } else {
+      if (arcminutes) {
+        // Float values are only allowed if there are no arcminutes
+        throw new Error(ERROR);
+      }
+      value += parseFloat(degrees);
+    }
+
+    // Arcminutes
+    if (arcminutes) {
+      if (!arcminutes.match(/^\d+$/)) {
+        throw new Error(ERROR);
+      }
+      const arcminuteValue = parseInt(arcminutes, 10);
+      if (arcminuteValue > 59) {
+        throw new Error(ERROR);
+      }
+      value += arcminuteValue / 60;
+    }
+
+    // Arcseconds
+    if (arcseconds) {
+      if (!isNumber(arcseconds)) {
+        throw new Error(ERROR);
+      }
+      const arcsecondValue = parseFloat(arcseconds);
+      if (arcsecondValue >= 60) {
+        throw new Error(ERROR);
+      }
+      value += arcsecondValue / 3600;
+    }
+
+    // Make sure no content is left in the string
+    if (rest[0]) {
+      throw new Error(ERROR);
+    }
+  }
+
+  //  Apply the sign
+  value *= signFactor;
+
+  // Check that the value lies in the valid range
+  if (value < -90 || value > 90) {
+    throw new Error(ERROR);
+  }
+
+  return value;
 }
