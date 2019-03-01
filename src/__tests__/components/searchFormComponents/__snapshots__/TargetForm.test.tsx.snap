@@ -8,14 +8,11 @@ exports[`TargetForm should render correctly 1`] = `
         Target name
       </p>
       <InputField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-        className="target-name-input"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
         data-test="target-name-input"
         disabled={false}
         name="name"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -25,10 +22,6 @@ exports[`TargetForm should render correctly 1`] = `
             Resolver
           </p>
           <SelectField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-            className="resolver-select"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
@@ -140,10 +133,6 @@ exports[`TargetForm should render correctly 2`] = `
         Target name
       </p>
       <InputField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-        className="target-name-input"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
         data-test="target-name-input"
         disabled={false}
         name="name"
@@ -158,10 +147,6 @@ exports[`TargetForm should render correctly 2`] = `
             Resolver
           </p>
           <SelectField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-            className="resolver-select"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
@@ -273,15 +258,12 @@ exports[`TargetForm should render correctly 3`] = `
         Target name
       </p>
       <InputField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-        className="target-name-input"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
         data-test="target-name-input"
         disabled={false}
         error="this is an error"
         name="name"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -291,10 +273,6 @@ exports[`TargetForm should render correctly 3`] = `
             Resolver
           </p>
           <SelectField
-<<<<<<< HEAD:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
-=======
-            className="resolver-select"
->>>>>>> b25246a6a08e483ea3beb3773509373aaefa6819:src/__tests__/components/searchFormComponents/__snapshots__/TargetForm.test.tsx.snap
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}

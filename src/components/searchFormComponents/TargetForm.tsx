@@ -102,7 +102,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <p>Target name</p>
             <InputField
               data-test="target-name-input"
-              className="target-name-input"
               disabled={loading}
               name={"name"}
               value={target.name || ""}
@@ -116,7 +115,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 <p>Resolver</p>
                 <SelectField
                   data-test={"resolver-select"}
-                  className={"resolver-select"}
                   name={"resolver"}
                   value={target.resolver}
                   onChange={targetChange}

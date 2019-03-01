@@ -1,44 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InpuField render correctly 1`] = `
-<div
-  className="control"
->
-  <input
-    className="input undefined undefined"
-    type="text"
-  />
-</div>
-`;
-
-exports[`InpuField render correctly 2`] = `
-<div
-  className="control"
->
-  <input
-    className="input undefined is-danger"
-    type="text"
-  />
-  <styled.p>
-    it has error
-  </styled.p>
-</div>
-`;
-
-exports[`InpuField render correctly 3`] = `
-<div
-  className="control"
->
-  <input
-    className="input undefined undefined"
-    name="name"
-    placeholder="holder"
-    type="text"
-    value="value"
-  />
-</div>
-`;
-
 exports[`InputField render correctly 1`] = `
 <div
   className="control"
