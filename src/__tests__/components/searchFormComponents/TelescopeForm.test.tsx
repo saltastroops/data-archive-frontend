@@ -95,29 +95,6 @@ describe("Telescope form rendering instrument", () => {
     expect(lesedi.find(SaltForm).exists()).toBeFalsy();
     expect(oneNine.find(SaltForm).exists()).toBeFalsy();
   });
-  it("should render correctly", () => {
-    expect(
-      toJson(
-        shallow(
-          <TelescopeForm onChange={onChange} telescope={{ name: "SALT" }} />
-        )
-      )
-    ).toMatchSnapshot();
-    expect(
-      toJson(
-        shallow(
-          <TelescopeForm onChange={onChange} telescope={{ name: "Lesedi" }} />
-        )
-      )
-    ).toMatchSnapshot();
-    expect(
-      toJson(
-        shallow(
-          <TelescopeForm onChange={onChange} telescope={{ name: "1.9 m" }} />
-        )
-      )
-    ).toMatchSnapshot();
-  });
 });
 
 describe("Telescope form rendering", () => {

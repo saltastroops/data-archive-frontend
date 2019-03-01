@@ -1,10 +1,4 @@
 import * as React from "react";
-import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Bvit from "../instruments/Bvit";
-import Hrs from "../instruments/Hrs";
-import Rss from "../instruments/Rss";
-import Salticam from "../instruments/Salticam";
 import {
   IBVIT,
   IHRS,
@@ -14,6 +8,12 @@ import {
   ISALT,
   ISalticam
 } from "../../../utils/ObservationQueryParameters";
+import { MainGrid, SubGrid } from "../../basicComponents/Grids";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import Bvit from "../instruments/Bvit";
+import Hrs from "../instruments/Hrs";
+import Rss from "../instruments/Rss";
+import Salticam from "../instruments/Salticam";
 
 /**
  * Return the form for a given instrument.
