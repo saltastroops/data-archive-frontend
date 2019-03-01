@@ -2,6 +2,7 @@ import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchForm from "../../components/SearchForm";
+import InputField from "../../components/searchFormComponents/TargetForm";
 
 describe("Search Form", () => {
   const wrapper = mount(<SearchForm />);
@@ -36,8 +37,11 @@ describe("Search Form", () => {
 
   it("Should update state when typing", () => {
     let value: any;
-    const targetForm = wrapper.find("input.target-name-input");
-    const targetName = targetForm.find("input");
+
+    const targetInput = wrapper.find('.input[data-test="target-name-input"]');
+    const targetName = targetInput.find("input");
+    console.log(targetInput);
+    console.log(targetName);
 
     value = "apple";
     targetName.simulate("change", { target: { value, name: "name" } });
@@ -62,7 +66,7 @@ describe("Search Form", () => {
 
   it("Should update state when change a select", () => {
     let value: any;
-    const resolverSelect = wrapper.find("div.resolver-select");
+    const resolverSelect = wrapper.find('select[data-test="resolver-select"]');
     const resolver = resolverSelect.find("select");
     value = "NED";
     const event = { target: { value, name: "resolver" } };

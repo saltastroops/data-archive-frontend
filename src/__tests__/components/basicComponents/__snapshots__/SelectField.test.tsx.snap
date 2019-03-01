@@ -1,71 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SelectField render correctly 1`] = `
-<SelectField
-  name="name"
->
-  <div
-    className="control select undefined"
-  >
-    <select
-      name="name"
-    >
-      <AnyOption>
-        <option
-          key="any"
-          value=""
-        >
-          Any
-        </option>
-      </AnyOption>
-      <option
-        key="aaa"
-        value="aaa"
-      >
-        aaa
-      </option>
-      <option
-        key="bbb"
-        value="bbb"
-      >
-        bbb
-      </option>
-      <option
-        key="ccc"
-        value="ccc"
-      >
-        ccc
-      </option>
-    </select>
-  </div>
-</SelectField>
-`;
-
-exports[`SelectField render correctly 2`] = `
+exports[`SelectField should render correctly 1`] = `
 <div
-  className="control select undefined"
+  className="control select danger is-large"
 >
   <select
-    name="name"
+    onChange={[Function]}
+    value="bbb"
   >
-    <AnyOption />
     <option
-      key="aaa"
       value="aaa"
     >
-      aaa
+      AAA
     </option>
     <option
-      key="bbb"
       value="bbb"
     >
-      bbb
+      BBB
     </option>
     <option
-      key="ccc"
       value="ccc"
     >
-      ccc
+      CCC
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField should render correctly 2`] = `
+<div
+  className="control select "
+>
+  <select
+    value="aaa"
+  >
+    <option
+      value="aaa"
+    >
+      AAA
     </option>
   </select>
 </div>

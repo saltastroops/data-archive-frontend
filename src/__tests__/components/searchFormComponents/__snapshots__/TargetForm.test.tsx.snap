@@ -8,7 +8,6 @@ exports[`TargetForm should render correctly 1`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
         data-test="target-name-input"
         disabled={false}
         name="name"
@@ -23,7 +22,6 @@ exports[`TargetForm should render correctly 1`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
@@ -135,7 +133,6 @@ exports[`TargetForm should render correctly 2`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
         data-test="target-name-input"
         disabled={false}
         name="name"
@@ -150,7 +147,6 @@ exports[`TargetForm should render correctly 2`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
@@ -262,7 +258,6 @@ exports[`TargetForm should render correctly 3`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
         data-test="target-name-input"
         disabled={false}
         error="this is an error"
@@ -278,7 +273,6 @@ exports[`TargetForm should render correctly 3`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
