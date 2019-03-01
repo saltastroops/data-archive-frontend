@@ -38,10 +38,8 @@ describe("Search Form", () => {
   it("Should update state when typing", () => {
     let value: any;
 
-    const targetInput = wrapper.find('.input[data-test="target-name-input"]');
+    const targetInput = wrapper.find('input[data-test="target-name-input"]');
     const targetName = targetInput.find("input");
-    console.log(targetInput);
-    console.log(targetName);
 
     value = "apple";
     targetName.simulate("change", { target: { value, name: "name" } });
