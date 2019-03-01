@@ -13,25 +13,31 @@ function inputTyping(wrapper: any, name: string, value: string) {
 }
 
 // Initial userInput state
-const userInput = {
-  affiliation: "",
-  confirmPassword: "",
-  email: "",
-  familyName: "",
-  givenName: "",
-  password: "",
-  username: ""
+const initialState = {
+  errors: [],
+  userInput: {
+    affiliation: "",
+    confirmPassword: "",
+    email: "",
+    familyName: "",
+    givenName: "",
+    password: "",
+    username: ""
+  }
 };
 
 // Updated userInput state
 const updatedState = {
-  affiliation: "University of Cape Town",
-  confirmPassword: "securepassword",
-  email: "valid@email.address",
-  familyName: "Smith",
-  givenName: "John",
-  password: "securepassword",
-  username: "sj"
+  errors: [],
+  userInput: {
+    affiliation: "University of Cape Town",
+    confirmPassword: "securepassword",
+    email: "valid@email.address",
+    familyName: "Smith",
+    givenName: "John",
+    password: "securepassword",
+    username: "sj"
+  }
 };
 
 // sign up mock mutation
@@ -56,11 +62,14 @@ const mocks = [
 ];
 
 describe("RegistrationForm Component", () => {
-  it("renders the RegistrationForm having unpopulated props with no errors", async () => {
+  it("renders the RegistrationForm having unpopulated props with no errors", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
     // Expect the snapshot to match the RegistrationForm component.
@@ -71,7 +80,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -138,8 +150,11 @@ describe("RegistrationForm Component", () => {
   it("displays error message if submitted ivalid given name", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
-      <MockedProvider mocks={mocks}>
-        <RegistrationForm userInput={userInput} />
+      <MockedProvider>
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -147,7 +162,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -173,7 +188,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -181,7 +199,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -207,7 +225,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -215,7 +236,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -241,7 +262,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -249,7 +273,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -275,7 +299,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -283,7 +310,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");
@@ -319,7 +346,10 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm userInput={userInput} />
+        <RegistrationForm
+          errors={initialState.errors}
+          userInput={initialState.userInput}
+        />
       </MockedProvider>
     );
 
@@ -327,7 +357,7 @@ describe("RegistrationForm Component", () => {
     const instance = wrapper.find("RegistrationForm").instance() as any;
 
     // Set the state with valid information
-    instance.setState({ userInput: updatedState });
+    instance.setState({ userInput: updatedState.userInput });
 
     // Spy on the setState function.
     const setState = jest.spyOn(instance, "setState");

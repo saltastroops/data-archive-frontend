@@ -76,7 +76,7 @@ class LoginForm extends React.Component<ILoginFormState> {
     e.preventDefault();
 
     // Validates the user input fields
-    const errors = validateLoginField((this.state as any).userInput);
+    const errors = validateLoginField(this.state.userInput);
 
     // Update the errors propetry of the state
     this.setState({ errors });
@@ -91,21 +91,17 @@ class LoginForm extends React.Component<ILoginFormState> {
         logging: true
       });
 
-      const login = await api.post("/auth/login", {
-        password: (this.state as any).userInput.password,
-        username: (this.state as any).userInput.username
+      const login = await api.auth.login({
+        password: this.state.userInput.password,
+        username: this.state.userInput.username
       });
 
       if (login.data.success) {
         // TO BE REMOVED
         // Confirming user is authenticated
-        const queryUser = await api.post("/", {
-          query: `query { 
-            user { 
-              givenName 
-            } 
-          }`
-        });
+        const user = await api.user.queryUser();
+
+        console.log(user);
 
         this.setState({
           errors: [],
@@ -117,7 +113,7 @@ class LoginForm extends React.Component<ILoginFormState> {
         });
 
         // Redirect the user to the home page granted access to his own content
-        this.context.router.history.push("/userpage");
+        this.context.router.history.push("/");
       }
     } catch (error) {
       this.setState({
@@ -133,7 +129,7 @@ class LoginForm extends React.Component<ILoginFormState> {
     // Updating the userInput property of the state when input field value updates
     this.setState({
       userInput: {
-        ...(this.state as any).userInput,
+        ...this.state.userInput,
         [name]: value
       }
     });
@@ -166,8 +162,11 @@ class LoginForm extends React.Component<ILoginFormState> {
           value={password}
         />
 
-        <button className="signIn button is-success is-fullwidth is-rounded">
-          {(this.state as any).logging ? "Signing in..." : "Sign in"}
+        <button
+          disabled={this.state.logging}
+          className="signIn button is-success is-fullwidth is-rounded"
+        >
+          {this.state.logging ? "Signing in..." : "Sign in"}
         </button>
       </LoginFormParent>
     );

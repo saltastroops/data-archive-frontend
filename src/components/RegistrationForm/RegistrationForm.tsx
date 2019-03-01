@@ -1,9 +1,47 @@
+import PropTypes from "prop-types";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../../graphql/Mutations";
 import { validateRegistrationField } from "../../util/RegistrationFormValidation";
 import RegistrationInputField from "./RegistrationInputField";
+
+/*
+The registration form responsible for creating the new user data acrchive account.
+Properties:
+-----------
+userInput : {
+  affiliation
+    The affiliation of the user, such as a university or an institute.
+  confirmPassword
+    A matching password that must match with the original password.
+  email
+    Email address. This will be stored in lower case.
+  familyName
+    The family name (surname).
+  givenName
+    The given name (first name).
+  password
+    The password, which must have at least 7 characters.
+  username
+    The username, which must not contain upper case letters.
+}
+errors : []
+  An array of error messages if any.
+*/
+
+interface IRegistrationFormState {
+  errors: string[];
+  userInput: {
+    affiliation: string;
+    confirmPassword: string;
+    email: string;
+    familyName: string;
+    givenName: string;
+    password: string;
+    username: string;
+  };
+}
 
 const RegistrationFormParent = styled.form.attrs({
   className: "column is-4 is-offset-4"
@@ -34,20 +72,13 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
-interface IRegistrationForm {
-  userInput: {
-    affiliation: string;
-    confirmPassword: string;
-    email: string;
-    familyName: string;
-    givenName: string;
-    password: string;
-    username: string;
+class RegistrationForm extends React.Component<IRegistrationFormState> {
+  // Setting context prop type for accessing router field
+  static contextTypes = {
+    router: PropTypes.object
   };
-}
 
-class RegistrationForm extends React.Component<IRegistrationForm> {
-  state = {
+  public state = {
     errors: [],
     userInput: {
       affiliation: "",
@@ -74,23 +105,27 @@ class RegistrationForm extends React.Component<IRegistrationForm> {
       return;
     }
 
-    // If all fields are validated, sign up
-    const res = await signup();
+    try {
+      // If all fields are validated, sign up
+      const res = await signup();
+      // Reset the state when registering succeeded
+      this.setState({
+        userInput: {
+          affiliation: "",
+          confirmPassword: "",
+          email: "",
+          familyName: "",
+          givenName: "",
+          password: "",
+          username: ""
+        }
+      });
 
-    this.setState({
-      userInput: {
-        affiliation: "",
-        confirmPassword: "",
-        email: "",
-        familyName: "",
-        givenName: "",
-        password: "",
-        username: ""
-      }
-    });
-
-    // TODO routing to login
-    alert("TODO: Should be routed to te login page");
+      alert("Successfully registered, Login using your username and password");
+      this.context.router.history.push("/login");
+    } catch (error) {
+      return;
+    }
   };
 
   onHandleInputChange = (e: any) => {
@@ -116,6 +151,7 @@ class RegistrationForm extends React.Component<IRegistrationForm> {
       password,
       username
     } = this.state.userInput;
+
     return (
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
         {(signup, { loading, error }) => {
@@ -181,7 +217,11 @@ class RegistrationForm extends React.Component<IRegistrationForm> {
                 type={"password"}
                 value={confirmPassword}
               />
-              <button className="signUp button is-success is-fullwidth is-rounded">
+              <button
+                className="signUp button is-success is-fullwidth is-rounded"
+                disabled={loading}
+                type={"submit"}
+              >
                 {loading ? "Signing up..." : "Sign up"}
               </button>
             </RegistrationFormParent>

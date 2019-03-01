@@ -1,21 +1,32 @@
 import * as React from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import styled from "styled-components";
+import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+
+const Heading = styled.h1.attrs({
+  className: "title is-3"
+})`
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+`;
 
 class App extends React.Component {
   public render() {
-    const initUserInput = {
-      affiliation: "",
-      confirmPassword: "",
-      email: "",
-      familyName: "",
-      givenName: "",
-      password: "",
-      username: ""
-    };
     return (
-      <div>
-        <RegistrationForm userInput={initUserInput} />
-      </div>
+      <Router>
+        <div>
+          <Route
+            exact={true}
+            path="/"
+            render={() => <Heading>Main Page</Heading>}
+          />
+          <Route exact={true} path="/register" component={RegistrationForm} />
+          <Route exact={true} path="/login" component={LoginForm} />
+        </div>
+      </Router>
     );
   }
 }
