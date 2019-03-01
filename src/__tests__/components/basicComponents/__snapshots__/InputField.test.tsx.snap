@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InpuField render correctly 1`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input undefined undefined"
+    id="undefined"
+    name="undefined"
+    type="text"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`InpuField render correctly 2`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input undefined is-danger"
+    id="undefined"
+    name="undefined"
+    title="it has error"
+    type="text"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    it has error
+  </p>
+</div>
+`;
+
+exports[`InpuField render correctly 3`] = `
+<div
+  className="control"
+>
+  <input
+    className="is-label input undefined undefined"
+    id="name"
+    name="name"
+    placeholder="holder"
+    type="text"
+    value="value"
+  />
+  <p
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
+</div>
+`;

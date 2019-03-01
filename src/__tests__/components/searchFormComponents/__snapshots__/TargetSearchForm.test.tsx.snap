@@ -1,0 +1,331 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TargetForm render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        className="target-name-input"
+        error=""
+        loading={false}
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            className="resolver-select"
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <button
+            className="button is-info false"
+            disabled={false}
+            onClick={[Function]}
+            title=""
+            type="button"
+          >
+            resolve
+          </button>
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        className="right-ascension-input"
+        loading={false}
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        className="declination-input"
+        loading={false}
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        className="search-cone-radius-input"
+        name="searchConeRadius"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        className="radius-units-select"
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`TargetForm render correctly 2`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        className="target-name-input"
+        error=""
+        loading={false}
+        name="name"
+        onChange={[Function]}
+        value="hello"
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            className="resolver-select"
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <button
+            className="button is-info false"
+            disabled={false}
+            onClick={[Function]}
+            title=""
+            type="button"
+          >
+            resolve
+          </button>
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        className="right-ascension-input"
+        loading={false}
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        className="declination-input"
+        loading={false}
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        className="search-cone-radius-input"
+        name="searchConeRadius"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        className="radius-units-select"
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`TargetForm render correctly 3`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target name
+      </p>
+      <InputField
+        className="target-name-input"
+        error="this is an error"
+        loading={false}
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <p>
+            Resolver
+          </p>
+          <SelectField
+            className="resolver-select"
+            name="resolver"
+            onChange={[Function]}
+            options={
+              Array [
+                "Simbad",
+                "NED",
+                "VizieR",
+              ]
+            }
+            value="Simbad"
+          />
+        </styled.div>
+        <styled.div>
+          <br />
+          <button
+            className="button is-info false"
+            disabled={false}
+            onClick={[Function]}
+            title=""
+            type="button"
+          >
+            resolve
+          </button>
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Right ascension
+      </p>
+      <InputField
+        className="right-ascension-input"
+        loading={false}
+        name="rightAscension"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Declination
+      </p>
+      <InputField
+        className="declination-input"
+        loading={false}
+        name="declination"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Search radius
+      </p>
+      <InputField
+        className="search-cone-radius-input"
+        name="searchConeRadius"
+        onChange={[Function]}
+        value="12.1"
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Radius units
+      </p>
+      <SelectField
+        className="radius-units-select"
+        name="radiusUnits"
+        onChange={[Function]}
+        options={
+          Array [
+            "Arc seconds",
+            "arc minutes",
+            "degrees",
+          ]
+        }
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;

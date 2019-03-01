@@ -16,7 +16,7 @@ git clone https://github.com/saltastroops/data-archive-frontend.git frontend
 
 A directory of name `frontend` with the frontend code will be created.
 
-You may choose another name for the directory. In this case you will have to change the commands in this README accordingly.
+You may choose another name for the directory. In this case you will have to changeCheckbox the commands in this README accordingly.
 
 Then you can install the required Node packages and run the development server. Node and npm must be installed on your machine.
 
