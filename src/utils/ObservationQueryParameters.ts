@@ -308,3 +308,23 @@ export interface ISHOC extends IInstrument {
   filter?: string;
   name: "SHOC";
 }
+
+export interface ISearchResults {
+  results?: {
+    name: string | "Unknown Observation";
+    files: {
+      filename: string;
+      name: string;
+      dataType: string;
+      isRedused: boolean;
+      targetName: string;
+      rightAscension: string;
+      declination: string;
+      observationNight: string;
+      category: string;
+      telescope: string;
+      instrument: string;
+      proposalCode: string;
+    }[];
+  }[];
+}

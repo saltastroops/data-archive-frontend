@@ -21,6 +21,7 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
+import SearchResults from "./searchFormComponents/results/SearchResults";
 
 class SearchForm extends React.Component {
   public state: {
@@ -113,6 +114,98 @@ class SearchForm extends React.Component {
             />
           </ButtonGrid>
         </ParentGrid>
+        <ParentGrid>
+          <SearchResults
+            searchResults={[
+              {
+                name: "obs1",
+                files: [
+                  {
+                    filename: "string",
+                    name: "name-1",
+                    dataType: "string",
+                    isRedused: true,
+                    targetName: "string",
+                    rightAscension: "string",
+                    declination: "string",
+                    observationNight: "string",
+                    category: "string",
+                    telescope: "string",
+                    instrument: "string",
+                    proposalCode: "string"
+                  }
+                ]
+              },
+              {
+                name: "obs2",
+                files: [
+                  {
+                    filename: "string",
+                    name: "name-2",
+                    dataType: "string",
+                    isRedused: true,
+                    targetName: "string",
+                    rightAscension: "string",
+                    declination: "string",
+                    observationNight: "string",
+                    category: "string",
+                    telescope: "string",
+                    instrument: "string",
+                    proposalCode: "string"
+                  },
+                  {
+                    filename: "string",
+                    name: "name-4",
+                    dataType: "string",
+                    isRedused: true,
+                    targetName: "string",
+                    rightAscension: "string",
+                    declination: "string",
+                    observationNight: "string",
+                    category: "string",
+                    telescope: "string",
+                    instrument: "string",
+                    proposalCode: "string"
+                  },
+                  {
+                    filename: "string",
+                    name: "name-5",
+                    dataType: "string",
+                    isRedused: true,
+                    targetName: "string",
+                    rightAscension: "string",
+                    declination: "string",
+                    observationNight: "string",
+                    category: "string",
+                    telescope: "string",
+                    instrument: "string",
+                    proposalCode: "string"
+                  }
+                ]
+              },
+              {
+                name: "obs3",
+                files: [
+                  {
+                    filename: "string",
+                    name: "name-3",
+                    dataType: "string",
+                    isRedused: true,
+                    targetName: "string",
+                    rightAscension: "string",
+                    declination: "string",
+                    observationNight: "string",
+                    category: "string",
+                    telescope: "string",
+                    instrument: "string",
+                    proposalCode: "string"
+                  }
+                ]
+              }
+            ]}
+          />
+        </ParentGrid>
+        <h1>Hello</h1>
       </>
     );
   }

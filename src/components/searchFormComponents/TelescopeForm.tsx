@@ -7,7 +7,7 @@ import OneNineMForm from "./telescopes/OneNineM";
 import SaltForm from "./telescopes/SaltForm";
 
 class TelescopeForm extends React.Component<
-  { telescope: any; onChange: any },
+  { telescope: any; onChange: any }, // TODO: remove telescope any
   any
 > {
   render() {
