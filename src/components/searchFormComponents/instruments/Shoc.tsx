@@ -4,7 +4,7 @@ import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import InputField from "../../basicComponents/InputField";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
-interface IShocProps {
+interface ISHOCProps {
   shoc: ISHOC;
   onChange: (value: any) => void;
 }
@@ -12,7 +12,7 @@ interface IShocProps {
 /**
  * A form for selecting Shoc-related search parameters.
  */
-const Shoc = (props: IShocProps) => {
+const Shoc = (props: ISHOCProps) => {
   const { onChange, shoc } = props;
   const change = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
