@@ -5,11 +5,13 @@ const ParentGrid = styled.div.attrs({
   className: "grid-container",
   disable: true
 })`
-  && {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
   }
 `;
 const TargetGrid = styled.div.attrs({

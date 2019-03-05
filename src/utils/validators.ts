@@ -1,4 +1,5 @@
 import moment from "moment";
+import { IGeneralErrors, ITargetErrors } from "./ObservationQueryParameters";
 
 /**
  * A method used to check if the given value(string) is a floating point number
@@ -250,4 +251,22 @@ export const validateSearchConeRadius = (radius: string) => {
     return;
   }
   return "Search radius should be a floating point number greater and zero.";
+};
+
+export const isError = (general: IGeneralErrors, target: ITargetErrors) => {
+  if (
+    (target.name && target.name !== "") ||
+    (target.declination && target.declination !== "") ||
+    (target.rightAscension && target.rightAscension !== "") ||
+    (target.searchConeRadius && target.searchConeRadius !== "")
+  ) {
+    return true;
+  }
+
+  return (
+    (general.observationNight && general.observationNight !== "") ||
+    (general.principalInvestigator && general.principalInvestigator !== "") ||
+    (general.proposalCode && general.proposalCode !== "") ||
+    (general.proposalTitle && general.proposalTitle !== "")
+  );
 };

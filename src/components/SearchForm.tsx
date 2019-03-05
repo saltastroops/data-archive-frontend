@@ -1,9 +1,13 @@
 import * as React from "react";
 import {
   IGeneral,
+  IGeneralErrors,
+  ISearchResults,
   ITarget,
+  ITargetErrors,
   ITelescope
 } from "../utils/ObservationQueryParameters";
+import { isError } from "../utils/validators";
 import {
   ButtonGrid,
   DataGrid,
@@ -17,24 +21,27 @@ import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm, {
   validatedProposal
 } from "./searchFormComponents/ProposalForm";
+import SearchResults from "./searchFormComponents/results/SearchResults";
 import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
-import SearchResults from "./searchFormComponents/results/SearchResults";
 
 class SearchForm extends React.Component {
   public state: {
     general: IGeneral;
     target: ITarget;
+    results: ISearchResults[];
     telescope: ITelescope;
     loading: boolean;
   } = {
     general: { errors: {} },
     loading: false,
+    results: [],
     target: { errors: {} },
     telescope: {}
   };
+
   public telescopeChange = (value: ITelescope) => {
     const newState = {
       ...this.state,
@@ -44,6 +51,7 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
+
   public targetChange = (value: ITarget) => {
     const newState = {
       ...this.state,
@@ -53,6 +61,7 @@ class SearchForm extends React.Component {
     };
     this.setState(() => newState);
   };
+
   public generalChange = (value: IGeneral) => {
     const newState = {
       ...this.state,
@@ -69,19 +78,130 @@ class SearchForm extends React.Component {
       loading: true
     }));
     const target = await validatedTarget(this.state.target);
-    const general = validatedProposal(this.state.general);
-    const telescope = validatedTelescope(this.state.telescope);
-    this.setState(() => ({
+    const general = await validatedProposal(this.state.general);
+    const telescope = await validatedTelescope(this.state.telescope);
+    await this.setState(() => ({
       ...this.state,
       general,
-      loading: false,
       target,
+
       telescope
+    }));
+    if (
+      !isError(general.errors as IGeneralErrors, target.errors as ITargetErrors)
+    ) {
+      // TODO query the server
+      this.setState(() => ({
+        ...this.state,
+        results: [
+          {
+            files: [
+              {
+                category: "string",
+                dataType: "string",
+                declination: "string",
+                filename: "string",
+                instrument: "string",
+                isReduced: true,
+                name: "name-1",
+                observationNight: "string",
+                proposalCode: "string",
+                rightAscension: "string",
+                targetName: "string",
+                telescope: "string"
+              }
+            ],
+            id: "obs1",
+            name: "obs1",
+            proposal: "proposal 1",
+            startTime: "2018-02-02 17:55:23",
+            telescope: "telescope 1"
+          },
+          {
+            files: [
+              {
+                category: "string",
+                dataType: "string",
+                declination: "string",
+                filename: "string",
+                instrument: "string",
+                isReduced: true,
+                name: "name-2",
+                observationNight: "string",
+                proposalCode: "string",
+                rightAscension: "string",
+                targetName: "string",
+                telescope: "string"
+              },
+              {
+                category: "string",
+                dataType: "string",
+                declination: "string",
+                filename: "string",
+                instrument: "string",
+                isReduced: true,
+                name: "name-4",
+                observationNight: "string",
+                proposalCode: "string",
+                rightAscension: "string",
+                targetName: "string",
+                telescope: "string"
+              },
+              {
+                category: "string",
+                dataType: "string",
+                declination: "string",
+                filename: "string",
+                instrument: "string",
+                isReduced: true,
+                name: "name-5",
+                observationNight: "string",
+                proposalCode: "string",
+                rightAscension: "string",
+                targetName: "string",
+                telescope: "string"
+              }
+            ],
+            id: "obs2",
+            name: "obs2",
+            proposal: "proposal 2",
+            startTime: "2018-02-02 17:55:23",
+            telescope: "telescope 1"
+          },
+          {
+            files: [
+              {
+                category: "string",
+                dataType: "string",
+                declination: "string",
+                filename: "string",
+                instrument: "string",
+                isReduced: true,
+                name: "name-3",
+                observationNight: "string",
+                proposalCode: "string",
+                rightAscension: "string",
+                targetName: "string",
+                telescope: "string"
+              }
+            ],
+            id: "obs3",
+            name: "obs3",
+            proposal: "proposal 3",
+            startTime: "2018-02-02 17:55:23",
+            telescope: "telescope 2"
+          }
+        ]
+      }));
+    }
+    this.setState(() => ({
+      ...this.state,
+      loading: false
     }));
   };
 
   public render() {
-    const { target, general, telescope, loading } = this.state;
+    const { target, general, telescope, loading, results } = this.state;
     return (
       <>
         {loading && (
@@ -115,97 +235,10 @@ class SearchForm extends React.Component {
           </ButtonGrid>
         </ParentGrid>
         <ParentGrid>
-          <SearchResults
-            searchResults={[
-              {
-                name: "obs1",
-                files: [
-                  {
-                    filename: "string",
-                    name: "name-1",
-                    dataType: "string",
-                    isRedused: true,
-                    targetName: "string",
-                    rightAscension: "string",
-                    declination: "string",
-                    observationNight: "string",
-                    category: "string",
-                    telescope: "string",
-                    instrument: "string",
-                    proposalCode: "string"
-                  }
-                ]
-              },
-              {
-                name: "obs2",
-                files: [
-                  {
-                    filename: "string",
-                    name: "name-2",
-                    dataType: "string",
-                    isRedused: true,
-                    targetName: "string",
-                    rightAscension: "string",
-                    declination: "string",
-                    observationNight: "string",
-                    category: "string",
-                    telescope: "string",
-                    instrument: "string",
-                    proposalCode: "string"
-                  },
-                  {
-                    filename: "string",
-                    name: "name-4",
-                    dataType: "string",
-                    isRedused: true,
-                    targetName: "string",
-                    rightAscension: "string",
-                    declination: "string",
-                    observationNight: "string",
-                    category: "string",
-                    telescope: "string",
-                    instrument: "string",
-                    proposalCode: "string"
-                  },
-                  {
-                    filename: "string",
-                    name: "name-5",
-                    dataType: "string",
-                    isRedused: true,
-                    targetName: "string",
-                    rightAscension: "string",
-                    declination: "string",
-                    observationNight: "string",
-                    category: "string",
-                    telescope: "string",
-                    instrument: "string",
-                    proposalCode: "string"
-                  }
-                ]
-              },
-              {
-                name: "obs3",
-                files: [
-                  {
-                    filename: "string",
-                    name: "name-3",
-                    dataType: "string",
-                    isRedused: true,
-                    targetName: "string",
-                    rightAscension: "string",
-                    declination: "string",
-                    observationNight: "string",
-                    category: "string",
-                    telescope: "string",
-                    instrument: "string",
-                    proposalCode: "string"
-                  }
-                ]
-              }
-            ]}
-          />
+          {results && results.length !== 0 && (
+            <SearchResults searchResults={results} />
+          )}
         </ParentGrid>
-        <h1>Hello</h1>
       </>
     );
   }

@@ -37,18 +37,19 @@ export interface IObservationQueryParameters {
  *     Title of the proposal to which the observation belongs.
  *
  */
+export interface IGeneralErrors {
+  observationNight?: string;
+  principalInvestigator?: string;
+  proposalCode?: string;
+  proposalTitle?: string;
+  arcs?: string;
+  biases?: string;
+  flats?: string;
+  standards?: string;
+  dataType?: string;
+}
 export interface IGeneral {
-  errors: {
-    observationNight?: string;
-    principalInvestigator?: string;
-    proposalCode?: string;
-    proposalTitle?: string;
-    arcs?: string;
-    biases?: string;
-    flats?: string;
-    standards?: string;
-    dataType?: string;
-  };
+  errors: IGeneralErrors;
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
@@ -82,17 +83,18 @@ export interface IGeneral {
  *     Units of the search cone radius given by searchConeRadius.
  *
  */
+export interface ITargetErrors {
+  name?: string;
+  declination?: string;
+  resolver?: string;
+  rightAscension?: string;
+  searchConeRadius?: string;
+  searchConeRadiusUnits?: string;
+}
 export interface ITarget {
   declination?: string;
   loading?: string;
-  errors: {
-    name?: string;
-    declination?: string;
-    resolver?: string;
-    rightAscension?: string;
-    searchConeRadius?: string;
-    searchConeRadiusUnits?: string;
-  };
+  errors: ITargetErrors;
   name?: string;
   resolver?: "Simbad" | "NED" | "VizieR";
   rightAscension?: string;
@@ -309,22 +311,24 @@ export interface ISHOC extends IInstrument {
   name: "SHOC";
 }
 
+interface IFiles {
+  filename: string;
+  name: string;
+  dataType: string;
+  isReduced: boolean;
+  targetName: string;
+  rightAscension: string;
+  declination: string;
+  observationNight: string;
+  category: string;
+  telescope: string;
+  instrument: string;
+  proposalCode: string;
+}
+interface IResults {
+  name: string | "Unknown Observation";
+  files: IFiles[];
+}
 export interface ISearchResults {
-  results?: {
-    name: string | "Unknown Observation";
-    files: {
-      filename: string;
-      name: string;
-      dataType: string;
-      isRedused: boolean;
-      targetName: string;
-      rightAscension: string;
-      declination: string;
-      observationNight: string;
-      category: string;
-      telescope: string;
-      instrument: string;
-      proposalCode: string;
-    }[];
-  }[];
+  results?: IResults;
 }

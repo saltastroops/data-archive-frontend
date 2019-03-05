@@ -13,9 +13,7 @@ const TableHead = () => {
       <th>Declination</th>
       <th>Observation night</th>
       <th>Category</th>
-      <th>Telescope</th>
       <th>Instrument</th>
-      <th>Proposal code</th>
     </tr>
   );
 };

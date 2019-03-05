@@ -1,40 +1,54 @@
 import * as React from "react";
-import { ISearchResults } from "../../../utils/ObservationQueryParameters";
 import ObservationResults from "./Observation";
-import TableHead from "./TableHead";
 import SearchRow from "./SearchRow";
+import TableHead from "./TableHead";
 
 class SearchResults extends React.Component<{ searchResults: any }, any> {
   addAll(observation: any) {
     console.log("Adding all......");
+    // TODO: add an observation to the cart
   }
-  addFile(observation: any) {
+  addFile(file: any) {
     console.log("Adding file......");
+    // TODO: add a file to the cart
   }
   public render() {
     const { searchResults } = this.props;
     return (
       <table className={"table"}>
-        {searchResults.map((r: any) => {
-          return (
-            <>
-              {
-                <ObservationResults
-                  observationName={r.name}
-                  addAll={this.addAll}
-                />
-              }
-              <tbody>
+        <tbody>
+          <tr className="notification">
+            <th colSpan={3}>Name</th>
+            <th colSpan={2}>Proposal</th>
+            <th colSpan={2}>Telescope</th>
+            <th colSpan={2}>Start time</th>
+            <td />
+            <td />
+          </tr>
+          {searchResults.map((r: any) => {
+            return (
+              <>
+                {
+                  <ObservationResults
+                    name={r.name}
+                    id={r.id}
+                    startTime={r.startTime}
+                    telescope={r.telescope}
+                    proposal={r.proposal}
+                    addAll={this.addAll}
+                  />
+                }
+
                 <TableHead />
                 {r.files.map((f: any) => {
                   return (
                     <SearchRow key={f.name} files={f} addFile={this.addFile} />
                   );
                 })}
-              </tbody>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
+        </tbody>
       </table>
     );
   }

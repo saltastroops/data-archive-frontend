@@ -32,11 +32,9 @@ const SearchRow = (props: IFiles) => {
     declination,
     observationNight,
     category,
-    telescope,
     instrument,
     proposalCode
   } = props.files;
-  console.log(name);
   return (
     <tr key={name}>
       <td>
@@ -51,9 +49,7 @@ const SearchRow = (props: IFiles) => {
       <td>{declination}</td>
       <td>{observationNight}</td>
       <td>{category}</td>
-      <td>{telescope}</td>
       <td>{instrument}</td>
-      <td>{proposalCode}</td>
     </tr>
   );
 };
