@@ -80,7 +80,7 @@ class LoginForm extends React.Component<ILoginFormState> {
     }
   };
 
-  onHandleSubmit = async (e: any) => {
+  onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
     // Validates the user input fields

@@ -1,4 +1,3 @@
-import { type } from "os";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -33,4 +32,5 @@ const InputField = (props: IInputProps) => {
     </div>
   );
 };
+
 export default InputField;

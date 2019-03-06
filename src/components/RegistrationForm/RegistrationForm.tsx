@@ -107,7 +107,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
     }
   };
 
-  onHandleSubmit = async (e: any, signup: any) => {
+  onHandleSubmit = async (e: React.FormEvent<EventTarget>, signup: any) => {
     e.preventDefault();
 
     // Validates the user input fields
