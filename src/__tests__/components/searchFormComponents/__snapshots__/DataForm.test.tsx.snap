@@ -4,7 +4,6 @@ exports[`Data Form should render correctly 1`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-
       <h5
         className="title is-5"
       >

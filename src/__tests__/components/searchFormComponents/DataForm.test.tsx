@@ -1,7 +1,6 @@
 import { mount, ReactWrapper, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SearchForm from "../../../components/SearchForm";
 import DataForm from "../../../components/searchFormComponents/DataForm";
 import { CalibrationType } from "../../../utils/ObservationQueryParameters";
 
