@@ -2,24 +2,29 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-/*
-
-The navigation bar containing links to all pages, as well as a link for logging
-out and a shopping cart icon.
-
-Properties:
------------
-user : User
-    The currently logged in user. If the user is not logged in, a falsy value
-    must be passed.
-logout : () => void
-    A function for logging out.
-
-*/
+/**
+ * The navigation bar containing links to all pages, as well as a link for logging
+ * out and a shopping cart icon.
+ * Properties:
+ * -----------
+ * user : User
+ * The currently logged in user. If the user is not logged in, a falsy value
+ * must be passed.
+ * logout : () => void
+ * A function for logging out.
+ *
+ */
 
 // TODO: replace user type with correct one
 interface INavigationBarProps {
-  user: { isAdmin: () => boolean } | null | undefined; // currently logged in user
+  user?:
+    | {
+        isAdmin: () => boolean;
+        name: string;
+        username: string;
+      }
+    | null
+    | undefined; // currently logged in user
   logout: () => void; // logout function
 }
 
@@ -27,7 +32,11 @@ interface INavigationBarState {
   isMenuActive: boolean;
 }
 
-const Nav = styled.nav.attrs({ className: "navbar" })``;
+const Nav = styled.nav.attrs({
+  className: "navbar is-light is-full-width",
+  role: "button",
+  ariaLabel: "menu"
+})``;
 
 class NavigationBar extends React.Component<
   INavigationBarProps,
@@ -45,6 +54,7 @@ class NavigationBar extends React.Component<
       <Nav>
         <div className="navbar-brand">
           {/* "Burger" for toggling the menu on a mobile device */}
+
           <a
             className={`navbar-burger burger ${
               isMenuActive ? "is-active" : ""
@@ -61,32 +71,34 @@ class NavigationBar extends React.Component<
         </div>
 
         {/* Menu */}
-        <div className={`navbar-menu ${isMenuActive ? "is-active" : ""}`}>
-          <div className="navbar-start">
+        <div
+          className={`navbar-menu title  ${isMenuActive ? "is-active" : ""}`}
+        >
+          <div className="navbar-start ">
             {/* Link to search page */}
-            <NavLink className="navbar-item" to="/">
+            <NavLink className="navbar-item is-1" to="/">
               Search
             </NavLink>
 
             {/* Link to data requests page */}
             {user && (
-              <NavLink className="navbar-item" to="/data-requests">
+              <NavLink className="navbar-item is-3" to="/data-requests">
                 Data Requests
               </NavLink>
             )}
 
             {/* Link to admin page */}
             {user && user.isAdmin() && (
-              <NavLink className="navbar-item" to="/admin">
+              <NavLink className="navbar-item is-3" to="/admin">
                 Admin
               </NavLink>
             )}
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end subtitle is-4">
             {/* Dropdown menu for account related content */}
             {user && (
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">Hello User</a>
+                <a className="navbar-link">Hello {`${user.name}`}</a>
 
                 <div className="navbar-dropdown">
                   {/* Link to page for editing account details */}
@@ -108,22 +120,39 @@ class NavigationBar extends React.Component<
 
             {!user && (
               <>
-                {/* Button for logging in */}
-                <NavLink className="navbar-item button is-primary" to="/login">
-                  <strong>Login</strong>
-                </NavLink>
-                ( /* Button for registering */ }
-                <NavLink
-                  className="navbar-item button is-outlined"
-                  to="/register"
-                >
-                  Register
-                </NavLink>
+                <div className={"navbar-item"}>
+                  {/* Button for logging in */}
+                  <NavLink
+                    className=" button is-primary  is-outlined"
+                    to="/login"
+                  >
+                    <span>
+                      Login <i className="fas fa-sign-in-alt" />{" "}
+                    </span>
+                  </NavLink>
+                </div>
+                <div className={"navbar-item"}>
+                  {/* Button for registering */}
+                  <NavLink
+                    className=" button is-info is-outlined"
+                    to="/register"
+                  >
+                    <span>
+                      Register <i className="fas fa-user-plus" />
+                    </span>
+                  </NavLink>
+                </div>
               </>
             )}
 
             {/* Cart icon */}
-            <span className="navbar-item">CART</span>
+            <div className={"navbar-item is-hidden-descktop"}>
+              <NavLink className=" button is-link" to="/cart">
+                <span>
+                  <i className="fas fa-shopping-cart" /> CART
+                </span>
+              </NavLink>
+            </div>
           </div>
         </div>
       </Nav>
