@@ -1,4 +1,5 @@
 import * as React from "react";
+import InputField from "../basicComponents/InputField";
 
 /*
 The login input field responsible for user input.
@@ -20,7 +21,9 @@ value
 */
 
 interface ILoginInputProps {
+  error?: string;
   label?: string;
+  loading?: boolean;
   name?: string;
   onChange?: any;
   placeholder?: string;
@@ -29,21 +32,21 @@ interface ILoginInputProps {
 }
 
 const LoginInputField = (props: ILoginInputProps) => {
-  const { label, name, onChange, placeholder, type, value } = props;
+  const { error, label, loading, name, onChange, type, value } = props;
   return (
     <div className={"field"}>
       <label htmlFor={`${name}+${label}`} className={"label"}>
         {label}:
       </label>
       <div className={"control is-child"}>
-        <input
-          id={name}
-          type={type}
-          className={`${name} input`}
+        <InputField
+          data-test="target-name-input"
+          disabled={loading}
           name={name}
-          placeholder={placeholder}
-          value={value}
+          value={value || ""}
+          error={error}
           onChange={onChange}
+          type={type}
         />
       </div>
     </div>

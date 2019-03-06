@@ -22,7 +22,11 @@ errors : []
 */
 
 interface ILoginFormState {
-  errors: string[];
+  errors: {
+    password: string;
+    responseError?: string;
+    username: string;
+  };
   userInput: {
     password: string;
     username: string;
@@ -64,8 +68,12 @@ class LoginForm extends React.Component<ILoginFormState> {
   };
 
   public state = {
-    errors: [],
-    logging: false,
+    errors: {
+      password: "",
+      responseError: "",
+      username: ""
+    },
+    loading: false,
     userInput: {
       password: "",
       username: ""
@@ -81,19 +89,18 @@ class LoginForm extends React.Component<ILoginFormState> {
     // Update the errors propetry of the state
     this.setState({ errors });
 
-    // Check if there is an error, if there is abort signing up.
-    if (errors.length) {
+    // Check if there is an error, if there is abort signing in.
+    if (errors.password || errors.username) {
       return;
     }
 
     try {
       this.setState({
-        logging: true
+        loading: true
       });
 
       const login = await api.auth.login({
-        password: this.state.userInput.password,
-        username: this.state.userInput.username
+        ...this.state.userInput
       });
 
       if (login.data.success) {
@@ -104,8 +111,12 @@ class LoginForm extends React.Component<ILoginFormState> {
         console.log(user);
 
         this.setState({
-          errors: [],
-          logging: false,
+          errors: {
+            password: "",
+            responseError: "",
+            username: ""
+          },
+          loading: false,
           userInput: {
             password: "",
             username: ""
@@ -117,13 +128,16 @@ class LoginForm extends React.Component<ILoginFormState> {
       }
     } catch (error) {
       this.setState({
-        logging: false
+        errors: {
+          ...this.state.errors,
+          responseError: error.message
+        },
+        loading: false
       });
-      alert(error.response.data.message);
     }
   };
 
-  onHandleInputChange = (e: any) => {
+  onHandleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     // Updating the userInput property of the state when input field value updates
@@ -136,17 +150,17 @@ class LoginForm extends React.Component<ILoginFormState> {
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors, loading } = this.state;
     const { password, username } = this.state.userInput;
     return (
       <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
         <Heading>Login Here</Heading>
-
-        {errors.map((err: string) => (
-          <ErrorMessage key={err}>Error: {err}</ErrorMessage>
-        ))}
-
+        {errors.responseError ? (
+          <ErrorMessage>{errors.responseError}</ErrorMessage>
+        ) : null}
         <LoginInputField
+          error={errors.username}
+          loading={loading}
           name={"username"}
           label={"Username"}
           onChange={this.onHandleInputChange}
@@ -155,6 +169,8 @@ class LoginForm extends React.Component<ILoginFormState> {
         />
 
         <LoginInputField
+          error={errors.password}
+          loading={loading}
           name={"password"}
           label={"Password"}
           onChange={this.onHandleInputChange}
@@ -163,10 +179,10 @@ class LoginForm extends React.Component<ILoginFormState> {
         />
 
         <button
-          disabled={this.state.logging}
+          disabled={loading}
           className="signIn button is-success is-fullwidth is-rounded"
         >
-          {this.state.logging ? "Signing in..." : "Sign in"}
+          {loading ? "Signing in..." : "Sign in"}
         </button>
       </LoginFormParent>
     );

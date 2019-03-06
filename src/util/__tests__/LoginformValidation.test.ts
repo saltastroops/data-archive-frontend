@@ -12,15 +12,15 @@ describe("Login form validation", () => {
     const invalidUsername = { ...userInput, username: "" };
 
     // Expect meaningful error message
-    expect(validateLoginField(invalidUsername)[0]).toContain("Username");
-    expect(validateLoginField(invalidUsername)[0]).toContain("empty");
+    expect(validateLoginField(invalidUsername).username).toContain("Username");
+    expect(validateLoginField(invalidUsername).username).toContain("empty");
 
     // Submitting an invalid username
     invalidUsername.username = "InvalidUsername";
 
     // Expect meaningful error message
-    expect(validateLoginField(invalidUsername)[0]).toContain("Username");
-    expect(validateLoginField(invalidUsername)[0]).toContain("lowercase");
+    expect(validateLoginField(invalidUsername).username).toContain("Username");
+    expect(validateLoginField(invalidUsername).username).toContain("lowercase");
   });
 
   it("should return an array with error message for invalid password", () => {
@@ -28,7 +28,9 @@ describe("Login form validation", () => {
     const invalidPassword = { ...userInput, password: "short" };
 
     // Expect meaningful error message
-    expect(validateLoginField(invalidPassword)[0]).toContain("Password");
-    expect(validateLoginField(invalidPassword)[0]).toContain("7 characters");
+    expect(validateLoginField(invalidPassword).password).toContain("Password");
+    expect(validateLoginField(invalidPassword).password).toContain(
+      "7 characters"
+    );
   });
 });

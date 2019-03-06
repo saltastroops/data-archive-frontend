@@ -14,12 +14,10 @@ exports[`LoginInputField Component renders the LoginInputField having populated 
   <div
     className="control is-child"
   >
-    <input
-      className="username input"
-      id="username"
+    <InputField
+      data-test="target-name-input"
       name="username"
       onChange={[Function]}
-      placeholder=""
       value=""
     />
   </div>
@@ -39,8 +37,9 @@ exports[`LoginInputField Component renders the LoginInputField having unpopulate
   <div
     className="control is-child"
   >
-    <input
-      className="undefined input"
+    <InputField
+      data-test="target-name-input"
+      value=""
     />
   </div>
 </div>

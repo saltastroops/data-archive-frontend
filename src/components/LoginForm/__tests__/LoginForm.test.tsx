@@ -15,7 +15,10 @@ function inputTyping(wrapper: any, name: string, value: string) {
 
 // Initial userInput state
 const initialState = {
-  errors: [],
+  errors: {
+    password: "",
+    username: ""
+  },
   userInput: {
     password: "",
     username: ""
@@ -24,7 +27,10 @@ const initialState = {
 
 // Updated userInput state
 const updatedState = {
-  errors: [],
+  errors: {
+    password: "",
+    username: ""
+  },
   userInput: {
     password: "securepassword",
     username: "sj"
@@ -94,7 +100,7 @@ describe("LoginForm Component", () => {
     expect(signInButton.text()).toContain("Signing in");
 
     // Expect no error message.
-    expect(wrapper.find(".error").length).toBe(0);
+    expect(wrapper.find("p").length).toBe(0);
   });
 
   it("displays error message if submitted invalid username", () => {
@@ -129,11 +135,11 @@ describe("LoginForm Component", () => {
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(wrapper.find(".error").text()).toContain("Username");
-    expect(wrapper.find(".error").text()).toContain("lowercase");
+    expect(wrapper.find("p").text()).toContain("Username");
+    expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
   it("displays error message if submitted invalid password", () => {
@@ -168,18 +174,18 @@ describe("LoginForm Component", () => {
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("Password");
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("7 characters");

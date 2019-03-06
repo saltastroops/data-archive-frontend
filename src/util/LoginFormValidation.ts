@@ -35,21 +35,24 @@ export interface ILoginForm {
 
 export const validateLoginField = (loginInput: ILoginForm) => {
   // An object to Store errors for all fields.
-  const errors: string[] = [];
+  const errors = {
+    password: "",
+    username: ""
+  };
 
   // Check if the submitted username is not empty.
   if (!loginInput.username) {
-    errors.push(`Username cannot be empty.`);
+    errors.username = `Username cannot be empty.`;
   }
 
   // Check if the submitted username contains upper case characters.
   if (loginInput.username !== loginInput.username.toLowerCase()) {
-    errors.push("Username must be in lowercase");
+    errors.username = "Username must be in lowercase";
   }
 
   // Check if the password is secure enough.
   if (loginInput.password.length <= 6) {
-    errors.push("Password should be at least 7 characters long");
+    errors.password = "Password should be at least 7 characters long";
   }
 
   // return an array consisting of error message if any or empty.
