@@ -31,7 +31,15 @@ errors : []
 */
 
 interface IRegistrationFormState {
-  errors: string[];
+  errors: {
+    affiliation: string;
+    confirmPassword: string;
+    email: string;
+    familyName: string;
+    givenName: string;
+    password: string;
+    username: string;
+  };
   userInput: {
     affiliation: string;
     confirmPassword: string;
@@ -79,7 +87,15 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
   };
 
   public state = {
-    errors: [],
+    errors: {
+      affiliation: "",
+      confirmPassword: "",
+      email: "",
+      familyName: "",
+      givenName: "",
+      password: "",
+      username: ""
+    },
     userInput: {
       affiliation: "",
       confirmPassword: "",
@@ -101,7 +117,15 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
     this.setState({ errors });
 
     // Check if there is an error, if there is abort signing up.
-    if (errors.length) {
+    if (
+      errors.affiliation ||
+      errors.confirmPassword ||
+      errors.email ||
+      errors.familyName ||
+      errors.givenName ||
+      errors.password ||
+      errors.username
+    ) {
       return;
     }
 
@@ -128,7 +152,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
     }
   };
 
-  onHandleInputChange = (e: any) => {
+  onHandleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     // Updating the userInput property of the state when input field value updates
@@ -142,6 +166,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
 
   render() {
     const { errors } = this.state;
+    console.log(errors);
     const {
       affiliation,
       confirmPassword,
@@ -162,58 +187,68 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
               <Heading>Create your account</Heading>
               {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
 
-              {errors.map(err => (
-                <ErrorMessage key={err}>Error: {err}</ErrorMessage>
-              ))}
-
               <RegistrationInputField
+                error={errors.givenName}
+                loading={loading}
                 name={"givenName"}
                 label={"Given name (first name)"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"text"}
                 value={givenName}
               />
               <RegistrationInputField
+                error={errors.familyName}
+                loading={loading}
                 name={"familyName"}
                 label={"Family name (surname)"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"text"}
                 value={familyName}
               />
               <RegistrationInputField
+                error={errors.email}
+                loading={loading}
                 name={"email"}
                 label={"Email address"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"text"}
                 value={email}
               />
               <RegistrationInputField
+                error={errors.username}
+                loading={loading}
                 name={"username"}
                 label={"Username"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"text"}
                 value={username}
               />
               <RegistrationInputField
+                error={errors.affiliation}
+                loading={loading}
                 name={"affiliation"}
                 label={"Affiliation"}
                 placeholder={"E.g. University of Cape Town"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"text"}
                 value={affiliation}
               />
               <RegistrationInputField
+                error={errors.password}
+                loading={loading}
                 name={"password"}
                 label={"Password"}
                 placeholder={"At least 7 characters"}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"password"}
                 value={password}
               />
               <RegistrationInputField
+                error={errors.confirmPassword}
+                loading={loading}
                 name={"confirmPassword"}
                 label={"Re-enter password "}
-                onChange={this.onHandleInputChange}
+                onChange={this.onHandleInputChange.bind(this)}
                 type={"password"}
                 value={confirmPassword}
               />

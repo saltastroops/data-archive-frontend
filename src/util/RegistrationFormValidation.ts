@@ -62,41 +62,49 @@ export const validateRegistrationField = (
   registrationInput: IRegistrationForm
 ) => {
   // An object to Store errors for all fields.
-  const errors: string[] = [];
+  const errors: IRegistrationForm = {
+    affiliation: "",
+    confirmPassword: "",
+    email: "",
+    givenName: "",
+    familyName: "",
+    password: "",
+    username: ""
+  };
 
   // Check if the submitted given name is not empty.
   if (!registrationInput.givenName) {
-    errors.push("Given name can't be empty");
+    errors.givenName = "Given name can't be empty";
   }
 
   // Check if the submitted family name is not empty.
   if (!registrationInput.familyName) {
-    errors.push("Family name can't be empty");
+    errors.familyName = "Family name can't be empty";
   }
 
   // Check if the submitted username is not empty.
   if (!registrationInput.username) {
-    errors.push(`Username cannot be empty.`);
+    errors.username = `Username cannot be empty.`;
   }
 
   // Check if the submitted username contains upper case characters.
   if (registrationInput.username !== registrationInput.username.toLowerCase()) {
-    errors.push("Username must be in lowercase");
+    errors.username = "Username must be in lowercase";
   }
 
   // Check if the submitted email address is valid.
   if (!validate(registrationInput.email, { minDomainAtoms: 2 })) {
-    errors.push("Email address is invalid");
+    errors.email = "Email address is invalid";
   }
 
   // Check if the password is secure enough.
   if (registrationInput.password.length <= 6) {
-    errors.push("Password should be at least 7 characters long");
+    errors.password = "Password should be at least 7 characters long";
   }
 
   // Check if passwords match
   if (registrationInput.password !== registrationInput.confirmPassword) {
-    errors.push("Passwords do not match");
+    errors.confirmPassword = "Passwords do not match";
   }
 
   // return an array consisting of error message if any or empty.
