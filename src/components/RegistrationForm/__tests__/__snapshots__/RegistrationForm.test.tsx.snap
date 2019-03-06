@@ -96,7 +96,17 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
     }
   >
     <RegistrationForm
-      errors={Array []}
+      errors={
+        Object {
+          "affiliation": "",
+          "confirmPassword": "",
+          "email": "",
+          "familyName": "",
+          "givenName": "",
+          "password": "",
+          "username": "",
+        }
+      }
       userInput={
         Object {
           "affiliation": "",
@@ -405,9 +415,9 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   },
                 ],
                 "componentStyle": ComponentStyle {
-                  "componentId": "sc-bdVaJa",
+                  "componentId": "sc-bwzfXH",
                   "isStatic": true,
-                  "lastClassName": "LoyGl",
+                  "lastClassName": "fDYKEV",
                   "rules": Array [
                     "
   && {
@@ -419,7 +429,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                 "displayName": "styled.form",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "sc-bdVaJa",
+                "styledComponentId": "sc-bwzfXH",
                 "target": "form",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -430,7 +440,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             onSubmit={[Function]}
           >
             <form
-              className="sc-bdVaJa column is-4 is-offset-4 LoyGl"
+              className="sc-bwzfXH column is-4 is-offset-4 fDYKEV"
               onSubmit={[Function]}
             >
               <styled.h1>
@@ -444,9 +454,9 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                         },
                       ],
                       "componentStyle": ComponentStyle {
-                        "componentId": "sc-bwzfXH",
+                        "componentId": "sc-htpNat",
                         "isStatic": true,
-                        "lastClassName": "RJwfL",
+                        "lastClassName": "hjCtQn",
                         "rules": Array [
                           "
   && {
@@ -459,7 +469,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                       "displayName": "styled.h1",
                       "foldedComponentIds": Array [],
                       "render": [Function],
-                      "styledComponentId": "sc-bwzfXH",
+                      "styledComponentId": "sc-htpNat",
                       "target": "h1",
                       "toString": [Function],
                       "warnTooManyClasses": [Function],
@@ -469,14 +479,16 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   forwardedRef={null}
                 >
                   <h1
-                    className="sc-bwzfXH title is-3 RJwfL"
+                    className="sc-htpNat title is-3 hjCtQn"
                   >
                     Create your account
                   </h1>
                 </StyledComponent>
               </styled.h1>
               <RegistrationInputField
+                error=""
                 label="Given name (first name)"
+                loading={false}
                 name="givenName"
                 onChange={[Function]}
                 type="text"
@@ -495,19 +507,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="givenName input"
-                      id="givenName"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="givenName"
                       onChange={[Function]}
                       type="text"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="givenName"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Family name (surname)"
+                loading={false}
                 name="familyName"
                 onChange={[Function]}
                 type="text"
@@ -526,19 +555,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="familyName input"
-                      id="familyName"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="familyName"
                       onChange={[Function]}
                       type="text"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="familyName"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Email address"
+                loading={false}
                 name="email"
                 onChange={[Function]}
                 type="text"
@@ -557,19 +603,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="email input"
-                      id="email"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="email"
                       onChange={[Function]}
                       type="text"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="email"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Username"
+                loading={false}
                 name="username"
                 onChange={[Function]}
                 type="text"
@@ -588,19 +651,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="username input"
-                      id="username"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="username"
                       onChange={[Function]}
                       type="text"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="username"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Affiliation"
+                loading={false}
                 name="affiliation"
                 onChange={[Function]}
                 placeholder="E.g. University of Cape Town"
@@ -620,20 +700,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="affiliation input"
-                      id="affiliation"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="affiliation"
                       onChange={[Function]}
-                      placeholder="E.g. University of Cape Town"
                       type="text"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="affiliation"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Password"
+                loading={false}
                 name="password"
                 onChange={[Function]}
                 placeholder="At least 7 characters"
@@ -653,20 +749,36 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="password input"
-                      id="password"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="password"
                       onChange={[Function]}
-                      placeholder="At least 7 characters"
                       type="password"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="password"
+                          onChange={[Function]}
+                          type="password"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>
               <RegistrationInputField
+                error=""
                 label="Re-enter password "
+                loading={false}
                 name="confirmPassword"
                 onChange={[Function]}
                 type="password"
@@ -685,14 +797,29 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   <div
                     className="control is-child"
                   >
-                    <input
-                      className="confirmPassword input"
-                      id="confirmPassword"
+                    <InputField
+                      data-test="target-name-input"
+                      disabled={false}
+                      error=""
                       name="confirmPassword"
                       onChange={[Function]}
                       type="password"
                       value=""
-                    />
+                    >
+                      <div
+                        className="control"
+                      >
+                        <input
+                          className="input undefined "
+                          data-test="target-name-input"
+                          disabled={false}
+                          name="confirmPassword"
+                          onChange={[Function]}
+                          type="password"
+                          value=""
+                        />
+                      </div>
+                    </InputField>
                   </div>
                 </div>
               </RegistrationInputField>

@@ -14,7 +14,15 @@ function inputTyping(wrapper: any, name: string, value: string) {
 
 // Initial userInput state
 const initialState = {
-  errors: [],
+  errors: {
+    affiliation: "",
+    confirmPassword: "",
+    email: "",
+    familyName: "",
+    givenName: "",
+    password: "",
+    username: ""
+  },
   userInput: {
     affiliation: "",
     confirmPassword: "",
@@ -28,7 +36,15 @@ const initialState = {
 
 // Updated userInput state
 const updatedState = {
-  errors: [],
+  errors: {
+    affiliation: "",
+    confirmPassword: "",
+    email: "",
+    familyName: "",
+    givenName: "",
+    password: "",
+    username: ""
+  },
   userInput: {
     affiliation: "University of Cape Town",
     confirmPassword: "securepassword",
@@ -144,7 +160,7 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find(".signUp").text()).toContain("Signing up");
 
     // Expect no error message.
-    expect(wrapper.find(".error").length).toBe(0);
+    expect(wrapper.find("p").length).toBe(0);
   });
 
   it("displays error message if submitted ivalid given name", () => {
@@ -177,11 +193,11 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(wrapper.find(".error").text()).toContain("Given name");
-    expect(wrapper.find(".error").text()).toContain("empty");
+    expect(wrapper.find("p").text()).toContain("Given name");
+    expect(wrapper.find("p").text()).toContain("empty");
   });
 
   it("displays error message if submitted invalid family name", () => {
@@ -214,11 +230,11 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(wrapper.find(".error").text()).toContain("Family name");
-    expect(wrapper.find(".error").text()).toContain("empty");
+    expect(wrapper.find("p").text()).toContain("Family name");
+    expect(wrapper.find("p").text()).toContain("empty");
   });
 
   it("displays error message if submitted invalid family name", () => {
@@ -251,11 +267,11 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(wrapper.find(".error").text()).toContain("Email address");
-    expect(wrapper.find(".error").text()).toContain("invalid");
+    expect(wrapper.find("p").text()).toContain("Email address");
+    expect(wrapper.find("p").text()).toContain("invalid");
   });
 
   it("displays error message if submitted invalid username", () => {
@@ -288,11 +304,11 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(wrapper.find(".error").text()).toContain("Username");
-    expect(wrapper.find(".error").text()).toContain("lowercase");
+    expect(wrapper.find("p").text()).toContain("Username");
+    expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
   it("displays error message if submitted invalid password", () => {
@@ -325,18 +341,18 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(2);
+    expect(wrapper.find("p").length).toBe(2);
 
     // Expect meaningful error message
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("Password");
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("7 characters");
@@ -374,18 +390,18 @@ describe("RegistrationForm Component", () => {
     wrapper.find(".signUp").simulate("submit");
 
     // Expect an error message.
-    expect(wrapper.find(".error").length).toBe(1);
+    expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("Password");
     expect(
       wrapper
-        .find(".error")
+        .find("p")
         .first()
         .text()
     ).toContain("do not");

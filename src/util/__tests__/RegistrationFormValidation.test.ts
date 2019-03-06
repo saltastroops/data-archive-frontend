@@ -13,8 +13,17 @@ describe("Registration form validation", () => {
   };
 
   it("should return an empty array, when valid information is submitted", () => {
+    const errors = {
+      affiliation: "",
+      confirmPassword: "",
+      email: "",
+      familyName: "",
+      givenName: "",
+      password: "",
+      username: ""
+    };
     // Expect no error messages
-    expect(validateRegistrationField(userInput)).toEqual([]);
+    expect(validateRegistrationField(userInput)).toEqual(errors);
   });
 
   it("should return an array with error message for invalid family name", () => {
@@ -22,10 +31,12 @@ describe("Registration form validation", () => {
     const invalidFamilyName = { ...userInput, familyName: "" };
 
     // Expect meaningful error message
-    expect(validateRegistrationField(invalidFamilyName)[0]).toContain(
+    expect(validateRegistrationField(invalidFamilyName).familyName).toContain(
       "Family name"
     );
-    expect(validateRegistrationField(invalidFamilyName)[0]).toContain("empty");
+    expect(validateRegistrationField(invalidFamilyName).familyName).toContain(
+      "empty"
+    );
   });
 
   it("should return an array with error message for invalid given name", () => {
@@ -33,10 +44,12 @@ describe("Registration form validation", () => {
     const invalidGivenName = { ...userInput, givenName: "" };
 
     // Expect meaningful error message
-    expect(validateRegistrationField(invalidGivenName)[0]).toContain(
+    expect(validateRegistrationField(invalidGivenName).givenName).toContain(
       "Given name"
     );
-    expect(validateRegistrationField(invalidGivenName)[0]).toContain("empty");
+    expect(validateRegistrationField(invalidGivenName).givenName).toContain(
+      "empty"
+    );
   });
 
   it("should return an array with error message for invalid username", () => {
@@ -44,15 +57,21 @@ describe("Registration form validation", () => {
     const invalidUsername = { ...userInput, username: "" };
 
     // Expect meaningful error message
-    expect(validateRegistrationField(invalidUsername)[0]).toContain("Username");
-    expect(validateRegistrationField(invalidUsername)[0]).toContain("empty");
+    expect(validateRegistrationField(invalidUsername).username).toContain(
+      "Username"
+    );
+    expect(validateRegistrationField(invalidUsername).username).toContain(
+      "empty"
+    );
 
     // Submitting an invalid username
     invalidUsername.username = "InvalidUsername";
 
     // Expect meaningful error message
-    expect(validateRegistrationField(invalidUsername)[0]).toContain("Username");
-    expect(validateRegistrationField(invalidUsername)[0]).toContain(
+    expect(validateRegistrationField(invalidUsername).username).toContain(
+      "Username"
+    );
+    expect(validateRegistrationField(invalidUsername).username).toContain(
       "lowercase"
     );
   });
@@ -62,10 +81,10 @@ describe("Registration form validation", () => {
     const invalidEmailAddress = { ...userInput, email: "" };
 
     // Expect meaningful error message.
-    expect(validateRegistrationField(invalidEmailAddress)[0]).toContain(
+    expect(validateRegistrationField(invalidEmailAddress).email).toContain(
       "Email address"
     );
-    expect(validateRegistrationField(invalidEmailAddress)[0]).toContain(
+    expect(validateRegistrationField(invalidEmailAddress).email).toContain(
       "invalid"
     );
 
@@ -73,10 +92,10 @@ describe("Registration form validation", () => {
     invalidEmailAddress.email = "invalid$email#address";
 
     // Expect meaningful error message.
-    expect(validateRegistrationField(invalidEmailAddress)[0]).toContain(
+    expect(validateRegistrationField(invalidEmailAddress).email).toContain(
       "Email address"
     );
-    expect(validateRegistrationField(invalidEmailAddress)[0]).toContain(
+    expect(validateRegistrationField(invalidEmailAddress).email).toContain(
       "invalid"
     );
   });
@@ -86,8 +105,10 @@ describe("Registration form validation", () => {
     const invalidPassword = { ...userInput, password: "short" };
 
     // Expect meaningful error message
-    expect(validateRegistrationField(invalidPassword)[0]).toContain("Password");
-    expect(validateRegistrationField(invalidPassword)[0]).toContain(
+    expect(validateRegistrationField(invalidPassword).password).toContain(
+      "Password"
+    );
+    expect(validateRegistrationField(invalidPassword).password).toContain(
       "7 characters"
     );
   });
@@ -101,9 +122,11 @@ describe("Registration form validation", () => {
     };
 
     // Expect meaningful error message
-    expect(validateRegistrationField(unMatchedPassword)[0]).toContain(
-      "Passwords"
-    );
-    expect(validateRegistrationField(unMatchedPassword)[0]).toContain("do not");
+    expect(
+      validateRegistrationField(unMatchedPassword).confirmPassword
+    ).toContain("Passwords");
+    expect(
+      validateRegistrationField(unMatchedPassword).confirmPassword
+    ).toContain("do not");
   });
 });
