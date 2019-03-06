@@ -166,7 +166,6 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
 
   render() {
     const { errors } = this.state;
-    console.log(errors);
     const {
       affiliation,
       confirmPassword,
@@ -192,7 +191,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 loading={loading}
                 name={"givenName"}
                 label={"Given name (first name)"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"text"}
                 value={givenName}
               />
@@ -201,7 +200,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 loading={loading}
                 name={"familyName"}
                 label={"Family name (surname)"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"text"}
                 value={familyName}
               />
@@ -210,7 +209,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 loading={loading}
                 name={"email"}
                 label={"Email address"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"text"}
                 value={email}
               />
@@ -219,7 +218,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 loading={loading}
                 name={"username"}
                 label={"Username"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"text"}
                 value={username}
               />
@@ -229,7 +228,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 name={"affiliation"}
                 label={"Affiliation"}
                 placeholder={"E.g. University of Cape Town"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"text"}
                 value={affiliation}
               />
@@ -239,7 +238,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 name={"password"}
                 label={"Password"}
                 placeholder={"At least 7 characters"}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"password"}
                 value={password}
               />
@@ -248,7 +247,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
                 loading={loading}
                 name={"confirmPassword"}
                 label={"Re-enter password "}
-                onChange={this.onHandleInputChange.bind(this)}
+                onChange={this.onHandleInputChange}
                 type={"password"}
                 value={confirmPassword}
               />

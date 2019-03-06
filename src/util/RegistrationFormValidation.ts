@@ -66,8 +66,8 @@ export const validateRegistrationField = (
     affiliation: "",
     confirmPassword: "",
     email: "",
-    givenName: "",
     familyName: "",
+    givenName: "",
     password: "",
     username: ""
   };
