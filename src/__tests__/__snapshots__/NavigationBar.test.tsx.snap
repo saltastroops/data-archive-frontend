@@ -2,7 +2,8 @@
 
 exports[`NavigationBar shows the correct content when the user is a non-administrator 1`] = `
 <nav
-  className="navbar "
+  className="sc-bdVaJa navbar is-light is-full-width bDWFJH"
+  role="button"
 >
   <div
     className="navbar-brand"
@@ -26,15 +27,15 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
     </a>
   </div>
   <div
-    className="navbar-menu "
+    className="navbar-menu title  "
   >
     <div
-      className="navbar-start"
+      className="navbar-start "
     >
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-1"
         to="/"
       >
         <Route
@@ -42,14 +43,14 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         >
           <Link
             aria-current="page"
-            className="navbar-item active"
+            className="navbar-item is-1 active"
             replace={false}
             style={Object {}}
             to="/"
           >
             <a
               aria-current="page"
-              className="navbar-item active"
+              className="navbar-item is-1 active"
               href="/"
               onClick={[Function]}
               style={Object {}}
@@ -62,7 +63,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-3"
         to="/data-requests"
       >
         <Route
@@ -70,13 +71,13 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         >
           <Link
             aria-current={null}
-            className="navbar-item"
+            className="navbar-item is-3"
             replace={false}
             to="/data-requests"
           >
             <a
               aria-current={null}
-              className="navbar-item"
+              className="navbar-item is-3"
               href="/data-requests"
               onClick={[Function]}
             >
@@ -87,7 +88,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
       </NavLink>
     </div>
     <div
-      className="navbar-end"
+      className="navbar-end subtitle is-4"
     >
       <div
         className="navbar-item has-dropdown is-hoverable"
@@ -95,7 +96,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         <a
           className="navbar-link"
         >
-          Hello User
+          Hello 
+          name
         </a>
         <div
           className="navbar-dropdown"
@@ -135,11 +137,41 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
           </a>
         </div>
       </div>
-      <span
-        className="navbar-item"
+      <div
+        className="navbar-item is-hidden-descktop"
       >
-        CART
-      </span>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className=" button is-link"
+          to="/cart"
+        >
+          <Route
+            path="\\\\/cart"
+          >
+            <Link
+              aria-current={null}
+              className=" button is-link"
+              replace={false}
+              to="/cart"
+            >
+              <a
+                aria-current={null}
+                className=" button is-link"
+                href="/cart"
+                onClick={[Function]}
+              >
+                <span>
+                  <i
+                    className="fas fa-shopping-cart"
+                  />
+                   CART
+                </span>
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </div>
     </div>
   </div>
 </nav>
@@ -147,7 +179,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
 
 exports[`NavigationBar shows the correct content when the user is an administrator 1`] = `
 <nav
-  className="navbar "
+  className="sc-bdVaJa navbar is-light is-full-width bDWFJH"
+  role="button"
 >
   <div
     className="navbar-brand"
@@ -171,15 +204,15 @@ exports[`NavigationBar shows the correct content when the user is an administrat
     </a>
   </div>
   <div
-    className="navbar-menu "
+    className="navbar-menu title  "
   >
     <div
-      className="navbar-start"
+      className="navbar-start "
     >
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-1"
         to="/"
       >
         <Route
@@ -187,14 +220,14 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         >
           <Link
             aria-current="page"
-            className="navbar-item active"
+            className="navbar-item is-1 active"
             replace={false}
             style={Object {}}
             to="/"
           >
             <a
               aria-current="page"
-              className="navbar-item active"
+              className="navbar-item is-1 active"
               href="/"
               onClick={[Function]}
               style={Object {}}
@@ -207,7 +240,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-3"
         to="/data-requests"
       >
         <Route
@@ -215,13 +248,13 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         >
           <Link
             aria-current={null}
-            className="navbar-item"
+            className="navbar-item is-3"
             replace={false}
             to="/data-requests"
           >
             <a
               aria-current={null}
-              className="navbar-item"
+              className="navbar-item is-3"
               href="/data-requests"
               onClick={[Function]}
             >
@@ -233,7 +266,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-3"
         to="/admin"
       >
         <Route
@@ -241,13 +274,13 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         >
           <Link
             aria-current={null}
-            className="navbar-item"
+            className="navbar-item is-3"
             replace={false}
             to="/admin"
           >
             <a
               aria-current={null}
-              className="navbar-item"
+              className="navbar-item is-3"
               href="/admin"
               onClick={[Function]}
             >
@@ -258,7 +291,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       </NavLink>
     </div>
     <div
-      className="navbar-end"
+      className="navbar-end subtitle is-4"
     >
       <div
         className="navbar-item has-dropdown is-hoverable"
@@ -266,7 +299,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         <a
           className="navbar-link"
         >
-          Hello User
+          Hello 
+          name
         </a>
         <div
           className="navbar-dropdown"
@@ -306,11 +340,41 @@ exports[`NavigationBar shows the correct content when the user is an administrat
           </a>
         </div>
       </div>
-      <span
-        className="navbar-item"
+      <div
+        className="navbar-item is-hidden-descktop"
       >
-        CART
-      </span>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className=" button is-link"
+          to="/cart"
+        >
+          <Route
+            path="\\\\/cart"
+          >
+            <Link
+              aria-current={null}
+              className=" button is-link"
+              replace={false}
+              to="/cart"
+            >
+              <a
+                aria-current={null}
+                className=" button is-link"
+                href="/cart"
+                onClick={[Function]}
+              >
+                <span>
+                  <i
+                    className="fas fa-shopping-cart"
+                  />
+                   CART
+                </span>
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </div>
     </div>
   </div>
 </nav>
@@ -318,7 +382,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
 
 exports[`NavigationBar shows the correct content when the user is not logged in 1`] = `
 <nav
-  className="navbar "
+  className="sc-bdVaJa navbar is-light is-full-width bDWFJH"
+  role="button"
 >
   <div
     className="navbar-brand"
@@ -342,15 +407,15 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
     </a>
   </div>
   <div
-    className="navbar-menu "
+    className="navbar-menu title  "
   >
     <div
-      className="navbar-start"
+      className="navbar-start "
     >
       <NavLink
         activeClassName="active"
         aria-current="page"
-        className="navbar-item"
+        className="navbar-item is-1"
         to="/"
       >
         <Route
@@ -358,14 +423,14 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         >
           <Link
             aria-current="page"
-            className="navbar-item active"
+            className="navbar-item is-1 active"
             replace={false}
             style={Object {}}
             to="/"
           >
             <a
               aria-current="page"
-              className="navbar-item active"
+              className="navbar-item is-1 active"
               href="/"
               onClick={[Function]}
               style={Object {}}
@@ -377,68 +442,114 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
       </NavLink>
     </div>
     <div
-      className="navbar-end"
+      className="navbar-end subtitle is-4"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="navbar-item button is-primary"
-        to="/login"
-      >
-        <Route
-          path="\\\\/login"
-        >
-          <Link
-            aria-current={null}
-            className="navbar-item button is-primary"
-            replace={false}
-            to="/login"
-          >
-            <a
-              aria-current={null}
-              className="navbar-item button is-primary"
-              href="/login"
-              onClick={[Function]}
-            >
-              <strong>
-                Login
-              </strong>
-            </a>
-          </Link>
-        </Route>
-      </NavLink>
-      ( /* Button for registering */ }
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="navbar-item button is-outlined"
-        to="/register"
-      >
-        <Route
-          path="\\\\/register"
-        >
-          <Link
-            aria-current={null}
-            className="navbar-item button is-outlined"
-            replace={false}
-            to="/register"
-          >
-            <a
-              aria-current={null}
-              className="navbar-item button is-outlined"
-              href="/register"
-              onClick={[Function]}
-            >
-              Register
-            </a>
-          </Link>
-        </Route>
-      </NavLink>
-      <span
+      <div
         className="navbar-item"
       >
-        CART
-      </span>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className=" button is-primary  is-outlined"
+          to="/login"
+        >
+          <Route
+            path="\\\\/login"
+          >
+            <Link
+              aria-current={null}
+              className=" button is-primary  is-outlined"
+              replace={false}
+              to="/login"
+            >
+              <a
+                aria-current={null}
+                className=" button is-primary  is-outlined"
+                href="/login"
+                onClick={[Function]}
+              >
+                <span>
+                  Login 
+                  <i
+                    className="fas fa-sign-in-alt"
+                  />
+                   
+                </span>
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </div>
+      <div
+        className="navbar-item"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className=" button is-info is-outlined"
+          to="/register"
+        >
+          <Route
+            path="\\\\/register"
+          >
+            <Link
+              aria-current={null}
+              className=" button is-info is-outlined"
+              replace={false}
+              to="/register"
+            >
+              <a
+                aria-current={null}
+                className=" button is-info is-outlined"
+                href="/register"
+                onClick={[Function]}
+              >
+                <span>
+                  Register 
+                  <i
+                    className="fas fa-user-plus"
+                  />
+                </span>
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </div>
+      <div
+        className="navbar-item is-hidden-descktop"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className=" button is-link"
+          to="/cart"
+        >
+          <Route
+            path="\\\\/cart"
+          >
+            <Link
+              aria-current={null}
+              className=" button is-link"
+              replace={false}
+              to="/cart"
+            >
+              <a
+                aria-current={null}
+                className=" button is-link"
+                href="/cart"
+                onClick={[Function]}
+              >
+                <span>
+                  <i
+                    className="fas fa-shopping-cart"
+                  />
+                   CART
+                </span>
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </div>
     </div>
   </div>
 </nav>

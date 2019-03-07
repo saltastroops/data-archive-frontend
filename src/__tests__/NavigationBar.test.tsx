@@ -1,12 +1,13 @@
 import { mount } from "enzyme";
 import toJSON from "enzyme-to-json";
-import "jest-styled-components";
 import * as React from "react";
 import { MemoryRouter } from "react-router";
 import NavigationBar from "../components/NavigationBar";
 
-const mockUser = (isAdmin: boolean) => ({
-  isAdmin: () => isAdmin
+const mockUser = (isAdmin: boolean, name: string, username: string) => ({
+  isAdmin: () => isAdmin,
+  name,
+  username
 });
 
 describe("NavigationBar", () => {
@@ -40,7 +41,7 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is a non-administrator", () => {
-    const user = mockUser(false);
+    const user = mockUser(false, "name", "username");
     const logout = jest.fn();
     const wrapper = mount(
       <MemoryRouter>
@@ -72,7 +73,7 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is an administrator", () => {
-    const user = mockUser(true);
+    const user = mockUser(true, "name", "username");
     const logout = jest.fn();
     const wrapper = mount(
       <MemoryRouter>
@@ -104,7 +105,7 @@ describe("NavigationBar", () => {
   });
 
   it("calls the logout function when the logout link is clicked", () => {
-    const user = mockUser(false);
+    const user = mockUser(false, "name", "username");
     const logout = jest.fn();
     const wrapper = mount(
       <MemoryRouter>
@@ -119,7 +120,7 @@ describe("NavigationBar", () => {
   });
 
   it("toggles the visibility of the menu when the burger button is clicked", async () => {
-    const user = mockUser(false);
+    const user = mockUser(false, "name", "username");
     const logout = jest.fn();
     const wrapper = mount(
       <MemoryRouter>

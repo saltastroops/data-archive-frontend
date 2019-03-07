@@ -5,6 +5,10 @@ interface IMessage {
   type?: "info" | "warning" | "danger" | "success";
 }
 
+// Most uses of this component can be improved I feel not to document this properly since
+// now it is a place holder for real component.
+// No test will be done on it as well for the above reason
+
 const Message = (props: IMessage) => {
   const { message, type } = props;
   return (

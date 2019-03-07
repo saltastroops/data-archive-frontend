@@ -1,15 +1,20 @@
 import * as React from "react";
-import { BrowserRouter as Router, withRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import AppRoute from "./components/AppRoute";
 import NavigationBar from "./components/NavigationBar";
 
 class App extends React.Component {
   public render() {
-    const user = {
-      isAdmin: () => true,
-      name: "Nhlavutelo",
-      username: "Eb-Zeero"
-    };
+    /* TODO:
+     * user is currently unknown so I am using a dummy user
+     * this will affect the test of this component after user is defined
+     * */
+    // const user = {
+    //   isAdmin: () => false,
+    //   name: "Nhlavu",
+    //   username: "Nhlavu"
+    // };
+    const user = undefined;
     return (
       <Router>
         <>
@@ -19,7 +24,7 @@ class App extends React.Component {
               return;
             }}
           />
-          {<AppRoute user={undefined} />}
+          <AppRoute user={user} />
         </>
       </Router>
     );
