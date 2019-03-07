@@ -37,7 +37,10 @@ class AppRoute extends React.Component<IUser, any> {
         </>
       );
     }
-    if (!isKnownPath(path, user)) {
+    if (!isKnownPath(path)) {
+      /*
+       * If path is not known display a default page not known message
+       */
       return (
         <>
           {/*TODO: this could route to home page if unknown url is entered*/}
@@ -49,7 +52,12 @@ class AppRoute extends React.Component<IUser, any> {
       return (
         <>
           {/*TODO: this could route to home page if unknown url is entered*/}
-          <Message message={"Sorry page is unknown"} type={"danger"} />
+          <Message
+            message={
+              "Sorry you can not view this page. You are not allowed to view it"
+            }
+            type={"danger"}
+          />
         </>
       );
     }
