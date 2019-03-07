@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import AppRoute from "./components/AppRoute";
 import NavigationBar from "./components/NavigationBar";
 
 class App extends React.Component {
@@ -24,7 +23,6 @@ class App extends React.Component {
               return;
             }}
           />
-          <AppRoute user={user} />
         </>
       </Router>
     );
