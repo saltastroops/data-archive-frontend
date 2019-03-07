@@ -9,12 +9,12 @@ class App extends React.Component {
      * user is currently unknown so I am using a dummy user
      * this will affect the test of this component after user is defined
      * */
-    // const user = {
-    //   isAdmin: () => false,
-    //   name: "Nhlavu",
-    //   username: "Nhlavu"
-    // };
-    const user = undefined;
+    const user = {
+      isAdmin: () => true,
+      name: "Nhlavu",
+      username: "Nhlavu"
+    };
+    // const user = undefined;
     return (
       <Router>
         <>
