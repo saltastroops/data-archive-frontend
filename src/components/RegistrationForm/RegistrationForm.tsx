@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import { Redirect } from "react-router";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../../graphql/Mutations";
 import { validateRegistrationField } from "../../util/RegistrationFormValidation";
 import RegistrationInputField from "./RegistrationInputField";
-import { Redirect } from "react-router";
 
 /*
 The registration form responsible for creating the new user data acrchive account.
@@ -173,7 +173,9 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
       username
     } = this.state.userInput;
 
-    if (registered) return <Redirect to={"/login"} />;
+    if (registered) {
+      return <Redirect to={"/login"} />;
+    }
 
     return (
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>

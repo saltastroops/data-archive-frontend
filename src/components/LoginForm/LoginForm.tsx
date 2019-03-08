@@ -1,9 +1,9 @@
 import * as React from "react";
+import { Redirect } from "react-router";
 import styled from "styled-components";
 import api from "../../api/api";
 import { validateLoginField } from "../../util/LoginFormValidation";
 import LoginInputField from "./LoginInputField";
-import { Redirect } from "react-router";
 
 /*
 The login form which is responsible for authenticating th user into the data acrchive system.
@@ -69,8 +69,8 @@ class LoginForm extends React.Component<ILoginFormState> {
       responseError: "",
       username: ""
     },
-    logged: false,
     loading: false,
+    logged: false,
     userInput: {
       password: "",
       username: ""
@@ -147,7 +147,9 @@ class LoginForm extends React.Component<ILoginFormState> {
   render() {
     const { errors, loading, logged } = this.state;
     const { password, username } = this.state.userInput;
-    if (logged) return <Redirect to={"/"} />;
+    if (logged) {
+      return <Redirect to={"/"} />;
+    }
     return (
       <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
         <Heading>Login Here</Heading>
