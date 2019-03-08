@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
 import * as React from "react";
 import styled from "styled-components";
 import api from "../../api/api";
 import { validateLoginField } from "../../util/LoginFormValidation";
 import LoginInputField from "./LoginInputField";
+import { Redirect } from "react-router";
 
 /*
 The login form which is responsible for authenticating th user into the data acrchive system.
@@ -63,16 +63,13 @@ const ErrorMessage = styled.p.attrs({
 `;
 
 class LoginForm extends React.Component<ILoginFormState> {
-  static contextTypes = {
-    router: PropTypes.object
-  };
-
   public state = {
     errors: {
       password: "",
       responseError: "",
       username: ""
     },
+    logged: false,
     loading: false,
     userInput: {
       password: "",
@@ -117,14 +114,12 @@ class LoginForm extends React.Component<ILoginFormState> {
             username: ""
           },
           loading: false,
+          logged: true,
           userInput: {
             password: "",
             username: ""
           }
         });
-
-        // Redirect the user to the home page granted access to his own content
-        this.context.router.history.push("/");
       }
     } catch (error) {
       this.setState({
@@ -150,8 +145,9 @@ class LoginForm extends React.Component<ILoginFormState> {
   };
 
   render() {
-    const { errors, loading } = this.state;
+    const { errors, loading, logged } = this.state;
     const { password, username } = this.state.userInput;
+    if (logged) return <Redirect to={"/"} />;
     return (
       <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
         <Heading>Login Here</Heading>

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../../graphql/Mutations";
 import { validateRegistrationField } from "../../util/RegistrationFormValidation";
 import RegistrationInputField from "./RegistrationInputField";
+import { Redirect } from "react-router";
 
 /*
 The registration form responsible for creating the new user data acrchive account.
@@ -81,11 +82,6 @@ const ErrorMessage = styled.p.attrs({
 `;
 
 class RegistrationForm extends React.Component<IRegistrationFormState> {
-  // Setting context prop type for accessing router field
-  static contextTypes = {
-    router: PropTypes.object
-  };
-
   public state = {
     errors: {
       affiliation: "",
@@ -96,6 +92,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
       password: "",
       username: ""
     },
+    registered: false,
     userInput: {
       affiliation: "",
       confirmPassword: "",
@@ -134,6 +131,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
       const res = await signup();
       // Reset the state when registering succeeded
       this.setState({
+        registered: true,
         userInput: {
           affiliation: "",
           confirmPassword: "",
@@ -146,7 +144,6 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
       });
 
       alert("Successfully registered, Login using your username and password");
-      this.context.router.history.push("/login");
     } catch (error) {
       return;
     }
@@ -165,7 +162,7 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors, registered } = this.state;
     const {
       affiliation,
       confirmPassword,
@@ -175,6 +172,8 @@ class RegistrationForm extends React.Component<IRegistrationFormState> {
       password,
       username
     } = this.state.userInput;
+
+    if (registered) return <Redirect to={"/login"} />;
 
     return (
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
