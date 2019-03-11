@@ -29,12 +29,14 @@ import TelescopeForm, {
 
 class SearchForm extends React.Component {
   public state: {
+    cart: any;
     general: IGeneral;
     target: ITarget;
     results: ISearchResults[];
     telescope: ITelescope;
     loading: boolean;
   } = {
+    cart: [],
     general: { errors: {} },
     loading: false,
     results: [],
@@ -72,6 +74,14 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
+  public updateCart = (cart: any) => {
+    const newState = {
+      ...this.state,
+      cart: [...cart]
+    };
+    this.setState(() => newState);
+  };
+
   public searchArchive = async () => {
     this.setState(() => ({
       ...this.state,
@@ -97,7 +107,7 @@ class SearchForm extends React.Component {
           {
             files: [
               {
-                category: "string",
+                category: "cat-5",
                 dataType: "string",
                 declination: "string",
                 filename: "string",
@@ -120,7 +130,7 @@ class SearchForm extends React.Component {
           {
             files: [
               {
-                category: "string",
+                category: "cat-1",
                 dataType: "string",
                 declination: "string",
                 filename: "string",
@@ -134,7 +144,7 @@ class SearchForm extends React.Component {
                 telescope: "string"
               },
               {
-                category: "string",
+                category: "cat-2",
                 dataType: "string",
                 declination: "string",
                 filename: "string",
@@ -148,7 +158,7 @@ class SearchForm extends React.Component {
                 telescope: "string"
               },
               {
-                category: "string",
+                category: "cat-3",
                 dataType: "string",
                 declination: "string",
                 filename: "string",
@@ -171,7 +181,7 @@ class SearchForm extends React.Component {
           {
             files: [
               {
-                category: "string",
+                category: "cat-4",
                 dataType: "string",
                 declination: "string",
                 filename: "string",
@@ -201,7 +211,7 @@ class SearchForm extends React.Component {
   };
 
   public render() {
-    const { target, general, telescope, loading, results } = this.state;
+    const { target, general, telescope, loading, results, cart } = this.state;
     return (
       <>
         {loading && (
@@ -236,7 +246,11 @@ class SearchForm extends React.Component {
         </ParentGrid>
         <ParentGrid>
           {results && results.length !== 0 && (
-            <SearchResults searchResults={results} />
+            <SearchResults
+              searchResults={results}
+              cart={cart}
+              updateCart={this.updateCart}
+            />
           )}
         </ParentGrid>
       </>

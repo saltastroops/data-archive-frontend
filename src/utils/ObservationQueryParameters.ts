@@ -324,6 +324,7 @@ interface IFiles {
   telescope: string;
   instrument: string;
   proposalCode: string;
+  observation?: string;
 }
 interface IResults {
   name: string | "Unknown Observation";

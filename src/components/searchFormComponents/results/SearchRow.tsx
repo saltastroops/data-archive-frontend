@@ -5,7 +5,7 @@ interface ISearchRow {
   name?: string; // Name of the data item
   targetName?: string;
   dataType?: string;
-  isRedused?: boolean;
+  isReduced?: boolean;
   filename?: string;
   rightAscension?: string;
   declination?: string;
@@ -16,14 +16,18 @@ interface ISearchRow {
   proposalCode?: string;
 }
 interface IFiles {
+  cart: any;
   files: ISearchRow;
-  key: string;
-  addFile: (e: React.ChangeEvent<HTMLInputElement>) => void; //  TODO: Method to add this row or content to cart
+  addFile: (e: React.ChangeEvent<HTMLInputElement>, file: any) => void; //  TODO: Method to add this row or content to cart
 }
+
+const checked = (name: any, cart: any) => {
+  return cart.some((item: any) => item.name === name);
+};
 
 const SearchRow = (props: IFiles) => {
   const {
-    isRedused,
+    isReduced,
     filename,
     name,
     dataType,
@@ -32,18 +36,21 @@ const SearchRow = (props: IFiles) => {
     declination,
     observationNight,
     category,
-    instrument,
-    proposalCode
+    instrument
   } = props.files;
+  const { cart } = props;
   return (
-    <tr key={name}>
+    <tr key={`${name}-row-123`}>
       <td>
-        <LargeCheckbox onChange={props.addFile} />
+        <LargeCheckbox
+          checked={checked(name, cart) as boolean}
+          onChange={e => props.addFile(e, props.files as any)}
+        />
       </td>
       <td>{filename}</td>
       <td>{name}</td>
       <td>{dataType}</td>
-      <td>{isRedused ? "Redused" : "Raw"}</td>
+      <td>{isReduced ? "Redused" : "Raw"}</td>
       <td>{targetName}</td>
       <td>{rightAscension}</td>
       <td>{declination}</td>
