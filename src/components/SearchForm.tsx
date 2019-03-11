@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   IGeneral,
   IGeneralErrors,
-  ISearchResults,
+  IObservation,
   ITarget,
   ITargetErrors,
   ITelescope
@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
     cart: any;
     general: IGeneral;
     target: ITarget;
-    results: ISearchResults[];
+    results: IObservation[];
     telescope: ITelescope;
     loading: boolean;
   } = {
@@ -236,12 +236,13 @@ class SearchForm extends React.Component {
             <DataForm data={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
-            <input
+            <button
+              disabled={loading}
               className="button is-primary"
-              type="button"
-              value="search"
               onClick={this.searchArchive}
-            />
+            >
+              search
+            </button>
           </ButtonGrid>
         </ParentGrid>
         <ParentGrid>

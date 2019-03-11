@@ -1,4 +1,5 @@
 import * as React from "react";
+import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
 import ObservationResults from "./Observation";
 import SearchRow from "./SearchRow";
 import TableHead from "./TableHead";
@@ -6,7 +7,7 @@ import TableHead from "./TableHead";
 // I assume that each file will belong to one and only one observation and one file can be used in multiple observations
 
 class SearchResults extends React.Component<
-  { searchResults: any; cart: any; updateCart: any },
+  { searchResults: IObservation[]; cart: any; updateCart: any },
   any
 > {
   /**
@@ -19,10 +20,13 @@ class SearchResults extends React.Component<
    *
    * @return void
    */
-  public addAll = (event: React.MouseEvent<HTMLElement>, observation: any) => {
+  public addAll = (
+    event: React.MouseEvent<HTMLElement>,
+    observation: IObservation
+  ) => {
     const { cart, updateCart } = this.props;
     const newCart = [
-      ...cart.filter((item: any) => {
+      ...cart.filter((item: IFile) => {
         return !observation.files.includes(item); // removing any file from the cart that might belong to this observation to avoid duplication
       }),
       ...observation.files // adding all the files from this observation
@@ -41,11 +45,11 @@ class SearchResults extends React.Component<
    */
   public removeAll = (
     event: React.MouseEvent<HTMLElement>,
-    observation: any
+    observation: IObservation
   ) => {
     const { cart, updateCart } = this.props;
     const newCart = [
-      ...cart.filter((item: any) => {
+      ...cart.filter((item: IFile) => {
         return !observation.files.includes(item); // removing any file from the cart that belong to this observation
       })
     ];
@@ -61,13 +65,16 @@ class SearchResults extends React.Component<
    *      File to add to cart
    * @return void
    */
-  public addFile = (event: React.ChangeEvent<HTMLInputElement>, file: any) => {
+  public addFile = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    file: IFile
+  ) => {
     const { cart, updateCart } = this.props;
     if (event.target.checked) {
       updateCart([...cart, file]);
     } else {
       updateCart(
-        cart.filter((item: any) => {
+        cart.filter((item: IFile) => {
           if (item.name !== file.name) {
             return item;
           }
@@ -77,7 +84,6 @@ class SearchResults extends React.Component<
   };
   public render() {
     const { searchResults, cart } = this.props;
-    console.log("Search state", this.props);
     return (
       <table className={"table"}>
         <tbody>
@@ -89,12 +95,12 @@ class SearchResults extends React.Component<
             <td />
             <td />
           </tr>
-          {searchResults.map((r: any) => {
+          {searchResults.map((observation: IObservation) => {
             return (
               <>
                 {
                   <ObservationResults
-                    observation={r}
+                    observation={observation}
                     cart={cart}
                     addAll={this.addAll}
                     removeAll={this.removeAll}
@@ -102,11 +108,11 @@ class SearchResults extends React.Component<
                 }
 
                 <TableHead />
-                {r.files.map((f: any) => {
+                {observation.files.map((file: IFile) => {
                   return (
                     <SearchRow
-                      key={f.name}
-                      files={f}
+                      key={file.name}
+                      files={file}
                       addFile={this.addFile}
                       cart={cart}
                     />

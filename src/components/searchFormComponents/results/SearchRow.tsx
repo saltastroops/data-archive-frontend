@@ -1,31 +1,18 @@
 import * as React from "react";
+import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 
-interface ISearchRow {
-  name?: string; // Name of the data item
-  targetName?: string;
-  dataType?: string;
-  isReduced?: boolean;
-  filename?: string;
-  rightAscension?: string;
-  declination?: string;
-  observationNight?: string;
-  category?: string; // what king of data it is galaxy, star, binary star, etc.
-  telescope: string;
-  instrument: string;
-  proposalCode?: string;
-}
-interface IFiles {
+interface IRow {
   cart: any;
-  files: ISearchRow;
-  addFile: (e: React.ChangeEvent<HTMLInputElement>, file: any) => void; //  TODO: Method to add this row or content to cart
+  files: IFile;
+  addFile: (e: React.ChangeEvent<HTMLInputElement>, file: IFile) => void; //  TODO: Method to add this row or content to cart
 }
 
-const checked = (name: any, cart: any) => {
-  return cart.some((item: any) => item.name === name);
+const checked = (name: string, cart: any) => {
+  return cart.some((item: IFile) => item.name === name);
 };
 
-const SearchRow = (props: IFiles) => {
+const SearchRow = (props: IRow) => {
   const {
     isReduced,
     filename,
@@ -44,7 +31,7 @@ const SearchRow = (props: IFiles) => {
       <td>
         <LargeCheckbox
           checked={checked(name, cart) as boolean}
-          onChange={e => props.addFile(e, props.files as any)}
+          onChange={e => props.addFile(e, props.files)}
         />
       </td>
       <td>{filename}</td>

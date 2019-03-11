@@ -311,7 +311,7 @@ export interface ISHOC extends IInstrument {
   name: "SHOC";
 }
 
-interface IFiles {
+export interface IFile {
   filename: string;
   name: string;
   dataType: string;
@@ -326,10 +326,11 @@ interface IFiles {
   proposalCode: string;
   observation?: string;
 }
-interface IResults {
+export interface IObservation {
+  id: string;
   name: string | "Unknown Observation";
-  files: IFiles[];
-}
-export interface ISearchResults {
-  results?: IResults;
+  proposal?: string;
+  telescope: string;
+  startTime: string;
+  files: IFile[];
 }

@@ -1,10 +1,14 @@
 import * as React from "react";
+import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
 
 interface IObservationResults {
   cart: any;
-  observation?: any;
-  addAll: (e: React.MouseEvent<HTMLElement>, observation: any) => void;
-  removeAll: (e: React.MouseEvent<HTMLElement>, observation: any) => void;
+  observation: IObservation;
+  addAll: (e: React.MouseEvent<HTMLElement>, observation: IObservation) => void;
+  removeAll: (
+    e: React.MouseEvent<HTMLElement>,
+    observation: IObservation
+  ) => void;
 }
 
 const ObservationResults = (props: IObservationResults) => {
@@ -18,40 +22,40 @@ const ObservationResults = (props: IObservationResults) => {
       <td>{observation.startTime}</td>
       <td />
       {// show add all if not all the files are in the cart from this observation else show remove all
-      !observation.files.every((val: any) => cart.indexOf(val) >= 0) ? (
+      !observation.files.every((item: IFile) => cart.indexOf(item) >= 0) ? (
         <>
           <td>
             <button
               name="addAll"
               className={"button is-info"}
-              onClick={e => addAll(e, observation as any)}
+              onClick={e => addAll(e, observation)}
             >
               add all
             </button>
           </td>
           {// show remove all if some of the files from this observation are on the cart
-          observation.files.some((item: any) => cart.indexOf(item) >= 0) ? (
+          observation.files.some((item: IFile) => cart.indexOf(item) >= 0) ? (
             <td>
               <button
                 name="addAll"
                 className={"button is-danger"}
-                onClick={e => removeAll(e, observation as any)}
+                onClick={e => removeAll(e, observation)}
               >
                 remove all
               </button>
             </td>
           ) : (
-            <td />
+            <td colSpan={1} />
           )}
         </>
       ) : (
         <>
-          <td />
+          <td colSpan={1} />
           <td>
             <button
               name="addAll"
               className={"button is-danger"}
-              onClick={e => removeAll(e, observation as any)}
+              onClick={e => removeAll(e, observation)}
             >
               remove all
             </button>
