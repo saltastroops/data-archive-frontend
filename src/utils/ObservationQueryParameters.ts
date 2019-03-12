@@ -325,6 +325,7 @@ export interface IFile {
   instrument: string;
   proposalCode: string;
   observation?: string;
+  url?: string;
 }
 export interface IObservation {
   id: string;

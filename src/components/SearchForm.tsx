@@ -27,6 +27,7 @@ import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
 
+import image from "./searchFormComponents/results/image0.jpg";
 class SearchForm extends React.Component {
   public state: {
     cart: any;
@@ -118,7 +119,8 @@ class SearchForm extends React.Component {
                 proposalCode: "string",
                 rightAscension: "string",
                 targetName: "string",
-                telescope: "string"
+                telescope: "string",
+                url: "./image0.jpg"
               }
             ],
             id: "obs1",
@@ -155,7 +157,8 @@ class SearchForm extends React.Component {
                 proposalCode: "string",
                 rightAscension: "string",
                 targetName: "string",
-                telescope: "string"
+                telescope: "string",
+                url: "./image0.jpg"
               },
               {
                 category: "cat-3",

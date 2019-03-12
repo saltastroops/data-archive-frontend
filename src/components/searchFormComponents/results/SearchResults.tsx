@@ -1,5 +1,6 @@
 import * as React from "react";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import ImageModal from "./ImageModal";
 import ObservationResults from "./Observation";
 import SearchRow from "./SearchRow";
 import TableHead from "./TableHead";
@@ -10,6 +11,11 @@ class SearchResults extends React.Component<
   { searchResults: IObservation[]; cart: any; updateCart: any },
   any
 > {
+  public state = {
+    image: "",
+    open: false
+  };
+
   /**
    * It adds all the of the files belonging to an observation
    *
@@ -82,47 +88,68 @@ class SearchResults extends React.Component<
       );
     }
   };
+
+  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  openModal = (url: string) => {
+    this.setState({ open: true, image: url });
+  };
+
+  closeModal = () => {
+    this.setState({ open: false, image: "" });
+  };
+  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public render() {
     const { searchResults, cart } = this.props;
+    const { open, image } = this.state;
     return (
-      <table className={"table"}>
-        <tbody>
-          <tr className="notification">
-            <th colSpan={3}>Name</th>
-            <th colSpan={2}>Proposal</th>
-            <th colSpan={2}>Telescope</th>
-            <th colSpan={2}>Start time</th>
-            <td />
-            <td />
-          </tr>
-          {searchResults.map((observation: IObservation) => {
-            return (
-              <>
-                {
-                  <ObservationResults
-                    observation={observation}
-                    cart={cart}
-                    addAll={this.addAll}
-                    removeAll={this.removeAll}
-                  />
-                }
-
-                <TableHead />
-                {observation.files.map((file: IFile) => {
-                  return (
-                    <SearchRow
-                      key={file.name}
-                      files={file}
-                      addFile={this.addFile}
+      <>
+        {/* TODO see ImageModal for todo */}
+        <ImageModal
+          image={{ url: image || "./image0.jpg", alt: "Some text to show" }}
+          closeModal={this.closeModal}
+          open={open}
+        />
+        <table className={"table"}>
+          <tbody>
+            <tr className="notification">
+              <th colSpan={3}>Name</th>
+              <th colSpan={2}>Proposal</th>
+              <th colSpan={2}>Telescope</th>
+              <th colSpan={2}>Start time</th>
+              <td />
+              <td />
+            </tr>
+            {searchResults.map((observation: IObservation) => {
+              return (
+                <>
+                  {
+                    <ObservationResults
+                      observation={observation}
                       cart={cart}
+                      addAll={this.addAll}
+                      removeAll={this.removeAll}
                     />
-                  );
-                })}
-              </>
-            );
-          })}
-        </tbody>
-      </table>
+                  }
+
+                  <TableHead />
+                  {observation.files.map((file: IFile) => {
+                    return (
+                      <SearchRow
+                        key={file.name}
+                        files={file}
+                        addFile={this.addFile}
+                        cart={cart}
+                        openModal={this.openModal}
+                      />
+                    );
+                  })}
+                </>
+              );
+            })}
+          </tbody>
+        </table>
+      </>
     );
   }
 }

@@ -4,6 +4,7 @@ import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 
 interface IRow {
   cart: any;
+  openModal: any;
   files: IFile;
   addFile: (e: React.ChangeEvent<HTMLInputElement>, file: IFile) => void; //  TODO: Method to add this row or content to cart
 }
@@ -23,9 +24,10 @@ const SearchRow = (props: IRow) => {
     declination,
     observationNight,
     category,
-    instrument
+    instrument,
+    url
   } = props.files;
-  const { cart } = props;
+  const { cart, openModal } = props;
   return (
     <tr key={`${name}-row-123`}>
       <td>
@@ -34,7 +36,14 @@ const SearchRow = (props: IRow) => {
           onChange={e => props.addFile(e, props.files)}
         />
       </td>
-      <td>{filename}</td>
+      {!url ? (
+        <td>{filename}</td>
+      ) : (
+        <td>
+          <a onClick={e => openModal(url)}>{filename}</a>
+        </td>
+      )}
+
       <td>{name}</td>
       <td>{dataType}</td>
       <td>{isReduced ? "Redused" : "Raw"}</td>
