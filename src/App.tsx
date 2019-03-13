@@ -1,10 +1,10 @@
 import * as React from "react";
 import "./App.css";
-import SearchForm from "./components/SearchForm";
+import DataRequest from "./components/dataRequest/DataRequest";
 
 class App extends React.Component {
   public render() {
-    return <SearchForm />;
+    return <DataRequest />;
   }
 }
 
