@@ -20,7 +20,6 @@ const ObservationResults = (props: IObservationResults) => {
       <td colSpan={2}>{observation.proposal}</td>
       <td colSpan={2}>{observation.telescope}</td>
       <td>{observation.startTime}</td>
-      <td />
       {// show add all if not all the files are in the cart from this observation else show remove all
       !observation.files.every((item: IFile) => cart.indexOf(item) >= 0) ? (
         <>

@@ -17,12 +17,7 @@ export default (props: IImageModal) => {
   return (
     <Modal open={open} onClose={closeModal} center={true}>
       <figure className="image is-2by2">
-        <img
-          className="card-image"
-          id="img01"
-          src={require("./image0.jpg")}
-          alt={alt}
-        />{" "}
+        <img className="card-image" id="img01" src={url} alt={alt} />{" "}
         {/* TODO it binds to this image on render fix it */}
         <p className={"notification"}>{alt}</p>
       </figure>

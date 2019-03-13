@@ -1,0 +1,567 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search results should render data correctly 1`] = `
+<SearchResults
+  cart={Array []}
+  searchResults={
+    Array [
+      Object {
+        "files": Array [
+          Object {
+            "category": "cat-5",
+            "dataType": "type-1",
+            "declination": "20",
+            "filename": "filename-1",
+            "instrument": "RSS",
+            "isReduced": true,
+            "name": "name-1",
+            "observationNight": "2010-01-01",
+            "proposalCode": "code-1",
+            "rightAscension": "20",
+            "targetName": "target 001",
+            "telescope": "SALT",
+            "url": "./image0.jpg",
+          },
+        ],
+        "id": "obsID-1",
+        "name": "obs1",
+        "proposal": "Code-1",
+        "startTime": "2018-02-02 17:55:23",
+        "telescope": "SALT",
+      },
+      Object {
+        "files": Array [
+          Object {
+            "category": "cat-1",
+            "dataType": "type-2",
+            "declination": "20",
+            "filename": "filename-2",
+            "instrument": "RSS",
+            "isReduced": true,
+            "name": "name-2",
+            "observationNight": "2010-01-01",
+            "proposalCode": "code-2",
+            "rightAscension": "20",
+            "targetName": "target 002",
+            "telescope": "SALT",
+            "url": "./image4.jpg",
+          },
+        ],
+        "id": "obsID-2",
+        "name": "obs1",
+        "proposal": "Code-2",
+        "startTime": "2018-02-02 17:55:23",
+        "telescope": "SALT",
+      },
+    ]
+  }
+  updateCart={[MockFunction]}
+>
+  <_default
+    closeModal={[Function]}
+    image={
+      Object {
+        "alt": "Some text to show",
+        "url": "",
+      }
+    }
+    open={false}
+  >
+    <Modal
+      animationDuration={500}
+      blockScroll={true}
+      center={true}
+      classNames={Object {}}
+      classes={
+        Object {
+          "closeButton": "styles_closeButton__20ID4",
+          "closeIcon": "styles_closeIcon__1QwbI",
+          "modal": "styles_modal__gNwvD",
+          "overlay": "styles_overlay__CLSq-",
+          "overlayCenter": "styles_overlayCenter__YHoO7",
+          "transitionEnter": "styles_transitionEnter__3j_-a",
+          "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+          "transitionExit": "styles_transitionExit__1KmEf",
+          "transitionExitActive": "styles_transitionExitActive__1nQXw",
+        }
+      }
+      closeIconId={null}
+      closeIconSize={28}
+      closeIconSvgPath={
+        <path
+          d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+        />
+      }
+      closeOnEsc={true}
+      closeOnOverlayClick={true}
+      focusTrapOptions={Object {}}
+      focusTrapped={false}
+      modalId={null}
+      onClose={[Function]}
+      onEntered={null}
+      onEscKeyDown={null}
+      onExited={null}
+      onOverlayClick={null}
+      open={false}
+      overlayId={null}
+      showCloseIcon={true}
+      styles={Object {}}
+    />
+  </_default>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr
+        className="notification"
+      >
+        <th
+          colSpan={3}
+        >
+          Name
+        </th>
+        <th
+          colSpan={2}
+        >
+          Proposal
+        </th>
+        <th
+          colSpan={2}
+        >
+          Telescope
+        </th>
+        <th
+          colSpan={2}
+        >
+          Start time
+        </th>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <ObservationResults
+        addAll={[Function]}
+        cart={Array []}
+        observation={
+          Object {
+            "files": Array [
+              Object {
+                "category": "cat-5",
+                "dataType": "type-1",
+                "declination": "20",
+                "filename": "filename-1",
+                "instrument": "RSS",
+                "isReduced": true,
+                "name": "name-1",
+                "observationNight": "2010-01-01",
+                "proposalCode": "code-1",
+                "rightAscension": "20",
+                "targetName": "target 001",
+                "telescope": "SALT",
+                "url": "./image0.jpg",
+              },
+            ],
+            "id": "obsID-1",
+            "name": "obs1",
+            "proposal": "Code-1",
+            "startTime": "2018-02-02 17:55:23",
+            "telescope": "SALT",
+          }
+        }
+        removeAll={[Function]}
+      >
+        <tr
+          className="is-selected"
+          key="obsID-1+value"
+        >
+          <td
+            colSpan={3}
+          >
+            obs1
+          </td>
+          <td
+            colSpan={2}
+          >
+            Code-1
+          </td>
+          <td
+            colSpan={2}
+          >
+            SALT
+          </td>
+          <td>
+            2018-02-02 17:55:23
+          </td>
+          <td>
+            <button
+              className="button is-info"
+              name="addAll"
+              onClick={[Function]}
+            >
+              add all
+            </button>
+          </td>
+          <td
+            colSpan={1}
+          />
+        </tr>
+      </ObservationResults>
+      <TableHead>
+        <tr>
+          <th>
+            Add
+          </th>
+          <th>
+            Filename
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Data type
+          </th>
+          <th>
+            Raw/redused 
+          </th>
+          <th>
+            Target name
+          </th>
+          <th>
+            Right ascension
+          </th>
+          <th>
+            Declination
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Instrument
+          </th>
+        </tr>
+      </TableHead>
+      <SearchRow
+        addFile={[Function]}
+        cart={Array []}
+        files={
+          Object {
+            "category": "cat-5",
+            "dataType": "type-1",
+            "declination": "20",
+            "filename": "filename-1",
+            "instrument": "RSS",
+            "isReduced": true,
+            "name": "name-1",
+            "observationNight": "2010-01-01",
+            "proposalCode": "code-1",
+            "rightAscension": "20",
+            "targetName": "target 001",
+            "telescope": "SALT",
+            "url": "./image0.jpg",
+          }
+        }
+        key="name-1"
+        openModal={[Function]}
+      >
+        <tr
+          key="name-1-row-123"
+        >
+          <td>
+            <styled.input
+              checked={false}
+              onChange={[Function]}
+            >
+              <StyledComponent
+                checked={false}
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "checkbox",
+                        "type": "checkbox",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bdVaJa",
+                      "isStatic": true,
+                      "lastClassName": "iVAhJG",
+                      "rules": Array [
+                        "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.input",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bdVaJa",
+                    "target": "input",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                onChange={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="sc-bdVaJa checkbox iVAhJG"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </StyledComponent>
+            </styled.input>
+          </td>
+          <td>
+            <a
+              onClick={[Function]}
+            >
+              filename-1
+            </a>
+          </td>
+          <td>
+            name-1
+          </td>
+          <td>
+            type-1
+          </td>
+          <td>
+            Redused
+          </td>
+          <td>
+            target 001
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            cat-5
+          </td>
+          <td>
+            RSS
+          </td>
+        </tr>
+      </SearchRow>
+      <ObservationResults
+        addAll={[Function]}
+        cart={Array []}
+        observation={
+          Object {
+            "files": Array [
+              Object {
+                "category": "cat-1",
+                "dataType": "type-2",
+                "declination": "20",
+                "filename": "filename-2",
+                "instrument": "RSS",
+                "isReduced": true,
+                "name": "name-2",
+                "observationNight": "2010-01-01",
+                "proposalCode": "code-2",
+                "rightAscension": "20",
+                "targetName": "target 002",
+                "telescope": "SALT",
+                "url": "./image4.jpg",
+              },
+            ],
+            "id": "obsID-2",
+            "name": "obs1",
+            "proposal": "Code-2",
+            "startTime": "2018-02-02 17:55:23",
+            "telescope": "SALT",
+          }
+        }
+        removeAll={[Function]}
+      >
+        <tr
+          className="is-selected"
+          key="obsID-2+value"
+        >
+          <td
+            colSpan={3}
+          >
+            obs1
+          </td>
+          <td
+            colSpan={2}
+          >
+            Code-2
+          </td>
+          <td
+            colSpan={2}
+          >
+            SALT
+          </td>
+          <td>
+            2018-02-02 17:55:23
+          </td>
+          <td>
+            <button
+              className="button is-info"
+              name="addAll"
+              onClick={[Function]}
+            >
+              add all
+            </button>
+          </td>
+          <td
+            colSpan={1}
+          />
+        </tr>
+      </ObservationResults>
+      <TableHead>
+        <tr>
+          <th>
+            Add
+          </th>
+          <th>
+            Filename
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Data type
+          </th>
+          <th>
+            Raw/redused 
+          </th>
+          <th>
+            Target name
+          </th>
+          <th>
+            Right ascension
+          </th>
+          <th>
+            Declination
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Instrument
+          </th>
+        </tr>
+      </TableHead>
+      <SearchRow
+        addFile={[Function]}
+        cart={Array []}
+        files={
+          Object {
+            "category": "cat-1",
+            "dataType": "type-2",
+            "declination": "20",
+            "filename": "filename-2",
+            "instrument": "RSS",
+            "isReduced": true,
+            "name": "name-2",
+            "observationNight": "2010-01-01",
+            "proposalCode": "code-2",
+            "rightAscension": "20",
+            "targetName": "target 002",
+            "telescope": "SALT",
+            "url": "./image4.jpg",
+          }
+        }
+        key="name-2"
+        openModal={[Function]}
+      >
+        <tr
+          key="name-2-row-123"
+        >
+          <td>
+            <styled.input
+              checked={false}
+              onChange={[Function]}
+            >
+              <StyledComponent
+                checked={false}
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "checkbox",
+                        "type": "checkbox",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bdVaJa",
+                      "isStatic": true,
+                      "lastClassName": "iVAhJG",
+                      "rules": Array [
+                        "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.input",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bdVaJa",
+                    "target": "input",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                onChange={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="sc-bdVaJa checkbox iVAhJG"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </StyledComponent>
+            </styled.input>
+          </td>
+          <td>
+            <a
+              onClick={[Function]}
+            >
+              filename-2
+            </a>
+          </td>
+          <td>
+            name-2
+          </td>
+          <td>
+            type-2
+          </td>
+          <td>
+            Redused
+          </td>
+          <td>
+            target 002
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            cat-1
+          </td>
+          <td>
+            RSS
+          </td>
+        </tr>
+      </SearchRow>
+    </tbody>
+  </table>
+</SearchResults>
+`;

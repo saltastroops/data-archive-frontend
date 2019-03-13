@@ -31,11 +31,13 @@ ShallowWrapper {
           "isStatic": true,
           "rules": Array [
             "
-  && {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
   }
 ",
           ],
@@ -74,11 +76,13 @@ ShallowWrapper {
             "isStatic": true,
             "rules": Array [
               "
-  && {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
   }
 ",
             ],

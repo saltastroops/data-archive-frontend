@@ -27,7 +27,6 @@ import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
 
-import image from "./searchFormComponents/results/image0.jpg";
 class SearchForm extends React.Component {
   public state: {
     cart: any;
@@ -95,7 +94,6 @@ class SearchForm extends React.Component {
       ...this.state,
       general,
       target,
-
       telescope
     }));
     if (
@@ -139,8 +137,7 @@ class SearchForm extends React.Component {
                 instrument: "string",
                 isReduced: true,
                 name: "name-2",
-                observationNight: "string",
-                proposalCode: "string",
+                observationId: "string",
                 rightAscension: "string",
                 targetName: "string",
                 telescope: "string"
@@ -153,8 +150,7 @@ class SearchForm extends React.Component {
                 instrument: "string",
                 isReduced: true,
                 name: "name-4",
-                observationNight: "string",
-                proposalCode: "string",
+                observationId: "string",
                 rightAscension: "string",
                 targetName: "string",
                 telescope: "string",
@@ -168,11 +164,11 @@ class SearchForm extends React.Component {
                 instrument: "string",
                 isReduced: true,
                 name: "name-5",
-                observationNight: "string",
-                proposalCode: "string",
+                observationId: "string",
                 rightAscension: "string",
                 targetName: "string",
-                telescope: "string"
+                telescope: "string",
+                url: "./image4.jpg"
               }
             ],
             id: "obs2",
@@ -191,8 +187,7 @@ class SearchForm extends React.Component {
                 instrument: "string",
                 isReduced: true,
                 name: "name-3",
-                observationNight: "string",
-                proposalCode: "string",
+                observationId: "string",
                 rightAscension: "string",
                 targetName: "string",
                 telescope: "string"

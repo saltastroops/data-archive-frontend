@@ -253,6 +253,13 @@ export const validateSearchConeRadius = (radius: string) => {
   return "Search radius should be a floating point number greater and zero.";
 };
 
+/**
+ * Test if there is an error on either general or target if there is any return true
+ * @param general
+ *      Search form state general errors
+ * @param target
+ *      Search form state target errors
+ */
 export const isError = (general: IGeneralErrors, target: ITargetErrors) => {
   if (
     (target.name && target.name !== "") ||

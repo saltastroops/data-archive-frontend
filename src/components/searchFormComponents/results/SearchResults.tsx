@@ -106,20 +106,21 @@ class SearchResults extends React.Component<
       <>
         {/* TODO see ImageModal for todo */}
         <ImageModal
-          image={{ url: image || "./image0.jpg", alt: "Some text to show" }}
+          image={{ url: image, alt: "Some text to show" }}
           closeModal={this.closeModal}
           open={open}
         />
         <table className={"table"}>
-          <tbody>
+          <thead>
             <tr className="notification">
               <th colSpan={3}>Name</th>
               <th colSpan={2}>Proposal</th>
               <th colSpan={2}>Telescope</th>
               <th colSpan={2}>Start time</th>
-              <td />
-              <td />
+              <th />
             </tr>
+          </thead>
+          <tbody>
             {searchResults.map((observation: IObservation) => {
               return (
                 <>

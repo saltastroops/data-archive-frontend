@@ -40,13 +40,15 @@ exports[`Search Form render correctly 1`] = `
       />
     </styled.div>
     <styled.div>
-      <input
+      <button
         className="button is-primary"
+        disabled={false}
         onClick={[Function]}
-        type="button"
-        value="search"
-      />
+      >
+        search
+      </button>
     </styled.div>
   </styled.div>
+  <styled.div />
 </Fragment>
 `;

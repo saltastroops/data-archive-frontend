@@ -50,7 +50,6 @@ const SearchRow = (props: IRow) => {
       <td>{targetName}</td>
       <td>{rightAscension}</td>
       <td>{declination}</td>
-      <td>{observationNight}</td>
       <td>{category}</td>
       <td>{instrument}</td>
     </tr>

@@ -11,7 +11,6 @@ const TableHead = () => {
       <th>Target name</th>
       <th>Right ascension</th>
       <th>Declination</th>
-      <th>Observation night</th>
       <th>Category</th>
       <th>Instrument</th>
     </tr>

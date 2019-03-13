@@ -323,8 +323,7 @@ export interface IFile {
   category: string;
   telescope: string;
   instrument: string;
-  proposalCode: string;
-  observation?: string;
+  observationId?: string;
   url?: string;
 }
 export interface IObservation {
