@@ -31,6 +31,10 @@ class DataRequest extends React.Component {
           const mayDownloadAll = data.observations.some(
             (observation: any) => observation.status !== "available"
           );
+
+          const reRequestAll = data.observations.some((observation: any) =>
+            ["available", "pending"].includes(observation.status)
+          );
           return (
             <RequestedObservation key={data.date}>
               <thead>
@@ -44,7 +48,13 @@ class DataRequest extends React.Component {
                         right: 0
                       }}
                     >
-                      {mayDownloadAll ? null : (
+                      {mayDownloadAll ? (
+                        reRequestAll ? null : (
+                          <button className="button is-small is-danger is-rounded">
+                            Re-requestAll
+                          </button>
+                        )
+                      ) : (
                         <button className="button is-small is-success is-rounded">
                           Download All
                         </button>

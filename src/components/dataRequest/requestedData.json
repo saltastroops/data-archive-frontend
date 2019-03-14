@@ -21,6 +21,38 @@
       "observations": [
         {
           "id": "Observation 1",
+          "status": "failed",
+          "files": ["filename 1", "filename 2"]
+        },
+        {
+          "id": "Observation 2",
+          "status": "unavailable",
+          "files": ["filename 1", "filename 2"]
+        }
+      ]
+    },
+
+    {
+      "date": "2019/02/01",
+      "observations": [
+        {
+          "id": "Observation 1",
+          "status": "failed",
+          "files": ["filename 1", "filename 2"]
+        },
+        {
+          "id": "Observation 2",
+          "status": "failed",
+          "files": ["filename 1", "filename 2"]
+        }
+      ]
+    },
+
+    {
+      "date": "2019/03/01",
+      "observations": [
+        {
+          "id": "Observation 1",
           "status": "pending",
           "files": ["filename 1", "filename 2"]
         },
