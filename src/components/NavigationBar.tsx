@@ -34,7 +34,7 @@ interface INavigationBarState {
 
 const Nav = styled.nav.attrs({
   ariaLabel: "menu",
-  className: "navbar is-light is-full-width",
+  className: "navbar is-full-width ",
   role: "button"
 })``;
 
@@ -47,115 +47,145 @@ class NavigationBar extends React.Component<
   };
 
   public render() {
+    const activeTab = "has-text-weight-bold has-text-link";
+    const activeButton = "";
     const { logout, user } = this.props;
     const { isMenuActive } = this.state;
 
     return (
-      <Nav>
-        <div className="navbar-brand">
-          {/* "Burger" for toggling the menu on a mobile device */}
+      <div>
+        <Nav>
+          <div className="navbar-brand">
+            {/* "Burger" for toggling the menu on a mobile device */}
 
-          <a
-            className={`navbar-burger burger ${
+            <a
+              className={`navbar-burger burger ${
+                isMenuActive ? "is-active" : ""
+              }`}
+              role="button"
+              aria-label="menu"
+              aria-expanded={isMenuActive ? "true" : "false"}
+              onClick={this.toggleMenu}
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </a>
+          </div>
+
+          {/* Menu */}
+          <div
+            className={`navbar-menu has-text-weight-light  ${
               isMenuActive ? "is-active" : ""
             }`}
-            role="button"
-            aria-label="menu"
-            aria-expanded={isMenuActive ? "true" : "false"}
-            onClick={this.toggleMenu}
           >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </a>
-        </div>
-
-        {/* Menu */}
-        <div
-          className={`navbar-menu title  ${isMenuActive ? "is-active" : ""}`}
-        >
-          <div className="navbar-start ">
-            {/* Link to search page */}
-            <NavLink className="navbar-item is-1" to="/">
-              Search
-            </NavLink>
-
-            {/* Link to data requests page */}
-            {user && (
-              <NavLink className="navbar-item is-3" to="/data-requests">
-                Data Requests
+            <div className="navbar-start ">
+              {/* Link to search page */}
+              <NavLink
+                className={`navbar-item item ${
+                  this.isActiveTab("Search") ? activeTab : ""
+                }`}
+                to="/"
+              >
+                Search
               </NavLink>
-            )}
 
-            {/* Link to admin page */}
-            {user && user.isAdmin() && (
-              <NavLink className="navbar-item is-3" to="/admin">
-                Admin
-              </NavLink>
-            )}
-          </div>
-          <div className="navbar-end subtitle is-4">
-            {/* Dropdown menu for account related content */}
-            {user && (
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">Hello {`${user.name}`}</a>
+              {/* Link to data requests page */}
+              {user && (
+                <NavLink
+                  className={`navbar-item item ${this.isActiveTab(
+                    "DataRequests"
+                  ) && activeTab}`}
+                  to="/data-requests"
+                >
+                  Data Requests
+                </NavLink>
+              )}
 
-                <div className="navbar-dropdown">
-                  {/* Link to page for editing account details */}
-                  <NavLink className="navbar-item" to="/account">
-                    Account
-                  </NavLink>
+              {/* Link to admin page */}
+              {user && user.isAdmin() && (
+                <NavLink
+                  className={`navbar-item ${this.isActiveTab("Admin") &&
+                    activeTab}`}
+                  to="/admin"
+                >
+                  Admin
+                </NavLink>
+              )}
+            </div>
+            <div className="navbar-end subtitle is-4">
+              {/* Dropdown menu for account related content */}
+              {user && (
+                <div className="navbar-item has-dropdown is-hoverable">
+                  <a className="navbar-link">Hello {`${user.name}`}</a>
 
-                  {/* Link for logging out */}
-                  <a
-                    className="navbar-item"
-                    data-test="logout"
-                    onClick={logout}
-                  >
-                    Logout
-                  </a>
+                  <div className="navbar-dropdown">
+                    {/* Link to page for editing account details */}
+                    <NavLink
+                      className={`navbar-item ${this.isActiveTab("Account") &&
+                        activeTab}`}
+                      to="/account"
+                    >
+                      Account
+                    </NavLink>
+
+                    {/* Link for logging out */}
+                    <a
+                      className="navbar-item"
+                      data-test="logout"
+                      onClick={logout}
+                    >
+                      Logout
+                    </a>
+                  </div>
                 </div>
+              )}
+
+              {!user && (
+                <>
+                  <div className={"navbar-item"}>
+                    {/* Button for logging in */}
+                    <NavLink
+                      className=" button is-primary is-outlined"
+                      to="/login"
+                    >
+                      <span>
+                        Login <i className="fas fa-sign-in-alt" />{" "}
+                      </span>
+                    </NavLink>
+                  </div>
+                  <div className={"navbar-item is-outlined"}>
+                    {/* Button for registering */}
+                    <NavLink
+                      className="button is-info is-outlined"
+                      to="/register"
+                    >
+                      <span>
+                        Register <i className="fas fa-user-plus" />
+                      </span>
+                    </NavLink>
+                  </div>
+                </>
+              )}
+
+              {/* Cart icon */}
+              <div className={"navbar-item is-hidden-descktop"}>
+                <NavLink
+                  className={` button is-link  ${
+                    this.isActiveTab("Cart") ? "" : "is-outlined"
+                  }`}
+                  to="/cart"
+                >
+                  <span>
+                    <i className={`fas fa-shopping-cart `} /> CART
+                  </span>
+                </NavLink>
               </div>
-            )}
-
-            {!user && (
-              <>
-                <div className={"navbar-item"}>
-                  {/* Button for logging in */}
-                  <NavLink
-                    className=" button is-primary  is-outlined"
-                    to="/login"
-                  >
-                    <span>
-                      Login <i className="fas fa-sign-in-alt" />{" "}
-                    </span>
-                  </NavLink>
-                </div>
-                <div className={"navbar-item"}>
-                  {/* Button for registering */}
-                  <NavLink
-                    className=" button is-info is-outlined"
-                    to="/register"
-                  >
-                    <span>
-                      Register <i className="fas fa-user-plus" />
-                    </span>
-                  </NavLink>
-                </div>
-              </>
-            )}
-
-            {/* Cart icon */}
-            <div className={"navbar-item is-hidden-descktop"}>
-              <NavLink className=" button is-link" to="/cart">
-                <span>
-                  <i className="fas fa-shopping-cart" /> CART
-                </span>
-              </NavLink>
             </div>
           </div>
-        </div>
-      </Nav>
+        </Nav>
+        <hr className="navbar-divider" />
+      </div>
     );
   }
 
@@ -163,6 +193,24 @@ class NavigationBar extends React.Component<
     this.setState(prevState => ({
       isMenuActive: !prevState.isMenuActive
     }));
+  };
+
+  private isActiveTab = (tab: string) => {
+    const currentPath = window.location.pathname;
+
+    if (currentPath === "/" && tab === "Search") {
+      return true;
+    }
+    if (currentPath === "/cart" && tab === "Cart") {
+      return true;
+    }
+    if (currentPath === "/account" && tab === "Account") {
+      return true;
+    }
+    if (currentPath === "/admin" && tab === "Admin") {
+      return true;
+    }
+    return currentPath === "/data-requests" && tab === "DataRequests";
   };
 }
 
