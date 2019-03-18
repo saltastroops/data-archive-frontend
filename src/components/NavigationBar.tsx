@@ -130,13 +130,14 @@ class NavigationBar extends React.Component<
                     </NavLink>
 
                     {/* Link for logging out */}
-                    <a
+                    <NavLink
                       className="navbar-item"
                       data-test="logout"
                       onClick={logout}
+                      to="/"
                     >
                       Logout
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               )}
