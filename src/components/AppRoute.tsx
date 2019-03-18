@@ -23,7 +23,7 @@ class AppRoute extends React.Component<any, any> {
        * */
       return (
         <>
-          <Message message={"You are not logged in"} type={"warning"} />
+          <Message message="You are not logged in" type="danger" />
           <span>
             Please login <a href={"/login"}>here</a>
           </span>
@@ -37,7 +37,7 @@ class AppRoute extends React.Component<any, any> {
       return (
         <>
           {/*TODO: this could route to home page if unknown url is entered*/}
-          <Message message={"Sorry page is unknown"} type={"danger"} />
+          <Message message="Sorry page is unknown" type="danger" />
         </>
       );
     }
@@ -49,7 +49,7 @@ class AppRoute extends React.Component<any, any> {
             message={
               "Sorry you can not view this page. You are not allowed to view it"
             }
-            type={"danger"}
+            type="danger"
           />
         </>
       );
