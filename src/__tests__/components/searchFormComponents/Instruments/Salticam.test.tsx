@@ -4,8 +4,8 @@ import * as React from "react";
 import Salticam from "../../../../components/searchFormComponents/instruments/Salticam";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render Salticam", () => {
+describe("Salticam ", () => {
+  it("should be defined", () => {
     expect(
       mount(
         <Salticam
@@ -16,7 +16,7 @@ describe("Grids ", () => {
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(

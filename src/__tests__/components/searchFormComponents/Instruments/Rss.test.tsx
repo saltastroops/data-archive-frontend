@@ -4,14 +4,14 @@ import * as React from "react";
 import Rss from "../../../../components/searchFormComponents/instruments/Rss";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render Rss", () => {
+describe("Rss ", () => {
+  it("should be defined", () => {
     expect(
-      mount(<Rss rss={{ errors: {}, name: "RSS" }} onChange={onChange} />)
+      <Rss rss={{ errors: {}, name: "RSS" }} onChange={onChange} />
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(

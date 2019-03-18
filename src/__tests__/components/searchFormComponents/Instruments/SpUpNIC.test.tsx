@@ -4,19 +4,14 @@ import * as React from "react";
 import SpUpNIC from "../../../../components/searchFormComponents/instruments/SpUpNIC";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render SpUpNIC", () => {
+describe("SpUpNIC ", () => {
+  it("should be defined", () => {
     expect(
-      mount(
-        <SpUpNIC
-          spUpNic={{ errors: {}, name: "SpUpNIC" }}
-          onChange={onChange}
-        />
-      )
+      <SpUpNIC spUpNic={{ errors: {}, name: "SpUpNIC" }} onChange={onChange} />
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(

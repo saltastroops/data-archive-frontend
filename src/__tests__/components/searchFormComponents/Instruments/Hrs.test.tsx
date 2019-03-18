@@ -4,14 +4,14 @@ import * as React from "react";
 import Hrs from "../../../../components/searchFormComponents/instruments/Hrs";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render Hrs", () => {
+describe("Hrs ", () => {
+  it("should be defined", () => {
     expect(
-      mount(<Hrs hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
+      <Hrs hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(

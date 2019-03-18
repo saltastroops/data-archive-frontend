@@ -4,14 +4,14 @@ import * as React from "react";
 import Shoc from "../../../../components/searchFormComponents/instruments/Shoc";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render Shoc", () => {
+describe("Shoc ", () => {
+  it("should be defined", () => {
     expect(
-      mount(<Shoc shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
+      <Shoc shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
