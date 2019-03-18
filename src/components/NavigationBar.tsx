@@ -49,7 +49,9 @@ class NavigationBar extends React.Component<
   };
 
   public render() {
+    // classes for highlighting a link to nan active tab
     const activeTab = "has-text-weight-bold has-text-link";
+
     const { logout, user } = this.props;
     const { isMenuActive } = this.state;
 
@@ -82,9 +84,9 @@ class NavigationBar extends React.Component<
             <div className="navbar-start ">
               {/* Link to search page */}
               <NavLink
-                className={`navbar-item item ${
-                  this.isActiveTab("Search") ? activeTab : ""
-                }`}
+                activeClassName={activeTab}
+                className="navbar-item item"
+                exact={true}
                 to="/"
               >
                 Search
@@ -93,9 +95,8 @@ class NavigationBar extends React.Component<
               {/* Link to data requests page */}
               {user && (
                 <NavLink
-                  className={`navbar-item item ${this.isActiveTab(
-                    "DataRequests"
-                  ) && activeTab}`}
+                  activeClassName={activeTab}
+                  className="navbar-item item"
                   to="/data-requests"
                 >
                   Data Requests
@@ -105,8 +106,8 @@ class NavigationBar extends React.Component<
               {/* Link to admin page */}
               {user && user.isAdmin() && (
                 <NavLink
-                  className={`navbar-item ${this.isActiveTab("Admin") &&
-                    activeTab}`}
+                  activeClassName={activeTab}
+                  className="navbar-item"
                   to="/admin"
                 >
                   Admin
@@ -122,8 +123,8 @@ class NavigationBar extends React.Component<
                   <div className="navbar-dropdown">
                     {/* Link to page for editing account details */}
                     <NavLink
-                      className={`navbar-item ${this.isActiveTab("Account") &&
-                        activeTab}`}
+                      activeClassName={activeTab}
+                      className="navbar-item"
                       to="/account"
                     >
                       Account
@@ -144,8 +145,8 @@ class NavigationBar extends React.Component<
 
               {!user && (
                 <>
+                  {/* Link for logging in */}
                   <div className={"navbar-item"}>
-                    {/* Link for logging in */}
                     <NavLink
                       className=" button is-primary  is-outlined"
                       to="/login"
@@ -155,8 +156,9 @@ class NavigationBar extends React.Component<
                       </span>
                     </NavLink>
                   </div>
+
+                  {/* Link for registering */}
                   <div className={"navbar-item"}>
-                    {/* Link for registering */}
                     <NavLink
                       className=" button is-info is-outlined"
                       to="/register"
@@ -171,12 +173,7 @@ class NavigationBar extends React.Component<
 
               {/* Cart icon */}
               <div className={"navbar-item is-hidden-descktop"}>
-                <NavLink
-                  className={` button is-link  ${
-                    this.isActiveTab("Cart") ? "" : "is-outlined"
-                  }`}
-                  to="/cart"
-                >
+                <NavLink className="button is-link is-outlined" to="/cart">
                   <span>
                     <FontAwesomeIcon icon={faShoppingCart} /> CART
                   </span>
@@ -194,24 +191,6 @@ class NavigationBar extends React.Component<
     this.setState(prevState => ({
       isMenuActive: !prevState.isMenuActive
     }));
-  };
-
-  private isActiveTab = (tab: string) => {
-    const currentPath = window.location.pathname;
-
-    if (currentPath === "/" && tab === "Search") {
-      return true;
-    }
-    if (currentPath === "/cart" && tab === "Cart") {
-      return true;
-    }
-    if (currentPath === "/account" && tab === "Account") {
-      return true;
-    }
-    if (currentPath === "/admin" && tab === "Admin") {
-      return true;
-    }
-    return currentPath === "/data-requests" && tab === "DataRequests";
   };
 }
 
