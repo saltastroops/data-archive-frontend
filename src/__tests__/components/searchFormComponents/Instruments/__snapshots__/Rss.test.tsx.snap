@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Grids  should render all grids correctly 1`] = `
+exports[`Rss  should render correctly 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;
