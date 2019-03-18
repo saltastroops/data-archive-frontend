@@ -48,7 +48,6 @@ class NavigationBar extends React.Component<
 
   public render() {
     const activeTab = "has-text-weight-bold has-text-link";
-    const activeButton = "";
     const { logout, user } = this.props;
     const { isMenuActive } = this.state;
 
