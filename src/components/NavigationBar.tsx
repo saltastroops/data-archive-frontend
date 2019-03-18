@@ -33,9 +33,9 @@ interface INavigationBarState {
 }
 
 const Nav = styled.nav.attrs({
+  ariaLabel: "menu",
   className: "navbar is-light is-full-width",
-  role: "button",
-  ariaLabel: "menu"
+  role: "button"
 })``;
 
 class NavigationBar extends React.Component<
