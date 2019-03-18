@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface IMessage {
+interface IMessageProps {
   message: string;
   type?: "info" | "warning" | "danger" | "success";
 }
@@ -9,7 +9,7 @@ interface IMessage {
 // now it is a place holder for real component.
 // No test will be done on it as well for the above reason
 
-const Message = (props: IMessage) => {
+const Message = (props: IMessageProps) => {
   const { message, type } = props;
   return (
     <div className={`notification ${!type ? "" : "is-" + type} `}>
