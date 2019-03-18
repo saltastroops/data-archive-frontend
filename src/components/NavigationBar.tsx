@@ -151,7 +151,7 @@ class NavigationBar extends React.Component<
                       to="/login"
                     >
                       <span>
-                        Login <i className="fas fa-sign-in-alt" />{" "}
+                        Login <i className="fas fa-sign-in-alt" />
                       </span>
                     </NavLink>
                   </div>
