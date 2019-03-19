@@ -6,7 +6,7 @@ afterEach(() => {
 });
 
 describe("Api", () => {
-  it("logs in the user into the system", async () => {
+  it("makes a login request", async () => {
     // Mocking the axios post request
     (mockAxios.post as any).mockImplementationOnce(
       async () =>
@@ -33,10 +33,8 @@ describe("Api", () => {
       username: "test"
     });
 
-    // Expect the response success to be true.
+    // Expect the HTTP response to have been returned.
     expect(response.data.success).toBe(true);
-
-    // Expect the successful logged in response message
     expect(response.data.message).toContain("logged in");
   });
 });
