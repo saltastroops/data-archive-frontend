@@ -63,8 +63,9 @@ describe("RegistrationForm Component", () => {
         <RegistrationForm />
       </MockedProvider>
     );
+
     // Expect the snapshot to match the RegistrationForm component.
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find("form"))).toMatchSnapshot();
   });
 
   it("displays no errors if submitted inputs are all valid", () => {

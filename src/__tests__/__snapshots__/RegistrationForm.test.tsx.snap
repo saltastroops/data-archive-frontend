@@ -1,667 +1,246 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RegistrationForm Component renders the RegistrationForm having unpopulated props with no errors 1`] = `
-<MockedProvider
-  addTypename={true}
+<form
+  className="sc-bwzfXH column is-4 is-offset-4 fDYKEV"
+  onSubmit={[Function]}
 >
-  <ApolloProvider
-    client={
-      ApolloClient {
-        "__operations_cache__": Map {},
-        "cache": InMemoryCache {
-          "addTypename": true,
-          "cacheKeyRoot": CacheKeyNode {
-            "children": null,
-            "key": null,
-          },
-          "config": Object {
-            "addTypename": true,
-            "dataIdFromObject": [Function],
-            "fragmentMatcher": HeuristicFragmentMatcher {},
-            "resultCaching": true,
-          },
-          "data": DepTrackingCache {
-            "data": Object {},
-            "depend": [Function],
-          },
-          "maybeBroadcastWatch": [Function],
-          "optimisticData": DepTrackingCache {
-            "data": Object {},
-            "depend": [Function],
-          },
-          "silenceBroadcast": false,
-          "storeReader": StoreReader {
-            "cacheKeyRoot": CacheKeyNode {
-              "children": null,
-              "key": null,
-            },
-            "executeSelectionSet": [Function],
-            "executeStoreQuery": [Function],
-          },
-          "storeWriter": StoreWriter {},
-          "typenameDocumentCache": Map {},
-          "watches": Set {},
-        },
-        "defaultOptions": Object {},
-        "disableNetworkFetches": false,
-        "link": ApolloLink {
-          "request": [Function],
-        },
-        "mutate": [Function],
-        "query": [Function],
-        "queryDeduplication": true,
-        "reFetchObservableQueries": [Function],
-        "resetStore": [Function],
-        "resetStoreCallbacks": Array [],
-        "ssrMode": false,
-        "store": DataStore {
-          "cache": InMemoryCache {
-            "addTypename": true,
-            "cacheKeyRoot": CacheKeyNode {
-              "children": null,
-              "key": null,
-            },
-            "config": Object {
-              "addTypename": true,
-              "dataIdFromObject": [Function],
-              "fragmentMatcher": HeuristicFragmentMatcher {},
-              "resultCaching": true,
-            },
-            "data": DepTrackingCache {
-              "data": Object {},
-              "depend": [Function],
-            },
-            "maybeBroadcastWatch": [Function],
-            "optimisticData": DepTrackingCache {
-              "data": Object {},
-              "depend": [Function],
-            },
-            "silenceBroadcast": false,
-            "storeReader": StoreReader {
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
-              },
-              "executeSelectionSet": [Function],
-              "executeStoreQuery": [Function],
-            },
-            "storeWriter": StoreWriter {},
-            "typenameDocumentCache": Map {},
-            "watches": Set {},
-          },
-        },
-        "version": "2.5.0-verify.4",
-        "watchQuery": [Function],
-      }
-    }
+  <fieldset
+    aria-disabled={false}
+    disabled={false}
   >
-    <RegistrationForm>
-      <Mutation
-        mutation={
+    <styled.h1>
+      <StyledComponent
+        forwardedComponent={
           Object {
-            "definitions": Array [
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [
               Object {
-                "directives": Array [],
-                "kind": "OperationDefinition",
-                "name": Object {
-                  "kind": "Name",
-                  "value": "SIGNUP_MUTATION",
-                },
-                "operation": "mutation",
-                "selectionSet": Object {
-                  "kind": "SelectionSet",
-                  "selections": Array [
-                    Object {
-                      "alias": undefined,
-                      "arguments": Array [
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "familyName",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "familyName",
-                            },
-                          },
-                        },
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "givenName",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "givenName",
-                            },
-                          },
-                        },
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "username",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "username",
-                            },
-                          },
-                        },
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "email",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "email",
-                            },
-                          },
-                        },
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "affiliation",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "affiliation",
-                            },
-                          },
-                        },
-                        Object {
-                          "kind": "Argument",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "password",
-                          },
-                          "value": Object {
-                            "kind": "Variable",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "password",
-                            },
-                          },
-                        },
-                      ],
-                      "directives": Array [],
-                      "kind": "Field",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "signup",
-                      },
-                      "selectionSet": Object {
-                        "kind": "SelectionSet",
-                        "selections": Array [
-                          Object {
-                            "alias": undefined,
-                            "arguments": Array [],
-                            "directives": Array [],
-                            "kind": "Field",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "id",
-                            },
-                            "selectionSet": undefined,
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-                "variableDefinitions": Array [
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "familyName",
-                      },
-                    },
-                  },
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "givenName",
-                      },
-                    },
-                  },
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "username",
-                      },
-                    },
-                  },
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "email",
-                      },
-                    },
-                  },
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "affiliation",
-                      },
-                    },
-                  },
-                  Object {
-                    "defaultValue": undefined,
-                    "directives": Array [],
-                    "kind": "VariableDefinition",
-                    "type": Object {
-                      "kind": "NonNullType",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "String",
-                        },
-                      },
-                    },
-                    "variable": Object {
-                      "kind": "Variable",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "password",
-                      },
-                    },
-                  },
-                ],
+                "className": "title is-3",
               },
             ],
-            "kind": "Document",
-            "loc": Object {
-              "end": 377,
-              "start": 0,
-            },
-          }
-        }
-        variables={
-          Object {
-            "affiliation": "",
-            "confirmPassword": "",
-            "email": "",
-            "familyName": "",
-            "givenName": "",
-            "password": "",
-            "username": "",
-          }
-        }
-      >
-        <styled.form
-          onSubmit={[Function]}
-        >
-          <StyledComponent
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [
-                  Object {
-                    "className": "column is-4 is-offset-4",
-                  },
-                ],
-                "componentStyle": ComponentStyle {
-                  "componentId": "sc-bwzfXH",
-                  "isStatic": true,
-                  "lastClassName": "fDYKEV",
-                  "rules": Array [
-                    "
-  && {
-    padding: 1px;
-  }
-",
-                  ],
-                },
-                "displayName": "styled.form",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "sc-bwzfXH",
-                "target": "form",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
-            onSubmit={[Function]}
-          >
-            <form
-              className="sc-bwzfXH column is-4 is-offset-4 fDYKEV"
-              onSubmit={[Function]}
-            >
-              <fieldset
-                aria-disabled={false}
-                disabled={false}
-              >
-                <styled.h1>
-                  <StyledComponent
-                    forwardedComponent={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "attrs": Array [
-                          Object {
-                            "className": "title is-3",
-                          },
-                        ],
-                        "componentStyle": ComponentStyle {
-                          "componentId": "sc-htpNat",
-                          "isStatic": true,
-                          "lastClassName": "hjCtQn",
-                          "rules": Array [
-                            "
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-htpNat",
+              "isStatic": true,
+              "lastClassName": "hjCtQn",
+              "rules": Array [
+                "
   && {
     text-align: center;
     margin: 20px 0 20px 0;
   }
 ",
-                          ],
-                        },
-                        "displayName": "styled.h1",
-                        "foldedComponentIds": Array [],
-                        "render": [Function],
-                        "styledComponentId": "sc-htpNat",
-                        "target": "h1",
-                        "toString": [Function],
-                        "warnTooManyClasses": [Function],
-                        "withComponent": [Function],
-                      }
-                    }
-                    forwardedRef={null}
-                  >
-                    <h1
-                      className="sc-htpNat title is-3 hjCtQn"
-                    >
-                      Create your account
-                    </h1>
-                  </StyledComponent>
-                </styled.h1>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Given name (first name)
-                    <InputField
-                      name="givenName"
-                      onChange={[Function]}
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="givenName"
-                          onChange={[Function]}
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Family name (surname)
-                    <InputField
-                      name="familyName"
-                      onChange={[Function]}
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="familyName"
-                          onChange={[Function]}
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Email address
-                    <InputField
-                      name="email"
-                      onChange={[Function]}
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="email"
-                          onChange={[Function]}
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Username
-                    <InputField
-                      name="username"
-                      onChange={[Function]}
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="username"
-                          onChange={[Function]}
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Affiliation
-                    <InputField
-                      name="affiliation"
-                      onChange={[Function]}
-                      placeholder="E.g. University of Cape Town"
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="affiliation"
-                          onChange={[Function]}
-                          placeholder="E.g. University of Cape Town"
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Password
-                    <InputField
-                      name="password"
-                      onChange={[Function]}
-                      placeholder="At least 7 characters"
-                      type="password"
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="password"
-                          onChange={[Function]}
-                          placeholder="At least 7 characters"
-                          type="password"
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <div
-                  className="field"
-                >
-                  <label
-                    className="label"
-                  >
-                    Re-enter password
-                    <InputField
-                      name="confirmPassword"
-                      onChange={[Function]}
-                      type="password"
-                      value=""
-                    >
-                      <div
-                        className="control"
-                      >
-                        <input
-                          className="input undefined undefined"
-                          name="confirmPassword"
-                          onChange={[Function]}
-                          type="password"
-                          value=""
-                        />
-                      </div>
-                    </InputField>
-                  </label>
-                </div>
-                <button
-                  className="button is-success is-fullwidth is-rounded"
-                  data-test="signUp"
-                  type="submit"
-                >
-                  Sign up
-                </button>
-              </fieldset>
-            </form>
-          </StyledComponent>
-        </styled.form>
-      </Mutation>
-    </RegistrationForm>
-  </ApolloProvider>
-</MockedProvider>
+              ],
+            },
+            "displayName": "styled.h1",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-htpNat",
+            "target": "h1",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
+        }
+        forwardedRef={null}
+      >
+        <h1
+          className="sc-htpNat title is-3 hjCtQn"
+        >
+          Create your account
+        </h1>
+      </StyledComponent>
+    </styled.h1>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Given name (first name)
+        <InputField
+          name="givenName"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="givenName"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Family name (surname)
+        <InputField
+          name="familyName"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="familyName"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email address
+        <InputField
+          name="email"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="email"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Username
+        <InputField
+          name="username"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="username"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Affiliation
+        <InputField
+          name="affiliation"
+          onChange={[Function]}
+          placeholder="E.g. University of Cape Town"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="affiliation"
+              onChange={[Function]}
+              placeholder="E.g. University of Cape Town"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password
+        <InputField
+          name="password"
+          onChange={[Function]}
+          placeholder="At least 7 characters"
+          type="password"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="password"
+              onChange={[Function]}
+              placeholder="At least 7 characters"
+              type="password"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Re-enter password
+        <InputField
+          name="confirmPassword"
+          onChange={[Function]}
+          type="password"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="confirmPassword"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <button
+      className="button is-success is-fullwidth is-rounded"
+      data-test="signUp"
+      type="submit"
+    >
+      Sign up
+    </button>
+  </fieldset>
+</form>
 `;
