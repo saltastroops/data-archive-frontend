@@ -13,7 +13,7 @@ interface IHrsProps {
  * @param props
  * @constructor
  */
-const Hrs = (props: IHrsProps) => {
+const HRS = (props: IHrsProps) => {
   const { onChange, hrs } = props;
 
   // Function for handling change events
@@ -50,4 +50,4 @@ const Hrs = (props: IHrsProps) => {
     </MainGrid>
   );
 };
-export default Hrs;
+export default HRS;

@@ -2,7 +2,6 @@ import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchForm from "../../components/SearchForm";
-import InputField from "../../components/searchFormComponents/TargetForm";
 
 describe("Search Form", () => {
   const wrapper = mount(<SearchForm />);

@@ -11,7 +11,7 @@ interface IBvitProps {
 /**
  * A form for selecting BVIT-related search parameters.
  */
-const Bvit = (props: IBvitProps) => {
+const BVIT = (props: IBvitProps) => {
   const { onChange, bvit } = props;
 
   // Function for handling change events
@@ -55,4 +55,4 @@ const Bvit = (props: IBvitProps) => {
   );
 };
 
-export default Bvit;
+export default BVIT;

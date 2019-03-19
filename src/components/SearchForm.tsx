@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   CalibrationType,
   IGeneral,
+  ISearchFormState,
   ITarget,
   ITelescope
 } from "../utils/ObservationQueryParameters";
@@ -22,26 +23,6 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
-
-/**
- * State of the search form. This is used to populate all the child forms.
- *
- * Properties:
- * -----------
- * general:
- *     General proposal and observation parameters
- * target:
- *     Target-related parameters
- * telescope:
- *     Telescope-related parameters
- */
-// TODO: Remove loading, replace with IObservationQueryParameters
-interface ISearchFormState {
-  general: IGeneral;
-  target: ITarget;
-  telescope?: ITelescope;
-  loading: boolean;
-}
 
 /**
  * A form for defining search parameters for an observation search, and for

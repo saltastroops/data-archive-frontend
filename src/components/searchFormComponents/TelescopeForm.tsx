@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
   ILesedi,
-  IOneNineM,
+  IOneDotNineM,
   ISALT,
   ITelescope,
   TelescopeName
@@ -9,7 +9,7 @@ import {
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import SelectField, { AnyOption } from "../basicComponents/SelectField";
 import LesediForm from "./telescopes/LesediForm";
-import OneNineMForm from "./telescopes/OneNineM";
+import OneNineMForm from "./telescopes/OneNineMForm";
 import SaltForm from "./telescopes/SaltForm";
 
 const TELESCOPES: TelescopeName[] = ["SALT", "1.9 m", "Lesedi"];
@@ -77,7 +77,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
         )}
         {name === "1.9 m" && (
           <OneNineMForm
-            oneNineM={telescope as IOneNineM}
+            oneNineM={telescope as IOneDotNineM}
             onChange={changeTelescopeParameter}
           />
         )}

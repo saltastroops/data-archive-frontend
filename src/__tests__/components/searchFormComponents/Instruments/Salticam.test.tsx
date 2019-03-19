@@ -1,15 +1,15 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Salticam from "../../../../components/searchFormComponents/instruments/Salticam";
+import SALTICAM from "../../../../components/searchFormComponents/instruments/SALTICAM";
 
 const onChange = jest.fn();
 describe("Grids ", () => {
-  it("should render Salticam", () => {
+  it("should render SALTICAM", () => {
     expect(
       mount(
-        <Salticam
-          salticam={{ errors: {}, name: "Salticam" }}
+        <SALTICAM
+          salticam={{ errors: {}, name: "SALTICAM" }}
           onChange={onChange}
         />
       )
@@ -21,8 +21,8 @@ describe("Grids ", () => {
     expect(
       toJson(
         mount(
-          <Salticam
-            salticam={{ errors: {}, name: "Salticam" }}
+          <SALTICAM
+            salticam={{ errors: {}, name: "SALTICAM" }}
             onChange={onChange}
           />
         )

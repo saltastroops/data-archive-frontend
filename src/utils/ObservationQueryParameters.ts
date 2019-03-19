@@ -15,10 +15,12 @@
  * telescope:
  *     Telescope (and instrument) details.
  */
-export interface IObservationQueryParameters {
+// TODO: Remove loading, replace with IObservationQueryParameters
+export interface ISearchFormState {
   general: IGeneral;
   target: ITarget;
   telescope?: ITelescope;
+  loading: boolean;
 }
 
 /**
@@ -170,7 +172,7 @@ export interface ILesedi extends ITelescope {
  * name:
  *     The string "1.9 m".
  */
-export interface IOneNineM extends ITelescope {
+export interface IOneDotNineM extends ITelescope {
   instrument: IInstrument;
   name: "1.9 m";
 }
@@ -181,7 +183,7 @@ export interface IOneNineM extends ITelescope {
  * The available instrument names.
  */
 export type InstrumentName =
-  | "Salticam"
+  | "SALTICAM"
   | "RSS"
   | "HRS"
   | "BVIT"
@@ -192,7 +194,7 @@ export type InstrumentName =
 /**
  * An interface for query parameters related to an instrument.
  *
- * This serves as a placeholder for more concrete interfaces such as ISalticam.
+ * This serves as a placeholder for more concrete interfaces such as ISALTICAM.
  *
  * Properties:
  * -----------
@@ -204,7 +206,7 @@ export interface IInstrument {
 }
 
 /**
- * An interface for query parameters related to Salticam.
+ * An interface for query parameters related to SALTICAM.
  *
  * Properties:
  * -----------
@@ -217,9 +219,9 @@ export interface IInstrument {
  * filter:
  *     Filter.
  * name:
- *     The string "Salticam".
+ *     The string "SALTICAM".
  */
-export interface ISalticam extends IInstrument {
+export interface ISALTICAM extends IInstrument {
   detectorMode?: "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
@@ -228,7 +230,7 @@ export interface ISalticam extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
-  name: "Salticam";
+  name: "SALTICAM";
 }
 
 /**

@@ -10,9 +10,9 @@ interface IHippoProps {
 }
 
 /**
- * A form for selecting Hippo-related search parameters.
+ * A form for selecting HIPPO-related search parameters.
  */
-const Hippo = (props: IHippoProps) => {
+const HIPPO = (props: IHippoProps) => {
   const { onChange, hippo } = props;
   const change = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -45,4 +45,4 @@ const Hippo = (props: IHippoProps) => {
     </MainGrid>
   );
 };
-export default Hippo;
+export default HIPPO;

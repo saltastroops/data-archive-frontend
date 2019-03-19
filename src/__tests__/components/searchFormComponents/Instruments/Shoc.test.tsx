@@ -1,13 +1,13 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Shoc from "../../../../components/searchFormComponents/instruments/Shoc";
+import SHOC from "../../../../components/searchFormComponents/instruments/SHOC";
 
 const onChange = jest.fn();
 describe("Grids ", () => {
-  it("should render Shoc", () => {
+  it("should render SHOC", () => {
     expect(
-      mount(<Shoc shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
+      mount(<SHOC shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
     ).toBeDefined();
   });
 
@@ -15,7 +15,7 @@ describe("Grids ", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
-        mount(<Shoc shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
+        mount(<SHOC shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
       )
     ).toMatchSnapshot();
   });

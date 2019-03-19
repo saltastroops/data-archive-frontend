@@ -6,14 +6,14 @@ import {
   InstrumentName,
   IRSS,
   ISALT,
-  ISalticam
+  ISALTICAM
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Bvit from "../instruments/Bvit";
-import Hrs from "../instruments/Hrs";
-import Rss from "../instruments/Rss";
-import Salticam from "../instruments/Salticam";
+import BVIT from "../instruments/BVIT";
+import HRS from "../instruments/HRS";
+import RSS from "../instruments/RSS";
+import SALTICAM from "../instruments/SALTICAM";
 
 /**
  * Return the form for a given instrument.
@@ -34,17 +34,17 @@ export const saltInstrumentsSwitcher = (
   const name = instrument && instrument.name;
   switch (name) {
     case "RSS": {
-      return <Rss rss={instrument as IRSS} onChange={onChange} />;
+      return <RSS rss={instrument as IRSS} onChange={onChange} />;
     }
     case "HRS": {
-      return <Hrs hrs={instrument as IHRS} onChange={onChange} />;
+      return <HRS hrs={instrument as IHRS} onChange={onChange} />;
     }
     case "BVIT": {
-      return <Bvit bvit={instrument as IBVIT} onChange={onChange} />;
+      return <BVIT bvit={instrument as IBVIT} onChange={onChange} />;
     }
     case "Salticam": {
       return (
-        <Salticam salticam={instrument as ISalticam} onChange={onChange} />
+        <SALTICAM salticam={instrument as ISALTICAM} onChange={onChange} />
       );
     }
     default:

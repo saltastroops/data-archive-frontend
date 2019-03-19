@@ -9,8 +9,8 @@ import {
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import Hippo from "../instruments/Hippo";
-import Shoc from "../instruments/Shoc";
+import HIPPO from "../instruments/HIPPO";
+import SHOC from "../instruments/SHOC";
 import SpUpNIC from "../instruments/SpUpNIC";
 
 /**
@@ -35,10 +35,10 @@ export const lesediInstrumentsSwitcher = (
       return <SpUpNIC spUpNic={instrument as ISpUpNIC} onChange={onChange} />;
     }
     case "HIPPO": {
-      return <Hippo hippo={instrument as IHIPPO} onChange={onChange} />;
+      return <HIPPO hippo={instrument as IHIPPO} onChange={onChange} />;
     }
     case "SHOC": {
-      return <Shoc shoc={instrument as ISHOC} onChange={onChange} />;
+      return <SHOC shoc={instrument as ISHOC} onChange={onChange} />;
     }
     default:
       return null;

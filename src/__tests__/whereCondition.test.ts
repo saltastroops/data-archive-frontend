@@ -198,11 +198,11 @@ describe("telescopeWhereCondition", () => {
 });
 
 describe("saltWhereCondition", () => {
-  it("should map Salticam query parameters correctly", () => {
+  it("should map SALTICAM query parameters correctly", () => {
     const salticam: ISalticam = {
       detectorMode: "Slot Mode",
       errors: {},
-      name: "Salticam"
+      name: "SALTICAM"
     };
     const salt: ISALT = {
       instrument: salticam,

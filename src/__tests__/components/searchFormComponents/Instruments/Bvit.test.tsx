@@ -1,13 +1,13 @@
 import { shallow, mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Bvit from "../../../../components/searchFormComponents/instruments/Bvit";
+import BVIT from "../../../../components/searchFormComponents/instruments/BVIT";
 
 const onChange = jest.fn();
 describe("Grids ", () => {
-  it("should render Bvit", () => {
+  it("should render BVIT", () => {
     expect(
-      shallow(<Bvit bvit={{ errors: {}, name: "BVIT" }} onChange={onChange} />)
+      shallow(<BVIT bvit={{ errors: {}, name: "BVIT" }} onChange={onChange} />)
     ).toBeDefined();
   });
 
@@ -15,7 +15,7 @@ describe("Grids ", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
-        mount(<Bvit bvit={{ errors: {}, name: "BVIT" }} onChange={onChange} />)
+        mount(<BVIT bvit={{ errors: {}, name: "BVIT" }} onChange={onChange} />)
       )
     ).toMatchSnapshot();
   });

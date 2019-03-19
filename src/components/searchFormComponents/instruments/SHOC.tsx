@@ -10,9 +10,9 @@ interface ISHOCProps {
 }
 
 /**
- * A form for selecting Shoc-related search parameters.
+ * A form for selecting SHOC-related search parameters.
  */
-const Shoc = (props: ISHOCProps) => {
+const SHOC = (props: ISHOCProps) => {
   const { onChange, shoc } = props;
   const change = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -45,4 +45,4 @@ const Shoc = (props: ISHOCProps) => {
     </MainGrid>
   );
 };
-export default Shoc;
+export default SHOC;

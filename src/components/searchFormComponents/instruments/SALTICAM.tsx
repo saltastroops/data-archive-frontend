@@ -1,17 +1,17 @@
 import * as React from "react";
-import { ISalticam } from "../../../utils/ObservationQueryParameters";
+import { ISALTICAM } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
 interface ISalticamProps {
-  salticam: ISalticam;
+  salticam: ISALTICAM;
   onChange: (value: any) => void;
 }
 
 /**
- * A form for selecting Salticam-related search parameters.
+ * A form for selecting SALTICAM-related search parameters.
  */
-const Salticam = (props: ISalticamProps) => {
+const SALTICAM = (props: ISalticamProps) => {
   const { onChange, salticam } = props;
 
   // Function for handling change events
@@ -43,4 +43,4 @@ const Salticam = (props: ISalticamProps) => {
   );
 };
 
-export default Salticam;
+export default SALTICAM;

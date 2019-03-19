@@ -1,12 +1,12 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Bvit from "../../../components/searchFormComponents/instruments/Bvit";
-import Rss from "../../../components/searchFormComponents/instruments/Rss";
-import Shoc from "../../../components/searchFormComponents/instruments/Shoc";
+import BVIT from "../../../components/searchFormComponents/instruments/BVIT";
+import RSS from "../../../components/searchFormComponents/instruments/RSS";
+import SHOC from "../../../components/searchFormComponents/instruments/SHOC";
 import TelescopeForm from "../../../components/searchFormComponents/TelescopeForm";
 import LesediForm from "../../../components/searchFormComponents/telescopes/LesediForm";
-import OneNineMForm from "../../../components/searchFormComponents/telescopes/OneNineM";
+import OneNineMForm from "../../../components/searchFormComponents/telescopes/OneNineMForm";
 import SaltForm from "../../../components/searchFormComponents/telescopes/SaltForm";
 
 const onChange = jest.fn();
@@ -135,11 +135,11 @@ describe("Telescope form rendering", () => {
       />
     );
     expect(rss).toBeDefined();
-    expect(rss.find(Rss).exists()).toBeTruthy();
+    expect(rss.find(RSS).exists()).toBeTruthy();
 
     // only RSS is rendered
-    expect(rss.find(Shoc).exists()).toBeFalsy();
-    expect(rss.find(Bvit).exists()).toBeFalsy();
+    expect(rss.find(SHOC).exists()).toBeFalsy();
+    expect(rss.find(BVIT).exists()).toBeFalsy();
   });
   it("should render correctly", () => {
     expect(

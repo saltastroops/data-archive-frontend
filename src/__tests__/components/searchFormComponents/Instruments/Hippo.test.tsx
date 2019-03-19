@@ -1,13 +1,13 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Hippo from "../../../../components/searchFormComponents/instruments/Hippo";
+import HIPPO from "../../../../components/searchFormComponents/instruments/HIPPO";
 
 const onChange = jest.fn();
 describe("Grids ", () => {
-  it("should render Hippo", () => {
+  it("should render HIPPO", () => {
     expect(
-      mount(<Hippo hippo={{ errors: {}, name: "HIPPO" }} onChange={onChange} />)
+      mount(<HIPPO hippo={{ errors: {}, name: "HIPPO" }} onChange={onChange} />)
     ).toBeDefined();
   });
 
@@ -16,7 +16,7 @@ describe("Grids ", () => {
     expect(
       toJson(
         mount(
-          <Hippo hippo={{ errors: {}, name: "HIPPO" }} onChange={onChange} />
+          <HIPPO hippo={{ errors: {}, name: "HIPPO" }} onChange={onChange} />
         )
       )
     ).toMatchSnapshot();

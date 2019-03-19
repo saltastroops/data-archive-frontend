@@ -1,13 +1,13 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import Hrs from "../../../../components/searchFormComponents/instruments/Hrs";
+import HRS from "../../../../components/searchFormComponents/instruments/HRS";
 
 const onChange = jest.fn();
 describe("Grids ", () => {
-  it("should render Hrs", () => {
+  it("should render HRS", () => {
     expect(
-      mount(<Hrs hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
+      mount(<HRS hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
     ).toBeDefined();
   });
 
@@ -15,7 +15,7 @@ describe("Grids ", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
-        mount(<Hrs hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
+        mount(<HRS hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
       )
     ).toMatchSnapshot();
   });

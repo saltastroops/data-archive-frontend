@@ -11,7 +11,7 @@ interface IRssProps {
 /**
  * A form selecting RSS-related search parameters.
  */
-const Rss = (props: IRssProps) => {
+const RSS = (props: IRssProps) => {
   const { onChange, rss } = props;
 
   // Function for handling change events
@@ -70,4 +70,4 @@ const Rss = (props: IRssProps) => {
     </MainGrid>
   );
 };
-export default Rss;
+export default RSS;
