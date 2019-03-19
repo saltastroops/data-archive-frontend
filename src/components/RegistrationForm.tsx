@@ -1,9 +1,9 @@
+import { validate } from "isemail";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { Redirect } from "react-router";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
-import { validate } from "isemail";
 import InputField from "./basicComponents/InputField";
 
 /**
