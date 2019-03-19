@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Shoc  should render correctly 1`] = `
+exports[`SHOC  should render correctly 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -112,7 +112,6 @@ exports[`Shoc  should render correctly 1`] = `
                     className="input undefined undefined"
                     name="exposureTime"
                     onChange={[Function]}
-                    type="text"
                   />
                 </div>
               </InputField>

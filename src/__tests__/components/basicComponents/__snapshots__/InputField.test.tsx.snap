@@ -6,7 +6,6 @@ exports[`InputField render correctly 1`] = `
 >
   <input
     className="input undefined undefined"
-    type="text"
   />
 </div>
 `;
@@ -17,7 +16,6 @@ exports[`InputField render correctly 2`] = `
 >
   <input
     className="input undefined is-danger"
-    type="text"
   />
   <styled.p>
     it has error
@@ -33,7 +31,6 @@ exports[`InputField render correctly 3`] = `
     className="input undefined undefined"
     name="name"
     placeholder="holder"
-    type="text"
     value="value"
   />
 </div>

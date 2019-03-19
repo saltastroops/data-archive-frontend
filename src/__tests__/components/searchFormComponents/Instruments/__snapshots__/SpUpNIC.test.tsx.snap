@@ -112,7 +112,6 @@ exports[`SpUpNIC  should render correctly 1`] = `
                     className="input undefined undefined"
                     name="exposureTime"
                     onChange={[Function]}
-                    type="text"
                   />
                 </div>
               </InputField>
