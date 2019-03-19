@@ -22,25 +22,55 @@ class DataRequest extends React.Component {
   render() {
     // TO BE UPDATED
     // Mocked data for display purpose only
-    const { requestedData } = mockedRequestedData as any;
+    const { dataRequest } = mockedRequestedData as any;
 
     return (
       <>
         <Heading>Data Request</Heading>
-        {requestedData.map((data: any) => {
-          const mayDownloadAll = data.observations.some(
-            (observation: any) => observation.status !== "available"
+        {dataRequest.map((data: any) => {
+          const { dataFiles } = data;
+
+          let groupedObservations: any = [];
+
+          const observations = dataFiles.map(
+            (file: any, index: any, observations: any) => {
+              if (
+                !groupedObservations.some(
+                  (observation: any) => observation.id === file.observation.id
+                )
+              ) {
+                groupedObservations.push({
+                  id: file.observation.id,
+                  status: file.available,
+                  files: [file]
+                });
+              } else {
+                groupedObservations.map((observation: any) => {
+                  if (observation.id === file.observation.id) {
+                    observation.status = file.available;
+                    observation.files.push(file);
+                  }
+                });
+              }
+            }
           );
 
-          const reRequestAll = data.observations.some((observation: any) =>
-            ["available", "pending"].includes(observation.status)
-          );
+          const mayDownloadAll = !groupedObservations
+            .map((observation: any) => observation.status)
+            .includes(false);
+
+          const reRequestAll = !groupedObservations
+            .map((observation: any) => observation.status)
+            .includes(true);
+
           return (
-            <RequestedObservation key={data.date}>
+            <RequestedObservation key={data.id}>
               <thead>
                 <tr>
-                  <th>
-                    <p style={{ display: "inline-block" }}>{data.date}</p>
+                  <th colSpan={3}>
+                    <p style={{ display: "inline-block" }}>
+                      Requested {data.madeAt}
+                    </p>
                     <p
                       style={{
                         display: "inline-block",
@@ -49,20 +79,16 @@ class DataRequest extends React.Component {
                       }}
                     >
                       {mayDownloadAll ? (
-                        reRequestAll ? null : (
-                          <button className="button is-small is-danger is-rounded">
-                            Re-requestAll
-                          </button>
-                        )
-                      ) : (
                         <button className="button is-small is-success is-rounded">
-                          Download All
+                          Download all
                         </button>
-                      )}
+                      ) : reRequestAll ? (
+                        <button className="button is-small is-danger is-rounded">
+                          Re-request all
+                        </button>
+                      ) : null}
                     </p>
                   </th>
-                  <th />
-                  <th />
                 </tr>
                 <tr>
                   <th>Observation</th>
@@ -71,40 +97,37 @@ class DataRequest extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {data.observations.map((observation: any) => {
-                  const { id, status, files } = observation;
+                {groupedObservations.map((observation: any) => {
+                  const { files, status } = observation;
+
                   let download;
                   let reRequest;
 
-                  switch (status) {
-                    case "available":
-                      download = (
-                        <button className="button is-small is-success is-rounded">
-                          Download
-                        </button>
-                      );
-                      break;
-                    case "failed":
-                    case "unavailable":
-                      reRequest = (
-                        <button className="button is-small is-danger is-rounded">
-                          Re-request
-                        </button>
-                      );
-                      break;
+                  if (status) {
+                    download = (
+                      <button className="button is-small is-success is-rounded">
+                        Download
+                      </button>
+                    );
+                  } else {
+                    reRequest = (
+                      <button className="button is-small is-danger is-rounded">
+                        Re-request
+                      </button>
+                    );
                   }
 
                   return (
-                    <tr key={id}>
-                      <td>{id}</td>
+                    <tr key={observation.id}>
+                      <td>{observation.id}</td>
                       <td>
-                        <p>{status}</p>
+                        <p>{status ? "Available" : "Unavailable"}</p>
                         <p>{download || reRequest}</p>
                       </td>
                       <td>
                         <ul>
                           {files.map((file: any) => {
-                            return <li key={file}>{file}</li>;
+                            return <li key={file.id}>{file.name}</li>;
                           })}
                         </ul>
                       </td>

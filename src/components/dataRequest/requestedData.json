@@ -1,75 +1,92 @@
 {
-  "requestedData": [
+  "dataRequest": [
     {
-      "date": "2018/12/01",
-      "observations": [
+      "id": "rd1",
+      "madeAt": "2018/12/01 20:00",
+      "dataFiles": [
         {
-          "id": "Observation 1",
-          "status": "available",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 1",
+          "available": true,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 1"
+          }
         },
         {
-          "id": "Observation 2",
-          "status": "available",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 2",
+          "available": true,
+          "name": "filename 2",
+          "observation": {
+            "id": "Observation 1"
+          }
+        },
+        {
+          "id": "file 1",
+          "available": true,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 2"
+          }
         }
       ]
     },
-
     {
-      "date": "2019/01/01",
-      "observations": [
+      "id": "rd2",
+      "madeAt": "2018/12/01 20:00",
+      "dataFiles": [
         {
-          "id": "Observation 1",
-          "status": "failed",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 1",
+          "available": false,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 1"
+          }
         },
         {
-          "id": "Observation 2",
-          "status": "unavailable",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 2",
+          "available": false,
+          "name": "filename 2",
+          "observation": {
+            "id": "Observation 1"
+          }
+        },
+        {
+          "id": "file 1",
+          "available": false,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 2"
+          }
         }
       ]
     },
-
     {
-      "date": "2019/02/01",
-      "observations": [
+      "id": "rd3",
+      "madeAt": "2018/12/01 20:00",
+      "dataFiles": [
         {
-          "id": "Observation 1",
-          "status": "failed",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 1",
+          "available": true,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 1"
+          }
         },
         {
-          "id": "Observation 2",
-          "status": "failed",
-          "files": ["filename 1", "filename 2"]
-        }
-      ]
-    },
-
-    {
-      "date": "2019/03/01",
-      "observations": [
-        {
-          "id": "Observation 1",
-          "status": "pending",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 2",
+          "available": true,
+          "name": "filename 2",
+          "observation": {
+            "id": "Observation 1"
+          }
         },
         {
-          "id": "Observation 2",
-          "status": "available",
-          "files": ["filename 1", "filename 2"]
-        },
-        {
-          "id": "Observation 3",
-          "status": "unavailable",
-          "files": ["filename 1", "filename 2"]
-        },
-        {
-          "id": "Observation 4",
-          "status": "failed",
-          "files": ["filename 1", "filename 2"]
+          "id": "file 1",
+          "available": false,
+          "name": "filename 1",
+          "observation": {
+            "id": "Observation 2"
+          }
         }
       ]
     }
