@@ -5,22 +5,27 @@ import api from "../../api/api";
 import { validateLoginField } from "../../util/LoginFormValidation";
 import LoginInputField from "./LoginInputField";
 
-/*
-The login form which is responsible for authenticating th user into the data acrchive system.
-
-Properties:
------------
-userInput : {
-  password
-    The password, which must have at least 7 characters.
-  username
-    The username, which must not contain upper case letters.
-}
-
-errors : []
-  An array of error messages if any.
-*/
-
+/**
+ * State of the login form.
+ *
+ * The login form for authenticating the user.
+ *
+ * Properties:
+ * -----------
+ * userInput: {
+ *     password:
+ *         The password, which must have at least 7 characters.
+ *     username:
+ *         The username, which must not contain upper case letters.
+ * }
+ * errors:
+ *     password:
+ *         Password related error message.
+ *     responseError:
+ *         Error message resulting from the HTTP request.
+ *     username:
+ *         Username related error message.
+ */
 interface ILoginFormState {
   errors: {
     password: string;
@@ -62,6 +67,9 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
+/**
+ * The login form for authenticating the user.
+ */
 class LoginForm extends React.Component<ILoginFormState> {
   public state = {
     errors: {
@@ -80,10 +88,8 @@ class LoginForm extends React.Component<ILoginFormState> {
   onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
-    // Validates the user input fields
+    // Validate the user input fields
     const errors = validateLoginField(this.state.userInput);
-
-    // Update the errors propetry of the state
     this.setState({ errors });
 
     // Check if there is an error, if there is abort signing in.
@@ -132,6 +138,9 @@ class LoginForm extends React.Component<ILoginFormState> {
     }
   };
 
+  /**
+   * Update the form content according to the user input.
+   */
   onHandleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -147,9 +156,12 @@ class LoginForm extends React.Component<ILoginFormState> {
   render() {
     const { errors, loading, logged } = this.state;
     const { password, username } = this.state.userInput;
+
+    // Go to the main page after successfully logging in.
     if (logged) {
       return <Redirect to={"/"} />;
     }
+
     return (
       <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
         <Heading>Login Here</Heading>
