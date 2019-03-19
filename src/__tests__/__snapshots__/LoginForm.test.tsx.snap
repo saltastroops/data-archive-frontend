@@ -1,20 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginForm Component renders the LoginForm component having unpopulated props with no errors 1`] = `
-<LoginForm
-  errors={
-    Object {
-      "password": "",
-      "username": "",
-    }
-  }
-  userInput={
-    Object {
-      "password": "",
-      "username": "",
-    }
-  }
->
+<LoginForm>
   <styled.form
     onSubmit={[Function]}
   >

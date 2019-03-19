@@ -13,18 +13,6 @@ function inputTyping(wrapper: any, name: string, value: string) {
   });
 }
 
-// Initial userInput state
-const initialState = {
-  errors: {
-    password: "",
-    username: ""
-  },
-  userInput: {
-    password: "",
-    username: ""
-  }
-};
-
 // Updated userInput state
 const updatedState = {
   errors: {
@@ -40,24 +28,14 @@ const updatedState = {
 describe("LoginForm Component", () => {
   it("renders the LoginForm component having unpopulated props with no errors", async () => {
     // LoginForm component wrapper.
-    const wrapper = mount(
-      <LoginForm
-        userInput={initialState.userInput}
-        errors={initialState.errors}
-      />
-    );
+    const wrapper = mount(<LoginForm />);
     // Expect the snapshot to match the LoginForm component.
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it("displays no errors if submitted inputs are all valid", () => {
     // LoginForm component wrapper.
-    const wrapper = mount(
-      <LoginForm
-        userInput={initialState.userInput}
-        errors={initialState.errors}
-      />
-    );
+    const wrapper = mount(<LoginForm />);
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
@@ -105,12 +83,7 @@ describe("LoginForm Component", () => {
 
   it("displays error message if submitted invalid username", () => {
     // LoginForm component wrapper.
-    const wrapper = mount(
-      <LoginForm
-        userInput={initialState.userInput}
-        errors={initialState.errors}
-      />
-    );
+    const wrapper = mount(<LoginForm />);
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
@@ -144,12 +117,7 @@ describe("LoginForm Component", () => {
 
   it("displays error message if submitted invalid password", () => {
     // LoginForm component wrapper.
-    const wrapper = mount(
-      <LoginForm
-        userInput={initialState.userInput}
-        errors={initialState.errors}
-      />
-    );
+    const wrapper = mount(<LoginForm />);
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
