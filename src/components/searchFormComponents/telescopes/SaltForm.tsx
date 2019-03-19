@@ -42,7 +42,7 @@ export const saltInstrumentsSwitcher = (
     case "BVIT": {
       return <BVIT bvit={instrument as IBVIT} onChange={onChange} />;
     }
-    case "Salticam": {
+    case "SALTICAM": {
       return (
         <SALTICAM salticam={instrument as ISALTICAM} onChange={onChange} />
       );
@@ -77,7 +77,7 @@ const SaltForm = (props: ISaltFormProps) => {
     });
   };
 
-  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "Salticam"];
+  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "SALTICAM"];
 
   return (
     <>
