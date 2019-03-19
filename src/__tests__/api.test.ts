@@ -1,5 +1,5 @@
 import mockAxios from "axios";
-import api from "../api";
+import api from "../api/api";
 
 afterEach(() => {
   (mockAxios.post as any).mockReset();
