@@ -2,8 +2,8 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
-import { SIGNUP_MUTATION } from "../../../graphql/Mutations";
-import RegistrationForm from "../RegistrationForm";
+import { SIGNUP_MUTATION } from "../graphql/Mutations";
+import RegistrationForm from "../components/RegistrationForm";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
@@ -11,28 +11,6 @@ function inputTyping(wrapper: any, name: string, value: string) {
     target: { name, value }
   });
 }
-
-// Initial userInput state
-const initialState = {
-  errors: {
-    affiliation: "",
-    confirmPassword: "",
-    email: "",
-    familyName: "",
-    givenName: "",
-    password: "",
-    username: ""
-  },
-  userInput: {
-    affiliation: "",
-    confirmPassword: "",
-    email: "",
-    familyName: "",
-    givenName: "",
-    password: "",
-    username: ""
-  }
-};
 
 // Updated userInput state
 const updatedState = {
@@ -82,10 +60,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
     // Expect the snapshot to match the RegistrationForm component.
@@ -96,10 +71,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -167,10 +139,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -204,10 +173,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -241,10 +207,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -278,10 +241,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -315,10 +275,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 
@@ -362,10 +319,7 @@ describe("RegistrationForm Component", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <RegistrationForm
-          errors={initialState.errors}
-          userInput={initialState.userInput}
-        />
+        <RegistrationForm />
       </MockedProvider>
     );
 

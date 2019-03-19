@@ -95,30 +95,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       }
     }
   >
-    <RegistrationForm
-      errors={
-        Object {
-          "affiliation": "",
-          "confirmPassword": "",
-          "email": "",
-          "familyName": "",
-          "givenName": "",
-          "password": "",
-          "username": "",
-        }
-      }
-      userInput={
-        Object {
-          "affiliation": "",
-          "confirmPassword": "",
-          "email": "",
-          "familyName": "",
-          "givenName": "",
-          "password": "",
-          "username": "",
-        }
-      }
-    >
+    <RegistrationForm>
       <Mutation
         mutation={
           Object {
@@ -443,318 +420,190 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
               className="sc-bwzfXH column is-4 is-offset-4 fDYKEV"
               onSubmit={[Function]}
             >
-              <styled.h1>
-                <StyledComponent
-                  forwardedComponent={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "attrs": Array [
-                        Object {
-                          "className": "title is-3",
-                        },
-                      ],
-                      "componentStyle": ComponentStyle {
-                        "componentId": "sc-htpNat",
-                        "isStatic": true,
-                        "lastClassName": "hjCtQn",
-                        "rules": Array [
-                          "
+              <fieldset
+                aria-disabled={false}
+                disabled={false}
+              >
+                <styled.h1>
+                  <StyledComponent
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "title is-3",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-htpNat",
+                          "isStatic": true,
+                          "lastClassName": "hjCtQn",
+                          "rules": Array [
+                            "
   && {
     text-align: center;
     margin: 20px 0 20px 0;
   }
 ",
-                        ],
-                      },
-                      "displayName": "styled.h1",
-                      "foldedComponentIds": Array [],
-                      "render": [Function],
-                      "styledComponentId": "sc-htpNat",
-                      "target": "h1",
-                      "toString": [Function],
-                      "warnTooManyClasses": [Function],
-                      "withComponent": [Function],
+                          ],
+                        },
+                        "displayName": "styled.h1",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-htpNat",
+                        "target": "h1",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
                     }
-                  }
-                  forwardedRef={null}
-                >
-                  <h1
-                    className="sc-htpNat title is-3 hjCtQn"
+                    forwardedRef={null}
                   >
-                    Create your account
-                  </h1>
-                </StyledComponent>
-              </styled.h1>
-              <RegistrationInputField
-                error=""
-                label="Given name (first name)"
-                loading={false}
-                name="givenName"
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
+                    <h1
+                      className="sc-htpNat title is-3 hjCtQn"
+                    >
+                      Create your account
+                    </h1>
+                  </StyledComponent>
+                </styled.h1>
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="givenName+Given name (first name)"
                   >
                     Given name (first name)
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="givenName"
                       onChange={[Function]}
-                      type="text"
                       value=""
                     >
                       <div
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="givenName"
                           onChange={[Function]}
-                          type="text"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Family name (surname)"
-                loading={false}
-                name="familyName"
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="familyName+Family name (surname)"
                   >
                     Family name (surname)
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="familyName"
                       onChange={[Function]}
-                      type="text"
                       value=""
                     >
                       <div
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="familyName"
                           onChange={[Function]}
-                          type="text"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Email address"
-                loading={false}
-                name="email"
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="email+Email address"
                   >
                     Email address
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="email"
                       onChange={[Function]}
-                      type="text"
                       value=""
                     >
                       <div
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="email"
                           onChange={[Function]}
-                          type="text"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Username"
-                loading={false}
-                name="username"
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="username+Username"
                   >
                     Username
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="username"
                       onChange={[Function]}
-                      type="text"
                       value=""
                     >
                       <div
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="username"
                           onChange={[Function]}
-                          type="text"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Affiliation"
-                loading={false}
-                name="affiliation"
-                onChange={[Function]}
-                placeholder="E.g. University of Cape Town"
-                type="text"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="affiliation+Affiliation"
                   >
                     Affiliation
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="affiliation"
                       onChange={[Function]}
-                      type="text"
+                      placeholder="E.g. University of Cape Town"
                       value=""
                     >
                       <div
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="affiliation"
                           onChange={[Function]}
-                          type="text"
+                          placeholder="E.g. University of Cape Town"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Password"
-                loading={false}
-                name="password"
-                onChange={[Function]}
-                placeholder="At least 7 characters"
-                type="password"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="password+Password"
                   >
                     Password
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="password"
                       onChange={[Function]}
+                      placeholder="At least 7 characters"
                       type="password"
                       value=""
                     >
@@ -762,45 +611,25 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="password"
                           onChange={[Function]}
+                          placeholder="At least 7 characters"
                           type="password"
                           value=""
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <RegistrationInputField
-                error=""
-                label="Re-enter password "
-                loading={false}
-                name="confirmPassword"
-                onChange={[Function]}
-                type="password"
-                value=""
-              >
                 <div
                   className="field"
                 >
                   <label
                     className="label"
-                    htmlFor="confirmPassword+Re-enter password "
                   >
-                    Re-enter password 
-                    :
-                  </label>
-                  <div
-                    className="control is-child"
-                  >
+                    Re-enter password
                     <InputField
-                      data-test="target-name-input"
-                      disabled={false}
-                      error=""
                       name="confirmPassword"
                       onChange={[Function]}
                       type="password"
@@ -810,9 +639,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                         className="control"
                       >
                         <input
-                          className="input undefined "
-                          data-test="target-name-input"
-                          disabled={false}
+                          className="input undefined undefined"
                           name="confirmPassword"
                           onChange={[Function]}
                           type="password"
@@ -820,16 +647,15 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                         />
                       </div>
                     </InputField>
-                  </div>
+                  </label>
                 </div>
-              </RegistrationInputField>
-              <button
-                className="signUp button is-success is-fullwidth is-rounded"
-                disabled={false}
-                type="submit"
-              >
-                Sign up
-              </button>
+                <button
+                  className="signUp button is-success is-fullwidth is-rounded"
+                  type="submit"
+                >
+                  Sign up
+                </button>
+              </fieldset>
             </form>
           </StyledComponent>
         </styled.form>

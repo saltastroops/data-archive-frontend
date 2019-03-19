@@ -5,36 +5,34 @@ import api from "../api/api";
 import InputField from "./basicComponents/InputField";
 
 /**
- * State of the login form.
- *
- * The login form for authenticating the user.
+ * Input for the login form.
  *
  * Properties:
  * -----------
- * userInput: {
- *     password:
- *         The password, which must have at least 7 characters.
- *     username:
- *         The username, which must not contain upper case letters.
+ * password:
+ *     The password, which must have at least 7 characters.
+ * username:
+ *     The username, which must not contain upper case letters.
  * }
+ */
+interface ILoginFormInput {
+  username: string;
+  password: string;
+}
+
+/**
+ * State of the login form.
+ *
+ * Properties:
+ * -----------
  * errors:
- *     password:
- *         Password related error message.
- *     responseError:
- *         Error message resulting from the HTTP request.
- *     username:
- *         Username related error message.
+ *     Object of error messages.
+ * userInput:
+ *     Values input by the user.
  */
 interface ILoginFormState {
-  errors: {
-    password: string;
-    responseError?: string;
-    username: string;
-  };
-  userInput: {
-    password: string;
-    username: string;
-  };
+  errors: Partial<ILoginFormInput> & { responseError?: string };
+  userInput: ILoginFormInput;
 }
 
 const LoginFormParent = styled.form.attrs({
