@@ -25,12 +25,18 @@ interface ILoginFormInput {
  *
  * Properties:
  * -----------
+ * loading:
+ *     Whether a login request is being made.
+ * loggedIn:
+ *     Whether the user has been logged in.
  * errors:
  *     Object of error messages.
  * userInput:
  *     Values input by the user.
  */
 interface ILoginFormState {
+  loading: boolean;
+  loggedIn: boolean;
   errors: Partial<ILoginFormInput> & { responseError?: string };
   userInput: ILoginFormInput;
 }
@@ -96,7 +102,7 @@ const validateLoginForm = (loginInput: {
 /**
  * The login form for authenticating the user.
  */
-class LoginForm extends React.Component<ILoginFormState> {
+class LoginForm extends React.Component<{}, ILoginFormState> {
   public state = {
     errors: {
       password: "",
@@ -104,7 +110,7 @@ class LoginForm extends React.Component<ILoginFormState> {
       username: ""
     },
     loading: false,
-    logged: false,
+    loggedIn: false,
     userInput: {
       password: "",
       username: ""
@@ -140,7 +146,7 @@ class LoginForm extends React.Component<ILoginFormState> {
             username: ""
           },
           loading: false,
-          logged: true,
+          loggedIn: true,
           userInput: {
             password: "",
             username: ""
@@ -174,11 +180,11 @@ class LoginForm extends React.Component<ILoginFormState> {
   };
 
   render() {
-    const { errors, loading, logged } = this.state;
+    const { errors, loading, loggedIn } = this.state;
     const { password, username } = this.state.userInput;
 
-    // Go to the main page after successfully logging in.
-    if (logged) {
+    // Go to the main page afxter successfully logging in.
+    if (loggedIn) {
       return <Redirect to={"/"} />;
     }
 
