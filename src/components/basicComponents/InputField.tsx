@@ -23,7 +23,6 @@ const InputField = (props: IInputProps) => {
   return (
     <div className="control">
       <input
-        type={"text"}
         className={`input ${className} ${error && error !== "" && "is-danger"}`}
         {...rest}
       />

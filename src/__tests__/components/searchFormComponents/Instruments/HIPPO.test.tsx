@@ -4,14 +4,14 @@ import * as React from "react";
 import HIPPO from "../../../../components/searchFormComponents/instruments/HIPPO";
 
 const onChange = jest.fn();
-describe("Grids ", () => {
-  it("should render HIPPO", () => {
+describe("HIPPO ", () => {
+  it("should be defined", () => {
     expect(
       mount(<HIPPO hippo={{ errors: {}, name: "HIPPO" }} onChange={onChange} />)
     ).toBeDefined();
   });
 
-  it("should render all grids correctly", () => {
+  it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
