@@ -12,7 +12,7 @@ import { baseAxiosClient } from "./";
 export default {
   auth: {
     login: async (credentials: { password: string; username: string }) => {
-      return await baseAxiosClient().post("/auth/login", {
+      return baseAxiosClient().post("/auth/login", {
         password: credentials.password,
         username: credentials.username
       });
