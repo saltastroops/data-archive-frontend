@@ -8,11 +8,6 @@ import { baseAxiosClient } from "./";
  *  login
  *    A function responsible for authenticating the user.
  * }
- *
- * user: {
- *  queryUser
- *    A function responsible for retrieving the currently logged in user information
- * }
  */
 export default {
   auth: {
@@ -22,9 +17,5 @@ export default {
         username: credentials.username
       });
     }
-  },
-  user: {
-    queryUser: async () =>
-      await baseAxiosClient().post("/", { query: USER_QUERY })
   }
 };
