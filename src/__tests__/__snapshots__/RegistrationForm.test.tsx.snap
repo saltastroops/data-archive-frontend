@@ -650,7 +650,8 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
                   </label>
                 </div>
                 <button
-                  className="signUp button is-success is-fullwidth is-rounded"
+                  className="button is-success is-fullwidth is-rounded"
+                  data-test="signUp"
                   type="submit"
                 >
                   Sign up

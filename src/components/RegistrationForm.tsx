@@ -319,7 +319,8 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
 
                 {/* Submit */}
                 <button
-                  className="signUp button is-success is-fullwidth is-rounded"
+                  className="button is-success is-fullwidth is-rounded"
+                  data-test="signUp"
                   type={"submit"}
                 >
                   {loading ? "Signing up..." : "Sign up"}

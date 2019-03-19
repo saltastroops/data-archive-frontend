@@ -123,13 +123,13 @@ describe("RegistrationForm Component", () => {
     expect(instance.state.userInput.username).toBe("sj");
 
     // Expect the button to not be clicked
-    expect(wrapper.find(".signUp").text()).toContain("Sign up");
+    expect(wrapper.find('[data-test="signUp"]').text()).toContain("Sign up");
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect the button to hev beeen clicked
-    expect(wrapper.find(".signUp").text()).toContain("Signing up");
+    expect(wrapper.find('[data-test="signUp"]').text()).toContain("Signing up");
 
     // Expect no error message.
     expect(wrapper.find("p").length).toBe(0);
@@ -159,7 +159,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
@@ -193,7 +193,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
@@ -227,7 +227,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
@@ -261,7 +261,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
@@ -295,7 +295,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(2);
@@ -341,7 +341,7 @@ describe("RegistrationForm Component", () => {
     expect(setState.mock.calls.length).toBe(2);
 
     // Simulate the submiting of the form.
-    wrapper.find(".signUp").simulate("submit");
+    wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);

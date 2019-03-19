@@ -223,7 +223,10 @@ class LoginForm extends React.Component<ILoginFormState> {
           </div>
 
           {/* submit button */}
-          <button className="signIn button is-success is-fullwidth is-rounded">
+          <button
+            className="button is-success is-fullwidth is-rounded"
+            data-test="signIn"
+          >
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </fieldset>

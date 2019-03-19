@@ -167,7 +167,8 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
             </label>
           </div>
           <button
-            className="signIn button is-success is-fullwidth is-rounded"
+            className="button is-success is-fullwidth is-rounded"
+            data-test="signIn"
           >
             Sign in
           </button>

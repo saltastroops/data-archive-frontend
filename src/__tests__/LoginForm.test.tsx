@@ -80,7 +80,7 @@ describe("LoginForm Component", () => {
     // Expect the property password of the state to have been updated with the correct value.
     expect(instance.state.userInput.password).toBe("securepassword");
 
-    const signInButton = wrapper.find(".signIn");
+    const signInButton = wrapper.find('[data-test="signIn"]');
     // Expect the button to not be clicked
     expect(signInButton.text()).toContain("Sign in");
 
@@ -127,7 +127,7 @@ describe("LoginForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    const signInButton = wrapper.find(".signIn");
+    const signInButton = wrapper.find('[data-test="signIn"]');
     // Simulate the submiting of the form.
     signInButton.simulate("submit");
 
@@ -166,8 +166,8 @@ describe("LoginForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    const signInButton = wrapper.find(".signIn");
-    // Simulate the submiting of the form.
+    const signInButton = wrapper.find('[data-test="signIn"]');
+    // Simulate the submiting of the form
     signInButton.simulate("submit");
 
     // Expect the button to hev beeen clicked
