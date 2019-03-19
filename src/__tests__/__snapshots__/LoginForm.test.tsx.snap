@@ -94,112 +94,84 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
             <h1
               className="sc-htpNat title is-3 hjCtQn"
             >
-              Login Here
+              Login to the Data Archive
             </h1>
           </StyledComponent>
         </styled.h1>
-        <LoginInputField
-          error=""
-          label="Username"
-          loading={false}
-          name="username"
-          onChange={[Function]}
-          type="text"
-          value=""
-        >
-          <div
-            className="field"
-          >
-            <label
-              className="label"
-              htmlFor="username+Username"
-            >
-              Username
-              :
-            </label>
-            <div
-              className="control is-child"
-            >
-              <InputField
-                data-test="target-name-input"
-                disabled={false}
-                error=""
-                name="username"
-                onChange={[Function]}
-                type="text"
-                value=""
-              >
-                <div
-                  className="control"
-                >
-                  <input
-                    className="input undefined "
-                    data-test="target-name-input"
-                    disabled={false}
-                    name="username"
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </InputField>
-            </div>
-          </div>
-        </LoginInputField>
-        <LoginInputField
-          error=""
-          label="Password"
-          loading={false}
-          name="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        >
-          <div
-            className="field"
-          >
-            <label
-              className="label"
-              htmlFor="password+Password"
-            >
-              Password
-              :
-            </label>
-            <div
-              className="control is-child"
-            >
-              <InputField
-                data-test="target-name-input"
-                disabled={false}
-                error=""
-                name="password"
-                onChange={[Function]}
-                type="password"
-                value=""
-              >
-                <div
-                  className="control"
-                >
-                  <input
-                    className="input undefined "
-                    data-test="target-name-input"
-                    disabled={false}
-                    name="password"
-                    onChange={[Function]}
-                    type="password"
-                    value=""
-                  />
-                </div>
-              </InputField>
-            </div>
-          </div>
-        </LoginInputField>
-        <button
-          className="signIn button is-success is-fullwidth is-rounded"
+        <fieldset
+          aria-disabled={false}
           disabled={false}
         >
-          Sign in
-        </button>
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+            >
+              Username
+              <div
+                className="control is-child"
+              >
+                <InputField
+                  error=""
+                  name="username"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                >
+                  <div
+                    className="control"
+                  >
+                    <input
+                      className="input undefined "
+                      name="username"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </InputField>
+              </div>
+            </label>
+          </div>
+          <div
+            className="field"
+          >
+            <label
+              className="label"
+            >
+              Password
+              <div
+                className="control is-child"
+              >
+                <InputField
+                  error=""
+                  name="password"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                >
+                  <div
+                    className="control"
+                  >
+                    <input
+                      className="input undefined "
+                      name="password"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </InputField>
+              </div>
+            </label>
+          </div>
+          <button
+            className="signIn button is-success is-fullwidth is-rounded"
+          >
+            Sign in
+          </button>
+        </fieldset>
       </form>
     </StyledComponent>
   </styled.form>

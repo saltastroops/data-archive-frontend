@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import api from "../../api/api";
-import { validateLoginField } from "../../util/LoginFormValidation";
-import LoginInputField from "./LoginInputField";
+import api from "../api/api";
+import InputField from "./basicComponents/InputField";
 
 /**
  * State of the login form.
@@ -68,6 +67,35 @@ const ErrorMessage = styled.p.attrs({
 `;
 
 /**
+ * Validate the given input and return an object of errors found.
+ */
+const validateLoginForm = (loginInput: {
+  username: string;
+  password: string;
+}) => {
+  // An object to store errors for all fields
+  const errors: { username?: string; password?: string } = {};
+
+  // Check if the submitted username is not empty
+  if (!loginInput.username) {
+    errors.username = `Username cannot be empty.`;
+  }
+
+  // Check if the submitted username contains upper case characters
+  if (loginInput.username !== loginInput.username.toLowerCase()) {
+    errors.username = "Username must be in lowercase";
+  }
+
+  // Check if the password is secure enough
+  if (loginInput.password.length <= 6) {
+    errors.password = "Password should be at least 7 characters long";
+  }
+
+  // Return an object consisting of the error messages
+  return errors;
+};
+
+/**
  * The login form for authenticating the user.
  */
 class LoginForm extends React.Component<ILoginFormState> {
@@ -89,7 +117,7 @@ class LoginForm extends React.Component<ILoginFormState> {
     e.preventDefault();
 
     // Validate the user input fields
-    const errors = validateLoginField(this.state.userInput);
+    const errors = validateLoginForm(this.state.userInput);
     this.setState({ errors });
 
     // Check if there is an error, if there is abort signing in.
@@ -107,12 +135,6 @@ class LoginForm extends React.Component<ILoginFormState> {
       });
 
       if (login.data.success) {
-        // TO BE REMOVED
-        // Confirming user is authenticated
-        const user = await api.user.queryUser();
-
-        console.log(user);
-
         this.setState({
           errors: {
             password: "",
@@ -141,7 +163,7 @@ class LoginForm extends React.Component<ILoginFormState> {
   /**
    * Update the form content according to the user input.
    */
-  onHandleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     // Updating the userInput property of the state when input field value updates
@@ -164,36 +186,49 @@ class LoginForm extends React.Component<ILoginFormState> {
 
     return (
       <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
-        <Heading>Login Here</Heading>
+        <Heading>Login to the Data Archive</Heading>
         {errors.responseError ? (
           <ErrorMessage>{errors.responseError}</ErrorMessage>
         ) : null}
-        <LoginInputField
-          error={errors.username}
-          loading={loading}
-          name={"username"}
-          label={"Username"}
-          onChange={this.onHandleInputChange}
-          type={"text"}
-          value={username}
-        />
 
-        <LoginInputField
-          error={errors.password}
-          loading={loading}
-          name={"password"}
-          label={"Password"}
-          onChange={this.onHandleInputChange}
-          type={"password"}
-          value={password}
-        />
+        <fieldset disabled={loading} aria-disabled={loading}>
+          {/* username */}
+          <div className="field">
+            <label className="label">
+              Username
+              <div className={"control is-child"}>
+                <InputField
+                  name="username"
+                  value={username || ""}
+                  error={errors.username}
+                  onChange={this.onInputChange}
+                  type="text"
+                />
+              </div>
+            </label>
+          </div>
 
-        <button
-          disabled={loading}
-          className="signIn button is-success is-fullwidth is-rounded"
-        >
-          {loading ? "Signing in..." : "Sign in"}
-        </button>
+          {/* password */}
+          <div className="field">
+            <label className="label">
+              Password
+              <div className={"control is-child"}>
+                <InputField
+                  name="password"
+                  value={password || ""}
+                  error={errors.password}
+                  onChange={this.onInputChange}
+                  type="text"
+                />
+              </div>
+            </label>
+          </div>
+
+          {/* submit button */}
+          <button className="signIn button is-success is-fullwidth is-rounded">
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </fieldset>
       </LoginFormParent>
     );
   }

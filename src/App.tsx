@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import styled from "styled-components";
-import LoginForm from "./components/LoginForm/LoginForm";
+import LoginForm from "./components/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 
 const Heading = styled.h1.attrs({

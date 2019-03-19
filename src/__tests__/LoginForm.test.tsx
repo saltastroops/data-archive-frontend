@@ -1,10 +1,10 @@
-jest.mock("../../../api/api");
+jest.mock("../api/api");
 
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import api from "../../../api/api";
-import LoginForm from "../LoginForm";
+import api from "../api/api";
+import LoginForm from "../components/LoginForm";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
