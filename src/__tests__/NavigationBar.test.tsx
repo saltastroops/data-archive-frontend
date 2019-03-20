@@ -13,7 +13,9 @@ const mockUser = (isAdmin: boolean, name: string, username: string) => ({
 describe("NavigationBar", () => {
   it("shows the correct content when the user is not logged in", () => {
     const user = null;
-    const logout = jest.fn();
+    const logout = () => {
+      /* do nothing */
+    };
     const wrapper = mount(
       <MemoryRouter>
         <NavigationBar user={user} logout={logout} />
@@ -35,6 +37,9 @@ describe("NavigationBar", () => {
     // Logout link is not shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeFalsy();
 
+    // Admin page link is not shown
+    expect(wrapper.exists('Link[to="/admin"]')).toBeFalsy();
+
     // Overall content check
     const navigationBar = wrapper.find(".navbar");
     expect(toJSON(navigationBar)).toMatchSnapshot();
@@ -42,7 +47,9 @@ describe("NavigationBar", () => {
 
   it("shows the correct content when the user is a non-administrator", () => {
     const user = mockUser(false, "name", "username");
-    const logout = jest.fn();
+    const logout = () => {
+      /* do nothing */
+    };
     const wrapper = mount(
       <MemoryRouter>
         <NavigationBar user={user} logout={logout} />
@@ -74,7 +81,9 @@ describe("NavigationBar", () => {
 
   it("shows the correct content when the user is an administrator", () => {
     const user = mockUser(true, "name", "username");
-    const logout = jest.fn();
+    const logout = () => {
+      /* do nothing */
+    };
     const wrapper = mount(
       <MemoryRouter>
         <NavigationBar user={user} logout={logout} />

@@ -1,30 +1,33 @@
+import {
+  faShoppingCart,
+  faSignInAlt,
+  faUserPlus
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 /**
- * The navigation bar containing links to all pages, as well as a link for logging
- * out and a shopping cart icon.
+ * The navigation bar containing links to all pages, as well as a link for
+ * logging out and a link to the shopping cart.
+ *
  * Properties:
  * -----------
  * user : User
- * The currently logged in user. If the user is not logged in, a falsy value
- * must be passed.
+ *     The currently logged in user. If the user is not logged in, a falsy value
+ *     must be passed.
  * logout : () => void
- * A function for logging out.
- *
+ *     A function for logging out.
  */
 
 // TODO: replace user type with correct one
 interface INavigationBarProps {
-  user?:
-    | {
-        isAdmin: () => boolean;
-        name: string;
-        username: string;
-      }
-    | null
-    | undefined; // currently logged in user
+  user?: {
+    isAdmin: () => boolean;
+    name: string;
+    username: string;
+  }; // currently logged in user
   logout: () => void; // logout function
 }
 
@@ -34,8 +37,7 @@ interface INavigationBarState {
 
 const Nav = styled.nav.attrs({
   ariaLabel: "menu",
-  className: "navbar is-full-width ",
-  role: "button"
+  className: "navbar is-full-width "
 })``;
 
 class NavigationBar extends React.Component<
@@ -47,7 +49,9 @@ class NavigationBar extends React.Component<
   };
 
   public render() {
+    // classes for highlighting a link to nan active tab
     const activeTab = "has-text-weight-bold has-text-link";
+
     const { logout, user } = this.props;
     const { isMenuActive } = this.state;
 
@@ -56,7 +60,6 @@ class NavigationBar extends React.Component<
         <Nav>
           <div className="navbar-brand">
             {/* "Burger" for toggling the menu on a mobile device */}
-
             <a
               className={`navbar-burger burger ${
                 isMenuActive ? "is-active" : ""
@@ -81,9 +84,9 @@ class NavigationBar extends React.Component<
             <div className="navbar-start ">
               {/* Link to search page */}
               <NavLink
-                className={`navbar-item item ${
-                  this.isActiveTab("Search") ? activeTab : ""
-                }`}
+                activeClassName={activeTab}
+                className="navbar-item item"
+                exact={true}
                 to="/"
               >
                 Search
@@ -92,9 +95,8 @@ class NavigationBar extends React.Component<
               {/* Link to data requests page */}
               {user && (
                 <NavLink
-                  className={`navbar-item item ${this.isActiveTab(
-                    "DataRequests"
-                  ) && activeTab}`}
+                  activeClassName={activeTab}
+                  className="navbar-item item"
                   to="/data-requests"
                 >
                   Data Requests
@@ -104,8 +106,8 @@ class NavigationBar extends React.Component<
               {/* Link to admin page */}
               {user && user.isAdmin() && (
                 <NavLink
-                  className={`navbar-item ${this.isActiveTab("Admin") &&
-                    activeTab}`}
+                  activeClassName={activeTab}
+                  className="navbar-item"
                   to="/admin"
                 >
                   Admin
@@ -121,8 +123,8 @@ class NavigationBar extends React.Component<
                   <div className="navbar-dropdown">
                     {/* Link to page for editing account details */}
                     <NavLink
-                      className={`navbar-item ${this.isActiveTab("Account") &&
-                        activeTab}`}
+                      activeClassName={activeTab}
+                      className="navbar-item"
                       to="/account"
                     >
                       Account
@@ -143,25 +145,26 @@ class NavigationBar extends React.Component<
 
               {!user && (
                 <>
+                  {/* Link for logging in */}
                   <div className={"navbar-item"}>
-                    {/* Button for logging in */}
                     <NavLink
-                      className=" button is-primary is-outlined"
+                      className=" button is-primary  is-outlined"
                       to="/login"
                     >
                       <span>
-                        Login <i className="fas fa-sign-in-alt" />
+                        Login <FontAwesomeIcon icon={faSignInAlt} />
                       </span>
                     </NavLink>
                   </div>
-                  <div className={"navbar-item is-outlined"}>
-                    {/* Button for registering */}
+
+                  {/* Link for registering */}
+                  <div className={"navbar-item"}>
                     <NavLink
-                      className="button is-info is-outlined"
+                      className=" button is-info is-outlined"
                       to="/register"
                     >
                       <span>
-                        Register <i className="fas fa-user-plus" />
+                        Register <FontAwesomeIcon icon={faUserPlus} />
                       </span>
                     </NavLink>
                   </div>
@@ -170,14 +173,9 @@ class NavigationBar extends React.Component<
 
               {/* Cart icon */}
               <div className={"navbar-item is-hidden-descktop"}>
-                <NavLink
-                  className={` button is-link  ${
-                    this.isActiveTab("Cart") ? "" : "is-outlined"
-                  }`}
-                  to="/cart"
-                >
+                <NavLink className="button is-link is-outlined" to="/cart">
                   <span>
-                    <i className={`fas fa-shopping-cart `} /> CART
+                    <FontAwesomeIcon icon={faShoppingCart} /> CART
                   </span>
                 </NavLink>
               </div>
@@ -193,24 +191,6 @@ class NavigationBar extends React.Component<
     this.setState(prevState => ({
       isMenuActive: !prevState.isMenuActive
     }));
-  };
-
-  private isActiveTab = (tab: string) => {
-    const currentPath = window.location.pathname;
-
-    if (currentPath === "/" && tab === "Search") {
-      return true;
-    }
-    if (currentPath === "/cart" && tab === "Cart") {
-      return true;
-    }
-    if (currentPath === "/account" && tab === "Account") {
-      return true;
-    }
-    if (currentPath === "/admin" && tab === "Admin") {
-      return true;
-    }
-    return currentPath === "/data-requests" && tab === "DataRequests";
   };
 }
 
