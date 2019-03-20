@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  inputType?: string;
 }
 
 /**
@@ -20,11 +19,10 @@ const Error = styled.p.attrs({
  * addition, you may pass an error argument with an error message to display.
  */
 const InputField = (props: IInputProps) => {
-  const { className, error, inputType, ...rest } = props;
+  const { className, error, ...rest } = props;
   return (
     <div className="control">
       <input
-        type={inputType}
         className={`input ${className} ${error && error !== "" && "is-danger"}`}
         {...rest}
       />
@@ -32,5 +30,4 @@ const InputField = (props: IInputProps) => {
     </div>
   );
 };
-
 export default InputField;
