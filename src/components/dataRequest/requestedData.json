@@ -5,88 +5,163 @@
       "madeAt": "2018/12/01 20:00",
       "dataFiles": [
         {
-          "id": "file 1",
-          "available": true,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 1"
-          }
+          "id": "obsR1",
+          "status": "SUCCESSFUL",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 1"
+              }
+            },
+            {
+              "id": "file 3",
+              "name": "filename 3",
+              "observation": {
+                "id": "Observation 1"
+              }
+            }
+          ]
         },
         {
-          "id": "file 2",
-          "available": true,
-          "name": "filename 2",
-          "observation": {
-            "id": "Observation 1"
-          }
+          "id": "obsR2",
+          "status": "FAILED",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 2"
+              }
+            }
+          ]
         },
         {
-          "id": "file 1",
-          "available": true,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 2"
-          }
+          "id": "obsR3",
+          "status": "PENDING",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 3"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 3"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "rd2",
-      "madeAt": "2018/12/01 20:00",
+      "madeAt": "2019/01/01 22:00",
       "dataFiles": [
         {
-          "id": "file 1",
-          "available": false,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 1"
-          }
+          "id": "obsR1",
+          "status": "SUCCESSFUL",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 1"
+              }
+            }
+          ]
         },
         {
-          "id": "file 2",
-          "available": false,
-          "name": "filename 2",
-          "observation": {
-            "id": "Observation 1"
-          }
-        },
-        {
-          "id": "file 1",
-          "available": false,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 2"
-          }
+          "id": "obsR2",
+          "status": "SUCCESSFUL",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 2"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "id": "rd3",
-      "madeAt": "2018/12/01 20:00",
+      "madeAt": "2019/02/01 00:00",
       "dataFiles": [
         {
-          "id": "file 1",
-          "available": true,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 1"
-          }
+          "id": "obsR1",
+          "status": "FAILED",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 1"
+              }
+            }
+          ]
         },
         {
-          "id": "file 2",
-          "available": true,
-          "name": "filename 2",
-          "observation": {
-            "id": "Observation 1"
-          }
-        },
-        {
-          "id": "file 1",
-          "available": false,
-          "name": "filename 1",
-          "observation": {
-            "id": "Observation 2"
-          }
+          "id": "obsR2",
+          "status": "FAILED",
+          "observationFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "Observation 2"
+              }
+            }
+          ]
         }
       ]
     }
