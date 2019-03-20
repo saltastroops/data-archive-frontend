@@ -148,7 +148,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               data-test="right-ascension-input"
               disabled={loading}
               name={"rightAscension"}
-              value={target.rightAscension}
+              value={target.rightAscension || ""}
               onChange={targetChange}
               error={target.errors.rightAscension}
             />
@@ -159,7 +159,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               data-test="declination-input"
               disabled={loading}
               name={"declination"}
-              value={target.declination}
+              value={target.declination || ""}
               onChange={targetChange}
               error={target.errors.declination}
             />
@@ -171,7 +171,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <InputField
               data-test="search-cone-radius-input"
               name={"searchConeRadius"}
-              value={target.searchConeRadius}
+              value={target.searchConeRadius || ""}
               onChange={targetChange}
               error={target.errors.searchConeRadius}
             />
@@ -201,8 +201,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
  */
 export const validatedTarget = async (target: ITarget) => {
   // Check that the target name and any given coordinates are consistent
-  // TODO: Don't enforce exact equality for floats.
-  // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
     raDecChangeError = await targetPosition(target.name, [target.resolver])
@@ -227,15 +225,22 @@ export const validatedTarget = async (target: ITarget) => {
       .catch();
   }
 
+  let targetNameError = "";
+  if (target.name) {
+    targetNameError = (await targetPosition(target.name, [target.resolver]))
+      ? ""
+      : `Target "${target.name}" Could not be resolved.`;
+  }
   // Return the search parameters with the errors found
   return {
     ...target,
     errors: {
+      ...target.errors,
       declination:
         raDecChangeError && raDecChangeError.declination
           ? raDecChangeError.declination
           : validateDeclination(target.declination || ""),
-      name: validateName(),
+      name: targetNameError,
       rightAscension:
         raDecChangeError && raDecChangeError.rightAscension
           ? raDecChangeError.rightAscension
