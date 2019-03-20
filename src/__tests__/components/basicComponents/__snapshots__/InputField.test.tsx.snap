@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField render correctly 1`] = `
+<div
+  className="control"
+>
+  <input
+    className="input undefined undefined"
+  />
+</div>
+`;
+
+exports[`InputField render correctly 2`] = `
+<div
+  className="control"
+>
+  <input
+    className="input undefined is-danger"
+  />
+  <styled.p>
+    it has error
+  </styled.p>
+</div>
+`;
+
+exports[`InputField render correctly 3`] = `
+<div
+  className="control"
+>
+  <input
+    className="input undefined undefined"
+    name="name"
+    placeholder="holder"
+    value="value"
+  />
+</div>
+`;

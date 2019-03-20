@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Form render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <TargetForm
+        onChange={[Function]}
+        target={
+          Object {
+            "errors": Object {},
+            "resolver": "Simbad",
+            "searchConeRadiusUnits": "arcseconds",
+          }
+        }
+      />
+    </styled.div>
+    <styled.div>
+      <ProposalForm
+        onChange={[Function]}
+        proposal={
+          Object {
+            "calibrations": Set {},
+            "errors": Object {},
+          }
+        }
+      />
+    </styled.div>
+    <styled.div>
+      <TelescopeForm
+        onChange={[Function]}
+      />
+    </styled.div>
+    <styled.div>
+      <DataForm
+        general={
+          Object {
+            "calibrations": Set {},
+            "errors": Object {},
+          }
+        }
+        onChange={[Function]}
+      />
+    </styled.div>
+    <styled.div>
+      <input
+        className="button is-primary"
+        onClick={[Function]}
+        type="button"
+        value="Search"
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HRS should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<HRS
+  hrs={
+    Object {
+      "errors": Object {},
+      "name": "HRS",
+    }
+  }
+  onChange={[MockFunction]}
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-htoDjs",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-htoDjs",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="High Resolution"
+                      value="HIGH RESOLUTION"
+                    >
+                      High Resolution
+                    </option>
+                    <option
+                      key="High Stability"
+                      value="HIGH STABILITY"
+                    >
+                      High Stability
+                    </option>
+                    <option
+                      key="Int Cal Fibre"
+                      value="INT CAL FIBRE"
+                    >
+                      Int Cal Fibre
+                    </option>
+                    <option
+                      key="Low Resolution"
+                      value="LOW RESOLUTION"
+                    >
+                      Low Resolution
+                    </option>
+                    <option
+                      key="Medium Resolution"
+                      value="MEDIUM RESOLUTION"
+                    >
+                      Medium Resolution
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</HRS>
+`;
