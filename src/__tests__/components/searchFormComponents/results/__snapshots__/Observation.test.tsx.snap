@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Observation results table row should have a checkbox to add all files if there is an observation 1`] = `
+.c0.c0 {
+  font-size: 22px;
+  padding-right: 10px;
+}
+
+.c1.c1 {
+  width: 18px;
+  height: 18px;
+}
+
+<ObservationResults
+  addAllFiles={[MockFunction]}
+  cart={
+    Array [
+      Object {
+        "category": "some info",
+        "dataType": "some info",
+        "declination": "some info",
+        "filename": "name-XXX",
+        "instrument": "some info",
+        "isReduced": true,
+        "name": "some info",
+        "observationId": "some info",
+        "observationNight": "some info",
+        "rightAscension": "some info",
+        "targetName": "some info",
+        "telescope": "some info",
+        "url": "some info",
+      },
+    ]
+  }
+  observation={
+    Object {
+      "files": Array [
+        Object {
+          "category": "some info",
+          "dataType": "some info",
+          "declination": "some info",
+          "filename": "name-XXX",
+          "instrument": "some info",
+          "isReduced": true,
+          "name": "some info",
+          "observationId": "some info",
+          "observationNight": "some info",
+          "rightAscension": "some info",
+          "targetName": "some info",
+          "telescope": "some info",
+          "url": "some info",
+        },
+      ],
+      "id": "Obs-ID-xxx",
+      "name": "observation",
+      "proposal": "P-CODE-XXX",
+      "startTime": "2019-10-10 23:00:12",
+      "telescope": "SALT",
+    }
+  }
+>
+  <tr
+    className="is-selected span"
+  >
+    <td>
+      <label>
+        <styled.span>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "span",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-iwsKbI",
+                  "isStatic": true,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.span",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-iwsKbI",
+                "target": "span",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <span
+              className="span c0"
+            >
+              <styled.input
+                checked={false}
+                id="Add-all-Obs-ID-xxx"
+                onChange={[Function]}
+              >
+                <StyledComponent
+                  checked={false}
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "checkbox",
+                          "type": "checkbox",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-gZMcBi",
+                        "isStatic": true,
+                        "lastClassName": "c1",
+                        "rules": Array [
+                          "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.input",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-gZMcBi",
+                      "target": "input",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  id="Add-all-Obs-ID-xxx"
+                  onChange={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="checkbox c1"
+                    id="Add-all-Obs-ID-xxx"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </StyledComponent>
+              </styled.input>
+            </span>
+          </StyledComponent>
+        </styled.span>
+        <styled.span
+          className="span"
+        >
+          <StyledComponent
+            className="span"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "span",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-iwsKbI",
+                  "isStatic": true,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.span",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-iwsKbI",
+                "target": "span",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <span
+              className="span span c0"
+            >
+               Add all
+            </span>
+          </StyledComponent>
+        </styled.span>
+      </label>
+    </td>
+    <td
+      colSpan={3}
+    >
+      <styled.span>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [
+                Object {
+                  "className": "span",
+                },
+              ],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-iwsKbI",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                ],
+              },
+              "displayName": "styled.span",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-iwsKbI",
+              "target": "span",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <span
+            className="span c0"
+          >
+            Observation: 
+            observation
+          </span>
+        </StyledComponent>
+      </styled.span>
+    </td>
+    <td
+      colSpan={2}
+    >
+      <styled.span>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [
+                Object {
+                  "className": "span",
+                },
+              ],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-iwsKbI",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                ],
+              },
+              "displayName": "styled.span",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-iwsKbI",
+              "target": "span",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <span
+            className="span c0"
+          >
+            Telescope: 
+            SALT
+          </span>
+        </StyledComponent>
+      </styled.span>
+    </td>
+    <td
+      colSpan={2}
+    >
+      <styled.span>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [
+                Object {
+                  "className": "span",
+                },
+              ],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-iwsKbI",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                ],
+              },
+              "displayName": "styled.span",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-iwsKbI",
+              "target": "span",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <span
+            className="span c0"
+          >
+            Proposal: 
+            P-CODE-XXX
+          </span>
+        </StyledComponent>
+      </styled.span>
+    </td>
+    <td
+      colSpan={2}
+    >
+      <styled.span>
+        <StyledComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [
+                Object {
+                  "className": "span",
+                },
+              ],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-iwsKbI",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                ],
+              },
+              "displayName": "styled.span",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-iwsKbI",
+              "target": "span",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <span
+            className="span c0"
+          >
+            Stat time: 
+            2019-10-10 23:00:12
+          </span>
+        </StyledComponent>
+      </styled.span>
+    </td>
+  </tr>
+</ObservationResults>
+`;

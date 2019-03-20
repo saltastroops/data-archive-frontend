@@ -1,66 +1,50 @@
 import * as React from "react";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import { Span } from "../../basicComponents/Grids";
+import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 
 interface IObservationResults {
   cart: any;
   observation: IObservation;
-  addAll: (e: React.MouseEvent<HTMLElement>, observation: IObservation) => void;
-  removeAll: (
-    e: React.MouseEvent<HTMLElement>,
+  addAllFiles: (
+    e: React.ChangeEvent<HTMLInputElement>,
     observation: IObservation
   ) => void;
 }
 
 const ObservationResults = (props: IObservationResults) => {
-  const { observation, addAll, removeAll, cart } = props;
+  const { observation, addAllFiles, cart } = props;
 
   return (
-    <tr className="is-selected">
-      <td colSpan={3}>{observation.name}</td>
-      <td colSpan={2}>{observation.proposal}</td>
-      <td colSpan={2}>{observation.telescope}</td>
-      <td>{observation.startTime}</td>
-      {// show add all if not all the files are in the cart from this observation else show remove all
-      !observation.files.every((item: IFile) => cart.indexOf(item) >= 0) ? (
-        <>
-          <td>
-            <button
-              name="addAll"
-              className={"button is-info"}
-              onClick={e => addAll(e, observation)}
-            >
-              add all
-            </button>
-          </td>
-          {// show remove all if some of the files from this observation are on the cart
-          observation.files.some((item: IFile) => cart.indexOf(item) >= 0) ? (
-            <td>
-              <button
-                name="addAll"
-                className={"button is-danger"}
-                onClick={e => removeAll(e, observation)}
-              >
-                remove all
-              </button>
-            </td>
-          ) : (
-            <td colSpan={1} />
-          )}
-        </>
-      ) : (
-        <>
-          <td colSpan={1} />
-          <td>
-            <button
-              name="addAll"
-              className={"button is-danger"}
-              onClick={e => removeAll(e, observation)}
-            >
-              remove all
-            </button>
-          </td>
-        </>
-      )}
+    <tr className="is-selected span">
+      <td>
+        <label>
+          <Span>
+            <LargeCheckbox
+              id={`Add-all-${observation.id}`}
+              checked={observation.files.every(
+                (item: IFile) => cart.indexOf(item) >= 0
+              )}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                addAllFiles(e, observation)
+              }
+            />
+          </Span>
+          <Span className={"span"}> Add all</Span>
+        </label>
+      </td>
+      <td colSpan={3}>
+        <Span>Observation: {observation.name}</Span>
+      </td>
+      <td colSpan={2}>
+        <Span>Telescope: {observation.telescope}</Span>
+      </td>
+      <td colSpan={2}>
+        <Span>Proposal: {observation.proposal}</Span>
+      </td>
+      <td colSpan={2}>
+        <Span>Stat time: {observation.startTime}</Span>
+      </td>
     </tr>
   );
 };

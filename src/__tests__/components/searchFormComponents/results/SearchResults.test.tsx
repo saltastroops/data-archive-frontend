@@ -19,9 +19,6 @@ describe("Search results", () => {
       <SearchResults searchResults={[]} cart={[]} updateCart={updateCart} />
     );
     expect(wrapper.find("table.table")).toBeTruthy();
-    // only the table header that will be defined
-    expect(wrapper.find("tr").length).toEqual(1);
-    expect(wrapper.find("thead").length).toEqual(1);
     expect(wrapper.find("td").length).toEqual(0);
   });
   it("should create a table with a some row if there is one observation and a file", () => {
@@ -56,11 +53,10 @@ describe("Search results", () => {
         updateCart={updateCart}
       />
     );
-    // row for the observation head
     // row for the observation data
     // row for the file head
     // row for the file data
-    expect(wrapper.find("tr").length).toEqual(4);
+    expect(wrapper.find("tr").length).toEqual(3);
   });
   it("should render data correctly", () => {
     const observation = [

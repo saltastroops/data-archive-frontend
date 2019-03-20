@@ -26,17 +26,27 @@ class SearchResults extends React.Component<
    *
    * @return void
    */
-  public addAll = (
-    event: React.MouseEvent<HTMLElement>,
+  public addAllFiles = (
+    event: React.ChangeEvent<HTMLInputElement>,
     observation: IObservation
   ) => {
     const { cart, updateCart } = this.props;
-    const newCart = [
-      ...cart.filter((item: IFile) => {
-        return !observation.files.includes(item); // removing any file from the cart that might belong to this observation to avoid duplication
-      }),
-      ...observation.files // adding all the files from this observation
-    ];
+    let newCart = [];
+    if (event.target.checked) {
+      newCart = [
+        ...cart.filter((item: IFile) => {
+          return !observation.files.includes(item); // removing any file from the cart that might belong to this observation to avoid duplication
+        }),
+        ...observation.files // adding all the files from this observation
+      ];
+    } else {
+      newCart = [
+        ...cart.filter((item: IFile) => {
+          return !observation.files.includes(item); // removing any file from the cart that belong to this observation
+        })
+      ];
+    }
+
     updateCart(newCart);
   };
   /**
@@ -49,18 +59,7 @@ class SearchResults extends React.Component<
    *
    * @return void
    */
-  public removeAll = (
-    event: React.MouseEvent<HTMLElement>,
-    observation: IObservation
-  ) => {
-    const { cart, updateCart } = this.props;
-    const newCart = [
-      ...cart.filter((item: IFile) => {
-        return !observation.files.includes(item); // removing any file from the cart that belong to this observation
-      })
-    ];
-    updateCart(newCart);
-  };
+  // ++++++++++++++++++++++++++++++++++++++++++++++
 
   /**
    * Add or remove file from cart if checkbox is active file is added, else removed.
@@ -110,15 +109,7 @@ class SearchResults extends React.Component<
           closeModal={this.closeModal}
           open={open}
         />
-        <table className={"table is-fullwidth is-tripped"}>
-          <thead>
-            <tr className="notification">
-              <th colSpan={3}>Name</th>
-              <th colSpan={2}>Proposal</th>
-              <th colSpan={2}>Telescope</th>
-              <th colSpan={3}>Start time</th>
-            </tr>
-          </thead>
+        <table className={"table is-fullwidth is-striped"}>
           {searchResults.map((observation: IObservation) => {
             return (
               <tbody key={observation.id}>
@@ -126,8 +117,7 @@ class SearchResults extends React.Component<
                   <ObservationResults
                     observation={observation}
                     cart={cart}
-                    addAll={this.addAll}
-                    removeAll={this.removeAll}
+                    addAllFiles={this.addAllFiles}
                   />
                 }
 

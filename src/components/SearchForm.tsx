@@ -136,9 +136,9 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
             ],
             id: "obs1",
             name: "obs1",
-            proposal: "proposal 1",
+            proposal: "2018-SCI-098",
             startTime: "2018-02-02 17:55:23",
-            telescope: "telescope 1"
+            telescope: "SALT"
           },
           {
             files: [
@@ -186,9 +186,9 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
             ],
             id: "obs2",
             name: "obs2",
-            proposal: "proposal 2",
+            proposal: "2017-MLT-006",
             startTime: "2018-02-02 17:55:23",
-            telescope: "telescope 1"
+            telescope: "SALT"
           },
           {
             files: [
@@ -208,9 +208,9 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
             ],
             id: "obs3",
             name: "obs3",
-            proposal: "proposal 3",
+            proposal: "MLT-RSA-053",
             startTime: "2018-02-02 17:55:23",
-            telescope: "telescope 2"
+            telescope: "Lesedi"
           }
         ]
       }));
