@@ -1,41 +1,32 @@
 import * as React from "react";
+import styled from "styled-components";
 
-interface IDAInputProps {
-  className?: string;
-  name?: string | undefined;
-  value?: string | undefined;
-  error?: string | undefined;
-  loading?: boolean | undefined;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string | undefined;
+interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
 }
 
-const InputField = (props: IDAInputProps) => {
-  const {
-    className,
-    value,
-    onChange,
-    error,
-    name,
-    placeholder,
-    loading
-  } = props;
+/**
+ * A paragraph with an error message.
+ */
+const Error = styled.p.attrs({
+  className: "has-text-danger"
+})``;
+
+/**
+ * An input field with an error message underneath it.
+ *
+ * The field accepts all attributes you can pass to an HTML input element. In
+ * addition, you may pass an error argument with an error message to display.
+ */
+const InputField = (props: IInputProps) => {
+  const { className, error, ...rest } = props;
   return (
     <div className="control">
       <input
-        disabled={loading}
-        title={error}
-        id={`${name}`}
-        type={"text"}
-        className={`is-label input ${className} ${error &&
-          error !== "" &&
-          "is-danger"}`}
-        name={`${name}`}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
+        className={`input ${className} ${error && error !== "" && "is-danger"}`}
+        {...rest}
       />
-      <p style={{ color: "red" }}>{error}</p>
+      {error && <Error>{error}</Error>}
     </div>
   );
 };

@@ -1,40 +1,48 @@
 import * as React from "react";
-import { ISalticam } from "../../../utils/ObservationQueryParameters";
+import { IHRS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
-interface ISalticamProps {
-  salticam: ISalticam;
+interface IHrsProps {
+  hrs: IHRS;
   onChange: (value: any) => void;
 }
 
 /**
- * A form for selecting Salticam-related search parameters.
+ * A form for selecting HRS-related search parameters.
+ * @param props
+ * @constructor
  */
-const Salticam = (props: ISalticamProps) => {
-  const { onChange, salticam } = props;
+const HRS = (props: IHrsProps) => {
+  const { onChange, hrs } = props;
 
   // Function for handling change events
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const name = e.currentTarget.name;
     const value = e.currentTarget.value;
     onChange({
-      ...salticam,
+      ...hrs,
       [name]: value
     });
   };
 
-  const detectorModes = ["Normal", "Slot Mode", "Drift Scan", "Frame Transfer"];
+  const modes = [
+    "High Resolution",
+    "High Stability",
+    "Int Cal Fibre",
+    "Low Resolution",
+    "Medium Resolution"
+  ];
 
   return (
     <MainGrid>
       <SubGrid>
-        <p>Detector Mode</p>
-        <SelectField name={"detectorMode"} onChange={change}>
+        <p>Mode</p>
+        <SelectField name={"mode"} onChange={change}>
           <AnyOption />
-          {detectorModes.map(detectorMode => (
-            <option key={detectorMode} value={detectorMode}>
-              {detectorMode}
+          {modes.map(mode => (
+            <option key={mode} value={mode.toUpperCase()}>
+              {mode}
             </option>
           ))}
         </SelectField>
@@ -42,5 +50,4 @@ const Salticam = (props: ISalticamProps) => {
     </MainGrid>
   );
 };
-
-export default Salticam;
+export default HRS;

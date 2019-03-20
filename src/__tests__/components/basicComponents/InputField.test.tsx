@@ -1,35 +1,15 @@
-import { shallow } from "enzyme";
+import { ReactWrapper, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import InputField from "../../../components/basicComponents/InputField";
-const onChange = jest.fn();
 
-describe("InpuField", () => {
-  const wrapper = shallow(<InputField />);
+describe("InputField", () => {
   it("should render", () => {
-    expect(wrapper).toBeDefined();
-  });
-
-  it("always renders a div", () => {
-    const divs = wrapper.find("div");
-    expect(divs.length).toBeGreaterThan(0);
-  });
-  it("always contains an input tag with of type text", () => {
-    const inputs = wrapper.find("input");
-    expect(inputs.length).toEqual(1);
-    const input = wrapper.find("input").get(0);
-    expect(input.props.type).toEqual("text");
-  });
-
-  it("should call onChange", () => {
-    const changer = shallow(<InputField onChange={onChange} />);
-    const input = changer.find("input");
-    input.find("input").simulate("change", {});
-    expect(onChange).toBeCalled();
+    expect(<InputField />).toBeDefined();
   });
 
   it("render correctly", () => {
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(shallow(<InputField />))).toMatchSnapshot();
     expect(
       toJson(shallow(<InputField error={"it has error"} />))
     ).toMatchSnapshot();
@@ -38,5 +18,15 @@ describe("InpuField", () => {
         shallow(<InputField name="name" value="value" placeholder="holder" />)
       )
     ).toMatchSnapshot();
+  });
+
+  it("should call onChange", () => {
+    const onChange = jest.fn();
+    const inputField = shallow(<InputField onChange={onChange} />);
+    const input = inputField.find("input");
+    input
+      .find("input")
+      .simulate("change", { target: { value: "Input Value" } });
+    expect(onChange).toHaveBeenCalled();
   });
 });

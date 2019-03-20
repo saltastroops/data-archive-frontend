@@ -1,8 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { IGeneral } from "../../utils/ObservationQueryParameters";
+import {
+  CalibrationType,
+  IGeneral
+} from "../../utils/ObservationQueryParameters";
 import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -14,48 +16,35 @@ const LargeCheckbox = styled.input.attrs({
   }
 `;
 
-class DataForm extends React.Component<
-  { data: IGeneral; onChange: (value: IGeneral) => void },
-  any
-> {
-  /*
-  event type need to be 'any' because React.FormEvent<HTMLInputElement> types does not have 'target.checked' property
-  */
-  changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // fooling type scripts
-    const name = e.target.name;
-    const value = e.target.checked;
-    this.props.onChange({
-      ...this.props.data,
-      [name]: value
-    });
-  };
-  changeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // fooling type scripts
-    const name = e.target.name;
-    const value = e.target.value;
+interface IDataFormProps {
+  general: IGeneral;
+  onChange: (value: any) => void;
+}
 
+/**
+ * A form for choosing what data to include in an observation search.
+ */
+class DataForm extends React.Component<IDataFormProps, {}> {
+  // Add or remove the calibration type corresponding to the clicked checkbox
+  changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name as CalibrationType;
+
+    const updated = new Set<CalibrationType>(this.props.general.calibrations);
+    if (e.target.checked) {
+      updated.add(name);
+    } else {
+      updated.delete(name);
+    }
     this.props.onChange({
-      ...this.props.data,
-      [name]: value
+      ...this.props.general,
+      calibrations: updated
     });
   };
+
   render() {
-    const { arcs, biases, flats, standards, dataType } = this.props.data;
+    const { calibrations } = this.props.general;
     return (
       <>
-        <MainGrid>
-          <SubGrid>
-            <p>Reduce/raw</p>
-            <SelectField
-              className={"data-type-select"}
-              options={["any", "reduced", "raw"]}
-              name={"dataType"}
-              onChange={this.changeSelect}
-              value={dataType}
-            />
-          </SubGrid>
-        </MainGrid>
         <MainGrid>
           <SubGrid>
             <h5 className={"title is-5"}>Include:</h5>
@@ -65,10 +54,11 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"arcs-checkbox"}
-                checked={arcs || false}
+                id="arcs-checkbox"
+                checked={calibrations.has("arc")}
+                data-test="arcs-checkbox"
                 onChange={this.changeCheckbox}
-                name={"arcs"}
+                name="arc"
               />
             </Span>
             <Span>Arcs</Span>
@@ -76,10 +66,11 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"biases-checkbox"}
-                checked={biases || false}
+                id="biases-checkbox"
+                checked={calibrations.has("bias")}
+                data-test="biases-checkbox"
                 onChange={this.changeCheckbox}
-                name={"biases"}
+                name="bias"
               />
             </Span>
             <Span>Biases</Span>
@@ -87,10 +78,11 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"flats-checkbox"}
-                checked={flats || false}
+                id="flats-checkbox"
+                checked={calibrations.has("flat")}
+                data-test="flats-checkbox"
                 onChange={this.changeCheckbox}
-                name={"flats"}
+                name="flat"
               />
             </Span>
             <Span>Flats</Span>
@@ -98,10 +90,11 @@ class DataForm extends React.Component<
           <label>
             <Span>
               <LargeCheckbox
-                id={"standards-checkbox"}
-                checked={standards || false}
+                id="standards-checkbox"
+                checked={calibrations.has("standard")}
+                data-test="standards-checkbox"
                 onChange={this.changeCheckbox}
-                name={"standards"}
+                name="standard"
               />
             </Span>
             <Span>Standards</Span>
