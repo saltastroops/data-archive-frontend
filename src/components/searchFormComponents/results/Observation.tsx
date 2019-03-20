@@ -15,7 +15,7 @@ const ObservationResults = (props: IObservationResults) => {
   const { observation, addAll, removeAll, cart } = props;
 
   return (
-    <tr className="is-selected" key={`${observation.id}+value`}>
+    <tr className="is-selected">
       <td colSpan={3}>{observation.name}</td>
       <td colSpan={2}>{observation.proposal}</td>
       <td colSpan={2}>{observation.telescope}</td>

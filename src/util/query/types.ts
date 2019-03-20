@@ -213,7 +213,7 @@ export interface IInstrument {
 }
 
 /**
- * An interface for query parameters related to Salticam.
+ * An interface for query parameters related to SALTICAM.
  *
  * Properties:
  * -----------
@@ -226,7 +226,7 @@ export interface IInstrument {
  * filter:
  *     Filter.
  * name:
- *     The string "Salticam".
+ *     The string "SALTICAM".
  */
 export interface ISalticam extends IInstrument {
   detectorMode?: "Normal" | "Slot Mode";
@@ -237,7 +237,7 @@ export interface ISalticam extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
-  name: "Salticam";
+  name: "SALTICAM";
 }
 
 /**

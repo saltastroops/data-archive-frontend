@@ -49,6 +49,5 @@ exports[`Search Form render correctly 1`] = `
       </button>
     </styled.div>
   </styled.div>
-  <styled.div />
 </Fragment>
 `;

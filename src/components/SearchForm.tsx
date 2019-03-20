@@ -243,15 +243,13 @@ class SearchForm extends React.Component {
             </button>
           </ButtonGrid>
         </ParentGrid>
-        <ParentGrid>
-          {results && results.length !== 0 && (
-            <SearchResults
-              searchResults={results}
-              cart={cart}
-              updateCart={this.updateCart}
-            />
-          )}
-        </ParentGrid>
+        {results && results.length !== 0 && (
+          <SearchResults
+            searchResults={results}
+            cart={cart}
+            updateCart={this.updateCart}
+          />
+        )}
       </>
     );
   }

@@ -78,7 +78,7 @@ describe("Fake test", () => {
 //   },
 //   telescope: {
 //     otherInstruments: ["any", "Hippo", "SHOC", "SpupMic"],
-//     saltInstruments: ["any", "HRS", "RSS", "BVIT", "SALTICAM"],
+//     saltInstruments: ["any", "HRS", "RSS", "Bvit", "SALTICAM"],
 //     selectedInstrument: "any",
 //     selectedTelescope: "any",
 //     telescopes: ["any", "SALT", "Lesedi", "1.9 inch"]
@@ -181,7 +181,7 @@ describe("Fake test", () => {
 //       },
 //       telescope: {
 //         otherInstruments: ["any", "Hippo", "SHOC", "SpupMic"],
-//         saltInstruments: ["any", "HRS", "RSS", "BVIT", "SALTICAM"],
+//         saltInstruments: ["any", "HRS", "RSS", "Bvit", "SALTICAM"],
 //         selectedInstrument: "any",
 //         selectedTelescope: "any",
 //         telescopes: ["any", "SALT", "Lesedi", "1.9 inch"]
@@ -256,7 +256,7 @@ describe("Fake test", () => {
 //       },
 //       telescope: {
 //         otherInstruments: ["any", "Hippo", "SHOC", "SpupMic"],
-//         saltInstruments: ["any", "HRS", "RSS", "BVIT", "SALTICAM"],
+//         saltInstruments: ["any", "HRS", "RSS", "Bvit", "SALTICAM"],
 //         selectedInstrument: "any",
 //         selectedTelescope: "any",
 //         telescopes: ["any", "SALT", "Lesedi", "1.9 inch"]

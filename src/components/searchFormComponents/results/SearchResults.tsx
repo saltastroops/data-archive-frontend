@@ -110,45 +110,42 @@ class SearchResults extends React.Component<
           closeModal={this.closeModal}
           open={open}
         />
-        <table className={"table"}>
+        <table className={"table is-fullwidth is-tripped"}>
           <thead>
             <tr className="notification">
               <th colSpan={3}>Name</th>
               <th colSpan={2}>Proposal</th>
               <th colSpan={2}>Telescope</th>
-              <th colSpan={2}>Start time</th>
-              <th />
+              <th colSpan={3}>Start time</th>
             </tr>
           </thead>
-          <tbody>
-            {searchResults.map((observation: IObservation) => {
-              return (
-                <>
-                  {
-                    <ObservationResults
-                      observation={observation}
-                      cart={cart}
-                      addAll={this.addAll}
-                      removeAll={this.removeAll}
-                    />
-                  }
+          {searchResults.map((observation: IObservation) => {
+            return (
+              <tbody key={observation.id}>
+                {
+                  <ObservationResults
+                    observation={observation}
+                    cart={cart}
+                    addAll={this.addAll}
+                    removeAll={this.removeAll}
+                  />
+                }
 
-                  <TableHead />
-                  {observation.files.map((file: IFile) => {
-                    return (
-                      <SearchRow
-                        key={file.name}
-                        files={file}
-                        addFile={this.addFile}
-                        cart={cart}
-                        openModal={this.openModal}
-                      />
-                    );
-                  })}
-                </>
-              );
-            })}
-          </tbody>
+                <TableHead />
+                {observation.files.map((file: IFile) => {
+                  return (
+                    <SearchRow
+                      key={file.name}
+                      files={file}
+                      addFile={this.addFile}
+                      cart={cart}
+                      openModal={this.openModal}
+                    />
+                  );
+                })}
+              </tbody>
+            );
+          })}
         </table>
       </>
     );

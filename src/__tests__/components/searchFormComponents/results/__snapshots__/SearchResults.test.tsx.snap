@@ -109,7 +109,7 @@ exports[`Search results should render data correctly 1`] = `
     />
   </_default>
   <table
-    className="table"
+    className="table is-fullwidth"
   >
     <thead>
       <tr
@@ -131,14 +131,15 @@ exports[`Search results should render data correctly 1`] = `
           Telescope
         </th>
         <th
-          colSpan={2}
+          colSpan={3}
         >
           Start time
         </th>
-        <th />
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      key="obsID-1"
+    >
       <ObservationResults
         addAll={[Function]}
         cart={Array []}
@@ -350,6 +351,10 @@ exports[`Search results should render data correctly 1`] = `
           </td>
         </tr>
       </SearchRow>
+    </tbody>
+    <tbody
+      key="obsID-2"
+    >
       <ObservationResults
         addAll={[Function]}
         cart={Array []}
