@@ -1,6 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginForm Component renders the LoginForm component having unpopulated props with no errors 1`] = `
+.c0.c0 {
+  padding: 1px;
+}
+
+.c1.c1 {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
 <LoginForm>
   <styled.form
     onSubmit={[Function]}
@@ -17,7 +26,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           "componentStyle": ComponentStyle {
             "componentId": "sc-bwzfXH",
             "isStatic": true,
-            "lastClassName": "fDYKEV",
+            "lastClassName": "c0",
             "rules": Array [
               "
   && {
@@ -40,7 +49,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       onSubmit={[Function]}
     >
       <form
-        className="sc-bwzfXH column is-4 is-offset-4 fDYKEV"
+        className="column is-4 is-offset-4 c0"
         onSubmit={[Function]}
       >
         <styled.h1>
@@ -56,7 +65,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
                 "componentStyle": ComponentStyle {
                   "componentId": "sc-htpNat",
                   "isStatic": true,
-                  "lastClassName": "hjCtQn",
+                  "lastClassName": "c1",
                   "rules": Array [
                     "
   && {
@@ -79,7 +88,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
             forwardedRef={null}
           >
             <h1
-              className="sc-htpNat title is-3 hjCtQn"
+              className="title is-3 c1"
             >
               Login to the Data Archive
             </h1>
