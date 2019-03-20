@@ -57,7 +57,7 @@ interface IRegistrationFormState {
 const validateRegistrationField = (
   registrationInput: IRegistrationFormInput
 ) => {
-  // An object to Store errors for all fields.
+  // An object to store errors for all fields.
   const errors: Partial<IRegistrationFormInput> = {};
 
   // Check if the submitted given name is not empty.
@@ -127,12 +127,6 @@ const ErrorMessage = styled.p.attrs({
     color: white;
   }
 `;
-
-const RegistrationFormField = ({ children }: { children: any }) => (
-  <div className="field">
-    <label className="label">{children}</label>
-  </div>
-);
 
 class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
   public state: IRegistrationFormState = {

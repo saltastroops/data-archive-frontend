@@ -66,15 +66,15 @@ describe("LoginForm Component", () => {
     signInButton.simulate("submit");
 
     // Expect login function to have been called once
-    expect(api.auth.login).toHaveBeenCalledTimes(1);
+    expect(api.login).toHaveBeenCalledTimes(1);
 
     // Expect the login function to be called with the correct arguments
-    expect(api.auth.login).toBeCalledWith({
+    expect(api.login).toBeCalledWith({
       password: "securepassword",
       username: "sj"
     });
 
-    // Expect the button to hev beeen clicked
+    // Expect the button to have beeen clicked
     expect(signInButton.text()).toContain("Signing in");
 
     // Expect no error message.
@@ -104,7 +104,7 @@ describe("LoginForm Component", () => {
     // Simulate the submiting of the form.
     signInButton.simulate("submit");
 
-    // Expect the button to hev beeen clicked
+    // Expect the button to have beeen clicked
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.
@@ -138,7 +138,7 @@ describe("LoginForm Component", () => {
     // Simulate the submiting of the form
     signInButton.simulate("submit");
 
-    // Expect the button to hev beeen clicked
+    // Expect the button to have beeen clicked
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.

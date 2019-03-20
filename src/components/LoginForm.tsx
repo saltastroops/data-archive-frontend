@@ -134,7 +134,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
         loading: true
       });
 
-      const login = await api.auth.login({
+      const login = await api.login({
         ...this.state.userInput
       });
 
@@ -183,7 +183,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     const { errors, loading, loggedIn } = this.state;
     const { password, username } = this.state.userInput;
 
-    // Go to the main page afxter successfully logging in.
+    // Go to the main page after successfully logging in.
     if (loggedIn) {
       return <Redirect to={"/"} />;
     }

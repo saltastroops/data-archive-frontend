@@ -19,7 +19,7 @@ describe("Api", () => {
         }
     );
 
-    const response = await api.auth.login({
+    const response = await api.login({
       password: "test123",
       username: "test"
     });
