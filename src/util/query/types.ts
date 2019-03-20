@@ -201,7 +201,7 @@ export interface I1Dot9Metre extends ITelescope {
 /**
  * An interface for query parameters related to an instrument.
  *
- * This serves as a placeholder for more concrete interfaces such as ISALTICAM.
+ * This serves as a placeholder for more concrete interfaces such as ISalticam.
  *
  * Properties:
  * -----------
@@ -213,7 +213,7 @@ export interface IInstrument {
 }
 
 /**
- * An interface for query parameters related to SALTICAM.
+ * An interface for query parameters related to Salticam.
  *
  * Properties:
  * -----------
@@ -226,7 +226,7 @@ export interface IInstrument {
  * filter:
  *     Filter.
  * name:
- *     The string "SALTICAM".
+ *     The string "Salticam".
  */
 export interface ISalticam extends IInstrument {
   detectorMode?: "Normal" | "Slot Mode";
@@ -237,7 +237,7 @@ export interface ISalticam extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
-  name: "SALTICAM";
+  name: "Salticam";
 }
 
 /**

@@ -183,7 +183,7 @@ export interface IOneDotNineM extends ITelescope {
  * The available instrument names.
  */
 export type InstrumentName =
-  | "SALTICAM"
+  | "Salticam"
   | "RSS"
   | "HRS"
   | "BVIT"
@@ -194,7 +194,7 @@ export type InstrumentName =
 /**
  * An interface for query parameters related to an instrument.
  *
- * This serves as a placeholder for more concrete interfaces such as ISALTICAM.
+ * This serves as a placeholder for more concrete interfaces such as ISalticam.
  *
  * Properties:
  * -----------
@@ -206,7 +206,7 @@ export interface IInstrument {
 }
 
 /**
- * An interface for query parameters related to SALTICAM.
+ * An interface for query parameters related to Salticam.
  *
  * Properties:
  * -----------
@@ -219,9 +219,9 @@ export interface IInstrument {
  * filter:
  *     Filter.
  * name:
- *     The string "SALTICAM".
+ *     The string "Salticam".
  */
-export interface ISALTICAM extends IInstrument {
+export interface ISalticam extends IInstrument {
   detectorMode?: "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
@@ -230,7 +230,7 @@ export interface ISALTICAM extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
-  name: "SALTICAM";
+  name: "Salticam";
 }
 
 /**

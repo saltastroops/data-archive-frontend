@@ -6,14 +6,14 @@ import {
   InstrumentName,
   IRSS,
   ISALT,
-  ISALTICAM
+  ISalticam
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import BVIT from "../instruments/BVIT";
 import HRS from "../instruments/HRS";
 import RSS from "../instruments/RSS";
-import SALTICAM from "../instruments/SALTICAM";
+import Salticam from "../instruments/Salticam";
 
 /**
  * Return the form for a given instrument.
@@ -42,9 +42,9 @@ export const saltInstrumentsSwitcher = (
     case "BVIT": {
       return <BVIT bvit={instrument as IBVIT} onChange={onChange} />;
     }
-    case "SALTICAM": {
+    case "Salticam": {
       return (
-        <SALTICAM salticam={instrument as ISALTICAM} onChange={onChange} />
+        <Salticam salticam={instrument as ISalticam} onChange={onChange} />
       );
     }
     default:
@@ -77,7 +77,7 @@ const SaltForm = (props: ISaltFormProps) => {
     });
   };
 
-  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "SALTICAM"];
+  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "Salticam"];
 
   return (
     <>
