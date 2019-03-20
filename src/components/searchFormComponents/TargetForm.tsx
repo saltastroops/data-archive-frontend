@@ -11,20 +11,34 @@ import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 
-class TargetForm extends React.Component<
-  { target: ITarget; onChange: any },
-  any
-> {
+interface ITargetFormProps {
+  target: ITarget;
+  onChange: (value: ITarget) => any;
+}
+
+interface ITargetFormState {
+  loading: boolean;
+}
+
+/**
+ * A form for providing target-related search parameters for an observation
+ * search.
+ */
+class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
   state = { loading: false };
-  stateSet = (loading: boolean) => {
+
+  // Function for updating the loading property of the state
+  updateLoadingStatus = (loading: boolean) => {
     this.setState(() => ({
       loading
     }));
   };
+
+  // Function for resolving the target name to a position
   resolve = async () => {
     const { target, onChange } = this.props;
-    this.stateSet(true);
-    const resolver = target.resolver || "Simbad";
+    this.updateLoadingStatus(true);
+    const resolver = target.resolver;
     onChange({
       ...target
     });
@@ -57,11 +71,14 @@ class TargetForm extends React.Component<
         }
       });
     }
-    this.stateSet(false);
+    this.updateLoadingStatus(false);
   };
+
   render() {
     const { target, onChange } = this.props;
     const { loading } = this.state;
+
+    // Function for handling changes made to the search parameters
     const targetChange = (
       e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
@@ -76,17 +93,19 @@ class TargetForm extends React.Component<
         }
       });
     };
+
+    // TODO: Replace class names with data-test
     return (
       <>
         <MainGrid>
           <SubGrid>
             <p>Target name</p>
             <InputField
-              className="target-name-input"
-              loading={loading}
+              data-test="target-name-input"
+              disabled={loading}
               name={"name"}
               value={target.name || ""}
-              error={target.errors.name || ""}
+              error={target.errors.name}
               onChange={targetChange}
             />
           </SubGrid>
@@ -95,12 +114,15 @@ class TargetForm extends React.Component<
               <SubGrid>
                 <p>Resolver</p>
                 <SelectField
-                  className={"resolver-select"}
-                  options={["Simbad", "NED", "VizieR"]}
+                  data-test={"resolver-select"}
                   name={"resolver"}
-                  value={target.resolver || "Simbad"}
+                  value={target.resolver}
                   onChange={targetChange}
-                />
+                >
+                  <option value="Simbad">Simbad</option>
+                  <option value="NED">NED</option>
+                  <option value="VizieR">VizieR</option>
+                </SelectField>
               </SubGrid>
               <SubGrid>
                 <br />
@@ -123,10 +145,10 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Right ascension</p>
             <InputField
-              className="right-ascension-input"
-              loading={loading}
+              data-test="right-ascension-input"
+              disabled={loading}
               name={"rightAscension"}
-              value={target.rightAscension || ""}
+              value={target.rightAscension}
               onChange={targetChange}
               error={target.errors.rightAscension}
             />
@@ -134,10 +156,10 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Declination</p>
             <InputField
-              className="declination-input"
-              loading={loading}
+              data-test="declination-input"
+              disabled={loading}
               name={"declination"}
-              value={target.declination || ""}
+              value={target.declination}
               onChange={targetChange}
               error={target.errors.declination}
             />
@@ -147,9 +169,9 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Search radius</p>
             <InputField
-              className="search-cone-radius-input"
+              data-test="search-cone-radius-input"
               name={"searchConeRadius"}
-              value={target.searchConeRadius || ""}
+              value={target.searchConeRadius}
               onChange={targetChange}
               error={target.errors.searchConeRadius}
             />
@@ -157,12 +179,15 @@ class TargetForm extends React.Component<
           <SubGrid>
             <p>Radius units</p>
             <SelectField
-              className={"radius-units-select"}
-              options={["Arc seconds", "arc minutes", "degrees"]}
+              data-test="radius-units-select"
               name={"radiusUnits"}
               onChange={targetChange}
               value={target.searchConeRadiusUnits}
-            />
+            >
+              <option value="arcseconds">Arcseconds</option>
+              <option value="arcminutes">Arcminutes</option>
+              <option value="degrees">Degrees</option>
+            </SelectField>
           </SubGrid>
         </MainGrid>
       </>
@@ -171,31 +196,38 @@ class TargetForm extends React.Component<
 }
 
 /**
+ * Validate the given target-related search parameters and, if need be, add
+ * error messages to them.
  */
 export const validatedTarget = async (target: ITarget) => {
+  // Check that the target name and any given coordinates are consistent
+  // TODO: Don't enforce exact equality for floats.
+  // TODO: No "Simbad" default.
   let raDecChangeError;
   if (target.name && target.name !== "") {
-    raDecChangeError = await targetPosition(target.name, [
-      target.resolver || "Simbad"
-    ])
-      .then(p => {
-        if (p) {
+    raDecChangeError = await targetPosition(target.name, [target.resolver])
+      .then(position => {
+        if (position) {
           return {
             declination:
-              `${p.declination}` !== target.declination
-                ? `Target name is given and resolves to different value with ${target.resolver ||
-                    "Simbad"} `
+              `${position.declination}` !== target.declination
+                ? `The given target name resolves to a different declination with ${
+                    target.resolver
+                  }.`
                 : "",
             rightAscension:
-              `${p.rightAscension}` !== target.rightAscension
-                ? `Target name is given and resolves to different value with ${target.resolver ||
-                    "Simbad"} `
+              `${position.rightAscension}` !== target.rightAscension
+                ? `The given target name resolves to a different right ascension with ${
+                    target.resolver
+                  }.`
                 : ""
           };
         }
       })
       .catch();
   }
+
+  // Return the search parameters with the errors found
   return {
     ...target,
     errors: {
@@ -212,4 +244,5 @@ export const validatedTarget = async (target: ITarget) => {
     }
   };
 };
+
 export default TargetForm;

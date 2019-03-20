@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SALTICAM  should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<SALTICAM
+  onChange={[MockFunction]}
+  salticam={
+    Object {
+      "errors": Object {},
+      "name": "SALTICAM",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-htoDjs",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-htoDjs",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</SALTICAM>
+`;

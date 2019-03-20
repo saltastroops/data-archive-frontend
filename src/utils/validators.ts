@@ -1,6 +1,8 @@
 import moment from "moment";
 import { IGeneralErrors, ITargetErrors } from "./ObservationQueryParameters";
 
+// TODO: Update once parse methods are available in util
+
 /**
  * A method used to check if the given value(string) is a floating point number
  *
@@ -143,7 +145,7 @@ export const validateDeclination = (dec: string) => {
 };
 
 export const validateName = () => {
-  return;
+  return "";
 };
 
 /**

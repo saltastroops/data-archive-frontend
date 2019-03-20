@@ -1,59 +1,100 @@
 import * as React from "react";
+import {
+  IBVIT,
+  IHRS,
+  IInstrument,
+  InstrumentName,
+  IRSS,
+  ISALT,
+  ISALTICAM
+} from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
-import SelectField from "../../basicComponents/SelectField";
-import Bvit from "../instruments/Bvit";
-import Hrs from "../instruments/Hrs";
-import Rss from "../instruments/Rss";
-import Salticam from "../instruments/Salticam";
+import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import BVIT from "../instruments/BVIT";
+import HRS from "../instruments/HRS";
+import RSS from "../instruments/RSS";
+import SALTICAM from "../instruments/SALTICAM";
 
+/**
+ * Return the form for a given instrument.
+ *
+ * Parameters:
+ * -----------
+ * instrument:
+ *     The instrument.
+ *
+ * Returns:
+ * --------
+ * The form component.
+ */
 export const saltInstrumentsSwitcher = (
-  details: any,
-  onChange: (e: React.FormEvent<HTMLSelectElement>) => void
+  instrument: IInstrument,
+  onChange: (value: any) => void
 ) => {
-  const instrument = details.name;
-  switch (instrument) {
+  const name = instrument && instrument.name;
+  switch (name) {
     case "RSS": {
-      return <Rss details={details} onChange={onChange} />;
+      return <RSS rss={instrument as IRSS} onChange={onChange} />;
     }
     case "HRS": {
-      return <Hrs details={details} onChange={onChange} />;
+      return <HRS hrs={instrument as IHRS} onChange={onChange} />;
     }
     case "BVIT": {
-      return <Bvit details={details} onChange={onChange} />;
+      return <BVIT bvit={instrument as IBVIT} onChange={onChange} />;
     }
     case "SALTICAM": {
-      return <Salticam details={details} onChange={onChange} />;
+      return (
+        <SALTICAM salticam={instrument as ISALTICAM} onChange={onChange} />
+      );
     }
     default:
-      return <></>;
+      return null;
   }
 };
 
-const SaltForm = (props: any) => {
-  const { details, onChange } = props;
-  const changeInstrument = (e: React.FormEvent<HTMLSelectElement>) => {
+interface ISaltFormProps {
+  salt: ISALT;
+  onChange: (key: string, value: any) => void;
+}
+
+/**
+ * A form for selecting SALT-related search parameters.
+ */
+const SaltForm = (props: ISaltFormProps) => {
+  const { salt, onChange } = props;
+
+  // Function for handling instrument selection
+  const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.currentTarget.value;
-    onChange({ name: value });
+    onChange("instrument", { name: value });
   };
-  const changeMode = (value: any) => {
-    onChange({
-      ...details,
+
+  // Function for handling changes to instrument-related search parameters
+  const changeInstrumentParameters = (value: any) => {
+    onChange("instrument", {
+      ...salt.instrument,
       ...value
     });
   };
+
+  const instruments: InstrumentName[] = ["HRS", "RSS", "BVIT", "SALTICAM"];
+
   return (
     <>
       <MainGrid>
         <SubGrid>
           <p>Instrument</p>
-          <SelectField
-            options={["any", "HRS", "RSS", "BVIT", "SALTICAM"]}
-            name={"instrument"}
-            onChange={changeInstrument}
-          />
+          <SelectField name={"instrument"} onChange={changeInstrument}>
+            <AnyOption />
+            {instruments.map(instrument => (
+              <option key={instrument} value={instrument}>
+                {instrument}
+              </option>
+            ))}
+          </SelectField>
         </SubGrid>
       </MainGrid>
-      {saltInstrumentsSwitcher(details, changeMode)}
+      {saltInstrumentsSwitcher(salt.instrument, changeInstrumentParameters)}
     </>
   );
 };

@@ -242,25 +242,17 @@ ShallowWrapper {
 }
 `;
 
-exports[`Styled components Grids  should match snapshot 3`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 3`] = `
+.c0 {
+  background-color: #f2fffb;
+  border: 1px solid rgba(242,255,251,0.5);
+  text-align: center;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -270,6 +262,7 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
   background-color: #f2fffb;
@@ -286,96 +279,28 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "grid-item proposal-form",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-htpNat",
-            "isStatic": true,
-            "rules": Array [
-              "
-  background-color: #f2fffb;
-  border: 1px solid rgba(242, 255, 251, 0.5);
-  text-align: center;
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-htpNat",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item proposal-form c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;
 
-exports[`Styled components Grids  should match snapshot 4`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 4`] = `
+.c0 {
+  background-color: #e0edf9;
+  border: 1px solid rgba(224,237,249,0.5);
+  text-align: center;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -385,6 +310,7 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-bxivhb",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
   background-color: #e0edf9;
@@ -401,96 +327,28 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "grid-item data-form",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-bxivhb",
-            "isStatic": true,
-            "rules": Array [
-              "
-  background-color: #e0edf9;
-  border: 1px solid rgba(224, 237, 249, 0.5);
-  text-align: center;
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-bxivhb",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item data-form c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;
 
-exports[`Styled components Grids  should match snapshot 5`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 5`] = `
+.c0 {
+  background-color: #fff4fa;
+  border: 1px solid rgba(255,244,250,0.5);
+  text-align: center;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -500,11 +358,12 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-EHOje",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
-    background-color: #fff4fa;
-    border: 1px solid rgba(255, 244, 250), 0.5);
-    text-align: center;
+  background-color: #fff4fa;
+  border: 1px solid rgba(255, 244, 250, 0.5);
+  text-align: center;
 ",
           ],
         },
@@ -516,96 +375,27 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "grid-item telescope-form",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-EHOje",
-            "isStatic": true,
-            "rules": Array [
-              "
-    background-color: #fff4fa;
-    border: 1px solid rgba(255, 244, 250), 0.5);
-    text-align: center;
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-EHOje",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item telescope-form c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;
 
-exports[`Styled components Grids  should match snapshot 6`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 6`] = `
+.c0 {
+  border: 1px solid rgba(255,255,255,0);
+  text-align: left;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -615,6 +405,7 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-ifAKCX",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
   border: 1px solid rgba(255, 255, 255, 0);
@@ -630,95 +421,28 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "grid-item",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-ifAKCX",
-            "isStatic": true,
-            "rules": Array [
-              "
-  border: 1px solid rgba(255, 255, 255, 0);
-  text-align: left;
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-ifAKCX",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;
 
-exports[`Styled components Grids  should match snapshot 7`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 7`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -728,6 +452,7 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-bZQynM",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
   && {
@@ -746,98 +471,27 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "main-grid",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-bZQynM",
-            "isStatic": true,
-            "rules": Array [
-              "
-  && {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    padding: 10px;
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-bZQynM",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="main-grid c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;
 
-exports[`Styled components Grids  should match snapshot 8`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ForwardRef />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "forwardedComponent": Object {
+exports[`Grids  should render all grids correctly 8`] = `
+.c0.c0 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
@@ -847,6 +501,7 @@ ShallowWrapper {
         "componentStyle": ComponentStyle {
           "componentId": "sc-htoDjs",
           "isStatic": true,
+          "lastClassName": "c0",
           "rules": Array [
             "
   && {
@@ -864,74 +519,13 @@ ShallowWrapper {
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],
-      },
-      "forwardedRef": null,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "forwardedComponent": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [
-            Object {
-              "className": "sub-grid",
-            },
-          ],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-htoDjs",
-            "isStatic": true,
-            "rules": Array [
-              "
-  && {
-    text-align: left;
-    padding-left: 10px;
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-htoDjs",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
-        "forwardedRef": null,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="sub-grid c0"
+    />
+  </StyledComponent>
+</styled.div>
 `;

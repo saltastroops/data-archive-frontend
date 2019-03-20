@@ -1,32 +1,49 @@
 import * as React from "react";
-import { ITelescope } from "../../utils/ObservationQueryParameters";
+import {
+  ILesedi,
+  IOneDotNineM,
+  ISALT,
+  ITelescope,
+  TelescopeName
+} from "../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
-import SelectField from "../basicComponents/SelectField";
+import SelectField, { AnyOption } from "../basicComponents/SelectField";
 import LesediForm from "./telescopes/LesediForm";
-import OneNineMForm from "./telescopes/OneNineM";
+import OneNineMForm from "./telescopes/OneNineMForm";
 import SaltForm from "./telescopes/SaltForm";
 
-class TelescopeForm extends React.Component<
-  { telescope: any; onChange: any }, // TODO: remove telescope any
-  any
-> {
+const TELESCOPES: TelescopeName[] = ["SALT", "1.9 m", "Lesedi"];
+
+interface ITelescopeFormProps {
+  telescope?: ITelescope;
+  onChange: (value: any) => void;
+}
+
+/**
+ * A form for selecting telescope-related search parameters.
+ */
+class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
   render() {
     const { telescope, onChange } = this.props;
-    const changeTelescope = (e: React.FormEvent<HTMLSelectElement>) => {
-      const value = e.currentTarget.value;
+
+    // Function for updating telescope-related parameters
+    const changeTelescope = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = e.target.value;
       onChange({
         name: value
       });
     };
-    const changeInstrument = (value: any) => {
+
+    // Function for updating instrument-related properties
+    const changeTelescopeParameter = (key: string, value: any) => {
+      console.log({ key, value });
       onChange({
         ...telescope,
-        instrument: {
-          ...value
-        }
+        [key]: value
       });
     };
-    const name = telescope.name || { name: "" };
+
+    const name = (telescope && telescope.name) || "";
     return (
       <>
         <MainGrid>
@@ -34,27 +51,34 @@ class TelescopeForm extends React.Component<
             <p>Telescope</p>
             <SelectField
               name={"telescope"}
-              options={["any", "SALT", "1.9 m", "Lesedi"]}
               onChange={changeTelescope}
-            />
+              value={name || ""}
+            >
+              <AnyOption />
+              {TELESCOPES.map(t => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </SelectField>
           </SubGrid>
         </MainGrid>
         {name === "SALT" && (
           <SaltForm
-            details={telescope.instrument || { instrument: "" }}
-            onChange={changeInstrument}
+            salt={telescope as ISALT}
+            onChange={changeTelescopeParameter}
           />
         )}
         {name === "Lesedi" && (
           <LesediForm
-            details={telescope.instrument || { instrument: "" }}
-            onChange={changeInstrument}
+            lesedi={telescope as ILesedi}
+            onChange={changeTelescopeParameter}
           />
         )}
         {name === "1.9 m" && (
           <OneNineMForm
-            details={telescope.instrument || { instrument: "" }}
-            onChange={changeInstrument}
+            oneNineM={telescope as IOneDotNineM}
+            onChange={changeTelescopeParameter}
           />
         )}
       </>
@@ -62,10 +86,19 @@ class TelescopeForm extends React.Component<
   }
 }
 
-export const validatedTelescope = (telescope: ITelescope) => {
-  return {
-    ...telescope,
-    errors: {}
-  };
+/**
+ * Validate the given telescope-related search parameters and, if need be, add
+ * error messages to them.
+ */
+export const validatedTelescope = (telescope?: ITelescope) => {
+  if (telescope) {
+    return {
+      ...telescope,
+      errors: {}
+    };
+  } else {
+    return telescope;
+  }
 };
+
 export default TelescopeForm;

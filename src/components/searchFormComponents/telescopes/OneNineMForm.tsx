@@ -2,8 +2,8 @@ import * as React from "react";
 import {
   IHIPPO,
   IInstrument,
-  ILesedi,
   InstrumentName,
+  IOneDotNineM,
   ISHOC,
   ISpUpNIC
 } from "../../../utils/ObservationQueryParameters";
@@ -25,7 +25,7 @@ import SpUpNIC from "../instruments/SpUpNIC";
  * --------
  * The form component.
  */
-export const lesediInstrumentsSwitcher = (
+export const oneNineMInstrumentsSwitcher = (
   instrument: IInstrument,
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 ) => {
@@ -45,27 +45,27 @@ export const lesediInstrumentsSwitcher = (
   }
 };
 
-interface ILesediFormProps {
-  lesedi: ILesedi;
+interface IOneNineMProps {
+  oneNineM: IOneDotNineM;
   onChange: (key: string, value: any) => void;
 }
 
 /**
- * A form for selecting Lesedi-related search parameters.
+ * A form for selecting search parameters related to the 1.9 m Telescope.
  */
-const LesediForm = (props: ILesediFormProps) => {
-  const { lesedi, onChange } = props;
+const OneNineMForm = (props: IOneNineMProps) => {
+  const { oneNineM, onChange } = props;
 
-  // Function for changing the instrument
+  // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
+    const value = e.target.value;
     onChange("instrument", { name: value });
   };
 
-  // Function for changing the instrument mode
-  const changeMode = (value: any) => {
+  // Function for handling changes to instrument-related search parameters
+  const changeInstrumentParameters = (value: any) => {
     onChange("instrument", {
-      ...lesedi.instrument,
+      ...oneNineM.instrument,
       ...value
     });
   };
@@ -87,9 +87,12 @@ const LesediForm = (props: ILesediFormProps) => {
           </SelectField>
         </SubGrid>
       </MainGrid>
-      {lesediInstrumentsSwitcher(lesedi.instrument, changeMode)}
+      {oneNineMInstrumentsSwitcher(
+        oneNineM.instrument,
+        changeInstrumentParameters
+      )}
     </>
   );
 };
 
-export default LesediForm;
+export default OneNineMForm;

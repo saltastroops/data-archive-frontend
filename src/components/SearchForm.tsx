@@ -1,8 +1,9 @@
 import * as React from "react";
 import {
+  CalibrationType,
   IGeneral,
   IGeneralErrors,
-  IObservation,
+  ISearchFormState,
   ITarget,
   ITargetErrors,
   ITelescope
@@ -27,23 +28,26 @@ import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
 
-class SearchForm extends React.Component {
-  public state: {
-    cart: any;
-    general: IGeneral;
-    target: ITarget;
-    results: IObservation[];
-    telescope: ITelescope;
-    loading: boolean;
-  } = {
+/**
+ * A form for defining search parameters for an observation search, and for
+ * initiating the search.
+ */
+class SearchForm extends React.Component<{}, ISearchFormState> {
+  public state: ISearchFormState = {
     cart: [],
-    general: { errors: {} },
+    general: { calibrations: new Set<CalibrationType>(), errors: {} },
     loading: false,
     results: [],
-    target: { errors: {} },
-    telescope: {}
+    target: {
+      errors: {},
+      resolver: "Simbad",
+      searchConeRadiusUnits: "arcseconds"
+    }
   };
 
+  /**
+   * Handle changes of telescope-related parameters.
+   */
   public telescopeChange = (value: ITelescope) => {
     const newState = {
       ...this.state,
@@ -54,6 +58,9 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
+  /**
+   * Handle changes of target-related parameters.
+   */
   public targetChange = (value: ITarget) => {
     const newState = {
       ...this.state,
@@ -64,6 +71,9 @@ class SearchForm extends React.Component {
     this.setState(() => newState);
   };
 
+  /**
+   * Handle changes of general parameters.
+   */
   public generalChange = (value: IGeneral) => {
     const newState = {
       ...this.state,
@@ -87,12 +97,15 @@ class SearchForm extends React.Component {
       ...this.state,
       loading: true
     }));
+
+    // Add errors to the search parameter details
     const target = await validatedTarget(this.state.target);
     const general = await validatedProposal(this.state.general);
     const telescope = await validatedTelescope(this.state.telescope);
     await this.setState(() => ({
       ...this.state,
       general,
+      loading: false,
       target,
       telescope
     }));
@@ -231,7 +244,7 @@ class SearchForm extends React.Component {
             />
           </TelescopeGrid>
           <DataGrid>
-            <DataForm data={general} onChange={this.generalChange} />
+            <DataForm general={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
             <button

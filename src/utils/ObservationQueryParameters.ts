@@ -15,11 +15,20 @@
  * telescope:
  *     Telescope (and instrument) details.
  */
-export interface IObservationQueryParameters {
+// TODO: Remove loading, replace with IObservationQueryParameters
+export interface ISearchFormState {
+  cart: any[];
   general: IGeneral;
+  results: any[];
   target: ITarget;
-  telescope: ITelescope;
+  telescope?: ITelescope;
+  loading: boolean;
 }
+
+/**
+ * The available calibration types.
+ */
+export type CalibrationType = "arc" | "bias" | "flat" | "standard";
 
 /**
  * An interface for query parameters related to general information.
@@ -35,6 +44,8 @@ export interface IObservationQueryParameters {
  *     Identifier of the proposal to which the observation belongs.
  * proposalTitle:
  *     Title of the proposal to which the observation belongs.
+ * calibrations:
+ *     Calibration types to include in the search results
  *
  */
 export interface IGeneralErrors {
@@ -42,11 +53,7 @@ export interface IGeneralErrors {
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
-  arcs?: string;
-  biases?: string;
-  flats?: string;
-  standards?: string;
-  dataType?: string;
+  calibrations?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
@@ -54,12 +61,18 @@ export interface IGeneral {
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
-  arcs?: boolean;
-  biases?: boolean;
-  flats?: boolean;
-  standards?: boolean;
-  dataType?: "any" | "reduced" | "raw";
+  calibrations: Set<CalibrationType>;
 }
+
+/**
+ * The available target name resolvers.
+ */
+export type TargetResolver = "Simbad" | "NED" | "VizieR";
+
+/**
+ * The available units for the search cone radius.
+ */
+export type SearchConeRadiusUnits = "arcseconds" | "arcminutes" | "degrees";
 
 /**
  * An interface for query parameters related to target details.
@@ -96,13 +109,18 @@ export interface ITarget {
   loading?: string;
   errors: ITargetErrors;
   name?: string;
-  resolver?: "Simbad" | "NED" | "VizieR";
+  resolver: TargetResolver;
   rightAscension?: string;
   searchConeRadius?: string;
-  searchConeRadiusUnits?: string;
+  searchConeRadiusUnits: SearchConeRadiusUnits;
 }
 
 // TELESCOPES
+
+/**
+ * The supported telescope names.
+ */
+export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
 
 /**
  * An interface for query parameters related to a telescope.
@@ -115,7 +133,7 @@ export interface ITarget {
  *     Telescope name.
  */
 export interface ITelescope {
-  name?: "Lesedi" | "SALT" | "1.9 m";
+  name?: TelescopeName;
 }
 
 /**
@@ -129,7 +147,7 @@ export interface ITelescope {
  *     The string "SALT".
  */
 export interface ISALT extends ITelescope {
-  instrument?: IInstrument;
+  instrument: IInstrument;
   name: "SALT";
 }
 
@@ -144,7 +162,7 @@ export interface ISALT extends ITelescope {
  *     The string "Lesedi".
  */
 export interface ILesedi extends ITelescope {
-  instrument?: IInstrument;
+  instrument: IInstrument;
   name: "Lesedi";
 }
 
@@ -158,17 +176,29 @@ export interface ILesedi extends ITelescope {
  * name:
  *     The string "1.9 m".
  */
-export interface I1Dot9Metre extends ITelescope {
-  instrument?: IInstrument;
+export interface IOneDotNineM extends ITelescope {
+  instrument: IInstrument;
   name: "1.9 m";
 }
 
 // INSTRUMENTS
 
 /**
+ * The available instrument names.
+ */
+export type InstrumentName =
+  | "SALTICAM"
+  | "RSS"
+  | "HRS"
+  | "BVIT"
+  | "SpUpNIC"
+  | "SHOC"
+  | "HIPPO";
+
+/**
  * An interface for query parameters related to an instrument.
  *
- * This serves as a placeholder for more concrete interfaces such as ISalticam.
+ * This serves as a placeholder for more concrete interfaces such as ISALTICAM.
  *
  * Properties:
  * -----------
@@ -176,11 +206,11 @@ export interface I1Dot9Metre extends ITelescope {
  *     Telescope name.
  */
 export interface IInstrument {
-  name: string;
+  name: InstrumentName;
 }
 
 /**
- * An interface for query parameters related to Salticam.
+ * An interface for query parameters related to SALTICAM.
  *
  * Properties:
  * -----------
@@ -193,9 +223,9 @@ export interface IInstrument {
  * filter:
  *     Filter.
  * name:
- *     The string "Salticam".
+ *     The string "SALTICAM".
  */
-export interface ISalticam extends IInstrument {
+export interface ISALTICAM extends IInstrument {
   detectorMode?: "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
@@ -204,7 +234,7 @@ export interface ISalticam extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
-  name: "Salticam";
+  name: "SALTICAM";
 }
 
 /**
@@ -263,6 +293,11 @@ export interface IHRS extends IInstrument {
   name: "HRS";
 }
 
+export interface IBVIT extends IInstrument {
+  errors: {};
+  name: "BVIT";
+}
+
 /**
  * An interface for query parameters related to HIPPO.
  *
@@ -309,6 +344,30 @@ export interface ISHOC extends IInstrument {
   exposureTime?: string;
   filter?: string;
   name: "SHOC";
+}
+
+/**
+ * An interface for query parameters related to SpUpNIC.
+ *
+ * Properties:
+ * -----------
+ * errors:
+ *     Errors.
+ * exposureTime:
+ *     Exposure time.
+ * filter:
+ *     Filter.
+ * name:
+ *     The string "SpUpNIC".
+ */
+export interface ISpUpNIC extends IInstrument {
+  errors: {
+    exposureTime?: string;
+    filter?: string;
+  };
+  exposureTime?: string;
+  filter?: string;
+  name: "SpUpNIC";
 }
 
 export interface IFile {

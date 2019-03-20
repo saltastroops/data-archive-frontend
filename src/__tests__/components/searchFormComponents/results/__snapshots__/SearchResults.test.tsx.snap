@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Search results should render data correctly 1`] = `
+.c0.c0 {
+  width: 18px;
+  height: 18px;
+}
+
 <SearchResults
   cart={Array []}
   searchResults={
@@ -109,7 +114,7 @@ exports[`Search results should render data correctly 1`] = `
     />
   </_default>
   <table
-    className="table is-fullwidth"
+    className="table is-fullwidth is-tripped"
   >
     <thead>
       <tr
@@ -173,7 +178,6 @@ exports[`Search results should render data correctly 1`] = `
       >
         <tr
           className="is-selected"
-          key="obsID-1+value"
         >
           <td
             colSpan={3}
@@ -286,7 +290,7 @@ exports[`Search results should render data correctly 1`] = `
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-bdVaJa",
                       "isStatic": true,
-                      "lastClassName": "iVAhJG",
+                      "lastClassName": "c0",
                       "rules": Array [
                         "
   && {
@@ -311,7 +315,7 @@ exports[`Search results should render data correctly 1`] = `
               >
                 <input
                   checked={false}
-                  className="sc-bdVaJa checkbox iVAhJG"
+                  className="checkbox c0"
                   onChange={[Function]}
                   type="checkbox"
                 />
@@ -388,7 +392,6 @@ exports[`Search results should render data correctly 1`] = `
       >
         <tr
           className="is-selected"
-          key="obsID-2+value"
         >
           <td
             colSpan={3}
@@ -501,7 +504,7 @@ exports[`Search results should render data correctly 1`] = `
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-bdVaJa",
                       "isStatic": true,
-                      "lastClassName": "iVAhJG",
+                      "lastClassName": "c0",
                       "rules": Array [
                         "
   && {
@@ -526,7 +529,7 @@ exports[`Search results should render data correctly 1`] = `
               >
                 <input
                   checked={false}
-                  className="sc-bdVaJa checkbox iVAhJG"
+                  className="checkbox c0"
                   onChange={[Function]}
                   type="checkbox"
                 />

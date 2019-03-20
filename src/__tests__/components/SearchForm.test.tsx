@@ -36,8 +36,9 @@ describe("Search Form", () => {
 
   it("Should update state when typing", () => {
     let value: any;
-    const targetForm = wrapper.find("input.target-name-input");
-    const targetName = targetForm.find("input");
+
+    const targetInput = wrapper.find('input[data-test="target-name-input"]');
+    const targetName = targetInput.find("input");
 
     value = "apple";
     targetName.simulate("change", { target: { value, name: "name" } });
@@ -62,8 +63,8 @@ describe("Search Form", () => {
 
   it("Should update state when change a select", () => {
     let value: any;
-    const resolverForm = wrapper.find("div.resolver-select");
-    const resolver = resolverForm.find("select");
+    const resolverSelect = wrapper.find('select[data-test="resolver-select"]');
+    const resolver = resolverSelect.find("select");
     value = "NED";
     const event = { target: { value, name: "resolver" } };
     resolver.simulate("change", event);

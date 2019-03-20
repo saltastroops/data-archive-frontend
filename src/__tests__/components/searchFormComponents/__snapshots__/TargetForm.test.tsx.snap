@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TargetForm render correctly 1`] = `
+exports[`TargetForm should render correctly 1`] = `
 <Fragment>
   <styled.div>
     <styled.div>
@@ -8,9 +8,8 @@ exports[`TargetForm render correctly 1`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
-        error=""
-        loading={false}
+        data-test="target-name-input"
+        disabled={false}
         name="name"
         onChange={[Function]}
         value=""
@@ -23,18 +22,27 @@ exports[`TargetForm render correctly 1`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
+            data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
-            options={
-              Array [
-                "Simbad",
-                "NED",
-                "VizieR",
-              ]
-            }
             value="Simbad"
-          />
+          >
+            <option
+              value="Simbad"
+            >
+              Simbad
+            </option>
+            <option
+              value="NED"
+            >
+              NED
+            </option>
+            <option
+              value="VizieR"
+            >
+              VizieR
+            </option>
+          </SelectField>
         </styled.div>
         <styled.div>
           <br />
@@ -57,11 +65,10 @@ exports[`TargetForm render correctly 1`] = `
         Right ascension
       </p>
       <InputField
-        className="right-ascension-input"
-        loading={false}
+        data-test="right-ascension-input"
+        disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
     <styled.div>
@@ -69,11 +76,10 @@ exports[`TargetForm render correctly 1`] = `
         Declination
       </p>
       <InputField
-        className="declination-input"
-        loading={false}
+        data-test="declination-input"
+        disabled={false}
         name="declination"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
   </styled.div>
@@ -83,10 +89,9 @@ exports[`TargetForm render correctly 1`] = `
         Search radius
       </p>
       <InputField
-        className="search-cone-radius-input"
+        data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
     <styled.div>
@@ -94,23 +99,33 @@ exports[`TargetForm render correctly 1`] = `
         Radius units
       </p>
       <SelectField
-        className="radius-units-select"
+        data-test="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
-        options={
-          Array [
-            "Arc seconds",
-            "arc minutes",
-            "degrees",
-          ]
-        }
-      />
+        value="arcseconds"
+      >
+        <option
+          value="arcseconds"
+        >
+          Arcseconds
+        </option>
+        <option
+          value="arcminutes"
+        >
+          Arcminutes
+        </option>
+        <option
+          value="degrees"
+        >
+          Degrees
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
 </Fragment>
 `;
 
-exports[`TargetForm render correctly 2`] = `
+exports[`TargetForm should render correctly 2`] = `
 <Fragment>
   <styled.div>
     <styled.div>
@@ -118,12 +133,11 @@ exports[`TargetForm render correctly 2`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
-        error=""
-        loading={false}
+        data-test="target-name-input"
+        disabled={false}
         name="name"
         onChange={[Function]}
-        value="hello"
+        value="NGC 1234"
       />
     </styled.div>
     <styled.div>
@@ -133,18 +147,27 @@ exports[`TargetForm render correctly 2`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
+            data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
-            options={
-              Array [
-                "Simbad",
-                "NED",
-                "VizieR",
-              ]
-            }
             value="Simbad"
-          />
+          >
+            <option
+              value="Simbad"
+            >
+              Simbad
+            </option>
+            <option
+              value="NED"
+            >
+              NED
+            </option>
+            <option
+              value="VizieR"
+            >
+              VizieR
+            </option>
+          </SelectField>
         </styled.div>
         <styled.div>
           <br />
@@ -167,11 +190,10 @@ exports[`TargetForm render correctly 2`] = `
         Right ascension
       </p>
       <InputField
-        className="right-ascension-input"
-        loading={false}
+        data-test="right-ascension-input"
+        disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
     <styled.div>
@@ -179,11 +201,10 @@ exports[`TargetForm render correctly 2`] = `
         Declination
       </p>
       <InputField
-        className="declination-input"
-        loading={false}
+        data-test="declination-input"
+        disabled={false}
         name="declination"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
   </styled.div>
@@ -193,10 +214,9 @@ exports[`TargetForm render correctly 2`] = `
         Search radius
       </p>
       <InputField
-        className="search-cone-radius-input"
+        data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
     <styled.div>
@@ -204,23 +224,33 @@ exports[`TargetForm render correctly 2`] = `
         Radius units
       </p>
       <SelectField
-        className="radius-units-select"
+        data-test="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
-        options={
-          Array [
-            "Arc seconds",
-            "arc minutes",
-            "degrees",
-          ]
-        }
-      />
+        value="arcseconds"
+      >
+        <option
+          value="arcseconds"
+        >
+          Arcseconds
+        </option>
+        <option
+          value="arcminutes"
+        >
+          Arcminutes
+        </option>
+        <option
+          value="degrees"
+        >
+          Degrees
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
 </Fragment>
 `;
 
-exports[`TargetForm render correctly 3`] = `
+exports[`TargetForm should render correctly 3`] = `
 <Fragment>
   <styled.div>
     <styled.div>
@@ -228,9 +258,9 @@ exports[`TargetForm render correctly 3`] = `
         Target name
       </p>
       <InputField
-        className="target-name-input"
+        data-test="target-name-input"
+        disabled={false}
         error="this is an error"
-        loading={false}
         name="name"
         onChange={[Function]}
         value=""
@@ -243,18 +273,27 @@ exports[`TargetForm render correctly 3`] = `
             Resolver
           </p>
           <SelectField
-            className="resolver-select"
+            data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
-            options={
-              Array [
-                "Simbad",
-                "NED",
-                "VizieR",
-              ]
-            }
             value="Simbad"
-          />
+          >
+            <option
+              value="Simbad"
+            >
+              Simbad
+            </option>
+            <option
+              value="NED"
+            >
+              NED
+            </option>
+            <option
+              value="VizieR"
+            >
+              VizieR
+            </option>
+          </SelectField>
         </styled.div>
         <styled.div>
           <br />
@@ -277,11 +316,10 @@ exports[`TargetForm render correctly 3`] = `
         Right ascension
       </p>
       <InputField
-        className="right-ascension-input"
-        loading={false}
+        data-test="right-ascension-input"
+        disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
     <styled.div>
@@ -289,11 +327,10 @@ exports[`TargetForm render correctly 3`] = `
         Declination
       </p>
       <InputField
-        className="declination-input"
-        loading={false}
+        data-test="declination-input"
+        disabled={false}
         name="declination"
         onChange={[Function]}
-        value=""
       />
     </styled.div>
   </styled.div>
@@ -303,7 +340,7 @@ exports[`TargetForm render correctly 3`] = `
         Search radius
       </p>
       <InputField
-        className="search-cone-radius-input"
+        data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
         value="12.1"
@@ -314,17 +351,27 @@ exports[`TargetForm render correctly 3`] = `
         Radius units
       </p>
       <SelectField
-        className="radius-units-select"
+        data-test="radius-units-select"
         name="radiusUnits"
         onChange={[Function]}
-        options={
-          Array [
-            "Arc seconds",
-            "arc minutes",
-            "degrees",
-          ]
-        }
-      />
+        value="arcminutes"
+      >
+        <option
+          value="arcseconds"
+        >
+          Arcseconds
+        </option>
+        <option
+          value="arcminutes"
+        >
+          Arcminutes
+        </option>
+        <option
+          value="degrees"
+        >
+          Degrees
+        </option>
+      </SelectField>
     </styled.div>
   </styled.div>
 </Fragment>
