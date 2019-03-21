@@ -1,8 +1,11 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import api from "../api/api";
 import InputField from "./basicComponents/InputField";
+
+let cache: Pick<ILoginFormState, "errors" | "userInput">;
 
 /**
  * Input for the login form.
@@ -117,12 +120,21 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
   };
 
+  /**
+   * Populated the state from the cached values.
+   */
+  componentDidMount() {
+    if (cache) {
+      this.setState(() => cache);
+    }
+  }
+
   onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
     // Validate the user input fields
     const errors = validateLoginForm(this.state.userInput);
-    this.setState({ errors });
+    this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing in.
     if (errors.password || errors.username) {
@@ -130,7 +142,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
 
     try {
-      this.setState({
+      this.updateState({
         loading: true
       });
 
@@ -139,7 +151,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
       });
 
       if (login.data.success) {
-        this.setState({
+        this.updateState({
           errors: {
             password: "",
             responseError: "",
@@ -154,7 +166,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
         });
       }
     } catch (error) {
-      this.setState({
+      this.updateState({
         errors: {
           ...this.state.errors,
           responseError: error.message
@@ -171,7 +183,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     const name = e.target.name;
     const value = e.target.value;
     // Updating the userInput property of the state when input field value updates
-    this.setState({
+    this.updateState({
       userInput: {
         ...this.state.userInput,
         [name]: value
@@ -222,7 +234,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
                   value={password || ""}
                   error={errors.password}
                   onChange={this.onInputChange}
-                  type="text"
+                  type="password"
                 />
               </div>
             </label>
@@ -239,6 +251,21 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
       </LoginFormParent>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        cache = {
+          errors: _.cloneDeep(this.state.errors),
+          userInput: _.cloneDeep(this.state.userInput)
+        };
+      }
+    );
+  };
 }
 
 export default LoginForm;
