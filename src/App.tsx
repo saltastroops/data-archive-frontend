@@ -6,6 +6,9 @@ import {
   Switch
 } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
+import SearchForm from "./components/SearchForm";
+import RegistrationForm from "./components/RegistrationForm";
+import LoginForm from "./components/LoginForm";
 
 interface IUser {
   name: string;
@@ -79,25 +82,17 @@ class App extends React.Component<any, any> {
 
           <Switch>
             {/* search page */}
-            <Route
-              exact={true}
-              path="/"
-              render={() => <h1 className="title">Main Page</h1>}
-            />
+            <Route exact={true} path="/" render={() => <SearchForm />} />
 
             {/* registration page */}
             <Route
               exact={true}
               path="/register"
-              component={() => <h1 className="title">User register</h1>}
+              component={() => <RegistrationForm />}
             />
 
             {/* login page */}
-            <Route
-              exact={true}
-              path="/login"
-              component={() => <h1 className="title">Login page</h1>}
-            />
+            <Route exact={true} path="/login" component={() => <LoginForm />} />
 
             {/* account details page */}
             <ProtectedRoute
