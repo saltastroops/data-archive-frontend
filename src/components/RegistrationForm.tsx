@@ -5,6 +5,9 @@ import { Redirect } from "react-router";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import InputField from "./basicComponents/InputField";
+import * as _ from "lodash";
+
+let cache: Pick<IRegistrationFormState, "errors" | "userInput">;
 
 /**
  * Input for the registration form.
@@ -143,12 +146,21 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
     }
   };
 
+  /**
+   * Populated the state from the cached values.
+   */
+  componentDidMount() {
+    if (cache) {
+      this.setState(() => cache);
+    }
+  }
+
   onHandleSubmit = async (e: React.FormEvent<EventTarget>, signup: any) => {
     e.preventDefault();
 
     // Validate the user input fields
     const errors: object = validateRegistrationField(this.state.userInput);
-    this.setState(() => ({ errors }));
+    this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing up.
     if (Object.keys(errors).length > 0) {
@@ -160,7 +172,7 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
       await signup();
 
       // Reset the state when registering succeeded
-      this.setState({
+      this.updateState({
         registered: true,
         userInput: {
           affiliation: "",
@@ -183,7 +195,7 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
     const name = e.target.name;
     const value = e.target.value;
     // Update form content with the new user input
-    this.setState({
+    this.updateState({
       userInput: {
         ...this.state.userInput,
         [name]: value
@@ -326,6 +338,21 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
       </Mutation>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        cache = {
+          errors: _.cloneDeep(this.state.errors),
+          userInput: _.cloneDeep(this.state.userInput)
+        };
+      }
+    );
+  };
 }
 
 export default RegistrationForm;
