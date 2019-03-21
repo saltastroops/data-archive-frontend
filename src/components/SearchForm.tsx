@@ -23,6 +23,9 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
+import * as _ from "lodash";
+
+let cache: Pick<ISearchFormState, "general" | "target">;
 
 /**
  * A form for defining search parameters for an observation search, and for
@@ -40,6 +43,15 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
   };
 
   /**
+   * Populated the state from the cached values.
+   */
+  componentDidMount() {
+    if (cache) {
+      this.setState(() => cache);
+    }
+  }
+
+  /**
    * Handle changes of telescope-related parameters.
    */
   public telescopeChange = (value: ITelescope) => {
@@ -49,7 +61,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
         ...value
       }
     };
-    this.setState(() => newState);
+    this.updateState(newState);
   };
 
   /**
@@ -62,7 +74,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
         ...value
       }
     };
-    this.setState(() => newState);
+    this.updateState(newState);
   };
 
   /**
@@ -75,30 +87,30 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
         ...value
       }
     };
-    this.setState(() => newState);
+    this.updateState(newState);
   };
 
   /**
    * Perform an observation with the currently selected search parameters.
    */
   public searchArchive = async () => {
-    this.setState(() => ({
+    this.updateState({
       ...this.state,
       loading: true
-    }));
+    });
 
     // Add errors to the search parameter details
     const target = await validatedTarget(this.state.target);
     const general = validatedProposal(this.state.general);
     const telescope = validatedTelescope(this.state.telescope);
 
-    this.setState(() => ({
+    this.updateState({
       ...this.state,
       general,
       loading: false,
       target,
       telescope
-    }));
+    });
   };
 
   public render() {
@@ -139,6 +151,21 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
       </>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        cache = {
+          general: _.cloneDeep(this.state.general),
+          target: _.cloneDeep(this.state.target)
+        };
+      }
+    );
+  };
 }
 
 export default SearchForm;
