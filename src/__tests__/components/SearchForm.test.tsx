@@ -3,8 +3,8 @@ import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MemoryRouter } from "react-router";
 import wait from "waait";
-import SearchForm from "../../components/SearchForm";
 import App from "../../App";
+import SearchForm from "../../components/SearchForm";
 import click from "../../util/click";
 
 describe("Search Form", () => {

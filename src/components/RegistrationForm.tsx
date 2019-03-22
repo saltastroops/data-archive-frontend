@@ -1,11 +1,11 @@
 import { validate } from "isemail";
+import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { Redirect } from "react-router";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import InputField from "./basicComponents/InputField";
-import * as _ from "lodash";
 
 /**
  * Input for the registration form.

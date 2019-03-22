@@ -2,12 +2,12 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
+import { MemoryRouter } from "react-router";
+import wait from "waait";
+import App from "../App";
 import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
-import { MemoryRouter } from "react-router";
-import App from "../App";
 import click from "../util/click";
-import wait from "waait";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {

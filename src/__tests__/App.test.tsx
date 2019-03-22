@@ -1,8 +1,8 @@
 import { mount } from "enzyme";
 import * as React from "react";
+import { MemoryRouter } from "react-router-dom";
 import wait from "waait";
 import App from "../App";
-import { MemoryRouter } from "react-router-dom";
 import click from "../util/click";
 
 describe("App", () => {

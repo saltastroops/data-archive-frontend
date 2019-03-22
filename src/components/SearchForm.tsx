@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import {
   CalibrationType,
@@ -23,7 +24,6 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
-import * as _ from "lodash";
 
 interface ISearchFormProps {
   cache?: ISearchFormCache;

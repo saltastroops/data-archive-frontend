@@ -5,11 +5,11 @@ jest.mock("../api/api");
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import api from "../api/api";
-import LoginForm from "../components/LoginForm";
-import App from "../App";
-import click from "../util/click";
 import wait from "waait";
+import api from "../api/api";
+import App from "../App";
+import LoginForm from "../components/LoginForm";
+import click from "../util/click";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {

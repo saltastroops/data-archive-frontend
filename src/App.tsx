@@ -5,12 +5,12 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
-import SearchForm, { ISearchFormCache } from "./components/SearchForm";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
-import LoginForm, { ILoginFormCache } from "./components/LoginForm";
+import SearchForm, { ISearchFormCache } from "./components/SearchForm";
 
 interface IUser {
   name: string;
