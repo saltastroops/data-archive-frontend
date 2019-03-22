@@ -1,3 +1,5 @@
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 
 interface ICartFile {
@@ -16,7 +18,7 @@ const CartFile = (props: ICartFile) => {
       )}
       <td>
         <button className={"button is-danger"}>
-          <i className={"fa fa-trash"} />
+          <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </td>
       <td>{file.filename}</td>

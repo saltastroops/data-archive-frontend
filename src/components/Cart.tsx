@@ -1,21 +1,30 @@
+import {
+  faWindowClose,
+  faDownload,
+  faEraser,
+  faUserPlus
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import Modal from "react-responsive-modal";
+import { NavLink } from "react-router-dom";
 import CartFile from "./cart/CartFile";
-import CartObservation from "./cart/Observation";
 
 interface ICart {
   open: boolean;
-  closeCart: () => void;
+  openCart: (open: boolean) => void;
   clearCart: () => void;
+  user?: any;
 }
 
-class Cart extends React.Component<any, any> {
+class Cart extends React.Component<ICart, any> {
   state: {
     cart: any[];
   } = {
     cart: []
   };
   public render() {
+    const { open, openCart, clearCart, user } = this.props;
     const c: any = [
       {
         files: [
@@ -163,7 +172,7 @@ class Cart extends React.Component<any, any> {
       }
     ];
     return (
-      <Modal open={true} onClose={() => true} center={true}>
+      <Modal open={open} onClose={() => openCart(false)} center={true}>
         <div className={"cart-table section"}>
           <div className={"c-table"}>
             <table
@@ -204,13 +213,49 @@ class Cart extends React.Component<any, any> {
           <div className={"button-scales "}>
             <div className={"columns"}>
               <div className={"column"}>
-                <button className={"button is-primary"}>Request</button>
+                {!user ? (
+                  <NavLink to={"login"}>
+                    <button
+                      className={"button is-primary"}
+                      onClick={() => openCart(false)}
+                    >
+                      <span>
+                        Login <FontAwesomeIcon icon={faUserPlus} />
+                      </span>
+                    </button>
+                  </NavLink>
+                ) : (
+                  <NavLink to={"data-requests"}>
+                    <button
+                      className={"button is-primary"}
+                      onClick={() => openCart(false)}
+                    >
+                      <span>
+                        Request <FontAwesomeIcon icon={faDownload} />
+                      </span>
+                    </button>
+                  </NavLink>
+                )}
               </div>
               <div className={"column"}>
-                <button className={"button is-danger"}>Close</button>
+                <button
+                  className={"button is-danger"}
+                  onClick={() => openCart(false)}
+                >
+                  <span>
+                    Close <FontAwesomeIcon icon={faWindowClose} />
+                  </span>
+                </button>
               </div>
               <div className={"column"}>
-                <button className={"button is-warning"}>Clear</button>
+                <button
+                  className={"button is-warning"}
+                  onClick={() => clearCart()}
+                >
+                  <span>
+                    Clear <FontAwesomeIcon icon={faEraser} />
+                  </span>
+                </button>
               </div>
             </div>
           </div>

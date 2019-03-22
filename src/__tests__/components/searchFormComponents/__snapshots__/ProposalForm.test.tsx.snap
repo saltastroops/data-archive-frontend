@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Proposal Form render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal code
+      </p>
+      <InputField
+        data-test="proposal-code-input"
+        name="proposalCode"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Principal investigator
+      </p>
+      <InputField
+        data-test="principal-investigator-input"
+        error=""
+        name="principalInvestigator"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal title
+      </p>
+      <InputField
+        data-test="proposal-title-input"
+        name="proposalTitle"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Observation night
+      </p>
+      <InputField
+        data-test="observation-night-input"
+        name="observationNight"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Proposal Form render correctly 2`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal code
+      </p>
+      <InputField
+        data-test="proposal-code-input"
+        name="proposalCode"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Principal investigator
+      </p>
+      <InputField
+        data-test="principal-investigator-input"
+        error=""
+        name="principalInvestigator"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal title
+      </p>
+      <InputField
+        data-test="proposal-title-input"
+        name="proposalTitle"
+        onChange={[Function]}
+        value="hello"
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Observation night
+      </p>
+      <InputField
+        data-test="observation-night-input"
+        name="observationNight"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Proposal Form render correctly 3`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal code
+      </p>
+      <InputField
+        data-test="proposal-code-input"
+        error="invalid proposal code"
+        name="proposalCode"
+        onChange={[Function]}
+        value="Code1"
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Principal investigator
+      </p>
+      <InputField
+        data-test="principal-investigator-input"
+        error="invalid Principal Investigator"
+        name="principalInvestigator"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Proposal title
+      </p>
+      <InputField
+        data-test="proposal-title-input"
+        error="invalid proposal title"
+        name="proposalTitle"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <styled.div>
+      <p>
+        Observation night
+      </p>
+      <InputField
+        data-test="observation-night-input"
+        name="observationNight"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;

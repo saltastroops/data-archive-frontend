@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectField should render correctly 1`] = `
+<div
+  className="control select danger is-large"
+>
+  <select
+    onChange={[Function]}
+    value="bbb"
+  >
+    <option
+      value="aaa"
+    >
+      AAA
+    </option>
+    <option
+      value="bbb"
+    >
+      BBB
+    </option>
+    <option
+      value="ccc"
+    >
+      CCC
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField should render correctly 2`] = `
+<div
+  className="control select "
+>
+  <select
+    value="aaa"
+  >
+    <option
+      value="aaa"
+    >
+      AAA
+    </option>
+  </select>
+</div>
+`;
