@@ -76,62 +76,58 @@ class App extends React.Component<any, any> {
     const { user } = this.state;
 
     return (
-      <Router>
-        <>
-          <NavigationBar user={user} logout={this.logout} />
+      <>
+        <NavigationBar user={user} logout={this.logout} />
 
-          <Switch>
-            {/* search page */}
-            <Route exact={true} path="/" render={() => <SearchForm />} />
+        <Switch>
+          {/* search page */}
+          <Route exact={true} path="/" render={() => <SearchForm />} />
 
-            {/* registration page */}
-            <Route
-              exact={true}
-              path="/register"
-              component={() => <RegistrationForm />}
-            />
+          {/* registration page */}
+          <Route
+            exact={true}
+            path="/register"
+            component={() => <RegistrationForm />}
+          />
 
-            {/* login page */}
-            <Route exact={true} path="/login" component={() => <LoginForm />} />
+          {/* login page */}
+          <Route exact={true} path="/login" component={() => <LoginForm />} />
 
-            {/* account details page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/account"
-              component={() => <h1 className="title">User account</h1>}
-            />
+          {/* account details page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/account"
+            component={() => <h1 className="title">User account</h1>}
+          />
 
-            {/* data requests page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/data-requests"
-              component={() => <h1 className="title">Data request page</h1>}
-            />
+          {/* data requests page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/data-requests"
+            component={() => <h1 className="title">Data request page</h1>}
+          />
 
-            {/* cart page */}
-            <Route
-              exact={true}
-              path="/cart"
-              component={() => <h1 className="title">Cart page</h1>}
-            />
+          {/* cart page */}
+          <Route
+            exact={true}
+            path="/cart"
+            component={() => <h1 className="title">Cart page</h1>}
+          />
 
-            {/* admin page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/admin"
-              component={() => <h1 className="title">Admin page</h1>}
-            />
+          {/* admin page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/admin"
+            component={() => <h1 className="title">Admin page</h1>}
+          />
 
-            {/* page not found */}
-            <Route
-              component={() => <h1 className="title">Page not found</h1>}
-            />
-          </Switch>
-        </>
-      </Router>
+          {/* page not found */}
+          <Route component={() => <h1 className="title">Page not found</h1>} />
+        </Switch>
+      </>
     );
   }
 }
