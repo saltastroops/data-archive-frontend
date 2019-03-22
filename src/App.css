@@ -1,0 +1,17 @@
+.styles_modal__gNwvD {
+  max-width: 1224px;
+  width: 100%;
+}
+
+.cart-table {
+  max-width: 1224px;
+  overflow: auto;
+  padding: 15px;
+  height: 600px;
+}
+.c-table {
+  border: 2px solid hsl(0, 0%, 86%);
+}
+.button-scales {
+  width: 400px;
+}

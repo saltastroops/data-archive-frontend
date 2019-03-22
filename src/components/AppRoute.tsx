@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Route } from "react-router";
 import Message from "./basicComponents/Message";
+import Cart from "./Cart";
 import { canViewPage, isKnownPath } from "./navUtil";
 
 interface IUser {
@@ -89,11 +90,7 @@ class AppRoute extends React.Component<IUser, any> {
           path="/data-requests"
           component={() => <h1 className={"title"}>Data request page</h1>}
         />
-        <Route
-          exact={true}
-          path="/cart"
-          component={() => <h1 className={"title"}>Cart page</h1>}
-        />
+        <Route exact={true} path="/cart" component={() => <Cart />} />
 
         <Route
           exact={true}
