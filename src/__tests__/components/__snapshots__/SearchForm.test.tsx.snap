@@ -45,6 +45,7 @@ exports[`Search Form render correctly 1`] = `
     <styled.div>
       <input
         className="button is-primary"
+        data-test="search-button"
         onClick={[Function]}
         type="button"
         value="Search"
