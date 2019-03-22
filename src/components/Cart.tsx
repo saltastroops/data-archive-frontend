@@ -3,7 +3,13 @@ import Modal from "react-responsive-modal";
 import CartFile from "./cart/CartFile";
 import CartObservation from "./cart/Observation";
 
-class Cart extends React.Component {
+interface ICart {
+  open: boolean;
+  closeCart: () => void;
+  clearCart: () => void;
+}
+
+class Cart extends React.Component<any, any> {
   state: {
     cart: any[];
   } = {
