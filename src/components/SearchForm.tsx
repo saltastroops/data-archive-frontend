@@ -25,13 +25,25 @@ import TelescopeForm, {
 } from "./searchFormComponents/TelescopeForm";
 import * as _ from "lodash";
 
-let cache: Pick<ISearchFormState, "general" | "target">;
+interface ISearchFormProps {
+  cache?: ISearchFormCache;
+}
+
+/**
+ * The cache for the search form.
+ *
+ * The general and target details (and errors) are cached.
+ */
+export interface ISearchFormCache {
+  general?: IGeneral;
+  target?: ITarget;
+}
 
 /**
  * A form for defining search parameters for an observation search, and for
  * initiating the search.
  */
-class SearchForm extends React.Component<{}, ISearchFormState> {
+class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
     general: { calibrations: new Set<CalibrationType>(), errors: {} },
     loading: false,
@@ -43,12 +55,10 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
   };
 
   /**
-   * Populated the state from the cached values.
+   * Populate the state from cached values.
    */
   componentDidMount() {
-    if (cache) {
-      this.setState(() => cache);
-    }
+    this.setState(() => (this.props.cache as any) || {});
   }
 
   /**
@@ -142,6 +152,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
           <ButtonGrid>
             <input
               className="button is-primary"
+              data-test="search-button"
               type="button"
               value="Search"
               onClick={this.searchArchive}
@@ -159,10 +170,10 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
     this.setState(
       () => update,
       () => {
-        cache = {
-          general: _.cloneDeep(this.state.general),
-          target: _.cloneDeep(this.state.target)
-        };
+        if (this.props.cache) {
+          this.props.cache.general = _.cloneDeep(this.state.general);
+          this.props.cache.target = _.cloneDeep(this.state.target);
+        }
       }
     );
   };

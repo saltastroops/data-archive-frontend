@@ -7,8 +7,6 @@ import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import InputField from "./basicComponents/InputField";
 import * as _ from "lodash";
 
-let cache: Pick<IRegistrationFormState, "errors" | "userInput">;
-
 /**
  * Input for the registration form.
  *
@@ -55,6 +53,20 @@ interface IRegistrationFormState {
   errors: Partial<IRegistrationFormInput>;
   registered: boolean;
   userInput: IRegistrationFormInput;
+}
+
+/**
+ * The cache for the registration form.
+ *
+ * The user input and errors are cached.
+ */
+export interface IRegistrationFormCache {
+  errors?: Partial<IRegistrationFormInput>;
+  userInput?: IRegistrationFormInput;
+}
+
+interface IRegistrationFormProps {
+  cache?: IRegistrationFormCache;
 }
 
 const validateRegistrationField = (
@@ -131,7 +143,10 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
-class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
+class RegistrationForm extends React.Component<
+  IRegistrationFormProps,
+  IRegistrationFormState
+> {
   public state: IRegistrationFormState = {
     errors: {},
     registered: false,
@@ -147,11 +162,11 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
   };
 
   /**
-   * Populated the state from the cached values.
+   * Populate the state from cached values.
    */
   componentDidMount() {
-    if (cache) {
-      this.setState(() => cache);
+    if (this.props.cache) {
+      this.setState(() => (this.props.cache as any) || {});
     }
   }
 
@@ -259,6 +274,7 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
                   <label className="label">
                     Email address
                     <InputField
+                      data-test="email-input"
                       error={errors.email}
                       name={"email"}
                       onChange={this.onInputChange}
@@ -346,10 +362,10 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
     this.setState(
       () => update,
       () => {
-        cache = {
-          errors: _.cloneDeep(this.state.errors),
-          userInput: _.cloneDeep(this.state.userInput)
-        };
+        if (this.props.cache) {
+          this.props.cache.errors = _.cloneDeep(this.state.errors);
+          this.props.cache.userInput = _.cloneDeep(this.state.userInput);
+        }
       }
     );
   };

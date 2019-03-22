@@ -5,8 +5,6 @@ import styled from "styled-components";
 import api from "../api/api";
 import InputField from "./basicComponents/InputField";
 
-let cache: Pick<ILoginFormState, "errors" | "userInput">;
-
 /**
  * Input for the login form.
  *
@@ -42,6 +40,20 @@ interface ILoginFormState {
   loggedIn: boolean;
   errors: Partial<ILoginFormInput> & { responseError?: string };
   userInput: ILoginFormInput;
+}
+
+/**
+ * The cache for the login form.
+ *
+ * The user input and errors are cached.
+ */
+export interface ILoginFormCache {
+  errors?: Partial<ILoginFormInput> & { responseError?: string };
+  userInput?: ILoginFormInput;
+}
+
+interface ILoginFormProps {
+  cache?: ILoginFormCache;
 }
 
 const LoginFormParent = styled.form.attrs({
@@ -105,7 +117,7 @@ const validateLoginForm = (loginInput: {
 /**
  * The login form for authenticating the user.
  */
-class LoginForm extends React.Component<{}, ILoginFormState> {
+class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   public state = {
     errors: {
       password: "",
@@ -121,12 +133,10 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
   };
 
   /**
-   * Populated the state from the cached values.
+   * Populate the state from cached values.
    */
   componentDidMount() {
-    if (cache) {
-      this.setState(() => cache);
-    }
+    this.setState(() => (this.props.cache as any) || {});
   }
 
   onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
@@ -235,6 +245,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
                   error={errors.password}
                   onChange={this.onInputChange}
                   type="password"
+                  data-test="password-input"
                 />
               </div>
             </label>
@@ -259,10 +270,10 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     this.setState(
       () => update,
       () => {
-        cache = {
-          errors: _.cloneDeep(this.state.errors),
-          userInput: _.cloneDeep(this.state.userInput)
-        };
+        if (this.props.cache) {
+          this.props.cache.errors = _.cloneDeep(this.state.errors);
+          this.props.cache.userInput = _.cloneDeep(this.state.userInput);
+        }
       }
     );
   };

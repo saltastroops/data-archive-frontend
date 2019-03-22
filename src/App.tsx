@@ -6,9 +6,11 @@ import {
   Switch
 } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
-import SearchForm from "./components/SearchForm";
-import RegistrationForm from "./components/RegistrationForm";
-import LoginForm from "./components/LoginForm";
+import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import RegistrationForm, {
+  IRegistrationFormCache
+} from "./components/RegistrationForm";
+import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 
 interface IUser {
   name: string;
@@ -20,6 +22,12 @@ interface IProtectedRouteProps {
   component: any;
   user: IUser | null | undefined;
   [propName: string]: any;
+}
+
+interface ICache {
+  loginForm: ILoginFormCache;
+  registrationForm: IRegistrationFormCache;
+  searchForm: ISearchFormCache;
 }
 
 /**
@@ -54,11 +62,13 @@ function ProtectedRoute({
  */
 class App extends React.Component<any, any> {
   state = {
-    user: {
-      isAdmin: () => true,
-      name: "Nhlavu",
-      username: "nhlavu"
-    }
+    user: undefined
+  };
+
+  private cache: ICache = {
+    loginForm: {},
+    registrationForm: {},
+    searchForm: {}
   };
 
   logout = () => {
@@ -81,17 +91,27 @@ class App extends React.Component<any, any> {
 
         <Switch>
           {/* search page */}
-          <Route exact={true} path="/" render={() => <SearchForm />} />
+          <Route
+            exact={true}
+            path="/"
+            render={() => <SearchForm cache={this.cache.searchForm} />}
+          />
 
           {/* registration page */}
           <Route
             exact={true}
             path="/register"
-            component={() => <RegistrationForm />}
+            component={() => (
+              <RegistrationForm cache={this.cache.registrationForm} />
+            )}
           />
 
           {/* login page */}
-          <Route exact={true} path="/login" component={() => <LoginForm />} />
+          <Route
+            exact={true}
+            path="/login"
+            component={() => <LoginForm cache={this.cache.loginForm} />}
+          />
 
           {/* account details page */}
           <ProtectedRoute
