@@ -10,7 +10,7 @@ interface ICartFile {
 }
 
 const CartFile = (props: ICartFile) => {
-  const { file, index, observation } = props;
+  const { file, observation } = props;
   return (
     <tr>
       {observation.files[0] === file && (
