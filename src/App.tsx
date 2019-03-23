@@ -1,10 +1,10 @@
 import * as React from "react";
 import "./App.css";
-import DataRequest from "./components/dataRequest/DataRequest";
+import DataRequestForm from "./components/dataRequest/DataRequestForm";
 
 class App extends React.Component {
   public render() {
-    return <DataRequest />;
+    return <DataRequestForm />;
   }
 }
 
