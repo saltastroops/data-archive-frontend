@@ -22,27 +22,27 @@ class DataRequestForm extends React.Component {
   render() {
     // TO BE UPDATED
     // Mocked data for display purpose only
-    const { dataRequest } = mockedRequestedData as any;
+    const { dataRequests } = mockedRequestedData as any;
 
     return (
       <>
         <Heading>Data Request</Heading>
 
-        {dataRequest.map((data: any) => {
-          const { dataFiles, madeAt, id } = data;
+        {dataRequests.map((dataRequest: any) => {
+          const { parts, madeAt, id } = dataRequest;
 
-          const mayDownloadAll = !dataFiles.some((observation: any) =>
+          const mayDownloadAll = !parts.some((observation: any) =>
             ["FAILED", "PENDING"].includes(observation.status)
           );
 
-          const reRequestAll = !dataFiles.some(
+          const reRequestAll = !parts.some(
             (observation: any) => observation.status === "SUCCESSFUL"
           );
 
           return (
             <DataRequestTable
               key={id}
-              dataFiles={dataFiles}
+              dataFiles={parts}
               madeAt={madeAt}
               mayDownloadAll={mayDownloadAll}
               reRequestAll={reRequestAll}
