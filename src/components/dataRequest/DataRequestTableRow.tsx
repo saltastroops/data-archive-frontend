@@ -23,8 +23,7 @@ interface IDataRequestTable {
 }
 
 /**
- * The data request table row component
- *    Displays the reuested data content in a table rows
+ * A row in the data request table.
  */
 class DataRequestTableRow extends React.Component<IDataRequestTable> {
   render() {

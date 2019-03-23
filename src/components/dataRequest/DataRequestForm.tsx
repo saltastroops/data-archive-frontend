@@ -13,8 +13,10 @@ const Heading = styled.h1.attrs({
 `;
 
 /**
- * The data request component
- *    Enables a logged in user to see the requested data status and permits the user to perform necessary actions.
+ * The data request component.
+ *
+ * Enables a logged in user to review the status and content of their data
+ * requests, and allows them to download and re-request data.
  */
 class DataRequestForm extends React.Component {
   render() {

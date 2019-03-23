@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DataRequestTableRow from "./DataRequestTableRow";
 
 /**
- * State of the data request table component.
+ * Properties of the data request table component.
  *
  * Properties:
  * -----------
@@ -31,8 +31,7 @@ const RequestedDataTable = styled.table.attrs({
 `;
 
 /**
- * The data request table component
- *    Displays the reuested data in a tabular format
+ * A table displaying the con tent of a data request.
  */
 class DataRequestTable extends React.Component<IDataRequestTable> {
   render() {
