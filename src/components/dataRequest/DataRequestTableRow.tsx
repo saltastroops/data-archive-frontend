@@ -48,7 +48,7 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
 
     return (
       <tr>
-        <td>{dataFiles[0].observation.id}</td>
+        <td>{dataFiles[0].observation.name}</td>
         <td>
           <p>{statusText}</p>
           <p>

@@ -35,6 +35,7 @@ export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
 
 interface Observation {
   id: string;
+  name: string;
 }
 
 /**

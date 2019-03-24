@@ -12,21 +12,24 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             },
             {
               "id": "file 3",
               "name": "filename 3",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             }
           ]
@@ -39,14 +42,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             }
           ]
@@ -59,14 +64,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 3"
+                "id": "obs 3",
+                "name": "Observation 3"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 3"
+                "id": "obs 3",
+                "name": "Observation 3"
               }
             }
           ]
@@ -85,14 +92,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             }
           ]
@@ -105,14 +114,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             }
           ]
@@ -131,14 +142,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 1"
+                "id": "obs 1",
+                "name": "Observation 1"
               }
             }
           ]
@@ -151,14 +164,16 @@
               "id": "file 1",
               "name": "filename 1",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             },
             {
               "id": "file 2",
               "name": "filename 2",
               "observation": {
-                "id": "Observation 2"
+                "id": "obs 2",
+                "name": "Observation 2"
               }
             }
           ]
