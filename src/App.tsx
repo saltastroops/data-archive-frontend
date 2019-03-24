@@ -5,8 +5,8 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import NavigationBar from "./components/NavigationBar";
 import DataRequestForm from "./components/dataRequest/DataRequestForm";
+import NavigationBar from "./components/NavigationBar";
 
 interface IUser {
   name: string;
