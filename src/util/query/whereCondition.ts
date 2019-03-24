@@ -36,9 +36,9 @@ const TARGET_DECLINATION = "Target.Declination";
 
 export const SALT_ID = "SALT.ID";
 
-export const SALTICAM_ID = "Salticam.ID";
+export const SALTICAM_ID = "SALTICAM.ID";
 
-const SALTICAM_DETECTOR_MODE = "Salticam.DetectorMode";
+const SALTICAM_DETECTOR_MODE = "SALTICAM.DetectorMode";
 
 export const RSS_ID = "RSS.ID";
 
@@ -262,7 +262,7 @@ export function saltWhereCondition(salt: ISALT) {
   const instrument = salt.instrument;
   if (instrument) {
     switch (instrument.name) {
-      case "Salticam":
+      case "SALTICAM":
         conditions.push(salticamWhereCondition(instrument as ISalticam));
         break;
       case "RSS":
@@ -278,12 +278,12 @@ export function saltWhereCondition(salt: ISALT) {
 }
 
 /**
- * Map Salticam query parameters to a where condition.
+ * Map SALTICAM query parameters to a where condition.
  *
  * Parameters:
  * -----------
  * salticam:
- *    Salticam query parameters.
+ *    SALTICAM query parameters.
  *
  * Returns:
  * --------
@@ -293,7 +293,7 @@ export function saltWhereCondition(salt: ISALT) {
 export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
-  // Salticam is used
+  // SALTICAM is used
   conditions.push(not(isNull(SALTICAM_ID)));
 
   // Detector mode

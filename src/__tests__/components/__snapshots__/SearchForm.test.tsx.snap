@@ -9,6 +9,8 @@ exports[`Search Form render correctly 1`] = `
         target={
           Object {
             "errors": Object {},
+            "resolver": "Simbad",
+            "searchConeRadiusUnits": "arcseconds",
           }
         }
       />
@@ -18,6 +20,7 @@ exports[`Search Form render correctly 1`] = `
         onChange={[Function]}
         proposal={
           Object {
+            "calibrations": Set {},
             "errors": Object {},
           }
         }
@@ -26,13 +29,13 @@ exports[`Search Form render correctly 1`] = `
     <styled.div>
       <TelescopeForm
         onChange={[Function]}
-        telescope={Object {}}
       />
     </styled.div>
     <styled.div>
       <DataForm
-        data={
+        general={
           Object {
+            "calibrations": Set {},
             "errors": Object {},
           }
         }
@@ -44,7 +47,7 @@ exports[`Search Form render correctly 1`] = `
         className="button is-primary"
         onClick={[Function]}
         type="button"
-        value="search"
+        value="Search"
       />
     </styled.div>
   </styled.div>

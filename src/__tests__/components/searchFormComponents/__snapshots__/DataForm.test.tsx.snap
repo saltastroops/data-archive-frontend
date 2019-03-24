@@ -1,26 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Data Form render correctly 1`] = `
+exports[`Data Form should render correctly 1`] = `
 <Fragment>
-  <styled.div>
-    <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
-    </styled.div>
-  </styled.div>
   <styled.div>
     <styled.div>
       <h5
@@ -35,8 +16,9 @@ exports[`Data Form render correctly 1`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="arcs-checkbox"
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -48,8 +30,9 @@ exports[`Data Form render correctly 1`] = `
       <styled.span>
         <styled.input
           checked={false}
+          data-test="biases-checkbox"
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -61,8 +44,9 @@ exports[`Data Form render correctly 1`] = `
       <styled.span>
         <styled.input
           checked={false}
+          data-test="flats-checkbox"
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -74,8 +58,9 @@ exports[`Data Form render correctly 1`] = `
       <styled.span>
         <styled.input
           checked={false}
+          data-test="standards-checkbox"
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>
@@ -87,27 +72,8 @@ exports[`Data Form render correctly 1`] = `
 </Fragment>
 `;
 
-exports[`Data Form render correctly 2`] = `
+exports[`Data Form should render correctly 2`] = `
 <Fragment>
-  <styled.div>
-    <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
-    </styled.div>
-  </styled.div>
   <styled.div>
     <styled.div>
       <h5
@@ -122,8 +88,9 @@ exports[`Data Form render correctly 2`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="arcs-checkbox"
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -135,8 +102,9 @@ exports[`Data Form render correctly 2`] = `
       <styled.span>
         <styled.input
           checked={false}
+          data-test="biases-checkbox"
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -148,8 +116,9 @@ exports[`Data Form render correctly 2`] = `
       <styled.span>
         <styled.input
           checked={false}
+          data-test="flats-checkbox"
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -161,8 +130,9 @@ exports[`Data Form render correctly 2`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="standards-checkbox"
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>
@@ -174,27 +144,8 @@ exports[`Data Form render correctly 2`] = `
 </Fragment>
 `;
 
-exports[`Data Form render correctly 3`] = `
+exports[`Data Form should render correctly 3`] = `
 <Fragment>
-  <styled.div>
-    <styled.div>
-      <p>
-        Reduce/raw
-      </p>
-      <SelectField
-        className="data-type-select"
-        name="dataType"
-        onChange={[Function]}
-        options={
-          Array [
-            "any",
-            "reduced",
-            "raw",
-          ]
-        }
-      />
-    </styled.div>
-  </styled.div>
   <styled.div>
     <styled.div>
       <h5
@@ -209,8 +160,9 @@ exports[`Data Form render correctly 3`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="arcs-checkbox"
           id="arcs-checkbox"
-          name="arcs"
+          name="arc"
           onChange={[Function]}
         />
       </styled.span>
@@ -222,8 +174,9 @@ exports[`Data Form render correctly 3`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="biases-checkbox"
           id="biases-checkbox"
-          name="biases"
+          name="bias"
           onChange={[Function]}
         />
       </styled.span>
@@ -235,8 +188,9 @@ exports[`Data Form render correctly 3`] = `
       <styled.span>
         <styled.input
           checked={true}
+          data-test="flats-checkbox"
           id="flats-checkbox"
-          name="flats"
+          name="flat"
           onChange={[Function]}
         />
       </styled.span>
@@ -247,9 +201,10 @@ exports[`Data Form render correctly 3`] = `
     <label>
       <styled.span>
         <styled.input
-          checked={false}
+          checked={true}
+          data-test="standards-checkbox"
           id="standards-checkbox"
-          name="standards"
+          name="standard"
           onChange={[Function]}
         />
       </styled.span>

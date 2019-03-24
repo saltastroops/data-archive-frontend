@@ -4,10 +4,16 @@ import { validateDate } from "../../utils/validators";
 import { MainGrid, SubGrid } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 
-class ProposalForm extends React.Component<
-  { proposal: IGeneral; onChange: (value: IGeneral) => void },
-  any
-> {
+interface IProposalFormProps {
+  proposal: IGeneral;
+  onChange: (value: IGeneral) => void;
+}
+
+/**
+ * A form for selecting general search parameters.
+ */
+class ProposalForm extends React.Component<IProposalFormProps, {}> {
+  // Function for handling input changes.
   change = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -20,6 +26,7 @@ class ProposalForm extends React.Component<
       }
     });
   };
+
   render() {
     const {
       errors,
@@ -28,13 +35,14 @@ class ProposalForm extends React.Component<
       proposalCode,
       proposalTitle
     } = this.props.proposal;
+
     return (
       <>
         <MainGrid>
           <SubGrid>
-            <p>Proposal Code</p>
+            <p>Proposal code</p>
             <InputField
-              className={"proposal-code-input"}
+              data-test="proposal-code-input"
               error={errors.proposalCode}
               name={"proposalCode"}
               onChange={this.change}
@@ -44,7 +52,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Principal investigator</p>
             <InputField
-              className={"principal-investigator-input"}
+              data-test="principal-investigator-input"
               name={"principalInvestigator"}
               value={principalInvestigator || ""}
               error={errors.principalInvestigator || ""}
@@ -57,7 +65,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Proposal title</p>
             <InputField
-              className={"proposal-title-input"}
+              data-test="proposal-title-input"
               name={"proposalTitle"}
               value={proposalTitle || ""}
               error={errors.proposalTitle}
@@ -67,7 +75,7 @@ class ProposalForm extends React.Component<
           <SubGrid>
             <p>Observation night</p>
             <InputField
-              className={"observation-night-input"}
+              data-test="observation-night-input"
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
