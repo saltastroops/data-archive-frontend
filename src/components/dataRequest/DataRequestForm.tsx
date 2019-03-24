@@ -29,24 +29,8 @@ class DataRequestForm extends React.Component {
         <Heading>Data Request</Heading>
 
         {dataRequests.map((dataRequest: any) => {
-          const { parts, madeAt, id } = dataRequest;
-
-          const mayDownloadAll = !parts.some((observation: any) =>
-            ["FAILED", "PENDING"].includes(observation.status)
-          );
-
-          const reRequestAll = !parts.some(
-            (observation: any) => observation.status === "SUCCESSFUL"
-          );
-
           return (
-            <DataRequestTable
-              key={id}
-              dataFiles={parts}
-              madeAt={madeAt}
-              mayDownloadAll={mayDownloadAll}
-              reRequestAll={reRequestAll}
-            />
+            <DataRequestTable key={dataRequest.id} dataRequest={dataRequest} />
           );
         })}
       </>

@@ -5,36 +5,44 @@ import * as React from "react";
  *
  * Properties:
  * -----------
- * observation:
- *    The requested observation with it files
- * status:
- *    Whether an obsertion is pending, successfull or failed
- * downloadButton:
- *    Enables the download button
- * reRequestButton:
- *    Enables the re-request button
+ * dataRequestPart:
+ *     Part of the data request displayed in the row.
  */
 
-interface IDataRequestTable {
-  observation: any;
-  status: string;
-  downloadButton: boolean;
-  reRequestButton: boolean;
+interface IDataRequestTableRowProps {
+  dataRequestPart: any;
 }
 
 /**
  * A row in the data request table.
  */
-class DataRequestTableRow extends React.Component<IDataRequestTable> {
+class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
-    const { observationFiles } = this.props.observation;
-    const { downloadButton, reRequestButton, status } = this.props;
+    const { dataFiles, status } = this.props.dataRequestPart;
+    let downloadButton = false;
+    let reRequestButton = false;
+    let statusText = "";
+
+    // Converting the status for meaningful display
+    switch (status) {
+      case "SUCCESSFUL":
+        statusText = "Available";
+        downloadButton = true;
+        break;
+      case "FAILED":
+        statusText = "Failed";
+        reRequestButton = true;
+        break;
+      default:
+        statusText = "Pending...";
+        break;
+    }
 
     return (
       <tr>
-        <td>{observationFiles[0].observation.id}</td>
+        <td>{dataFiles[0].observation.id}</td>
         <td>
-          <p>{status}</p>
+          <p>{statusText}</p>
           <p>
             {downloadButton ? (
               <button className="button is-small is-success is-rounded">
@@ -49,7 +57,7 @@ class DataRequestTableRow extends React.Component<IDataRequestTable> {
         </td>
         <td>
           <ul>
-            {observationFiles.map((file: any) => {
+            {dataFiles.map((file: any) => {
               return <li key={file.id}>{file.name}</li>;
             })}
           </ul>

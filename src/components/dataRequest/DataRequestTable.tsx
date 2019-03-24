@@ -7,20 +7,11 @@ import DataRequestTableRow from "./DataRequestTableRow";
  *
  * Properties:
  * -----------
- * dataFiles:
- *    Contains the requested observations files
- * madeAt:
- *    The date the request was issued
- * mayDownloadAll:
- *    Enables the user to download all the requested data at once given that all requested data is available
- * reRequestAll:
- *    Enables the user to re-request all the requested data at once given that all requested data has failed
+ * dataRequest:
+ *    Data request whose content is displayed.
  */
-interface IDataRequestTable {
-  dataFiles: any[];
-  madeAt: string;
-  mayDownloadAll: boolean;
-  reRequestAll: boolean;
+interface IDataRequestTableProps {
+  dataRequest: any;
 }
 
 const RequestedDataTable = styled.table.attrs({
@@ -33,9 +24,17 @@ const RequestedDataTable = styled.table.attrs({
 /**
  * A table displaying the con tent of a data request.
  */
-class DataRequestTable extends React.Component<IDataRequestTable> {
+class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { dataFiles, madeAt, mayDownloadAll, reRequestAll } = this.props;
+    const { parts, madeAt } = this.props.dataRequest;
+
+    const mayDownloadAll = !parts.some((observation: any) =>
+      ["FAILED", "PENDING"].includes(observation.status)
+    );
+
+    const reRequestAll = !parts.some(
+      (observation: any) => observation.status === "SUCCESSFUL"
+    );
 
     return (
       <RequestedDataTable>
@@ -69,34 +68,8 @@ class DataRequestTable extends React.Component<IDataRequestTable> {
           </tr>
         </thead>
         <tbody>
-          {dataFiles.map((observation: any) => {
-            let { status } = observation;
-            let downloadButton = false;
-            let reRequestButton = false;
-            // Converting the status for meaningful display
-            switch (status) {
-              case "SUCCESSFUL":
-                status = "Available";
-                downloadButton = true;
-                break;
-              case "FAILED":
-                status = "Failed";
-                reRequestButton = true;
-                break;
-              default:
-                status = "Pending...";
-                break;
-            }
-
-            return (
-              <DataRequestTableRow
-                key={observation.id}
-                observation={observation}
-                status={status}
-                downloadButton={downloadButton}
-                reRequestButton={reRequestButton}
-              />
-            );
+          {parts.map((part: any) => {
+            return <DataRequestTableRow key={part.id} dataRequestPart={part} />;
           })}
         </tbody>
       </RequestedDataTable>
