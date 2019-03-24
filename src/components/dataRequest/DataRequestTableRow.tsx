@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataFile, DataRequestPart } from "./DataRequestForm";
+import { IDataFile, IDataRequestPart } from "./DataRequestForm";
 
 /**
  * Props of the data request table row component.
@@ -11,7 +11,7 @@ import { DataFile, DataRequestPart } from "./DataRequestForm";
  */
 
 interface IDataRequestTableRowProps {
-  dataRequestPart: DataRequestPart;
+  dataRequestPart: IDataRequestPart;
 }
 
 /**
@@ -65,7 +65,7 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
         </td>
         <td>
           <ul>
-            {dataFiles.map((file: DataFile) => {
+            {dataFiles.map((file: IDataFile) => {
               return <li key={file.id}>{file.name}</li>;
             })}
           </ul>

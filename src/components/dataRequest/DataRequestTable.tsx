@@ -1,8 +1,8 @@
+import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
+import { IDataRequest, IDataRequestPart } from "./DataRequestForm";
 import DataRequestTableRow from "./DataRequestTableRow";
-import { DataRequest, DataRequestPart } from "./DataRequestForm";
-import moment from "moment";
 
 /**
  * Properties of the data request table component.
@@ -13,7 +13,7 @@ import moment from "moment";
  *    Data request whose content is displayed.
  */
 interface IDataRequestTableProps {
-  dataRequest: DataRequest;
+  dataRequest: IDataRequest;
 }
 
 const RequestedDataTable = styled.table.attrs({
@@ -93,7 +93,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
           </tr>
         </thead>
         <tbody>
-          {parts.map((part: DataRequestPart) => {
+          {parts.map((part: IDataRequestPart) => {
             return <DataRequestTableRow key={part.id} dataRequestPart={part} />;
           })}
         </tbody>

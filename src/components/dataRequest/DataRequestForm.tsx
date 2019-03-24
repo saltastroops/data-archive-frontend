@@ -1,8 +1,8 @@
+import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
 import DataRequestTable from "./DataRequestTable";
 import mockedRequestedData from "./requestedData.json";
-import moment from "moment";
 
 const Heading = styled.h1.attrs({
   className: "title is-3"
@@ -13,29 +13,29 @@ const Heading = styled.h1.attrs({
   }
 `;
 
-export interface DataFile {
+export interface IDataFile {
   id: string;
   name: string;
-  observation: Observation;
+  observation: IObservation;
 }
 
-export interface DataRequestPart {
-  dataFiles: DataFile[];
+export interface IDataRequestPart {
+  dataFiles: IDataFile[];
   id: string;
   status: DataRequestStatus;
   uri: string;
 }
 
-export interface DataRequest {
+export interface IDataRequest {
   id: string;
   madeAt: string;
-  parts: DataRequestPart[];
+  parts: IDataRequestPart[];
   uri: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
 
-interface Observation {
+interface IObservation {
   id: string;
   name: string;
 }
@@ -51,7 +51,7 @@ class DataRequestForm extends React.Component {
     // TO BE UPDATED
     // Mocked data for display purpose only
     const { dataRequests } = mockedRequestedData as {
-      dataRequests: DataRequest[];
+      dataRequests: IDataRequest[];
     };
 
     const sortedDataRequests = [...dataRequests];
@@ -63,7 +63,7 @@ class DataRequestForm extends React.Component {
       <>
         <Heading>Data Request</Heading>
 
-        {sortedDataRequests.map((dataRequest: DataRequest) => {
+        {sortedDataRequests.map((dataRequest: IDataRequest) => {
           return (
             <DataRequestTable key={dataRequest.id} dataRequest={dataRequest} />
           );
