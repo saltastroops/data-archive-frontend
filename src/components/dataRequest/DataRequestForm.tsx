@@ -24,11 +24,16 @@ class DataRequestForm extends React.Component {
     // Mocked data for display purpose only
     const { dataRequests } = mockedRequestedData as any;
 
+    const sortedDataRequests = [...dataRequests];
+    sortedDataRequests.sort(
+      (a, b) => moment(b.madeAt).unix() - moment(a.madeAt).unix()
+    );
+
     return (
       <>
         <Heading>Data Request</Heading>
 
-        {dataRequests.map((dataRequest: any) => {
+        {sortedDataRequests.map((dataRequest: any) => {
           return (
             <DataRequestTable key={dataRequest.id} dataRequest={dataRequest} />
           );
