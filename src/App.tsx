@@ -6,6 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
+import DataRequestForm from "./components/dataRequest/DataRequestForm";
 
 interface IUser {
   name: string;
@@ -112,7 +113,7 @@ class App extends React.Component<any, any> {
               user={user}
               exact={true}
               path="/data-requests"
-              component={() => <h1 className="title">Data request page</h1>}
+              component={() => <DataRequestForm />}
             />
 
             {/* cart page */}
