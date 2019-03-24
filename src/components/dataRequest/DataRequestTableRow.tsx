@@ -33,8 +33,15 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
         statusText = "Failed";
         reRequestButton = true;
         break;
+      case "PENDING":
+        statusText = "Pending";
+        break;
+      case "EXPIRED":
+        statusText = "Expired";
+        reRequestButton = true;
+        break;
       default:
-        statusText = "Pending...";
+        statusText = "Unknown";
         break;
     }
 

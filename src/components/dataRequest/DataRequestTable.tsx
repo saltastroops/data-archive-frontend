@@ -28,13 +28,11 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
     const { parts, madeAt } = this.props.dataRequest;
 
-    const mayDownloadAll = !parts.some((observation: any) =>
-      ["FAILED", "PENDING"].includes(observation.status)
+    const mayDownloadAll = parts.every(
+      (part: any) => part.status === "SUCCESSFUL"
     );
 
-    const reRequestAll = !parts.some(
-      (observation: any) => observation.status === "SUCCESSFUL"
-    );
+    const reRequestAll = parts.every((part: any) => part.status !== "PENDING");
 
     return (
       <RequestedDataTable>
