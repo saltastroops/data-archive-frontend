@@ -16,7 +16,7 @@ interface IDataRequestTableProps {
   dataRequest: IDataRequest;
 }
 
-const RequestedDataTable = styled.table.attrs({
+const Table = styled.table.attrs({
   className: "table is-striped is-narrowed is-hoverable is-fullwidth"
 })`
   && {
@@ -57,7 +57,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const reRequestAll = parts.every(part => part.status !== "PENDING");
 
     return (
-      <RequestedDataTable>
+      <Table>
         <thead>
           <tr>
             <th colSpan={3}>
@@ -97,7 +97,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             return <DataRequestTableRow key={part.id} dataRequestPart={part} />;
           })}
         </tbody>
-      </RequestedDataTable>
+      </Table>
     );
   }
 }
