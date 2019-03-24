@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import DataRequestTable from "./DataRequestTable";
 import mockedRequestedData from "./requestedData.json";
+import moment from "moment";
 
 const Heading = styled.h1.attrs({
   className: "title is-3"
@@ -11,6 +12,30 @@ const Heading = styled.h1.attrs({
     margin: 20px 0 20px 0;
   }
 `;
+
+export interface DataFile {
+  id: string;
+  name: string;
+  observation: Observation;
+}
+
+export interface DataRequestPart {
+  dataFiles: DataFile[];
+  id: string;
+  status: DataRequestStatus;
+}
+
+export interface DataRequest {
+  id: string;
+  madeAt: string;
+  parts: DataRequestPart[];
+}
+
+export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
+
+interface Observation {
+  id: string;
+}
 
 /**
  * The data request component.
@@ -22,7 +47,9 @@ class DataRequestForm extends React.Component {
   render() {
     // TO BE UPDATED
     // Mocked data for display purpose only
-    const { dataRequests } = mockedRequestedData as any;
+    const { dataRequests } = mockedRequestedData as {
+      dataRequests: DataRequest[];
+    };
 
     const sortedDataRequests = [...dataRequests];
     sortedDataRequests.sort(
@@ -33,7 +60,7 @@ class DataRequestForm extends React.Component {
       <>
         <Heading>Data Request</Heading>
 
-        {sortedDataRequests.map((dataRequest: any) => {
+        {sortedDataRequests.map((dataRequest: DataRequest) => {
           return (
             <DataRequestTable key={dataRequest.id} dataRequest={dataRequest} />
           );

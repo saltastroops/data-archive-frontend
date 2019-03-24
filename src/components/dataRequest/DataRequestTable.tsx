@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import DataRequestTableRow from "./DataRequestTableRow";
+import { DataRequest, DataRequestPart } from "./DataRequestForm";
 
 /**
  * Properties of the data request table component.
@@ -11,7 +12,7 @@ import DataRequestTableRow from "./DataRequestTableRow";
  *    Data request whose content is displayed.
  */
 interface IDataRequestTableProps {
-  dataRequest: any;
+  dataRequest: DataRequest;
 }
 
 const RequestedDataTable = styled.table.attrs({
@@ -28,11 +29,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
     const { parts, madeAt } = this.props.dataRequest;
 
-    const mayDownloadAll = parts.every(
-      (part: any) => part.status === "SUCCESSFUL"
-    );
+    const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
 
-    const reRequestAll = parts.every((part: any) => part.status !== "PENDING");
+    const reRequestAll = parts.every(part => part.status !== "PENDING");
 
     return (
       <RequestedDataTable>
@@ -66,7 +65,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
           </tr>
         </thead>
         <tbody>
-          {parts.map((part: any) => {
+          {parts.map((part: DataRequestPart) => {
             return <DataRequestTableRow key={part.id} dataRequestPart={part} />;
           })}
         </tbody>
