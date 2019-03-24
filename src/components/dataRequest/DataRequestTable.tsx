@@ -50,7 +50,7 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { parts, madeAt } = this.props.dataRequest;
+    const { parts, madeAt, uri } = this.props.dataRequest;
 
     const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
 
@@ -72,9 +72,12 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 }}
               >
                 {mayDownloadAll ? (
-                  <button className="button is-small is-success is-rounded">
+                  <a
+                    className="button is-small is-success is-rounded"
+                    href={uri}
+                  >
                     Download all
-                  </button>
+                  </a>
                 ) : reRequestAll ? (
                   <button className="button is-small is-danger is-rounded">
                     Re-request all

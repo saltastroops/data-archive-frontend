@@ -19,7 +19,7 @@ interface IDataRequestTableRowProps {
  */
 class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
-    const { dataFiles, status } = this.props.dataRequestPart;
+    const { dataFiles, status, uri } = this.props.dataRequestPart;
     let downloadButton = false;
     let reRequestButton = false;
     let statusText = "";
@@ -53,9 +53,9 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
           <p>{statusText}</p>
           <p>
             {downloadButton ? (
-              <button className="button is-small is-success is-rounded">
+              <a className="button is-small is-success is-rounded" href={uri}>
                 Download
-              </button>
+              </a>
             ) : reRequestButton ? (
               <button className="button is-small is-danger is-rounded">
                 Re-request

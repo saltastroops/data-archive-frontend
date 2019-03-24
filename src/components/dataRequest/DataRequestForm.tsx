@@ -23,12 +23,14 @@ export interface DataRequestPart {
   dataFiles: DataFile[];
   id: string;
   status: DataRequestStatus;
+  uri: string;
 }
 
 export interface DataRequest {
   id: string;
   madeAt: string;
   parts: DataRequestPart[];
+  uri: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
