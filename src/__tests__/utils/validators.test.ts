@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   IGeneralErrors,
   ITargetErrors
@@ -291,7 +290,6 @@ describe("isError", () => {
   });
   it("should be true if general has more than one error", () => {
     const generalError: IGeneralErrors = {
-      arcs: "Error",
       observationNight: "Error",
       principalInvestigator: "Error"
     };
