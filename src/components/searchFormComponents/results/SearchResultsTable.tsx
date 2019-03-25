@@ -3,9 +3,20 @@ import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
 import ImageModal from "./ImageModal";
 import SearchResultsTableRow from "./SearchResultsTableRow";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
-import { Span } from "../../basicComponents/Grids";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 // I assume that each file will belong to one and only one observation and one file can be used in multiple observations
+
+const Span = styled.span.attrs({
+  className: "span"
+})`
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+`;
 
 class SearchResultsTable extends React.Component<
   { searchResults: IObservation[]; cart: any; updateCart: any },
@@ -128,7 +139,9 @@ class SearchResultsTable extends React.Component<
                           }
                         />
                       </Span>
-                      <Span className={"span"}> Add all</Span>
+                      <Span className={"span"}>
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                      </Span>
                     </label>
                   </td>
                   <td colSpan={3}>
@@ -146,7 +159,7 @@ class SearchResultsTable extends React.Component<
                 </tr>
 
                 <tr>
-                  <th>Add</th>
+                  <th>In cart</th>
                   <th>Filename</th>
                   <th>Name</th>
                   <th>Data type</th>
