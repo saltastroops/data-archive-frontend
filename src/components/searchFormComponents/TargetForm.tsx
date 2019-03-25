@@ -57,7 +57,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           declination: ``,
           errors: {
             ...target.errors,
-            name: `Target ${target.name} Could not be resolved.`
+            name: `Target ${target.name} could not be resolved.`
           },
           rightAscension: ``
         });
