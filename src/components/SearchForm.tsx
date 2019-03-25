@@ -111,7 +111,11 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
       telescope
     }));
     if (
-      !isError(general.errors as IGeneralErrors, target.errors as ITargetErrors)
+      !isError(
+        general.errors,
+        target.errors,
+        (telescope && telescope.errors) || {}
+      )
     ) {
       // TODO query the server
       this.setState(() => ({
