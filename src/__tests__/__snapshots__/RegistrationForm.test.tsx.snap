@@ -118,7 +118,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Email address
         <InputField
-          data-test="email-input"
           name="email"
           onChange={[Function]}
           value=""
@@ -128,7 +127,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
           >
             <input
               className="input undefined undefined"
-              data-test="email-input"
               name="email"
               onChange={[Function]}
               value=""

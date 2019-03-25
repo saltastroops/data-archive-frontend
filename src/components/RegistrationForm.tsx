@@ -274,7 +274,6 @@ class RegistrationForm extends React.Component<
                   <label className="label">
                     Email address
                     <InputField
-                      data-test="email-input"
                       error={errors.email}
                       name={"email"}
                       onChange={this.onInputChange}

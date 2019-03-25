@@ -179,10 +179,7 @@ describe("LoginForm Component", () => {
     wrapper.update();
 
     // Fill in an invalid password
-    const passwordInput = wrapper.find('input[data-test="password-input"]');
-    passwordInput.simulate("change", {
-      target: { value: "short", name: "password" }
-    });
+    inputTyping(wrapper, "password", "short");
 
     // Submit the form
     const submitButton = wrapper.find('button[data-test="signIn"]');

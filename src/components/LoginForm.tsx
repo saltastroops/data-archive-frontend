@@ -245,7 +245,6 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                   error={errors.password}
                   onChange={this.onInputChange}
                   type="password"
-                  data-test="password-input"
                 />
               </div>
             </label>

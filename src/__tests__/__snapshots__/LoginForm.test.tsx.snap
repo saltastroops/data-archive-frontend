@@ -141,7 +141,6 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
                 className="control is-child"
               >
                 <InputField
-                  data-test="password-input"
                   error=""
                   name="password"
                   onChange={[Function]}
@@ -153,7 +152,6 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
                   >
                     <input
                       className="input undefined "
-                      data-test="password-input"
                       name="password"
                       onChange={[Function]}
                       type="password"

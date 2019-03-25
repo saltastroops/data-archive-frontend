@@ -383,10 +383,7 @@ describe("RegistrationForm Component", () => {
     wrapper.update();
 
     // Fill in an invalid email
-    const emailInput = wrapper.find('input[data-test="email-input"]');
-    emailInput.simulate("change", {
-      target: { value: "invalid email", name: "email" }
-    });
+    const emailInput = inputTyping(wrapper, "email", "invalid email");
 
     // Submit the form
     const submitButton = wrapper.find('[data-test="signUp"]');
