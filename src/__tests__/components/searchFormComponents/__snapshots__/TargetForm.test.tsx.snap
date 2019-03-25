@@ -69,6 +69,7 @@ exports[`TargetForm should render correctly 1`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -80,6 +81,7 @@ exports[`TargetForm should render correctly 1`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
   </styled.div>
@@ -92,6 +94,7 @@ exports[`TargetForm should render correctly 1`] = `
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -194,6 +197,7 @@ exports[`TargetForm should render correctly 2`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -205,6 +209,7 @@ exports[`TargetForm should render correctly 2`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
   </styled.div>
@@ -217,6 +222,7 @@ exports[`TargetForm should render correctly 2`] = `
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -320,6 +326,7 @@ exports[`TargetForm should render correctly 3`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
     <styled.div>
@@ -331,6 +338,7 @@ exports[`TargetForm should render correctly 3`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        value=""
       />
     </styled.div>
   </styled.div>
