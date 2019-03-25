@@ -18,6 +18,9 @@ const Span = styled.span.attrs({
   }
 `;
 
+/**
+ * The table of search results.
+ */
 class SearchResultsTable extends React.Component<
   { searchResults: IObservation[]; cart: any; updateCart: any },
   any
@@ -125,6 +128,7 @@ class SearchResultsTable extends React.Component<
           {searchResults.map((observation: IObservation) => {
             return (
               <tbody key={observation.id}>
+                {/* main header for the observation */}
                 <tr className="is-selected span">
                   <td>
                     <label>
@@ -158,6 +162,7 @@ class SearchResultsTable extends React.Component<
                   </td>
                 </tr>
 
+                {/* sub header for the observation */}
                 <tr>
                   <th>In cart</th>
                   <th>Filename</th>
@@ -170,6 +175,8 @@ class SearchResultsTable extends React.Component<
                   <th>Category</th>
                   <th>Instrument</th>
                 </tr>
+
+                {/* the search results */}
                 {observation.files.map((file: IFile) => {
                   return (
                     <SearchResultsTableRow
