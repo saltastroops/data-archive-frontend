@@ -23,14 +23,11 @@ import styled from "styled-components";
 
 // TODO: replace user type with correct one
 interface INavigationBarProps {
-  user?:
-    | {
-        isAdmin: () => boolean;
-        name: string;
-        username: string;
-      }
-    | null
-    | undefined; // currently logged in user
+  user?: {
+    isAdmin: () => boolean;
+    name: string;
+    username: string;
+  } | null; // currently logged in user
   logout: () => void; // logout function
 }
 
