@@ -189,6 +189,112 @@
         }
       ],
       "uri": "http://demo/data-request/part/rd3"
+    },
+    {
+      "id": "rd4",
+      "madeAt": "2019-03-01 00:00",
+      "parts": [
+        {
+          "id": "obsR1c",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1c"
+        },
+        {
+          "id": "obsR2c",
+          "status": "FAILED",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2c"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd3"
+    },
+    {
+      "id": "rd5",
+      "madeAt": "2019-02-01 00:00",
+      "parts": [
+        {
+          "id": "obsR1c",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1c"
+        },
+        {
+          "id": "obsR2c",
+          "status": "PENDING",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2c"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd3"
     }
   ]
 }

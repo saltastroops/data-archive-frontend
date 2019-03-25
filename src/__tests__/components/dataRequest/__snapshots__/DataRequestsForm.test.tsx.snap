@@ -52,6 +52,265 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
   <DataRequestTable
     dataRequest={
       Object {
+        "id": "rd4",
+        "madeAt": "2019-03-01 00:00",
+        "parts": Array [
+          Object {
+            "dataFiles": Array [
+              Object {
+                "id": "file 1",
+                "name": "filename 1",
+                "observation": Object {
+                  "id": "obs 1",
+                  "name": "Observation 1",
+                },
+              },
+              Object {
+                "id": "file 2",
+                "name": "filename 2",
+                "observation": Object {
+                  "id": "obs 1",
+                  "name": "Observation 1",
+                },
+              },
+            ],
+            "id": "obsR1c",
+            "status": "SUCCESSFUL",
+            "uri": "http://demo/data-request/part/obsR1c",
+          },
+          Object {
+            "dataFiles": Array [
+              Object {
+                "id": "file 1",
+                "name": "filename 1",
+                "observation": Object {
+                  "id": "obs 2",
+                  "name": "Observation 2",
+                },
+              },
+              Object {
+                "id": "file 2",
+                "name": "filename 2",
+                "observation": Object {
+                  "id": "obs 2",
+                  "name": "Observation 2",
+                },
+              },
+            ],
+            "id": "obsR2c",
+            "status": "FAILED",
+            "uri": "http://demo/data-request/part/obsR2c",
+          },
+        ],
+        "uri": "http://demo/data-request/part/rd3",
+      }
+    }
+    key="rd4"
+  >
+    <styled.table>
+      <StyledComponent
+        forwardedComponent={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [
+              Object {
+                "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
+              },
+            ],
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-bdVaJa",
+              "isStatic": true,
+              "lastClassName": "dPKlrP",
+              "rules": Array [
+                "
+  && {
+  }
+",
+              ],
+            },
+            "displayName": "styled.table",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-bdVaJa",
+            "target": "table",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
+        }
+        forwardedRef={null}
+      >
+        <table
+          className="table is-striped is-narrowed is-hoverable is-fullwidth "
+        >
+          <thead>
+            <tr>
+              <th
+                colSpan={3}
+              >
+                <p
+                  style={
+                    Object {
+                      "display": "inline-block",
+                    }
+                  }
+                >
+                  Requested 
+                  on 1 Mar 2019 at 24:00
+                </p>
+                <p
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                />
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Observation
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Files
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <DataRequestTableRow
+              dataRequestPart={
+                Object {
+                  "dataFiles": Array [
+                    Object {
+                      "id": "file 1",
+                      "name": "filename 1",
+                      "observation": Object {
+                        "id": "obs 1",
+                        "name": "Observation 1",
+                      },
+                    },
+                    Object {
+                      "id": "file 2",
+                      "name": "filename 2",
+                      "observation": Object {
+                        "id": "obs 1",
+                        "name": "Observation 1",
+                      },
+                    },
+                  ],
+                  "id": "obsR1c",
+                  "status": "SUCCESSFUL",
+                  "uri": "http://demo/data-request/part/obsR1c",
+                }
+              }
+              key="obsR1c"
+            >
+              <tr>
+                <td>
+                  Observation 1
+                </td>
+                <td>
+                  <p>
+                    Available
+                  </p>
+                  <p>
+                    <a
+                      className="button is-small is-success is-rounded"
+                      href="http://demo/data-request/part/obsR1c"
+                    >
+                      Download
+                    </a>
+                  </p>
+                </td>
+                <td>
+                  <ul>
+                    <li
+                      key="file 1"
+                    >
+                      filename 1
+                    </li>
+                    <li
+                      key="file 2"
+                    >
+                      filename 2
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </DataRequestTableRow>
+            <DataRequestTableRow
+              dataRequestPart={
+                Object {
+                  "dataFiles": Array [
+                    Object {
+                      "id": "file 1",
+                      "name": "filename 1",
+                      "observation": Object {
+                        "id": "obs 2",
+                        "name": "Observation 2",
+                      },
+                    },
+                    Object {
+                      "id": "file 2",
+                      "name": "filename 2",
+                      "observation": Object {
+                        "id": "obs 2",
+                        "name": "Observation 2",
+                      },
+                    },
+                  ],
+                  "id": "obsR2c",
+                  "status": "FAILED",
+                  "uri": "http://demo/data-request/part/obsR2c",
+                }
+              }
+              key="obsR2c"
+            >
+              <tr>
+                <td>
+                  Observation 2
+                </td>
+                <td>
+                  <p>
+                    Failed
+                  </p>
+                  <p>
+                    <button
+                      className="button is-small is-danger is-rounded"
+                    >
+                      Re-request
+                    </button>
+                  </p>
+                </td>
+                <td>
+                  <ul>
+                    <li
+                      key="file 1"
+                    >
+                      filename 1
+                    </li>
+                    <li
+                      key="file 2"
+                    >
+                      filename 2
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </DataRequestTableRow>
+          </tbody>
+        </table>
+      </StyledComponent>
+    </styled.table>
+  </DataRequestTable>
+  <DataRequestTable
+    dataRequest={
+      Object {
         "id": "rd3",
         "madeAt": "2019-02-01 00:00",
         "parts": Array [
@@ -291,6 +550,259 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                       Re-request
                     </button>
                   </p>
+                </td>
+                <td>
+                  <ul>
+                    <li
+                      key="file 1"
+                    >
+                      filename 1
+                    </li>
+                    <li
+                      key="file 2"
+                    >
+                      filename 2
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </DataRequestTableRow>
+          </tbody>
+        </table>
+      </StyledComponent>
+    </styled.table>
+  </DataRequestTable>
+  <DataRequestTable
+    dataRequest={
+      Object {
+        "id": "rd5",
+        "madeAt": "2019-02-01 00:00",
+        "parts": Array [
+          Object {
+            "dataFiles": Array [
+              Object {
+                "id": "file 1",
+                "name": "filename 1",
+                "observation": Object {
+                  "id": "obs 1",
+                  "name": "Observation 1",
+                },
+              },
+              Object {
+                "id": "file 2",
+                "name": "filename 2",
+                "observation": Object {
+                  "id": "obs 1",
+                  "name": "Observation 1",
+                },
+              },
+            ],
+            "id": "obsR1c",
+            "status": "SUCCESSFUL",
+            "uri": "http://demo/data-request/part/obsR1c",
+          },
+          Object {
+            "dataFiles": Array [
+              Object {
+                "id": "file 1",
+                "name": "filename 1",
+                "observation": Object {
+                  "id": "obs 2",
+                  "name": "Observation 2",
+                },
+              },
+              Object {
+                "id": "file 2",
+                "name": "filename 2",
+                "observation": Object {
+                  "id": "obs 2",
+                  "name": "Observation 2",
+                },
+              },
+            ],
+            "id": "obsR2c",
+            "status": "PENDING",
+            "uri": "http://demo/data-request/part/obsR2c",
+          },
+        ],
+        "uri": "http://demo/data-request/part/rd3",
+      }
+    }
+    key="rd5"
+  >
+    <styled.table>
+      <StyledComponent
+        forwardedComponent={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [
+              Object {
+                "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
+              },
+            ],
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-bdVaJa",
+              "isStatic": true,
+              "lastClassName": "dPKlrP",
+              "rules": Array [
+                "
+  && {
+  }
+",
+              ],
+            },
+            "displayName": "styled.table",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-bdVaJa",
+            "target": "table",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
+        }
+        forwardedRef={null}
+      >
+        <table
+          className="table is-striped is-narrowed is-hoverable is-fullwidth "
+        >
+          <thead>
+            <tr>
+              <th
+                colSpan={3}
+              >
+                <p
+                  style={
+                    Object {
+                      "display": "inline-block",
+                    }
+                  }
+                >
+                  Requested 
+                  on 1 Feb 2019 at 24:00
+                </p>
+                <p
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "position": "absolute",
+                      "right": 0,
+                    }
+                  }
+                />
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Observation
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Files
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <DataRequestTableRow
+              dataRequestPart={
+                Object {
+                  "dataFiles": Array [
+                    Object {
+                      "id": "file 1",
+                      "name": "filename 1",
+                      "observation": Object {
+                        "id": "obs 1",
+                        "name": "Observation 1",
+                      },
+                    },
+                    Object {
+                      "id": "file 2",
+                      "name": "filename 2",
+                      "observation": Object {
+                        "id": "obs 1",
+                        "name": "Observation 1",
+                      },
+                    },
+                  ],
+                  "id": "obsR1c",
+                  "status": "SUCCESSFUL",
+                  "uri": "http://demo/data-request/part/obsR1c",
+                }
+              }
+              key="obsR1c"
+            >
+              <tr>
+                <td>
+                  Observation 1
+                </td>
+                <td>
+                  <p>
+                    Available
+                  </p>
+                  <p>
+                    <a
+                      className="button is-small is-success is-rounded"
+                      href="http://demo/data-request/part/obsR1c"
+                    >
+                      Download
+                    </a>
+                  </p>
+                </td>
+                <td>
+                  <ul>
+                    <li
+                      key="file 1"
+                    >
+                      filename 1
+                    </li>
+                    <li
+                      key="file 2"
+                    >
+                      filename 2
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </DataRequestTableRow>
+            <DataRequestTableRow
+              dataRequestPart={
+                Object {
+                  "dataFiles": Array [
+                    Object {
+                      "id": "file 1",
+                      "name": "filename 1",
+                      "observation": Object {
+                        "id": "obs 2",
+                        "name": "Observation 2",
+                      },
+                    },
+                    Object {
+                      "id": "file 2",
+                      "name": "filename 2",
+                      "observation": Object {
+                        "id": "obs 2",
+                        "name": "Observation 2",
+                      },
+                    },
+                  ],
+                  "id": "obsR2c",
+                  "status": "PENDING",
+                  "uri": "http://demo/data-request/part/obsR2c",
+                }
+              }
+              key="obsR2c"
+            >
+              <tr>
+                <td>
+                  Observation 2
+                </td>
+                <td>
+                  <p>
+                    Pending
+                  </p>
+                  <p />
                 </td>
                 <td>
                   <ul>

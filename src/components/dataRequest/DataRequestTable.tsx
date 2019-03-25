@@ -53,7 +53,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
     const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
 
-    const reRequestAll = parts.every(part => part.status !== "PENDING");
+    const reRequestAll = parts.every(part =>
+      ["FAILED", "EXPIRED"].includes(part.status)
+    );
 
     return (
       <Table>
