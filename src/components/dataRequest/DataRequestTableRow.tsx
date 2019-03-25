@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IDataFile, IDataRequestPart } from "./DataRequestForm";
+import { IDataFile, IDataRequestPart } from "./DataRequestsForm";
 
 /**
  * Props of the data request table row component.

@@ -41,12 +41,12 @@ interface IObservation {
 }
 
 /**
- * The data request component.
+ * A component for displaying the user's data requests.
  *
  * Enables a logged in user to review the status and content of their data
  * requests, and allows them to download and re-request data.
  */
-class DataRequestForm extends React.Component {
+class DataRequestsForm extends React.Component {
   render() {
     // TO BE UPDATED
     // Mocked data for display purpose only
@@ -73,4 +73,4 @@ class DataRequestForm extends React.Component {
   }
 }
 
-export default DataRequestForm;
+export default DataRequestsForm;

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataRequestForm Component renders the DataRequestForm component no errors 1`] = `
+exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = `
 .c0.c0 {
   text-align: center;
   margin: 20px 0 20px 0;
 }
 
-<DataRequestForm>
+<DataRequestsForm>
   <styled.h1>
     <StyledComponent
       forwardedComponent={
@@ -937,5 +937,5 @@ exports[`DataRequestForm Component renders the DataRequestForm component no erro
       </StyledComponent>
     </styled.table>
   </DataRequestTable>
-</DataRequestForm>
+</DataRequestsForm>
 `;

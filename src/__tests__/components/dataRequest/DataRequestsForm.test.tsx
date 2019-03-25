@@ -1,11 +1,11 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import DataRequestForm from "../../../components/dataRequest/DataRequestForm";
+import DataRequestsForm from "../../../components/dataRequest/DataRequestsForm";
 
-describe("DataRequestForm Component", () => {
+describe("DataRequestsForm", () => {
   it("renders the DataRequestForm component correctly", async () => {
-    const wrapper = mount(<DataRequestForm />);
+    const wrapper = mount(<DataRequestsForm />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

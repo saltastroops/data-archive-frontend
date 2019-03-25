@@ -1,7 +1,7 @@
 import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
-import { IDataRequest, IDataRequestPart } from "./DataRequestForm";
+import { IDataRequest, IDataRequestPart } from "./DataRequestsForm";
 import DataRequestTableRow from "./DataRequestTableRow";
 
 /**
