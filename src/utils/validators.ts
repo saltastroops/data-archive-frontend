@@ -256,26 +256,21 @@ export const validateSearchConeRadius = (radius: string) => {
 };
 
 /**
- * Test if there is an error on either general or target if there is any return true
- * @param general
- *      Search form state general errors
- * @param target
- *      Search form state target errors
+ * Test if any of the given error groups (i.e. objects of error keys and
+ * values) has a truthy value for any of its keys.
+ *
+ * Parameters
+ * ----------
+ * errorGroups:
+ *     Objects of error keys and values.
+ *
+ * Returns
+ * -------
+ * isError:
+ *     Whether any of the error groups has a truthy value.
  */
-export const isError = (general: IGeneralErrors, target: ITargetErrors) => {
-  if (
-    (target.name && target.name !== "") ||
-    (target.declination && target.declination !== "") ||
-    (target.rightAscension && target.rightAscension !== "") ||
-    (target.searchConeRadius && target.searchConeRadius !== "")
-  ) {
-    return true;
-  }
-
-  return (
-    (general.observationNight && general.observationNight !== "") ||
-    (general.principalInvestigator && general.principalInvestigator !== "") ||
-    (general.proposalCode && general.proposalCode !== "") ||
-    (general.proposalTitle && general.proposalTitle !== "")
+export const isError = (...errorGroups: object[]) => {
+  return errorGroups.some((errorGroup: object) =>
+    Object.keys(errorGroup).some(key => (errorGroup as any)[key])
   );
 };
