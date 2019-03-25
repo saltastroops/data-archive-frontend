@@ -50,6 +50,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     target: {
       errors: {},
       resolver: "Simbad",
+      searchConeRadius: "",
       searchConeRadiusUnits: "arcseconds"
     }
   };

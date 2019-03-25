@@ -10,6 +10,7 @@ exports[`Search Form render correctly 1`] = `
           Object {
             "errors": Object {},
             "resolver": "Simbad",
+            "searchConeRadius": "",
             "searchConeRadiusUnits": "arcseconds",
           }
         }
