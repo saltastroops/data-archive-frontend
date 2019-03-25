@@ -1,11 +1,11 @@
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
+import styled from "styled-components";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import ImageModal from "./ImageModal";
 import SearchResultsTableRow from "./SearchResultsTableRow";
-import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
 
 // I assume that each file will belong to one and only one observation and one file can be used in multiple observations
 

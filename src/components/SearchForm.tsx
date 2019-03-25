@@ -18,6 +18,7 @@ import {
   TargetGrid,
   TelescopeGrid
 } from "./basicComponents/Grids";
+import { fakeSearchResults } from "./fakeSearchResults";
 import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm, {
   validatedProposal
@@ -27,7 +28,6 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
-import { fakeSearchResults } from "./fakeSearchResults";
 
 /**
  * A form for defining search parameters for an observation search, and for
