@@ -1,7 +1,7 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SearchResults from "../../../../components/searchFormComponents/results/SearchResults";
+import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
 
 const updateCart = jest.fn();
 
@@ -9,14 +9,22 @@ describe("Search results", () => {
   it("should render", () => {
     expect(
       mount(
-        <SearchResults searchResults={[]} cart={[]} updateCart={updateCart} />
+        <SearchResultsTable
+          searchResults={[]}
+          cart={[]}
+          updateCart={updateCart}
+        />
       )
     ).toBeDefined();
   });
 
   it("should create a table even if there is no search results with only the header", () => {
     const wrapper = mount(
-      <SearchResults searchResults={[]} cart={[]} updateCart={updateCart} />
+      <SearchResultsTable
+        searchResults={[]}
+        cart={[]}
+        updateCart={updateCart}
+      />
     );
     expect(wrapper.find("table.table")).toBeTruthy();
     expect(wrapper.find("td").length).toEqual(0);
@@ -47,7 +55,7 @@ describe("Search results", () => {
       telescope: "SALT"
     };
     const wrapper = mount(
-      <SearchResults
+      <SearchResultsTable
         searchResults={[observation]}
         cart={[]}
         updateCart={updateCart}
@@ -110,7 +118,7 @@ describe("Search results", () => {
       }
     ];
     const wrapper = mount(
-      <SearchResults
+      <SearchResultsTable
         searchResults={observation}
         cart={[]}
         updateCart={updateCart}

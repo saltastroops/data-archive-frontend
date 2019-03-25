@@ -1,13 +1,13 @@
 import * as React from "react";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
 import ImageModal from "./ImageModal";
-import ObservationResults from "./Observation";
-import SearchRow from "./SearchRow";
-import TableHead from "./TableHead";
+import SearchResultsTableRow from "./SearchResultsTableRow";
+import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import { Span } from "../../basicComponents/Grids";
 
 // I assume that each file will belong to one and only one observation and one file can be used in multiple observations
 
-class SearchResults extends React.Component<
+class SearchResultsTable extends React.Component<
   { searchResults: IObservation[]; cart: any; updateCart: any },
   any
 > {
@@ -49,6 +49,7 @@ class SearchResults extends React.Component<
 
     updateCart(newCart);
   };
+
   /**
    * Removes all the files from the cart that belong to this observation
    *
@@ -113,18 +114,52 @@ class SearchResults extends React.Component<
           {searchResults.map((observation: IObservation) => {
             return (
               <tbody key={observation.id}>
-                {
-                  <ObservationResults
-                    observation={observation}
-                    cart={cart}
-                    addAllFiles={this.addAllFiles}
-                  />
-                }
+                <tr className="is-selected span">
+                  <td>
+                    <label>
+                      <Span>
+                        <LargeCheckbox
+                          id={`Add-all-${observation.id}`}
+                          checked={observation.files.every(
+                            (item: IFile) => cart.indexOf(item) >= 0
+                          )}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            this.addAllFiles(e, observation)
+                          }
+                        />
+                      </Span>
+                      <Span className={"span"}> Add all</Span>
+                    </label>
+                  </td>
+                  <td colSpan={3}>
+                    <Span>Observation: {observation.name}</Span>
+                  </td>
+                  <td colSpan={2}>
+                    <Span>Telescope: {observation.telescope}</Span>
+                  </td>
+                  <td colSpan={2}>
+                    <Span>Proposal: {observation.proposal}</Span>
+                  </td>
+                  <td colSpan={2}>
+                    <Span>Stat time: {observation.startTime}</Span>
+                  </td>
+                </tr>
 
-                <TableHead />
+                <tr>
+                  <th>Add</th>
+                  <th>Filename</th>
+                  <th>Name</th>
+                  <th>Data type</th>
+                  <th>Raw/reduced</th>
+                  <th>Target name</th>
+                  <th>Right ascension</th>
+                  <th>Declination</th>
+                  <th>Category</th>
+                  <th>Instrument</th>
+                </tr>
                 {observation.files.map((file: IFile) => {
                   return (
-                    <SearchRow
+                    <SearchResultsTableRow
                       key={file.name}
                       files={file}
                       addFile={this.addFile}
@@ -142,4 +177,4 @@ class SearchResults extends React.Component<
   }
 }
 
-export default SearchResults;
+export default SearchResultsTable;

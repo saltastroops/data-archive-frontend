@@ -22,7 +22,7 @@ import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm, {
   validatedProposal
 } from "./searchFormComponents/ProposalForm";
-import SearchResults from "./searchFormComponents/results/SearchResults";
+import SearchResultsTable from "./searchFormComponents/results/SearchResultsTable";
 import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
@@ -257,7 +257,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
           </ButtonGrid>
         </ParentGrid>
         {results && results.length !== 0 && (
-          <SearchResults
+          <SearchResultsTable
             searchResults={results}
             cart={cart}
             updateCart={this.updateCart}

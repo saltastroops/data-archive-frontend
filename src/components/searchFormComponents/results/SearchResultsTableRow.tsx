@@ -13,7 +13,7 @@ const checked = (name: string, cart: any) => {
   return cart.some((item: IFile) => item.name === name);
 };
 
-const SearchRow = (props: IRow) => {
+const SearchResultsTableRow = (props: IRow) => {
   const {
     isReduced,
     filename,
@@ -55,4 +55,4 @@ const SearchRow = (props: IRow) => {
     </tr>
   );
 };
-export default SearchRow;
+export default SearchResultsTableRow;
