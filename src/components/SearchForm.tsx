@@ -27,6 +27,7 @@ import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
   validatedTelescope
 } from "./searchFormComponents/TelescopeForm";
+import { fakeSearchResults } from "./fakeSearchResults";
 
 /**
  * A form for defining search parameters for an observation search, and for
@@ -115,104 +116,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
       // TODO query the server
       this.setState(() => ({
         ...this.state,
-        results: [
-          {
-            files: [
-              {
-                category: "cat-5",
-                dataType: "string",
-                declination: "string",
-                filename: "string",
-                instrument: "string",
-                isReduced: true,
-                name: "name-1",
-                observationNight: "string",
-                proposalCode: "string",
-                rightAscension: "string",
-                targetName: "string",
-                telescope: "string",
-                url: "./image0.jpg"
-              }
-            ],
-            id: "obs1",
-            name: "obs1",
-            proposal: "2018-SCI-098",
-            startTime: "2018-02-02 17:55:23",
-            telescope: "SALT"
-          },
-          {
-            files: [
-              {
-                category: "cat-1",
-                dataType: "string",
-                declination: "string",
-                filename: "string",
-                instrument: "string",
-                isReduced: true,
-                name: "name-2",
-                observationId: "string",
-                rightAscension: "string",
-                targetName: "string",
-                telescope: "string"
-              },
-              {
-                category: "cat-2",
-                dataType: "string",
-                declination: "string",
-                filename: "string",
-                instrument: "string",
-                isReduced: true,
-                name: "name-4",
-                observationId: "string",
-                rightAscension: "string",
-                targetName: "string",
-                telescope: "string",
-                url: "./image0.jpg"
-              },
-              {
-                category: "cat-3",
-                dataType: "string",
-                declination: "string",
-                filename: "string",
-                instrument: "string",
-                isReduced: true,
-                name: "name-5",
-                observationId: "string",
-                rightAscension: "string",
-                targetName: "string",
-                telescope: "string",
-                url: "./image4.jpg"
-              }
-            ],
-            id: "obs2",
-            name: "obs2",
-            proposal: "2017-MLT-006",
-            startTime: "2018-02-02 17:55:23",
-            telescope: "SALT"
-          },
-          {
-            files: [
-              {
-                category: "cat-4",
-                dataType: "string",
-                declination: "string",
-                filename: "string",
-                instrument: "string",
-                isReduced: true,
-                name: "name-3",
-                observationId: "string",
-                rightAscension: "string",
-                targetName: "string",
-                telescope: "string"
-              }
-            ],
-            id: "obs3",
-            name: "obs3",
-            proposal: "MLT-RSA-053",
-            startTime: "2018-02-02 17:55:23",
-            telescope: "Lesedi"
-          }
-        ]
+        results: fakeSearchResults(200)
       }));
     }
     this.setState(() => ({
