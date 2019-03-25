@@ -1,8 +1,8 @@
 import {
-  faWindowClose,
   faDownload,
   faEraser,
-  faUserPlus
+  faUserPlus,
+  faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
@@ -33,21 +33,25 @@ class Cart extends React.Component<ICart, any> {
             filename: "filename-1",
             name: "name-1",
             rightAscension: "66",
-            targetName: "NGS-1234"
+            size: "3kb",
+            targetName: "NGS-1234",
+            type: "science"
           },
           {
             declination: "12",
             filename: "filename-12",
-            name: "name-12",
             rightAscension: "66",
-            targetName: "NGS-1234"
+            size: "1mb",
+            targetName: "NGS-1234",
+            type: "acquisition"
           },
           {
             declination: "12",
             filename: "filename-13",
             name: "name-13",
             rightAscension: "66",
-            targetName: "NGS-1234"
+            targetName: "NGS-1234",
+            type: "science"
           }
         ],
         id: "ID-1"
@@ -59,28 +63,35 @@ class Cart extends React.Component<ICart, any> {
             filename: "filename-2",
             name: "name-2",
             rightAscension: "63",
-            targetName: "NGS-123"
+            size: "8kb",
+            targetName: "NGS-123",
+            type: "science"
           },
           {
             declination: "14",
             filename: "filename-21",
             name: "name-21",
             rightAscension: "63",
-            targetName: "NGS-123"
+            targetName: "NGS-123",
+            type: "science"
           },
           {
             declination: "14",
             filename: "filename-22",
             name: "name-22",
             rightAscension: "63",
-            targetName: "NGS-123"
+            size: "2mb",
+            targetName: "NGS-123",
+            type: "science"
           },
           {
             declination: "14",
             filename: "filename-23",
             name: "name-23",
             rightAscension: "63",
-            targetName: "NGS-123"
+            size: "2mb",
+            targetName: "NGS-123",
+            type: "science"
           }
         ],
         id: "ID-2"
@@ -92,21 +103,26 @@ class Cart extends React.Component<ICart, any> {
             filename: "filename-3",
             name: "name-3",
             rightAscension: "33",
-            targetName: "NGS-323"
+            targetName: "NGS-323",
+            type: "science"
           },
           {
             declination: "34",
             filename: "filename-31",
             name: "name-31",
             rightAscension: "33",
-            targetName: "NGS-123"
+            size: "2mb",
+            targetName: "NGS-123",
+            type: "science"
           },
           {
             declination: "14",
             filename: "filename-32",
             name: "name-32",
             rightAscension: "33",
-            targetName: "NGS-133"
+            size: "2mb",
+            targetName: "NGS-133",
+            type: "science"
           }
         ],
         id: "ID-3"
@@ -118,28 +134,35 @@ class Cart extends React.Component<ICart, any> {
             filename: "filename-4",
             name: "name-4",
             rightAscension: "43",
-            targetName: "NG4-123"
+            size: "3mb",
+            targetName: "NG4-123",
+            type: "science"
           },
           {
             declination: "44",
             filename: "filename-41",
             name: "name-41",
             rightAscension: "43",
-            targetName: "NGS-123"
+            size: "3mb",
+            targetName: "NGS-123",
+            type: "flats"
           },
           {
             declination: "14",
             filename: "filename-42",
             name: "name-42",
             rightAscension: "4",
-            targetName: "NGS-143"
+            targetName: "NGS-143",
+            type: "science"
           },
           {
             declination: "14",
             filename: "filename-43",
             name: "name-43",
             rightAscension: "63",
-            targetName: "NG4-123"
+            size: "3mb",
+            targetName: "NG4-123",
+            type: "flats"
           }
         ],
         id: "ID-4"
@@ -151,21 +174,26 @@ class Cart extends React.Component<ICart, any> {
             filename: "filename-3",
             name: "name-3",
             rightAscension: "33",
-            targetName: "NGS-323"
+            size: "3mb",
+            targetName: "NGS-323",
+            type: "science"
           },
           {
             declination: "34",
             filename: "filename-31",
             name: "name-31",
             rightAscension: "33",
-            targetName: "NGS-123"
+            size: "3mb",
+            targetName: "NGS-123",
+            type: "biases"
           },
           {
             declination: "14",
             filename: "filename-32",
             name: "name-32",
             rightAscension: "33",
-            targetName: "NGS-133"
+            targetName: "NGS-133",
+            type: "biases"
           }
         ],
         id: "ID-6"
@@ -173,17 +201,20 @@ class Cart extends React.Component<ICart, any> {
     ];
     return (
       <Modal open={open} onClose={() => openCart(false)} center={true}>
-        <div className={"cart-table section"}>
-          <div className={"c-table"}>
+        <div className={"section"}>
+          <div className={"cart-table"}>
             <table
-              className={"table is-striped is-info is-fullwidth is-outlined"}
+              className={
+                "table is-striped  is-fullwidth is-outlined fixed-header"
+              }
             >
               <thead>
                 <tr className="notification cart-modal">
                   <th>Observation</th>
                   <th>Remove</th>
                   <th>Filename</th>
-                  <th>Name</th>
+                  <th>Size</th>
+                  <th>File Type</th>
                   <th>Right ascension</th>
                   <th>Declination</th>
                   <th>Target name</th>

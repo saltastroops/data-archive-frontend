@@ -22,7 +22,8 @@ const CartFile = (props: ICartFile) => {
         </button>
       </td>
       <td>{file.filename}</td>
-      <td>{file.name}</td>
+      <td>{file.size || ""}</td>
+      <td>{file.type || ""}</td>
       <td>{file.rightAscension}</td>
       <td>{file.declination}</td>
       <td>{file.targetName}</td>

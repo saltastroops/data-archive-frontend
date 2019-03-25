@@ -49,14 +49,32 @@
 }
 
 .cart-table {
-  max-width: 1224px;
-  overflow: auto;
-  padding: 15px;
-  height: 600px;
-}
-.c-table {
   border: 2px solid hsl(0, 0%, 86%);
 }
 .button-scales {
   width: 400px;
+}
+
+.fixed-header {
+  width: 400px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.fixed-header tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 600px;
+}
+
+.fixed-header thead tr {
+  display: inherit;
+}
+
+.fixed-header th,
+.fixed-header td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
 }
