@@ -37,7 +37,6 @@ const Table = styled.table.attrs({
  */
 const displayedTime = (madeAt: string) => {
   const t = moment(madeAt);
-  console.log(Date.now(), t.valueOf(), Date.now() - t.unix());
   if (Date.now() - t.valueOf() < 24 * 3600 * 1000) {
     return t.fromNow();
   } else {
