@@ -28,10 +28,11 @@ describe("DataRequestTable Component", () => {
       ],
       uri: "http://demo/data-request/part/rd1"
     };
+
     // DataRequestTable component wrapper.
     const wrapper = mount(<DataRequestTable dataRequest={dataRequest} />);
 
-    // Expect the hyperlink with the text Download all to exist.
+    // Expect the hyperlink button with the text Download all to exist.
     expect(
       wrapper
         .find("a")
@@ -110,7 +111,22 @@ describe("DataRequestTable Component", () => {
           ],
           id: "obsR2",
           status: "FAILED" as DataRequestStatus,
-          uri: "http://demo/data-request/part/obsR1"
+          uri: "http://demo/data-request/part/obsR2"
+        },
+        {
+          dataFiles: [
+            {
+              id: "file 1",
+              name: "filename 1",
+              observation: {
+                id: "obs 1",
+                name: "Observation 1"
+              }
+            }
+          ],
+          id: "obsR3",
+          status: "EXPIRED" as DataRequestStatus,
+          uri: "http://demo/data-request/part/obsR3"
         }
       ],
       uri: "http://demo/data-request/part/rd1"
@@ -118,13 +134,13 @@ describe("DataRequestTable Component", () => {
     // DataRequestTable component wrapper.
     let wrapper = mount(<DataRequestTable dataRequest={dataRequest} />);
 
-    // Expect the hyperlink with the text Download all not to exist.
+    // Expect the hyperlink button with the text Download all not to exist.
     expect(
       wrapper
         .find("a")
         .first()
         .text()
-    ).not.toEqual("Re-request all");
+    ).not.toEqual("Download all");
 
     // Expect the button with the text Re-request all not to exist.
     expect(
@@ -142,15 +158,20 @@ describe("DataRequestTable Component", () => {
     // DataRequestTable component wrapper.
     wrapper = mount(<DataRequestTable dataRequest={dataRequest} />);
 
-    // Expect the hyperlink with the text Download all not to exist.
+    // Expect the hyperlink button with the text Download all not to exist.
     expect(
       wrapper
         .find("a")
         .first()
         .text()
-    ).not.toEqual("Re-request all");
+    ).not.toEqual("Download all");
 
     // Expect the button with the text Re-request all not to exist.
-    expect(wrapper.find("button").length).toEqual(0);
+    expect(
+      wrapper
+        .find("button")
+        .first()
+        .text()
+    ).not.toEqual("Re-request all");
   });
 });
