@@ -1,4 +1,5 @@
 import { validate } from "isemail";
+import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { Redirect } from "react-router";
@@ -52,6 +53,20 @@ interface IRegistrationFormState {
   errors: Partial<IRegistrationFormInput>;
   registered: boolean;
   userInput: IRegistrationFormInput;
+}
+
+/**
+ * The cache for the registration form.
+ *
+ * The user input and errors are cached.
+ */
+export interface IRegistrationFormCache {
+  errors?: Partial<IRegistrationFormInput>;
+  userInput?: IRegistrationFormInput;
+}
+
+interface IRegistrationFormProps {
+  cache?: IRegistrationFormCache;
 }
 
 const validateRegistrationField = (
@@ -128,7 +143,10 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
-class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
+class RegistrationForm extends React.Component<
+  IRegistrationFormProps,
+  IRegistrationFormState
+> {
   public state: IRegistrationFormState = {
     errors: {},
     registered: false,
@@ -143,12 +161,21 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
     }
   };
 
+  /**
+   * Populate the state from cached values.
+   */
+  componentDidMount() {
+    if (this.props.cache) {
+      this.setState(() => (this.props.cache as any) || {});
+    }
+  }
+
   onHandleSubmit = async (e: React.FormEvent<EventTarget>, signup: any) => {
     e.preventDefault();
 
     // Validate the user input fields
     const errors: object = validateRegistrationField(this.state.userInput);
-    this.setState(() => ({ errors }));
+    this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing up.
     if (Object.keys(errors).length > 0) {
@@ -160,7 +187,7 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
       await signup();
 
       // Reset the state when registering succeeded
-      this.setState({
+      this.updateState({
         registered: true,
         userInput: {
           affiliation: "",
@@ -183,7 +210,7 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
     const name = e.target.name;
     const value = e.target.value;
     // Update form content with the new user input
-    this.setState({
+    this.updateState({
       userInput: {
         ...this.state.userInput,
         [name]: value
@@ -326,6 +353,21 @@ class RegistrationForm extends React.Component<{}, IRegistrationFormState> {
       </Mutation>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        if (this.props.cache) {
+          this.props.cache.errors = _.cloneDeep(this.state.errors);
+          this.props.cache.userInput = _.cloneDeep(this.state.userInput);
+        }
+      }
+    );
+  };
 }
 
 export default RegistrationForm;

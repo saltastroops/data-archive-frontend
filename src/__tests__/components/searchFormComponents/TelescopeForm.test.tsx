@@ -11,24 +11,24 @@ import SaltForm from "../../../components/searchFormComponents/telescopes/SaltFo
 
 const onChange = jest.fn();
 
-describe("Telescope form rendering", () => {
+describe("TelescopeForm", () => {
   const wrapper = mount(<TelescopeForm onChange={onChange} telescope={{}} />);
-  it("should render", () => {
+
+  it("should be defined", () => {
     expect(wrapper).toBeDefined();
   });
-  it("should have select of name telescope", () => {
-    const telescope = wrapper
-      .find("div.select")
-      .children()
-      .get(0);
+
+  it("should have a select element with name 'telescope'", () => {
+    const telescope = wrapper.find('select[name="telescope"]');
     expect(telescope).toBeDefined();
-    expect(telescope.props.name).toEqual("telescope");
   });
+
   it("should have only one child if no telescope is selected", () => {
     const telescope = wrapper.find("div.select").children();
     expect(telescope.length).toEqual(1);
   });
-  it("should have two children if telescope is selected", () => {
+
+  it("should have two children if a telescope is selected", () => {
     const teleWrapper = mount(
       <TelescopeForm onChange={onChange} telescope={{ name: "SALT" }} />
     );

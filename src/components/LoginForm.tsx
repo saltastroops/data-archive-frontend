@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
@@ -39,6 +40,20 @@ interface ILoginFormState {
   loggedIn: boolean;
   errors: Partial<ILoginFormInput> & { responseError?: string };
   userInput: ILoginFormInput;
+}
+
+/**
+ * The cache for the login form.
+ *
+ * The user input and errors are cached.
+ */
+export interface ILoginFormCache {
+  errors?: Partial<ILoginFormInput> & { responseError?: string };
+  userInput?: ILoginFormInput;
+}
+
+interface ILoginFormProps {
+  cache?: ILoginFormCache;
 }
 
 const LoginFormParent = styled.form.attrs({
@@ -102,7 +117,7 @@ const validateLoginForm = (loginInput: {
 /**
  * The login form for authenticating the user.
  */
-class LoginForm extends React.Component<{}, ILoginFormState> {
+class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   public state = {
     errors: {
       password: "",
@@ -117,12 +132,19 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
   };
 
+  /**
+   * Populate the state from cached values.
+   */
+  componentDidMount() {
+    this.setState(() => (this.props.cache as any) || {});
+  }
+
   onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
     // Validate the user input fields
     const errors = validateLoginForm(this.state.userInput);
-    this.setState({ errors });
+    this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing in.
     if (errors.password || errors.username) {
@@ -130,7 +152,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
 
     try {
-      this.setState({
+      this.updateState({
         loading: true
       });
 
@@ -139,7 +161,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
       });
 
       if (login.data.success) {
-        this.setState({
+        this.updateState({
           errors: {
             password: "",
             responseError: "",
@@ -154,7 +176,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
         });
       }
     } catch (error) {
-      this.setState({
+      this.updateState({
         errors: {
           ...this.state.errors,
           responseError: error.message
@@ -171,7 +193,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     const name = e.target.name;
     const value = e.target.value;
     // Updating the userInput property of the state when input field value updates
-    this.setState({
+    this.updateState({
       userInput: {
         ...this.state.userInput,
         [name]: value
@@ -222,7 +244,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
                   value={password || ""}
                   error={errors.password}
                   onChange={this.onInputChange}
-                  type="text"
+                  type="password"
                 />
               </div>
             </label>
@@ -239,6 +261,21 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
       </LoginFormParent>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        if (this.props.cache) {
+          this.props.cache.errors = _.cloneDeep(this.state.errors);
+          this.props.cache.userInput = _.cloneDeep(this.state.userInput);
+        }
+      }
+    );
+  };
 }
 
 export default LoginForm;

@@ -6,6 +6,7 @@ import "bulma/css/bulma.css";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
 import * as serviceWorker from "./registerServiceWorker";
@@ -26,7 +27,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <div className={"container"}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </div>
   </ApolloProvider>,
   document.getElementById("root")

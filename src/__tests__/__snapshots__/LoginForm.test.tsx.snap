@@ -144,7 +144,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
                   error=""
                   name="password"
                   onChange={[Function]}
-                  type="text"
+                  type="password"
                   value=""
                 >
                   <div
@@ -154,7 +154,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
                       className="input undefined "
                       name="password"
                       onChange={[Function]}
-                      type="text"
+                      type="password"
                       value=""
                     />
                   </div>

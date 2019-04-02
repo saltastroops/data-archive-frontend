@@ -2,8 +2,12 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
+import { MemoryRouter } from "react-router";
+import wait from "waait";
+import App from "../App";
 import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
+import click from "../util/click";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
@@ -360,5 +364,62 @@ describe("RegistrationForm Component", () => {
         .first()
         .text()
     ).toContain("do not");
+  });
+
+  it("should cache values and errors", async () => {
+    const wrapper = mount(
+      <MockedProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
+    );
+
+    // Navigate to the registration form
+    const registrationFormLink = wrapper.find('a[href="/register"]').first();
+    click(registrationFormLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // Fill in an invalid email
+    inputTyping(wrapper, "email", "invalid email");
+
+    // Submit the form
+    const submitButton = wrapper.find('[data-test="signUp"]');
+    submitButton.simulate("submit");
+
+    await wait(0);
+    wrapper.update();
+
+    // The value has been stored in the state, and there is an error
+    const registrationFormState: any = wrapper.find("RegistrationForm").state();
+    const emailValue = registrationFormState.userInput.email;
+    expect(emailValue).toEqual("invalid email");
+    const emailErrorMessage = registrationFormState.errors.email;
+    expect(emailErrorMessage.length).toBeGreaterThan(0);
+
+    // Navigate away from the registration form
+    const cartLink = wrapper.find('a[href="/cart"]').first();
+    click(cartLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // No login form any longer
+    expect(wrapper.find("RegistrationForm").length).toBe(0);
+
+    // Navigate back to the search form
+    click(registrationFormLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // The values and errors have been re-inserted.
+    const newRegistrationFormState: any = wrapper
+      .find("RegistrationForm")
+      .state();
+    expect(newRegistrationFormState.userInput.email).toEqual(emailValue);
+    expect(newRegistrationFormState.errors.email).toEqual(emailErrorMessage);
   });
 });
