@@ -17,7 +17,6 @@
  */
 // TODO: Remove loading, replace with IObservationQueryParameters
 export interface ISearchFormState {
-  cart: any[];
   general: IGeneral;
   results: any[];
   target: ITarget;
@@ -371,6 +370,7 @@ export interface ISpUpNIC extends IInstrument {
 }
 
 export interface IFile {
+  id: string;
   filename: string;
   name: string;
   dataType: string;

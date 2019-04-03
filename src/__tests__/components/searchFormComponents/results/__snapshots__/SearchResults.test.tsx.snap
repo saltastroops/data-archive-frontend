@@ -12,7 +12,11 @@ exports[`Search results should render data correctly 1`] = `
 }
 
 <SearchResultsTable
-  cart={Array []}
+  cart={
+    Cart {
+      "files": Array [],
+    }
+  }
   searchResults={
     Array [
       Object {
@@ -118,544 +122,290 @@ exports[`Search results should render data correctly 1`] = `
       styles={Object {}}
     />
   </_default>
-  <table
-    className="table is-fullwidth is-striped"
-  >
-    <tbody
-      key="obsID-1"
-    >
-      <tr
-        className="is-selected span"
-      >
-        <td>
-          <label>
-            <styled.span>
-              <StyledComponent
-                forwardedComponent={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "attrs": Array [
-                      Object {
-                        "className": "span",
+  <Mutation
+    mutation={
+      Object {
+        "definitions": Array [
+          Object {
+            "directives": Array [],
+            "kind": "OperationDefinition",
+            "name": Object {
+              "kind": "Name",
+              "value": "UPDATE_CART_MUTATION",
+            },
+            "operation": "mutation",
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": undefined,
+                  "arguments": Array [
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "files",
                       },
-                    ],
-                    "componentStyle": ComponentStyle {
-                      "componentId": "sc-bwzfXH",
-                      "isStatic": true,
-                      "lastClassName": "c0",
-                      "rules": Array [
-                        "
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "files",
+                        },
+                      },
+                    },
+                  ],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "addOrRemoveFromCart",
+                  },
+                  "selectionSet": undefined,
+                },
+              ],
+            },
+            "variableDefinitions": Array [
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NonNullType",
+                  "type": Object {
+                    "kind": "ListType",
+                    "type": Object {
+                      "kind": "NonNullType",
+                      "type": Object {
+                        "kind": "NamedType",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "CartFileInput",
+                        },
+                      },
+                    },
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "files",
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        "kind": "Document",
+        "loc": Object {
+          "end": 106,
+          "start": 0,
+        },
+      }
+    }
+  >
+    <table
+      className="table is-fullwidth is-striped"
+    >
+      <tbody
+        key="obsID-1"
+      >
+        <tr
+          className="is-selected span"
+        >
+          <td>
+            <label>
+              <styled.span>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "span",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c0",
+                        "rules": Array [
+                          "
   && {
     font-weight: bold;
     padding-right: 10px;
   }
 ",
-                      ],
-                    },
-                    "displayName": "styled.span",
-                    "foldedComponentIds": Array [],
-                    "render": [Function],
-                    "styledComponentId": "sc-bwzfXH",
-                    "target": "span",
-                    "toString": [Function],
-                    "warnTooManyClasses": [Function],
-                    "withComponent": [Function],
+                        ],
+                      },
+                      "displayName": "styled.span",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "span",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
                   }
-                }
-                forwardedRef={null}
-              >
-                <span
-                  className="span c0"
+                  forwardedRef={null}
                 >
-                  <styled.input
-                    checked={false}
-                    id="Add-all-obsID-1"
-                    onChange={[Function]}
+                  <span
+                    className="span c0"
                   >
-                    <StyledComponent
+                    <styled.input
                       checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-bdVaJa",
-                            "isStatic": true,
-                            "lastClassName": "c1",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-bdVaJa",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
                       id="Add-all-obsID-1"
                       onChange={[Function]}
                     >
-                      <input
+                      <StyledComponent
                         checked={false}
-                        className="checkbox c1"
-                        id="Add-all-obsID-1"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                </span>
-              </StyledComponent>
-            </styled.span>
-            <styled.span
-              className="span"
-            >
-              <StyledComponent
-                className="span"
-                forwardedComponent={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "attrs": Array [
-                      Object {
-                        "className": "span",
-                      },
-                    ],
-                    "componentStyle": ComponentStyle {
-                      "componentId": "sc-bwzfXH",
-                      "isStatic": true,
-                      "lastClassName": "c0",
-                      "rules": Array [
-                        "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                      ],
-                    },
-                    "displayName": "styled.span",
-                    "foldedComponentIds": Array [],
-                    "render": [Function],
-                    "styledComponentId": "sc-bwzfXH",
-                    "target": "span",
-                    "toString": [Function],
-                    "warnTooManyClasses": [Function],
-                    "withComponent": [Function],
-                  }
-                }
-                forwardedRef={null}
-              >
-                <span
-                  className="span span c0"
-                >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={false}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [
-                          576,
-                          512,
-                          Array [],
-                          "f07a",
-                          "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
-                        ],
-                        "iconName": "shopping-cart",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-shopping-cart fa-w-18 "
-                      data-icon="shopping-cart"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 576 512"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </span>
-              </StyledComponent>
-            </styled.span>
-          </label>
-        </td>
-        <td
-          colSpan={3}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Observation: 
-                obs1
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Telescope: 
-                SALT
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Proposal: 
-                Code-1
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Stat time: 
-                2018-02-02 17:55:23
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          In cart
-        </th>
-        <th>
-          Filename
-        </th>
-        <th>
-          Name
-        </th>
-        <th>
-          Data type
-        </th>
-        <th>
-          Raw/reduced
-        </th>
-        <th>
-          Target name
-        </th>
-        <th>
-          Right ascension
-        </th>
-        <th>
-          Declination
-        </th>
-        <th>
-          Category
-        </th>
-        <th>
-          Instrument
-        </th>
-      </tr>
-      <SearchResultsTableRow
-        addFile={[Function]}
-        cart={Array []}
-        files={
-          Object {
-            "category": "cat-5",
-            "dataType": "type-1",
-            "declination": "20",
-            "filename": "filename-1",
-            "instrument": "RSS",
-            "isReduced": true,
-            "name": "name-1",
-            "observationNight": "2010-01-01",
-            "proposalCode": "code-1",
-            "rightAscension": "20",
-            "targetName": "target 001",
-            "telescope": "SALT",
-            "url": "./image0.jpg",
-          }
-        }
-        key="name-1"
-        openModal={[Function]}
-      >
-        <tr
-          key="name-1-row-123"
-        >
-          <td>
-            <styled.input
-              checked={false}
-              onChange={[Function]}
-            >
-              <StyledComponent
-                checked={false}
-                forwardedComponent={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "attrs": Array [
-                      Object {
-                        "className": "checkbox",
-                        "type": "checkbox",
-                      },
-                    ],
-                    "componentStyle": ComponentStyle {
-                      "componentId": "sc-bdVaJa",
-                      "isStatic": true,
-                      "lastClassName": "c1",
-                      "rules": Array [
-                        "
+                        forwardedComponent={
+                          Object {
+                            "$$typeof": Symbol(react.forward_ref),
+                            "attrs": Array [
+                              Object {
+                                "className": "checkbox",
+                                "type": "checkbox",
+                              },
+                            ],
+                            "componentStyle": ComponentStyle {
+                              "componentId": "sc-bdVaJa",
+                              "isStatic": true,
+                              "lastClassName": "c1",
+                              "rules": Array [
+                                "
   && {
     width: 18px;
     height: 18px;
   }
 ",
-                      ],
-                    },
-                    "displayName": "styled.input",
-                    "foldedComponentIds": Array [],
-                    "render": [Function],
-                    "styledComponentId": "sc-bdVaJa",
-                    "target": "input",
-                    "toString": [Function],
-                    "warnTooManyClasses": [Function],
-                    "withComponent": [Function],
-                  }
-                }
-                forwardedRef={null}
-                onChange={[Function]}
+                              ],
+                            },
+                            "displayName": "styled.input",
+                            "foldedComponentIds": Array [],
+                            "render": [Function],
+                            "styledComponentId": "sc-bdVaJa",
+                            "target": "input",
+                            "toString": [Function],
+                            "warnTooManyClasses": [Function],
+                            "withComponent": [Function],
+                          }
+                        }
+                        forwardedRef={null}
+                        id="Add-all-obsID-1"
+                        onChange={[Function]}
+                      >
+                        <input
+                          checked={false}
+                          className="checkbox c1"
+                          id="Add-all-obsID-1"
+                          onChange={[Function]}
+                          type="checkbox"
+                        />
+                      </StyledComponent>
+                    </styled.input>
+                  </span>
+                </StyledComponent>
+              </styled.span>
+              <styled.span
+                className="span"
               >
-                <input
-                  checked={false}
-                  className="checkbox c1"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-              </StyledComponent>
-            </styled.input>
+                <StyledComponent
+                  className="span"
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "span",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c0",
+                        "rules": Array [
+                          "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.span",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "span",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <span
+                    className="span span c0"
+                  >
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f07a",
+                            "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
+                          ],
+                          "iconName": "shopping-cart",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-shopping-cart fa-w-18 "
+                        data-icon="shopping-cart"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 576 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </span>
+                </StyledComponent>
+              </styled.span>
+            </label>
           </td>
-          <td>
-            <a
-              onClick={[Function]}
-            >
-              filename-1
-            </a>
-          </td>
-          <td>
-            name-1
-          </td>
-          <td>
-            type-1
-          </td>
-          <td>
-            Redused
-          </td>
-          <td>
-            target 001
-          </td>
-          <td>
-            20
-          </td>
-          <td>
-            20
-          </td>
-          <td>
-            cat-5
-          </td>
-          <td>
-            RSS
-          </td>
-        </tr>
-      </SearchResultsTableRow>
-    </tbody>
-    <tbody
-      key="obsID-2"
-    >
-      <tr
-        className="is-selected span"
-      >
-        <td>
-          <label>
+          <td
+            colSpan={3}
+          >
             <styled.span>
               <StyledComponent
                 forwardedComponent={
@@ -694,66 +444,17 @@ exports[`Search results should render data correctly 1`] = `
                 <span
                   className="span c0"
                 >
-                  <styled.input
-                    checked={false}
-                    id="Add-all-obsID-2"
-                    onChange={[Function]}
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-bdVaJa",
-                            "isStatic": true,
-                            "lastClassName": "c1",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-bdVaJa",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      id="Add-all-obsID-2"
-                      onChange={[Function]}
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c1"
-                        id="Add-all-obsID-2"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
+                  Observation: 
+                  obs1
                 </span>
               </StyledComponent>
             </styled.span>
-            <styled.span
-              className="span"
-            >
+          </td>
+          <td
+            colSpan={2}
+          >
+            <styled.span>
               <StyledComponent
-                className="span"
                 forwardedComponent={
                   Object {
                     "$$typeof": Symbol(react.forward_ref),
@@ -788,393 +489,788 @@ exports[`Search results should render data correctly 1`] = `
                 forwardedRef={null}
               >
                 <span
-                  className="span span c0"
+                  className="span c0"
                 >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={false}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [
-                          576,
-                          512,
-                          Array [],
-                          "f07a",
-                          "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
-                        ],
-                        "iconName": "shopping-cart",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-shopping-cart fa-w-18 "
-                      data-icon="shopping-cart"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 576 512"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
+                  Telescope: 
+                  SALT
                 </span>
               </StyledComponent>
             </styled.span>
-          </label>
-        </td>
-        <td
-          colSpan={3}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Observation: 
-                obs1
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Telescope: 
-                SALT
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Proposal: 
-                Code-2
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-        <td
-          colSpan={2}
-        >
-          <styled.span>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "span",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bwzfXH",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    font-weight: bold;
-    padding-right: 10px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.span",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bwzfXH",
-                  "target": "span",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-            >
-              <span
-                className="span c0"
-              >
-                Stat time: 
-                2018-02-02 17:55:23
-              </span>
-            </StyledComponent>
-          </styled.span>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          In cart
-        </th>
-        <th>
-          Filename
-        </th>
-        <th>
-          Name
-        </th>
-        <th>
-          Data type
-        </th>
-        <th>
-          Raw/reduced
-        </th>
-        <th>
-          Target name
-        </th>
-        <th>
-          Right ascension
-        </th>
-        <th>
-          Declination
-        </th>
-        <th>
-          Category
-        </th>
-        <th>
-          Instrument
-        </th>
-      </tr>
-      <SearchResultsTableRow
-        addFile={[Function]}
-        cart={Array []}
-        files={
-          Object {
-            "category": "cat-1",
-            "dataType": "type-2",
-            "declination": "20",
-            "filename": "filename-2",
-            "instrument": "RSS",
-            "isReduced": true,
-            "name": "name-2",
-            "observationNight": "2010-01-01",
-            "proposalCode": "code-2",
-            "rightAscension": "20",
-            "targetName": "target 002",
-            "telescope": "SALT",
-            "url": "./image4.jpg",
-          }
-        }
-        key="name-2"
-        openModal={[Function]}
-      >
-        <tr
-          key="name-2-row-123"
-        >
-          <td>
-            <styled.input
-              checked={false}
-              onChange={[Function]}
-            >
+          </td>
+          <td
+            colSpan={2}
+          >
+            <styled.span>
               <StyledComponent
-                checked={false}
                 forwardedComponent={
                   Object {
                     "$$typeof": Symbol(react.forward_ref),
                     "attrs": Array [
                       Object {
-                        "className": "checkbox",
-                        "type": "checkbox",
+                        "className": "span",
                       },
                     ],
                     "componentStyle": ComponentStyle {
-                      "componentId": "sc-bdVaJa",
+                      "componentId": "sc-bwzfXH",
                       "isStatic": true,
-                      "lastClassName": "c1",
+                      "lastClassName": "c0",
                       "rules": Array [
                         "
   && {
-    width: 18px;
-    height: 18px;
+    font-weight: bold;
+    padding-right: 10px;
   }
 ",
                       ],
                     },
-                    "displayName": "styled.input",
+                    "displayName": "styled.span",
                     "foldedComponentIds": Array [],
                     "render": [Function],
-                    "styledComponentId": "sc-bdVaJa",
-                    "target": "input",
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
                     "toString": [Function],
                     "warnTooManyClasses": [Function],
                     "withComponent": [Function],
                   }
                 }
                 forwardedRef={null}
-                onChange={[Function]}
               >
-                <input
-                  checked={false}
-                  className="checkbox c1"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
+                <span
+                  className="span c0"
+                >
+                  Proposal: 
+                  Code-1
+                </span>
               </StyledComponent>
-            </styled.input>
+            </styled.span>
           </td>
-          <td>
-            <a
-              onClick={[Function]}
-            >
-              filename-2
-            </a>
-          </td>
-          <td>
-            name-2
-          </td>
-          <td>
-            type-2
-          </td>
-          <td>
-            Redused
-          </td>
-          <td>
-            target 002
-          </td>
-          <td>
-            20
-          </td>
-          <td>
-            20
-          </td>
-          <td>
-            cat-1
-          </td>
-          <td>
-            RSS
+          <td
+            colSpan={2}
+          >
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bwzfXH",
+                      "isStatic": true,
+                      "lastClassName": "c0",
+                      "rules": Array [
+                        "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c0"
+                >
+                  Stat time: 
+                  2018-02-02 17:55:23
+                </span>
+              </StyledComponent>
+            </styled.span>
           </td>
         </tr>
-      </SearchResultsTableRow>
-    </tbody>
-  </table>
+        <tr>
+          <th>
+            In cart
+          </th>
+          <th>
+            Filename
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Data type
+          </th>
+          <th>
+            Raw/reduced
+          </th>
+          <th>
+            Target name
+          </th>
+          <th>
+            Right ascension
+          </th>
+          <th>
+            Declination
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Instrument
+          </th>
+        </tr>
+        <SearchResultsTableRow
+          addFile={[Function]}
+          cart={
+            Cart {
+              "files": Array [],
+            }
+          }
+          files={
+            Object {
+              "category": "cat-5",
+              "dataType": "type-1",
+              "declination": "20",
+              "filename": "filename-1",
+              "instrument": "RSS",
+              "isReduced": true,
+              "name": "name-1",
+              "observationNight": "2010-01-01",
+              "proposalCode": "code-1",
+              "rightAscension": "20",
+              "targetName": "target 001",
+              "telescope": "SALT",
+              "url": "./image0.jpg",
+            }
+          }
+          key="name-1"
+          openModal={[Function]}
+        >
+          <tr
+            key="name-1-row-123"
+          >
+            <td>
+              <styled.input
+                checked={false}
+                onChange={[Function]}
+              >
+                <StyledComponent
+                  checked={false}
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "checkbox",
+                          "type": "checkbox",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bdVaJa",
+                        "isStatic": true,
+                        "lastClassName": "c1",
+                        "rules": Array [
+                          "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.input",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bdVaJa",
+                      "target": "input",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  onChange={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="checkbox c1"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </StyledComponent>
+              </styled.input>
+            </td>
+            <td>
+              <a
+                onClick={[Function]}
+              >
+                filename-1
+              </a>
+            </td>
+            <td>
+              name-1
+            </td>
+            <td>
+              type-1
+            </td>
+            <td>
+              Redused
+            </td>
+            <td>
+              target 001
+            </td>
+            <td>
+              20
+            </td>
+            <td>
+              20
+            </td>
+            <td>
+              cat-5
+            </td>
+            <td>
+              RSS
+            </td>
+          </tr>
+        </SearchResultsTableRow>
+      </tbody>
+      <tbody
+        key="obsID-2"
+      >
+        <tr
+          className="is-selected span"
+        >
+          <td>
+            <label>
+              <styled.span>
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "span",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c0",
+                        "rules": Array [
+                          "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.span",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "span",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <span
+                    className="span c0"
+                  >
+                    <styled.input
+                      checked={false}
+                      id="Add-all-obsID-2"
+                      onChange={[Function]}
+                    >
+                      <StyledComponent
+                        checked={false}
+                        forwardedComponent={
+                          Object {
+                            "$$typeof": Symbol(react.forward_ref),
+                            "attrs": Array [
+                              Object {
+                                "className": "checkbox",
+                                "type": "checkbox",
+                              },
+                            ],
+                            "componentStyle": ComponentStyle {
+                              "componentId": "sc-bdVaJa",
+                              "isStatic": true,
+                              "lastClassName": "c1",
+                              "rules": Array [
+                                "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                              ],
+                            },
+                            "displayName": "styled.input",
+                            "foldedComponentIds": Array [],
+                            "render": [Function],
+                            "styledComponentId": "sc-bdVaJa",
+                            "target": "input",
+                            "toString": [Function],
+                            "warnTooManyClasses": [Function],
+                            "withComponent": [Function],
+                          }
+                        }
+                        forwardedRef={null}
+                        id="Add-all-obsID-2"
+                        onChange={[Function]}
+                      >
+                        <input
+                          checked={false}
+                          className="checkbox c1"
+                          id="Add-all-obsID-2"
+                          onChange={[Function]}
+                          type="checkbox"
+                        />
+                      </StyledComponent>
+                    </styled.input>
+                  </span>
+                </StyledComponent>
+              </styled.span>
+              <styled.span
+                className="span"
+              >
+                <StyledComponent
+                  className="span"
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "span",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c0",
+                        "rules": Array [
+                          "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.span",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "span",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                >
+                  <span
+                    className="span span c0"
+                  >
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f07a",
+                            "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
+                          ],
+                          "iconName": "shopping-cart",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-shopping-cart fa-w-18 "
+                        data-icon="shopping-cart"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 576 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </span>
+                </StyledComponent>
+              </styled.span>
+            </label>
+          </td>
+          <td
+            colSpan={3}
+          >
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bwzfXH",
+                      "isStatic": true,
+                      "lastClassName": "c0",
+                      "rules": Array [
+                        "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c0"
+                >
+                  Observation: 
+                  obs1
+                </span>
+              </StyledComponent>
+            </styled.span>
+          </td>
+          <td
+            colSpan={2}
+          >
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bwzfXH",
+                      "isStatic": true,
+                      "lastClassName": "c0",
+                      "rules": Array [
+                        "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c0"
+                >
+                  Telescope: 
+                  SALT
+                </span>
+              </StyledComponent>
+            </styled.span>
+          </td>
+          <td
+            colSpan={2}
+          >
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bwzfXH",
+                      "isStatic": true,
+                      "lastClassName": "c0",
+                      "rules": Array [
+                        "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c0"
+                >
+                  Proposal: 
+                  Code-2
+                </span>
+              </StyledComponent>
+            </styled.span>
+          </td>
+          <td
+            colSpan={2}
+          >
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bwzfXH",
+                      "isStatic": true,
+                      "lastClassName": "c0",
+                      "rules": Array [
+                        "
+  && {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bwzfXH",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c0"
+                >
+                  Stat time: 
+                  2018-02-02 17:55:23
+                </span>
+              </StyledComponent>
+            </styled.span>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            In cart
+          </th>
+          <th>
+            Filename
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Data type
+          </th>
+          <th>
+            Raw/reduced
+          </th>
+          <th>
+            Target name
+          </th>
+          <th>
+            Right ascension
+          </th>
+          <th>
+            Declination
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Instrument
+          </th>
+        </tr>
+        <SearchResultsTableRow
+          addFile={[Function]}
+          cart={
+            Cart {
+              "files": Array [],
+            }
+          }
+          files={
+            Object {
+              "category": "cat-1",
+              "dataType": "type-2",
+              "declination": "20",
+              "filename": "filename-2",
+              "instrument": "RSS",
+              "isReduced": true,
+              "name": "name-2",
+              "observationNight": "2010-01-01",
+              "proposalCode": "code-2",
+              "rightAscension": "20",
+              "targetName": "target 002",
+              "telescope": "SALT",
+              "url": "./image4.jpg",
+            }
+          }
+          key="name-2"
+          openModal={[Function]}
+        >
+          <tr
+            key="name-2-row-123"
+          >
+            <td>
+              <styled.input
+                checked={false}
+                onChange={[Function]}
+              >
+                <StyledComponent
+                  checked={false}
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [
+                        Object {
+                          "className": "checkbox",
+                          "type": "checkbox",
+                        },
+                      ],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bdVaJa",
+                        "isStatic": true,
+                        "lastClassName": "c1",
+                        "rules": Array [
+                          "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                        ],
+                      },
+                      "displayName": "styled.input",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bdVaJa",
+                      "target": "input",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  onChange={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="checkbox c1"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </StyledComponent>
+              </styled.input>
+            </td>
+            <td>
+              <a
+                onClick={[Function]}
+              >
+                filename-2
+              </a>
+            </td>
+            <td>
+              name-2
+            </td>
+            <td>
+              type-2
+            </td>
+            <td>
+              Redused
+            </td>
+            <td>
+              target 002
+            </td>
+            <td>
+              20
+            </td>
+            <td>
+              20
+            </td>
+            <td>
+              cat-1
+            </td>
+            <td>
+              RSS
+            </td>
+          </tr>
+        </SearchResultsTableRow>
+      </tbody>
+    </table>
+  </Mutation>
 </SearchResultsTable>
 `;

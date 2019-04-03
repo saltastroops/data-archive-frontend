@@ -2,10 +2,8 @@ import * as React from "react";
 import {
   CalibrationType,
   IGeneral,
-  IGeneralErrors,
   ISearchFormState,
   ITarget,
-  ITargetErrors,
   ITelescope
 } from "../utils/ObservationQueryParameters";
 import { isError } from "../utils/validators";
@@ -35,7 +33,6 @@ import TelescopeForm, {
  */
 class SearchForm extends React.Component<{}, ISearchFormState> {
   public state: ISearchFormState = {
-    cart: [],
     general: { calibrations: new Set<CalibrationType>(), errors: {} },
     loading: false,
     results: [],
@@ -85,14 +82,6 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
     this.setState(() => newState);
   };
 
-  public updateCart = (cart: any) => {
-    const newState = {
-      ...this.state,
-      cart: [...cart]
-    };
-    this.setState(() => newState);
-  };
-
   public searchArchive = async () => {
     this.setState(() => ({
       ...this.state,
@@ -130,7 +119,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
   };
 
   public render() {
-    const { target, general, telescope, loading, results, cart } = this.state;
+    const { target, general, telescope, loading, results } = this.state;
     return (
       <>
         {loading && (
@@ -165,11 +154,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
           </ButtonGrid>
         </ParentGrid>
         {results && results.length !== 0 && (
-          <SearchResultsTable
-            searchResults={results}
-            cart={cart}
-            updateCart={this.updateCart}
-          />
+          <SearchResultsTable searchResults={results} />
         )}
       </>
     );

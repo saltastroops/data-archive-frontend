@@ -3,14 +3,12 @@ import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 
 interface IRow {
-  cart: any;
   openModal: any;
   files: IFile;
-  addFile: (e: React.ChangeEvent<HTMLInputElement>, file: IFile) => void; //  TODO: Method to add this row or content to cart
 }
 
-const checked = (name: string, cart: any) => {
-  return cart.some((item: IFile) => item.name === name);
+const checked = (id: string, cart: any) => {
+  return true;
 };
 
 const SearchResultsTableRow = (props: IRow) => {
@@ -27,13 +25,13 @@ const SearchResultsTableRow = (props: IRow) => {
     instrument,
     url
   } = props.files;
-  const { cart, openModal } = props;
+  const { openModal } = props;
   return (
     <tr key={`${name}-row-123`}>
       <td>
         <LargeCheckbox
-          checked={checked(name, cart) as boolean}
-          onChange={e => props.addFile(e, props.files)}
+          checked={checked(name, {}) as boolean}
+          onChange={e => () => {}}
         />
       </td>
       {!url ? (

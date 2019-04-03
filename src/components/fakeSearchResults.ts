@@ -5,6 +5,7 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
+            id: `file-1-${i}`,
             category: "cat-5",
             dataType: "string",
             declination: "string",
@@ -29,6 +30,7 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
+            id: `file-2-${i}`,
             category: "cat-1",
             dataType: "string",
             declination: "string",
@@ -42,6 +44,7 @@ export function fakeSearchResults(n: number) {
             telescope: "string"
           },
           {
+            id: `file-3-${i}`,
             category: "cat-2",
             dataType: "string",
             declination: "string",
@@ -56,6 +59,7 @@ export function fakeSearchResults(n: number) {
             url: "./image0.jpg"
           },
           {
+            id: `file-4-${i}`,
             category: "cat-3",
             dataType: "string",
             declination: "string",
@@ -79,6 +83,7 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
+            id: `file-5-${i}`,
             category: "cat-4",
             dataType: "string",
             declination: "string",

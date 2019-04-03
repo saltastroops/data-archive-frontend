@@ -2,6 +2,8 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
+import { MockedProvider } from "react-apollo/test-utils";
+import { Cart } from "../../../../util/Cart";
 
 const updateCart = jest.fn();
 
@@ -9,22 +11,26 @@ describe("Search results", () => {
   it("should render", () => {
     expect(
       mount(
-        <SearchResultsTable
-          searchResults={[]}
-          cart={[]}
-          updateCart={updateCart}
-        />
+        <MockedProvider>
+          <SearchResultsTable
+            searchResults={[]}
+            cart={new Cart([])}
+            updateCart={updateCart}
+          />
+        </MockedProvider>
       )
     ).toBeDefined();
   });
 
   it("should create a table even if there is no search results with only the header", () => {
     const wrapper = mount(
-      <SearchResultsTable
-        searchResults={[]}
-        cart={[]}
-        updateCart={updateCart}
-      />
+      <MockedProvider>
+        <SearchResultsTable
+          searchResults={[]}
+          cart={[]}
+          updateCart={updateCart}
+        />
+      </MockedProvider>
     );
     expect(wrapper.find("table.table")).toBeTruthy();
     expect(wrapper.find("td").length).toEqual(0);
@@ -55,11 +61,13 @@ describe("Search results", () => {
       telescope: "SALT"
     };
     const wrapper = mount(
-      <SearchResultsTable
-        searchResults={[observation]}
-        cart={[]}
-        updateCart={updateCart}
-      />
+      <MockedProvider>
+        <SearchResultsTable
+          searchResults={[observation]}
+          cart={new Cart([])}
+          updateCart={updateCart}
+        />
+      </MockedProvider>
     );
     // row for the observation data
     // row for the file head
@@ -118,12 +126,14 @@ describe("Search results", () => {
       }
     ];
     const wrapper = mount(
-      <SearchResultsTable
-        searchResults={observation}
-        cart={[]}
-        updateCart={updateCart}
-      />
+      <MockedProvider>
+        <SearchResultsTable
+          searchResults={observation}
+          cart={new Cart([])}
+          updateCart={updateCart}
+        />
+      </MockedProvider>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(wrapper.find("SearchResultsTable"))).toMatchSnapshot();
   });
 });

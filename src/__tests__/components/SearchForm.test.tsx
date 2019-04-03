@@ -2,9 +2,29 @@ import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchForm from "../../components/SearchForm";
+import { MockedProvider } from "react-apollo/test-utils";
+import { CART_QUERY } from "../../util/Cart";
+
+const mocks = [
+  {
+    request: {
+      query: CART_QUERY,
+      variables: {}
+    },
+    result: {
+      data: {
+        cart: []
+      }
+    }
+  }
+];
 
 describe("Search Form", () => {
-  const wrapper = mount(<SearchForm />);
+  const wrapper = mount(
+    <MockedProvider mocks={mocks}>
+      <SearchForm />
+    </MockedProvider>
+  );
   it("should render", () => {
     expect(wrapper).toBeDefined();
   });
@@ -42,23 +62,27 @@ describe("Search Form", () => {
 
     value = "apple";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("apple");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual(
+      "apple"
+    );
 
     value = "";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = undefined;
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = null;
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = "\\ \t";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("\\ \t");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual(
+      "\\ \t"
+    );
   });
 
   it("Should update state when change a select", () => {
@@ -68,10 +92,17 @@ describe("Search Form", () => {
     value = "NED";
     const event = { target: { value, name: "resolver" } };
     resolver.simulate("change", event);
-    expect((wrapper.state() as any).target.resolver).toEqual("NED");
+    expect((wrapper.find("SearchForm").state() as any).target.resolver).toEqual(
+      "NED"
+    );
   });
 
   it("render correctly", () => {
-    expect(toJson(shallow(<SearchForm />))).toMatchSnapshot();
+    const wrapper = shallow(
+      <MockedProvider mocks={mocks}>
+        <SearchForm />
+      </MockedProvider>
+    );
+    expect(toJson(wrapper.find("SearchForm"))).toMatchSnapshot();
   });
 });
