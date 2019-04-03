@@ -1,6 +1,37 @@
 import { Cart, CartFile } from "../../util/Cart";
 
 describe("Cart", () => {
+  it("should have the correct size", () => {
+    let cart = new Cart([
+      { id: "A", name: "File A" },
+      { id: "F", name: "File F" }
+    ]);
+    expect(cart.size).toBe(2);
+
+    cart = new Cart([
+      { id: "A", name: "File A" },
+      { id: "B", name: "File B" },
+      {
+        id: "C",
+        name: "File C",
+        observation: { id: "Obs-B", name: "Observation B" }
+      },
+      { id: "D", name: "File D" },
+      {
+        id: "E",
+        name: "File E",
+        observation: { id: "Obs-A", name: "Observation A" }
+      },
+      { id: "F", name: "File F" }
+    ]);
+    expect(cart.size).toBe(6);
+  });
+
+  it("should return the correct files", () => {
+    let files = [{ id: "A", name: "File A" }, { id: "F", name: "File F" }];
+    expect(new Cart(files).files).toBe(files);
+  });
+
   it("should know what it contains", () => {
     const cart = new Cart([
       { id: "A", name: "File A" },
@@ -14,7 +45,7 @@ describe("Cart", () => {
     expect(cart.contains({ id: "", name: "File" })).toBe(false);
   });
 
-  it("should add and remove files", () => {
+  it("should add files", () => {
     const cart = new Cart([
       { id: "A", name: "File A" },
       { id: "B", name: "File B" },
@@ -23,20 +54,43 @@ describe("Cart", () => {
       { id: "E", name: "File E" },
       { id: "F", name: "File F" }
     ]);
-    cart.addOrRemove([
+    cart.add([
       { id: "A", name: "File A" },
       { id: "Q", name: "File Q" },
       { id: "D", name: "File D" },
       { id: "R", name: "File R" }
     ]);
-    expect(cart.contains({ id: "A", name: "File A" })).toBe(false);
+    expect(cart.size).toBe(8);
+    expect(cart.contains({ id: "A", name: "File A" })).toBe(true);
     expect(cart.contains({ id: "B", name: "File B" })).toBe(true);
     expect(cart.contains({ id: "C", name: "File C" })).toBe(true);
-    expect(cart.contains({ id: "D", name: "File D" })).toBe(false);
+    expect(cart.contains({ id: "D", name: "File D" })).toBe(true);
     expect(cart.contains({ id: "E", name: "File E" })).toBe(true);
     expect(cart.contains({ id: "F", name: "File F" })).toBe(true);
     expect(cart.contains({ id: "Q", name: "File Q" })).toBe(true);
     expect(cart.contains({ id: "R", name: "File R" })).toBe(true);
+  });
+
+  it("should remove files", () => {
+    const cart = new Cart([
+      { id: "A", name: "File A" },
+      { id: "B", name: "File B" },
+      { id: "C", name: "File C" },
+      { id: "D", name: "File D" },
+      { id: "E", name: "File E" },
+      { id: "F", name: "File F" }
+    ]);
+    cart.remove([
+      { id: "A", name: "File A" },
+      { id: "Q", name: "File Q" },
+      { id: "D", name: "File D" },
+      { id: "R", name: "File R" }
+    ]);
+    expect(cart.size).toBe(4);
+    expect(cart.contains({ id: "B", name: "File B" })).toBe(true);
+    expect(cart.contains({ id: "C", name: "File C" })).toBe(true);
+    expect(cart.contains({ id: "E", name: "File E" })).toBe(true);
+    expect(cart.contains({ id: "F", name: "File F" })).toBe(true);
   });
 
   it("should provide cart items grouped by observation", () => {

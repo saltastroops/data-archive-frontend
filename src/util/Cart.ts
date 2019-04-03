@@ -1,8 +1,32 @@
+import gql from "graphql-tag";
+
 /**
  * The cart of requested files.
  */
 export class Cart {
-  constructor(private files: CartFile[]) {}
+  private _files: CartFile[];
+
+  constructor(files: CartFile[]) {
+    this._files = files;
+  }
+
+  /**
+   * The files in the cart.
+   *
+   * While this method returns the original array of files rather than a copy,
+   * you are strongly discouraged from modifying it. Use the add abd remove
+   * methods instead.
+   */
+  public get files() {
+    return this._files;
+  }
+
+  /**
+   * The number of files in the cart.
+   */
+  public get size() {
+    return this._files.length;
+  }
 
   /**
    * Check whether the cart contains the given file.
@@ -22,29 +46,39 @@ export class Cart {
    *     Whether the cart contains the given file.
    */
   public contains(file: CartFile) {
-    return this.files.some(f => f.id === file.id);
+    return this._files.some(f => f.id === file.id);
   }
 
   /**
-   * Adds or removes files from the cart.
+   * Adds files to the cart.
    *
-   * A file in the given array is added if it is not in the cart yet, and it is
-   * removed if it is in the cart already. The same logic as for the contains
-   * method is used to decide whether a file is in the cart.
+   * A file in the given array is added only if it is not in the cart already.
+   * The same logic as for the contains method is used to decide whether a file
+   * is in the cart.
    *
    * @param files
    */
-  public addOrRemove(files: CartFile[]) {
+  public add(files: CartFile[]) {
     files.forEach(file => {
-      const cartFilesFilesWithoutFile = this.files.filter(
-        f => f.id !== file.id
-      );
-      if (cartFilesFilesWithoutFile.length !== this.files.length) {
-        this.files = [...cartFilesFilesWithoutFile];
-      } else {
-        this.files = [...this.files, file];
+      if (!this.contains(file)) {
+        this._files = [...this._files, file];
       }
     });
+  }
+
+  /**
+   * Removes files from the cart.
+   *
+   * If a file in the given array is not in the cart already, it is just
+   * ignored. The same logic as for the contains method is used to decide
+   * whether a file is in the cart.
+   *
+   * @param files
+   */
+  public remove(files: CartFile[]) {
+    this._files = this._files.filter(
+      file => !files.some(f => file.id === f.id)
+    );
   }
 
   /**
@@ -73,7 +107,7 @@ export class Cart {
    */
   public groupByObservation() {
     const groups = new Map<string, Set<CartFile>>();
-    this.files.forEach(file => {
+    this._files.forEach(file => {
       const key = (file.observation && file.observation.id) || "";
       if (!groups.has(key)) {
         groups.set(key, new Set<CartFile>());
@@ -117,3 +151,25 @@ interface Observation {
   id: string;
   name: string;
 }
+
+export const CART_QUERY = gql`
+  query CART_QUERY {
+    cart @client {
+      id
+      name
+      observation
+    }
+  }
+`;
+
+export const ADD_TO_CART_MUTATION = gql`
+  mutation ADD_TO_CART_MUTATION($files: [CartFileInput!]!) {
+    addToCart(files: $files) @client
+  }
+`;
+
+export const REMOVE_FROM_CART_MUTATION = gql`
+  mutation REMOVE_FROM_CART_MUTATION($files: [CartFileInput!]!) {
+    removeFromCart(files: $files) @client
+  }
+`;
