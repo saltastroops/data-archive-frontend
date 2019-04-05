@@ -1,11 +1,11 @@
 import { mount } from "enzyme";
+import toJson from "enzyme-to-json";
 import * as React from "react";
 import {
   DataRequestStatus,
   IDataRequest
 } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
-import toJson from "enzyme-to-json";
 
 const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
   const parts = statusValues.map((status, index) => ({
