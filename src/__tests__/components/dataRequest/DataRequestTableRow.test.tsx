@@ -23,7 +23,11 @@ describe("DataRequestTableRow Component", () => {
 
     // DataRequestTableRow component wrapper.
     const wrapper = mount(
-      <DataRequestTableRow dataRequestPart={dataRequestPart} />
+      <table>
+        <tbody>
+          <DataRequestTableRow dataRequestPart={dataRequestPart} />
+        </tbody>
+      </table>
     );
 
     // Expect the hyperlink button with the text Download to exist.
@@ -54,7 +58,11 @@ describe("DataRequestTableRow Component", () => {
 
     // DataRequestTableRow component wrapper.
     const wrapper = mount(
-      <DataRequestTableRow dataRequestPart={dataRequestPart} />
+      <table>
+        <tbody>
+          <DataRequestTableRow dataRequestPart={dataRequestPart} />
+        </tbody>
+      </table>
     );
 
     // Expect the button with the text Re-request to exist.
@@ -85,7 +93,11 @@ describe("DataRequestTableRow Component", () => {
 
     // DataRequestTableRow component wrapper.
     const wrapper = mount(
-      <DataRequestTableRow dataRequestPart={dataRequestPart} />
+      <table>
+        <tbody>
+          <DataRequestTableRow dataRequestPart={dataRequestPart} />
+        </tbody>
+      </table>
     );
 
     // Expect the hyperlink button for Download not to exist.
