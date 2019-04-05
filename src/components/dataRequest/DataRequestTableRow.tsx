@@ -52,15 +52,19 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
         <td>
           <p>{statusText}</p>
           <p>
-            {downloadButton ? (
-              <a className="button is-small is-success is-rounded" href={uri}>
+            {downloadButton && (
+              <a
+                className="button download is-small is-success is-rounded"
+                href={uri}
+              >
                 Download
               </a>
-            ) : reRequestButton ? (
-              <button className="button is-small is-danger is-rounded">
+            )}
+            {reRequestButton && (
+              <button className="button re-request is-small is-danger is-rounded">
                 Re-request
               </button>
-            ) : null}
+            )}
           </p>
         </td>
         <td>

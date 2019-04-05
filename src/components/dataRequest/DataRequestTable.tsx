@@ -71,18 +71,19 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                   right: 0
                 }}
               >
-                {mayDownloadAll ? (
+                {mayDownloadAll && (
                   <a
                     className="button download-all is-small is-success is-rounded"
                     href={uri}
                   >
                     Download all
                   </a>
-                ) : reRequestAll ? (
+                )}
+                {reRequestAll && (
                   <button className="button re-request-all is-small is-danger is-rounded">
                     Re-request all
                   </button>
-                ) : null}
+                )}
               </p>
             </th>
           </tr>

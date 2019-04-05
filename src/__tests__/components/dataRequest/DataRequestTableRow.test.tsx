@@ -1,109 +1,75 @@
 import { mount } from "enzyme";
 import * as React from "react";
-import { DataRequestStatus } from "../../../components/dataRequest/DataRequestsForm";
+import {
+  DataRequestStatus,
+  IDataRequest
+} from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTableRow from "../../../components/dataRequest/DataRequestTableRow";
+import toJson from "enzyme-to-json";
 
-describe("DataRequestTableRow Component", () => {
-  it("renders the DataRequestTableRow component with the download button", async () => {
-    const dataRequestPart = {
-      dataFiles: [
-        {
-          id: "",
-          name: "",
-          observation: {
-            id: "",
-            name: ""
-          }
+const dummyDataRequestPartWrapper = (status: DataRequestStatus) => {
+  const dataRequestPart = {
+    dataFiles: [
+      {
+        id: "file-1",
+        name: "File 1",
+        observation: {
+          id: "obs-1",
+          name: "Observation 1"
         }
-      ],
-      id: "",
-      status: "SUCCESSFUL" as DataRequestStatus,
-      uri: ""
-    };
+      },
+      {
+        id: "file-2",
+        name: "File 2",
+        observation: {
+          id: "obs-2",
+          name: "Observation 2"
+        }
+      }
+    ],
+    id: "part-1",
+    status,
+    uri: "http://demo/data-request/part-1"
+  };
+  return mount(
+    <table>
+      <tbody>
+        <DataRequestTableRow dataRequestPart={dataRequestPart} />
+      </tbody>
+    </table>
+  );
+};
 
-    // DataRequestTableRow component wrapper.
-    const wrapper = mount(
-      <table>
-        <tbody>
-          <DataRequestTableRow dataRequestPart={dataRequestPart} />
-        </tbody>
-      </table>
-    );
+describe("DataRequestTableRow", () => {
+  it("renders correctly", () => {
+    let wrapper = dummyDataRequestPartWrapper("SUCCESSFUL");
+    expect(toJson(wrapper)).toMatchSnapshot();
 
-    // Expect the hyperlink button with the text Download to exist.
-    expect(
-      wrapper
-        .find("a")
-        .first()
-        .text()
-    ).toEqual("Download");
+    wrapper = dummyDataRequestPartWrapper("PENDING");
+    expect(toJson(wrapper)).toMatchSnapshot();
+
+    wrapper = dummyDataRequestPartWrapper("FAILED");
+    expect(toJson(wrapper)).toMatchSnapshot();
+
+    wrapper = dummyDataRequestPartWrapper("EXPIRED");
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("renders the DataRequestTableRow component with the re-request button", async () => {
-    const dataRequestPart = {
-      dataFiles: [
-        {
-          id: "",
-          name: "",
-          observation: {
-            id: "",
-            name: ""
-          }
-        }
-      ],
-      id: "",
-      status: "FAILED" as DataRequestStatus,
-      uri: ""
-    };
+  it("includes and excludes download and re-request links as required", async () => {
+    let wrapper = dummyDataRequestPartWrapper("SUCCESSFUL");
+    expect(wrapper.find(".download").length).toBe(1);
+    expect(wrapper.find(".re-request").length).toBe(0);
 
-    // DataRequestTableRow component wrapper.
-    const wrapper = mount(
-      <table>
-        <tbody>
-          <DataRequestTableRow dataRequestPart={dataRequestPart} />
-        </tbody>
-      </table>
-    );
+    wrapper = dummyDataRequestPartWrapper("PENDING");
+    expect(wrapper.find(".download").length).toBe(0);
+    expect(wrapper.find(".re-request").length).toBe(0);
 
-    // Expect the button with the text Re-request to exist.
-    expect(
-      wrapper
-        .find("button")
-        .first()
-        .text()
-    ).toEqual("Re-request");
-  });
+    wrapper = dummyDataRequestPartWrapper("FAILED");
+    expect(wrapper.find(".download").length).toBe(0);
+    expect(wrapper.find(".re-request").length).toBe(1);
 
-  it("renders the DataRequestTableRow component with no button", async () => {
-    const dataRequestPart = {
-      dataFiles: [
-        {
-          id: "",
-          name: "",
-          observation: {
-            id: "",
-            name: ""
-          }
-        }
-      ],
-      id: "",
-      status: "PENDING" as DataRequestStatus,
-      uri: ""
-    };
-
-    // DataRequestTableRow component wrapper.
-    const wrapper = mount(
-      <table>
-        <tbody>
-          <DataRequestTableRow dataRequestPart={dataRequestPart} />
-        </tbody>
-      </table>
-    );
-
-    // Expect the hyperlink button for Download not to exist.
-    expect(wrapper.find("a").length).toEqual(0);
-
-    // Expect the button for Re-request not to exist.
-    expect(wrapper.find("button").length).toEqual(0);
+    wrapper = dummyDataRequestPartWrapper("EXPIRED");
+    expect(wrapper.find(".download").length).toBe(0);
+    expect(wrapper.find(".re-request").length).toBe(1);
   });
 });
