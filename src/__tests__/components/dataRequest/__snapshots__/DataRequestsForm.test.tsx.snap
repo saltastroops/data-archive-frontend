@@ -166,7 +166,13 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                       "right": 0,
                     }
                   }
-                />
+                >
+                  <button
+                    className="button re-request-all is-small is-danger is-rounded"
+                  >
+                    Re-request all
+                  </button>
+                </p>
               </th>
             </tr>
             <tr>
@@ -220,7 +226,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <a
-                      className="button is-small is-success is-rounded"
+                      className="button download is-small is-success is-rounded"
                       href="http://demo/data-request/part/obsR1c"
                     >
                       Download
@@ -281,7 +287,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <button
-                      className="button is-small is-danger is-rounded"
+                      className="button re-request is-small is-danger is-rounded"
                     >
                       Re-request
                     </button>
@@ -427,7 +433,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   }
                 >
                   <button
-                    className="button is-small is-danger is-rounded"
+                    className="button re-request-all is-small is-danger is-rounded"
                   >
                     Re-request all
                   </button>
@@ -485,7 +491,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <button
-                      className="button is-small is-danger is-rounded"
+                      className="button re-request is-small is-danger is-rounded"
                     >
                       Re-request
                     </button>
@@ -545,7 +551,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <button
-                      className="button is-small is-danger is-rounded"
+                      className="button re-request is-small is-danger is-rounded"
                     >
                       Re-request
                     </button>
@@ -743,7 +749,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <a
-                      className="button is-small is-success is-rounded"
+                      className="button download is-small is-success is-rounded"
                       href="http://demo/data-request/part/obsR1c"
                     >
                       Download
@@ -944,7 +950,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   }
                 >
                   <a
-                    className="button is-small is-success is-rounded"
+                    className="button download-all is-small is-success is-rounded"
                     href="http://demo/data-request/part/rd2"
                   >
                     Download all
@@ -1003,7 +1009,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <a
-                      className="button is-small is-success is-rounded"
+                      className="button download is-small is-success is-rounded"
                       href="http://demo/data-request/part/obsR1b"
                     >
                       Download
@@ -1064,7 +1070,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <a
-                      className="button is-small is-success is-rounded"
+                      className="button download is-small is-success is-rounded"
                       href="http://demo/data-request/part/obsR2b"
                     >
                       Download
@@ -1302,7 +1308,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <a
-                      className="button is-small is-success is-rounded"
+                      className="button download is-small is-success is-rounded"
                       href="http://demo/data-request/part/obsR1"
                     >
                       Download
@@ -1368,7 +1374,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   </p>
                   <p>
                     <button
-                      className="button is-small is-danger is-rounded"
+                      className="button re-request is-small is-danger is-rounded"
                     >
                       Re-request
                     </button>

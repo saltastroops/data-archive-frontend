@@ -53,9 +53,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
     const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
 
-    const reRequestAll = parts.every(part =>
-      ["FAILED", "EXPIRED"].includes(part.status)
-    );
+    const reRequestAll =
+      !mayDownloadAll && !parts.some(part => part.status === "PENDING");
 
     return (
       <Table>
@@ -74,13 +73,13 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               >
                 {mayDownloadAll ? (
                   <a
-                    className="button is-small is-success is-rounded"
+                    className="button download-all is-small is-success is-rounded"
                     href={uri}
                   >
                     Download all
                   </a>
                 ) : reRequestAll ? (
-                  <button className="button is-small is-danger is-rounded">
+                  <button className="button re-request-all is-small is-danger is-rounded">
                     Re-request all
                   </button>
                 ) : null}
