@@ -5,8 +5,12 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
+import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
+import RegistrationForm, {
+  IRegistrationFormCache
+} from "./components/RegistrationForm";
+import SearchForm, { ISearchFormCache } from "./components/SearchForm";
 
 interface IUser {
   name: string;
@@ -18,6 +22,12 @@ interface IProtectedRouteProps {
   component: any;
   user: IUser | null | undefined;
   [propName: string]: any;
+}
+
+interface ICache {
+  loginForm: ILoginFormCache;
+  registrationForm: IRegistrationFormCache;
+  searchForm: ISearchFormCache;
 }
 
 /**
@@ -52,11 +62,13 @@ function ProtectedRoute({
  */
 class App extends React.Component<any, any> {
   state = {
-    user: {
-      isAdmin: () => true,
-      name: "Nhlavu",
-      username: "nhlavu"
-    }
+    user: undefined
+  };
+
+  private cache: ICache = {
+    loginForm: {},
+    registrationForm: {},
+    searchForm: {}
   };
 
   logout = () => {
@@ -74,70 +86,68 @@ class App extends React.Component<any, any> {
     const { user } = this.state;
 
     return (
-      <Router>
-        <>
-          <NavigationBar user={user} logout={this.logout} />
+      <>
+        <NavigationBar user={user} logout={this.logout} />
 
-          <Switch>
-            {/* search page */}
-            <Route
-              exact={true}
-              path="/"
-              render={() => <h1 className="title">Main Page</h1>}
-            />
+        <Switch>
+          {/* search page */}
+          <Route
+            exact={true}
+            path="/"
+            render={() => <SearchForm cache={this.cache.searchForm} />}
+          />
 
-            {/* registration page */}
-            <Route
-              exact={true}
-              path="/register"
-              component={() => <h1 className="title">User register</h1>}
-            />
+          {/* registration page */}
+          <Route
+            exact={true}
+            path="/register"
+            component={() => (
+              <RegistrationForm cache={this.cache.registrationForm} />
+            )}
+          />
 
-            {/* login page */}
-            <Route
-              exact={true}
-              path="/login"
-              component={() => <h1 className="title">Login page</h1>}
-            />
+          {/* login page */}
+          <Route
+            exact={true}
+            path="/login"
+            component={() => <LoginForm cache={this.cache.loginForm} />}
+          />
 
-            {/* account details page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/account"
-              component={() => <h1 className="title">User account</h1>}
-            />
+          {/* account details page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/account"
+            component={() => <h1 className="title">User account</h1>}
+          />
 
-            {/* data requests page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/data-requests"
-              component={() => <DataRequestsForm />}
-            />
+          {/* data requests page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/data-requests"
+            component={() => <h1 className="title">Data request page</h1>}
+          />
 
-            {/* cart page */}
-            <Route
-              exact={true}
-              path="/cart"
-              component={() => <h1 className="title">Cart page</h1>}
-            />
+          {/* cart page */}
+          <Route
+            exact={true}
+            path="/cart"
+            component={() => <h1 className="title">Cart page</h1>}
+          />
 
-            {/* admin page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/admin"
-              component={() => <h1 className="title">Admin page</h1>}
-            />
+          {/* admin page */}
+          <ProtectedRoute
+            user={user}
+            exact={true}
+            path="/admin"
+            component={() => <h1 className="title">Admin page</h1>}
+          />
 
-            {/* page not found */}
-            <Route
-              component={() => <h1 className="title">Page not found</h1>}
-            />
-          </Switch>
-        </>
-      </Router>
+          {/* page not found */}
+          <Route component={() => <h1 className="title">Page not found</h1>} />
+        </Switch>
+      </>
     );
   }
 }

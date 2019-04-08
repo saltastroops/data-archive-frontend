@@ -1,10 +1,15 @@
+import { MemoryRouter } from "react-router";
+
 jest.mock("../api/api");
 
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import wait from "waait";
 import api from "../api/api";
+import App from "../App";
 import LoginForm from "../components/LoginForm";
+import click from "../util/click";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
@@ -157,5 +162,58 @@ describe("LoginForm Component", () => {
         .first()
         .text()
     ).toContain("7 characters");
+  });
+
+  it("should cache values and errors", async () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    // Navigate to the login form
+    const loginFormLink = wrapper.find('a[href="/login"]').first();
+    click(loginFormLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // Fill in an invalid password
+    inputTyping(wrapper, "password", "short");
+
+    // Submit the form
+    const submitButton = wrapper.find('button[data-test="signIn"]');
+    submitButton.simulate("submit");
+
+    await wait(0);
+    wrapper.update();
+
+    // The value has been stored in the state, and there is an error
+    const loginFormState: any = wrapper.find("LoginForm").state();
+    const passwordValue = loginFormState.userInput.password;
+    expect(passwordValue).toEqual("short");
+    const passwordErrorMessage = loginFormState.errors.password;
+    expect(passwordErrorMessage.length).toBeGreaterThan(0);
+
+    // Navigate away from the login form
+    const cartLink = wrapper.find('a[href="/cart"]').first();
+    click(cartLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // No login form any longer
+    expect(wrapper.find("LoginForm").length).toBe(0);
+
+    // Navigate back to the search form
+    click(loginFormLink);
+
+    await wait(0);
+    wrapper.update();
+
+    // The values and errors have been re-inserted.
+    const newLoginFormState: any = wrapper.find("LoginForm").state();
+    expect(newLoginFormState.userInput.password).toEqual(passwordValue);
+    expect(newLoginFormState.errors.password).toEqual(passwordErrorMessage);
   });
 });

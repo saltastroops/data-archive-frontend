@@ -27,7 +27,7 @@ interface INavigationBarProps {
     isAdmin: () => boolean;
     name: string;
     username: string;
-  }; // currently logged in user
+  } | null; // currently logged in user
   logout: () => void; // logout function
 }
 
