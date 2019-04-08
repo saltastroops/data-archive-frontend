@@ -144,6 +144,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
 
     // Validate the user input fields
     const errors = validateLoginForm(this.state.userInput);
+
     this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing in.
