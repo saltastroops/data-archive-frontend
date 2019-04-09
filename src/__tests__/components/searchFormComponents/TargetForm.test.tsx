@@ -1,7 +1,6 @@
 import { mount, ReactWrapper, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SearchForm from "../../../components/SearchForm";
 import TargetForm from "../../../components/searchFormComponents/TargetForm";
 
 describe("TargetForm", () => {
@@ -77,11 +76,6 @@ describe("TargetForm", () => {
         )
       )
     ).toMatchSnapshot();
-  });
-
-  it("should find target change defined on target search form", () => {
-    SearchForm.prototype.targetChange = jest.fn();
-    expect(SearchForm.prototype.targetChange).toBeDefined();
   });
 
   it("should call onChange with targetName", () => {
