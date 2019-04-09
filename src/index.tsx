@@ -6,7 +6,9 @@ import "bulma/css/bulma.css";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
+import "react-virtualized/styles.css";
 import App from "./App";
+import cache from "./util/cache";
 import { resolvers, typeDefs } from "./resolvers";
 
 import * as serviceWorker from "./registerServiceWorker";
@@ -17,8 +19,6 @@ if (process.env.NODE_ENV === "production") {
     dsn: process.env.REACT_APP_SENTRY_DSN
   });
 }
-
-export const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   cache,

@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 import { Cart, CART_QUERY, CartFile } from "./util/Cart";
-import { cache } from "./index";
 
 export const typeDefs = gql`
   extend type Query {
