@@ -376,8 +376,8 @@ export interface IFile {
   dataType: string;
   isReduced: boolean;
   targetName: string;
-  rightAscension: string;
-  declination: string;
+  rightAscension: number;
+  declination: number;
   observationNight: string;
   category: string;
   telescope: string;

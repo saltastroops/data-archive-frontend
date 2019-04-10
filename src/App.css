@@ -42,3 +42,17 @@
     opacity: 0;
   }
 }
+
+.search-results.table {
+  margin-bottom: 20px;
+}
+
+.search-results.observation-header {
+  background-color: #f2fffb;
+  border-bottom: 1px solid lightgray;
+  border-top: 2px solid lightgray;
+}
+
+.search-results.file-row-even {
+  background-color: rgba(0, 0, 0, 0.05);
+}

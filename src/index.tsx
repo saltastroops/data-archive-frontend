@@ -8,8 +8,8 @@ import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
 import "react-virtualized/styles.css";
 import App from "./App";
-import cache from "./util/cache";
 import { resolvers, typeDefs } from "./resolvers";
+import cache from "./util/cache";
 
 import * as serviceWorker from "./registerServiceWorker";
 import { CART_QUERY } from "./util/Cart";

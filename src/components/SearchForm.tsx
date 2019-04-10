@@ -21,6 +21,7 @@ import DataForm from "./searchFormComponents/DataForm";
 import ProposalForm, {
   validatedProposal
 } from "./searchFormComponents/ProposalForm";
+import DataKeys from "./searchFormComponents/results/DataKeys";
 import SearchResultsTable from "./searchFormComponents/results/SearchResultsTable";
 import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
 import TelescopeForm, {
@@ -109,7 +110,7 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
       // TODO query the server
       this.setState(() => ({
         ...this.state,
-        results: fakeSearchResults(200)
+        results: fakeSearchResults(2000)
       }));
     }
     this.setState(() => ({
@@ -154,7 +155,17 @@ class SearchForm extends React.Component<{}, ISearchFormState> {
           </ButtonGrid>
         </ParentGrid>
         {results && results.length !== 0 && (
-          <SearchResultsTable searchResults={results} />
+          <SearchResultsTable
+            columns={[
+              DataKeys.CART,
+              DataKeys.OBSERVATION_NAME,
+              DataKeys.PROPOSAL_CODE,
+              DataKeys.RIGHT_ASCENSION,
+              DataKeys.DECLINATION,
+              DataKeys.FILENAME
+            ]}
+            searchResults={results}
+          />
         )}
       </>
     );

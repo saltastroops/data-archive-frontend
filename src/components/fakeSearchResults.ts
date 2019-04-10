@@ -5,17 +5,17 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
-            id: `file-1-${i}`,
             category: "cat-5",
             dataType: "string",
-            declination: "string",
+            declination: 100 * Math.random(),
             filename: "string",
+            id: `file-1-${i}`,
             instrument: "string",
             isReduced: true,
             name: `name-1-${i}`,
             observationNight: "string",
-            proposalCode: "string",
-            rightAscension: "string",
+            proposalCode: "2018-1-SCI-042",
+            rightAscension: 100 * Math.random(),
             targetName: "string",
             telescope: "string",
             url: "./image0.jpg"
@@ -30,45 +30,46 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
-            id: `file-2-${i}`,
             category: "cat-1",
             dataType: "string",
-            declination: "string",
-            filename: "string",
+            declination: 100 * Math.random(),
+            filename:
+              "string string string string string string string string string",
+            id: `file-2-${i}`,
             instrument: "string",
             isReduced: true,
             name: "name-2",
             observationId: `obsid1-${i}`,
-            rightAscension: "string",
+            rightAscension: 100 * Math.random(),
             targetName: "string",
             telescope: "string"
           },
           {
-            id: `file-3-${i}`,
             category: "cat-2",
             dataType: "string",
-            declination: "string",
+            declination: 100 * Math.random(),
             filename: "string",
+            id: `file-3-${i}`,
             instrument: "string",
             isReduced: true,
             name: "name-4",
             observationId: `obsid1-${i}`,
-            rightAscension: "string",
+            rightAscension: 100 * Math.random(),
             targetName: "string",
             telescope: "string",
             url: "./image0.jpg"
           },
           {
-            id: `file-4-${i}`,
             category: "cat-3",
             dataType: "string",
-            declination: "string",
+            declination: 100 * Math.random(),
             filename: "string",
+            id: `file-4-${i}`,
             instrument: "string",
             isReduced: true,
             name: "name-5",
             observationId: `obsid1-${i}`,
-            rightAscension: "string",
+            rightAscension: 100 * Math.random(),
             targetName: "string",
             telescope: "string",
             url: "./image4.jpg"
@@ -83,23 +84,19 @@ export function fakeSearchResults(n: number) {
       {
         files: [
           {
-            id: `file-5-${i}`,
             category: "cat-4",
             dataType: "string",
-            declination: "string",
+            declination: 100 * Math.random(),
             filename: "string",
+            id: `file-5-${i}`,
             instrument: "string",
             isReduced: true,
             name: `name-3-${i}`,
-            observationId: `obsid2-${i}`,
-            rightAscension: "string",
+            rightAscension: 100 * Math.random(),
             targetName: "string",
             telescope: "string"
           }
         ],
-        id: `obs3-${i}`,
-        name: `obs3-${i}`,
-        proposal: "MLT-RSA-053",
         startTime: "2018-02-02 17:55:23",
         telescope: "Lesedi"
       }

@@ -4,10 +4,10 @@ import gql from "graphql-tag";
  * The cart of requested files.
  */
 export class Cart {
-  private _files: CartFile[];
+  private cartFiles: ICartFile[];
 
-  constructor(files: CartFile[]) {
-    this._files = files;
+  constructor(files: ICartFile[]) {
+    this.cartFiles = files;
   }
 
   /**
@@ -18,14 +18,14 @@ export class Cart {
    * methods instead.
    */
   public get files() {
-    return this._files;
+    return this.cartFiles;
   }
 
   /**
    * The number of files in the cart.
    */
   public get size() {
-    return this._files.length;
+    return this.cartFiles.length;
   }
 
   /**
@@ -45,8 +45,8 @@ export class Cart {
    * contains:
    *     Whether the cart contains the given file.
    */
-  public contains(file: CartFile) {
-    return this._files.some(f => f.id === file.id);
+  public contains(file: ICartFile) {
+    return this.cartFiles.some(f => f.id === file.id);
   }
 
   /**
@@ -58,10 +58,10 @@ export class Cart {
    *
    * @param files
    */
-  public add(files: CartFile[]) {
+  public add(files: ICartFile[]) {
     files.forEach(file => {
       if (!this.contains(file)) {
-        this._files = [...this._files, file];
+        this.cartFiles = [...this.cartFiles, file];
       }
     });
   }
@@ -75,8 +75,8 @@ export class Cart {
    *
    * @param files
    */
-  public remove(files: CartFile[]) {
-    this._files = this._files.filter(
+  public remove(files: ICartFile[]) {
+    this.cartFiles = this.cartFiles.filter(
       file => !files.some(f => file.id === f.id)
     );
   }
@@ -106,13 +106,13 @@ export class Cart {
    * }
    */
   public groupByObservation() {
-    const groups = new Map<string, Set<CartFile>>();
-    this._files.forEach(file => {
+    const groups = new Map<string, Set<ICartFile>>();
+    this.cartFiles.forEach(file => {
       const key = (file.observation && file.observation.id) || "";
       if (!groups.has(key)) {
-        groups.set(key, new Set<CartFile>());
+        groups.set(key, new Set<ICartFile>());
       }
-      (groups.get(key) as Set<CartFile>).add(file);
+      (groups.get(key) as Set<ICartFile>).add(file);
     });
 
     return groups;
@@ -131,10 +131,10 @@ export class Cart {
  * observation:
  *     Observation to which the file is linked.
  */
-export interface CartFile {
+export interface ICartFile {
   id: string;
   name: string;
-  observation?: Observation | null;
+  observation?: IObservation | null;
 }
 
 /**
@@ -147,7 +147,8 @@ export interface CartFile {
  * name:
  *     Observation name.
  */
-interface Observation {
+
+interface IObservation {
   id: string;
   name: string;
 }

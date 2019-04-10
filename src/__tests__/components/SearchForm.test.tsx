@@ -1,8 +1,8 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SearchForm from "../../components/SearchForm";
 import { MockedProvider } from "react-apollo/test-utils";
+import SearchForm from "../../components/SearchForm";
 import { CART_QUERY } from "../../util/Cart";
 
 const mocks = [
@@ -98,11 +98,11 @@ describe("Search Form", () => {
   });
 
   it("render correctly", () => {
-    const wrapper = shallow(
+    const wrapper2 = shallow(
       <MockedProvider mocks={mocks}>
         <SearchForm />
       </MockedProvider>
     );
-    expect(toJson(wrapper.find("SearchForm"))).toMatchSnapshot();
+    expect(toJson(wrapper2.find("SearchForm"))).toMatchSnapshot();
   });
 });

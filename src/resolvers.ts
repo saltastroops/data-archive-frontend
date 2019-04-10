@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { Cart, CART_QUERY, CartFile } from "./util/Cart";
+import { Cart, CART_QUERY, ICartFile } from "./util/Cart";
 
 export const typeDefs = gql`
   extend type Query {
@@ -64,7 +64,7 @@ export const resolvers = {
       const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
 
       // Add the files
-      cart.add(files as [CartFile]);
+      cart.add(files as [ICartFile]);
 
       // Store updated content both in the cache and in local storage
       localStorage.setItem("cart", JSON.stringify(cart.files));
@@ -79,7 +79,7 @@ export const resolvers = {
       const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
 
       // Remove the files
-      cart.remove(files as [CartFile]);
+      cart.remove(files as [ICartFile]);
 
       // Store updated content both in the cache and in local storage
       localStorage.setItem("cart", JSON.stringify(cart.files));

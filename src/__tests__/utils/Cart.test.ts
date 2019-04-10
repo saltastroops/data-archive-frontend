@@ -1,4 +1,4 @@
-import { Cart, CartFile } from "../../util/Cart";
+import { Cart, ICartFile } from "../../util/Cart";
 
 describe("Cart", () => {
   it("should have the correct size", () => {
@@ -28,7 +28,7 @@ describe("Cart", () => {
   });
 
   it("should return the correct files", () => {
-    let files = [{ id: "A", name: "File A" }, { id: "F", name: "File F" }];
+    const files = [{ id: "A", name: "File A" }, { id: "F", name: "File F" }];
     expect(new Cart(files).files).toBe(files);
   });
 
@@ -129,10 +129,10 @@ describe("Cart", () => {
       },
       { id: "I", name: "File I" }
     ]);
-    const expected = new Map<String, Set<CartFile>>();
+    const expected = new Map<string, Set<ICartFile>>();
     expected.set(
       "",
-      new Set<CartFile>([
+      new Set<ICartFile>([
         { id: "B", name: "File B" },
         { id: "C", name: "File C" },
         { id: "I", name: "File I" }
@@ -140,7 +140,7 @@ describe("Cart", () => {
     );
     expected.set(
       "Obs-A",
-      new Set<CartFile>([
+      new Set<ICartFile>([
         {
           id: "A",
           name: "File A",
@@ -160,7 +160,7 @@ describe("Cart", () => {
     );
     expected.set(
       "Obs-B",
-      new Set<CartFile>([
+      new Set<ICartFile>([
         {
           id: "D",
           name: "File D",
@@ -175,7 +175,7 @@ describe("Cart", () => {
     );
     expected.set(
       "Obs-C",
-      new Set<CartFile>([
+      new Set<ICartFile>([
         {
           id: "G",
           name: "File G",
