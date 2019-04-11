@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm Component renders the RegistrationForm having unpopulated props with no errors 1`] = `
+.c0.c0 {
+  padding: 1px;
+}
+
+.c1.c1 {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+<form
+  className="column is-4 is-offset-4 c0"
+  onSubmit={[Function]}
+>
+  <fieldset
+    aria-disabled={false}
+    disabled={false}
+  >
+    <styled.h1>
+      <StyledComponent
+        forwardedComponent={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [
+              Object {
+                "className": "title is-3",
+              },
+            ],
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-bZQynM",
+              "isStatic": true,
+              "lastClassName": "c1",
+              "rules": Array [
+                "
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+",
+              ],
+            },
+            "displayName": "styled.h1",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-bZQynM",
+            "target": "h1",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
+        }
+        forwardedRef={null}
+      >
+        <h1
+          className="title is-3 c1"
+        >
+          Create your account
+        </h1>
+      </StyledComponent>
+    </styled.h1>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Given name (first name)
+        <InputField
+          name="givenName"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="givenName"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Family name (surname)
+        <InputField
+          name="familyName"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="familyName"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email address
+        <InputField
+          name="email"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="email"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Username
+        <InputField
+          name="username"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="username"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Affiliation
+        <InputField
+          name="affiliation"
+          onChange={[Function]}
+          placeholder="E.g. University of Cape Town"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="affiliation"
+              onChange={[Function]}
+              placeholder="E.g. University of Cape Town"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password
+        <InputField
+          name="password"
+          onChange={[Function]}
+          placeholder="At least 7 characters"
+          type="password"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="password"
+              onChange={[Function]}
+              placeholder="At least 7 characters"
+              type="password"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Re-enter password
+        <InputField
+          name="confirmPassword"
+          onChange={[Function]}
+          type="password"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input undefined undefined"
+              name="confirmPassword"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <button
+      className="button is-success is-fullwidth is-rounded"
+      data-test="signUp"
+      type="submit"
+    >
+      Sign up
+    </button>
+  </fieldset>
+</form>
+`;

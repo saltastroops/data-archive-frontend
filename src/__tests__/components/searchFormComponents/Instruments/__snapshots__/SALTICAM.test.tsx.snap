@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SALTICAM  should render correctly 1`] = `
+exports[`Salticam  should render correctly 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -12,12 +12,12 @@ exports[`SALTICAM  should render correctly 1`] = `
   padding-left: 10px;
 }
 
-<SALTICAM
+<Salticam
   onChange={[MockFunction]}
   salticam={
     Object {
       "errors": Object {},
-      "name": "SALTICAM",
+      "name": "Salticam",
     }
   }
 >
@@ -153,5 +153,5 @@ exports[`SALTICAM  should render correctly 1`] = `
       </div>
     </StyledComponent>
   </styled.div>
-</SALTICAM>
+</Salticam>
 `;
