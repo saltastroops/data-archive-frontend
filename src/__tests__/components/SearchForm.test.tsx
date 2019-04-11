@@ -135,7 +135,7 @@ describe("Search Form", () => {
     });
 
     // Submit the form
-    const submitButton = wrapper.find('input[data-test="search-button"]');
+    const submitButton = wrapper.find('button[data-test="search-button"]');
     submitButton.simulate("click");
 
     await wait(0);
