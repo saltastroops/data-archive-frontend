@@ -1,8 +1,8 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import { MemoryRouter } from "react-router";
 import { MockedProvider } from "react-apollo/test-utils";
+import { MemoryRouter } from "react-router";
 
 import wait from "waait";
 import App from "../../App";
@@ -25,11 +25,6 @@ const mocks = [
 ];
 
 describe("Search Form", () => {
-  const wrapper = mount(
-    <MockedProvider mocks={mocks}>
-      <SearchForm />
-    </MockedProvider>
-  );
   it("should render", () => {
     const wrapper = mount(<SearchForm />);
     expect(wrapper).toBeDefined();
@@ -39,8 +34,6 @@ describe("Search Form", () => {
     const wrapper = mount(<SearchForm />);
     const mainDiv = wrapper.find("div");
     expect(mainDiv.length).toBeGreaterThan(0);
-    const mainContainer = wrapper.find("div.grid-container");
-    // expect(mainContainer.length).toEqual(1);
   });
 
   it("should contain five grid-item and one button", () => {
@@ -184,11 +177,11 @@ describe("Search Form", () => {
   });
 
   it("render correctly", () => {
-    const wrapper2 = shallow(
+    const wrapper = shallow(
       <MockedProvider mocks={mocks}>
         <SearchForm />
       </MockedProvider>
     );
-    expect(toJson(wrapper2.find("SearchForm"))).toMatchSnapshot();
+    expect(toJson(wrapper.find("SearchForm"))).toMatchSnapshot();
   });
 });
