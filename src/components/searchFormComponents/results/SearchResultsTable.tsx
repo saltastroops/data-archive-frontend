@@ -10,7 +10,6 @@ import {
   SortIndicator,
   Table
 } from "react-virtualized";
-import styled from "styled-components";
 import cache from "../../../util/cache";
 import {
   ADD_TO_CART_MUTATION,
@@ -254,12 +253,12 @@ class SearchResultsTable extends React.Component<
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}
         >
-          {addToCart => (
+          {(addToCart: any) => (
             <Mutation
               mutation={REMOVE_FROM_CART_MUTATION}
               refetchQueries={[{ query: CART_QUERY }]}
             >
-              {removeFromCart => (
+              {(removeFromCart: any) => (
                 <>
                   <Table
                     className="search results table"
