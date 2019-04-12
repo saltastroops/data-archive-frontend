@@ -40,4 +40,19 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-export { SIGNUP_MUTATION };
+/**
+ * Get currently logged in user.
+ *
+ * The following arguments must be supplied.
+ * password:
+ *     The correct user password.
+ * username:
+ *     The correct user username.
+ */
+const GET_USER_MUTATION = gql`
+  mutation GET_USER_MUTATION($username: String!, $password: String!) {
+    login(password: $password, username: $username) @client
+  }
+`;
+
+export { GET_USER_MUTATION, SIGNUP_MUTATION };

@@ -7,7 +7,9 @@ import gql from "graphql-tag";
 const USER_QUERY = gql`
   query USER_QUERY {
     user {
+      familyName
       givenName
+      roles
     }
   }
 `;

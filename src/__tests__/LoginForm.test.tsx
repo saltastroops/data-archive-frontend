@@ -1,14 +1,13 @@
-import { MemoryRouter } from "react-router";
-
-jest.mock("../api/api");
-
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import { MockedProvider } from "react-apollo/test-utils";
+import { MemoryRouter } from "react-router";
 import wait from "waait";
-import api from "../api/api";
 import App from "../App";
 import LoginForm from "../components/LoginForm";
+import { GET_USER_MUTATION } from "../graphql/Mutations";
+import { USER_QUERY } from "../graphql/Query";
 import click from "../util/click";
 
 // Helper function for simulating input field value change.
@@ -30,23 +29,65 @@ const updatedState = {
   }
 };
 
+// login mock mutation
+const mocks = [
+  {
+    request: {
+      query: GET_USER_MUTATION,
+      variables: {
+        ...updatedState.userInput
+      }
+    },
+    result: {
+      data: {
+        login: true
+      }
+    }
+  },
+
+  {
+    request: {
+      query: USER_QUERY
+    },
+    result: {
+      data: {
+        user: {
+          __typename: "User",
+          familyName: "test",
+          givenName: "test",
+          roles: []
+        }
+      }
+    }
+  }
+];
+
 describe("LoginForm Component", () => {
   it("renders the LoginForm component having unpopulated props with no errors", async () => {
     // LoginForm component wrapper.
-    const wrapper = mount(<LoginForm />);
+    const wrapper = mount(
+      <MockedProvider>
+        <LoginForm />
+      </MockedProvider>
+    );
+    // The actual form.
+    const form = wrapper.find('form[data-test="form"]');
     // Expect the snapshot to match the LoginForm component.
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(toJson(form)).toMatchSnapshot();
   });
 
-  it("displays no errors if submitted inputs are all valid", () => {
+  it("displays no errors if submitted inputs are all valid", async () => {
     // LoginForm component wrapper.
-    const wrapper = mount(<LoginForm />);
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <MemoryRouter initialEntries={["/login"]}>
+          <LoginForm />
+        </MemoryRouter>
+      </MockedProvider>
+    );
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
-
-    // Spy on the setState function.
-    const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the username input field value changes.
     inputTyping(wrapper, "username", "sj");
@@ -54,14 +95,11 @@ describe("LoginForm Component", () => {
     // Simulate state change when the password input field value changes.
     inputTyping(wrapper, "password", "securepassword");
 
-    // Expect setState to have been called
-    expect(setState.mock.calls.length).toBe(2);
-
-    // Expect the property username of the state to have been updated with the correct value.
-    expect(instance.state.userInput.username).toBe("sj");
-
-    // Expect the property password of the state to have been updated with the correct value.
-    expect(instance.state.userInput.password).toBe("securepassword");
+    // Expect the properties username and password of the state to have been updated with the correct value.
+    expect(instance.state.userInput).toMatchObject({
+      password: "securepassword",
+      username: "sj"
+    });
 
     const signInButton = wrapper.find('[data-test="signIn"]');
     // Expect the button to not be clicked
@@ -70,15 +108,6 @@ describe("LoginForm Component", () => {
     // Simulate the submiting of the form.
     signInButton.simulate("submit");
 
-    // Expect login function to have been called once
-    expect(api.login).toHaveBeenCalledTimes(1);
-
-    // Expect the login function to be called with the correct arguments
-    expect(api.login).toBeCalledWith({
-      password: "securepassword",
-      username: "sj"
-    });
-
     // Expect the button to have beeen clicked
     expect(signInButton.text()).toContain("Signing in");
 
@@ -86,9 +115,13 @@ describe("LoginForm Component", () => {
     expect(wrapper.find("p").length).toBe(0);
   });
 
-  it("displays error message if submitted invalid username", () => {
+  it("displays error message if submitted invalid username", async () => {
     // LoginForm component wrapper.
-    const wrapper = mount(<LoginForm />);
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <LoginForm />
+      </MockedProvider>
+    );
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
@@ -122,7 +155,11 @@ describe("LoginForm Component", () => {
 
   it("displays error message if submitted invalid password", () => {
     // LoginForm component wrapper.
-    const wrapper = mount(<LoginForm />);
+    const wrapper = mount(
+      <MockedProvider>
+        <LoginForm />
+      </MockedProvider>
+    );
 
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
@@ -166,10 +203,15 @@ describe("LoginForm Component", () => {
 
   it("should cache values and errors", async () => {
     const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
     );
+
+    await wait(0);
+    wrapper.update();
 
     // Navigate to the login form
     const loginFormLink = wrapper.find('a[href="/login"]').first();

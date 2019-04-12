@@ -8,6 +8,7 @@ import { ApolloProvider } from "react-apollo";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
+import { resolvers, typeDefs } from "./resolvers";
 
 import * as serviceWorker from "./registerServiceWorker";
 
@@ -22,7 +23,9 @@ const client = new ApolloClient({
   link: createHttpLink({
     credentials: "include",
     uri: process.env.REACT_APP_BACKEND_URI
-  })
+  }),
+  resolvers,
+  typeDefs
 });
 
 ReactDOM.render(

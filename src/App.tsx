@@ -1,16 +1,14 @@
 import * as React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
+import { Query } from "react-apollo";
+import { Redirect, Route, Switch } from "react-router-dom";
+import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
   name: string;
@@ -61,10 +59,6 @@ function ProtectedRoute({
  * The data archive.
  */
 class App extends React.Component<any, any> {
-  state = {
-    user: undefined
-  };
-
   private cache: ICache = {
     loginForm: {},
     registrationForm: {},
@@ -79,75 +73,96 @@ class App extends React.Component<any, any> {
   };
 
   public render() {
-    /* TODO:
-     * user is currently unknown so I am using a dummy user
-     * this will affect the test of this component after user is defined
-     * */
-    const { user } = this.state;
-
     return (
-      <>
-        <NavigationBar user={user} logout={this.logout} />
+      <Query query={USER_QUERY}>
+        {({ data, loading }) => {
+          if (loading) {
+            return <p>Loading...</p>;
+          }
 
-        <Switch>
-          {/* search page */}
-          <Route
-            exact={true}
-            path="/"
-            render={() => <SearchForm cache={this.cache.searchForm} />}
-          />
+          const currentUser =
+            data && data.user
+              ? {
+                  isAdmin: () => false,
+                  name: data.user.givenName,
+                  username: data.user.familyName
+                }
+              : null;
 
-          {/* registration page */}
-          <Route
-            exact={true}
-            path="/register"
-            component={() => (
-              <RegistrationForm cache={this.cache.registrationForm} />
-            )}
-          />
+          return (
+            <>
+              <NavigationBar user={currentUser} logout={this.logout} />
 
-          {/* login page */}
-          <Route
-            exact={true}
-            path="/login"
-            component={() => <LoginForm cache={this.cache.loginForm} />}
-          />
+              <Switch>
+                {/* search page */}
+                <Route
+                  exact={true}
+                  path="/"
+                  render={() => <SearchForm cache={this.cache.searchForm} />}
+                />
 
-          {/* account details page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/account"
-            component={() => <h1 className="title">User account</h1>}
-          />
+                {/* registration page */}
+                <Route
+                  exact={true}
+                  path="/register"
+                  component={() => (
+                    <RegistrationForm cache={this.cache.registrationForm} />
+                  )}
+                />
 
-          {/* data requests page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/data-requests"
-            component={() => <h1 className="title">Data request page</h1>}
-          />
+                {/* login page */}
+                <Route
+                  exact={true}
+                  path="/login"
+                  component={() => <LoginForm cache={this.cache.loginForm} />}
+                />
 
-          {/* cart page */}
-          <Route
-            exact={true}
-            path="/cart"
-            component={() => <h1 className="title">Cart page</h1>}
-          />
+                {/* account details page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/account"
+                  component={() => (
+                    <h1 className="title">
+                      {currentUser
+                        ? `${currentUser.name} ${currentUser.username} Account`
+                        : "No User"}
+                    </h1>
+                  )}
+                />
 
-          {/* admin page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/admin"
-            component={() => <h1 className="title">Admin page</h1>}
-          />
+                {/* data requests page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/data-requests"
+                  component={() => <DataRequestsForm />}
+                />
 
-          {/* page not found */}
-          <Route component={() => <h1 className="title">Page not found</h1>} />
-        </Switch>
-      </>
+                {/* cart page */}
+                <Route
+                  exact={true}
+                  path="/cart"
+                  component={() => <h1 className="title">Cart page</h1>}
+                />
+
+                {/* admin page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/admin"
+                  component={() => <h1 className="title">Admin page</h1>}
+                />
+
+                {/* page not found */}
+                <Route
+                  component={() => <h1 className="title">Page not found</h1>}
+                />
+              </Switch>
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }
