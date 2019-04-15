@@ -55,4 +55,13 @@ const GET_USER_MUTATION = gql`
   }
 `;
 
-export { GET_USER_MUTATION, SIGNUP_MUTATION };
+/**
+ * Log the user out.
+ */
+const LOGOUT_USER_MUTATION = gql`
+  mutation LOGOUT_USER_MUTATION {
+    logout @client
+  }
+`;
+
+export { GET_USER_MUTATION, LOGOUT_USER_MUTATION, SIGNUP_MUTATION };

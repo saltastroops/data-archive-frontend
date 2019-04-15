@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
@@ -8,6 +8,7 @@ import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import { LOGOUT_USER_MUTATION } from "./graphql/Mutations";
 import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
@@ -65,11 +66,8 @@ class App extends React.Component<any, any> {
     searchForm: {}
   };
 
-  logout = () => {
-    this.setState(() => ({
-      ...this.state,
-      user: undefined
-    }));
+  logout = async (userLogout: any) => {
+    await userLogout();
   };
 
   public render() {
@@ -91,7 +89,19 @@ class App extends React.Component<any, any> {
 
           return (
             <>
-              <NavigationBar user={currentUser} logout={this.logout} />
+              <Mutation
+                mutation={LOGOUT_USER_MUTATION}
+                refetchQueries={[{ query: USER_QUERY }]}
+              >
+                {userLogout => {
+                  return (
+                    <NavigationBar
+                      user={currentUser}
+                      logout={() => this.logout(userLogout)}
+                    />
+                  );
+                }}
+              </Mutation>
 
               <Switch>
                 {/* search page */}

@@ -5,7 +5,7 @@ export const typeDefs = gql`
   """
   User query which returns the user's content.
   """
-  extend type Query {
+  type Query {
     """
     User.
     """
@@ -14,9 +14,14 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Logging in the user provided correct credentials.
+    The user logging in mutation provided correct credentials.
     """
     login(username: String, password: String): Boolean
+
+    """
+    The user logging out mutation
+    """
+    logout: Boolean
   }
 
   """
@@ -69,7 +74,7 @@ export const resolvers = {
      *
      * It returns a boolean.
      * Where true indicates that the user successfuly logged in
-     * and a false indicating the user logging in did not succeed.
+     * and a false otherwise.
      */
     login: async (_: any, variables: any, { cache }: any) => {
       const login = await api.login({
@@ -79,6 +84,21 @@ export const resolvers = {
 
       // true if successful, false otherwise.
       return login.data.success;
+    },
+
+    /**
+     * A logout mutation.
+     * It logging the user out
+     *
+     * It returns a boolean.
+     * Where true indicates that the user successfuly logged in
+     * and a false otherwise.
+     */
+    logout: async (_: any, variables: any, { cache }: any) => {
+      const logout = await api.logout();
+
+      // true if successful, false otherwise.
+      return logout.data.success;
     }
   }
 };
