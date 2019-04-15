@@ -137,7 +137,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     this.setState(() => (this.props.cache as any) || {});
   }
 
-  handleSubmit = async (e: React.FormEvent<EventTarget>, getUser: any) => {
+  handleSubmit = async (e: React.FormEvent<EventTarget>, login: any) => {
     e.preventDefault();
 
     // Validate the user input fields
@@ -151,11 +151,11 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     }
 
     try {
-      const login = await getUser({
+      const logUserIn = await login({
         variables: { ...this.state.userInput }
       });
 
-      if (login.data.login) {
+      if (logUserIn.data.login) {
         this.updateState({
           errors: {
             password: "",
@@ -208,14 +208,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
         mutation={LOGIN_MUTATION}
         refetchQueries={[{ query: USER_QUERY }]}
       >
-        {(login, { loading }) => {
+        {(login, { loading, error }) => {
           return (
             <LoginFormParent
               data-test={"form"}
               onSubmit={e => this.handleSubmit(e, login)}
             >
               <Heading>Login to the Data Archive</Heading>
-              {errors.responseError ? (
+              {error ? (
                 <ErrorMessage>{errors.responseError}</ErrorMessage>
               ) : null}
 

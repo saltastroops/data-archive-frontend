@@ -8,13 +8,12 @@ import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
-import { LOGOUT_MUTATION } from "./graphql/Mutations";
 import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
   familyName: string;
   givenName: string;
-  isAdmin: () => boolean;
+  isAdmin: boolean;
 }
 
 interface IProtectedRouteProps {
@@ -79,22 +78,15 @@ class App extends React.Component<any, any> {
               ? {
                   familyName: data.user.familyName,
                   givenName: data.user.givenName,
-                  isAdmin: () => false
+                  isAdmin: data.user.roles.some(
+                    (role: string) => role === "ADMIN"
+                  )
                 }
               : null;
 
           return (
             <>
-              <Mutation
-                mutation={LOGOUT_MUTATION}
-                refetchQueries={[{ query: USER_QUERY }]}
-              >
-                {userLogout => {
-                  return (
-                    <NavigationBar user={currentUser} logout={userLogout} />
-                  );
-                }}
-              </Mutation>
+              <NavigationBar user={currentUser} />
 
               <Switch>
                 {/* search page */}
