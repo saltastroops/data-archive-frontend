@@ -3,7 +3,7 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import { GET_USER_MUTATION } from "../graphql/Mutations";
+import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
 
@@ -137,7 +137,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     this.setState(() => (this.props.cache as any) || {});
   }
 
-  onHandleSubmit = async (e: React.FormEvent<EventTarget>, getUser: any) => {
+  handleSubmit = async (e: React.FormEvent<EventTarget>, getUser: any) => {
     e.preventDefault();
 
     // Validate the user input fields
@@ -151,11 +151,11 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     }
 
     try {
-      const loggedInUser = await getUser({
+      const login = await getUser({
         variables: { ...this.state.userInput }
       });
 
-      if (loggedInUser.data.login) {
+      if (login.data.login) {
         this.updateState({
           errors: {
             password: "",
@@ -185,7 +185,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    // Updating the userInput property of the state when input field value updates
+    // Update the userInput property of the state when input field values change
     this.updateState({
       userInput: {
         ...this.state.userInput,
@@ -205,14 +205,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
 
     return (
       <Mutation
-        mutation={GET_USER_MUTATION}
+        mutation={LOGIN_MUTATION}
         refetchQueries={[{ query: USER_QUERY }]}
       >
-        {(getUser, { loading }) => {
+        {(login, { loading }) => {
           return (
             <LoginFormParent
               data-test={"form"}
-              onSubmit={e => this.onHandleSubmit(e, getUser)}
+              onSubmit={e => this.handleSubmit(e, login)}
             >
               <Heading>Login to the Data Archive</Heading>
               {errors.responseError ? (

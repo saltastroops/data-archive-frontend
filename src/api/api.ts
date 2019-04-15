@@ -8,8 +8,17 @@ import { baseAxiosClient } from "./";
  */
 export default {
   /**
-   * login
-   *   A function responsible for authenticating the user.
+   * Log the user in.
+   *
+   * Parameters:
+   * -----------
+   * credentials:
+   *     The authentication credentials. They must contain the username and
+   *     password.
+   *
+   * Returns:
+   * --------
+   * true if the user has been logged in, false otherwise.
    */
   login: async (credentials: { password: string; username: string }) => {
     return baseAxiosClient().post("/auth/login", {
@@ -19,8 +28,11 @@ export default {
   },
 
   /**
-   * logout
-   *   A function responsible for logging out the user.
+   * Log the user out.
+   *
+   * Returns:
+   * --------
+   * true if the user has been logged out, false otherwise.
    */
   logout: async () => {
     return baseAxiosClient().post("/auth/logout", {});

@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router";
 import wait from "waait";
 import App from "../App";
 import LoginForm from "../components/LoginForm";
-import { GET_USER_MUTATION } from "../graphql/Mutations";
+import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import click from "../util/click";
 
@@ -33,7 +33,7 @@ const updatedState = {
 const mocks = [
   {
     request: {
-      query: GET_USER_MUTATION,
+      query: LOGIN_MUTATION,
       variables: {
         ...updatedState.userInput
       }
@@ -76,7 +76,7 @@ describe("LoginForm Component", () => {
     expect(toJson(form)).toMatchSnapshot();
   });
 
-  it("displays no errors if submitted inputs are all valid", async () => {
+  it("displays a loading message and no errors if the submitted inputs are all valid", async () => {
     // LoginForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
@@ -89,33 +89,34 @@ describe("LoginForm Component", () => {
     // LoginForm component instance
     const instance = wrapper.find("LoginForm").instance() as any;
 
-    // Simulate state change when the username input field value changes.
+    // Simulate state change when the username input field value changes
     inputTyping(wrapper, "username", "sj");
 
-    // Simulate state change when the password input field value changes.
+    // Simulate state change when the password input field value changes
     inputTyping(wrapper, "password", "securepassword");
 
-    // Expect the properties username and password of the state to have been updated with the correct value.
+    // Expect the properties username and password of the state to have been updated with the correct value
     expect(instance.state.userInput).toMatchObject({
       password: "securepassword",
       username: "sj"
     });
 
     const signInButton = wrapper.find('[data-test="signIn"]');
+
     // Expect the button to not be clicked
     expect(signInButton.text()).toContain("Sign in");
 
-    // Simulate the submiting of the form.
+    // Simulate the form submission
     signInButton.simulate("submit");
 
-    // Expect the button to have beeen clicked
+    // Expect the button to have been clicked
     expect(signInButton.text()).toContain("Signing in");
 
     // Expect no error message.
     expect(wrapper.find("p").length).toBe(0);
   });
 
-  it("displays error message if submitted invalid username", async () => {
+  it("displays an error message if the submitted username is invalid", async () => {
     // LoginForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
@@ -139,7 +140,8 @@ describe("LoginForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     const signInButton = wrapper.find('[data-test="signIn"]');
-    // Simulate the submiting of the form.
+
+    // Simulate the form submission
     signInButton.simulate("submit");
 
     // Expect the button to have beeen clicked
@@ -148,13 +150,13 @@ describe("LoginForm Component", () => {
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
 
-    // Expect meaningful error message
+    // Expect a meaningful error message
     expect(wrapper.find("p").text()).toContain("Username");
     expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
-  it("displays error message if submitted invalid password", () => {
-    // LoginForm component wrapper.
+  it("displays an error message if the submitted password is invalid", () => {
+    // LoginForm component wrapper
     const wrapper = mount(
       <MockedProvider>
         <LoginForm />
@@ -177,16 +179,17 @@ describe("LoginForm Component", () => {
     expect(setState.mock.calls.length).toBe(1);
 
     const signInButton = wrapper.find('[data-test="signIn"]');
-    // Simulate the submiting of the form
+
+    // Simulate the form submission
     signInButton.simulate("submit");
 
-    // Expect the button to have beeen clicked
+    // Expect no loading status.
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.
     expect(wrapper.find("p").length).toBe(1);
 
-    // Expect meaningful error message
+    // Expect a meaningful error message
     expect(
       wrapper
         .find("p")

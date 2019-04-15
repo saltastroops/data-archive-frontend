@@ -24,9 +24,9 @@ import styled from "styled-components";
 // TODO: replace user type with correct one
 interface INavigationBarProps {
   user?: {
+    familyName: string;
+    givenName: string;
     isAdmin: () => boolean;
-    name: string;
-    username: string;
   } | null; // currently logged in user
   logout: () => void; // logout function
 }
@@ -118,7 +118,7 @@ class NavigationBar extends React.Component<
               {/* Dropdown menu for account related content */}
               {user && (
                 <div className="navbar-item has-dropdown is-hoverable">
-                  <a className="navbar-link">Hello {`${user.name}`}</a>
+                  <a className="navbar-link">Hello {`${user.givenName}`}</a>
 
                   <div className="navbar-dropdown">
                     {/* Link to page for editing account details */}

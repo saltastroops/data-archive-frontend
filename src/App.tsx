@@ -8,12 +8,12 @@ import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
-import { LOGOUT_USER_MUTATION } from "./graphql/Mutations";
+import { LOGOUT_MUTATION } from "./graphql/Mutations";
 import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
-  name: string;
-  username: string;
+  familyName: string;
+  givenName: string;
   isAdmin: () => boolean;
 }
 
@@ -66,10 +66,6 @@ class App extends React.Component<any, any> {
     searchForm: {}
   };
 
-  logout = async (userLogout: any) => {
-    await userLogout();
-  };
-
   public render() {
     return (
       <Query query={USER_QUERY}>
@@ -81,24 +77,21 @@ class App extends React.Component<any, any> {
           const currentUser =
             data && data.user
               ? {
-                  isAdmin: () => false,
-                  name: data.user.givenName,
-                  username: data.user.familyName
+                  familyName: data.user.familyName,
+                  givenName: data.user.givenName,
+                  isAdmin: () => false
                 }
               : null;
 
           return (
             <>
               <Mutation
-                mutation={LOGOUT_USER_MUTATION}
+                mutation={LOGOUT_MUTATION}
                 refetchQueries={[{ query: USER_QUERY }]}
               >
                 {userLogout => {
                   return (
-                    <NavigationBar
-                      user={currentUser}
-                      logout={() => this.logout(userLogout)}
-                    />
+                    <NavigationBar user={currentUser} logout={userLogout} />
                   );
                 }}
               </Mutation>
@@ -135,7 +128,9 @@ class App extends React.Component<any, any> {
                   component={() => (
                     <h1 className="title">
                       {currentUser
-                        ? `${currentUser.name} ${currentUser.username} Account`
+                        ? `${currentUser.givenName} ${
+                            currentUser.familyName
+                          } Account`
                         : "No User"}
                     </h1>
                   )}

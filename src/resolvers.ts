@@ -2,24 +2,21 @@ import gql from "graphql-tag";
 import api from "./api/api";
 
 export const typeDefs = gql`
-  """
-  User query which returns the user's content.
-  """
   type Query {
     """
-    User.
+    The currently logged in user.
     """
     user: User
   }
 
   extend type Mutation {
     """
-    The user logging in mutation provided correct credentials.
+    Log the user in.
     """
     login(username: String, password: String): Boolean
 
     """
-    The user logging out mutation
+    Log the user out.
     """
     logout: Boolean
   }
@@ -62,24 +59,30 @@ export const typeDefs = gql`
 export const resolvers = {
   Mutation: {
     /**
-     * A login mutation.
-     * It authenticate and log the user in provided
-     * a user submit correct credentials.
+     * Login mutation.
      *
-     * The following arguments are required
-     * password
-     *    The correct user password
+     * It uses the API to authenticate and log the user in. If this is done
+     * successfully, true is returned; otherwise the return value is false.
+     *
+     * Parameters:
+     * -----------
      * username
-     *    The coreect user username
+     *    The username.
+     * password
+     *    The password.
      *
-     * It returns a boolean.
-     * Where true indicates that the user successfuly logged in
-     * and a false otherwise.
+     * Returns:
+     * --------
+     * true if the user has been logged in, false otherwise.
      */
-    login: async (_: any, variables: any, { cache }: any) => {
+    login: async (
+      _: any,
+      { username, password }: { username: string; password: string },
+      { cache }: any
+    ) => {
       const login = await api.login({
-        password: variables.password,
-        username: variables.username
+        password,
+        username
       });
 
       // true if successful, false otherwise.
@@ -87,14 +90,15 @@ export const resolvers = {
     },
 
     /**
-     * A logout mutation.
-     * It logging the user out
+     * Logout mutation.
      *
-     * It returns a boolean.
-     * Where true indicates that the user successfuly logged in
-     * and a false otherwise.
+     * It uses the API to log the user out.
+     *
+     * Returns:
+     * --------
+     * true if the user has been logged out, false otherwise.
      */
-    logout: async (_: any, variables: any, { cache }: any) => {
+    logout: async () => {
       const logout = await api.logout();
 
       // true if successful, false otherwise.
