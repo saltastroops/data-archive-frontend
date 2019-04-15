@@ -498,7 +498,6 @@ class SearchResultsTable extends React.Component<
     sortBy: string,
     sortDirection: SortDirectionType
   ) => {
-    console.log(sortBy, sortDirection);
     if (sortBy) {
       const comparator = (a: IRowDatum, b: IRowDatum) =>
         cmp(a, b, sortBy, sortDirection);

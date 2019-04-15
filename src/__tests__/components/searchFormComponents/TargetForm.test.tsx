@@ -2,6 +2,7 @@ import { mount, ReactWrapper, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import TargetForm from "../../../components/searchFormComponents/TargetForm";
+import { TargetType } from "../../../utils/TargetType";
 
 describe("TargetForm", () => {
   const onChange = jest.fn();
@@ -14,7 +15,8 @@ describe("TargetForm", () => {
         target={{
           errors: {},
           resolver: "Simbad",
-          searchConeRadiusUnits: "arcseconds"
+          searchConeRadiusUnits: "arcseconds",
+          targetTypes: new Set<TargetType>()
         }}
         onChange={onChange}
       />
@@ -35,7 +37,8 @@ describe("TargetForm", () => {
             target={{
               errors: {},
               resolver: "Simbad",
-              searchConeRadiusUnits: "arcseconds"
+              searchConeRadiusUnits: "arcseconds",
+              targetTypes: new Set<TargetType>()
             }}
             onChange={onChange}
           />
@@ -51,7 +54,8 @@ describe("TargetForm", () => {
               errors: {},
               name: "NGC 1234",
               resolver: "Simbad",
-              searchConeRadiusUnits: "arcseconds"
+              searchConeRadiusUnits: "arcseconds",
+              targetTypes: new Set<TargetType>()
             }}
             onChange={onChange}
           />
@@ -69,7 +73,8 @@ describe("TargetForm", () => {
               },
               resolver: "Simbad",
               searchConeRadius: "12.1",
-              searchConeRadiusUnits: "arcminutes"
+              searchConeRadiusUnits: "arcminutes",
+              targetTypes: new Set<TargetType>()
             }}
             onChange={onChange}
           />
@@ -98,7 +103,8 @@ describe("TargetForm", () => {
       errors: { rightAscension: "" },
       resolver: "Simbad",
       rightAscension: "123.1",
-      searchConeRadiusUnits: "arcseconds"
+      searchConeRadiusUnits: "arcseconds",
+      targetTypes: new Set<TargetType>()
     });
 
     value = "";
@@ -108,7 +114,8 @@ describe("TargetForm", () => {
       errors: { rightAscension: "" },
       resolver: "Simbad",
       rightAscension: "",
-      searchConeRadiusUnits: "arcseconds"
+      searchConeRadiusUnits: "arcseconds",
+      targetTypes: new Set<TargetType>()
     });
 
     value = undefined;
@@ -118,7 +125,8 @@ describe("TargetForm", () => {
       errors: { rightAscension: "" },
       resolver: "Simbad",
       rightAscension: "",
-      searchConeRadiusUnits: "arcseconds"
+      searchConeRadiusUnits: "arcseconds",
+      targetTypes: new Set<TargetType>()
     });
   });
 

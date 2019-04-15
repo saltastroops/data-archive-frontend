@@ -71,7 +71,7 @@ exports[`Bvit  should render correctly 1`] = `
                   },
                 ],
                 "componentStyle": ComponentStyle {
-                  "componentId": "sc-htoDjs",
+                  "componentId": "sc-dnqmqq",
                   "isStatic": true,
                   "lastClassName": "c1",
                   "rules": Array [
@@ -86,7 +86,7 @@ exports[`Bvit  should render correctly 1`] = `
                 "displayName": "styled.div",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "sc-htoDjs",
+                "styledComponentId": "sc-dnqmqq",
                 "target": "div",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -149,7 +149,7 @@ exports[`Bvit  should render correctly 1`] = `
                   },
                 ],
                 "componentStyle": ComponentStyle {
-                  "componentId": "sc-htoDjs",
+                  "componentId": "sc-dnqmqq",
                   "isStatic": true,
                   "lastClassName": "c1",
                   "rules": Array [
@@ -164,7 +164,7 @@ exports[`Bvit  should render correctly 1`] = `
                 "displayName": "styled.div",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "sc-htoDjs",
+                "styledComponentId": "sc-dnqmqq",
                 "target": "div",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],

@@ -1,15 +1,22 @@
 import * as React from "react";
 import targetPosition from "target-position";
 import { ITarget } from "../../utils/ObservationQueryParameters";
+import { TargetType } from "../../utils/TargetType";
 import {
   validateDeclination,
   validateName,
   validateRightAscension,
   validateSearchConeRadius
 } from "../../utils/validators";
-import { InnerMainGrid, MainGrid, SubGrid } from "../basicComponents/Grids";
+import {
+  InnerMainGrid,
+  MainGrid,
+  SingleColumnGrid,
+  SubGrid
+} from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
+import TargetTypesSelector from "./TargetTypesSelector";
 
 interface ITargetFormProps {
   target: ITarget;
@@ -79,17 +86,26 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
     const { loading } = this.state;
 
     // Function for handling changes made to the search parameters
-    const targetChange = (
+    const handleChangeEvent = (
       e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
     ) => {
       const name = e.target.name;
       const value = e.target.value || "";
+      targetChange(name, value);
+    };
+
+    // Function for handling target type changes
+    const handleTargetTypeChange = (targetTypes: Set<TargetType>) => {
+      targetChange("targetTypes", targetTypes);
+    };
+
+    const targetChange = (property: string, value: any) => {
       onChange({
         ...target,
-        [name]: value,
+        [property]: value,
         errors: {
           ...target.errors,
-          [name]: ""
+          [property]: ""
         }
       });
     };
@@ -106,7 +122,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"name"}
               value={target.name || ""}
               error={target.errors.name}
-              onChange={targetChange}
+              onChange={handleChangeEvent}
             />
           </SubGrid>
           <SubGrid>
@@ -117,7 +133,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                   data-test={"resolver-select"}
                   name={"resolver"}
                   value={target.resolver}
-                  onChange={targetChange}
+                  onChange={handleChangeEvent}
                 >
                   <option value="Simbad">Simbad</option>
                   <option value="NED">NED</option>
@@ -149,7 +165,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               disabled={loading}
               name={"rightAscension"}
               value={target.rightAscension || ""}
-              onChange={targetChange}
+              onChange={handleChangeEvent}
               error={target.errors.rightAscension}
             />
           </SubGrid>
@@ -160,7 +176,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               disabled={loading}
               name={"declination"}
               value={target.declination || ""}
-              onChange={targetChange}
+              onChange={handleChangeEvent}
               error={target.errors.declination}
             />
           </SubGrid>
@@ -172,7 +188,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               data-test="search-cone-radius-input"
               name={"searchConeRadius"}
               value={target.searchConeRadius || ""}
-              onChange={targetChange}
+              onChange={handleChangeEvent}
               error={target.errors.searchConeRadius}
             />
           </SubGrid>
@@ -181,7 +197,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <SelectField
               data-test="radius-units-select"
               name={"radiusUnits"}
-              onChange={targetChange}
+              onChange={handleChangeEvent}
               value={target.searchConeRadiusUnits}
             >
               <option value="arcseconds">Arcseconds</option>
@@ -190,6 +206,16 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             </SelectField>
           </SubGrid>
         </MainGrid>
+
+        <SingleColumnGrid>
+          <SubGrid>
+            <p>Target type</p>
+            <TargetTypesSelector
+              onChange={handleTargetTypeChange}
+              targetTypes={target.targetTypes}
+            />
+          </SubGrid>
+        </SingleColumnGrid>
       </>
     );
   }

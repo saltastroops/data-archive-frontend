@@ -366,7 +366,7 @@ exports[`Grids  should render all grids correctly 8`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-htoDjs",
+          "componentId": "sc-dnqmqq",
           "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
@@ -381,7 +381,7 @@ exports[`Grids  should render all grids correctly 8`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-htoDjs",
+        "styledComponentId": "sc-dnqmqq",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

@@ -1,0 +1,592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TargetTypesSelector should render correctly with no target types 1`] = `
+.c1.c1 {
+  width: 18px;
+  height: 18px;
+}
+
+.c0.c0 {
+  margin-top: 5px;
+}
+
+.c0 label {
+  padding-right: 10px;
+}
+
+<TargetTypesSelector
+  onChange={[MockFunction]}
+  targetTypes={Set {}}
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bwzfXH",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    margin-top: 5px;
+  }
+
+  label {
+    padding-right: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bwzfXH",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="c0"
+      >
+        <label>
+          <styled.input
+            checked={false}
+            data-test="galaxy"
+            onChange={[Function]}
+            value="10"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="galaxy"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="10"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="galaxy"
+                onChange={[Function]}
+                type="checkbox"
+                value="10"
+              />
+            </StyledComponent>
+          </styled.input>
+          Galaxy
+        </label>
+        <label>
+          <styled.input
+            checked={false}
+            data-test="ism"
+            onChange={[Function]}
+            value="20"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="ism"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="20"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="ism"
+                onChange={[Function]}
+                type="checkbox"
+                value="20"
+              />
+            </StyledComponent>
+          </styled.input>
+          ISM
+        </label>
+        <label>
+          <styled.input
+            checked={false}
+            data-test="solar-system-body"
+            onChange={[Function]}
+            value="30"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="solar-system-body"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="30"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="solar-system-body"
+                onChange={[Function]}
+                type="checkbox"
+                value="30"
+              />
+            </StyledComponent>
+          </styled.input>
+          Solar System Body
+        </label>
+        <label>
+          <styled.input
+            checked={false}
+            data-test="star"
+            onChange={[Function]}
+            value="40"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="star"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="40"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="star"
+                onChange={[Function]}
+                type="checkbox"
+                value="40"
+              />
+            </StyledComponent>
+          </styled.input>
+          Star
+        </label>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</TargetTypesSelector>
+`;
+
+exports[`TargetTypesSelector should render correctly with target types 1`] = `
+.c1.c1 {
+  width: 18px;
+  height: 18px;
+}
+
+.c0.c0 {
+  margin-top: 5px;
+}
+
+.c0 label {
+  padding-right: 10px;
+}
+
+<TargetTypesSelector
+  onChange={[MockFunction]}
+  targetTypes={
+    Set {
+      "10",
+      "20",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bwzfXH",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    margin-top: 5px;
+  }
+
+  label {
+    padding-right: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bwzfXH",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="c0"
+      >
+        <label>
+          <styled.input
+            checked={true}
+            data-test="galaxy"
+            onChange={[Function]}
+            value="10"
+          >
+            <StyledComponent
+              checked={true}
+              data-test="galaxy"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="10"
+            >
+              <input
+                checked={true}
+                className="checkbox c1"
+                data-test="galaxy"
+                onChange={[Function]}
+                type="checkbox"
+                value="10"
+              />
+            </StyledComponent>
+          </styled.input>
+          Galaxy
+        </label>
+        <label>
+          <styled.input
+            checked={true}
+            data-test="ism"
+            onChange={[Function]}
+            value="20"
+          >
+            <StyledComponent
+              checked={true}
+              data-test="ism"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="20"
+            >
+              <input
+                checked={true}
+                className="checkbox c1"
+                data-test="ism"
+                onChange={[Function]}
+                type="checkbox"
+                value="20"
+              />
+            </StyledComponent>
+          </styled.input>
+          ISM
+        </label>
+        <label>
+          <styled.input
+            checked={false}
+            data-test="solar-system-body"
+            onChange={[Function]}
+            value="30"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="solar-system-body"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="30"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="solar-system-body"
+                onChange={[Function]}
+                type="checkbox"
+                value="30"
+              />
+            </StyledComponent>
+          </styled.input>
+          Solar System Body
+        </label>
+        <label>
+          <styled.input
+            checked={false}
+            data-test="star"
+            onChange={[Function]}
+            value="40"
+          >
+            <StyledComponent
+              checked={false}
+              data-test="star"
+              forwardedComponent={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "attrs": Array [
+                    Object {
+                      "className": "checkbox",
+                      "type": "checkbox",
+                    },
+                  ],
+                  "componentStyle": ComponentStyle {
+                    "componentId": "sc-bdVaJa",
+                    "isStatic": true,
+                    "lastClassName": "c1",
+                    "rules": Array [
+                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                    ],
+                  },
+                  "displayName": "styled.input",
+                  "foldedComponentIds": Array [],
+                  "render": [Function],
+                  "styledComponentId": "sc-bdVaJa",
+                  "target": "input",
+                  "toString": [Function],
+                  "warnTooManyClasses": [Function],
+                  "withComponent": [Function],
+                }
+              }
+              forwardedRef={null}
+              onChange={[Function]}
+              value="40"
+            >
+              <input
+                checked={false}
+                className="checkbox c1"
+                data-test="star"
+                onChange={[Function]}
+                type="checkbox"
+                value="40"
+              />
+            </StyledComponent>
+          </styled.input>
+          Star
+        </label>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</TargetTypesSelector>
+`;

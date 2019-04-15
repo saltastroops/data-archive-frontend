@@ -1,5 +1,7 @@
 // TypeScript interfaces describing the state of the search form
 
+import { TargetType } from "./TargetType";
+
 /**
  * An interface describing the React state of the observation query form.
  *
@@ -95,6 +97,18 @@ export type SearchConeRadiusUnits = "arcseconds" | "arcminutes" | "degrees";
  *     Units of the search cone radius given by searchConeRadius.
  *
  */
+export interface ITarget {
+  declination?: string;
+  errors: ITargetErrors;
+  loading?: string;
+  name?: string;
+  resolver: TargetResolver;
+  rightAscension?: string;
+  searchConeRadius?: string;
+  searchConeRadiusUnits: SearchConeRadiusUnits;
+  targetTypes: Set<TargetType>;
+}
+
 export interface ITargetErrors {
   name?: string;
   declination?: string;
@@ -102,16 +116,7 @@ export interface ITargetErrors {
   rightAscension?: string;
   searchConeRadius?: string;
   searchConeRadiusUnits?: string;
-}
-export interface ITarget {
-  declination?: string;
-  loading?: string;
-  errors: ITargetErrors;
-  name?: string;
-  resolver: TargetResolver;
-  rightAscension?: string;
-  searchConeRadius?: string;
-  searchConeRadiusUnits: SearchConeRadiusUnits;
+  targetTypes?: string;
 }
 
 // TELESCOPES
@@ -247,22 +252,63 @@ export interface ISalticam extends IInstrument {
  *     Errors.
  * exposureTime:
  *     Exposure time.
- * filter:
- *     Filter.
+ * mode:
+ *     Instrument mode specific details.
  * name:
  *     The string "RSS".
  */
 export interface IRSS extends IInstrument {
-  detectorMode?: "Normal" | "Slot Mode";
+  detectorMode?: RSSDetectorMode;
   errors: {
     detectorMode?: string;
-    exposureTime?: string;
-    filter?: string;
+    mode?: string;
   };
-  exposureTime?: string;
-  filter?: string;
+  mode?: IRSSMode;
   name: "RSS";
 }
+
+export interface IRSSMode {
+  errors: {
+    fabryPerotMode?: RSSFabryPerotMode;
+    grating?: RSSGrating;
+    polarimetryMode?: RSSPolarimetryMode;
+  };
+  fabryPerotMode?: RSSFabryPerotMode;
+  grating?: RSSGrating;
+  name: RSSInstrumentMode;
+  polarimetryMode?: RSSPolarimetryMode;
+}
+
+export type RSSDetectorMode = "Normal" | "Slot Mode" | "";
+
+export type RSSGrating =
+  | "Open"
+  | "pg0300"
+  | "pg0900"
+  | "pg1300"
+  | "pg1800"
+  | "pg2300"
+  | "pg3000"
+  | "";
+
+export type RSSInstrumentMode =
+  | "Fabry Perot"
+  | "FP polarimetry"
+  | "Imaging"
+  | "Polarimetric imaging"
+  | "MOS"
+  | "MOS polarimetry"
+  | "Spectropolarimetry"
+  | "Spectroscopy";
+
+export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF" | "";
+
+export type RSSPolarimetryMode =
+  | "All Stokes"
+  | "Circular"
+  | "Linear"
+  | "Linear Hi"
+  | "";
 
 /**
  * An interface for query parameters related to HRS.

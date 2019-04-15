@@ -125,6 +125,17 @@ exports[`TargetForm should render correctly 1`] = `
       </SelectField>
     </styled.div>
   </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target type
+      </p>
+      <TargetTypesSelector
+        onChange={[Function]}
+        targetTypes={Set {}}
+      />
+    </styled.div>
+  </styled.div>
 </Fragment>
 `;
 
@@ -251,6 +262,17 @@ exports[`TargetForm should render correctly 2`] = `
           Degrees
         </option>
       </SelectField>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target type
+      </p>
+      <TargetTypesSelector
+        onChange={[Function]}
+        targetTypes={Set {}}
+      />
     </styled.div>
   </styled.div>
 </Fragment>
@@ -380,6 +402,17 @@ exports[`TargetForm should render correctly 3`] = `
           Degrees
         </option>
       </SelectField>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <p>
+        Target type
+      </p>
+      <TargetTypesSelector
+        onChange={[Function]}
+        targetTypes={Set {}}
+      />
     </styled.div>
   </styled.div>
 </Fragment>

@@ -63,6 +63,16 @@ const MainGrid = styled.div.attrs({
   }
 `;
 
+const SingleColumnGrid = styled.div.attrs({
+  className: "single-column-grid"
+})`
+  && {
+    display: grid;
+    grid-template-columns: 100%;
+    padding: 10px;
+  }
+`;
+
 const InnerMainGrid = styled.div.attrs({
   className: "inner-main-grid"
 })`
@@ -104,6 +114,7 @@ const Spinner = () => <div className="signal" />;
 export {
   ParentGrid,
   ProposalGrid,
+  SingleColumnGrid,
   TelescopeGrid,
   DataGrid,
   TargetGrid,

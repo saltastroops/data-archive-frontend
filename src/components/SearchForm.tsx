@@ -7,6 +7,7 @@ import {
   ITarget,
   ITelescope
 } from "../utils/ObservationQueryParameters";
+import { TargetType } from "../utils/TargetType";
 import { isError } from "../utils/validators";
 import {
   ButtonGrid,
@@ -56,7 +57,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       errors: {},
       resolver: "Simbad",
       searchConeRadius: "",
-      searchConeRadiusUnits: "arcseconds"
+      searchConeRadiusUnits: "arcseconds",
+      targetTypes: new Set<TargetType>()
     }
   };
 

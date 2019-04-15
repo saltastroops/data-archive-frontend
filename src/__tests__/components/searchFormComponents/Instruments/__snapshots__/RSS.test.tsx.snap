@@ -1,5 +1,2599 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RSS  Imaging should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "name": "Imaging",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
+exports[`RSS  MOS polarimetry should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "grating": "pg0900",
+        "name": "MOS polarimetry",
+        "polarimetryMode": "All Stokes",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Grating
+              </p>
+              <GratingSelect
+                grating="pg0900"
+                onChange={[Function]}
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="pg0900"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="pg0900"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Open"
+                      >
+                        Open
+                      </option>
+                      <option
+                        value="pg0300"
+                      >
+                        PG0300
+                      </option>
+                      <option
+                        value="pg0900"
+                      >
+                        PG0900
+                      </option>
+                      <option
+                        value="pg1300"
+                      >
+                        PG1300
+                      </option>
+                      <option
+                        value="pg1800"
+                      >
+                        PG1800
+                      </option>
+                      <option
+                        value="pg2300"
+                      >
+                        PG2300
+                      </option>
+                      <option
+                        value="ph3000"
+                      >
+                        PG3000
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </GratingSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Polarimetry mode
+              </p>
+              <PolarimetryModeSelect
+                onChange={[Function]}
+                polarimetryMode="All Stokes"
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="All Stokes"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="All Stokes"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Linear"
+                      >
+                        Linear
+                      </option>
+                      <option
+                        value="Linear Hi"
+                      >
+                        Linear Hi
+                      </option>
+                      <option
+                        value="Circular"
+                      >
+                        Circular
+                      </option>
+                      <option
+                        value="All Stokes"
+                      >
+                        All Stokes
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </PolarimetryModeSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
+exports[`RSS  MOS should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "grating": "pg0900",
+        "name": "MOS",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Grating
+              </p>
+              <GratingSelect
+                grating="pg0900"
+                onChange={[Function]}
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="pg0900"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="pg0900"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Open"
+                      >
+                        Open
+                      </option>
+                      <option
+                        value="pg0300"
+                      >
+                        PG0300
+                      </option>
+                      <option
+                        value="pg0900"
+                      >
+                        PG0900
+                      </option>
+                      <option
+                        value="pg1300"
+                      >
+                        PG1300
+                      </option>
+                      <option
+                        value="pg1800"
+                      >
+                        PG1800
+                      </option>
+                      <option
+                        value="pg2300"
+                      >
+                        PG2300
+                      </option>
+                      <option
+                        value="ph3000"
+                      >
+                        PG3000
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </GratingSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
+exports[`RSS  Polarimetric imaging should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "name": "Polarimetric imaging",
+        "polarimetryMode": "Circular",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Polarimetry mode
+              </p>
+              <PolarimetryModeSelect
+                onChange={[Function]}
+                polarimetryMode="Circular"
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="Circular"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="Circular"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Linear"
+                      >
+                        Linear
+                      </option>
+                      <option
+                        value="Linear Hi"
+                      >
+                        Linear Hi
+                      </option>
+                      <option
+                        value="Circular"
+                      >
+                        Circular
+                      </option>
+                      <option
+                        value="All Stokes"
+                      >
+                        All Stokes
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </PolarimetryModeSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
+exports[`RSS  Spectropolarimetry should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "grating": "pg3000",
+        "name": "Spectropolarimetry",
+        "polarimetryMode": "Linear Hi",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Grating
+              </p>
+              <GratingSelect
+                grating="pg3000"
+                onChange={[Function]}
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="pg3000"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="pg3000"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Open"
+                      >
+                        Open
+                      </option>
+                      <option
+                        value="pg0300"
+                      >
+                        PG0300
+                      </option>
+                      <option
+                        value="pg0900"
+                      >
+                        PG0900
+                      </option>
+                      <option
+                        value="pg1300"
+                      >
+                        PG1300
+                      </option>
+                      <option
+                        value="pg1800"
+                      >
+                        PG1800
+                      </option>
+                      <option
+                        value="pg2300"
+                      >
+                        PG2300
+                      </option>
+                      <option
+                        value="ph3000"
+                      >
+                        PG3000
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </GratingSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Polarimetry mode
+              </p>
+              <PolarimetryModeSelect
+                onChange={[Function]}
+                polarimetryMode="Linear Hi"
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="Linear Hi"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="Linear Hi"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Linear"
+                      >
+                        Linear
+                      </option>
+                      <option
+                        value="Linear Hi"
+                      >
+                        Linear Hi
+                      </option>
+                      <option
+                        value="Circular"
+                      >
+                        Circular
+                      </option>
+                      <option
+                        value="All Stokes"
+                      >
+                        All Stokes
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </PolarimetryModeSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
+exports[`RSS  Spectroscopy should render correctly 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<RSS
+  onChange={[MockFunction]}
+  rss={
+    Object {
+      "errors": Object {},
+      "mode": Object {
+        "errors": Object {},
+        "grating": "pg0900",
+        "name": "Spectroscopy",
+      },
+      "name": "RSS",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Mode
+              </p>
+              <SelectField
+                name="mode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="mode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Fabry Perot"
+                      value="Fabry Perot"
+                    >
+                      Fabry Perot
+                    </option>
+                    <option
+                      key="FP polarimetry"
+                      value="FP polarimetry"
+                    >
+                      FP polarimetry
+                    </option>
+                    <option
+                      key="Imaging"
+                      value="Imaging"
+                    >
+                      Imaging
+                    </option>
+                    <option
+                      key="MOS"
+                      value="MOS"
+                    >
+                      MOS
+                    </option>
+                    <option
+                      key="MOS polarimetry"
+                      value="MOS polarimetry"
+                    >
+                      MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
+                    </option>
+                    <option
+                      key="Spectropolarimetry"
+                      value="Spectropolarimetry"
+                    >
+                      Spectropolarimetry
+                    </option>
+                    <option
+                      key="Spectroscopy"
+                      value="Spectroscopy"
+                    >
+                      Spectroscopy
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Shuffle"
+                      value="Shuffle"
+                    >
+                      Shuffle
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Grating
+              </p>
+              <GratingSelect
+                grating="pg0900"
+                onChange={[Function]}
+              >
+                <SelectField
+                  onChange={[Function]}
+                  value="pg0900"
+                >
+                  <div
+                    className="control select "
+                  >
+                    <select
+                      onChange={[Function]}
+                      value="pg0900"
+                    >
+                      <AnyOption>
+                        <option
+                          key="any"
+                          value=""
+                        >
+                          Any
+                        </option>
+                      </AnyOption>
+                      <option
+                        value="Open"
+                      >
+                        Open
+                      </option>
+                      <option
+                        value="pg0300"
+                      >
+                        PG0300
+                      </option>
+                      <option
+                        value="pg0900"
+                      >
+                        PG0900
+                      </option>
+                      <option
+                        value="pg1300"
+                      >
+                        PG1300
+                      </option>
+                      <option
+                        value="pg1800"
+                      >
+                        PG1800
+                      </option>
+                      <option
+                        value="pg2300"
+                      >
+                        PG2300
+                      </option>
+                      <option
+                        value="ph3000"
+                      >
+                        PG3000
+                      </option>
+                    </select>
+                  </div>
+                </SelectField>
+              </GratingSelect>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</RSS>
+`;
+
 exports[`RSS  should render correctly 1`] = `
 .c0.c0 {
   display: grid;
@@ -71,7 +2665,7 @@ exports[`RSS  should render correctly 1`] = `
                   },
                 ],
                 "componentStyle": ComponentStyle {
-                  "componentId": "sc-htoDjs",
+                  "componentId": "sc-dnqmqq",
                   "isStatic": true,
                   "lastClassName": "c1",
                   "rules": Array [
@@ -86,7 +2680,7 @@ exports[`RSS  should render correctly 1`] = `
                 "displayName": "styled.div",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "sc-htoDjs",
+                "styledComponentId": "sc-dnqmqq",
                 "target": "div",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -139,12 +2733,6 @@ exports[`RSS  should render correctly 1`] = `
                       Imaging
                     </option>
                     <option
-                      key="Polarimetric imaging"
-                      value="Polarimetric imaging"
-                    >
-                      Polarimetric imaging
-                    </option>
-                    <option
                       key="MOS"
                       value="MOS"
                     >
@@ -155,6 +2743,12 @@ exports[`RSS  should render correctly 1`] = `
                       value="MOS polarimetry"
                     >
                       MOS polarimetry
+                    </option>
+                    <option
+                      key="Polarimetric imaging"
+                      value="Polarimetric imaging"
+                    >
+                      Polarimetric imaging
                     </option>
                     <option
                       key="Spectropolarimetry"
@@ -185,7 +2779,7 @@ exports[`RSS  should render correctly 1`] = `
                   },
                 ],
                 "componentStyle": ComponentStyle {
-                  "componentId": "sc-htoDjs",
+                  "componentId": "sc-dnqmqq",
                   "isStatic": true,
                   "lastClassName": "c1",
                   "rules": Array [
@@ -200,7 +2794,7 @@ exports[`RSS  should render correctly 1`] = `
                 "displayName": "styled.div",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "sc-htoDjs",
+                "styledComponentId": "sc-dnqmqq",
                 "target": "div",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
