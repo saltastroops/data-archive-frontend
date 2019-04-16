@@ -2,6 +2,7 @@ import * as React from "react";
 import { ChangeEvent } from "react";
 import {
   IRSS,
+  IRSSModes,
   RSSFabryPerotMode,
   RSSGrating,
   RSSInstrumentMode,
@@ -10,6 +11,8 @@ import {
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import PolarimetryModesSelector from "../PolarimetryModesSelector";
+import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import styled from "styled-components";
 
 interface IRssProps {
   rss: IRSS;
@@ -18,11 +21,22 @@ interface IRssProps {
 
 type OnChangeFunction = (value: string) => void;
 
+const ModePropertiesDiv = styled.div`
+  p:not(:first-of-type) {
+    margin-top: 10px;
+  }
+`;
+
 /**
  * A form selecting RSS-related search parameters.
  */
 const RSS = (props: IRssProps) => {
   const { onChange, rss } = props;
+  const modes: IRSSModes = rss.modes || {
+    errors: {},
+    names: new Set<RSSInstrumentMode>()
+  };
+  const modeNames = modes.names || new Set<RSSInstrumentMode>();
 
   const change = (name: string, value: any) => {
     onChange({
@@ -35,29 +49,58 @@ const RSS = (props: IRssProps) => {
    * Handle an instrument change. All properties related to the (previous)
    * instrument are deleted.
    */
-  const onModeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const onModeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Update the selected mode names
+    const updatedModeNames = new Set<RSSInstrumentMode>(modes.names);
+    if (e.target.checked) {
+      updatedModeNames.add(e.target.name as RSSInstrumentMode);
+    } else {
+      updatedModeNames.delete(e.target.name as RSSInstrumentMode);
+    }
+
+    // Update the modes
+    const updatedModes = {
+      ...modes,
+      names: updatedModeNames
+    };
+    if (!hasFabryPerotMode) delete updatedModes.fabryPerotMode;
+    if (!hasGrating) delete updatedModes.grating;
+    if (!hasPolarimetryModes) delete updatedModes.polarimetryModes;
+
     onChange({
       errors: {
-        ...rss.errors,
-        mode: {}
+        ...rss.errors
       },
-      mode: {
-        name: e.target.value
-      }
+      modes: updatedModes
     });
   };
 
-  const modePropertyChange = (property: string, value: any) => {
+  const hasFabryPerotMode =
+    modeNames.has("Fabry Perot") || modeNames.has("FP polarimetry");
+
+  const hasGrating =
+    modeNames.has("Spectroscopy") ||
+    modeNames.has("Spectropolarimetry") ||
+    modeNames.has("MOS") ||
+    modeNames.has("MOS polarimetry");
+
+  const hasPolarimetryModes =
+    modeNames.has("Polarimetric imaging") ||
+    modeNames.has("Spectropolarimetry") ||
+    modeNames.has("MOS polarimetry") ||
+    modeNames.has("FP polarimetry");
+
+  const modesPropertyChange = (property: string, value: any) => {
     onChange({
       ...rss,
-      mode: {
-        ...rss.mode,
+      modes: {
+        ...rss.modes,
         [property]: value
       }
     });
   };
 
-  const modes: RSSInstrumentMode[] = [
+  const instrumentModes: RSSInstrumentMode[] = [
     "Fabry Perot",
     "FP polarimetry",
     "Imaging",
@@ -76,164 +119,82 @@ const RSS = (props: IRssProps) => {
     "Drift Scan"
   ];
 
-  const mode = rss.mode || { name: "" };
-
   return (
     <>
       <MainGrid>
         <SubGrid>
           <p>Mode</p>
-          <SelectField name={"mode"} onChange={onModeChange}>
-            <AnyOption />
-            {modes.map(m => (
-              <option key={m} value={m}>
+          {instrumentModes.map(m => (
+            <div key={m}>
+              <label>
+                <LargeCheckbox
+                  name={m}
+                  type="checkbox"
+                  checked={modeNames.has(m)}
+                  onChange={onModeChange}
+                />
                 {m}
-              </option>
-            ))}
-          </SelectField>
+              </label>
+            </div>
+          ))}
         </SubGrid>
         <SubGrid>
-          <p>Detector Mode</p>
-          <SelectField
-            name={"detectorMode"}
-            onChange={e => change("detectorName", e.target.value)}
-          >
-            <AnyOption />
-            {detectorModes.map(detectorMode => (
-              <option key={detectorMode} value={detectorMode}>
-                {detectorMode}
-              </option>
-            ))}
-          </SelectField>
+          <ModePropertiesDiv>
+            {/* Detector mode */}
+            <p>Detector Mode</p>
+            <SelectField
+              name={"detectorMode"}
+              onChange={e => change("detectorName", e.target.value)}
+            >
+              <AnyOption />
+              {detectorModes.map(detectorMode => (
+                <option key={detectorMode} value={detectorMode}>
+                  {detectorMode}
+                </option>
+              ))}
+            </SelectField>
+
+            {/* Grating */}
+            {hasGrating && (
+              <>
+                <p>Grating</p>
+                <GratingSelect
+                  grating={modes.grating}
+                  onChange={(value: string) =>
+                    modesPropertyChange("grating", value)
+                  }
+                />
+              </>
+            )}
+
+            {/* Fabry-Perot mode */}
+            {hasFabryPerotMode && (
+              <>
+                <p>Fabry-Perot mode</p>
+                <FabryPerotModeSelect
+                  fabryPerotMode={modes.fabryPerotMode}
+                  onChange={(value: string) =>
+                    modesPropertyChange("fabryPerotMode", value)
+                  }
+                />
+              </>
+            )}
+
+            {/* Polarimetry mode */}
+            {hasPolarimetryModes && (
+              <>
+                <p>Polarimetry mode</p>
+                <PolarimetryModesSelector
+                  polarimetryModes={modes.polarimetryModes}
+                  onChange={(value: Set<RSSPolarimetryMode>) =>
+                    modesPropertyChange("polarimetryModes", value)
+                  }
+                />
+              </>
+            )}
+          </ModePropertiesDiv>
         </SubGrid>
       </MainGrid>
-
-      {/* Fabry-Perot */}
-      {mode.name === "Fabry Perot" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Resolution</p>
-            <FabryPerotModeSelect
-              fabryPerotMode={mode.fabryPerotMode}
-              onChange={(value: string) =>
-                modePropertyChange("fabryPerotMode", value)
-              }
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* Fabry-Perot polarimetry */}
-      {mode.name === "FP polarimetry" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Resolution</p>
-            <FabryPerotModeSelect
-              fabryPerotMode={mode.fabryPerotMode}
-              onChange={(value: string) =>
-                modePropertyChange("fabryPerotMode", value)
-              }
-            />
-          </SubGrid>
-          <SubGrid>
-            <p>Polarimetry mode</p>
-            <PolarimetryModesSelector
-              polarimetryModes={mode.polarimetryModes}
-              onChange={(value: Set<RSSPolarimetryMode>) =>
-                modePropertyChange("polarimetryModes", value)
-              }
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* Imaging */}
-      {/* no additional content */}
-
-      {/* Polarimetric imaging */}
-      {mode.name === "Polarimetric imaging" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Polarimetry mode</p>
-            <PolarimetryModesSelector
-              polarimetryModes={mode.polarimetryModes}
-              onChange={(value: Set<RSSPolarimetryMode>) =>
-                modePropertyChange("polarimetryModes", value)
-              }
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* MOS */}
-      {mode.name === "MOS" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Grating</p>
-            <GratingSelect
-              grating={mode.grating}
-              onChange={(value: string) => modePropertyChange("grating", value)}
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* MOS polarimetry */}
-      {mode.name === "MOS polarimetry" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Grating</p>
-            <GratingSelect
-              grating={mode.grating}
-              onChange={(value: string) => modePropertyChange("grating", value)}
-            />
-          </SubGrid>
-          <SubGrid>
-            <p>Polarimetry mode</p>
-            <PolarimetryModesSelector
-              polarimetryModes={mode.polarimetryModes}
-              onChange={(value: Set<RSSPolarimetryMode>) =>
-                modePropertyChange("polarimetryModes", value)
-              }
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* Spectroscopy */}
-      {mode.name === "Spectroscopy" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Grating</p>
-            <GratingSelect
-              grating={mode.grating}
-              onChange={(value: string) => modePropertyChange("grating", value)}
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
-
-      {/* MOS polarimetry */}
-      {mode.name === "Spectropolarimetry" && (
-        <MainGrid>
-          <SubGrid>
-            <p>Grating</p>
-            <GratingSelect
-              grating={mode.grating}
-              onChange={(value: string) => modePropertyChange("grating", value)}
-            />
-          </SubGrid>
-          <SubGrid>
-            <p>Polarimetry mode</p>
-            <PolarimetryModesSelector
-              polarimetryModes={mode.polarimetryModes}
-              onChange={(value: Set<RSSPolarimetryMode>) =>
-                modePropertyChange("polarimetryModes", value)
-              }
-            />
-          </SubGrid>
-        </MainGrid>
-      )}
     </>
   );
 };
@@ -249,7 +210,7 @@ const FabryPerotModeSelect = ({
     onChange(e.target.value);
 
   return (
-    <SelectField onChange={handleChangeEvent} value={fabryPerotMode}>
+    <SelectField onChange={handleChangeEvent} value={fabryPerotMode || ""}>
       <AnyOption />
       <option value="LR">Low resolution</option>
       <option value="MR">Medium resolution</option>
@@ -270,7 +231,7 @@ const GratingSelect = ({
     onChange(e.target.value);
 
   return (
-    <SelectField onChange={handleChangeEvent} value={grating}>
+    <SelectField onChange={handleChangeEvent} value={grating || ""}>
       <AnyOption />
       <option value="Open">Open</option>
       <option value="pg0300">PG0300</option>

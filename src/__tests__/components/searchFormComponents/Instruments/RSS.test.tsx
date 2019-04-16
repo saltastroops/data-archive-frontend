@@ -4,6 +4,7 @@ import * as React from "react";
 import RSS from "../../../../components/searchFormComponents/instruments/RSS";
 import {
   IRSS,
+  RSSInstrumentMode,
   RSSPolarimetryMode
 } from "../../../../utils/ObservationQueryParameters";
 
@@ -25,12 +26,28 @@ describe("RSS ", () => {
     ).toMatchSnapshot();
   });
 
+  describe("No instrument modes", () => {
+    it("should render correctly", () => {
+      const onChange = jest.fn();
+      const rss: IRSS = {
+        errors: {},
+        modes: { errors: {}, names: new Set<RSSInstrumentMode>() },
+        name: "RSS"
+      };
+      expect(toJson(mount(<RSS rss={rss} onChange={onChange} />)));
+    });
+  });
+
   describe("Fabry-Perot", () => {
     it("should render correctly", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, fabryPerotMode: "LR", name: "Fabry Perot" },
+        modes: {
+          errors: {},
+          fabryPerotMode: "LR",
+          names: new Set<RSSInstrumentMode>(["Fabry Perot"])
+        },
         name: "RSS"
       };
       expect(toJson(mount(<RSS rss={rss} onChange={onChange} />)));
@@ -40,7 +57,11 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, fabryPerotMode: "LR", name: "Fabry Perot" },
+        modes: {
+          errors: {},
+          fabryPerotMode: "LR",
+          names: new Set<RSSInstrumentMode>(["Fabry Perot"])
+        },
         name: "RSS"
       };
       const wrapper = mount(<RSS rss={rss} onChange={onChange} />);
@@ -48,7 +69,7 @@ describe("RSS ", () => {
       fpModeSelect.simulate("change", { target: { value: "HR" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, fabryPerotMode: "HR" }
+        modes: { ...rss.modes, fabryPerotMode: "HR" }
       });
     });
   });
@@ -58,10 +79,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           fabryPerotMode: "LR",
-          name: "FP polarimetry",
+          names: new Set<RSSInstrumentMode>(["FP polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
@@ -73,10 +94,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           fabryPerotMode: "LR",
-          name: "FP polarimetry",
+          names: new Set<RSSInstrumentMode>(["FP polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
@@ -86,7 +107,7 @@ describe("RSS ", () => {
       fpModeSelect.simulate("change", { target: { value: "HR" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, fabryPerotMode: "HR" }
+        modes: { ...rss.modes, fabryPerotMode: "HR" }
       });
     });
 
@@ -94,10 +115,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           fabryPerotMode: "LR",
-          name: "FP polarimetry",
+          names: new Set<RSSInstrumentMode>(["FP polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
@@ -111,8 +132,8 @@ describe("RSS ", () => {
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: {
-          ...rss.mode,
+        modes: {
+          ...rss.modes,
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear", "Circular"])
         }
       });
@@ -124,7 +145,7 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, name: "Imaging" },
+        modes: { errors: {}, names: new Set<RSSInstrumentMode>(["Imaging"]) },
         name: "RSS"
       };
       expect(
@@ -138,9 +159,9 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
-          name: "Polarimetric imaging",
+          names: new Set<RSSInstrumentMode>(["Polarimetric imaging"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Circular"])
         },
         name: "RSS"
@@ -154,9 +175,9 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
-          name: "Polarimetric imaging",
+          names: new Set<RSSInstrumentMode>(["Polarimetric imaging"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Circular"])
         },
         name: "RSS"
@@ -170,7 +191,7 @@ describe("RSS ", () => {
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, polarimetryModes: new Set<RSSPolarimetryMode>() }
+        modes: { ...rss.modes, polarimetryModes: new Set<RSSPolarimetryMode>() }
       });
     });
   });
@@ -180,7 +201,11 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, grating: "pg0900", name: "MOS" },
+        modes: {
+          errors: {},
+          grating: "pg0900",
+          names: new Set<RSSInstrumentMode>(["MOS"])
+        },
         name: "RSS"
       };
       expect(
@@ -192,7 +217,11 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, grating: "pg0900", name: "MOS" },
+        modes: {
+          errors: {},
+          grating: "pg0900",
+          names: new Set<RSSInstrumentMode>(["MOS"])
+        },
         name: "RSS"
       };
       const wrapper = mount(<RSS onChange={onChange} rss={rss} />);
@@ -200,7 +229,7 @@ describe("RSS ", () => {
       gratingSelect.simulate("change", { target: { value: "pg1300" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, grating: "pg1300" }
+        modes: { ...rss.modes, grating: "pg1300" }
       });
     });
   });
@@ -210,10 +239,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg0900",
-          name: "MOS polarimetry",
+          names: new Set<RSSInstrumentMode>(["MOS polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
@@ -227,10 +256,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg0900",
-          name: "MOS polarimetry",
+          names: new Set<RSSInstrumentMode>(["MOS polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
@@ -240,7 +269,7 @@ describe("RSS ", () => {
       gratingSelect.simulate("change", { target: { value: "pg1300" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, grating: "pg1300" }
+        modes: { ...rss.modes, grating: "pg1300" }
       });
     });
 
@@ -248,10 +277,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg0900",
-          name: "MOS polarimetry",
+          names: new Set<RSSInstrumentMode>(["MOS polarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
@@ -263,8 +292,8 @@ describe("RSS ", () => {
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: {
-          ...rss.mode,
+        modes: {
+          ...rss.modes,
           polarimetryModes: new Set<RSSPolarimetryMode>([
             "All Stokes",
             "Linear"
@@ -279,7 +308,11 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, grating: "pg0900", name: "Spectroscopy" },
+        modes: {
+          errors: {},
+          grating: "pg0900",
+          names: new Set<RSSInstrumentMode>(["Spectroscopy"])
+        },
         name: "RSS"
       };
       expect(
@@ -291,7 +324,11 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: { errors: {}, grating: "pg0900", name: "Spectroscopy" },
+        modes: {
+          errors: {},
+          grating: "pg0900",
+          names: new Set<RSSInstrumentMode>(["Spectroscopy"])
+        },
         name: "RSS"
       };
       const wrapper = mount(<RSS onChange={onChange} rss={rss} />);
@@ -299,7 +336,7 @@ describe("RSS ", () => {
       gratingSelect.simulate("change", { target: { value: "pg1300" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, grating: "pg1300" }
+        modes: { ...rss.modes, grating: "pg1300" }
       });
     });
   });
@@ -309,10 +346,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg3000",
-          name: "Spectropolarimetry",
+          names: new Set<RSSInstrumentMode>(["Spectropolarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear Hi"])
         },
         name: "RSS"
@@ -326,10 +363,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg3000",
-          name: "Spectropolarimetry",
+          names: new Set<RSSInstrumentMode>(["Spectropolarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>(["Linear Hi"])
         },
         name: "RSS"
@@ -339,7 +376,7 @@ describe("RSS ", () => {
       gratingSelect.simulate("change", { target: { value: "pg2300" } });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, grating: "pg2300" }
+        modes: { ...rss.modes, grating: "pg2300" }
       });
     });
 
@@ -347,10 +384,10 @@ describe("RSS ", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
-        mode: {
+        modes: {
           errors: {},
           grating: "pg0900",
-          name: "Spectropolarimetry",
+          names: new Set<RSSInstrumentMode>(["Spectropolarimetry"]),
           polarimetryModes: new Set<RSSPolarimetryMode>([
             "Linear Hi",
             "Circular",
@@ -366,14 +403,30 @@ describe("RSS ", () => {
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: {
-          ...rss.mode,
+        modes: {
+          ...rss.modes,
           polarimetryModes: new Set<RSSPolarimetryMode>([
             "All Stokes",
             "Circular"
           ])
         }
       });
+    });
+  });
+
+  describe("Multiple instrument modes", () => {
+    it("should render correctly", () => {
+      const onChange = jest.fn();
+      const rss: IRSS = {
+        errors: {},
+        modes: {
+          errors: {},
+          fabryPerotMode: "LR",
+          names: new Set<RSSInstrumentMode>(["Fabry Perot", "Spectroscopy"])
+        },
+        name: "RSS"
+      };
+      expect(toJson(mount(<RSS rss={rss} onChange={onChange} />)));
     });
   });
 });
