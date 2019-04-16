@@ -42,6 +42,7 @@ interface ISearchFormProps {
 export interface ISearchFormCache {
   general?: IGeneral;
   target?: ITarget;
+  telescope?: ITelescope;
 }
 
 /**
@@ -212,6 +213,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         if (this.props.cache) {
           this.props.cache.general = _.cloneDeep(this.state.general);
           this.props.cache.target = _.cloneDeep(this.state.target);
+          this.props.cache.telescope = _.cloneDeep(this.state.telescope);
         }
       }
     );

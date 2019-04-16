@@ -144,7 +144,8 @@ const RSS = (props: IRssProps) => {
             <p>Detector Mode</p>
             <SelectField
               name={"detectorMode"}
-              onChange={e => change("detectorName", e.target.value)}
+              value={rss.detectorMode}
+              onChange={e => change("detectorMode", e.target.value)}
             >
               <AnyOption />
               {detectorModes.map(detectorMode => (

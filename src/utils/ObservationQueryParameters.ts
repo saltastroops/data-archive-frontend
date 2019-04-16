@@ -330,18 +330,25 @@ export interface IHRS extends IInstrument {
     mode?: string;
   };
   exposureTime?: string;
-  mode?:
-    | "Low Resolution"
-    | "Medium Resolution"
-    | "High Resolution"
-    | "High Stability";
+  mode?: HRSMode;
   name: "HRS";
 }
 
+export type HRSMode =
+  | "High Resolution"
+  | "High Stability"
+  | "Int Cal Fibre"
+  | "Low Resolution"
+  | "Medium Resolution";
+
 export interface IBVIT extends IInstrument {
   errors: {};
+  filter: BVITFilter;
+  mode?: "Imaging" | "Streaming";
   name: "BVIT";
 }
+
+export type BVITFilter = "B" | "H-alpha" | "Open" | "R" | "U" | "V";
 
 /**
  * An interface for query parameters related to HIPPO.

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IHRS } from "../../../utils/ObservationQueryParameters";
+import { HRSMode, IHRS } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
@@ -26,7 +26,7 @@ const HRS = (props: IHrsProps) => {
     });
   };
 
-  const modes = [
+  const modes: HRSMode[] = [
     "High Resolution",
     "High Stability",
     "Int Cal Fibre",
@@ -38,7 +38,7 @@ const HRS = (props: IHrsProps) => {
     <MainGrid>
       <SubGrid>
         <p>Mode</p>
-        <SelectField name={"mode"} onChange={change}>
+        <SelectField name={"mode"} value={hrs.mode} onChange={change}>
           <AnyOption />
           {modes.map(mode => (
             <option key={mode} value={mode.toUpperCase()}>
