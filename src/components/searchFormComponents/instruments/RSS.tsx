@@ -9,6 +9,7 @@ import {
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
+import PolarimetryModesSelector from "../PolarimetryModesSelector";
 
 interface IRssProps {
   rss: IRSS;
@@ -136,10 +137,10 @@ const RSS = (props: IRssProps) => {
           </SubGrid>
           <SubGrid>
             <p>Polarimetry mode</p>
-            <PolarimetryModeSelect
-              polarimetryMode={mode.polarimetryMode}
-              onChange={(value: string) =>
-                modePropertyChange("polarimetryMode", value)
+            <PolarimetryModesSelector
+              polarimetryModes={mode.polarimetryModes}
+              onChange={(value: Set<RSSPolarimetryMode>) =>
+                modePropertyChange("polarimetryModes", value)
               }
             />
           </SubGrid>
@@ -154,10 +155,10 @@ const RSS = (props: IRssProps) => {
         <MainGrid>
           <SubGrid>
             <p>Polarimetry mode</p>
-            <PolarimetryModeSelect
-              polarimetryMode={mode.polarimetryMode}
-              onChange={(value: string) =>
-                modePropertyChange("polarimetryMode", value)
+            <PolarimetryModesSelector
+              polarimetryModes={mode.polarimetryModes}
+              onChange={(value: Set<RSSPolarimetryMode>) =>
+                modePropertyChange("polarimetryModes", value)
               }
             />
           </SubGrid>
@@ -189,10 +190,10 @@ const RSS = (props: IRssProps) => {
           </SubGrid>
           <SubGrid>
             <p>Polarimetry mode</p>
-            <PolarimetryModeSelect
-              polarimetryMode={mode.polarimetryMode}
-              onChange={(value: string) =>
-                modePropertyChange("polarimetryMode", value)
+            <PolarimetryModesSelector
+              polarimetryModes={mode.polarimetryModes}
+              onChange={(value: Set<RSSPolarimetryMode>) =>
+                modePropertyChange("polarimetryModes", value)
               }
             />
           </SubGrid>
@@ -224,10 +225,10 @@ const RSS = (props: IRssProps) => {
           </SubGrid>
           <SubGrid>
             <p>Polarimetry mode</p>
-            <PolarimetryModeSelect
-              polarimetryMode={mode.polarimetryMode}
-              onChange={(value: string) =>
-                modePropertyChange("polarimetryMode", value)
+            <PolarimetryModesSelector
+              polarimetryModes={mode.polarimetryModes}
+              onChange={(value: Set<RSSPolarimetryMode>) =>
+                modePropertyChange("polarimetryModes", value)
               }
             />
           </SubGrid>
@@ -254,27 +255,6 @@ const FabryPerotModeSelect = ({
       <option value="MR">Medium resolution</option>
       <option value="HR">High resolution</option>
       <option value="TF">Tunable filter</option>
-    </SelectField>
-  );
-};
-
-const PolarimetryModeSelect = ({
-  polarimetryMode,
-  onChange
-}: {
-  polarimetryMode?: RSSPolarimetryMode;
-  onChange: OnChangeFunction;
-}) => {
-  const handleChangeEvent = (e: ChangeEvent<HTMLSelectElement>) =>
-    onChange(e.target.value);
-
-  return (
-    <SelectField onChange={handleChangeEvent} value={polarimetryMode}>
-      <AnyOption />
-      <option value="Linear">Linear</option>
-      <option value="Linear Hi">Linear Hi</option>
-      <option value="Circular">Circular</option>
-      <option value="All Stokes">All Stokes</option>
     </SelectField>
   );
 };

@@ -292,6 +292,19 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
   padding-left: 10px;
 }
 
+.c3.c3 {
+  width: 18px;
+  height: 18px;
+}
+
+.c2.c2 {
+  margin-top: 5px;
+}
+
+.c2 label {
+  padding-right: 10px;
+}
+
 <RSS
   onChange={[MockFunction]}
   rss={
@@ -301,7 +314,9 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
         "errors": Object {},
         "grating": "pg0900",
         "name": "MOS polarimetry",
-        "polarimetryMode": "All Stokes",
+        "polarimetryModes": Set {
+          "All Stokes",
+        },
       },
       "name": "RSS",
     }
@@ -745,53 +760,287 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
               <p>
                 Polarimetry mode
               </p>
-              <PolarimetryModeSelect
+              <PolarimetryModesSelector
                 onChange={[Function]}
-                polarimetryMode="All Stokes"
+                polarimetryModes={
+                  Set {
+                    "All Stokes",
+                  }
+                }
               >
-                <SelectField
-                  onChange={[Function]}
-                  value="All Stokes"
-                >
-                  <div
-                    className="control select "
+                <styled.div>
+                  <StyledComponent
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-VigVT",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    margin-top: 5px;
+  }
+
+  label {
+    padding-right: 10px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.div",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-VigVT",
+                        "target": "div",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
                   >
-                    <select
-                      onChange={[Function]}
-                      value="All Stokes"
+                    <div
+                      className="c2"
                     >
-                      <AnyOption>
-                        <option
-                          key="any"
-                          value=""
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="linear"
+                          onChange={[Function]}
+                          value="Linear"
                         >
-                          Any
-                        </option>
-                      </AnyOption>
-                      <option
-                        value="Linear"
-                      >
+                          <StyledComponent
+                            checked={false}
+                            data-test="linear"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="linear"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear
-                      </option>
-                      <option
-                        value="Linear Hi"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="linear-hi"
+                          onChange={[Function]}
+                          value="Linear Hi"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="linear-hi"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear Hi"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="linear-hi"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear Hi"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear Hi
-                      </option>
-                      <option
-                        value="Circular"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="circular"
+                          onChange={[Function]}
+                          value="Circular"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="circular"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Circular"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="circular"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Circular"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Circular
-                      </option>
-                      <option
-                        value="All Stokes"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={true}
+                          data-test="all-stokes"
+                          onChange={[Function]}
+                          value="All Stokes"
+                        >
+                          <StyledComponent
+                            checked={true}
+                            data-test="all-stokes"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="All Stokes"
+                          >
+                            <input
+                              checked={true}
+                              className="checkbox c3"
+                              data-test="all-stokes"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="All Stokes"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         All Stokes
-                      </option>
-                    </select>
-                  </div>
-                </SelectField>
-              </PolarimetryModeSelect>
+                      </label>
+                    </div>
+                  </StyledComponent>
+                </styled.div>
+              </PolarimetryModesSelector>
             </div>
           </StyledComponent>
         </styled.div>
@@ -1242,6 +1491,19 @@ exports[`RSS  Polarimetric imaging should render correctly 1`] = `
   padding-left: 10px;
 }
 
+.c3.c3 {
+  width: 18px;
+  height: 18px;
+}
+
+.c2.c2 {
+  margin-top: 5px;
+}
+
+.c2 label {
+  padding-right: 10px;
+}
+
 <RSS
   onChange={[MockFunction]}
   rss={
@@ -1250,7 +1512,9 @@ exports[`RSS  Polarimetric imaging should render correctly 1`] = `
       "mode": Object {
         "errors": Object {},
         "name": "Polarimetric imaging",
-        "polarimetryMode": "Circular",
+        "polarimetryModes": Set {
+          "Circular",
+        },
       },
       "name": "RSS",
     }
@@ -1588,53 +1852,287 @@ exports[`RSS  Polarimetric imaging should render correctly 1`] = `
               <p>
                 Polarimetry mode
               </p>
-              <PolarimetryModeSelect
+              <PolarimetryModesSelector
                 onChange={[Function]}
-                polarimetryMode="Circular"
+                polarimetryModes={
+                  Set {
+                    "Circular",
+                  }
+                }
               >
-                <SelectField
-                  onChange={[Function]}
-                  value="Circular"
-                >
-                  <div
-                    className="control select "
+                <styled.div>
+                  <StyledComponent
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-VigVT",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    margin-top: 5px;
+  }
+
+  label {
+    padding-right: 10px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.div",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-VigVT",
+                        "target": "div",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
                   >
-                    <select
-                      onChange={[Function]}
-                      value="Circular"
+                    <div
+                      className="c2"
                     >
-                      <AnyOption>
-                        <option
-                          key="any"
-                          value=""
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="linear"
+                          onChange={[Function]}
+                          value="Linear"
                         >
-                          Any
-                        </option>
-                      </AnyOption>
-                      <option
-                        value="Linear"
-                      >
+                          <StyledComponent
+                            checked={false}
+                            data-test="linear"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="linear"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear
-                      </option>
-                      <option
-                        value="Linear Hi"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="linear-hi"
+                          onChange={[Function]}
+                          value="Linear Hi"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="linear-hi"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear Hi"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="linear-hi"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear Hi"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear Hi
-                      </option>
-                      <option
-                        value="Circular"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={true}
+                          data-test="circular"
+                          onChange={[Function]}
+                          value="Circular"
+                        >
+                          <StyledComponent
+                            checked={true}
+                            data-test="circular"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Circular"
+                          >
+                            <input
+                              checked={true}
+                              className="checkbox c3"
+                              data-test="circular"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Circular"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Circular
-                      </option>
-                      <option
-                        value="All Stokes"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="all-stokes"
+                          onChange={[Function]}
+                          value="All Stokes"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="all-stokes"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="All Stokes"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="all-stokes"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="All Stokes"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         All Stokes
-                      </option>
-                    </select>
-                  </div>
-                </SelectField>
-              </PolarimetryModeSelect>
+                      </label>
+                    </div>
+                  </StyledComponent>
+                </styled.div>
+              </PolarimetryModesSelector>
             </div>
           </StyledComponent>
         </styled.div>
@@ -1656,6 +2154,19 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
   padding-left: 10px;
 }
 
+.c3.c3 {
+  width: 18px;
+  height: 18px;
+}
+
+.c2.c2 {
+  margin-top: 5px;
+}
+
+.c2 label {
+  padding-right: 10px;
+}
+
 <RSS
   onChange={[MockFunction]}
   rss={
@@ -1665,7 +2176,9 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
         "errors": Object {},
         "grating": "pg3000",
         "name": "Spectropolarimetry",
-        "polarimetryMode": "Linear Hi",
+        "polarimetryModes": Set {
+          "Linear Hi",
+        },
       },
       "name": "RSS",
     }
@@ -2109,53 +2622,287 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
               <p>
                 Polarimetry mode
               </p>
-              <PolarimetryModeSelect
+              <PolarimetryModesSelector
                 onChange={[Function]}
-                polarimetryMode="Linear Hi"
+                polarimetryModes={
+                  Set {
+                    "Linear Hi",
+                  }
+                }
               >
-                <SelectField
-                  onChange={[Function]}
-                  value="Linear Hi"
-                >
-                  <div
-                    className="control select "
+                <styled.div>
+                  <StyledComponent
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-VigVT",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    margin-top: 5px;
+  }
+
+  label {
+    padding-right: 10px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.div",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-VigVT",
+                        "target": "div",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
                   >
-                    <select
-                      onChange={[Function]}
-                      value="Linear Hi"
+                    <div
+                      className="c2"
                     >
-                      <AnyOption>
-                        <option
-                          key="any"
-                          value=""
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="linear"
+                          onChange={[Function]}
+                          value="Linear"
                         >
-                          Any
-                        </option>
-                      </AnyOption>
-                      <option
-                        value="Linear"
-                      >
+                          <StyledComponent
+                            checked={false}
+                            data-test="linear"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="linear"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear
-                      </option>
-                      <option
-                        value="Linear Hi"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={true}
+                          data-test="linear-hi"
+                          onChange={[Function]}
+                          value="Linear Hi"
+                        >
+                          <StyledComponent
+                            checked={true}
+                            data-test="linear-hi"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Linear Hi"
+                          >
+                            <input
+                              checked={true}
+                              className="checkbox c3"
+                              data-test="linear-hi"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Linear Hi"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Linear Hi
-                      </option>
-                      <option
-                        value="Circular"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="circular"
+                          onChange={[Function]}
+                          value="Circular"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="circular"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="Circular"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="circular"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="Circular"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         Circular
-                      </option>
-                      <option
-                        value="All Stokes"
-                      >
+                      </label>
+                      <label>
+                        <styled.input
+                          checked={false}
+                          data-test="all-stokes"
+                          onChange={[Function]}
+                          value="All Stokes"
+                        >
+                          <StyledComponent
+                            checked={false}
+                            data-test="all-stokes"
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  Object {
+                                    "className": "checkbox",
+                                    "type": "checkbox",
+                                  },
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-gqjmRU",
+                                  "isStatic": true,
+                                  "lastClassName": "c3",
+                                  "rules": Array [
+                                    "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "styled.input",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-gqjmRU",
+                                "target": "input",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                            onChange={[Function]}
+                            value="All Stokes"
+                          >
+                            <input
+                              checked={false}
+                              className="checkbox c3"
+                              data-test="all-stokes"
+                              onChange={[Function]}
+                              type="checkbox"
+                              value="All Stokes"
+                            />
+                          </StyledComponent>
+                        </styled.input>
                         All Stokes
-                      </option>
-                    </select>
-                  </div>
-                </SelectField>
-              </PolarimetryModeSelect>
+                      </label>
+                    </div>
+                  </StyledComponent>
+                </styled.div>
+              </PolarimetryModesSelector>
             </div>
           </StyledComponent>
         </styled.div>

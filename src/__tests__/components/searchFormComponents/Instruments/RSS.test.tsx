@@ -2,7 +2,10 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import RSS from "../../../../components/searchFormComponents/instruments/RSS";
-import { IRSS } from "../../../../utils/ObservationQueryParameters";
+import {
+  IRSS,
+  RSSPolarimetryMode
+} from "../../../../utils/ObservationQueryParameters";
 
 describe("RSS ", () => {
   it("should be defined", () => {
@@ -59,7 +62,7 @@ describe("RSS ", () => {
           errors: {},
           fabryPerotMode: "LR",
           name: "FP polarimetry",
-          polarimetryMode: "Linear"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
       };
@@ -74,7 +77,7 @@ describe("RSS ", () => {
           errors: {},
           fabryPerotMode: "LR",
           name: "FP polarimetry",
-          polarimetryMode: "Linear"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
       };
@@ -87,7 +90,7 @@ describe("RSS ", () => {
       });
     });
 
-    it("should call the onChange method if the polarimetry mode is changed", () => {
+    it("should call the onChange method if the polarimetry modes are changed", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
         errors: {},
@@ -95,20 +98,23 @@ describe("RSS ", () => {
           errors: {},
           fabryPerotMode: "LR",
           name: "FP polarimetry",
-          polarimetryMode: "Linear"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear"])
         },
         name: "RSS"
       };
       const wrapper = mount(<RSS rss={rss} onChange={onChange} />);
       const polarimetryModeSelect = wrapper.find(
-        "PolarimetryModeSelect select"
+        '[data-test="circular"] input'
       );
       polarimetryModeSelect.simulate("change", {
-        target: { value: "Circular" }
+        target: { checked: true, value: "Circular" }
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, polarimetryMode: "Circular" }
+        mode: {
+          ...rss.mode,
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear", "Circular"])
+        }
       });
     });
   });
@@ -135,7 +141,7 @@ describe("RSS ", () => {
         mode: {
           errors: {},
           name: "Polarimetric imaging",
-          polarimetryMode: "Circular"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Circular"])
         },
         name: "RSS"
       };
@@ -151,20 +157,20 @@ describe("RSS ", () => {
         mode: {
           errors: {},
           name: "Polarimetric imaging",
-          polarimetryMode: "Circular"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Circular"])
         },
         name: "RSS"
       };
       const wrapper = mount(<RSS onChange={onChange} rss={rss} />);
       const polarimetryModeSelect = wrapper.find(
-        "PolarimetryModeSelect select"
+        '[data-test="circular"] input'
       );
       polarimetryModeSelect.simulate("change", {
-        target: { value: "Linear Hi" }
+        target: { checked: false, value: "Circular" }
       });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, polarimetryMode: "Linear Hi" }
+        mode: { ...rss.mode, polarimetryModes: new Set<RSSPolarimetryMode>() }
       });
     });
   });
@@ -208,7 +214,7 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg0900",
           name: "MOS polarimetry",
-          polarimetryMode: "All Stokes"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
       };
@@ -225,7 +231,7 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg0900",
           name: "MOS polarimetry",
-          polarimetryMode: "All Stokes"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
       };
@@ -246,16 +252,24 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg0900",
           name: "MOS polarimetry",
-          polarimetryMode: "All Stokes"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["All Stokes"])
         },
         name: "RSS"
       };
       const wrapper = mount(<RSS onChange={onChange} rss={rss} />);
-      const polarimetrySelect = wrapper.find("PolarimetryModeSelect select");
-      polarimetrySelect.simulate("change", { target: { value: "Linear" } });
+      const polarimetrySelect = wrapper.find('[data-test="linear"] input');
+      polarimetrySelect.simulate("change", {
+        target: { checked: true, value: "Linear" }
+      });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, polarimetryMode: "Linear" }
+        mode: {
+          ...rss.mode,
+          polarimetryModes: new Set<RSSPolarimetryMode>([
+            "All Stokes",
+            "Linear"
+          ])
+        }
       });
     });
   });
@@ -299,7 +313,7 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg3000",
           name: "Spectropolarimetry",
-          polarimetryMode: "Linear Hi"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear Hi"])
         },
         name: "RSS"
       };
@@ -316,7 +330,7 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg3000",
           name: "Spectropolarimetry",
-          polarimetryMode: "Linear Hi"
+          polarimetryModes: new Set<RSSPolarimetryMode>(["Linear Hi"])
         },
         name: "RSS"
       };
@@ -337,16 +351,28 @@ describe("RSS ", () => {
           errors: {},
           grating: "pg0900",
           name: "Spectropolarimetry",
-          polarimetryMode: "Linear Hi"
+          polarimetryModes: new Set<RSSPolarimetryMode>([
+            "Linear Hi",
+            "Circular",
+            "All Stokes"
+          ])
         },
         name: "RSS"
       };
       const wrapper = mount(<RSS onChange={onChange} rss={rss} />);
-      const polarimetrySelect = wrapper.find("PolarimetryModeSelect select");
-      polarimetrySelect.simulate("change", { target: { value: "All Stokes" } });
+      const polarimetrySelect = wrapper.find('[data-test="linear-hi"] input');
+      polarimetrySelect.simulate("change", {
+        target: { checked: false, value: "Linear Hi" }
+      });
       expect(onChange).toHaveBeenCalledWith({
         ...rss,
-        mode: { ...rss.mode, polarimetryMode: "All Stokes" }
+        mode: {
+          ...rss.mode,
+          polarimetryModes: new Set<RSSPolarimetryMode>([
+            "All Stokes",
+            "Circular"
+          ])
+        }
       });
     });
   });

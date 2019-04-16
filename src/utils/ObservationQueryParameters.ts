@@ -269,14 +269,14 @@ export interface IRSS extends IInstrument {
 
 export interface IRSSMode {
   errors: {
-    fabryPerotMode?: RSSFabryPerotMode;
-    grating?: RSSGrating;
-    polarimetryMode?: RSSPolarimetryMode;
+    fabryPerotMode?: string;
+    grating?: string;
+    polarimetryModes?: string;
   };
   fabryPerotMode?: RSSFabryPerotMode;
   grating?: RSSGrating;
   name: RSSInstrumentMode;
-  polarimetryMode?: RSSPolarimetryMode;
+  polarimetryModes?: Set<RSSPolarimetryMode>;
 }
 
 export type RSSDetectorMode = "Normal" | "Slot Mode" | "";
