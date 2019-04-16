@@ -2,112 +2,109 @@ import { validate } from "isemail";
 import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { Redirect } from "react-router";
 import styled from "styled-components";
-import { SIGNUP_MUTATION } from "../graphql/Mutations";
+import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
+import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
 
 /**
- * Input for the registration form.
+ * Input for the user update form.
  *
  * Properties:
  * -----------
  * affiliation:
  *     The affiliation of the user, such as a university or an institute.
- * confirmPassword:
- *      A matching password that must match with the original password.
  * email:
  *     Email address. This will be stored in lower case.
  * familyName:
  *     The family name (surname).
+ * id:
+ *     The user ID different from the currently logged in user.
  * givenName:
  *     The given name (first name).
+ * newPassword:
+ *     The new password to replace the old password.
+ * confirmNewPassword:
+ *     Must match with the new password.
  * password:
  *     The password, which must have at least 7 characters.
  * username:
  *     The username, which must not contain upper case letters.
  */
-export interface IRegistrationFormInput {
-  affiliation: string;
-  confirmPassword: string;
-  email: string;
-  givenName: string;
-  familyName: string;
+export interface IUserUpdateFormInput {
+  affiliation?: string;
+  confirmNewPassword?: string;
+  email?: string;
+  givenName?: string;
+  id?: string;
+  familyName?: string;
+  newPassword?: string;
   password: string;
-  username: string;
+  username?: string;
 }
 
 /**
- * The state of the registration form.
+ * The state of the update form.
  *
  * Properties:
  * -----------
  * errors:
  *     An object of keys and error messages.
- * registered:
- *     Whether the registration was successful.
  * userInput:
  *     Values input by the user.
  */
-interface IRegistrationFormState {
-  errors: Partial<IRegistrationFormInput> & { responseError?: string };
-  registered: boolean;
-  userInput: IRegistrationFormInput;
+interface IUserUpdateFormState {
+  errors: Partial<IUserUpdateFormInput> & { responseError?: string };
+  userInput: IUserUpdateFormInput;
 }
 
 /**
- * The cache for the registration form.
+ * The cache for the update form.
  *
  * The user input and errors are cached.
  */
-export interface IRegistrationFormCache {
-  errors?: Partial<IRegistrationFormInput> & { responseError?: string };
-  userInput?: IRegistrationFormInput;
+export interface IUserUpdateFormCache {
+  errors?: Partial<IUserUpdateFormInput> & { responseError?: string };
+  userInput?: IUserUpdateFormInput;
 }
 
-interface IRegistrationFormProps {
-  cache?: IRegistrationFormCache;
+interface IUserUpdateFormProps {
+  cache?: IUserUpdateFormCache;
 }
 
-const validateRegistrationField = (
-  registrationInput: IRegistrationFormInput
-) => {
+const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
   // An object to store errors for all fields.
-  const errors: Partial<IRegistrationFormInput> = {};
+  const errors: Partial<IUserUpdateFormInput> = {};
 
-  // Check if the submitted given name is not empty.
-  if (!registrationInput.givenName) {
-    errors.givenName = "Given name can't be empty";
+  // Check if the password is provided.
+  if (!updateInput.password.length) {
+    errors.password = "Password must be provided.";
   }
 
-  // Check if the submitted family name is not empty.
-  if (!registrationInput.familyName) {
-    errors.familyName = "Family name can't be empty";
-  }
-
-  // Check if the submitted username is not empty.
-  if (!registrationInput.username) {
-    errors.username = `Username cannot be empty.`;
-  }
-
-  // Check if the submitted username contains upper case characters.
-  if (registrationInput.username !== registrationInput.username.toLowerCase()) {
-    errors.username = "Username must be in lowercase";
-  }
-
-  // Check if the submitted email address is valid.
-  if (!validate(registrationInput.email, { minDomainAtoms: 2 })) {
+  // Check if the new email address is valid.
+  if (
+    updateInput.email &&
+    !validate(updateInput.email, { minDomainAtoms: 2 })
+  ) {
     errors.email = "Email address is invalid";
   }
 
-  // Check if the password is secure enough.
-  if (registrationInput.password.length <= 6) {
-    errors.password = "Password should be at least 7 characters long";
+  // Check if the new username contains upper case characters.
+  if (
+    updateInput.username &&
+    updateInput.username !== updateInput.username.toLowerCase()
+  ) {
+    errors.username = "Username must be in lowercase";
   }
 
-  // Check if passwords match
-  if (registrationInput.password !== registrationInput.confirmPassword) {
-    errors.confirmPassword = "Passwords do not match";
+  // Check if the new password is secure enough.
+  if (updateInput.newPassword && updateInput.newPassword.length <= 6) {
+    errors.newPassword = "Password should be at least 7 characters long";
+  }
+
+  // Check if new passwords match
+  if (updateInput.newPassword !== updateInput.confirmNewPassword) {
+    errors.confirmNewPassword = "Passwords do not match";
   }
 
   // return an array consisting of error message if any or empty.
@@ -143,28 +140,20 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
-class RegistrationForm extends React.Component<
-  IRegistrationFormProps,
-  IRegistrationFormState
+class UserUpdateForm extends React.Component<
+  IUserUpdateFormProps,
+  IUserUpdateFormState
 > {
-  public state: IRegistrationFormState = {
-    errors: {
-      affiliation: "",
-      confirmPassword: "",
-      email: "",
-      familyName: "",
-      givenName: "",
-      password: "",
-      responseError: "",
-      username: ""
-    },
-    registered: false,
+  public state: IUserUpdateFormState = {
+    errors: {},
     userInput: {
       affiliation: "",
-      confirmPassword: "",
+      confirmNewPassword: "",
       email: "",
       familyName: "",
       givenName: "",
+      id: "",
+      newPassword: "",
       password: "",
       username: ""
     }
@@ -179,37 +168,38 @@ class RegistrationForm extends React.Component<
     }
   }
 
-  onHandleSubmit = async (e: React.FormEvent<EventTarget>, signup: any) => {
+  onHandleSubmit = async (e: React.FormEvent<EventTarget>, updateUser: any) => {
     e.preventDefault();
 
     // Validate the user input fields
-    const errors: object = validateRegistrationField(this.state.userInput);
+    const errors: object = validateUpdateField(this.state.userInput);
     this.updateState({ errors });
 
-    // Check if there is an error, if there is abort signing up.
+    // Check if there is an error, if there is abort updating.
     if (Object.keys(errors).length > 0) {
       return;
     }
 
     try {
-      // If all fields are validated, sign up
-      await signup();
+      // If all fields are validated, update
+      await updateUser();
 
-      // Reset the state when registering succeeded
+      // Reset the state when updating succeeded
       this.updateState({
-        registered: true,
         userInput: {
           affiliation: "",
-          confirmPassword: "",
+          confirmNewPassword: "",
           email: "",
           familyName: "",
           givenName: "",
+          id: "",
+          newPassword: "",
           password: "",
           username: ""
         }
       });
 
-      alert("Successfully registered, Login using your username and password");
+      alert("Successfully updated.");
     } catch (error) {
       this.updateState({
         errors: {
@@ -235,31 +225,46 @@ class RegistrationForm extends React.Component<
   };
 
   render() {
-    const { errors, registered } = this.state;
+    const { errors } = this.state;
     const {
       affiliation,
-      confirmPassword,
+      confirmNewPassword,
       email,
       familyName,
       givenName,
+      id,
+      newPassword,
       password,
       username
     } = this.state.userInput;
 
-    if (registered) {
-      return <Redirect to={"/login"} />;
-    }
-
     return (
-      <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
-        {(signup, { loading }) => {
+      <Mutation
+        mutation={UPDATE_USER_MUTATION}
+        variables={this.state.userInput}
+        refetchQueries={[{ query: USER_QUERY }]}
+      >
+        {(updateUser, { loading }) => {
           return (
-            <Form onSubmit={e => this.onHandleSubmit(e, signup)}>
+            <Form onSubmit={e => this.onHandleSubmit(e, updateUser)}>
               <fieldset disabled={loading} aria-disabled={loading}>
-                <Heading>Create your account</Heading>
+                <Heading>Update your account</Heading>
                 {errors.responseError ? (
                   <ErrorMessage>{errors.responseError}</ErrorMessage>
                 ) : null}
+
+                {/* ID */}
+                <div className="field">
+                  <label className="label">
+                    User ID
+                    <InputField
+                      error={errors.id}
+                      name={"id"}
+                      onChange={this.onInputChange}
+                      value={id}
+                    />
+                  </label>
+                </div>
 
                 {/* Given name */}
                 <div className="field">
@@ -334,7 +339,6 @@ class RegistrationForm extends React.Component<
                     <InputField
                       error={errors.password}
                       name={"password"}
-                      placeholder={"At least 7 characters"}
                       onChange={this.onInputChange}
                       type={"password"}
                       value={password}
@@ -342,16 +346,31 @@ class RegistrationForm extends React.Component<
                   </label>
                 </div>
 
-                {/* Retyped password */}
+                {/* New password */}
                 <div className="field">
                   <label className="label">
-                    Re-enter password
+                    New password
                     <InputField
-                      error={errors.confirmPassword}
-                      name={"confirmPassword"}
+                      error={errors.newPassword}
+                      name={"newPassword"}
+                      onChange={this.onInputChange}
+                      placeholder={"At least 7 characters"}
+                      type={"password"}
+                      value={newPassword}
+                    />
+                  </label>
+                </div>
+
+                {/* Retype New password */}
+                <div className="field">
+                  <label className="label">
+                    Retype New password
+                    <InputField
+                      error={errors.confirmNewPassword}
+                      name={"confirmNewPassword"}
                       onChange={this.onInputChange}
                       type={"password"}
-                      value={confirmPassword}
+                      value={confirmNewPassword}
                     />
                   </label>
                 </div>
@@ -359,10 +378,10 @@ class RegistrationForm extends React.Component<
                 {/* Submit */}
                 <button
                   className="button is-success is-fullwidth is-rounded"
-                  data-test="signUp"
+                  data-test="update"
                   type={"submit"}
                 >
-                  {loading ? "Signing up..." : "Sign up"}
+                  {loading ? "Updating..." : "Update"}
                 </button>
               </fieldset>
             </Form>
@@ -388,4 +407,4 @@ class RegistrationForm extends React.Component<
   };
 }
 
-export default RegistrationForm;
+export default UserUpdateForm;

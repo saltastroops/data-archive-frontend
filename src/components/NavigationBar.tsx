@@ -84,7 +84,9 @@ class NavigationBar extends React.Component<
     } catch (error) {
       this.updateState({
         errors: {
-          responseError: "Something went wrong trying to logout."
+          responseError: error.message
+            .replace("Network error: ", "")
+            .replace("GraphQL error: ", "")
         }
       });
     }
@@ -178,6 +180,15 @@ class NavigationBar extends React.Component<
                             to="/account"
                           >
                             Account
+                          </NavLink>
+
+                          {/* Link to page for editing account details */}
+                          <NavLink
+                            activeClassName={activeTab}
+                            className="navbar-item"
+                            to="/user-update"
+                          >
+                            Account Edit
                           </NavLink>
 
                           {/* Link for logging out */}

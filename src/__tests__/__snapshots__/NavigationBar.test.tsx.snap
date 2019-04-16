@@ -130,6 +130,32 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             </Route>
           </NavLink>
           <NavLink
+            activeClassName="has-text-weight-bold has-text-link"
+            aria-current="page"
+            className="navbar-item"
+            to="/user-update"
+          >
+            <Route
+              path="\\\\/user-update"
+            >
+              <Link
+                aria-current={null}
+                className="navbar-item"
+                replace={false}
+                to="/user-update"
+              >
+                <a
+                  aria-current={null}
+                  className="navbar-item"
+                  href="/user-update"
+                  onClick={[Function]}
+                >
+                  Account Edit
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+          <NavLink
             activeClassName="active"
             aria-current="page"
             className="navbar-item"
@@ -400,6 +426,32 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                   onClick={[Function]}
                 >
                   Account
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+          <NavLink
+            activeClassName="has-text-weight-bold has-text-link"
+            aria-current="page"
+            className="navbar-item"
+            to="/user-update"
+          >
+            <Route
+              path="\\\\/user-update"
+            >
+              <Link
+                aria-current={null}
+                className="navbar-item"
+                replace={false}
+                to="/user-update"
+              >
+                <a
+                  aria-current={null}
+                  className="navbar-item"
+                  href="/user-update"
+                  onClick={[Function]}
+                >
+                  Account Edit
                 </a>
               </Link>
             </Route>

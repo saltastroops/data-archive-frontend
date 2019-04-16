@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Mutation, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
@@ -8,6 +8,9 @@ import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import UserUpdateForm, {
+  IUserUpdateFormCache
+} from "./components/UserUpdateForm";
 import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
@@ -26,6 +29,7 @@ interface ICache {
   loginForm: ILoginFormCache;
   registrationForm: IRegistrationFormCache;
   searchForm: ISearchFormCache;
+  userUpdateForm: IUserUpdateFormCache;
 }
 
 /**
@@ -62,7 +66,8 @@ class App extends React.Component<any, any> {
   private cache: ICache = {
     loginForm: {},
     registrationForm: {},
-    searchForm: {}
+    searchForm: {},
+    userUpdateForm: {}
   };
 
   public render() {
@@ -149,6 +154,16 @@ class App extends React.Component<any, any> {
                   exact={true}
                   path="/admin"
                   component={() => <h1 className="title">Admin page</h1>}
+                />
+
+                {/* update user page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/user-update"
+                  component={() => (
+                    <UserUpdateForm cache={this.cache.userUpdateForm} />
+                  )}
                 />
 
                 {/* page not found */}
