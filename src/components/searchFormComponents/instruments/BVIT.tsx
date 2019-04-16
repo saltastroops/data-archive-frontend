@@ -16,8 +16,8 @@ const BVIT = (props: IBvitProps) => {
 
   // Function for handling change events
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
+    const name = e.target.name;
+    const value = e.target.value;
     onChange({
       ...bvit,
       [name]: value

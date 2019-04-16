@@ -1,6 +1,375 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Salticam  should render correctly 1`] = `
+exports[`Salticam  should render correctly with detector mode and filter 1`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+.c1.c1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<Salticam
+  onChange={[MockFunction]}
+  salticam={
+    Object {
+      "detectorMode": "Normal",
+      "errors": Object {},
+      "filter": "V-S1",
+      "name": "Salticam",
+    }
+  }
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "main-grid",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bZQynM",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bZQynM",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="main-grid c0"
+      >
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <p>
+                Detector Mode
+              </p>
+              <SelectField
+                name="detectorMode"
+                onChange={[Function]}
+                value="Normal"
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="detectorMode"
+                    onChange={[Function]}
+                    value="Normal"
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="Normal"
+                      value="Normal"
+                    >
+                      Normal
+                    </option>
+                    <option
+                      key="Slot Mode"
+                      value="Slot Mode"
+                    >
+                      Slot Mode
+                    </option>
+                    <option
+                      key="Drift Scan"
+                      value="Drift Scan"
+                    >
+                      Drift Scan
+                    </option>
+                    <option
+                      key="Frame Transfer"
+                      value="Frame Transfer"
+                    >
+                      Frame Transfer
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <SelectField
+                name="filter"
+                onChange={[Function]}
+                value="V-S1"
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="filter"
+                    onChange={[Function]}
+                    value="V-S1"
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="U-S1"
+                      value="U-S1"
+                    >
+                      Johnson U
+                    </option>
+                    <option
+                      key="B-S1"
+                      value="B-S1"
+                    >
+                      Johnson B
+                    </option>
+                    <option
+                      key="V-S1"
+                      value="V-S1"
+                    >
+                      Johnson V
+                    </option>
+                    <option
+                      key="R-S1"
+                      value="R-S1"
+                    >
+                      Cousins R
+                    </option>
+                    <option
+                      key="I-S1"
+                      value="I-S1"
+                    >
+                      Cousins I
+                    </option>
+                    <option
+                      key="380-40"
+                      value="380-40"
+                    >
+                      380nm 40nm FWHM
+                    </option>
+                    <option
+                      key="340-35"
+                      value="340-35"
+                    >
+                      340nm 35nm FWHM
+                    </option>
+                    <option
+                      key="CLR-S1"
+                      value="CLR-S1"
+                    >
+                      Fused silica clear
+                    </option>
+                    <option
+                      key="SDSSu-S1"
+                      value="SDSSu-S1"
+                    >
+                      SDSS u'
+                    </option>
+                    <option
+                      key="SDSSg-S1"
+                      value="SDSSg-S1"
+                    >
+                      SDSS g'
+                    </option>
+                    <option
+                      key="SDSSr-S1"
+                      value="SDSSr-S1"
+                    >
+                      SDSS r'
+                    </option>
+                    <option
+                      key="SDSSi-S1"
+                      value="SDSSi-S1"
+                    >
+                      SDSS i'
+                    </option>
+                    <option
+                      key="SDSSz-S1"
+                      value="SDSSz-S1"
+                    >
+                      SDSS z'
+                    </option>
+                    <option
+                      key="Su-S1"
+                      value="Su-S1"
+                    >
+                      Stroemgren u
+                    </option>
+                    <option
+                      key="Sb-S1"
+                      value="Sb-S1"
+                    >
+                      Stroemgren b
+                    </option>
+                    <option
+                      key="Sv-S1"
+                      value="Sv-S1"
+                    >
+                      Stroemgren v
+                    </option>
+                    <option
+                      key="Sy-S1"
+                      value="Sy-S1"
+                    >
+                      Stroemgren y
+                    </option>
+                    <option
+                      key="Halpha-S1"
+                      value="Halpha-S1"
+                    >
+                      H-alpha
+                    </option>
+                    <option
+                      key="Hbw-S1"
+                      value="Hbw-S1"
+                    >
+                      H-beta wide
+                    </option>
+                    <option
+                      key="Hbn-S1"
+                      value="Hbn-S1"
+                    >
+                      H-beta narrow
+                    </option>
+                    <option
+                      key="SR613-21"
+                      value="SR613-21"
+                    >
+                      SRE 1
+                    </option>
+                    <option
+                      key="SR708-25"
+                      value="SR708-25"
+                    >
+                      SRE 2
+                    </option>
+                    <option
+                      key="SR815-29"
+                      value="SR815-29"
+                    >
+                      SRE 3
+                    </option>
+                    <option
+                      key="SR862-32"
+                      value="SR862-32"
+                    >
+                      SRE 4
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</Salticam>
+`;
+
+exports[`Salticam  should render correctly without detector mode and filter 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -143,6 +512,213 @@ exports[`Salticam  should render correctly 1`] = `
                       value="Frame Transfer"
                     >
                       Frame Transfer
+                    </option>
+                  </select>
+                </div>
+              </SelectField>
+            </div>
+          </StyledComponent>
+        </styled.div>
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "sub-grid",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-dnqmqq",
+                  "isStatic": true,
+                  "lastClassName": "c1",
+                  "rules": Array [
+                    "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-dnqmqq",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="sub-grid c1"
+            >
+              <SelectField
+                name="filter"
+                onChange={[Function]}
+              >
+                <div
+                  className="control select "
+                >
+                  <select
+                    name="filter"
+                    onChange={[Function]}
+                  >
+                    <AnyOption>
+                      <option
+                        key="any"
+                        value=""
+                      >
+                        Any
+                      </option>
+                    </AnyOption>
+                    <option
+                      key="U-S1"
+                      value="U-S1"
+                    >
+                      Johnson U
+                    </option>
+                    <option
+                      key="B-S1"
+                      value="B-S1"
+                    >
+                      Johnson B
+                    </option>
+                    <option
+                      key="V-S1"
+                      value="V-S1"
+                    >
+                      Johnson V
+                    </option>
+                    <option
+                      key="R-S1"
+                      value="R-S1"
+                    >
+                      Cousins R
+                    </option>
+                    <option
+                      key="I-S1"
+                      value="I-S1"
+                    >
+                      Cousins I
+                    </option>
+                    <option
+                      key="380-40"
+                      value="380-40"
+                    >
+                      380nm 40nm FWHM
+                    </option>
+                    <option
+                      key="340-35"
+                      value="340-35"
+                    >
+                      340nm 35nm FWHM
+                    </option>
+                    <option
+                      key="CLR-S1"
+                      value="CLR-S1"
+                    >
+                      Fused silica clear
+                    </option>
+                    <option
+                      key="SDSSu-S1"
+                      value="SDSSu-S1"
+                    >
+                      SDSS u'
+                    </option>
+                    <option
+                      key="SDSSg-S1"
+                      value="SDSSg-S1"
+                    >
+                      SDSS g'
+                    </option>
+                    <option
+                      key="SDSSr-S1"
+                      value="SDSSr-S1"
+                    >
+                      SDSS r'
+                    </option>
+                    <option
+                      key="SDSSi-S1"
+                      value="SDSSi-S1"
+                    >
+                      SDSS i'
+                    </option>
+                    <option
+                      key="SDSSz-S1"
+                      value="SDSSz-S1"
+                    >
+                      SDSS z'
+                    </option>
+                    <option
+                      key="Su-S1"
+                      value="Su-S1"
+                    >
+                      Stroemgren u
+                    </option>
+                    <option
+                      key="Sb-S1"
+                      value="Sb-S1"
+                    >
+                      Stroemgren b
+                    </option>
+                    <option
+                      key="Sv-S1"
+                      value="Sv-S1"
+                    >
+                      Stroemgren v
+                    </option>
+                    <option
+                      key="Sy-S1"
+                      value="Sy-S1"
+                    >
+                      Stroemgren y
+                    </option>
+                    <option
+                      key="Halpha-S1"
+                      value="Halpha-S1"
+                    >
+                      H-alpha
+                    </option>
+                    <option
+                      key="Hbw-S1"
+                      value="Hbw-S1"
+                    >
+                      H-beta wide
+                    </option>
+                    <option
+                      key="Hbn-S1"
+                      value="Hbn-S1"
+                    >
+                      H-beta narrow
+                    </option>
+                    <option
+                      key="SR613-21"
+                      value="SR613-21"
+                    >
+                      SRE 1
+                    </option>
+                    <option
+                      key="SR708-25"
+                      value="SR708-25"
+                    >
+                      SRE 2
+                    </option>
+                    <option
+                      key="SR815-29"
+                      value="SR815-29"
+                    >
+                      SRE 3
+                    </option>
+                    <option
+                      key="SR862-32"
+                      value="SR862-32"
+                    >
+                      SRE 4
                     </option>
                   </select>
                 </div>

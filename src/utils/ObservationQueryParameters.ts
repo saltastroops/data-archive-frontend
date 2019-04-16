@@ -1,6 +1,7 @@
 // TypeScript interfaces describing the state of the search form
 
 import { TargetType } from "./TargetType";
+import { SalticamFilter } from "./SalticamFilter";
 
 /**
  * An interface describing the React state of the observation query form.
@@ -237,7 +238,7 @@ export interface ISalticam extends IInstrument {
     filter?: string;
   };
   exposureTime?: string;
-  filter?: string;
+  filter?: SalticamFilter;
   name: "Salticam";
 }
 

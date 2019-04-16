@@ -65,7 +65,7 @@ const SaltForm = (props: ISaltFormProps) => {
 
   // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
+    const value = e.target.value;
     onChange("instrument", { name: value });
   };
 
