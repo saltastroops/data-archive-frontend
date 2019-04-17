@@ -1,7 +1,7 @@
 // TypeScript interfaces describing the state of the search form
 
-import { TargetType } from "./TargetType";
 import { SalticamFilter } from "./SalticamFilter";
+import { TargetType } from "./TargetType";
 
 /**
  * An interface describing the React state of the observation query form.
@@ -343,7 +343,7 @@ export type HRSMode =
 
 export interface IBVIT extends IInstrument {
   errors: {};
-  filter: BVITFilter;
+  filter?: BVITFilter;
   mode?: "Imaging" | "Streaming";
   name: "BVIT";
 }

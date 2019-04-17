@@ -5,6 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import "./App.css";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ChangeEvent } from "react";
+import styled from "styled-components";
 import {
   IRSS,
   IRSSModes,
@@ -9,10 +10,9 @@ import {
   RSSPolarimetryMode
 } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
+import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 import PolarimetryModesSelector from "../PolarimetryModesSelector";
-import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
-import styled from "styled-components";
 
 interface IRssProps {
   rss: IRSS;
@@ -63,9 +63,15 @@ const RSS = (props: IRssProps) => {
       ...modes,
       names: updatedModeNames
     };
-    if (!hasFabryPerotMode) delete updatedModes.fabryPerotMode;
-    if (!hasGrating) delete updatedModes.grating;
-    if (!hasPolarimetryModes) delete updatedModes.polarimetryModes;
+    if (!hasFabryPerotMode) {
+      delete updatedModes.fabryPerotMode;
+    }
+    if (!hasGrating) {
+      delete updatedModes.grating;
+    }
+    if (!hasPolarimetryModes) {
+      delete updatedModes.polarimetryModes;
+    }
 
     onChange({
       errors: {

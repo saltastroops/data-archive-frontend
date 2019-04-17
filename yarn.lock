@@ -1067,6 +1067,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/dom-helpers@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@types/dom-helpers/-/dom-helpers-3.4.1.tgz#9a9b1be9cbbf289d2192964d65064f1279a3b5ed"
+  integrity sha512-j6d+NJ8TaPKoIdyjJx7nuhhCaNmxZF86wBSc4wAT5AKikwftpPjVKi9HxEKLrmRztFEYRpje6T8W3R7Q9nyHcg==
+
 "@types/enzyme-adapter-react-16@^1.0.3":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.0.5.tgz#1bf30a166f49be69eeda4b81e3f24113c8b4e9d5"

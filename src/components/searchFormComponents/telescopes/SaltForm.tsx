@@ -91,9 +91,9 @@ const SaltForm = (props: ISaltFormProps) => {
             value={instrument.name || ""}
           >
             <AnyOption />
-            {instruments.map(instrument => (
-              <option key={instrument} value={instrument}>
-                {instrument}
+            {instruments.map(instr => (
+              <option key={instr} value={instr}>
+                {instr}
               </option>
             ))}
           </SelectField>

@@ -11,7 +11,7 @@ describe("Bvit ", () => {
     ).toBeDefined();
   });
 
-  it("should render correctly without a mode abd a filter", () => {
+  it("should render correctly without a mode and a filter", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
@@ -20,7 +20,7 @@ describe("Bvit ", () => {
     ).toMatchSnapshot();
   });
 
-  it("should render correctly with a mode abd a filter", () => {
+  it("should render correctly with a mode and a filter", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(

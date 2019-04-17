@@ -192,6 +192,9 @@ exports[`Salticam  should render correctly with detector mode and filter 1`] = `
             <div
               className="sub-grid c1"
             >
+              <p>
+                Filter
+              </p>
               <SelectField
                 name="filter"
                 onChange={[Function]}
@@ -557,6 +560,9 @@ exports[`Salticam  should render correctly without detector mode and filter 1`] 
             <div
               className="sub-grid c1"
             >
+              <p>
+                Filter
+              </p>
               <SelectField
                 name="filter"
                 onChange={[Function]}

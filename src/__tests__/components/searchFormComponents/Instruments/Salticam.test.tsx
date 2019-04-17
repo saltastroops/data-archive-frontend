@@ -55,8 +55,8 @@ describe("Salticam ", () => {
   it("should call the onChange method if the detector mode changes", () => {
     const onChange = jest.fn();
     const salticam: ISalticam = {
-      errors: {},
       detectorMode: "Normal",
+      errors: {},
       name: "Salticam"
     };
     const wrapper = mount(<Salticam onChange={onChange} salticam={salticam} />);

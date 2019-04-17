@@ -1,15 +1,18 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import {
-  Column,
+  AutoSizer,
+  Grid,
+  ScrollSync,
   SortDirection,
   SortDirectionType,
-  SortIndicator,
-  Table
+  SortIndicator
 } from "react-virtualized";
+import styled from "styled-components";
 import cache from "../../../util/cache";
 import {
   ADD_TO_CART_MUTATION,
@@ -21,6 +24,7 @@ import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
+import SearchResultsTableHeader from "./SearchResultsTableHeader";
 
 interface ISearchResultsTableProps {
   columns: string[];
@@ -74,6 +78,30 @@ interface IRowDatum {
   meta: IRowDatumMeta;
   [key: string]: any;
 }
+
+const GridRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+`;
+
+const GridColumn = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+`;
+
+interface ICartContainerProps {
+  top: number;
+}
+
+const CartContainer = styled.div<ICartContainerProps>`
+  flex: 0 0 25px;
+  position: absolute;
+  left: 0;
+  top: ${props => props.top}px;
+  z-index: 10;
+`;
 
 /**
  * Comparison function for table row data in the search results table.
@@ -130,9 +158,16 @@ function cmp(
  * done via the properties of the Table and Column elements, which use the
  * following class methods.
  *
- * cellRendererFactory:
- *     Creates the cell renderer. This is a factory rather than a function as
- *     cart mutation functions need to be passed.
+ * cartCellRendererFactory:
+ *     Creates the renderer for rendering the first column, which provides the
+ *     functionality to put files into the cart. This is a factory rather than a
+ *     function as the cart mutation functions need to be passed.
+ * cartHeaderRenderer:
+ *     The renderer for the header of the first column.
+ * cellContent:
+ *     Returns the content of a table data cell.
+ * cellRenderer:
+ *     The renderer for a table data cell.
  * closePreviewModal:
  *     Closes the preview modal.
  * columnWidth:
@@ -150,15 +185,14 @@ function cmp(
  * sortedRowData:
  *     Creates a new list with the sorted row data and returns that list.
  * tableHeight:
- *     Returns the table height. The height should only be computed once (in
- *     the constructor).
+ *     Returns the table height.
  * tableWidth:
  *     Returns the table width in pixels.
  * unsort:
  *     Reverts the table to the original unsorted state.
- * _unsortedRowData:
+ * unsortedRowData:
  *     Parses the given search results for use in the table.
- * _updateCart:
+ * updateCart:
  *     Updates the cart.
  *
  * Properties:
@@ -177,31 +211,17 @@ class SearchResultsTable extends React.Component<
   /**
    * The height of the table header in pixels.
    */
-  private static HEADER_HEIGHT = 30;
+  public static HEADER_HEIGHT = 40;
 
   /**
    * The height of a table row in pixels.
    */
-  private static ROW_HEIGHT = 50;
+  public static ROW_HEIGHT = 30;
 
   /**
-   * Return the table height.
+   * The width of the cart column in pixels.
    */
-  private static tableHeight = (
-    unsortedRowData: List<IRowDatum>,
-    maxHeight: number
-  ) => {
-    const overallHeight =
-      SearchResultsTable.HEADER_HEIGHT +
-      unsortedRowData.size * SearchResultsTable.ROW_HEIGHT;
-
-    return Math.min(overallHeight, maxHeight);
-  };
-
-  /**
-   * The height of the table header in pixels
-   */
-  private height: number;
+  public static CART_COLUMN_WIDTH = 25;
 
   constructor(props: ISearchResultsTableProps) {
     super(props);
@@ -229,17 +249,31 @@ class SearchResultsTable extends React.Component<
       sortedRowData,
       unsortedRowData
     };
-
-    // Calculate the table height
-    this.height = SearchResultsTable.tableHeight(
-      unsortedRowData,
-      props.maxHeight || 700
-    );
   }
 
+  /**
+   * Render the search results table.
+   *
+   * The table consists of four grids:
+   *
+   * Grid 1: A single cell placed at the top left. This serves as the header for
+   *         the column providing the cart functionality. It cannot scroll.
+   * Grid 2: A grid consisting of a single column placed at the left.
+   * Grid 3: A single row of cells, which can scroll horizontally. It serves as
+   *         the header row for all columns other than the first one.
+   * Grid 4: A grid covering the whole table. It contains the table data.
+   *
+   * Both Grid 2 and 4 have a "dummy" column as first column, which (if not
+   * scrolled) is underneath Grid 1 and/or Grid 3 and hence is not visible.
+   * However, for this to work properly all cells of Grid 1 and Grid 3 must have
+   * a background with full opacity.
+   */
   public render() {
-    const { columns } = this.props;
-    const { image, open, sortBy, sortDirection, sortedRowData } = this.state;
+    const { image, open } = this.state;
+
+    // Calculate the table dimensions
+    const height = this.tableHeight();
+    const width = this.tableWidth();
 
     return (
       <>
@@ -260,37 +294,107 @@ class SearchResultsTable extends React.Component<
             >
               {(removeFromCart: any) => (
                 <>
-                  <Table
-                    className="search results table"
-                    data-test="search-results-table"
-                    width={this.tableWidth()}
-                    height={this.height || 700}
-                    headerHeight={SearchResultsTable.HEADER_HEIGHT}
-                    rowHeight={SearchResultsTable.ROW_HEIGHT}
-                    rowCount={sortedRowData.size}
-                    rowGetter={({ index }) => sortedRowData.get(index)}
-                    rowClassName={this.rowClassName}
-                    sort={this.sort}
-                    sortBy={sortBy}
-                    sortDirection={sortDirection}
-                  >
-                    {columns.map(column => (
-                      <Column
-                        key={column}
-                        label={column}
-                        dataKey={column}
-                        cellRenderer={this.cellRendererFactory(
-                          addToCart,
-                          removeFromCart
-                        )}
-                        headerRenderer={this.headerRenderer}
-                        width={this.columnWidth(column)}
-                      />
-                    ))}
-                  </Table>
-                  <button className="button is-normal" onClick={this.unsort}>
-                    Don't sort
-                  </button>
+                  <div className="search-results table">
+                    <ScrollSync>
+                      {({ onScroll, scrollLeft, scrollTop }) => {
+                        return (
+                          <GridRow data-test="search-results-table">
+                            <CartContainer top={0}>
+                              <Grid
+                                cellRenderer={this.cartHeaderRenderer}
+                                className="HeaderGrid"
+                                columnCount={1}
+                                columnWidth={
+                                  SearchResultsTable.CART_COLUMN_WIDTH
+                                }
+                                height={SearchResultsTable.HEADER_HEIGHT}
+                                rowCount={1}
+                                rowHeight={SearchResultsTable.HEADER_HEIGHT}
+                                width={SearchResultsTable.CART_COLUMN_WIDTH}
+                              />
+                            </CartContainer>
+                            <CartContainer
+                              top={SearchResultsTable.HEADER_HEIGHT}
+                            >
+                              <Grid
+                                cellRenderer={this.cartCellRendererFactory({
+                                  addToCart,
+                                  removeFromCart
+                                })}
+                                columnWidth={
+                                  SearchResultsTable.CART_COLUMN_WIDTH
+                                }
+                                columnCount={1}
+                                style={{ overflow: "hidden" }}
+                                height={height - scrollbarSize()}
+                                rowHeight={SearchResultsTable.ROW_HEIGHT}
+                                rowCount={this.state.sortedRowData.size}
+                                scrollTop={scrollTop}
+                                width={SearchResultsTable.CART_COLUMN_WIDTH}
+                              />
+                            </CartContainer>
+                            <GridColumn>
+                              <AutoSizer disableHeight={true}>
+                                {({ width }) => (
+                                  <div>
+                                    <div
+                                      style={{
+                                        height:
+                                          SearchResultsTable.HEADER_HEIGHT,
+                                        width: width - scrollbarSize()
+                                      }}
+                                    >
+                                      <Grid
+                                        style={{
+                                          overflow: "hidden",
+                                          width: "100%"
+                                        }}
+                                        columnWidth={this.columnWidth}
+                                        columnCount={this.props.columns.length}
+                                        height={height}
+                                        cellRenderer={this.headerRenderer}
+                                        rowHeight={
+                                          SearchResultsTable.HEADER_HEIGHT
+                                        }
+                                        rowCount={1}
+                                        scrollLeft={scrollLeft}
+                                        width={width - scrollbarSize()}
+                                      />
+                                    </div>
+                                    <div
+                                      style={{
+                                        height: height - scrollbarSize(),
+                                        width
+                                      }}
+                                    >
+                                      <Grid
+                                        style={{ width: "100%" }}
+                                        columnWidth={this.columnWidth}
+                                        columnCount={this.props.columns.length}
+                                        height={height}
+                                        onScroll={onScroll}
+                                        cellRenderer={this.cellRenderer}
+                                        rowHeight={
+                                          SearchResultsTable.ROW_HEIGHT
+                                        }
+                                        rowCount={this.state.sortedRowData.size}
+                                        width={width}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+                              </AutoSizer>
+                            </GridColumn>
+                          </GridRow>
+                        );
+                      }}
+                    </ScrollSync>
+                  </div>
+                  <div>
+                    <button className="button is-normal" onClick={this.unsort}>
+                      Don't sort
+                    </button>
+                  </div>
                 </>
               )}
             </Mutation>
@@ -301,25 +405,34 @@ class SearchResultsTable extends React.Component<
   }
 
   /**
-   * Create a cell renderer which uses the given mutations for updating the
-   * cart.
+   * A factory for the renderer rendering the cells of the first column, which
+   * lets the user put files into the cart (or remove them from the cart).
    */
-  private cellRendererFactory = (addToCart: any, removeFromCart: any) => {
-    return ({ dataKey, rowIndex }: { dataKey: string; rowIndex: number }) => {
+  private cartCellRendererFactory = ({ addToCart, removeFromCart }: any) => {
+    return ({
+      key,
+      rowIndex,
+      style
+    }: {
+      key: string;
+      rowIndex: number;
+      style: object;
+    }) => {
       const rowDatum = this.state.sortedRowData.get(rowIndex);
       if (!rowDatum) {
+        // Should never happen, but let's keep Typescript happy
         return "not defined";
-      } // Should never happen, but let's keep Typescript happy
+      }
       if (!rowDatum.meta.observationHeader) {
         // A normal table row
         const file =
           rowDatum.meta.observation.files[
             rowDatum.meta.observationFileIndex as number
           ];
-        switch (dataKey) {
-          case DataKeys.CART:
-            // Checkbox for adding the file to the cart (or for removing it)
-            return (
+        // Checkbox for adding the file to the cart (or for removing it)
+        return (
+          <div className={this.rowClassName(rowIndex)} key={key} style={style}>
+            <span>
               <LargeCheckbox
                 data-test="observation-header-input"
                 checked={this.state.cart.contains(file)}
@@ -327,51 +440,130 @@ class SearchResultsTable extends React.Component<
                   this.updateCart(e, [file], addToCart, removeFromCart)
                 }
               />
-            );
-          case DataKeys.DECLINATION:
-            return rowDatum[dataKey].toFixed(4);
-          case DataKeys.FILENAME:
-            return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
-              <a
-                onClick={() => {
-                  this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
-                }}
-              >
-                {rowDatum[DataKeys.FILENAME]}
-              </a>
-            ) : (
-              rowDatum[DataKeys.FILENAME]
-            );
-          case DataKeys.RIGHT_ASCENSION:
-            return rowDatum[dataKey].toFixed(4);
-          default:
-            return rowDatum[dataKey];
-        }
+            </span>
+          </div>
+        );
       } else {
         // Am observation header row.
         const files = rowDatum.meta.observation.files;
         const allInCart = files.every((file: IFile) =>
           this.state.cart.contains(file)
         );
-        switch (dataKey) {
-          case DataKeys.CART:
-            // Checkbox for adding all the files of the observation to the cart
-            // (or for removing them)
-            return (
+        // Checkbox for adding all the files of the observation to the cart
+        // (or for removing them)
+        return (
+          <div
+            className="search-results cell observation-header"
+            key={key}
+            style={style}
+          >
+            <span>
               <LargeCheckbox
                 checked={allInCart}
                 onChange={e =>
                   this.updateCart(e, files, addToCart, removeFromCart)
                 }
               />
-            );
-          case DataKeys.OBSERVATION_NAME:
-            return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
-          default:
-            return "";
-        }
+            </span>
+          </div>
+        );
       }
     };
+  };
+
+  /**
+   * The renderer for the first column's header cell.
+   */
+  private cartHeaderRenderer = ({
+    key,
+    style
+  }: {
+    key: string;
+    style: object;
+  }) => {
+    return (
+      <div className="search-results header cell cart" key={key} style={style}>
+        <span>
+          <FontAwesomeIcon icon={faShoppingCart} />
+        </span>
+      </div>
+    );
+  };
+
+  /**
+   * The content for a table data cell. The column index does not include the
+   * first column, i.e. technically columnIndex = 1 refers to the second column.
+   * Similarly, the row index does not include the header.
+   */
+  private cellContent = ({ columnIndex, rowIndex }: any) => {
+    const rowDatum = this.state.sortedRowData.get(rowIndex);
+    const dataKey = this.props.columns[columnIndex];
+    if (!rowDatum) {
+      // Should never happen, but let's keep Typescript happy
+      return "not defined";
+    }
+    if (!rowDatum.meta.observationHeader) {
+      // A normal table row
+      switch (dataKey) {
+        case DataKeys.DECLINATION:
+          return rowDatum[dataKey].toFixed(4);
+        case DataKeys.FILENAME:
+          return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
+            <a
+              onClick={() => {
+                this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
+              }}
+            >
+              {rowDatum[DataKeys.FILENAME]}
+            </a>
+          ) : (
+            rowDatum[DataKeys.FILENAME]
+          );
+        case DataKeys.RIGHT_ASCENSION:
+          return rowDatum[dataKey].toFixed(4);
+        default:
+          return rowDatum[dataKey];
+      }
+    } else {
+      // Am observation header row.
+      const files = rowDatum.meta.observation.files;
+      const allInCart = files.every((file: IFile) =>
+        this.state.cart.contains(file)
+      );
+      if (columnIndex === 0) {
+        return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
+      } else {
+        return "";
+      }
+    }
+  };
+
+  /**
+   * The renderer for a table data cell. A column index of 0 refers to the
+   * dummy column, and hence an empty string is returned for it.
+   */
+  private cellRenderer = ({
+    columnIndex,
+    key,
+    rowIndex,
+    style
+  }: {
+    columnIndex: number;
+    key: string;
+    rowIndex: number;
+    style: object;
+  }) => {
+    if (columnIndex < 1) {
+      return "";
+    }
+
+    return (
+      <div className={this.rowClassName(rowIndex)} key={key} style={style}>
+        <span>
+          {this.cellContent({ columnIndex: columnIndex - 1, rowIndex })}
+        </span>
+      </div>
+    );
   };
 
   /**
@@ -382,31 +574,36 @@ class SearchResultsTable extends React.Component<
   };
 
   /**
-   * The width of a column (in pixels).
+   * The width of a column (in pixels). A column index of 0 refers to the first
+   * column.
    */
-  private columnWidth = (column: string) =>
-    column === DataKeys.CART ? 20 : 200;
+  private columnWidth = ({ index }: { index: number }) => {
+    if (index < 1) {
+      return SearchResultsTable.CART_COLUMN_WIDTH;
+    }
+
+    return 200;
+  };
 
   /**
-   * The renderer for the header row.
-   *
-   * If the data is sorted by this column, a sort indicator for the sort
-   * direction (ascending or descending) is included.
+   * The renderer for the header row cells other than the cart one.
    */
   private headerRenderer = ({
-    dataKey,
-    sortBy,
-    sortDirection
+    columnIndex,
+    key,
+    style
   }: {
-    dataKey: string;
-    sortBy?: string;
-    sortDirection?: SortDirectionType | undefined;
+    columnIndex: number;
+    key: string;
+    style: object;
   }) => {
+    if (columnIndex < 1) {
+      return "";
+    }
+
+    const dataKey = this.props.columns[columnIndex - 1];
     let label;
     switch (dataKey) {
-      case DataKeys.CART:
-        label = <FontAwesomeIcon icon={faShoppingCart} />;
-        break;
       case DataKeys.DECLINATION:
         label = "Dec";
         break;
@@ -414,7 +611,7 @@ class SearchResultsTable extends React.Component<
         label = "Observation";
         break;
       case DataKeys.PROPOSAL_CODE:
-        label = "Proposal Code";
+        label = "Proposal";
         break;
       case DataKeys.RIGHT_ASCENSION:
         label = "RA";
@@ -423,15 +620,16 @@ class SearchResultsTable extends React.Component<
         label = dataKey;
     }
 
-    const showSortIndicator = sortBy === dataKey;
-
     return (
-      <>
+      <SearchResultsTableHeader
+        dataKey={dataKey}
+        key={key}
+        sort={this.sort}
+        sortBy={this.state.sortBy}
+        style={style}
+      >
         {label}
-        {showSortIndicator && (
-          <SortIndicator key="SortIndicator" sortDirection={sortDirection} />
-        )}
-      </>
+      </SearchResultsTableHeader>
     );
   };
 
@@ -446,25 +644,23 @@ class SearchResultsTable extends React.Component<
    * The class name to add to the table row. This is used for styling the rows
    * (using CSS rules defined in App.css).
    *
-   * The chosen class names take into account whether there are observation
-   * headers.
+   * The chosen class names take into account whether the cell is part of an
+   * observation header.
    */
-  private rowClassName = ({ index }: { index: number }) => {
-    if (index === -1) {
+  private rowClassName = (rowIndex: number) => {
+    const rowDatum = this.state.sortedRowData.get(rowIndex);
+    if (!rowDatum) {
+      // Should never happen, but let's keep Typescript happy
       return "";
     }
-    const rowDatum = this.state.sortedRowData.get(index);
-    if (!rowDatum) {
-      return "";
-    } // Should never happen, but let's keep Typescript happy
     if (rowDatum.meta.observationHeader) {
-      return "search-results observation-header";
+      return `search-results observation-header cell`;
     } else {
       const fileIndex = rowDatum.meta.observationFileIndex;
-      const indexToUse = !this.state.sortBy ? fileIndex : index;
+      const indexToUse = !this.state.sortBy ? fileIndex : rowIndex;
       return (indexToUse || 0) % 2
-        ? "search-results file-row-even"
-        : "search-results file-row-file-odd";
+        ? `search-results file-row-even cell`
+        : `search-results file-row-odd cell`;
     }
   };
 
@@ -513,14 +709,31 @@ class SearchResultsTable extends React.Component<
   };
 
   /**
-   * The width (in pixels) the table should have. This is the sum of all the
-   * column widths.
+   * Return the table height.
    */
-  private tableWidth = () =>
-    this.props.columns.reduce(
-      (total: number, column) => total + this.columnWidth(column),
-      0
-    );
+  private tableHeight = () => {
+    const overallHeight =
+      SearchResultsTable.HEADER_HEIGHT +
+      this.state.unsortedRowData.size * SearchResultsTable.ROW_HEIGHT +
+      scrollbarSize();
+
+    return Math.min(overallHeight, this.props.maxHeight || 700);
+  };
+
+  /**
+   * Return the table width.
+   */
+  private tableWidth = () => {
+    const overallWidth =
+      SearchResultsTable.CART_COLUMN_WIDTH +
+      this.props.columns.reduce(
+        (total: number, column, index) => total + this.columnWidth({ index }),
+        0
+      ) +
+      scrollbarSize();
+
+    return Math.min(overallWidth, 700);
+  };
 
   /**
    * Revert the table to the original unsorted state.

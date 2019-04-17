@@ -189,12 +189,18 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         {results && results.length !== 0 && (
           <SearchResultsTable
             columns={[
-              DataKeys.CART,
               DataKeys.OBSERVATION_NAME,
               DataKeys.PROPOSAL_CODE,
               DataKeys.RIGHT_ASCENSION,
               DataKeys.DECLINATION,
-              DataKeys.FILENAME
+              DataKeys.OBSERVATION_NAME,
+              DataKeys.PROPOSAL_CODE,
+              DataKeys.RIGHT_ASCENSION,
+              DataKeys.DECLINATION,
+              DataKeys.OBSERVATION_NAME,
+              DataKeys.PROPOSAL_CODE,
+              DataKeys.RIGHT_ASCENSION,
+              DataKeys.DECLINATION
             ]}
             searchResults={results}
           />

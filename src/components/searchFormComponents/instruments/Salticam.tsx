@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ISalticam } from "../../../utils/ObservationQueryParameters";
+import { ISalticamFilter, SalticamFilter } from "../../../utils/SalticamFilter";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
-import { ISalticamFilter, SalticamFilter } from "../../../utils/SalticamFilter";
 
 interface ISalticamProps {
   onChange: (value: any) => void;

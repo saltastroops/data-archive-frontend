@@ -34,7 +34,7 @@ export function fakeSearchResults(n: number) {
             dataType: "string",
             declination: 100 * Math.random(),
             filename:
-              "string string string string string string string string string",
+              "stringstring stringstring stringstringstring stringstringstring stringstringstring stringstringstring string string string",
             id: `file-2-${i}`,
             instrument: "string",
             isReduced: true,
