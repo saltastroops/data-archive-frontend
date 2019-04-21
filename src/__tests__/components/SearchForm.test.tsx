@@ -24,20 +24,22 @@ const mocks = [
   }
 ];
 
+const screenDimensions = { innerHeight: 1000, innerWidth: 1400 };
+
 describe("Search Form", () => {
   it("should render", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     expect(wrapper).toBeDefined();
   });
 
   it("should always render a div of class name grid-container", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     const mainDiv = wrapper.find("div");
     expect(mainDiv.length).toBeGreaterThan(0);
   });
 
   it("should contain five grid-item and one button", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     const items = wrapper.find("div.grid-item");
     expect(items.length).toEqual(5);
     const button = wrapper.find("button.is-primary");
@@ -45,7 +47,7 @@ describe("Search Form", () => {
   });
 
   it("should contain target, proposal, telescope and data form", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     const target = wrapper.find("div.target-form");
     expect(target.length).toEqual(1);
     const proposal = wrapper.find("div.proposal-form");
@@ -59,7 +61,7 @@ describe("Search Form", () => {
   it("should update state when typing", () => {
     let value: any;
 
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     const targetInput = wrapper.find('input[data-test="target-name-input"]');
     const targetName = targetInput.find("input");
 
@@ -90,7 +92,7 @@ describe("Search Form", () => {
 
   it("should update state when a selection is changed", () => {
     let value: any;
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm screenDimensions={screenDimensions} />);
     const resolverSelect = wrapper.find('select[data-test="resolver-select"]');
     const resolver = resolverSelect.find("select");
     value = "NED";
@@ -179,7 +181,7 @@ describe("Search Form", () => {
   it("render correctly", () => {
     const wrapper = shallow(
       <MockedProvider mocks={mocks}>
-        <SearchForm />
+        <SearchForm screenDimensions={screenDimensions} />
       </MockedProvider>
     );
     expect(toJson(wrapper.find("SearchForm"))).toMatchSnapshot();

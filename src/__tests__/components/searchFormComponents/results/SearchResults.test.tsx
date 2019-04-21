@@ -88,8 +88,9 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          searchResults={dummySearchResults}
           columns={["cart", "observation", "declination", "rightAscension"]}
+          maxWidth={900}
+          searchResults={dummySearchResults}
         />
       </MockedProvider>
     );
@@ -106,8 +107,9 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          searchResults={dummySearchResults}
           columns={["cart", "observation", "declination", "rightAscension"]}
+          maxWidth={900}
+          searchResults={dummySearchResults}
         />
       </MockedProvider>
     );
@@ -122,8 +124,9 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          searchResults={[]}
           columns={["cart", "observation", "declination", "rightAscension"]}
+          maxWidth={900}
+          searchResults={[]}
         />
       </MockedProvider>
     );

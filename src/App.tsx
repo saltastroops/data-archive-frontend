@@ -58,11 +58,20 @@ function ProtectedRoute({
   );
 }
 
+interface IAppState {
+  user?: IUser;
+  screenDimensions: { innerHeight: number; innerWidth: number };
+}
+
 /**
  * The data archive.
  */
-class App extends React.Component<any, any> {
+class App extends React.Component<{}, IAppState> {
   state = {
+    screenDimensions: {
+      innerHeight: window.innerHeight,
+      innerWidth: window.innerWidth
+    },
     user: undefined
   };
 
@@ -78,6 +87,14 @@ class App extends React.Component<any, any> {
       user: undefined
     }));
   };
+
+  public componentDidMount() {
+    window.addEventListener("resize", this.onResize);
+  }
+
+  public componentWillUnmount() {
+    window.removeEventListener("resize", this.onResize);
+  }
 
   public render() {
     /* TODO:
@@ -95,7 +112,12 @@ class App extends React.Component<any, any> {
           <Route
             exact={true}
             path="/"
-            render={() => <SearchForm cache={this.cache.searchForm} />}
+            render={() => (
+              <SearchForm
+                cache={this.cache.searchForm}
+                screenDimensions={this.state.screenDimensions}
+              />
+            )}
           />
 
           {/* registration page */}
@@ -151,6 +173,13 @@ class App extends React.Component<any, any> {
       </>
     );
   }
+
+  private onResize = () => {
+    const { innerHeight, innerWidth } = window;
+    this.setState({
+      screenDimensions: { innerHeight, innerWidth }
+    });
+  };
 }
 
 export default App;

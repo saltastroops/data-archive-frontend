@@ -32,6 +32,7 @@ import TelescopeForm, {
 
 interface ISearchFormProps {
   cache?: ISearchFormCache;
+  screenDimensions: { innerHeight: number; innerWidth: number };
 }
 
 /**
@@ -150,6 +151,34 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
 
   public render() {
     const { target, general, telescope, loading, results } = this.state;
+    const { screenDimensions } = this.props;
+
+    // The search form is a child of a Bulma container div element. The width of
+    // this div depends on the screen size. We let the results table extend
+    // horizontally beyond this div, so that no space is wasted. We keep a left
+    // and right margin of 50 pixels around the table.
+    const resultsTableMargin = 50;
+    const maxResultsTableWidth =
+      screenDimensions.innerWidth - 2 * resultsTableMargin;
+    let containerDivWidth =
+      screenDimensions.innerWidth - 2 * resultsTableMargin;
+    if (window.matchMedia("(min-width: 1088px)").matches) {
+      containerDivWidth = 960;
+    }
+    if (window.matchMedia("(min-width: 1280px)").matches) {
+      containerDivWidth = 1152;
+    }
+    if (window.matchMedia("(min-width: 1472px)").matches) {
+      containerDivWidth = 1344;
+    }
+
+    // The table margin will in general be negative so that the div extends
+    // beyond the container div. However, if it isn't, we center the table.
+    const resultsTableContainerMargin =
+      containerDivWidth - maxResultsTableWidth < 0
+        ? (containerDivWidth - maxResultsTableWidth) / 2
+        : "auto";
+
     return (
       <>
         {loading && (
@@ -187,23 +216,32 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
           </ButtonGrid>
         </ParentGrid>
         {results && results.length !== 0 && (
-          <SearchResultsTable
-            columns={[
-              DataKeys.OBSERVATION_NAME,
-              DataKeys.PROPOSAL_CODE,
-              DataKeys.RIGHT_ASCENSION,
-              DataKeys.DECLINATION,
-              DataKeys.OBSERVATION_NAME,
-              DataKeys.PROPOSAL_CODE,
-              DataKeys.RIGHT_ASCENSION,
-              DataKeys.DECLINATION,
-              DataKeys.OBSERVATION_NAME,
-              DataKeys.PROPOSAL_CODE,
-              DataKeys.RIGHT_ASCENSION,
-              DataKeys.DECLINATION
-            ]}
-            searchResults={results}
-          />
+          <div
+            style={{
+              marginLeft: resultsTableContainerMargin,
+              marginRight: resultsTableContainerMargin,
+              width: maxResultsTableWidth
+            }}
+          >
+            <SearchResultsTable
+              columns={[
+                DataKeys.OBSERVATION_NAME,
+                DataKeys.PROPOSAL_CODE,
+                DataKeys.RIGHT_ASCENSION,
+                DataKeys.DECLINATION,
+                DataKeys.OBSERVATION_NAME,
+                DataKeys.PROPOSAL_CODE,
+                DataKeys.RIGHT_ASCENSION,
+                DataKeys.DECLINATION,
+                DataKeys.OBSERVATION_NAME,
+                DataKeys.PROPOSAL_CODE,
+                DataKeys.RIGHT_ASCENSION,
+                DataKeys.DECLINATION
+              ]}
+              maxWidth={maxResultsTableWidth}
+              searchResults={results}
+            />
+          </div>
         )}
       </>
     );

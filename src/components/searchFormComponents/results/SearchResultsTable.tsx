@@ -9,8 +9,7 @@ import {
   Grid,
   ScrollSync,
   SortDirection,
-  SortDirectionType,
-  SortIndicator
+  SortDirectionType
 } from "react-virtualized";
 import styled from "styled-components";
 import cache from "../../../util/cache";
@@ -21,6 +20,7 @@ import {
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import "../../../window.mock";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
@@ -29,6 +29,7 @@ import SearchResultsTableHeader from "./SearchResultsTableHeader";
 interface ISearchResultsTableProps {
   columns: string[];
   maxHeight?: number;
+  maxWidth: number;
   searchResults: IObservation[];
 }
 
@@ -201,6 +202,8 @@ function cmp(
  *    The columns to display. The values must be valid data keys.
  * maxHeight:
  *    The maximum table height in pixels. The default is 700.
+ * maxWidth:
+ *    The maximum table width in pixels.
  * searchResults:
  *    The search results to display.
  */
@@ -271,9 +274,8 @@ class SearchResultsTable extends React.Component<
   public render() {
     const { image, open } = this.state;
 
-    // Calculate the table dimensions
+    // Calculate the table height
     const height = this.tableHeight();
-    const width = this.tableWidth();
 
     return (
       <>
@@ -294,7 +296,14 @@ class SearchResultsTable extends React.Component<
             >
               {(removeFromCart: any) => (
                 <>
-                  <div className="search-results table">
+                  <div
+                    className="search-results table"
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: this.tableWidth()
+                    }}
+                  >
                     <ScrollSync>
                       {({ onScroll, scrollLeft, scrollTop }) => {
                         return (
@@ -732,7 +741,7 @@ class SearchResultsTable extends React.Component<
       ) +
       scrollbarSize();
 
-    return Math.min(overallWidth, 700);
+    return Math.min(overallWidth, this.props.maxWidth);
   };
 
   /**

@@ -5,6 +5,7 @@ import { Mutation } from "react-apollo";
 import { Redirect } from "react-router";
 import styled from "styled-components";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
+import "../window.mock";
 import InputField from "./basicComponents/InputField";
 
 /**
