@@ -3,7 +3,6 @@ import * as React from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import api from "../api/api";
-import "../window.mock";
 import InputField from "./basicComponents/InputField";
 
 /**

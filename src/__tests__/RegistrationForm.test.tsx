@@ -16,6 +16,16 @@ function inputTyping(wrapper: any, name: string, value: string) {
   });
 }
 
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
 // Updated userInput state
 const updatedState = {
   errors: {

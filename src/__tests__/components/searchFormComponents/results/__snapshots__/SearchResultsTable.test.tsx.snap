@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search results should render correctly with cart content 1`] = `
+exports[`SearchResultsTable should render correctly with cart content 1`] = `
 Array [
   .c3.c3 {
   width: 18px;
@@ -791,7 +791,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -864,7 +864,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -1713,7 +1713,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -1786,7 +1786,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -2604,7 +2604,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}
@@ -2677,7 +2677,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}
@@ -2741,7 +2741,7 @@ Array [
 ]
 `;
 
-exports[`Search results should render correctly with no cart content 1`] = `
+exports[`SearchResultsTable should render correctly with no cart content 1`] = `
 Array [
   .c3.c3 {
   width: 18px;
@@ -3532,7 +3532,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -3605,7 +3605,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -4454,7 +4454,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -4527,7 +4527,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -5345,7 +5345,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}
@@ -5418,7 +5418,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}
@@ -5482,7 +5482,7 @@ Array [
 ]
 `;
 
-exports[`Search results should render correctly with no search results 1`] = `
+exports[`SearchResultsTable should render correctly with no search results 1`] = `
 Array [
   .c0 {
   display: -webkit-box;
@@ -5917,7 +5917,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -5990,7 +5990,7 @@ Array [
                         autoWidth={false}
                         cellRangeRenderer={[Function]}
                         cellRenderer={[Function]}
-                        columnCount={4}
+                        columnCount={2}
                         columnWidth={[Function]}
                         containerRole="rowgroup"
                         containerStyle={Object {}}
@@ -6483,7 +6483,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -6556,7 +6556,7 @@ Array [
                       autoWidth={false}
                       cellRangeRenderer={[Function]}
                       cellRenderer={[Function]}
-                      columnCount={4}
+                      columnCount={2}
                       columnWidth={[Function]}
                       containerRole="rowgroup"
                       containerStyle={Object {}}
@@ -7018,7 +7018,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}
@@ -7091,7 +7091,7 @@ Array [
                     autoWidth={false}
                     cellRangeRenderer={[Function]}
                     cellRenderer={[Function]}
-                    columnCount={4}
+                    columnCount={2}
                     columnWidth={[Function]}
                     containerRole="rowgroup"
                     containerStyle={Object {}}

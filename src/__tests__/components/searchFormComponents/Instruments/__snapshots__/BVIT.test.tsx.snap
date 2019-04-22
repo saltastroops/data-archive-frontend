@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bvit  should render correctly with a mode abd a filter 1`] = `
+exports[`Bvit  should render correctly with a mode and a filter 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -252,7 +252,7 @@ exports[`Bvit  should render correctly with a mode abd a filter 1`] = `
 </BVIT>
 `;
 
-exports[`Bvit  should render correctly without a mode abd a filter 1`] = `
+exports[`Bvit  should render correctly without a mode and a filter 1`] = `
 .c0.c0 {
   display: grid;
   grid-template-columns: 50% 50%;

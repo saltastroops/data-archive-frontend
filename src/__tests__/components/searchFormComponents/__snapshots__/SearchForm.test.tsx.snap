@@ -2,11 +2,6 @@
 
 exports[`Search Form render correctly 1`] = `
 <SearchForm
-  screenDimensions={
-    Object {
-      "innerHeight": 1000,
-      "innerWidth": 1400,
-    }
-  }
+  search={[MockFunction]}
 />
 `;

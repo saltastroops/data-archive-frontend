@@ -30,6 +30,16 @@ const updatedState = {
   }
 };
 
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
 describe("LoginForm Component", () => {
   it("renders the LoginForm component having unpopulated props with no errors", async () => {
     // LoginForm component wrapper.

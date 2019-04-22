@@ -11,7 +11,8 @@ import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
-import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
+import SearchPage from "./components/searchFormComponents/SearchPage";
 
 interface IUser {
   name: string;
@@ -113,7 +114,7 @@ class App extends React.Component<{}, IAppState> {
             exact={true}
             path="/"
             render={() => (
-              <SearchForm
+              <SearchPage
                 cache={this.cache.searchForm}
                 screenDimensions={this.state.screenDimensions}
               />

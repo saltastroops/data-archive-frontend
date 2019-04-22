@@ -5,10 +5,13 @@ const DataKeys = {
   CART: "cart",
   DECLINATION: "declination",
   FILENAME: "filename",
+  INSTRUMENT: "instrument",
   OBSERVATION_NAME: "observationName",
   PREVIEW_IMAGE_URL: "url",
   PROPOSAL_CODE: "proposalCode",
-  RIGHT_ASCENSION: "rightAscension"
+  RIGHT_ASCENSION: "rightAscension",
+  TARGET_NAME: "targetName",
+  TELESCOPE: "telescope"
 };
 
 export default DataKeys;

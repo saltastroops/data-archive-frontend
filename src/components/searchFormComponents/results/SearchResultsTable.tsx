@@ -20,14 +20,14 @@ import {
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
 import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
-import "../../../window.mock";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
+import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
 
 interface ISearchResultsTableProps {
-  columns: string[];
+  columns: ISearchResultsTableColumn[];
   maxHeight?: number;
   maxWidth: number;
   searchResults: IObservation[];
@@ -195,6 +195,8 @@ function cmp(
  *     Parses the given search results for use in the table.
  * updateCart:
  *     Updates the cart.
+ * visibleColumns:
+ *     Returns the visible columns.
  *
  * Properties:
  * -----------
@@ -359,7 +361,7 @@ class SearchResultsTable extends React.Component<
                                           width: "100%"
                                         }}
                                         columnWidth={this.columnWidth}
-                                        columnCount={this.props.columns.length}
+                                        columnCount={this.visibleColumns.length}
                                         height={height}
                                         cellRenderer={this.headerRenderer}
                                         rowHeight={
@@ -379,7 +381,7 @@ class SearchResultsTable extends React.Component<
                                       <Grid
                                         style={{ width: "100%" }}
                                         columnWidth={this.columnWidth}
-                                        columnCount={this.props.columns.length}
+                                        columnCount={this.visibleColumns.length}
                                         height={height}
                                         onScroll={onScroll}
                                         cellRenderer={this.cellRenderer}
@@ -506,7 +508,7 @@ class SearchResultsTable extends React.Component<
    */
   private cellContent = ({ columnIndex, rowIndex }: any) => {
     const rowDatum = this.state.sortedRowData.get(rowIndex);
-    const dataKey = this.props.columns[columnIndex];
+    const dataKey = this.visibleColumns[columnIndex].dataKey;
     if (!rowDatum) {
       // Should never happen, but let's keep Typescript happy
       return "not defined";
@@ -610,24 +612,8 @@ class SearchResultsTable extends React.Component<
       return "";
     }
 
-    const dataKey = this.props.columns[columnIndex - 1];
-    let label;
-    switch (dataKey) {
-      case DataKeys.DECLINATION:
-        label = "Dec";
-        break;
-      case DataKeys.OBSERVATION_NAME:
-        label = "Observation";
-        break;
-      case DataKeys.PROPOSAL_CODE:
-        label = "Proposal";
-        break;
-      case DataKeys.RIGHT_ASCENSION:
-        label = "RA";
-        break;
-      default:
-        label = dataKey;
-    }
+    const dataKey = this.visibleColumns[columnIndex - 1].dataKey;
+    const label = this.visibleColumns[columnIndex - 1].name;
 
     return (
       <SearchResultsTableHeader
@@ -735,7 +721,7 @@ class SearchResultsTable extends React.Component<
   private tableWidth = () => {
     const overallWidth =
       SearchResultsTable.CART_COLUMN_WIDTH +
-      this.props.columns.reduce(
+      this.visibleColumns.reduce(
         (total: number, column, index) => total + this.columnWidth({ index }),
         0
       ) +
@@ -831,6 +817,13 @@ class SearchResultsTable extends React.Component<
     // Update the cart in the state
     this.setState(() => ({ cart }));
   };
+
+  /**
+   * Return the visible columns.
+   */
+  private get visibleColumns() {
+    return this.props.columns.filter(column => column.visible);
+  }
 }
 
 export default SearchResultsTable;

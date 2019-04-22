@@ -21,7 +21,6 @@ import { TargetType } from "./TargetType";
 // TODO: Remove loading, replace with IObservationQueryParameters
 export interface ISearchFormState {
   general: IGeneral;
-  results: any[];
   target: ITarget;
   telescope?: ITelescope;
   loading: boolean;

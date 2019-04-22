@@ -1,3 +1,5 @@
+import SearchResultsTableColumn from "../../../../components/searchFormComponents/results/ISearchResultsTableColumn";
+
 jest.mock("../../../../util/cache");
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
@@ -5,6 +7,12 @@ import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
 import cache from "../../../../util/cache";
+
+// IMPORTANT NOTE
+//
+// While the snapshot tests in this file pass, they are not particularly
+// meaningful, as there does nbot seem much content in the table DOM recorded
+// in the snapshots.
 
 const dummySearchResults = [
   {
@@ -71,12 +79,18 @@ const dummySearchResults = [
   }
 ];
 
+const columns: SearchResultsTableColumn[] = [
+  { dataKey: "proposal", name: "Proposal", visible: true },
+  { dataKey: "pi", name: "Principal Investigator", visible: false },
+  { dataKey: "target", name: "Target Name", visible: true }
+];
+
 afterAll(() => {
   (cache as any).readQuery.mockReset();
   (cache as any).writeQuery.mockReset();
 });
 
-describe("Search results", () => {
+describe("SearchResultsTable", () => {
   afterEach(() => {
     (cache as any).readQuery.mockReset();
     (cache as any).writeQuery.mockReset();
@@ -88,7 +102,7 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          columns={["cart", "observation", "declination", "rightAscension"]}
+          columns={columns}
           maxWidth={900}
           searchResults={dummySearchResults}
         />
@@ -107,7 +121,7 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          columns={["cart", "observation", "declination", "rightAscension"]}
+          columns={columns}
           maxWidth={900}
           searchResults={dummySearchResults}
         />
@@ -124,7 +138,7 @@ describe("Search results", () => {
     const wrapper = mount(
       <MockedProvider>
         <SearchResultsTable
-          columns={["cart", "observation", "declination", "rightAscension"]}
+          columns={columns}
           maxWidth={900}
           searchResults={[]}
         />
