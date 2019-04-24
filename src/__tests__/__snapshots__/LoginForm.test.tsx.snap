@@ -83,7 +83,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
               className="control"
             >
               <input
-                className="input undefined "
+                className="input "
                 id="username"
                 name="username"
                 onChange={[Function]}
@@ -117,7 +117,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
               className="control"
             >
               <input
-                className="input undefined "
+                className="input "
                 id="password"
                 name="password"
                 onChange={[Function]}
