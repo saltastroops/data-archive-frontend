@@ -26,7 +26,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
             },
           ],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-ifAKCX",
+            "componentId": "sc-htpNat",
             "isStatic": true,
             "lastClassName": "c1",
             "rules": Array [
@@ -41,7 +41,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           "displayName": "styled.h1",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-ifAKCX",
+          "styledComponentId": "sc-htpNat",
           "target": "h1",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -83,7 +83,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
               className="control"
             >
               <input
-                className="input undefined "
+                className="input "
                 id="username"
                 name="username"
                 onChange={[Function]}
@@ -117,7 +117,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
               className="control"
             >
               <input
-                className="input undefined "
+                className="input "
                 id="password"
                 name="password"
                 onChange={[Function]}

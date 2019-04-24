@@ -73,7 +73,7 @@ export const resolvers = {
      *
      * Returns:
      * --------
-     * true if the user has been logged in, error otherwise.
+     * true
      */
     login: async (
       _: any,
@@ -85,7 +85,7 @@ export const resolvers = {
         username
       });
 
-      // true if successful, error otherwise.
+      // Always true
       return login.data.success;
     },
 
@@ -96,12 +96,12 @@ export const resolvers = {
      *
      * Returns:
      * --------
-     * true if the user has been logged out, error otherwise.
+     * true
      */
     logout: async () => {
       const logout = await api.logout();
 
-      // true if successful, error otherwise.
+      // Always true
       return logout.data.success;
     }
   }

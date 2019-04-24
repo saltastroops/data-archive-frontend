@@ -18,7 +18,7 @@ export default {
    *
    * Returns:
    * --------
-   * true if the user has been logged in, error otherwise.
+   * true
    */
   login: async (credentials: { password: string; username: string }) => {
     return baseAxiosClient().post("/auth/login", {
@@ -32,7 +32,7 @@ export default {
    *
    * Returns:
    * --------
-   * true if the user has been logged out, error otherwise.
+   * true
    */
   logout: async () => {
     return baseAxiosClient().post("/auth/logout", {});

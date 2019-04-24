@@ -210,7 +210,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
         mutation={LOGIN_MUTATION}
         refetchQueries={[{ query: USER_QUERY }]}
       >
-        {(login, { loading, error }) => {
+        {(login: any, { loading, error }: any) => {
           return (
             <LoginFormParent
               data-test={"form"}

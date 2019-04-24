@@ -109,7 +109,7 @@ exports[`HIPPO  should render correctly 1`] = `
                   className="control"
                 >
                   <input
-                    className="input undefined undefined"
+                    className="input "
                     name="exposureTime"
                     onChange={[Function]}
                   />

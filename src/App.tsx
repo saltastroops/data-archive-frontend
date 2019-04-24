@@ -73,7 +73,7 @@ class App extends React.Component<any, any> {
   public render() {
     return (
       <Query query={USER_QUERY}>
-        {({ data, loading }) => {
+        {({ data, loading }: any) => {
           if (loading) {
             return <p>Loading...</p>;
           }
@@ -105,7 +105,7 @@ class App extends React.Component<any, any> {
                 <Route
                   exact={true}
                   path="/register"
-                  component={() => (
+                  render={() => (
                     <RegistrationForm cache={this.cache.registrationForm} />
                   )}
                 />
@@ -114,7 +114,7 @@ class App extends React.Component<any, any> {
                 <Route
                   exact={true}
                   path="/login"
-                  component={() => <LoginForm cache={this.cache.loginForm} />}
+                  render={() => <LoginForm cache={this.cache.loginForm} />}
                 />
 
                 {/* account details page */}

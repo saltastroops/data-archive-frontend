@@ -77,7 +77,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="givenName"
               onChange={[Function]}
               value=""
@@ -103,7 +103,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="familyName"
               onChange={[Function]}
               value=""
@@ -129,7 +129,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="email"
               onChange={[Function]}
               value=""
@@ -155,7 +155,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="username"
               onChange={[Function]}
               value=""
@@ -182,7 +182,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="affiliation"
               onChange={[Function]}
               placeholder="E.g. University of Cape Town"
@@ -211,7 +211,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="password"
               onChange={[Function]}
               placeholder="At least 7 characters"
@@ -240,7 +240,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             className="control"
           >
             <input
-              className="input undefined "
+              className="input "
               name="confirmPassword"
               onChange={[Function]}
               type="password"
