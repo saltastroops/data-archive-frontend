@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Mutation, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
