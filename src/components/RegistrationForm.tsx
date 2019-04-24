@@ -251,7 +251,7 @@ class RegistrationForm extends React.Component<
 
     return (
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
-        {(signup, { loading }) => {
+        {(signup: any, { loading }: any) => {
           return (
             <Form onSubmit={e => this.onHandleSubmit(e, signup)}>
               <fieldset disabled={loading} aria-disabled={loading}>

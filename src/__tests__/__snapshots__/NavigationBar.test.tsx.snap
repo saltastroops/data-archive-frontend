@@ -33,7 +33,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
     >
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item item"
         exact={true}
         to="/"
@@ -45,7 +44,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
           <Link
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
-            replace={false}
             style={Object {}}
             to="/"
           >
@@ -63,7 +61,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item item"
         to="/data-requests"
       >
@@ -73,7 +70,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
           <Link
             aria-current={null}
             className="navbar-item item"
-            replace={false}
             to="/data-requests"
           >
             <a
@@ -105,7 +101,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         >
           <NavLink
             activeClassName="has-text-weight-bold has-text-link"
-            aria-current="page"
             className="navbar-item"
             to="/account"
           >
@@ -115,7 +110,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
               <Link
                 aria-current={null}
                 className="navbar-item"
-                replace={false}
                 to="/account"
               >
                 <a
@@ -130,8 +124,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             </Route>
           </NavLink>
           <NavLink
-            activeClassName="active"
-            aria-current="page"
             className="navbar-item"
             data-test="logout"
             onClick={[Function]}
@@ -145,7 +137,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                 className="navbar-item active"
                 data-test="logout"
                 onClick={[Function]}
-                replace={false}
                 style={Object {}}
                 to="/"
               >
@@ -168,8 +159,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         className="navbar-item is-hidden-descktop"
       >
         <NavLink
-          activeClassName="active"
-          aria-current="page"
           className="button is-link is-outlined"
           to="/cart"
         >
@@ -179,7 +168,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             <Link
               aria-current={null}
               className="button is-link is-outlined"
-              replace={false}
               to="/cart"
             >
               <a
@@ -282,7 +270,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
     >
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item item"
         exact={true}
         to="/"
@@ -294,7 +281,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
           <Link
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
-            replace={false}
             style={Object {}}
             to="/"
           >
@@ -312,7 +298,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item item"
         to="/data-requests"
       >
@@ -322,7 +307,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
           <Link
             aria-current={null}
             className="navbar-item item"
-            replace={false}
             to="/data-requests"
           >
             <a
@@ -338,7 +322,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item"
         to="/admin"
       >
@@ -348,7 +331,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
           <Link
             aria-current={null}
             className="navbar-item"
-            replace={false}
             to="/admin"
           >
             <a
@@ -380,7 +362,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         >
           <NavLink
             activeClassName="has-text-weight-bold has-text-link"
-            aria-current="page"
             className="navbar-item"
             to="/account"
           >
@@ -390,7 +371,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
               <Link
                 aria-current={null}
                 className="navbar-item"
-                replace={false}
                 to="/account"
               >
                 <a
@@ -405,8 +385,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             </Route>
           </NavLink>
           <NavLink
-            activeClassName="active"
-            aria-current="page"
             className="navbar-item"
             data-test="logout"
             onClick={[Function]}
@@ -420,7 +398,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                 className="navbar-item active"
                 data-test="logout"
                 onClick={[Function]}
-                replace={false}
                 style={Object {}}
                 to="/"
               >
@@ -443,8 +420,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         className="navbar-item is-hidden-descktop"
       >
         <NavLink
-          activeClassName="active"
-          aria-current="page"
           className="button is-link is-outlined"
           to="/cart"
         >
@@ -454,7 +429,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             <Link
               aria-current={null}
               className="button is-link is-outlined"
-              replace={false}
               to="/cart"
             >
               <a
@@ -557,7 +531,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
     >
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
-        aria-current="page"
         className="navbar-item item"
         exact={true}
         to="/"
@@ -569,7 +542,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           <Link
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
-            replace={false}
             style={Object {}}
             to="/"
           >
@@ -593,8 +565,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         className="navbar-item"
       >
         <NavLink
-          activeClassName="active"
-          aria-current="page"
           className=" button is-primary is-outlined"
           to="/login"
         >
@@ -604,7 +574,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             <Link
               aria-current={null}
               className=" button is-primary is-outlined"
-              replace={false}
               to="/login"
             >
               <a
@@ -673,8 +642,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         className="navbar-item"
       >
         <NavLink
-          activeClassName="active"
-          aria-current="page"
           className=" button is-info is-outlined"
           to="/register"
         >
@@ -684,7 +651,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             <Link
               aria-current={null}
               className=" button is-info is-outlined"
-              replace={false}
               to="/register"
             >
               <a
@@ -753,8 +719,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         className="navbar-item is-hidden-descktop"
       >
         <NavLink
-          activeClassName="active"
-          aria-current="page"
           className="button is-link is-outlined"
           to="/cart"
         >
@@ -764,7 +728,6 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             <Link
               aria-current={null}
               className="button is-link is-outlined"
-              replace={false}
               to="/cart"
             >
               <a

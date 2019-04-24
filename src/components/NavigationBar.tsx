@@ -100,7 +100,7 @@ class NavigationBar extends React.Component<
         mutation={LOGOUT_MUTATION}
         refetchQueries={[{ query: USER_QUERY }]}
       >
-        {userLogout => {
+        {(userLogout: any) => {
           return (
             <div>
               <Nav>
