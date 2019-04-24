@@ -22,8 +22,6 @@ import { USER_QUERY } from "../graphql/Query";
  *     The currently logged in user. If the user is not logged in, a falsy value
  *     must be passed.
  */
-
-// TODO: replace user type with correct one
 interface INavigationBarProps {
   user?: {
     familyName: string;
@@ -198,7 +196,7 @@ class NavigationBar extends React.Component<
                         {/* Link for logging in */}
                         <div className={"navbar-item"}>
                           <NavLink
-                            className=" button is-primary  is-outlined"
+                            className=" button is-primary is-outlined"
                             to="/login"
                           >
                             <span>

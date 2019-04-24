@@ -595,7 +595,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         <NavLink
           activeClassName="active"
           aria-current="page"
-          className=" button is-primary  is-outlined"
+          className=" button is-primary is-outlined"
           to="/login"
         >
           <Route
@@ -603,13 +603,13 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           >
             <Link
               aria-current={null}
-              className=" button is-primary  is-outlined"
+              className=" button is-primary is-outlined"
               replace={false}
               to="/login"
             >
               <a
                 aria-current={null}
-                className=" button is-primary  is-outlined"
+                className=" button is-primary is-outlined"
                 href="/login"
                 onClick={[Function]}
               >

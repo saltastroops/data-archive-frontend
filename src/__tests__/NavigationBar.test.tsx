@@ -3,6 +3,7 @@ import toJSON from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
+import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
@@ -12,31 +13,6 @@ const mockUser = (familyName: string, givenName: string, isAdmin: boolean) => ({
   givenName,
   isAdmin
 });
-
-// logout mock mutation
-const mocks = [
-  {
-    request: {
-      query: LOGOUT_MUTATION
-    },
-    result: {
-      data: {
-        login: true
-      }
-    }
-  },
-
-  {
-    request: {
-      query: USER_QUERY
-    },
-    result: {
-      data: {
-        user: null
-      }
-    }
-  }
-];
 
 describe("NavigationBar", () => {
   it("shows the correct content when the user is not logged in", () => {
@@ -141,8 +117,37 @@ describe("NavigationBar", () => {
     expect(toJSON(navigationBar)).toMatchSnapshot();
   });
 
-  it("calls the logout function when the logout link is clicked", () => {
+  it("calls the logout function when the logout link is clicked", async () => {
     const user = mockUser("surname", "name", false);
+
+    // logout mock mutation
+    let logoutCalled = false;
+    const mocks = [
+      {
+        request: {
+          query: LOGOUT_MUTATION
+        },
+        result: () => {
+          logoutCalled = true;
+          return {
+            data: {
+              success: true
+            }
+          };
+        }
+      },
+
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: null
+          }
+        }
+      }
+    ];
 
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
@@ -152,20 +157,24 @@ describe("NavigationBar", () => {
       </MockedProvider>
     );
 
-    const logout = jest.fn();
+    // The logout mutation has not been called (yet).
+    expect(logoutCalled).toBe(false);
+
     // Click the logout link
     const logoutLink = wrapper.find('a[data-test="logout"]');
     logoutLink.simulate("click");
 
-    // Please help with this test
-    // expect(logout).toHaveBeenCalled();
+    // The logout mutation has been called
+    await wait(0);
+    wrapper.update();
+    expect(logoutCalled).toBe(true);
   });
 
   it("toggles the visibility of the menu when the burger button is clicked", async () => {
     const user = mockUser("surname", "name", false);
 
     const wrapper = mount(
-      <MockedProvider mocks={mocks}>
+      <MockedProvider>
         <MemoryRouter>
           <NavigationBar user={user} />
         </MemoryRouter>
