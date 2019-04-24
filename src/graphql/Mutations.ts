@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 /**
- * Creating a new user.
+ * Create a new user.
  *
  * The following arguments must be supplied.
  *
@@ -18,7 +18,7 @@ import gql from "graphql-tag";
  * username:
  *     The username, which must not contain upper case letters.
  */
-const SIGNUP_MUTATION = gql`
+export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $familyName: String!
     $givenName: String!
@@ -40,4 +40,27 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-export { SIGNUP_MUTATION };
+/**
+ * Log the user in.
+ *
+ * The following arguments must be supplied
+ *
+ * password:
+ *     The password.
+ * username:
+ *     The uusername.
+ */
+export const LOGIN_MUTATION = gql`
+  mutation LOGIN_MUTATION($username: String!, $password: String!) {
+    login(password: $password, username: $username) @client
+  }
+`;
+
+/**
+ * Log the user out.
+ */
+export const LOGOUT_MUTATION = gql`
+  mutation LOGOUT_MUTATION {
+    logout @client
+  }
+`;

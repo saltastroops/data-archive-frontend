@@ -10,167 +10,131 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
   margin: 20px 0 20px 0;
 }
 
-<LoginForm>
-  <styled.form
-    onSubmit={[Function]}
-  >
+<form
+  className="column is-4 is-offset-4 c0"
+  data-test="form"
+  onSubmit={[Function]}
+>
+  <styled.h1>
     <StyledComponent
       forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [
             Object {
-              "className": "column is-4 is-offset-4",
+              "className": "title is-3",
             },
           ],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
+            "componentId": "sc-htpNat",
             "isStatic": true,
-            "lastClassName": "c0",
+            "lastClassName": "c1",
             "rules": Array [
               "
   && {
-    padding: 1px;
+    text-align: center;
+    margin: 20px 0 20px 0;
   }
 ",
             ],
           },
-          "displayName": "styled.form",
+          "displayName": "styled.h1",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
-          "target": "form",
+          "styledComponentId": "sc-htpNat",
+          "target": "h1",
           "toString": [Function],
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
       }
       forwardedRef={null}
-      onSubmit={[Function]}
     >
-      <form
-        className="column is-4 is-offset-4 c0"
-        onSubmit={[Function]}
+      <h1
+        className="title is-3 c1"
       >
-        <styled.h1>
-          <StyledComponent
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [
-                  Object {
-                    "className": "title is-3",
-                  },
-                ],
-                "componentStyle": ComponentStyle {
-                  "componentId": "sc-htpNat",
-                  "isStatic": true,
-                  "lastClassName": "c1",
-                  "rules": Array [
-                    "
-  && {
-    text-align: center;
-    margin: 20px 0 20px 0;
-  }
-",
-                  ],
-                },
-                "displayName": "styled.h1",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "sc-htpNat",
-                "target": "h1",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
-          >
-            <h1
-              className="title is-3 c1"
-            >
-              Login to the Data Archive
-            </h1>
-          </StyledComponent>
-        </styled.h1>
-        <fieldset
-          aria-disabled={false}
-          disabled={false}
-        >
-          <div
-            className="field"
-          >
-            <label
-              className="label"
-            >
-              Username
-              <div
-                className="control is-child"
-              >
-                <InputField
-                  error=""
-                  name="username"
-                  onChange={[Function]}
-                  type="text"
-                  value=""
-                >
-                  <div
-                    className="control"
-                  >
-                    <input
-                      className="input undefined "
-                      name="username"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </InputField>
-              </div>
-            </label>
-          </div>
-          <div
-            className="field"
-          >
-            <label
-              className="label"
-            >
-              Password
-              <div
-                className="control is-child"
-              >
-                <InputField
-                  error=""
-                  name="password"
-                  onChange={[Function]}
-                  type="password"
-                  value=""
-                >
-                  <div
-                    className="control"
-                  >
-                    <input
-                      className="input undefined "
-                      name="password"
-                      onChange={[Function]}
-                      type="password"
-                      value=""
-                    />
-                  </div>
-                </InputField>
-              </div>
-            </label>
-          </div>
-          <button
-            className="button is-success is-fullwidth is-rounded"
-            data-test="signIn"
-          >
-            Sign in
-          </button>
-        </fieldset>
-      </form>
+        Login to the Data Archive
+      </h1>
     </StyledComponent>
-  </styled.form>
-</LoginForm>
+  </styled.h1>
+  <fieldset
+    aria-disabled={false}
+    disabled={false}
+  >
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Username
+        <div
+          className="control is-child"
+        >
+          <InputField
+            error=""
+            id="username"
+            name="username"
+            onChange={[Function]}
+            type="text"
+            value=""
+          >
+            <div
+              className="control"
+            >
+              <input
+                className="input "
+                id="username"
+                name="username"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+          </InputField>
+        </div>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password
+        <div
+          className="control is-child"
+        >
+          <InputField
+            error=""
+            id="password"
+            name="password"
+            onChange={[Function]}
+            type="password"
+            value=""
+          >
+            <div
+              className="control"
+            >
+              <input
+                className="input "
+                id="password"
+                name="password"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </InputField>
+        </div>
+      </label>
+    </div>
+    <button
+      className="button is-success is-fullwidth is-rounded"
+      data-test="signIn"
+    >
+      Sign in
+    </button>
+  </fieldset>
+</form>
 `;

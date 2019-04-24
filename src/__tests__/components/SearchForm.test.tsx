@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
 import wait from "waait";
 import App from "../../App";
@@ -82,10 +83,15 @@ describe("Search Form", () => {
 
   it("should cache values and errors", async () => {
     const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
     );
+
+    await wait(0);
+    wrapper.update();
 
     // Navigate to the search form
     const searchFormLink = wrapper.find('a[href="/"]').first();

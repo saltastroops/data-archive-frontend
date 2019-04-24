@@ -375,6 +375,9 @@ describe("RegistrationForm Component", () => {
       </MockedProvider>
     );
 
+    await wait(0);
+    wrapper.update();
+
     // Navigate to the registration form
     const registrationFormLink = wrapper.find('a[href="/register"]').first();
     click(registrationFormLink);
