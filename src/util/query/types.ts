@@ -191,7 +191,7 @@ export interface ILesedi extends ITelescope {
  * name:
  *     The string "1.9 m".
  */
-export interface I1Dot9Metre extends ITelescope {
+export interface IOneDotNineMetre extends ITelescope {
   instrument?: IInstrument;
   name: "1.9 m";
 }
