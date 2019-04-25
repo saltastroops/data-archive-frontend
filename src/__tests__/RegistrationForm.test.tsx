@@ -138,7 +138,7 @@ describe("RegistrationForm Component", () => {
     // Expect the property username of the state to have been updated with the correct value.
     expect(instance.state.userInput.username).toBe("sj");
 
-    // Expect the button not to reflect loading status
+    // Expect the button not to indicate loading
     expect(wrapper.find('[data-test="signUp"]').text()).toContain("Sign up");
 
     // The mutation has not been called (yet)
@@ -147,7 +147,7 @@ describe("RegistrationForm Component", () => {
     // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
-    // Expect the button to reflect the loading status
+    // Expect the button to indicate loading
     expect(wrapper.find('[data-test="signUp"]').text()).toContain("Signing up");
 
     // The mutation has been called
@@ -397,11 +397,11 @@ describe("RegistrationForm Component", () => {
     };
     const mocks = [
       {
+        error: new Error("The server is having a coffee break!"),
         request: {
           query: SIGNUP_MUTATION,
           variables: userDetails
-        },
-        error: new Error("The server is having a coffee break!")
+        }
       }
     ];
 

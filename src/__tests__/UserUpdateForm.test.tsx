@@ -443,6 +443,7 @@ describe("UserUpdateForm Component", () => {
   it("should show an error if submission fails", async () => {
     const mocks = [
       {
+        error: new Error("The server is having a coffee break!"),
         request: {
           query: UPDATE_USER_MUTATION,
           variables: {
@@ -455,8 +456,7 @@ describe("UserUpdateForm Component", () => {
             password: "oldpassword",
             username: ""
           }
-        },
-        error: new Error("The server is having a coffee break!")
+        }
       }
     ];
 
