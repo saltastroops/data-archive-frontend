@@ -10,81 +10,15 @@ import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import click from "../util/click";
 
+const alert = jest.fn();
+window.alert = alert;
+
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
     target: { name, value }
   });
 }
-
-// Updated userInput state
-const updatedState = {
-  errors: {
-    affiliation: "",
-    confirmNewPassword: "",
-    email: "",
-    familyName: "",
-    givenName: "",
-    id: "",
-    newPassword: "",
-    password: "",
-    username: ""
-  },
-  userInput: {
-    affiliation: "",
-    confirmNewPassword: "",
-    email: "",
-    familyName: "",
-    givenName: "",
-    id: "",
-    newPassword: "",
-    password: "",
-    username: ""
-  }
-};
-
-// user update mock mutation
-const mocks = [
-  {
-    request: {
-      query: UPDATE_USER_MUTATION,
-      variables: {
-        ...updatedState
-      }
-    },
-    result: {
-      data: {
-        updateUser: {
-          __typename: "User",
-          ...updatedState
-        }
-      }
-    }
-  },
-
-  {
-    request: {
-      query: USER_QUERY
-    },
-    result: {
-      data: {
-        user: {
-          __typename: "User",
-          affiliation: "",
-          confirmNewPassword: "",
-          email: "",
-          familyName: "",
-          givenName: "",
-          id: "",
-          newPassword: "",
-          password: "",
-          roles: [],
-          username: ""
-        }
-      }
-    }
-  }
-];
 
 describe("UserUpdateForm Component", () => {
   it("renders the UserUpdateForm having unpopulated props with no errors", () => {
@@ -100,6 +34,50 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays no errors if submitted inputs are all valid", async () => {
+    const mocks = [
+      {
+        request: {
+          query: UPDATE_USER_MUTATION,
+          variables: {
+            affiliation: "",
+            confirmNewPassword: "",
+            email: "",
+            familyName: "Doe",
+            givenName: "John",
+            id: "",
+            newPassword: "",
+            password: "",
+            roles: [],
+            username: ""
+          }
+        },
+        result: {
+          data: {
+            user: {}
+          }
+        }
+      },
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: {
+              __typename: "User",
+              affiliation: "SAAO",
+              email: "doe@example.com",
+              familyName: "Doe",
+              givenName: "John",
+              id: "1",
+              roles: [],
+              username: "john.doe"
+            }
+          }
+        }
+      }
+    ];
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
@@ -123,7 +101,7 @@ describe("UserUpdateForm Component", () => {
     // Simulate state change when the new password input field value changes.
     inputTyping(wrapper, "newPassword", "validupdatepassword");
     // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "oldspassword");
+    inputTyping(wrapper, "password", "oldpassword");
     // Simulate state change when the username input field value changes.
     inputTyping(wrapper, "username", "updateusername");
 
@@ -148,18 +126,18 @@ describe("UserUpdateForm Component", () => {
     expect(instance.state.userInput.newPassword).toBe("validupdatepassword");
 
     // Expect the property password of the state to have been updated with the correct value.
-    expect(instance.state.userInput.password).toBe("oldspassword");
+    expect(instance.state.userInput.password).toBe("oldpassword");
 
     // Expect the property username of the state to have been updated with the correct value.
     expect(instance.state.userInput.username).toBe("updateusername");
 
-    // Expect the button to not be clicked
+    // Expect the button not to indicate loading
     expect(wrapper.find('[data-test="update"]').text()).toContain("Update");
 
-    // Simulate the submitting of the form.
+    // Simulate the submitting of the form
     wrapper.find('[data-test="update"]').simulate("submit");
 
-    // Expect the button to hev been clicked
+    // Expect the button to indicate loading
     expect(wrapper.find('[data-test="update"]').text()).toContain(
       "Updating..."
     );
@@ -168,7 +146,7 @@ describe("UserUpdateForm Component", () => {
     expect(wrapper.find("p").length).toBe(0);
   });
 
-  it("displays error message if submitted invalid email address", async () => {
+  it("displays an error message if an invalid email address is submitted", async () => {
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -176,27 +154,24 @@ describe("UserUpdateForm Component", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    wrapper.update();
-
-    // Simulate state change when the emailAddress input field value changes.
+    // Simulate state change when the emailAddress input field value changes
     inputTyping(wrapper, "email", "invalidupdate.email&address");
 
     // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "oldspassword");
+    inputTyping(wrapper, "password", "oldpassword");
 
-    // Simulate the submitting of the form.
+    // Simulate the submitting of the form
     wrapper.find('[data-test="update"]').simulate("submit");
 
-    // Expect an error message.
+    // Expect an error message
     expect(wrapper.find("p").length).toBe(1);
 
-    // Expect meaningful error message
+    // Expect a meaningful error message
     expect(wrapper.find("p").text()).toContain("Email address");
     expect(wrapper.find("p").text()).toContain("invalid");
   });
 
-  it("displays error message if submitted invalid username", () => {
+  it("displays an error message if an invalid username is submitted", () => {
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -204,11 +179,11 @@ describe("UserUpdateForm Component", () => {
       </MockedProvider>
     );
 
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
+
     // Simulate state change when the username input field value changes.
     inputTyping(wrapper, "username", "Updateusername");
-
-    // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "oldspassword");
 
     // Simulate the submitting of the form.
     wrapper.find('[data-test="update"]').simulate("submit");
@@ -221,7 +196,7 @@ describe("UserUpdateForm Component", () => {
     expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
-  it("displays error message if submitted invalid password", () => {
+  it("displays an error message if an invalid password is submitted", () => {
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -229,16 +204,19 @@ describe("UserUpdateForm Component", () => {
       </MockedProvider>
     );
 
-    // Simulate state change when the new password input field value changes.
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
+
+    // Simulate state change when the new password input field value changes
     inputTyping(wrapper, "newPassword", "update");
 
-    // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "oldspassword");
+    // Simulate state change when the password input field value changes
+    inputTyping(wrapper, "password", "oldpassword");
 
-    // Simulate the submitting of the form.
+    // Simulate the submitting of the form
     wrapper.find('[data-test="update"]').simulate("submit");
 
-    // Expect an error message.
+    // Expect an error message
     expect(wrapper.find("p").length).toBe(2);
 
     // Expect meaningful error message
@@ -256,7 +234,7 @@ describe("UserUpdateForm Component", () => {
     ).toContain("7 characters");
   });
 
-  it("displays error message if submitted invalid confirmPassword", () => {
+  it("displays an error message if an invalid confirmed password is submitted", () => {
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -264,14 +242,19 @@ describe("UserUpdateForm Component", () => {
       </MockedProvider>
     );
 
-    // Simulate state change when the new password input field value changes.
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
+
+    // Simulate state change when the new password input field value changes
     inputTyping(wrapper, "newPassword", "validupdatepassword");
-    // Simulate state change when the confirmPassword input field value changes.
+
+    // Simulate state change when the confirmPassword input field value changes
     inputTyping(
       wrapper,
       "confirmNewPassword",
       "validupdatepasswordnotmatching"
     );
+
     // Simulate state change when the password input field value changes.
     inputTyping(wrapper, "password", "oldpassword");
 
@@ -297,14 +280,38 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("should cache values and errors", async () => {
+    // As we are about to mount the App (rather than just the user update form)
+    // we need to provide a user query.
+    const mocks = [
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: {
+              __typename: "User",
+              affiliation: "SAAO",
+              email: "john.doe@example.com",
+              familyName: "Doe",
+              givenName: "John",
+              id: "1",
+              roles: [],
+              username: "john"
+            }
+          }
+        }
+      }
+    ];
     const wrapper = mount(
-      <MockedProvider mocks={[mocks[1]]}>
+      <MockedProvider mocks={mocks}>
         <MemoryRouter>
           <App />
         </MemoryRouter>
       </MockedProvider>
     );
 
+    // Wait for the user query to finish
     await wait(0);
     wrapper.update();
 
@@ -314,6 +321,9 @@ describe("UserUpdateForm Component", () => {
 
     await wait(0);
     wrapper.update();
+
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
 
     // Fill in an invalid email
     inputTyping(wrapper, "email", "invalid email");
@@ -348,9 +358,131 @@ describe("UserUpdateForm Component", () => {
     await wait(0);
     wrapper.update();
 
-    // The values and errors have been re-inserted.
+    // The values and errors have been re-inserted
     const newUserUpdateFormState: any = wrapper.find("UserUpdateForm").state();
     expect(newUserUpdateFormState.userInput.email).toEqual(emailValue);
     expect(newUserUpdateFormState.errors.email).toEqual(emailErrorMessage);
+  });
+
+  it("successfully calls the user update mutation with the correct content", async () => {
+    const updateUser = jest.fn();
+    const mocks = [
+      {
+        request: {
+          query: UPDATE_USER_MUTATION,
+          variables: {
+            affiliation: "",
+            email: "",
+            familyName: "Doe",
+            givenName: "John",
+            id: "",
+            newPassword: "",
+            password: "oldpassword",
+            username: ""
+          }
+        },
+        result: () => {
+          updateUser();
+          return {
+            data: { id: "1" } // The return value is not used
+          };
+        }
+      },
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: {
+              __typename: "User",
+              affiliation: "SAAO",
+              email: "john.doe@example.com",
+              familyName: "Doe",
+              givenName: "John",
+              id: "1",
+              roles: [],
+              username: "john"
+            }
+          }
+        }
+      }
+    ];
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <UserUpdateForm />
+      </MockedProvider>
+    );
+
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
+
+    // Fill in a given name
+    inputTyping(wrapper, "givenName", "John");
+
+    // Fill in a family name
+    inputTyping(wrapper, "familyName", "Doe");
+
+    // The mutation has not been called (yet)
+    expect(updateUser).not.toHaveBeenCalled();
+
+    // Submit the form
+    alert.mockReset();
+    const submitButton = wrapper.find('[data-test="update"]');
+    submitButton.simulate("submit");
+
+    // The mutation has been called
+    await wait(0);
+    wrapper.update();
+    expect(updateUser).toHaveBeenCalled();
+
+    // An alert with the success message was shown
+    expect(alert).toHaveBeenCalledWith("Successfully updated.");
+  });
+
+  it("should show an error if submission fails", async () => {
+    const mocks = [
+      {
+        request: {
+          query: UPDATE_USER_MUTATION,
+          variables: {
+            affiliation: "",
+            email: "",
+            familyName: "",
+            givenName: "John",
+            id: "",
+            newPassword: "",
+            password: "oldpassword",
+            username: ""
+          }
+        },
+        error: new Error("The server is having a coffee break!")
+      }
+    ];
+
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <UserUpdateForm />
+      </MockedProvider>
+    );
+
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", "oldpassword");
+
+    // Fill in a given name
+    inputTyping(wrapper, "givenName", "John");
+
+    // There is no error (yet)
+    expect(wrapper.find("p.error").length).toBe(0);
+
+    // Submit the form
+    alert.mockReset();
+    const submitButton = wrapper.find('[data-test="update"]');
+    submitButton.simulate("submit");
+
+    // There is an error now.
+    await wait(50); // 50 ms rather than 0 ms to give the state update a chance to finish
+    wrapper.update();
+    expect(wrapper.find("p.error").length).toBe(1);
   });
 });
