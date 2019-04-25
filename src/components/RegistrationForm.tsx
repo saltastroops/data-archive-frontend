@@ -193,7 +193,9 @@ class RegistrationForm extends React.Component<
 
     try {
       // If all fields are validated, sign up
-      await signup();
+      const userDetails = { ...this.state.userInput };
+      delete userDetails.confirmPassword;
+      await signup({ variables: userDetails });
 
       // Reset the state when registering succeeded
       this.updateState({
@@ -251,7 +253,7 @@ class RegistrationForm extends React.Component<
     }
 
     return (
-      <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
+      <Mutation mutation={SIGNUP_MUTATION}>
         {(signup: any, { loading }: any) => {
           return (
             <Form onSubmit={e => this.onHandleSubmit(e, signup)}>

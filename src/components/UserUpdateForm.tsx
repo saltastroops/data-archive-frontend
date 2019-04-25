@@ -182,7 +182,9 @@ class UserUpdateForm extends React.Component<
 
     try {
       // If all fields are validated, update
-      await updateUser();
+      const updateVariables = { ...this.state.userInput };
+      delete updateVariables.confirmNewPassword;
+      await updateUser({ variables: updateVariables });
 
       // Reset the state when updating succeeded
       this.updateState({
@@ -201,6 +203,9 @@ class UserUpdateForm extends React.Component<
 
       alert("Successfully updated.");
     } catch (error) {
+      // We handle the error with a try ... catch rather than relying on Apollo
+      // to pass it on to the render function as we need to store it in the
+      // cache
       this.updateState({
         errors: {
           ...this.state.errors,
@@ -241,7 +246,6 @@ class UserUpdateForm extends React.Component<
     return (
       <Mutation
         mutation={UPDATE_USER_MUTATION}
-        variables={this.state.userInput}
         refetchQueries={[{ query: USER_QUERY }]}
       >
         {(updateUser, { loading }) => {
