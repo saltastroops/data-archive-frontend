@@ -76,7 +76,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="id"
               onChange={[Function]}
               value=""
@@ -101,7 +101,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="givenName"
               onChange={[Function]}
               value=""
@@ -126,7 +126,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="familyName"
               onChange={[Function]}
               value=""
@@ -151,7 +151,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="email"
               onChange={[Function]}
               value=""
@@ -176,7 +176,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="username"
               onChange={[Function]}
               value=""
@@ -202,7 +202,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="affiliation"
               onChange={[Function]}
               placeholder="E.g. University of Cape Town"
@@ -229,7 +229,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="password"
               onChange={[Function]}
               type="password"
@@ -257,7 +257,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="newPassword"
               onChange={[Function]}
               placeholder="At least 7 characters"
@@ -285,7 +285,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             className="control"
           >
             <input
-              className="input undefined undefined"
+              className="input "
               name="confirmNewPassword"
               onChange={[Function]}
               type="password"
