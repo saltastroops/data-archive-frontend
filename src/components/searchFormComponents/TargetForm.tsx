@@ -4,7 +4,6 @@ import { ITarget } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
 import {
   validateDeclination,
-  validateName,
   validateRightAscension,
   validateSearchConeRadius
 } from "../../utils/validators";

@@ -4,17 +4,13 @@ import {
   ITarget,
   ITelescope
 } from "../../utils/ObservationQueryParameters";
-import { isError } from "../../utils/validators";
 import { fakeSearchResults } from "../fakeSearchResults";
 import ISearchFormCache from "./ISearchFormCache";
-import { validatedProposal } from "./ProposalForm";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
 import SearchResultsTable from "./results/SearchResultsTable";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
-import { validatedTarget } from "./TargetForm";
-import { validatedTelescope } from "./TelescopeForm";
 
 /**
  * Properties for the search page.

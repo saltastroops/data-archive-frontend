@@ -21,9 +21,6 @@ import {
 import DataForm from "./DataForm";
 import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm, { validatedProposal } from "./ProposalForm";
-import DataKeys from "./results/DataKeys";
-import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
-import SearchResultsTable from "./results/SearchResultsTable";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 

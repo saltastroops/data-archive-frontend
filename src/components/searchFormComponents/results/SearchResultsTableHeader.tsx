@@ -1,11 +1,7 @@
 import { faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import {
-  SortDirection,
-  SortDirectionType,
-  SortIndicator
-} from "react-virtualized";
+import { SortDirection, SortDirectionType } from "react-virtualized";
 
 interface ISearchResultsTableHeaderProps {
   dataKey: string;
