@@ -174,6 +174,8 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
         errors: {
           ...this.state.errors,
           responseError: error.message
+            .replace("Network error: ", "")
+            .replace("GraphQL error: ", "")
         }
       });
     }

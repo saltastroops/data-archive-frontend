@@ -64,3 +64,51 @@ export const LOGOUT_MUTATION = gql`
     logout @client
   }
 `;
+
+/**
+ * Update user.
+ *
+ * The following arguments may be supplied.
+ *
+ * affiliation:
+ *     The affiliation of the user, such as a university or an institute.
+ * email:
+ *     Email address. This will be stored in lower case.
+ * familyName:
+ *     The family name (surname).
+ * givenName:
+ *     The given name (first name).
+ * id:
+ *     The user ID different from the currently logged in user.
+ * newPassword:
+ *     The new user password, which must have at lease 7 characters.
+ * password:
+ *     The password, which must have at least 7 characters and is required.
+ * username:
+ *     The username, which must not contain upper case letters.
+ */
+export const UPDATE_USER_MUTATION = gql`
+  mutation UPDATE_USER_MUTATION(
+    $id: ID
+    $familyName: String
+    $givenName: String
+    $username: String
+    $email: String
+    $affiliation: String
+    $password: String!
+    $newPassword: String
+  ) {
+    updateUser(
+      id: $id
+      familyName: $familyName
+      givenName: $givenName
+      username: $username
+      email: $email
+      affiliation: $affiliation
+      password: $password
+      newPassword: $newPassword
+    ) {
+      id
+    }
+  }
+`;

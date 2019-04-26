@@ -29,39 +29,6 @@ const updatedState = {
   }
 };
 
-// login mock mutation
-const mocks = [
-  {
-    request: {
-      query: LOGIN_MUTATION,
-      variables: {
-        ...updatedState.userInput
-      }
-    },
-    result: {
-      data: {
-        login: true
-      }
-    }
-  },
-
-  {
-    request: {
-      query: USER_QUERY
-    },
-    result: {
-      data: {
-        user: {
-          __typename: "User",
-          familyName: "test",
-          givenName: "test",
-          roles: []
-        }
-      }
-    }
-  }
-];
-
 describe("LoginForm Component", () => {
   it("renders the LoginForm component having unpopulated props with no errors", async () => {
     // LoginForm component wrapper.
@@ -76,7 +43,45 @@ describe("LoginForm Component", () => {
     expect(toJson(form)).toMatchSnapshot();
   });
 
-  it("displays a loading message and no errors if the submitted inputs are all valid", async () => {
+  it("submits valid input successfully", async () => {
+    const userDetails = {
+      password: "securepassword",
+      username: "sj"
+    };
+    const login = jest.fn();
+    const mocks = [
+      {
+        request: {
+          query: LOGIN_MUTATION,
+          variables: userDetails
+        },
+        result: () => {
+          login();
+          return {
+            data: {
+              login: true
+            }
+          };
+        }
+      },
+
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: {
+              __typename: "User",
+              familyName: "test",
+              givenName: "test",
+              roles: []
+            }
+          }
+        }
+      }
+    ];
+
     // LoginForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
@@ -90,10 +95,10 @@ describe("LoginForm Component", () => {
     const instance = wrapper.find("LoginForm").instance() as any;
 
     // Simulate state change when the username input field value changes
-    inputTyping(wrapper, "username", "sj");
+    inputTyping(wrapper, "username", userDetails.username);
 
     // Simulate state change when the password input field value changes
-    inputTyping(wrapper, "password", "securepassword");
+    inputTyping(wrapper, "password", userDetails.password);
 
     // Expect the properties username and password of the state to have been updated with the correct value
     expect(instance.state.userInput).toMatchObject({
@@ -103,14 +108,22 @@ describe("LoginForm Component", () => {
 
     const signInButton = wrapper.find('[data-test="signIn"]');
 
-    // Expect the button to not be clicked
+    // Expect the button not to indicate loading
     expect(signInButton.text()).toContain("Sign in");
+
+    // The mutation has not been called (yet)
+    expect(login).not.toHaveBeenCalled();
 
     // Simulate the form submission
     signInButton.simulate("submit");
 
-    // Expect the button to have been clicked
+    // Expect the button to indicate loading
     expect(signInButton.text()).toContain("Signing in");
+
+    // The mutation has been called
+    await wait(50); // 50 ms rather than 0 ms to give a potential state change the chance to finish
+    wrapper.update();
+    expect(login).toHaveBeenCalled();
 
     // Expect no error message.
     expect(wrapper.find("p").length).toBe(0);
@@ -119,7 +132,7 @@ describe("LoginForm Component", () => {
   it("displays an error message if the submitted username is invalid", async () => {
     // LoginForm component wrapper.
     const wrapper = mount(
-      <MockedProvider mocks={mocks}>
+      <MockedProvider>
         <LoginForm />
       </MockedProvider>
     );
@@ -178,12 +191,11 @@ describe("LoginForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    const signInButton = wrapper.find('[data-test="signIn"]');
-
     // Simulate the form submission
+    const signInButton = wrapper.find('[data-test="signIn"]');
     signInButton.simulate("submit");
 
-    // Expect no loading status.
+    // Expect the button not to indicate loading
     expect(signInButton.text()).toContain("Sign in");
 
     // Expect an error message.
@@ -202,5 +214,52 @@ describe("LoginForm Component", () => {
         .first()
         .text()
     ).toContain("7 characters");
+  });
+
+  it("displays an error message if the login fails", async () => {
+    const userDetails = {
+      password: "securepassword",
+      username: "sj"
+    };
+    const login = jest.fn();
+    const mocks = [
+      {
+        error: new Error("The server is having a coffee break!"),
+        request: {
+          query: LOGIN_MUTATION,
+          variables: userDetails
+        }
+      }
+    ];
+
+    // LoginForm component wrapper.
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <MemoryRouter initialEntries={["/login"]}>
+          <LoginForm />
+        </MemoryRouter>
+      </MockedProvider>
+    );
+
+    // Simulate state change when the username input field value changes
+    inputTyping(wrapper, "username", userDetails.username);
+
+    // Simulate state change when the password input field value changes
+    inputTyping(wrapper, "password", userDetails.password);
+
+    // There is no error (yet)
+    expect(wrapper.find("p.error").length).toBe(0);
+
+    // Simulate the form submission
+    const signInButton = wrapper.find('[data-test="signIn"]');
+    signInButton.simulate("submit");
+
+    // There is an error now
+    await wait(50); // 50 ms rather than 0 ms to give the state change the chance to finish
+    wrapper.update();
+    expect(wrapper.find("p.error").length).toBe(1);
+    expect(wrapper.find("p.error").text()).toEqual(
+      "The server is having a coffee break!"
+    );
   });
 });
