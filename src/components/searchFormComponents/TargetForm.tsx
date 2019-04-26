@@ -109,7 +109,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
       });
     };
 
-    // TODO: Replace class names with data-test
     return (
       <>
         <MainGrid>

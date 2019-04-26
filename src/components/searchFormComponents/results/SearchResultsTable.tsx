@@ -281,7 +281,6 @@ class SearchResultsTable extends React.Component<
 
     return (
       <>
-        {/* TODO see ImageModal for todo */}
         <ImageModal
           closeModal={this.closePreviewModal}
           image={{ url: image, alt: "Some text to show" }}
