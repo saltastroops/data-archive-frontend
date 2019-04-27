@@ -1,91 +1,108 @@
 import gql from "graphql-tag";
-import { Cart, CART_QUERY, ICartFile } from "./util/Cart";
+import api from "./api/api";
 
 export const typeDefs = gql`
-  extend type Query {
+  type Query {
     """
-    The cart content
+    The currently logged in user.
     """
-    cart: [CartFiles!]!
+    user: User
   }
 
   extend type Mutation {
     """
-    Add files to the cart
+    Log the user in.
     """
-    addToCart(files: [CartFileInput!]!): Boolean!
+    login(username: String, password: String): Boolean
 
     """
-    Remove files from the cart
+    Log the user out.
     """
-    removeFromCart(files: [CartFileInput!]!): Boolean!
+    logout: Boolean
   }
 
   """
-  A file in the cart
+  A data archive user.
   """
-  type CartFile {
-    id: String!
-    name: String!
-    observation: CartObservation
-  }
-
-  """
-  An observation to which a file in the cart is linked
-  """
-  type CartObservation {
-    id: String!
-    name: String!
-  }
-
-  """
-  Input for a file in the cart
-  """
-  input CartFileInput {
-    id: String!
-    name: String!
-    observation: CartObservationInput
-  }
-
-  """
-  Input for an observation to which a file in the cart is linked
-  """
-  input CartObservationInput {
-    id: String!
-    name: String!
+  type User {
+    """
+    User id.
+    """
+    id: ID!
+    """
+    Family name ("surname").
+    """
+    familyName: String!
+    """
+    Given name ("first name").
+    """
+    givenName: String!
+    """
+    Username, which must not contain upper case letters.
+    """
+    username: String!
+    """
+    Email address, which will be stored as lower case.
+    """
+    email: String!
+    """
+    Affiliation, such as a university or an institute.
+    """
+    affiliation: String!
+    """
+    User roles, which defines the user's permissions.
+    """
+    roles: [Role!]!
   }
 `;
 
 export const resolvers = {
   Mutation: {
-    // Add files to the cart
-    addToCart: async (_: any, { files }: any, { cache }: any) => {
-      // Get current cart content
-      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+    /**
+     * Login mutation.
+     *
+     * It uses the API to authenticate and log the user in. If this is done
+     * successfully, true is returned; otherwise the return value is false.
+     *
+     * Parameters:
+     * -----------
+     * username
+     *    The username.
+     * password
+     *    The password.
+     *
+     * Returns:
+     * --------
+     * true
+     */
+    login: async (
+      _: any,
+      { username, password }: { username: string; password: string },
+      { cache }: any
+    ) => {
+      const login = await api.login({
+        password,
+        username
+      });
 
-      // Add the files
-      cart.add(files as [ICartFile]);
-
-      // Store updated content both in the cache and in local storage
-      localStorage.setItem("cart", JSON.stringify(cart.files));
-      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
-
-      return true;
+      // Always true
+      return login.data.success;
     },
 
-    // Remove files from the cart
-    removeFromCart: async (_: any, { files }: any, { cache }: any) => {
-      // Get current cart content
-      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+    /**
+     * Logout mutation.
+     *
+     * It uses the API to log the user out.
+     *
+     * Returns:
+     * --------
+     * true
+     */
+    logout: async () => {
+      const logout = await api.logout();
 
-      // Remove the files
-      cart.remove(files as [ICartFile]);
-
-      // Store updated content both in the cache and in local storage
-      localStorage.setItem("cart", JSON.stringify(cart.files));
-      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
-
-      return true;
+      // Always true
+      return logout.data.success;
     }
   }
 };

@@ -1,23 +1,22 @@
 import * as React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
-import "./App.css";
+import { Query } from "react-apollo";
+import { Redirect, Route, Switch } from "react-router-dom";
+import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
-import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
-import SearchPage from "./components/searchFormComponents/SearchPage";
+import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import UserUpdateForm, {
+  IUserUpdateFormCache
+} from "./components/UserUpdateForm";
+import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
-  name: string;
-  username: string;
-  isAdmin: () => boolean;
+  familyName: string;
+  givenName: string;
+  isAdmin: boolean;
 }
 
 interface IProtectedRouteProps {
@@ -30,6 +29,7 @@ interface ICache {
   loginForm: ILoginFormCache;
   registrationForm: IRegistrationFormCache;
   searchForm: ISearchFormCache;
+  userUpdateForm: IUserUpdateFormCache;
 }
 
 /**
@@ -59,128 +59,124 @@ function ProtectedRoute({
   );
 }
 
-interface IAppState {
-  user?: IUser;
-  screenDimensions: { innerHeight: number; innerWidth: number };
-}
-
 /**
  * The data archive.
  */
-class App extends React.Component<{}, IAppState> {
-  state = {
-    screenDimensions: {
-      innerHeight: window.innerHeight,
-      innerWidth: window.innerWidth
-    },
-    user: undefined
-  };
-
+class App extends React.Component<any, any> {
   private cache: ICache = {
     loginForm: {},
     registrationForm: {},
-    searchForm: {}
+    searchForm: {},
+    userUpdateForm: {}
   };
-
-  logout = () => {
-    this.setState(() => ({
-      ...this.state,
-      user: undefined
-    }));
-  };
-
-  public componentDidMount() {
-    window.addEventListener("resize", this.onResize);
-  }
-
-  public componentWillUnmount() {
-    window.removeEventListener("resize", this.onResize);
-  }
 
   public render() {
-    /* TODO:
-     * user is currently unknown so I am using a dummy user
-     * this will affect the test of this component after user is defined
-     * */
-    const { user } = this.state;
-
     return (
-      <>
-        <NavigationBar user={user} logout={this.logout} />
+      <Query query={USER_QUERY}>
+        {({ data, loading }: any) => {
+          if (loading) {
+            return <p>Loading...</p>;
+          }
 
-        <Switch>
-          {/* search page */}
-          <Route
-            exact={true}
-            path="/"
-            render={() => (
-              <SearchPage
-                cache={this.cache.searchForm}
-                screenDimensions={this.state.screenDimensions}
-              />
-            )}
-          />
+          const currentUser =
+            data && data.user
+              ? {
+                  familyName: data.user.familyName,
+                  givenName: data.user.givenName,
+                  isAdmin: data.user.roles.some(
+                    (role: string) => role === "ADMIN"
+                  )
+                }
+              : null;
 
-          {/* registration page */}
-          <Route
-            exact={true}
-            path="/register"
-            component={() => (
-              <RegistrationForm cache={this.cache.registrationForm} />
-            )}
-          />
+          return (
+            <>
+              <NavigationBar user={currentUser} />
 
-          {/* login page */}
-          <Route
-            exact={true}
-            path="/login"
-            component={() => <LoginForm cache={this.cache.loginForm} />}
-          />
+              <Switch>
+                {/* search page */}
+                <Route
+                  exact={true}
+                  path="/"
+                  render={() => <SearchForm cache={this.cache.searchForm} />}
+                />
 
-          {/* account details page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/account"
-            component={() => <h1 className="title">User account</h1>}
-          />
+                {/* registration page */}
+                <Route
+                  exact={true}
+                  path="/register"
+                  render={() => (
+                    <RegistrationForm cache={this.cache.registrationForm} />
+                  )}
+                />
 
-          {/* data requests page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/data-requests"
-            component={() => <h1 className="title">Data request page</h1>}
-          />
+                {/* login page */}
+                <Route
+                  exact={true}
+                  path="/login"
+                  render={() => <LoginForm cache={this.cache.loginForm} />}
+                />
 
-          {/* cart page */}
-          <Route
-            exact={true}
-            path="/cart"
-            component={() => <h1 className="title">Cart page</h1>}
-          />
+                {/* account details page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/account"
+                  component={() => (
+                    <h1 className="title">
+                      {currentUser
+                        ? `${currentUser.givenName} ${
+                            currentUser.familyName
+                          } Account`
+                        : "No User"}
+                    </h1>
+                  )}
+                />
 
-          {/* admin page */}
-          <ProtectedRoute
-            user={user}
-            exact={true}
-            path="/admin"
-            component={() => <h1 className="title">Admin page</h1>}
-          />
+                {/* data requests page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/data-requests"
+                  component={() => <DataRequestsForm />}
+                />
 
-          {/* page not found */}
-          <Route component={() => <h1 className="title">Page not found</h1>} />
-        </Switch>
-      </>
+                {/* cart page */}
+                <Route
+                  exact={true}
+                  path="/cart"
+                  component={() => <h1 className="title">Cart page</h1>}
+                />
+
+                {/* admin page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/admin"
+                  component={() => <h1 className="title">Admin page</h1>}
+                />
+
+                {/* update user page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/user-update"
+                  component={() => (
+                    <UserUpdateForm cache={this.cache.userUpdateForm} />
+                  )}
+                />
+
+                {/* page not found */}
+                <Route
+                  component={() => <h1 className="title">Page not found</h1>}
+                />
+              </Switch>
+            </>
+          );
+        }}
+      </Query>
     );
   }
-
-  private onResize = () => {
-    const { innerHeight, innerWidth } = window;
-    this.setState({
-      screenDimensions: { innerHeight, innerWidth }
-    });
-  };
 }
 
 export default App;

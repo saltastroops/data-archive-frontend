@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RegistrationForm Component renders the RegistrationForm having unpopulated props with no errors 1`] = `
+exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated props with no errors 1`] = `
 .c0.c0 {
   padding: 1px;
 }
@@ -29,7 +29,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
               },
             ],
             "componentStyle": ComponentStyle {
-              "componentId": "sc-dnqmqq",
+              "componentId": "sc-ckVGcZ",
               "isStatic": true,
               "lastClassName": "c1",
               "rules": Array [
@@ -44,7 +44,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             "displayName": "styled.h1",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "sc-dnqmqq",
+            "styledComponentId": "sc-ckVGcZ",
             "target": "h1",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -56,7 +56,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
         <h1
           className="title is-3 c1"
         >
-          Create your account
+          Update your account
         </h1>
       </StyledComponent>
     </styled.h1>
@@ -66,9 +66,33 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       <label
         className="label"
       >
+        User ID
+        <InputField
+          name="id"
+          onChange={[Function]}
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input "
+              name="id"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
         Given name (first name)
         <InputField
-          error=""
           name="givenName"
           onChange={[Function]}
           value=""
@@ -94,7 +118,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Family name (surname)
         <InputField
-          error=""
           name="familyName"
           onChange={[Function]}
           value=""
@@ -120,7 +143,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Email address
         <InputField
-          error=""
           name="email"
           onChange={[Function]}
           value=""
@@ -146,7 +168,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Username
         <InputField
-          error=""
           name="username"
           onChange={[Function]}
           value=""
@@ -172,7 +193,6 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Affiliation
         <InputField
-          error=""
           name="affiliation"
           onChange={[Function]}
           placeholder="E.g. University of Cape Town"
@@ -200,8 +220,34 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       >
         Password
         <InputField
-          error=""
           name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        >
+          <div
+            className="control"
+          >
+            <input
+              className="input "
+              name="password"
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </div>
+        </InputField>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        New password
+        <InputField
+          name="newPassword"
           onChange={[Function]}
           placeholder="At least 7 characters"
           type="password"
@@ -212,7 +258,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
           >
             <input
               className="input "
-              name="password"
+              name="newPassword"
               onChange={[Function]}
               placeholder="At least 7 characters"
               type="password"
@@ -228,10 +274,9 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
       <label
         className="label"
       >
-        Re-enter password
+        Retype New password
         <InputField
-          error=""
-          name="confirmPassword"
+          name="confirmNewPassword"
           onChange={[Function]}
           type="password"
           value=""
@@ -241,7 +286,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
           >
             <input
               className="input "
-              name="confirmPassword"
+              name="confirmNewPassword"
               onChange={[Function]}
               type="password"
               value=""
@@ -252,10 +297,10 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
     </div>
     <button
       className="button is-success is-fullwidth is-rounded"
-      data-test="signUp"
+      data-test="update"
       type="submit"
     >
-      Sign up
+      Update
     </button>
   </fieldset>
 </form>

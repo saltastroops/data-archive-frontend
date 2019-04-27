@@ -252,6 +252,8 @@ export interface ISalticam extends IInstrument {
  *     Errors.
  * exposureTime:
  *     Exposure time.
+ * filter:
+ *     Filter.
  * mode:
  *     Instrument mode specific details.
  * name:
@@ -261,7 +263,11 @@ export interface IRSS extends IInstrument {
   detectorMode?: RSSDetectorMode;
   errors: {
     detectorMode?: string;
+    exposureTime?: string;
+    filter?: string;
   };
+  exposureTime?: string;
+  filter?: string;
   modes?: IRSSModes;
   name: "RSS";
 }

@@ -1,8 +1,10 @@
 import * as _ from "lodash";
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import api from "../api/api";
+import { LOGIN_MUTATION } from "../graphql/Mutations";
+import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
 
 /**
@@ -26,8 +28,6 @@ interface ILoginFormInput {
  *
  * Properties:
  * -----------
- * loading:
- *     Whether a login request is being made.
  * loggedIn:
  *     Whether the user has been logged in.
  * errors:
@@ -36,7 +36,6 @@ interface ILoginFormInput {
  *     Values input by the user.
  */
 interface ILoginFormState {
-  loading: boolean;
   loggedIn: boolean;
   errors: Partial<ILoginFormInput> & { responseError?: string };
   userInput: ILoginFormInput;
@@ -124,7 +123,6 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
       responseError: "",
       username: ""
     },
-    loading: false,
     loggedIn: false,
     userInput: {
       password: "",
@@ -139,7 +137,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     this.setState(() => (this.props.cache as any) || {});
   }
 
-  onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
+  handleSubmit = async (e: React.FormEvent<EventTarget>, login: any) => {
     e.preventDefault();
 
     // Validate the user input fields
@@ -153,22 +151,17 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     }
 
     try {
-      this.updateState({
-        loading: true
+      const logUserIn = await login({
+        variables: { ...this.state.userInput }
       });
 
-      const login = await api.login({
-        ...this.state.userInput
-      });
-
-      if (login.data.success) {
+      if (logUserIn.data.login) {
         this.updateState({
           errors: {
             password: "",
             responseError: "",
             username: ""
           },
-          loading: false,
           loggedIn: true,
           userInput: {
             password: "",
@@ -181,8 +174,9 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
         errors: {
           ...this.state.errors,
           responseError: error.message
-        },
-        loading: false
+            .replace("Network error: ", "")
+            .replace("GraphQL error: ", "")
+        }
       });
     }
   };
@@ -193,7 +187,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    // Updating the userInput property of the state when input field value updates
+    // Update the userInput property of the state when input field values change
     this.updateState({
       userInput: {
         ...this.state.userInput,
@@ -203,7 +197,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   };
 
   render() {
-    const { errors, loading, loggedIn } = this.state;
+    const { errors, loggedIn } = this.state;
     const { password, username } = this.state.userInput;
 
     // Go to the main page after successfully logging in.
@@ -212,54 +206,68 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     }
 
     return (
-      <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
-        <Heading>Login to the Data Archive</Heading>
-        {errors.responseError ? (
-          <ErrorMessage>{errors.responseError}</ErrorMessage>
-        ) : null}
+      <Mutation
+        mutation={LOGIN_MUTATION}
+        refetchQueries={[{ query: USER_QUERY }]}
+      >
+        {(login: any, { loading, error }: any) => {
+          return (
+            <LoginFormParent
+              data-test={"form"}
+              onSubmit={e => this.handleSubmit(e, login)}
+            >
+              <Heading>Login to the Data Archive</Heading>
+              {error ? (
+                <ErrorMessage>{errors.responseError}</ErrorMessage>
+              ) : null}
 
-        <fieldset disabled={loading} aria-disabled={loading}>
-          {/* username */}
-          <div className="field">
-            <label className="label">
-              Username
-              <div className={"control is-child"}>
-                <InputField
-                  name="username"
-                  value={username || ""}
-                  error={errors.username}
-                  onChange={this.onInputChange}
-                  type="text"
-                />
-              </div>
-            </label>
-          </div>
+              <fieldset disabled={loading} aria-disabled={loading}>
+                {/* username */}
+                <div className="field">
+                  <label className="label">
+                    Username
+                    <div className={"control is-child"}>
+                      <InputField
+                        id="username"
+                        name="username"
+                        value={username || ""}
+                        error={errors.username}
+                        onChange={this.onInputChange}
+                        type="text"
+                      />
+                    </div>
+                  </label>
+                </div>
 
-          {/* password */}
-          <div className="field">
-            <label className="label">
-              Password
-              <div className={"control is-child"}>
-                <InputField
-                  name="password"
-                  value={password || ""}
-                  error={errors.password}
-                  onChange={this.onInputChange}
-                  type="password"
-                />
-              </div>
-            </label>
-          </div>
+                {/* password */}
+                <div className="field">
+                  <label className="label">
+                    Password
+                    <div className={"control is-child"}>
+                      <InputField
+                        id="password"
+                        name="password"
+                        value={password || ""}
+                        error={errors.password}
+                        onChange={this.onInputChange}
+                        type="password"
+                      />
+                    </div>
+                  </label>
+                </div>
 
-          {/* submit button */}
-          <button
-            className="button is-success is-fullwidth is-rounded"
-            data-test="signIn"
-          >
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
-        </fieldset>
-      </LoginFormParent>
+                {/* submit button */}
+                <button
+                  className="button is-success is-fullwidth is-rounded"
+                  data-test="signIn"
+                >
+                  {loading ? "Signing in..." : "Sign in"}
+                </button>
+              </fieldset>
+            </LoginFormParent>
+          );
+        }}
+      </Mutation>
     );
   }
 
