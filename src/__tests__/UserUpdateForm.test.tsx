@@ -10,6 +10,16 @@ import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import click from "../util/click";
 
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
 const alert = jest.fn();
 window.alert = alert;
 

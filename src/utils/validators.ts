@@ -1,5 +1,4 @@
 import moment from "moment";
-import { IGeneralErrors, ITargetErrors } from "./ObservationQueryParameters";
 
 // TODO: Update once parse methods are available in util
 

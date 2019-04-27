@@ -519,13 +519,14 @@ class SearchResultsTable extends React.Component<
           return rowDatum[dataKey].toFixed(4);
         case DataKeys.FILENAME:
           return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
-            <a
+            <button
+              className="is-link"
               onClick={() => {
                 this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
               }}
             >
               {rowDatum[DataKeys.FILENAME]}
-            </a>
+            </button>
           ) : (
             rowDatum[DataKeys.FILENAME]
           );

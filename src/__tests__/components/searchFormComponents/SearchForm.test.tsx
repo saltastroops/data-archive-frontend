@@ -113,10 +113,16 @@ describe("Search Form", () => {
 
   it("should cache values and errors", async () => {
     const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <MockedProvider mocks={mocks}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
     );
+
+    // Wait for the user query to finish
+    await wait(0);
+    wrapper.update();
 
     // Navigate to the search form
     const searchFormLink = wrapper.find('a[href="/"]').first();

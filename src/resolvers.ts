@@ -1,8 +1,14 @@
 import gql from "graphql-tag";
 import api from "./api/api";
+import { Cart, CART_QUERY, ICartFile } from "./util/Cart";
 
 export const typeDefs = gql`
-  type Query {
+  extend type Query {
+    """
+    The cart content
+    """
+    cart: [CartFiles!]!
+
     """
     The currently logged in user.
     """
@@ -19,6 +25,40 @@ export const typeDefs = gql`
     Log the user out.
     """
     logout: Boolean
+  }
+
+  """
+  A file in the cart
+  """
+  type CartFile {
+    id: String!
+    name: String!
+    observation: CartObservation
+  }
+
+  """
+  An observation to which a file in the cart is linked
+  """
+  type CartObservation {
+    id: String!
+    name: String!
+  }
+
+  """
+  Input for a file in the cart
+  """
+  input CartFileInput {
+    id: String!
+    name: String!
+    observation: CartObservationInput
+  }
+
+  """
+  Input for an observation to which a file in the cart is linked
+  """
+  input CartObservationInput {
+    id: String!
+    name: String!
   }
 
   """
@@ -58,6 +98,36 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Mutation: {
+    // Add files to the cart
+    addToCart: async (_: any, { files }: any, { cache }: any) => {
+      // Get current cart content
+      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+
+      // Add the files
+      cart.add(files as [ICartFile]);
+
+      // Store updated content both in the cache and in local storage
+      localStorage.setItem("cart", JSON.stringify(cart.files));
+      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
+
+      return true;
+    },
+
+    // Remove files from the cart
+    removeFromCart: async (_: any, { files }: any, { cache }: any) => {
+      // Get current cart content
+      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+
+      // Remove the files
+      cart.remove(files as [ICartFile]);
+
+      // Store updated content both in the cache and in local storage
+      localStorage.setItem("cart", JSON.stringify(cart.files));
+      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
+
+      return true;
+    },
+
     /**
      * Login mutation.
      *
