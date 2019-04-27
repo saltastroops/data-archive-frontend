@@ -44,7 +44,7 @@ describe("Search Form", () => {
 
   it("should always render a div of class name grid-container", () => {
     const wrapper = mount(<SearchForm search={jest.fn()} />);
-    const mainDiv = wrapper.find("div");
+    const mainDiv = wrapper.find("div.grid-container");
     expect(mainDiv.length).toBeGreaterThan(0);
   });
 
