@@ -4,7 +4,6 @@ import { ITarget } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
 import {
   validateDeclination,
-  validateName,
   validateRightAscension,
   validateSearchConeRadius
 } from "../../utils/validators";
@@ -110,7 +109,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
       });
     };
 
-    // TODO: Replace class names with data-test
     return (
       <>
         <MainGrid>
