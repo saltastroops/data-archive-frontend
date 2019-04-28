@@ -9,6 +9,16 @@ import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import click from "../util/click";
 
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {

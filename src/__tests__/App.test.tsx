@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import wait from "waait";
 import App from "../App";
 import click from "../util/click";
+import "./window.mock";
 
 describe("App", () => {
   it("should be defined", () => {

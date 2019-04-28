@@ -11,11 +11,30 @@ describe("HRS", () => {
     ).toBeDefined();
   });
 
-  it("should render correctly", () => {
+  it("should render correctly without a mode", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
         mount(<HRS hrs={{ errors: {}, name: "HRS" }} onChange={onChange} />)
+      )
+    ).toMatchSnapshot();
+  });
+
+  it("should render correctly with a mode", () => {
+    // Use mount instead of shallow for better snapshots
+    expect(
+      toJson(
+        mount(
+          <HRS
+            hrs={{
+              errors: {},
+              filter: "H-alpha",
+              mode: "Imaging",
+              name: "HRS"
+            }}
+            onChange={onChange}
+          />
+        )
       )
     ).toMatchSnapshot();
   });

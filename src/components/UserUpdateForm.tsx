@@ -248,7 +248,7 @@ class UserUpdateForm extends React.Component<
         mutation={UPDATE_USER_MUTATION}
         refetchQueries={[{ query: USER_QUERY }]}
       >
-        {(updateUser, { loading }) => {
+        {(updateUser: any, { loading }: any) => {
           return (
             <Form onSubmit={e => this.onHandleSubmit(e, updateUser)}>
               <fieldset disabled={loading} aria-disabled={loading}>

@@ -7,7 +7,8 @@ import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
-import SearchForm, { ISearchFormCache } from "./components/SearchForm";
+import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
+import SearchPage from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
@@ -59,10 +60,23 @@ function ProtectedRoute({
   );
 }
 
+interface IAppState {
+  user?: IUser;
+  screenDimensions: { innerHeight: number; innerWidth: number };
+}
+
 /**
  * The data archive.
  */
-class App extends React.Component<any, any> {
+class App extends React.Component<{}, IAppState> {
+  state = {
+    screenDimensions: {
+      innerHeight: window.innerHeight,
+      innerWidth: window.innerWidth
+    },
+    user: undefined
+  };
+
   private cache: ICache = {
     loginForm: {},
     registrationForm: {},
@@ -98,7 +112,12 @@ class App extends React.Component<any, any> {
                 <Route
                   exact={true}
                   path="/"
-                  render={() => <SearchForm cache={this.cache.searchForm} />}
+                  render={() => (
+                    <SearchPage
+                      cache={this.cache.searchForm}
+                      screenDimensions={this.state.screenDimensions}
+                    />
+                  )}
                 />
 
                 {/* registration page */}

@@ -3,35 +3,61 @@ import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
+
 import wait from "waait";
-import App from "../../App";
-import SearchForm from "../../components/SearchForm";
-import click from "../../util/click";
+import App from "../../../App";
+import SearchForm from "../../../components/searchFormComponents/SearchForm";
+import { CART_QUERY } from "../../../util/Cart";
+import click from "../../../util/click";
+
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
+const mocks = [
+  {
+    request: {
+      query: CART_QUERY,
+      variables: {}
+    },
+    result: {
+      data: {
+        cart: []
+      }
+    }
+  }
+];
+
+const screenDimensions = { innerHeight: 1000, innerWidth: 1400 };
 
 describe("Search Form", () => {
   it("should render", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
     expect(wrapper).toBeDefined();
   });
 
   it("should always render a div of class name grid-container", () => {
-    const wrapper = mount(<SearchForm />);
-    const mainDiv = wrapper.find("div");
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
+    const mainDiv = wrapper.find("div.grid-container");
     expect(mainDiv.length).toBeGreaterThan(0);
-    const mainContainer = wrapper.find("div.grid-container");
-    expect(mainContainer.length).toEqual(1);
   });
 
   it("should contain five grid-item and one button", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
     const items = wrapper.find("div.grid-item");
     expect(items.length).toEqual(5);
-    const button = wrapper.find("input.is-primary");
+    const button = wrapper.find("button.is-primary");
     expect(button.length).toEqual(1);
   });
 
   it("should contain target, proposal, telescope and data form", () => {
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
     const target = wrapper.find("div.target-form");
     expect(target.length).toEqual(1);
     const proposal = wrapper.find("div.proposal-form");
@@ -45,34 +71,38 @@ describe("Search Form", () => {
   it("should update state when typing", () => {
     let value: any;
 
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
     const targetInput = wrapper.find('input[data-test="target-name-input"]');
     const targetName = targetInput.find("input");
 
     value = "apple";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("apple");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual(
+      "apple"
+    );
 
     value = "";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = undefined;
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = null;
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual("");
 
     value = "\\ \t";
     targetName.simulate("change", { target: { value, name: "name" } });
-    expect((wrapper.state() as any).target.name).toEqual("\\ \t");
+    expect((wrapper.find("SearchForm").state() as any).target.name).toEqual(
+      "\\ \t"
+    );
   });
 
   it("should update state when a selection is changed", () => {
     let value: any;
-    const wrapper = mount(<SearchForm />);
+    const wrapper = mount(<SearchForm search={jest.fn()} />);
     const resolverSelect = wrapper.find('select[data-test="resolver-select"]');
     const resolver = resolverSelect.find("select");
     value = "NED";
@@ -83,13 +113,14 @@ describe("Search Form", () => {
 
   it("should cache values and errors", async () => {
     const wrapper = mount(
-      <MockedProvider>
+      <MockedProvider mocks={mocks}>
         <MemoryRouter>
           <App />
         </MemoryRouter>
       </MockedProvider>
     );
 
+    // Wait for the user query to finish
     await wait(0);
     wrapper.update();
 
@@ -115,7 +146,7 @@ describe("Search Form", () => {
     });
 
     // Submit the form
-    const submitButton = wrapper.find('input[data-test="search-button"]');
+    const submitButton = wrapper.find('button[data-test="search-button"]');
     submitButton.simulate("click");
 
     await wait(0);
@@ -164,6 +195,11 @@ describe("Search Form", () => {
   });
 
   it("render correctly", () => {
-    expect(toJson(shallow(<SearchForm />))).toMatchSnapshot();
+    const wrapper = shallow(
+      <MockedProvider mocks={mocks}>
+        <SearchForm search={jest.fn()} />
+      </MockedProvider>
+    );
+    expect(toJson(wrapper.find("SearchForm"))).toMatchSnapshot();
   });
 });
