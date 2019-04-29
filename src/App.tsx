@@ -1,15 +1,12 @@
 import * as React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
+import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
 import SearchForm, { ISearchFormCache } from "./components/SearchForm";
 
 interface IUser {
@@ -142,6 +139,20 @@ class App extends React.Component<any, any> {
             exact={true}
             path="/admin"
             component={() => <h1 className="title">Admin page</h1>}
+          />
+
+          {/* request reset password page */}
+          <Route
+            exact={true}
+            path="/request-reset-password"
+            component={() => <RequestResetPasswordForm />}
+          />
+
+          {/* request reset password page */}
+          <Route
+            exact={true}
+            path="/auth/reset-password/:token"
+            component={() => <ResetPasswordForm />}
           />
 
           {/* page not found */}
