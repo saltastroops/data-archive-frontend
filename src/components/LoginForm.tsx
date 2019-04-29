@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import api from "../api/api";
 import InputField from "./basicComponents/InputField";
@@ -250,14 +250,24 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               </div>
             </label>
           </div>
-
-          {/* submit button */}
-          <button
-            className="button is-success is-fullwidth is-rounded"
-            data-test="signIn"
-          >
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
+          <div className="field">
+            {/* submit button */}
+            <button
+              className="button is-success is-fullwidth"
+              data-test="signIn"
+            >
+              {loading ? "Signing in..." : "Sign in"}
+            </button>
+          </div>
+          <div className="field">
+            <Link
+              to={"/request-reset-password"}
+              className="button is-info is-fullwidth"
+              data-test="reset-password"
+            >
+              {"Forgot password"}
+            </Link>
+          </div>
         </fieldset>
       </LoginFormParent>
     );
