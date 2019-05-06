@@ -48,6 +48,7 @@ class ResetPasswordForm extends React.Component<any, any> {
         .trim()
     }
   };
+
   changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -70,7 +71,7 @@ class ResetPasswordForm extends React.Component<any, any> {
       this.state.userInput.confirmPassword !== this.state.userInput.password
     ) {
       this.setState({
-        errors: { password: "Password do not match" }
+        errors: { password: "Passwords do not match" }
       });
       return;
     }
@@ -79,7 +80,11 @@ class ResetPasswordForm extends React.Component<any, any> {
       this.setState({ confirmReset: true });
     } catch (e) {
       this.setState({
-        errors: { password: e.message.replace("GraphQL error: ", "") }
+        errors: {
+          password: e.message
+            .replace("GraphQL error: ", "")
+            .replace("Network error: ", "")
+        }
       });
       return;
     }
@@ -92,19 +97,18 @@ class ResetPasswordForm extends React.Component<any, any> {
     if (confirmReset) {
       return <Redirect to={"/login"} />;
     }
-    console.log("STATE: ", this.state);
     return (
       <>
         {
           <Mutation mutation={RESET_PASSWORD_MUTATION} variables={userInput}>
-            {(resetPassword, { loading }) => (
+            {(resetPassword: any, { loading }: any) => (
               <Parent onSubmit={e => this.submitReset(e, resetPassword)}>
                 <Heading>Enter your new password</Heading>
                 <fieldset disabled={loading} aria-disabled={loading}>
-                  {/* username */}
+                  {/* password */}
                   <div className="field">
                     <label className="label">
-                      password
+                      Password
                       <div className={"control is-child"}>
                         <InputField
                           name="password"
@@ -116,6 +120,8 @@ class ResetPasswordForm extends React.Component<any, any> {
                       </div>
                     </label>
                   </div>
+
+                  {/* confirm password */}
                   <div className="field">
                     <label className="label">
                       Confirm password
@@ -130,13 +136,14 @@ class ResetPasswordForm extends React.Component<any, any> {
                       </div>
                     </label>
                   </div>
+
                   {/* submit button */}
                   <button
                     className="button is-primary is-fullwidth"
                     data-test="signIn"
                     disabled={loading}
                   >
-                    {"Reset"}
+                    {loading ? "Resetting..." : "Reset"}
                   </button>
                 </fieldset>
               </Parent>

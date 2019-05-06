@@ -29,22 +29,18 @@ const REQUEST_RESET_MUTATION = gql`
   }
 `;
 
+/**
+ * A form for requesting a password reset.
+ */
 class RequestResetPasswordForm extends React.Component {
   state = {
     confirmReset: false,
     errors: {
-      confirmPassword: "",
-      email: "",
-      password: ""
+      email: ""
     },
     loading: false,
-    user: {
-      email: undefined
-    },
     userInput: {
-      confirmPassword: "",
-      email: "",
-      password: ""
+      email: ""
     }
   };
   changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +71,11 @@ class RequestResetPasswordForm extends React.Component {
       }
     } catch (e) {
       this.setState({
-        errors: { email: e.message.replace("GraphQL error: ", "") }
+        errors: {
+          email: e.message
+            .replace("GraphQL error: ", "")
+            .replace("Network error: ", "")
+        }
       });
       return;
     }
@@ -100,11 +100,11 @@ class RequestResetPasswordForm extends React.Component {
       <>
         {
           <Mutation mutation={REQUEST_RESET_MUTATION} variables={userInput}>
-            {(requestResetPassword, { loading }) => (
+            {(requestResetPassword: any, { loading }: any) => (
               <Parent
                 onSubmit={e => this.submitRequest(e, requestResetPassword)}
               >
-                <Heading>Login to the Data Archive</Heading>
+                <Heading>Request a password reset</Heading>
                 <fieldset disabled={loading} aria-disabled={loading}>
                   {/* username */}
                   <div className="field">
@@ -127,7 +127,7 @@ class RequestResetPasswordForm extends React.Component {
                     data-test="signIn"
                     disabled={loading}
                   >
-                    {loading ? "Requesting..." : "Request"}
+                    {loading ? "Requesting..." : "Request a password reset"}
                   </button>
                 </fieldset>
               </Parent>

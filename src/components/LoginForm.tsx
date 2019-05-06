@@ -265,7 +265,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               className="button is-info is-fullwidth"
               data-test="reset-password"
             >
-              {"Forgot password"}
+              {"I forgot my password"}
             </Link>
           </div>
         </fieldset>
