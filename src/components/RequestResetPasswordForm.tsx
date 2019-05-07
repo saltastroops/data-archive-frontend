@@ -1,8 +1,10 @@
 import gql from "graphql-tag";
+import { validate } from "isemail";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import InputField from "./basicComponents/InputField";
+import Message from "./basicComponents/Message";
 
 const Parent = styled.form.attrs({
   className: "column is-4 is-offset-4"
@@ -29,31 +31,24 @@ const REQUEST_RESET_MUTATION = gql`
   }
 `;
 
-/**
- * A form for requesting a password reset.
- */
 class RequestResetPasswordForm extends React.Component {
   state = {
     confirmReset: false,
     errors: {
-      email: ""
+      email: "",
+      gqlError: ""
     },
     loading: false,
     userInput: {
       email: ""
     }
   };
-  changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const name = e.target.name;
     this.setState({
-      userInput: {
-        ...this.state.userInput,
-        [name]: value,
-        errors: {
-          email: ""
-        }
-      }
+      ...this.state,
+      errors: { email: "", gqlError: "" },
+      userInput: { email: value }
     });
   };
 
@@ -63,6 +58,13 @@ class RequestResetPasswordForm extends React.Component {
   ) => {
     e.preventDefault();
 
+    if (!validate(this.state.userInput.email, { minDomainAtoms: 2 })) {
+      this.setState({
+        errors: { ...this.state.errors, email: "Email address is invalid" }
+      });
+      return;
+    }
+
     this.setState({ errors: { email: "" } });
     try {
       const user = await requestResetPassword();
@@ -71,11 +73,7 @@ class RequestResetPasswordForm extends React.Component {
       }
     } catch (e) {
       this.setState({
-        errors: {
-          email: e.message
-            .replace("GraphQL error: ", "")
-            .replace("Network error: ", "")
-        }
+        errors: { gqlError: e.message.replace("GraphQL error: ", "") }
       });
       return;
     }
@@ -84,7 +82,8 @@ class RequestResetPasswordForm extends React.Component {
   public render() {
     const { email } = this.state.userInput;
     const { confirmReset, userInput } = this.state;
-    const userError = this.state.errors.email;
+    const emailError = this.state.errors.email;
+    const { gqlError } = this.state.errors;
     if (confirmReset) {
       return (
         <div>
@@ -100,13 +99,16 @@ class RequestResetPasswordForm extends React.Component {
       <>
         {
           <Mutation mutation={REQUEST_RESET_MUTATION} variables={userInput}>
-            {(requestResetPassword: any, { loading }: any) => (
+            {(requestResetPassword, { loading }) => (
               <Parent
                 onSubmit={e => this.submitRequest(e, requestResetPassword)}
               >
-                <Heading>Request a password reset</Heading>
+                <Heading>Request password reset</Heading>
                 <fieldset disabled={loading} aria-disabled={loading}>
                   {/* username */}
+                  {gqlError !== "" && (
+                    <Message message={gqlError} type={"danger"} />
+                  )}
                   <div className="field">
                     <label className="label">
                       Email
@@ -114,9 +116,9 @@ class RequestResetPasswordForm extends React.Component {
                         <InputField
                           name="email"
                           value={email}
-                          error={userError}
-                          onChange={this.changeHandler}
-                          type="email"
+                          error={emailError}
+                          onChange={this.emailChange}
+                          type="text"
                         />
                       </div>
                     </label>
@@ -127,7 +129,7 @@ class RequestResetPasswordForm extends React.Component {
                     data-test="signIn"
                     disabled={loading}
                   >
-                    {loading ? "Requesting..." : "Request a password reset"}
+                    {loading ? "Requesting..." : "Request"}
                   </button>
                 </fieldset>
               </Parent>

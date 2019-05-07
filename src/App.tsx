@@ -145,14 +145,14 @@ class App extends React.Component<any, any> {
           <Route
             exact={true}
             path="/request-reset-password"
-            component={() => <RequestResetPasswordForm />}
+            component={RequestResetPasswordForm}
           />
 
           {/* request reset password page */}
           <Route
             exact={true}
             path="/reset-password/:token"
-            component={() => <ResetPasswordForm />}
+            component={ResetPasswordForm}
           />
 
           {/* page not found */}
