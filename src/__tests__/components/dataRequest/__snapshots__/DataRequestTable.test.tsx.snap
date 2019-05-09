@@ -163,6 +163,7 @@ exports[`DataRequestTable should render correctly 1`] = `
         </thead>
         <tbody>
           <DataRequestTableRow
+            dataRequestId="request-1"
             dataRequestPart={
               Object {
                 "dataFiles": Array [
@@ -201,7 +202,7 @@ exports[`DataRequestTable should render correctly 1`] = `
                 <p>
                   <a
                     className="button download is-small is-success is-rounded"
-                    href="http://demo/data-request/part/part-0"
+                    href="http://test/downloads/data-requests/request-1/part-0/part-data-file-request.zip"
                   >
                     Download
                   </a>
@@ -224,6 +225,7 @@ exports[`DataRequestTable should render correctly 1`] = `
             </tr>
           </DataRequestTableRow>
           <DataRequestTableRow
+            dataRequestId="request-1"
             dataRequestPart={
               Object {
                 "dataFiles": Array [
@@ -284,6 +286,7 @@ exports[`DataRequestTable should render correctly 1`] = `
             </tr>
           </DataRequestTableRow>
           <DataRequestTableRow
+            dataRequestId="request-1"
             dataRequestPart={
               Object {
                 "dataFiles": Array [

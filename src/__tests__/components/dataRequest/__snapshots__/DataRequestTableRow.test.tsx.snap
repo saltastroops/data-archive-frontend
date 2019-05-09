@@ -41,7 +41,7 @@ exports[`DataRequestTableRow renders correctly 1`] = `
           <p>
             <a
               className="button download is-small is-success is-rounded"
-              href="http://demo/data-request/part-1"
+              href="http://test/downloads/data-requests/undefined/part-1/part-data-file-request.zip"
             >
               Download
             </a>
