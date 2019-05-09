@@ -6,11 +6,14 @@ import { IDataFile, IDataRequestPart } from "./DataRequestsForm";
  *
  * Properties:
  * -----------
+ * dataRequestId:
+ *     A data request id which the data request parts belongs to.
  * dataRequestPart:
  *     Part of the data request displayed in the row.
  */
 
 interface IDataRequestTableRowProps {
+  dataRequestId: string;
   dataRequestPart: IDataRequestPart;
 }
 
@@ -19,7 +22,11 @@ interface IDataRequestTableRowProps {
  */
 class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
-    const { dataFiles, status, uri } = this.props.dataRequestPart;
+    const { dataFiles, status, id } = this.props.dataRequestPart;
+    const { dataRequestId } = this.props;
+    // TO UPDATE
+    const filename = "part-data-file-request.zip";
+
     let downloadButton = false;
     let reRequestButton = false;
     let statusText = "";
@@ -55,7 +62,9 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
             {downloadButton && (
               <a
                 className="button download is-small is-success is-rounded"
-                href={uri}
+                href={`${
+                  process.env.REACT_APP_BACKEND_URI
+                }/downloads/data-requests/${dataRequestId}/${id}/${filename}`}
               >
                 Download
               </a>
