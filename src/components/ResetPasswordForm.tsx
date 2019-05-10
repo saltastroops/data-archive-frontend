@@ -24,7 +24,7 @@ const Heading = styled.h1.attrs({
   }
 `;
 
-const RESET_PASSWORD_MUTATION = gql`
+export const RESET_PASSWORD_MUTATION = gql`
   mutation RESET_PASSWORD_MUTATION($token: String!, $password: String!) {
     resetPassword(token: $token, password: $password) {
       email
@@ -32,7 +32,7 @@ const RESET_PASSWORD_MUTATION = gql`
   }
 `;
 
-const VERIFY_TOKEN_QUERY = gql`
+export const VERIFY_TOKEN_QUERY = gql`
   query VERIFY_TOKEN_QUERY($token: String!) {
     verifyPasswordResetToken(token: $token) {
       success
@@ -48,15 +48,9 @@ class ResetPasswordForm extends React.Component<any, any> {
       confirmPassword: "",
       password: ""
     },
-    user: {
-      email: undefined
-    },
     userInput: {
       confirmPassword: "",
-      password: "",
-      token: window.location.pathname
-        .replace("/auth/reset-password/", "")
-        .trim()
+      password: ""
     }
   };
   changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +69,8 @@ class ResetPasswordForm extends React.Component<any, any> {
 
   submitReset = async (e: React.FormEvent<EventTarget>, resetPassword: any) => {
     e.preventDefault();
+    const { password } = this.state.userInput;
+    const { token } = this.props.match.params;
 
     this.setState({ errors: { password: "", confirmPassword: "" } });
     if (
@@ -85,8 +81,21 @@ class ResetPasswordForm extends React.Component<any, any> {
       });
       return;
     }
+
+    if (this.state.userInput.password.length <= 6) {
+      this.setState({
+        errors: { password: "Password should be at least 7 characters long" }
+      });
+      return;
+    }
+
     try {
-      await resetPassword();
+      await resetPassword({
+        variables: {
+          password,
+          token
+        }
+      });
       this.setState({ confirmReset: true });
     } catch (e) {
       this.setState({
@@ -98,7 +107,7 @@ class ResetPasswordForm extends React.Component<any, any> {
 
   public render() {
     const { confirmPassword, password } = this.state.userInput;
-    const { confirmReset, userInput } = this.state;
+    const { confirmReset } = this.state;
     const { token } = this.props.match.params;
     const userError = this.state.errors.password;
 
@@ -108,7 +117,15 @@ class ResetPasswordForm extends React.Component<any, any> {
 
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
-        {({ data }) => {
+        {({ data, error }) => {
+          if (error) {
+            return (
+              <Message
+                message={`Oops. Something very bad happened. ${error.message}`}
+                type={"danger"}
+              />
+            );
+          }
           if (data.verifyPasswordResetToken) {
             if (!data.verifyPasswordResetToken.success) {
               return (
@@ -121,19 +138,16 @@ class ResetPasswordForm extends React.Component<any, any> {
                     <Link
                       to={"/request-reset-password"}
                       className="button is-link is-fullwidth"
-                      data-test="reset-password"
+                      data-test="request-again"
                     >
-                      {"Request another one"}
+                      {"Request another link"}
                     </Link>
                   </Parent>
                 </>
               );
             }
             return (
-              <Mutation
-                mutation={RESET_PASSWORD_MUTATION}
-                variables={userInput}
-              >
+              <Mutation mutation={RESET_PASSWORD_MUTATION}>
                 {(resetPassword, { loading }) => (
                   <Parent onSubmit={e => this.submitReset(e, resetPassword)}>
                     <Heading>Enter your new password</Heading>
@@ -144,6 +158,7 @@ class ResetPasswordForm extends React.Component<any, any> {
                           password
                           <div className={"control is-child"}>
                             <InputField
+                              data-test="password"
                               name="password"
                               value={password || ""}
                               error={userError}
@@ -158,6 +173,7 @@ class ResetPasswordForm extends React.Component<any, any> {
                           Confirm password
                           <div className={"control is-child"}>
                             <InputField
+                              data-test="confirm-password"
                               name="confirmPassword"
                               value={confirmPassword || ""}
                               error={""}
@@ -170,7 +186,7 @@ class ResetPasswordForm extends React.Component<any, any> {
                       {/* submit button */}
                       <button
                         className="button is-primary is-fullwidth"
-                        data-test="signIn"
+                        data-test="reset-password-submit"
                         disabled={loading}
                       >
                         {"Reset"}
