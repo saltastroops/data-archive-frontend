@@ -50,7 +50,7 @@ describe("ResetPasswordForm", () => {
       }
     ];
 
-    // RegistrationForm component wrapper.
+    // ResetPasswordForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <MemoryRouter initialEntries={["/reset-password/abc-known"]}>
@@ -495,8 +495,8 @@ describe("ResetPasswordForm", () => {
 
     expect(resetPassword).toHaveBeenCalled();
     expect(resetPassword).toHaveBeenCalledWith({
-      token: "abc-known-3",
-      password: "XXXXXXx4"
+      password: "XXXXXXx4",
+      token: "abc-known-3"
     });
   });
 });

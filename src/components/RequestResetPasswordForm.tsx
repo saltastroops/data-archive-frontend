@@ -23,7 +23,7 @@ const Heading = styled.h1.attrs({
   }
 `;
 
-const REQUEST_RESET_MUTATION = gql`
+export const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
     requestPasswordReset(email: $email) {
       email
@@ -57,17 +57,18 @@ class RequestResetPasswordForm extends React.Component {
     requestResetPassword: any
   ) => {
     e.preventDefault();
+    const { email } = this.state.userInput;
 
-    if (!validate(this.state.userInput.email, { minDomainAtoms: 2 })) {
+    if (!validate(email, { minDomainAtoms: 2 })) {
       this.setState({
-        errors: { ...this.state.errors, email: "Email address is invalid" }
+        errors: { email: "Email address is invalid", gqlError: "" }
       });
       return;
     }
 
-    this.setState({ errors: { email: "" } });
+    this.setState({ errors: { email: "", gqlError: "" } });
     try {
-      const user = await requestResetPassword();
+      const user = await requestResetPassword({ variables: { email } });
       if (user) {
         this.setState({ confirmReset: true });
       }
@@ -87,7 +88,8 @@ class RequestResetPasswordForm extends React.Component {
     if (confirmReset) {
       return (
         <div>
-          <Heading>{}</Heading>
+          <br />
+          <br />
           <Heading>
             Please Click on the link in your email address to confirm password
             reset
@@ -115,6 +117,7 @@ class RequestResetPasswordForm extends React.Component {
                       <div className={"control is-child"}>
                         <InputField
                           name="email"
+                          data-test="email"
                           value={email}
                           error={emailError}
                           onChange={this.emailChange}
@@ -126,7 +129,7 @@ class RequestResetPasswordForm extends React.Component {
                   {/* submit button */}
                   <button
                     className="button is-primary is-fullwidth"
-                    data-test="signIn"
+                    data-test="request"
                     disabled={loading}
                   >
                     {loading ? "Requesting..." : "Request"}
