@@ -58,7 +58,7 @@ const LesediForm = (props: ILesediFormProps) => {
 
   // Function for changing the instrument
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
+    const value = e.target.value;
     onChange("instrument", { name: value });
   };
 

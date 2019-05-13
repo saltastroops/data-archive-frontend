@@ -5,7 +5,7 @@ exports[`InputField render correctly 1`] = `
   className="control"
 >
   <input
-    className="input undefined undefined"
+    className="input "
   />
 </div>
 `;
@@ -15,7 +15,7 @@ exports[`InputField render correctly 2`] = `
   className="control"
 >
   <input
-    className="input undefined is-danger"
+    className="input is-danger"
   />
   <styled.p>
     it has error
@@ -28,7 +28,7 @@ exports[`InputField render correctly 3`] = `
   className="control"
 >
   <input
-    className="input undefined undefined"
+    className="input "
     name="name"
     placeholder="holder"
     value="value"

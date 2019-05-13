@@ -50,7 +50,7 @@ export interface IRegistrationFormInput {
  *     Values input by the user.
  */
 interface IRegistrationFormState {
-  errors: Partial<IRegistrationFormInput>;
+  errors: Partial<IRegistrationFormInput> & { responseError?: string };
   registered: boolean;
   userInput: IRegistrationFormInput;
 }
@@ -61,7 +61,7 @@ interface IRegistrationFormState {
  * The user input and errors are cached.
  */
 export interface IRegistrationFormCache {
-  errors?: Partial<IRegistrationFormInput>;
+  errors?: Partial<IRegistrationFormInput> & { responseError?: string };
   userInput?: IRegistrationFormInput;
 }
 
@@ -148,7 +148,16 @@ class RegistrationForm extends React.Component<
   IRegistrationFormState
 > {
   public state: IRegistrationFormState = {
-    errors: {},
+    errors: {
+      affiliation: "",
+      confirmPassword: "",
+      email: "",
+      familyName: "",
+      givenName: "",
+      password: "",
+      responseError: "",
+      username: ""
+    },
     registered: false,
     userInput: {
       affiliation: "",
@@ -184,7 +193,9 @@ class RegistrationForm extends React.Component<
 
     try {
       // If all fields are validated, sign up
-      await signup();
+      const userDetails = { ...this.state.userInput };
+      delete userDetails.confirmPassword;
+      await signup({ variables: userDetails });
 
       // Reset the state when registering succeeded
       this.updateState({
@@ -202,7 +213,14 @@ class RegistrationForm extends React.Component<
 
       alert("Successfully registered, Login using your username and password");
     } catch (error) {
-      return;
+      this.updateState({
+        errors: {
+          ...this.state.errors,
+          responseError: error.message
+            .replace("Network error: ", "")
+            .replace("GraphQL error: ", "")
+        }
+      });
     }
   };
 
@@ -235,13 +253,15 @@ class RegistrationForm extends React.Component<
     }
 
     return (
-      <Mutation mutation={SIGNUP_MUTATION} variables={this.state.userInput}>
-        {(signup: any, { loading, error }: any) => {
+      <Mutation mutation={SIGNUP_MUTATION}>
+        {(signup: any, { loading }: any) => {
           return (
             <Form onSubmit={e => this.onHandleSubmit(e, signup)}>
               <fieldset disabled={loading} aria-disabled={loading}>
                 <Heading>Create your account</Heading>
-                {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
+                {errors.responseError ? (
+                  <ErrorMessage>{errors.responseError}</ErrorMessage>
+                ) : null}
 
                 {/* Given name */}
                 <div className="field">

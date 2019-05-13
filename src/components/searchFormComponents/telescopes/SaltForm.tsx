@@ -62,10 +62,11 @@ interface ISaltFormProps {
  */
 const SaltForm = (props: ISaltFormProps) => {
   const { salt, onChange } = props;
+  const instrument = salt.instrument || { name: "" };
 
   // Function for handling instrument selection
   const changeInstrument = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
+    const value = e.target.value;
     onChange("instrument", { name: value });
   };
 
@@ -84,11 +85,15 @@ const SaltForm = (props: ISaltFormProps) => {
       <MainGrid>
         <SubGrid>
           <p>Instrument</p>
-          <SelectField name={"instrument"} onChange={changeInstrument}>
+          <SelectField
+            name={"instrument"}
+            onChange={changeInstrument}
+            value={instrument.name || ""}
+          >
             <AnyOption />
-            {instruments.map(instrument => (
-              <option key={instrument} value={instrument}>
-                {instrument}
+            {instruments.map(instr => (
+              <option key={instr} value={instr}>
+                {instr}
               </option>
             ))}
           </SelectField>

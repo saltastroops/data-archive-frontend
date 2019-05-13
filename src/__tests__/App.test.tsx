@@ -1,16 +1,20 @@
 import { mount } from "enzyme";
 import * as React from "react";
+import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import wait from "waait";
 import App from "../App";
 import click from "../util/click";
+import "./window.mock";
 
 describe("App", () => {
   it("should be defined", () => {
     expect(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
     ).toBeDefined();
   });
 
@@ -18,9 +22,11 @@ describe("App", () => {
     // Use mount for nicer snapshots
     expect(
       mount(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>
+        <MockedProvider>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </MockedProvider>
       )
     ).toBeDefined();
   });
@@ -28,10 +34,16 @@ describe("App", () => {
   it("should go to the search page if the home link is clicked", async () => {
     // Go to another page
     const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </MockedProvider>
     );
+
+    await wait(0);
+    wrapper.update();
+
     const cartLink = wrapper.find('a[href="/cart"]');
     click(cartLink.first());
 

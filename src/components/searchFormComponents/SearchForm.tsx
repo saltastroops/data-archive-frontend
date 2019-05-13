@@ -6,7 +6,9 @@ import {
   ISearchFormState,
   ITarget,
   ITelescope
-} from "../utils/ObservationQueryParameters";
+} from "../../utils/ObservationQueryParameters";
+import { TargetType } from "../../utils/TargetType";
+import { isError } from "../../utils/validators";
 import {
   ButtonGrid,
   DataGrid,
@@ -15,28 +17,33 @@ import {
   Spinner,
   TargetGrid,
   TelescopeGrid
-} from "./basicComponents/Grids";
-import DataForm from "./searchFormComponents/DataForm";
-import ProposalForm, {
-  validatedProposal
-} from "./searchFormComponents/ProposalForm";
-import TargetForm, { validatedTarget } from "./searchFormComponents/TargetForm";
-import TelescopeForm, {
-  validatedTelescope
-} from "./searchFormComponents/TelescopeForm";
-
-interface ISearchFormProps {
-  cache?: ISearchFormCache;
-}
+} from "../basicComponents/Grids";
+import DataForm from "./DataForm";
+import ISearchFormCache from "./ISearchFormCache";
+import ProposalForm, { validatedProposal } from "./ProposalForm";
+import TargetForm, { validatedTarget } from "./TargetForm";
+import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 
 /**
- * The cache for the search form.
+ * Properties for the search form.
  *
- * The general and target details (and errors) are cached.
+ * cache:
+ *     The cache for storing the form content.
+ * search:
+ *     The function for carrying out the search. It must expect an object with
+ *     the general, target and telescope data as its only argument.
  */
-export interface ISearchFormCache {
-  general?: IGeneral;
-  target?: ITarget;
+interface ISearchFormProps {
+  cache?: ISearchFormCache;
+  search: ({
+    general,
+    target,
+    telescope
+  }: {
+    general: IGeneral;
+    target: ITarget;
+    telescope: ITelescope | undefined;
+  }) => void;
 }
 
 /**
@@ -51,7 +58,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       errors: {},
       resolver: "Simbad",
       searchConeRadius: "",
-      searchConeRadiusUnits: "arcseconds"
+      searchConeRadiusUnits: "arcseconds",
+      targetTypes: new Set<TargetType>()
     }
   };
 
@@ -101,29 +109,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     this.updateState(newState);
   };
 
-  /**
-   * Perform an observation with the currently selected search parameters.
-   */
-  public searchArchive = async () => {
-    this.updateState({
-      ...this.state,
-      loading: true
-    });
-
-    // Add errors to the search parameter details
-    const target = await validatedTarget(this.state.target);
-    const general = validatedProposal(this.state.general);
-    const telescope = validatedTelescope(this.state.telescope);
-
-    this.updateState({
-      ...this.state,
-      general,
-      loading: false,
-      target,
-      telescope
-    });
-  };
-
   public render() {
     const { target, general, telescope, loading } = this.state;
 
@@ -151,18 +136,48 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <DataForm general={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
-            <input
+            <button
+              disabled={loading}
               className="button is-primary"
               data-test="search-button"
               type="button"
               value="Search"
-              onClick={this.searchArchive}
-            />
+              onClick={this.onSubmit}
+            >
+              search
+            </button>
           </ButtonGrid>
         </ParentGrid>
       </>
     );
   }
+
+  /**
+   * Initiate the search.
+   */
+  private onSubmit = async () => {
+    // Add errors to the search parameter details
+    const target = await validatedTarget(this.state.target);
+    const general = await validatedProposal(this.state.general);
+    const telescope = await validatedTelescope(this.state.telescope);
+
+    this.updateState({
+      ...this.state,
+      general,
+      loading: false,
+      target,
+      telescope
+    });
+    if (
+      !isError(
+        general.errors,
+        target.errors,
+        (telescope && telescope.errors) || {}
+      )
+    ) {
+      this.props.search({ general, target, telescope });
+    }
+  };
 
   /**
    * Update the form state and the cache.
@@ -174,6 +189,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         if (this.props.cache) {
           this.props.cache.general = _.cloneDeep(this.state.general);
           this.props.cache.target = _.cloneDeep(this.state.target);
+          this.props.cache.telescope = _.cloneDeep(this.state.telescope);
         }
       }
     );

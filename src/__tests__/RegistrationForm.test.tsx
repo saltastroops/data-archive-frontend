@@ -9,6 +9,16 @@ import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import click from "../util/click";
 
+window.matchMedia = jest.fn().mockImplementation(query => {
+  return {
+    addListener: jest.fn(),
+    matches: false,
+    media: query,
+    onchange: null,
+    removeListener: jest.fn()
+  };
+});
+
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
@@ -38,27 +48,6 @@ const updatedState = {
   }
 };
 
-// sign up mock mutation
-const mocks = [
-  {
-    request: {
-      query: SIGNUP_MUTATION,
-      variables: {
-        ...updatedState
-      }
-    },
-    result: {
-      data: {
-        signup: {
-          __typename: "User",
-          ...updatedState,
-          id: "1"
-        }
-      }
-    }
-  }
-];
-
 describe("RegistrationForm Component", () => {
   it("renders the RegistrationForm having unpopulated props with no errors", () => {
     // RegistrationForm component wrapper.
@@ -72,11 +61,43 @@ describe("RegistrationForm Component", () => {
     expect(toJson(wrapper.find("form"))).toMatchSnapshot();
   });
 
-  it("displays no errors if submitted inputs are all valid", () => {
+  it("successfully submits valid input", async () => {
+    const register = jest.fn();
+    const userDetails = {
+      affiliation: "University of Cape Town",
+      email: "valid@email.address",
+      familyName: "Smith",
+      givenName: "John",
+      password: "securepassword",
+      username: "sj"
+    };
+    const mocks = [
+      {
+        request: {
+          query: SIGNUP_MUTATION,
+          variables: userDetails
+        },
+        result: () => {
+          register();
+          return {
+            data: {
+              signup: {
+                __typename: "User",
+                ...userDetails,
+                id: "1"
+              }
+            }
+          };
+        }
+      }
+    ];
+
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <RegistrationForm />
+        <MemoryRouter initialEntries={["/register"]}>
+          <RegistrationForm />
+        </MemoryRouter>
       </MockedProvider>
     );
 
@@ -87,19 +108,19 @@ describe("RegistrationForm Component", () => {
     const setState = jest.spyOn(instance, "setState");
 
     // Simulate state change when the affiliation input field value changes.
-    inputTyping(wrapper, "affiliation", "University of Cape Town");
+    inputTyping(wrapper, "affiliation", userDetails.affiliation);
     // Simulate state change when the confirmPassword input field value changes.
-    inputTyping(wrapper, "confirmPassword", "securepassword");
+    inputTyping(wrapper, "confirmPassword", userDetails.password);
     // Simulate state change when the emailAddress input field value changes.
-    inputTyping(wrapper, "email", "valid@email.address");
+    inputTyping(wrapper, "email", userDetails.email);
     // Simulate state change when the familyName input field value changes.
-    inputTyping(wrapper, "familyName", "Smith");
+    inputTyping(wrapper, "familyName", userDetails.familyName);
     // Simulate state change when the givenName input field value changes.
-    inputTyping(wrapper, "givenName", "John");
+    inputTyping(wrapper, "givenName", userDetails.givenName);
     // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "securepassword");
+    inputTyping(wrapper, "password", userDetails.password);
     // Simulate state change when the username input field value changes.
-    inputTyping(wrapper, "username", "sj");
+    inputTyping(wrapper, "username", userDetails.username);
 
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(7);
@@ -127,20 +148,28 @@ describe("RegistrationForm Component", () => {
     // Expect the property username of the state to have been updated with the correct value.
     expect(instance.state.userInput.username).toBe("sj");
 
-    // Expect the button to not be clicked
+    // Expect the button not to indicate loading
     expect(wrapper.find('[data-test="signUp"]').text()).toContain("Sign up");
 
-    // Simulate the submiting of the form.
+    // The mutation has not been called (yet)
+    expect(register).not.toHaveBeenCalled();
+
+    // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
-    // Expect the button to hev beeen clicked
+    // Expect the button to indicate loading
     expect(wrapper.find('[data-test="signUp"]').text()).toContain("Signing up");
 
-    // Expect no error message.
+    // The mutation has been called
+    await wait(50); // 50 rather than 0 to give a potential state update the chance to finish
+    wrapper.update();
+    expect(register).toHaveBeenCalled();
+
+    // Expect no error message
     expect(wrapper.find("p").length).toBe(0);
   });
 
-  it("displays error message if submitted ivalid given name", () => {
+  it("displays an error message if an invalid given name is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -174,7 +203,7 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").text()).toContain("empty");
   });
 
-  it("displays error message if submitted invalid family name", () => {
+  it("displays an error message if an invalid family name is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -208,7 +237,7 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").text()).toContain("empty");
   });
 
-  it("displays error message if submitted invalid family name", () => {
+  it("displays an error message if an invalid family name is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -242,7 +271,7 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").text()).toContain("invalid");
   });
 
-  it("displays error message if submitted invalid username", () => {
+  it("displays an error message if an invalid username is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -276,7 +305,7 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
-  it("displays error message if submitted invalid password", () => {
+  it("displays an error message if an invalid password is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -320,7 +349,7 @@ describe("RegistrationForm Component", () => {
     ).toContain("7 characters");
   });
 
-  it("displays error message if submitted invalid confirmPassword", () => {
+  it("displays an error message if an invalid confirmed password is submitted", () => {
     // RegistrationForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
@@ -366,6 +395,63 @@ describe("RegistrationForm Component", () => {
     ).toContain("do not");
   });
 
+  it("should display an error if the registration fails", async () => {
+    const register = jest.fn();
+    const userDetails = {
+      affiliation: "University of Cape Town",
+      email: "valid@email.address",
+      familyName: "Smith",
+      givenName: "John",
+      password: "securepassword",
+      username: "sj"
+    };
+    const mocks = [
+      {
+        error: new Error("The server is having a coffee break!"),
+        request: {
+          query: SIGNUP_MUTATION,
+          variables: userDetails
+        }
+      }
+    ];
+
+    // RegistrationForm component wrapper.
+    const wrapper = mount(
+      <MockedProvider mocks={mocks}>
+        <RegistrationForm />
+      </MockedProvider>
+    );
+
+    // Simulate state change when the affiliation input field value changes.
+    inputTyping(wrapper, "affiliation", userDetails.affiliation);
+    // Simulate state change when the confirmPassword input field value changes.
+    inputTyping(wrapper, "confirmPassword", userDetails.password);
+    // Simulate state change when the emailAddress input field value changes.
+    inputTyping(wrapper, "email", userDetails.email);
+    // Simulate state change when the familyName input field value changes.
+    inputTyping(wrapper, "familyName", userDetails.familyName);
+    // Simulate state change when the givenName input field value changes.
+    inputTyping(wrapper, "givenName", userDetails.givenName);
+    // Simulate state change when the password input field value changes.
+    inputTyping(wrapper, "password", userDetails.password);
+    // Simulate state change when the username input field value changes.
+    inputTyping(wrapper, "username", userDetails.username);
+
+    // There is no error (yet).
+    expect(wrapper.find("p.error").length).toBe(0);
+
+    // Simulate the submiting of the form.
+    wrapper.find('[data-test="signUp"]').simulate("submit");
+
+    // There is an error now
+    await wait(50); // 50 ms rather than 0 ms to give the state update a chance to finish
+    wrapper.update();
+    expect(wrapper.find("p.error").length).toBe(1);
+    expect(wrapper.find("p.error").text()).toEqual(
+      "The server is having a coffee break!"
+    );
+  });
+
   it("should cache values and errors", async () => {
     const wrapper = mount(
       <MockedProvider>
@@ -374,6 +460,9 @@ describe("RegistrationForm Component", () => {
         </MemoryRouter>
       </MockedProvider>
     );
+
+    await wait(0);
+    wrapper.update();
 
     // Navigate to the registration form
     const registrationFormLink = wrapper.find('a[href="/register"]').first();

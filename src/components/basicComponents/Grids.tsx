@@ -5,11 +5,13 @@ const ParentGrid = styled.div.attrs({
   className: "grid-container",
   disable: true
 })`
-  && {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
   }
 `;
 
@@ -61,6 +63,16 @@ const MainGrid = styled.div.attrs({
   }
 `;
 
+const SingleColumnGrid = styled.div.attrs({
+  className: "single-column-grid"
+})`
+  && {
+    display: grid;
+    grid-template-columns: 100%;
+    padding: 10px;
+  }
+`;
+
 const InnerMainGrid = styled.div.attrs({
   className: "inner-main-grid"
 })`
@@ -102,6 +114,7 @@ const Spinner = () => <div className="signal" />;
 export {
   ParentGrid,
   ProposalGrid,
+  SingleColumnGrid,
   TelescopeGrid,
   DataGrid,
   TargetGrid,

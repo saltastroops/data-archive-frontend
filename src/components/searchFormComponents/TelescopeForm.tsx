@@ -36,7 +36,6 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
 
     // Function for updating instrument-related properties
     const changeTelescopeParameter = (key: string, value: any) => {
-      console.log({ key, value });
       onChange({
         ...telescope,
         [key]: value

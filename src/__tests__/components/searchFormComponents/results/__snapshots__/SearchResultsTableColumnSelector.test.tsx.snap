@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsTableColumn should render correctly 1`] = `
+.c1.c1 {
+  width: 18px;
+  height: 18px;
+}
+
+.c0 {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+@media screen and (min-width:440px) {
+  .c0 {
+    grid-template-columns: 190px 190px;
+  }
+}
+
+@media screen and (min-width:640px) {
+  .c0 {
+    grid-template-columns: 190px 190px 190px;
+  }
+}
+
+@media screen and (min-width:840px) {
+  .c0 {
+    grid-template-columns: 190px 190px 190px 190px;
+  }
+}
+
+@media screen and (min-width:1040px) {
+  .c0 {
+    grid-template-columns: 190px 190px 190px 190px 190px;
+  }
+}
+
+@media screen and (min-width:1472px) {
+  .c0 {
+    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+  }
+}
+
+<SearchResultsTableColumnSelector
+  columns={
+    Array [
+      Object {
+        "dataKey": "proposal",
+        "name": "Proposal",
+        "visible": true,
+      },
+      Object {
+        "dataKey": "pi",
+        "name": "Principal Investigator",
+        "visible": false,
+      },
+      Object {
+        "dataKey": "target",
+        "name": "Target Name",
+        "visible": true,
+      },
+    ]
+  }
+  onChange={[MockFunction]}
+>
+  <styled.div>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bwzfXH",
+            "isStatic": true,
+            "lastClassName": "c0",
+            "rules": Array [
+              "
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+
+  @media screen and (min-width: 440px) {
+    grid-template-columns: 190px 190px;
+  }
+
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 190px 190px 190px;
+  }
+
+  @media screen and (min-width: 840px) {
+    grid-template-columns: 190px 190px 190px 190px;
+  }
+
+  @media screen and (min-width: 1040px) {
+    grid-template-columns: 190px 190px 190px 190px 190px;
+  }
+
+  @media screen and (min-width: 1472px) {
+    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+  }
+",
+            ],
+          },
+          "displayName": "styled.div",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bwzfXH",
+          "target": "div",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <div
+        className="c0"
+      >
+        <div
+          key="0"
+        >
+          <label
+            className="label"
+          >
+            <styled.input
+              checked={true}
+              name="proposal"
+              onChange={[Function]}
+              type="checkbox"
+            >
+              <StyledComponent
+                checked={true}
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "checkbox",
+                        "type": "checkbox",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bdVaJa",
+                      "isStatic": true,
+                      "lastClassName": "c1",
+                      "rules": Array [
+                        "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.input",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bdVaJa",
+                    "target": "input",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                name="proposal"
+                onChange={[Function]}
+                type="checkbox"
+              >
+                <input
+                  checked={true}
+                  className="checkbox c1"
+                  name="proposal"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </StyledComponent>
+            </styled.input>
+            Proposal
+          </label>
+        </div>
+        <div
+          key="1"
+        >
+          <label
+            className="label"
+          >
+            <styled.input
+              checked={false}
+              name="pi"
+              onChange={[Function]}
+              type="checkbox"
+            >
+              <StyledComponent
+                checked={false}
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "checkbox",
+                        "type": "checkbox",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bdVaJa",
+                      "isStatic": true,
+                      "lastClassName": "c1",
+                      "rules": Array [
+                        "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.input",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bdVaJa",
+                    "target": "input",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                name="pi"
+                onChange={[Function]}
+                type="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="checkbox c1"
+                  name="pi"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </StyledComponent>
+            </styled.input>
+            Principal Investigator
+          </label>
+        </div>
+        <div
+          key="2"
+        >
+          <label
+            className="label"
+          >
+            <styled.input
+              checked={true}
+              name="target"
+              onChange={[Function]}
+              type="checkbox"
+            >
+              <StyledComponent
+                checked={true}
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "checkbox",
+                        "type": "checkbox",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-bdVaJa",
+                      "isStatic": true,
+                      "lastClassName": "c1",
+                      "rules": Array [
+                        "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                      ],
+                    },
+                    "displayName": "styled.input",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-bdVaJa",
+                    "target": "input",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                name="target"
+                onChange={[Function]}
+                type="checkbox"
+              >
+                <input
+                  checked={true}
+                  className="checkbox c1"
+                  name="target"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </StyledComponent>
+            </styled.input>
+            Target Name
+          </label>
+        </div>
+      </div>
+    </StyledComponent>
+  </styled.div>
+</SearchResultsTableColumnSelector>
+`;

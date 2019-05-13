@@ -104,30 +104,8 @@ describe("Telescope form rendering", () => {
       telescope={{ name: "SALT", instrument: { name: "RSS" } }}
     />
   );
-  it("should render", () => {
-    expect(wrapper).toBeDefined();
-  });
-  it("should have four children if RSS is selected", () => {
-    const telescope = wrapper.find("div.select").children();
-    expect(telescope.length).toEqual(4);
-  });
-  it("should have third child with name mode ", () => {
-    const mode = wrapper
-      .find("div.select")
-      .children()
-      .get(2);
-    expect(mode).toBeDefined();
-    expect(mode.props.name).toEqual("mode");
-  });
-  it("should have fourth child with name detectorMode ", () => {
-    const detectorMode = wrapper
-      .find("div.select")
-      .children()
-      .get(3);
-    expect(detectorMode).toBeDefined();
-    expect(detectorMode.props.name).toEqual("detectorMode");
-  });
-  it("should render have RSS if RSS is selected", () => {
+
+  it("should render only RSS if RSS is selected", () => {
     const rss = mount(
       <TelescopeForm
         onChange={onChange}
@@ -141,6 +119,7 @@ describe("Telescope form rendering", () => {
     expect(rss.find(SHOC).exists()).toBeFalsy();
     expect(rss.find(BVIT).exists()).toBeFalsy();
   });
+
   it("should render correctly", () => {
     expect(
       toJson(

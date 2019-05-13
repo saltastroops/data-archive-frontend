@@ -1,5 +1,9 @@
-import * as React from "react";
 import {
+  IGeneralErrors,
+  ITargetErrors
+} from "../../utils/ObservationQueryParameters";
+import {
+  isError,
   isFloat,
   validateDate,
   validateDeclination,
@@ -267,5 +271,69 @@ describe("validateDeclination", () => {
     expect(validateDeclination("20:39:12 .. 20:20:20")).toBe(undefined);
     expect(validateDeclination("20.5 .. 20")).toBe(undefined);
     expect(validateDeclination("89 .. 20")).toBe(undefined);
+  });
+});
+
+/**
+ * Test of isError to check if the search form state has an error
+ */
+describe("isError", () => {
+  it("should be true of there is an error in the general state", () => {
+    let generalError: IGeneralErrors = {
+      observationNight: "Error"
+    };
+    expect(isError(generalError, {})).toBeTruthy();
+    generalError = {
+      proposalCode: "Error"
+    };
+    expect(isError(generalError, {})).toBeTruthy();
+  });
+  it("should be true if general has more than one error", () => {
+    const generalError: IGeneralErrors = {
+      observationNight: "Error",
+      principalInvestigator: "Error"
+    };
+    expect(isError(generalError, {})).toBeTruthy();
+  });
+  it("should be false if there is no general errors", () => {
+    expect(isError({}, {})).toBeFalsy();
+    expect(isError({ arcs: "" } as IGeneralErrors, {})).toBeFalsy();
+    expect(
+      isError({ observationNight: undefined } as IGeneralErrors, {})
+    ).toBeFalsy();
+  });
+
+  it("should be true of there is an error in the target state", () => {
+    let targetError: ITargetErrors = {
+      rightAscension: "Error"
+    };
+    expect(isError({}, targetError)).toBeTruthy();
+    targetError = {
+      declination: "Error"
+    };
+    expect(isError({}, targetError)).toBeTruthy();
+  });
+  it("should be true if target has more than one error", () => {
+    const targetError: ITargetErrors = {
+      declination: "Error",
+      name: "Error",
+      rightAscension: "Error"
+    };
+    expect(isError({}, targetError)).toBeTruthy();
+  });
+  it("should be false if there is no error", () => {
+    expect(isError({}, {})).toBeFalsy();
+    expect(isError({}, { declination: "" } as ITargetErrors)).toBeFalsy();
+    expect(
+      isError({}, { rightAscension: undefined } as ITargetErrors)
+    ).toBeFalsy();
+  });
+  it("should be true if both have errors", () => {
+    expect(
+      isError(
+        { observationNight: "Error" } as IGeneralErrors,
+        { name: "Error" } as ITargetErrors
+      )
+    ).toBeTruthy();
   });
 });
