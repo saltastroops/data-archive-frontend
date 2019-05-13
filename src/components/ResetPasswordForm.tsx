@@ -117,7 +117,7 @@ class ResetPasswordForm extends React.Component<any, any> {
 
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
-        {({ data, error }) => {
+        {({ data, error }: any) => {
           if (error) {
             return (
               <Message
@@ -148,7 +148,7 @@ class ResetPasswordForm extends React.Component<any, any> {
             }
             return (
               <Mutation mutation={RESET_PASSWORD_MUTATION}>
-                {(resetPassword, { loading }) => (
+                {(resetPassword: () => void, { loading }: any) => (
                   <Parent onSubmit={e => this.submitReset(e, resetPassword)}>
                     <Heading>Enter your new password</Heading>
                     <fieldset disabled={loading} aria-disabled={loading}>

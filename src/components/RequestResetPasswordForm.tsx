@@ -101,7 +101,7 @@ class RequestResetPasswordForm extends React.Component {
       <>
         {
           <Mutation mutation={REQUEST_RESET_MUTATION} variables={userInput}>
-            {(requestResetPassword, { loading }) => (
+            {(requestResetPassword: any, { loading }: any) => (
               <Parent
                 onSubmit={e => this.submitRequest(e, requestResetPassword)}
               >

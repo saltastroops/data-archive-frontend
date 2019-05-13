@@ -481,13 +481,15 @@ describe("ResetPasswordForm", () => {
     const instance = wrapper.find("ResetPasswordForm").instance();
 
     // get the reset button
-    const resetPasswordx = wrapper.find('[data-test="reset-password-submit"]');
+    const resetPasswordButton = wrapper.find(
+      '[data-test="reset-password-submit"]'
+    );
 
     // Set the state with short password state.
     instance.setState({ userInput: goodPasswordState.userInput });
 
     // Simulate the form submission
-    resetPasswordx.simulate("submit");
+    resetPasswordButton.simulate("submit");
 
     // The mutation has not called
     await wait(50); // 50 ms rather than 0 ms to give a potential state change the chance to finish
