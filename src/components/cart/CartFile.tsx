@@ -1,33 +1,42 @@
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
+import { ICartFile } from "../../util/Cart";
 
-interface ICartFile {
-  file: any;
+interface ICartFileX {
+  file: ICartFile;
   id: string;
   index: number;
   observation: any;
+  remove: (
+    e: React.MouseEvent,
+    removeFromCart: () => void,
+    file: ICartFile
+  ) => void;
+  removeFromCart: () => void;
 }
 
-const CartFile = (props: ICartFile) => {
-  const { file, observation } = props;
+const CartFile = (props: ICartFileX) => {
+  const { file, observation, remove, removeFromCart } = props;
+  const firstFile: any = Array.from(observation.files)[0];
   return (
-    <tr>
-      {observation.files[0] === file && (
-        <td rowSpan={observation.files.length}>{observation.id}</td>
+    <>
+      {firstFile.id === file.id ? (
+        <td className="fixed-header-rest">{observation.id}</td>
+      ) : (
+        <td className="fixed-header-rest" />
       )}
-      <td>
-        <button className={"button is-danger"}>
+      <td className="fixed-header-button">
+        <button
+          className={"button is-danger"}
+          onClick={e => remove(e, removeFromCart, file)}
+        >
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </td>
-      <td>{file.filename}</td>
-      <td>{file.size || ""}</td>
-      <td>{file.type || ""}</td>
-      <td>{file.rightAscension}</td>
-      <td>{file.declination}</td>
-      <td>{file.targetName}</td>
-    </tr>
+      <td className="fixed-header-rest">{file.name}</td>
+      <td className="fixed-header-rest">{file.targetName || ""}</td>
+    </>
   );
 };
 export default CartFile;
