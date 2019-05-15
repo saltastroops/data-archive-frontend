@@ -42,7 +42,6 @@ class CartModal extends React.Component<ICart, any> {
         files
       }
     });
-    return <Redirect to={"/"} />;
   };
   // removeFromCart = (event: any, file: ICartFile) => {
   //   console.log("Called");
