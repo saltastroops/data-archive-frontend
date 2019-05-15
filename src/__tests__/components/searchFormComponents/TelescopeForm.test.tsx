@@ -11,24 +11,24 @@ import SaltForm from "../../../components/searchFormComponents/telescopes/SaltFo
 
 const onChange = jest.fn();
 
-describe("Telescope form rendering", () => {
+describe("TelescopeForm", () => {
   const wrapper = mount(<TelescopeForm onChange={onChange} telescope={{}} />);
-  it("should render", () => {
+
+  it("should be defined", () => {
     expect(wrapper).toBeDefined();
   });
-  it("should have select of name telescope", () => {
-    const telescope = wrapper
-      .find("div.select")
-      .children()
-      .get(0);
+
+  it("should have a select element with name 'telescope'", () => {
+    const telescope = wrapper.find('select[name="telescope"]');
     expect(telescope).toBeDefined();
-    expect(telescope.props.name).toEqual("telescope");
   });
+
   it("should have only one child if no telescope is selected", () => {
     const telescope = wrapper.find("div.select").children();
     expect(telescope.length).toEqual(1);
   });
-  it("should have two children if telescope is selected", () => {
+
+  it("should have two children if a telescope is selected", () => {
     const teleWrapper = mount(
       <TelescopeForm onChange={onChange} telescope={{ name: "SALT" }} />
     );
@@ -104,30 +104,8 @@ describe("Telescope form rendering", () => {
       telescope={{ name: "SALT", instrument: { name: "RSS" } }}
     />
   );
-  it("should render", () => {
-    expect(wrapper).toBeDefined();
-  });
-  it("should have four children if RSS is selected", () => {
-    const telescope = wrapper.find("div.select").children();
-    expect(telescope.length).toEqual(4);
-  });
-  it("should have third child with name mode ", () => {
-    const mode = wrapper
-      .find("div.select")
-      .children()
-      .get(2);
-    expect(mode).toBeDefined();
-    expect(mode.props.name).toEqual("mode");
-  });
-  it("should have fourth child with name detectorMode ", () => {
-    const detectorMode = wrapper
-      .find("div.select")
-      .children()
-      .get(3);
-    expect(detectorMode).toBeDefined();
-    expect(detectorMode.props.name).toEqual("detectorMode");
-  });
-  it("should render have RSS if RSS is selected", () => {
+
+  it("should render only RSS if RSS is selected", () => {
     const rss = mount(
       <TelescopeForm
         onChange={onChange}
@@ -141,6 +119,7 @@ describe("Telescope form rendering", () => {
     expect(rss.find(SHOC).exists()).toBeFalsy();
     expect(rss.find(BVIT).exists()).toBeFalsy();
   });
+
   it("should render correctly", () => {
     expect(
       toJson(

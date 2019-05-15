@@ -253,3 +253,23 @@ export const validateSearchConeRadius = (radius: string) => {
   }
   return "Search radius should be a floating point number greater and zero.";
 };
+
+/**
+ * Test if any of the given error groups (i.e. objects of error keys and
+ * values) has a truthy value for any of its keys.
+ *
+ * Parameters
+ * ----------
+ * errorGroups:
+ *     Objects of error keys and values.
+ *
+ * Returns
+ * -------
+ * isError:
+ *     Whether any of the error groups has a truthy value.
+ */
+export const isError = (...errorGroups: object[]) => {
+  return errorGroups.some((errorGroup: object) =>
+    Object.keys(errorGroup).some(key => (errorGroup as any)[key])
+  );
+};

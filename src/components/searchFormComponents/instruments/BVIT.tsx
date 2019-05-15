@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IBVIT } from "../../../utils/ObservationQueryParameters";
+import { BVITFilter, IBVIT } from "../../../utils/ObservationQueryParameters";
 import { MainGrid, SubGrid } from "../../basicComponents/Grids";
 import SelectField, { AnyOption } from "../../basicComponents/SelectField";
 
@@ -16,8 +16,8 @@ const BVIT = (props: IBvitProps) => {
 
   // Function for handling change events
   const change = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
+    const name = e.target.name;
+    const value = e.target.value;
     onChange({
       ...bvit,
       [name]: value
@@ -25,13 +25,14 @@ const BVIT = (props: IBvitProps) => {
   };
 
   const modes = ["Imaging", "Streaming"];
-  const filters = ["B", "H-alpha", "Open", "R", "U", "V"];
+  const filters: BVITFilter[] = ["B", "H-alpha", "Open", "R", "U", "V"];
 
   return (
     <MainGrid>
+      {/* Mode */}
       <SubGrid>
         <p>Mode</p>
-        <SelectField name={"mode"} onChange={change}>
+        <SelectField name={"mode"} value={bvit.mode} onChange={change}>
           <AnyOption />
           {modes.map(mode => (
             <option key={mode} value={mode}>
@@ -40,9 +41,11 @@ const BVIT = (props: IBvitProps) => {
           ))}
         </SelectField>
       </SubGrid>
+
+      {/* Filter */}
       <SubGrid>
         <p>Filter</p>
-        <SelectField name={"filter"} onChange={change}>
+        <SelectField name={"filter"} value={bvit.filter} onChange={change}>
           <AnyOption />
           {filters.map(filter => (
             <option key={filter} value={filter}>

@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataRequestTableRow renders correctly 1`] = `
+<table>
+  <tbody>
+    <DataRequestTableRow
+      dataRequestPart={
+        Object {
+          "dataFiles": Array [
+            Object {
+              "id": "file-1",
+              "name": "File 1",
+              "observation": Object {
+                "id": "obs-1",
+                "name": "Observation 1",
+              },
+            },
+            Object {
+              "id": "file-2",
+              "name": "File 2",
+              "observation": Object {
+                "id": "obs-2",
+                "name": "Observation 2",
+              },
+            },
+          ],
+          "id": "part-1",
+          "status": "SUCCESSFUL",
+          "uri": "http://demo/data-request/part-1",
+        }
+      }
+    >
+      <tr>
+        <td>
+          Observation 1
+        </td>
+        <td>
+          <p>
+            Available
+          </p>
+          <p>
+            <a
+              className="button download is-small is-success is-rounded"
+              href="http://demo/data-request/part-1"
+            >
+              Download
+            </a>
+          </p>
+        </td>
+        <td>
+          <ul>
+            <li
+              key="file-1"
+            >
+              File 1
+            </li>
+            <li
+              key="file-2"
+            >
+              File 2
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </DataRequestTableRow>
+  </tbody>
+</table>
+`;
+
+exports[`DataRequestTableRow renders correctly 2`] = `
+<table>
+  <tbody>
+    <DataRequestTableRow
+      dataRequestPart={
+        Object {
+          "dataFiles": Array [
+            Object {
+              "id": "file-1",
+              "name": "File 1",
+              "observation": Object {
+                "id": "obs-1",
+                "name": "Observation 1",
+              },
+            },
+            Object {
+              "id": "file-2",
+              "name": "File 2",
+              "observation": Object {
+                "id": "obs-2",
+                "name": "Observation 2",
+              },
+            },
+          ],
+          "id": "part-1",
+          "status": "PENDING",
+          "uri": "http://demo/data-request/part-1",
+        }
+      }
+    >
+      <tr>
+        <td>
+          Observation 1
+        </td>
+        <td>
+          <p>
+            Pending
+          </p>
+          <p />
+        </td>
+        <td>
+          <ul>
+            <li
+              key="file-1"
+            >
+              File 1
+            </li>
+            <li
+              key="file-2"
+            >
+              File 2
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </DataRequestTableRow>
+  </tbody>
+</table>
+`;
+
+exports[`DataRequestTableRow renders correctly 3`] = `
+<table>
+  <tbody>
+    <DataRequestTableRow
+      dataRequestPart={
+        Object {
+          "dataFiles": Array [
+            Object {
+              "id": "file-1",
+              "name": "File 1",
+              "observation": Object {
+                "id": "obs-1",
+                "name": "Observation 1",
+              },
+            },
+            Object {
+              "id": "file-2",
+              "name": "File 2",
+              "observation": Object {
+                "id": "obs-2",
+                "name": "Observation 2",
+              },
+            },
+          ],
+          "id": "part-1",
+          "status": "FAILED",
+          "uri": "http://demo/data-request/part-1",
+        }
+      }
+    >
+      <tr>
+        <td>
+          Observation 1
+        </td>
+        <td>
+          <p>
+            Failed
+          </p>
+          <p>
+            <button
+              className="button re-request is-small is-danger is-rounded"
+            >
+              Re-request
+            </button>
+          </p>
+        </td>
+        <td>
+          <ul>
+            <li
+              key="file-1"
+            >
+              File 1
+            </li>
+            <li
+              key="file-2"
+            >
+              File 2
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </DataRequestTableRow>
+  </tbody>
+</table>
+`;
+
+exports[`DataRequestTableRow renders correctly 4`] = `
+<table>
+  <tbody>
+    <DataRequestTableRow
+      dataRequestPart={
+        Object {
+          "dataFiles": Array [
+            Object {
+              "id": "file-1",
+              "name": "File 1",
+              "observation": Object {
+                "id": "obs-1",
+                "name": "Observation 1",
+              },
+            },
+            Object {
+              "id": "file-2",
+              "name": "File 2",
+              "observation": Object {
+                "id": "obs-2",
+                "name": "Observation 2",
+              },
+            },
+          ],
+          "id": "part-1",
+          "status": "EXPIRED",
+          "uri": "http://demo/data-request/part-1",
+        }
+      }
+    >
+      <tr>
+        <td>
+          Observation 1
+        </td>
+        <td>
+          <p>
+            Expired
+          </p>
+          <p>
+            <button
+              className="button re-request is-small is-danger is-rounded"
+            >
+              Re-request
+            </button>
+          </p>
+        </td>
+        <td>
+          <ul>
+            <li
+              key="file-1"
+            >
+              File 1
+            </li>
+            <li
+              key="file-2"
+            >
+              File 2
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </DataRequestTableRow>
+  </tbody>
+</table>
+`;

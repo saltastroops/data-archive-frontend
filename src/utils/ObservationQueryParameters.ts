@@ -1,5 +1,8 @@
 // TypeScript interfaces describing the state of the search form
 
+import { SalticamFilter } from "./SalticamFilter";
+import { TargetType } from "./TargetType";
+
 /**
  * An interface describing the React state of the observation query form.
  *
@@ -46,14 +49,15 @@ export type CalibrationType = "arc" | "bias" | "flat" | "standard";
  *     Calibration types to include in the search results
  *
  */
+export interface IGeneralErrors {
+  observationNight?: string;
+  principalInvestigator?: string;
+  proposalCode?: string;
+  proposalTitle?: string;
+  calibrations?: string;
+}
 export interface IGeneral {
-  errors: {
-    observationNight?: string;
-    principalInvestigator?: string;
-    proposalCode?: string;
-    proposalTitle?: string;
-    calibrations?: string;
-  };
+  errors: IGeneralErrors;
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
@@ -95,20 +99,24 @@ export type SearchConeRadiusUnits = "arcseconds" | "arcminutes" | "degrees";
  */
 export interface ITarget {
   declination?: string;
+  errors: ITargetErrors;
   loading?: string;
-  errors: {
-    name?: string;
-    declination?: string;
-    resolver?: string;
-    rightAscension?: string;
-    searchConeRadius?: string;
-    searchConeRadiusUnits?: string;
-  };
   name?: string;
   resolver: TargetResolver;
   rightAscension?: string;
   searchConeRadius?: string;
   searchConeRadiusUnits: SearchConeRadiusUnits;
+  targetTypes: Set<TargetType>;
+}
+
+export interface ITargetErrors {
+  name?: string;
+  declination?: string;
+  resolver?: string;
+  rightAscension?: string;
+  searchConeRadius?: string;
+  searchConeRadiusUnits?: string;
+  targetTypes?: string;
 }
 
 // TELESCOPES
@@ -229,7 +237,7 @@ export interface ISalticam extends IInstrument {
     filter?: string;
   };
   exposureTime?: string;
-  filter?: string;
+  filter?: SalticamFilter;
   name: "Salticam";
 }
 
@@ -246,11 +254,13 @@ export interface ISalticam extends IInstrument {
  *     Exposure time.
  * filter:
  *     Filter.
+ * mode:
+ *     Instrument mode specific details.
  * name:
  *     The string "RSS".
  */
 export interface IRSS extends IInstrument {
-  detectorMode?: "Normal" | "Slot Mode";
+  detectorMode?: RSSDetectorMode;
   errors: {
     detectorMode?: string;
     exposureTime?: string;
@@ -258,8 +268,52 @@ export interface IRSS extends IInstrument {
   };
   exposureTime?: string;
   filter?: string;
+  modes?: IRSSModes;
   name: "RSS";
 }
+
+export interface IRSSModes {
+  errors: {
+    fabryPerotMode?: string;
+    grating?: string;
+    polarimetryModes?: string;
+  };
+  fabryPerotMode?: RSSFabryPerotMode;
+  grating?: RSSGrating;
+  names: Set<RSSInstrumentMode>;
+  polarimetryModes?: Set<RSSPolarimetryMode>;
+}
+
+export type RSSDetectorMode = "Normal" | "Slot Mode" | "";
+
+export type RSSGrating =
+  | "Open"
+  | "pg0300"
+  | "pg0900"
+  | "pg1300"
+  | "pg1800"
+  | "pg2300"
+  | "pg3000"
+  | "";
+
+export type RSSInstrumentMode =
+  | "Fabry Perot"
+  | "FP polarimetry"
+  | "Imaging"
+  | "Polarimetric imaging"
+  | "MOS"
+  | "MOS polarimetry"
+  | "Spectropolarimetry"
+  | "Spectroscopy";
+
+export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF" | "";
+
+export type RSSPolarimetryMode =
+  | "All Stokes"
+  | "Circular"
+  | "Linear"
+  | "Linear Hi"
+  | "";
 
 /**
  * An interface for query parameters related to HRS.
@@ -281,18 +335,25 @@ export interface IHRS extends IInstrument {
     mode?: string;
   };
   exposureTime?: string;
-  mode?:
-    | "Low Resolution"
-    | "Medium Resolution"
-    | "High Resolution"
-    | "High Stability";
+  mode?: HRSMode;
   name: "HRS";
 }
 
+export type HRSMode =
+  | "High Resolution"
+  | "High Stability"
+  | "Int Cal Fibre"
+  | "Low Resolution"
+  | "Medium Resolution";
+
 export interface IBVIT extends IInstrument {
   errors: {};
+  filter?: BVITFilter;
+  mode?: "Imaging" | "Streaming";
   name: "BVIT";
 }
+
+export type BVITFilter = "B" | "H-alpha" | "Open" | "R" | "U" | "V";
 
 /**
  * An interface for query parameters related to HIPPO.
@@ -364,4 +425,29 @@ export interface ISpUpNIC extends IInstrument {
   exposureTime?: string;
   filter?: string;
   name: "SpUpNIC";
+}
+
+export interface IFile {
+  id: string;
+  filename: string;
+  name: string;
+  dataType: string;
+  isReduced: boolean;
+  targetName: string;
+  rightAscension: number;
+  declination: number;
+  observationNight: string;
+  category: string;
+  telescope: string;
+  instrument: string;
+  observationId?: string;
+  url?: string;
+}
+export interface IObservation {
+  id: string;
+  name: string | "Unknown Observation";
+  proposal?: string;
+  telescope: string;
+  startTime: string;
+  files: IFile[];
 }

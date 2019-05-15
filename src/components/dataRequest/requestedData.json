@@ -1,0 +1,300 @@
+{
+  "dataRequests": [
+    {
+      "id": "rd1",
+      "madeAt": "2018-12-01 20:00",
+      "parts": [
+        {
+          "id": "obsR1",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 3",
+              "name": "filename 3",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1"
+        },
+        {
+          "id": "obsR2",
+          "status": "FAILED",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2"
+        },
+        {
+          "id": "obsR3",
+          "status": "PENDING",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 3",
+                "name": "Observation 3"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 3",
+                "name": "Observation 3"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR3"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd1"
+    },
+    {
+      "id": "rd2",
+      "madeAt": "2019-01-01 22:00",
+      "parts": [
+        {
+          "id": "obsR1b",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1b"
+        },
+        {
+          "id": "obsR2b",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2b"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd2"
+    },
+    {
+      "id": "rd3",
+      "madeAt": "2019-02-01 00:00",
+      "parts": [
+        {
+          "id": "obsR1c",
+          "status": "FAILED",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1c"
+        },
+        {
+          "id": "obsR2c",
+          "status": "FAILED",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2c"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd3"
+    },
+    {
+      "id": "rd4",
+      "madeAt": "2019-03-01 00:00",
+      "parts": [
+        {
+          "id": "obsR1c",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1c"
+        },
+        {
+          "id": "obsR2c",
+          "status": "FAILED",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2c"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd3"
+    },
+    {
+      "id": "rd5",
+      "madeAt": "2019-02-01 00:00",
+      "parts": [
+        {
+          "id": "obsR1c",
+          "status": "SUCCESSFUL",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 1",
+                "name": "Observation 1"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR1c"
+        },
+        {
+          "id": "obsR2c",
+          "status": "PENDING",
+          "dataFiles": [
+            {
+              "id": "file 1",
+              "name": "filename 1",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            },
+            {
+              "id": "file 2",
+              "name": "filename 2",
+              "observation": {
+                "id": "obs 2",
+                "name": "Observation 2"
+              }
+            }
+          ],
+          "uri": "http://demo/data-request/part/obsR2c"
+        }
+      ],
+      "uri": "http://demo/data-request/part/rd3"
+    }
+  ]
+}

@@ -1,7 +1,10 @@
+import * as _ from "lodash";
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import api from "../api/api";
+import { LOGIN_MUTATION } from "../graphql/Mutations";
+import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
 
 /**
@@ -25,8 +28,6 @@ interface ILoginFormInput {
  *
  * Properties:
  * -----------
- * loading:
- *     Whether a login request is being made.
  * loggedIn:
  *     Whether the user has been logged in.
  * errors:
@@ -35,10 +36,23 @@ interface ILoginFormInput {
  *     Values input by the user.
  */
 interface ILoginFormState {
-  loading: boolean;
   loggedIn: boolean;
   errors: Partial<ILoginFormInput> & { responseError?: string };
   userInput: ILoginFormInput;
+}
+
+/**
+ * The cache for the login form.
+ *
+ * The user input and errors are cached.
+ */
+export interface ILoginFormCache {
+  errors?: Partial<ILoginFormInput> & { responseError?: string };
+  userInput?: ILoginFormInput;
+}
+
+interface ILoginFormProps {
+  cache?: ILoginFormCache;
 }
 
 const LoginFormParent = styled.form.attrs({
@@ -102,14 +116,13 @@ const validateLoginForm = (loginInput: {
 /**
  * The login form for authenticating the user.
  */
-class LoginForm extends React.Component<{}, ILoginFormState> {
+class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   public state = {
     errors: {
       password: "",
       responseError: "",
       username: ""
     },
-    loading: false,
     loggedIn: false,
     userInput: {
       password: "",
@@ -117,12 +130,20 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
   };
 
-  onHandleSubmit = async (e: React.FormEvent<EventTarget>) => {
+  /**
+   * Populate the state from cached values.
+   */
+  componentDidMount() {
+    this.setState(() => (this.props.cache as any) || {});
+  }
+
+  handleSubmit = async (e: React.FormEvent<EventTarget>, login: any) => {
     e.preventDefault();
 
     // Validate the user input fields
     const errors = validateLoginForm(this.state.userInput);
-    this.setState({ errors });
+
+    this.updateState({ errors });
 
     // Check if there is an error, if there is abort signing in.
     if (errors.password || errors.username) {
@@ -130,22 +151,17 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
 
     try {
-      this.setState({
-        loading: true
+      const logUserIn = await login({
+        variables: { ...this.state.userInput }
       });
 
-      const login = await api.login({
-        ...this.state.userInput
-      });
-
-      if (login.data.success) {
-        this.setState({
+      if (logUserIn.data.login) {
+        this.updateState({
           errors: {
             password: "",
             responseError: "",
             username: ""
           },
-          loading: false,
           loggedIn: true,
           userInput: {
             password: "",
@@ -154,12 +170,13 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
         });
       }
     } catch (error) {
-      this.setState({
+      this.updateState({
         errors: {
           ...this.state.errors,
           responseError: error.message
-        },
-        loading: false
+            .replace("Network error: ", "")
+            .replace("GraphQL error: ", "")
+        }
       });
     }
   };
@@ -170,8 +187,8 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
   onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    // Updating the userInput property of the state when input field value updates
-    this.setState({
+    // Update the userInput property of the state when input field values change
+    this.updateState({
       userInput: {
         ...this.state.userInput,
         [name]: value
@@ -180,7 +197,7 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
   };
 
   render() {
-    const { errors, loading, loggedIn } = this.state;
+    const { errors, loggedIn } = this.state;
     const { password, username } = this.state.userInput;
 
     // Go to the main page after successfully logging in.
@@ -189,56 +206,85 @@ class LoginForm extends React.Component<{}, ILoginFormState> {
     }
 
     return (
-      <LoginFormParent onSubmit={e => this.onHandleSubmit(e)}>
-        <Heading>Login to the Data Archive</Heading>
-        {errors.responseError ? (
-          <ErrorMessage>{errors.responseError}</ErrorMessage>
-        ) : null}
+      <Mutation
+        mutation={LOGIN_MUTATION}
+        refetchQueries={[{ query: USER_QUERY }]}
+      >
+        {(login: any, { loading, error }: any) => {
+          return (
+            <LoginFormParent
+              data-test={"form"}
+              onSubmit={e => this.handleSubmit(e, login)}
+            >
+              <Heading>Login to the Data Archive</Heading>
+              {error ? (
+                <ErrorMessage>{errors.responseError}</ErrorMessage>
+              ) : null}
 
-        <fieldset disabled={loading} aria-disabled={loading}>
-          {/* username */}
-          <div className="field">
-            <label className="label">
-              Username
-              <div className={"control is-child"}>
-                <InputField
-                  name="username"
-                  value={username || ""}
-                  error={errors.username}
-                  onChange={this.onInputChange}
-                  type="text"
-                />
-              </div>
-            </label>
-          </div>
+              <fieldset disabled={loading} aria-disabled={loading}>
+                {/* username */}
+                <div className="field">
+                  <label className="label">
+                    Username
+                    <div className={"control is-child"}>
+                      <InputField
+                        id="username"
+                        name="username"
+                        value={username || ""}
+                        error={errors.username}
+                        onChange={this.onInputChange}
+                        type="text"
+                      />
+                    </div>
+                  </label>
+                </div>
 
-          {/* password */}
-          <div className="field">
-            <label className="label">
-              Password
-              <div className={"control is-child"}>
-                <InputField
-                  name="password"
-                  value={password || ""}
-                  error={errors.password}
-                  onChange={this.onInputChange}
-                  type="text"
-                />
-              </div>
-            </label>
-          </div>
+                {/* password */}
+                <div className="field">
+                  <label className="label">
+                    Password
+                    <div className={"control is-child"}>
+                      <InputField
+                        id="password"
+                        name="password"
+                        value={password || ""}
+                        error={errors.password}
+                        onChange={this.onInputChange}
+                        type="password"
+                      />
+                    </div>
+                  </label>
+                </div>
 
-          {/* submit button */}
-          <button
-            className="button is-success is-fullwidth is-rounded"
-            data-test="signIn"
-          >
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
-        </fieldset>
-      </LoginFormParent>
+                {/* submit button */}
+                <button
+                  className="button is-success is-fullwidth is-rounded"
+                  data-test="signIn"
+                >
+                  {loading ? "Signing in..." : "Sign in"}
+                </button>
+              </fieldset>
+            </LoginFormParent>
+          );
+        }}
+      </Mutation>
     );
   }
+
+  /**
+   * Update the form state and the cache.
+   */
+  private updateState = (update: object) => {
+    this.setState(
+      () => update,
+      () => {
+        if (this.props.cache) {
+          this.props.cache.errors = _.cloneDeep(this.state.errors);
+          this.props.cache.userInput = _.cloneDeep(this.state.userInput);
+        }
+      }
+    );
+  };
 }
 
 export default LoginForm;

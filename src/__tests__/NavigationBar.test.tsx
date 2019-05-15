@@ -1,25 +1,29 @@
 import { mount } from "enzyme";
 import toJSON from "enzyme-to-json";
 import * as React from "react";
+import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
+import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
+import { LOGOUT_MUTATION } from "../graphql/Mutations";
+import { USER_QUERY } from "../graphql/Query";
 
-const mockUser = (isAdmin: boolean, name: string, username: string) => ({
-  isAdmin: () => isAdmin,
-  name,
-  username
+const mockUser = (familyName: string, givenName: string, isAdmin: boolean) => ({
+  familyName,
+  givenName,
+  isAdmin
 });
 
 describe("NavigationBar", () => {
   it("shows the correct content when the user is not logged in", () => {
     const user = null;
-    const logout = () => {
-      /* do nothing */
-    };
+
     const wrapper = mount(
-      <MemoryRouter>
-        <NavigationBar user={user} logout={logout} />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <NavigationBar user={user} />
+        </MemoryRouter>
+      </MockedProvider>
     );
 
     // Login button is shown
@@ -46,14 +50,14 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is a non-administrator", () => {
-    const user = mockUser(false, "name", "username");
-    const logout = () => {
-      /* do nothing */
-    };
+    const user = mockUser("surname", "name", false);
+
     const wrapper = mount(
-      <MemoryRouter>
-        <NavigationBar user={user} logout={logout} />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <NavigationBar user={user} />
+        </MemoryRouter>
+      </MockedProvider>
     );
 
     // Login button is not shown
@@ -80,14 +84,14 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is an administrator", () => {
-    const user = mockUser(true, "name", "username");
-    const logout = () => {
-      /* do nothing */
-    };
+    const user = mockUser("surname", "name", true);
+
     const wrapper = mount(
-      <MemoryRouter>
-        <NavigationBar user={user} logout={logout} />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <NavigationBar user={user} />
+        </MemoryRouter>
+      </MockedProvider>
     );
 
     // Login button is not shown
@@ -113,28 +117,68 @@ describe("NavigationBar", () => {
     expect(toJSON(navigationBar)).toMatchSnapshot();
   });
 
-  it("calls the logout function when the logout link is clicked", () => {
-    const user = mockUser(false, "name", "username");
-    const logout = jest.fn();
+  it("calls the logout function when the logout link is clicked", async () => {
+    const user = mockUser("surname", "name", false);
+
+    // logout mock mutation
+    let logoutCalled = false;
+    const mocks = [
+      {
+        request: {
+          query: LOGOUT_MUTATION
+        },
+        result: () => {
+          logoutCalled = true;
+          return {
+            data: {
+              success: true
+            }
+          };
+        }
+      },
+
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: null
+          }
+        }
+      }
+    ];
+
     const wrapper = mount(
-      <MemoryRouter>
-        <NavigationBar user={user} logout={logout} />
-      </MemoryRouter>
+      <MockedProvider mocks={mocks}>
+        <MemoryRouter>
+          <NavigationBar user={user} />
+        </MemoryRouter>
+      </MockedProvider>
     );
+
+    // The logout mutation has not been called (yet).
+    expect(logoutCalled).toBe(false);
 
     // Click the logout link
     const logoutLink = wrapper.find('a[data-test="logout"]');
     logoutLink.simulate("click");
-    expect(logout).toHaveBeenCalled();
+
+    // The logout mutation has been called
+    await wait(0);
+    wrapper.update();
+    expect(logoutCalled).toBe(true);
   });
 
   it("toggles the visibility of the menu when the burger button is clicked", async () => {
-    const user = mockUser(false, "name", "username");
-    const logout = jest.fn();
+    const user = mockUser("surname", "name", false);
+
     const wrapper = mount(
-      <MemoryRouter>
-        <NavigationBar user={user} logout={logout} />
-      </MemoryRouter>
+      <MockedProvider>
+        <MemoryRouter>
+          <NavigationBar user={user} />
+        </MemoryRouter>
+      </MockedProvider>
     );
 
     // The burger button and the menu are not active

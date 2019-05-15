@@ -1,24 +1,36 @@
 import * as React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
-import "./App.css";
-import Cart from "./components/Cart";
+import { Query } from "react-apollo";
+import { Redirect, Route, Switch } from "react-router-dom";
+import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
+import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
+import RegistrationForm, {
+  IRegistrationFormCache
+} from "./components/RegistrationForm";
+import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
+import SearchPage from "./components/searchFormComponents/SearchPage";
+import UserUpdateForm, {
+  IUserUpdateFormCache
+} from "./components/UserUpdateForm";
+import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {
-  name: string;
-  username: string;
-  isAdmin: () => boolean;
+  familyName: string;
+  givenName: string;
+  isAdmin: boolean;
 }
 
 interface IProtectedRouteProps {
   component: any;
   user: IUser | null | undefined;
   [propName: string]: any;
+}
+
+interface ICache {
+  loginForm: ILoginFormCache;
+  registrationForm: IRegistrationFormCache;
+  searchForm: ISearchFormCache;
+  userUpdateForm: IUserUpdateFormCache;
 }
 
 /**
@@ -48,123 +60,140 @@ function ProtectedRoute({
   );
 }
 
+interface IAppState {
+  user?: IUser;
+  screenDimensions: { innerHeight: number; innerWidth: number };
+}
+
 /**
  * The data archive.
  */
-class App extends React.Component<any, any> {
-  state: {
-    cart: {
-      open: boolean;
-    };
-    user: any;
-  } = {
-    cart: {
-      open: false
+class App extends React.Component<{}, IAppState> {
+  state = {
+    screenDimensions: {
+      innerHeight: window.innerHeight,
+      innerWidth: window.innerWidth
     },
-    user: {
-      isAdmin: () => true,
-      name: "Nhlavu",
-      username: "nhlavu"
-    }
+    user: undefined
   };
 
-  logout = () => {
-    this.setState(() => ({
-      ...this.state,
-      user: undefined
-    }));
-  };
-
-  openCart = async (open: boolean) => {
-    console.log("XXX:", open);
-    await this.setState(() => ({ ...this.state, cart: { open } }));
-  };
-  clearCart = () => {
-    /**
-     * TODO:
-     * this is a method to remove everything on the cart
-     * this should be called also after a request is made
-     */
-    return;
+  private cache: ICache = {
+    loginForm: {},
+    registrationForm: {},
+    searchForm: {},
+    userUpdateForm: {}
   };
 
   public render() {
-    /**
-     * TODO:
-     * user is currently unknown so I am using a dummy user
-     * this will affect the test of this component after user is defined
-     */
-    const { user } = this.state;
-    const { open } = this.state.cart;
-
     return (
-      <Router>
-        <>
-          <NavigationBar
-            user={user}
-            logout={this.logout}
-            openCart={this.openCart}
-          />
-          <Cart
-            open={open}
-            openCart={this.openCart}
-            clearCart={this.clearCart}
-            user={user}
-          />
+      <Query query={USER_QUERY}>
+        {({ data, loading }: any) => {
+          if (loading) {
+            return <p>Loading...</p>;
+          }
 
-          <Switch>
-            {/* search page */}
-            <Route
-              exact={true}
-              path="/"
-              render={() => <h1 className="title">Main Page</h1>}
-            />
+          const currentUser =
+            data && data.user
+              ? {
+                  familyName: data.user.familyName,
+                  givenName: data.user.givenName,
+                  isAdmin: data.user.roles.some(
+                    (role: string) => role === "ADMIN"
+                  )
+                }
+              : null;
 
-            {/* registration page */}
-            <Route
-              exact={true}
-              path="/register"
-              component={() => <h1 className="title">User register</h1>}
-            />
+          return (
+            <>
+              <NavigationBar user={currentUser} />
 
-            {/* login page */}
-            <Route
-              exact={true}
-              path="/login"
-              component={() => <h1 className="title">Login page</h1>}
-            />
+              <Switch>
+                {/* search page */}
+                <Route
+                  exact={true}
+                  path="/"
+                  render={() => (
+                    <SearchPage
+                      cache={this.cache.searchForm}
+                      screenDimensions={this.state.screenDimensions}
+                    />
+                  )}
+                />
 
-            {/* account details page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/account"
-              component={() => <h1 className="title">User account</h1>}
-            />
+                {/* registration page */}
+                <Route
+                  exact={true}
+                  path="/register"
+                  render={() => (
+                    <RegistrationForm cache={this.cache.registrationForm} />
+                  )}
+                />
 
-            {/* data requests page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/data-requests"
-              component={() => <h1 className="title">Data request page</h1>}
-            />
+                {/* login page */}
+                <Route
+                  exact={true}
+                  path="/login"
+                  render={() => <LoginForm cache={this.cache.loginForm} />}
+                />
 
-            {/* admin page */}
-            <ProtectedRoute
-              user={user}
-              exact={true}
-              path="/admin"
-              component={() => <h1 className="title">Admin page</h1>}
-            />
+                {/* account details page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/account"
+                  component={() => (
+                    <h1 className="title">
+                      {currentUser
+                        ? `${currentUser.givenName} ${
+                            currentUser.familyName
+                          } Account`
+                        : "No User"}
+                    </h1>
+                  )}
+                />
 
-            {/* page not found */}
-            <Route
-              component={() => <h1 className="title">Page not found</h1>}
-            />
-          </Switch>
-        </>
-      </Router>
+                {/* data requests page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/data-requests"
+                  component={() => <DataRequestsForm />}
+                />
+
+                {/* cart page */}
+                <Route
+                  exact={true}
+                  path="/cart"
+                  component={() => <h1 className="title">Cart page</h1>}
+                />
+
+                {/* admin page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/admin"
+                  component={() => <h1 className="title">Admin page</h1>}
+                />
+
+                {/* update user page */}
+                <ProtectedRoute
+                  user={currentUser}
+                  exact={true}
+                  path="/user-update"
+                  component={() => (
+                    <UserUpdateForm cache={this.cache.userUpdateForm} />
+                  )}
+                />
+
+                {/* page not found */}
+                <Route
+                  component={() => <h1 className="title">Page not found</h1>}
+                />
+              </Switch>
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }

@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grids  should render all grids correctly 1`] = `
-.c0.c0 {
+.c0 {
   display: grid;
   grid-template-columns: auto auto;
   padding: 10px;
   gap: 20px;
+}
+
+@media (max-width:900px) {
+  .c0 {
+    grid-template-columns: auto;
+  }
 }
 
 <styled.div>
@@ -25,11 +31,13 @@ exports[`Grids  should render all grids correctly 1`] = `
           "lastClassName": "c0",
           "rules": Array [
             "
-  && {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
   }
 ",
           ],
@@ -358,7 +366,7 @@ exports[`Grids  should render all grids correctly 8`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-htoDjs",
+          "componentId": "sc-dnqmqq",
           "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
@@ -373,7 +381,7 @@ exports[`Grids  should render all grids correctly 8`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-htoDjs",
+        "styledComponentId": "sc-dnqmqq",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

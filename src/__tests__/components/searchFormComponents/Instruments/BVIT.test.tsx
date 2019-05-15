@@ -11,11 +11,30 @@ describe("Bvit ", () => {
     ).toBeDefined();
   });
 
-  it("should render correctly", () => {
+  it("should render correctly without a mode and a filter", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
         mount(<BVIT bvit={{ errors: {}, name: "BVIT" }} onChange={onChange} />)
+      )
+    ).toMatchSnapshot();
+  });
+
+  it("should render correctly with a mode and a filter", () => {
+    // Use mount instead of shallow for better snapshots
+    expect(
+      toJson(
+        mount(
+          <BVIT
+            bvit={{
+              errors: {},
+              filter: "H-alpha",
+              mode: "Imaging",
+              name: "BVIT"
+            }}
+            onChange={onChange}
+          />
+        )
       )
     ).toMatchSnapshot();
   });
