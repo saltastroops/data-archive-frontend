@@ -1,8 +1,10 @@
 import moment from "moment";
 import * as React from "react";
+import Query from "react-apollo/Query";
 import styled from "styled-components";
+import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
 import DataRequestTable from "./DataRequestTable";
-import mockedRequestedData from "./requestedData.json";
+// import mockedRequestedData from "./requestedData.json";
 
 const Heading = styled.h1.attrs({
   className: "title is-3"
@@ -48,27 +50,48 @@ interface IObservation {
  */
 class DataRequestsForm extends React.Component {
   render() {
-    // TO BE UPDATED
-    // Mocked data for display purpose only
-    const { dataRequests } = mockedRequestedData as {
-      dataRequests: IDataRequest[];
-    };
-
-    const sortedDataRequests = [...dataRequests];
-    sortedDataRequests.sort(
-      (a, b) => moment(b.madeAt).valueOf() - moment(a.madeAt).valueOf()
-    );
-
     return (
-      <>
-        <Heading>Data Request</Heading>
+      <Query
+        query={USER_DATA_REQUESTS_QUERY}
+        variables={{
+          limit: 5,
+          startIndex: 0
+        }}
+      >
+        {({ data, loading, error }: any) => {
+          if (loading) {
+            return <p>Loading...</p>;
+          }
 
-        {sortedDataRequests.map((dataRequest: IDataRequest) => {
-          return (
-            <DataRequestTable key={dataRequest.id} dataRequest={dataRequest} />
+          if (error) {
+            return <p>{error.message}</p>;
+          }
+
+          const { dataRequests } = data;
+
+          console.log(data);
+
+          const sortedDataRequests = [...dataRequests];
+          sortedDataRequests.sort(
+            (a, b) => moment(b.madeAt).valueOf() - moment(a.madeAt).valueOf()
           );
-        })}
-      </>
+
+          return (
+            <>
+              <Heading>Data Request</Heading>
+
+              {sortedDataRequests.map((dataRequest: IDataRequest) => {
+                return (
+                  <DataRequestTable
+                    key={dataRequest.id}
+                    dataRequest={dataRequest}
+                  />
+                );
+              })}
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }
