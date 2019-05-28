@@ -96,21 +96,31 @@ class App extends React.Component<{}, IAppState> {
             return <p>Loading...</p>;
           }
 
-          const currentUser =
-            data && data.user
-              ? {
-                  familyName: data.user.familyName,
-                  givenName: data.user.givenName,
-                  isAdmin: data.user.roles.some(
-                    (role: string) => role === "ADMIN"
-                  )
-                }
-              : null;
+          // const currentUser =
+          //   data && data.user
+          //     ? {
+          //         familyName: data.user.familyName,
+          //         givenName: data.user.givenName,
+          //         isAdmin: data.user.roles.some(
+          //           (role: string) => role === "ADMIN"
+          //         )
+          //       }
+          //     : null;
+
+          const currentUser = {
+            familyName: "Macebele",
+            givenName: "Nhlavutelo",
+            isAdmin: true
+          };
 
           return (
             <>
               <NavigationBar user={currentUser} openCart={this.openCart} />
-              <CartModal open={open} openCart={this.openCart} />
+              <CartModal
+                user={currentUser}
+                open={open}
+                openCart={this.openCart}
+              />
 
               <Switch>
                 {/* search page */}

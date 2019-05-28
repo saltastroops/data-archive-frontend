@@ -117,6 +117,8 @@ export const resolvers = {
     removeFromCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
       const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+      console.log("XXX", cart.files);
+      console.log("YYY", files);
 
       // Remove the files
       cart.remove(files as [ICartFile]);
