@@ -1,7 +1,7 @@
-import "./App.css";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
+import "./App.css";
 import CartModal from "./components/CartModal";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
@@ -9,13 +9,13 @@ import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
+import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
 import SearchPage from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
-import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
-import ResetPasswordForm from "./components/ResetPasswordForm";
 import { USER_QUERY } from "./graphql/Query";
 
 interface IUser {

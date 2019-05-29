@@ -8,8 +8,8 @@ import App from "../App";
 import UserUpdateForm from "../components/UserUpdateForm";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import click from "../util/click";
 import cache from "../util/cache";
+import click from "../util/click";
 jest.mock("../util/cache");
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
