@@ -9,7 +9,8 @@ import UserUpdateForm from "../components/UserUpdateForm";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import click from "../util/click";
-
+import cache from "../util/cache";
+jest.mock("../util/cache");
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
     addListener: jest.fn(),
@@ -290,6 +291,7 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("should cache values and errors", async () => {
+    (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
     // As we are about to mount the App (rather than just the user update form)
     // we need to provide a user query.
     const mocks = [
@@ -353,8 +355,8 @@ describe("UserUpdateForm Component", () => {
     expect(emailErrorMessage.length).toBeGreaterThan(0);
 
     // Navigate away from the user update form
-    const cartLink = wrapper.find('a[href="/cart"]').first();
-    click(cartLink);
+    const searchLink = wrapper.find('a[href="/"]').first();
+    click(searchLink);
 
     await wait(0);
     wrapper.update();

@@ -31,6 +31,7 @@ interface INavigationBarProps {
     isAdmin: boolean;
   } | null; // currently logged in user,
   cache?: INavigationBarCache;
+  openCart: (open: boolean) => void;
 }
 
 /**
@@ -96,7 +97,7 @@ class NavigationBar extends React.Component<
     // classes for highlighting a link to nan active tab
     const activeTab = "has-text-weight-bold has-text-link";
 
-    const { user } = this.props;
+    const { user, openCart } = this.props;
     const { errors, isMenuActive } = this.state;
 
     return (
@@ -234,14 +235,14 @@ class NavigationBar extends React.Component<
 
                     {/* Cart icon */}
                     <div className={"navbar-item is-hidden-descktop"}>
-                      <NavLink
+                      <div
                         className="button is-link is-outlined"
-                        to="/cart"
+                        onClick={() => openCart(true)}
                       >
                         <span>
                           <FontAwesomeIcon icon={faShoppingCart} /> CART
                         </span>
-                      </NavLink>
+                      </div>
                     </div>
                   </div>
                 </div>

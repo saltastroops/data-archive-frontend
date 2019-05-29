@@ -1,6 +1,8 @@
+import "./App.css";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
+import CartModal from "./components/CartModal";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
@@ -72,6 +74,7 @@ interface IAppState {
  */
 class App extends React.Component<{}, IAppState> {
   state = {
+    cart: { open: false },
     screenDimensions: {
       innerHeight: window.innerHeight,
       innerWidth: window.innerWidth
@@ -87,6 +90,7 @@ class App extends React.Component<{}, IAppState> {
   };
 
   public render() {
+    const { open } = this.state.cart;
     return (
       <Query query={USER_QUERY}>
         {({ data, loading }: any) => {
@@ -107,7 +111,12 @@ class App extends React.Component<{}, IAppState> {
 
           return (
             <>
-              <NavigationBar user={currentUser} />
+              <NavigationBar user={currentUser} openCart={this.openCart} />
+              <CartModal
+                user={currentUser}
+                open={open}
+                openCart={this.openCart}
+              />
 
               <Switch>
                 {/* search page */}
@@ -162,13 +171,6 @@ class App extends React.Component<{}, IAppState> {
                   component={() => <DataRequestsForm />}
                 />
 
-                {/* cart page */}
-                <Route
-                  exact={true}
-                  path="/cart"
-                  component={() => <h1 className="title">Cart page</h1>}
-                />
-
                 {/* admin page */}
                 <ProtectedRoute
                   user={currentUser}
@@ -212,6 +214,9 @@ class App extends React.Component<{}, IAppState> {
       </Query>
     );
   }
+  public openCart = async (open: boolean) => {
+    await this.setState(() => ({ ...this.state, cart: { open } }));
+  };
 }
 
 export default App;
