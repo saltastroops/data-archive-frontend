@@ -7,8 +7,8 @@ import wait from "waait";
 import App from "../App";
 import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
-import click from "../util/click";
 import cache from "../util/cache";
+import click from "../util/click";
 
 jest.mock("../util/cache");
 

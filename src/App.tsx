@@ -1,7 +1,7 @@
-import "./App.css";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
+import "./App.css";
 import CartModal from "./components/CartModal";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
@@ -9,6 +9,8 @@ import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
   IRegistrationFormCache
 } from "./components/RegistrationForm";
+import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
 import SearchPage from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
@@ -185,6 +187,20 @@ class App extends React.Component<{}, IAppState> {
                   component={() => (
                     <UserUpdateForm cache={this.cache.userUpdateForm} />
                   )}
+                />
+
+                {/* request reset password page */}
+                <Route
+                  exact={true}
+                  path="/request-reset-password"
+                  component={RequestResetPasswordForm}
+                />
+
+                {/* request reset password page */}
+                <Route
+                  exact={true}
+                  path="/reset-password/:token"
+                  component={ResetPasswordForm}
                 />
 
                 {/* page not found */}

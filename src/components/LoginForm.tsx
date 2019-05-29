@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
@@ -257,12 +257,23 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                 </div>
 
                 {/* submit button */}
-                <button
-                  className="button is-success is-fullwidth is-rounded"
-                  data-test="signIn"
-                >
-                  {loading ? "Signing in..." : "Sign in"}
-                </button>
+                <div className="field">
+                  <button
+                    className="button is-success is-fullwidth"
+                    data-test="signIn"
+                  >
+                    {loading ? "Signing in..." : "Sign in"}
+                  </button>
+                </div>
+                <div className="field">
+                  <Link
+                    to={"/request-reset-password"}
+                    className="button is-info is-fullwidth"
+                    data-test="reset-password"
+                  >
+                    {"I forgot my password"}
+                  </Link>
+                </div>
               </fieldset>
             </LoginFormParent>
           );

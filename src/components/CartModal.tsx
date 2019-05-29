@@ -9,6 +9,7 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import Modal from "react-responsive-modal";
 import { NavLink } from "react-router-dom";
+import cache from "../util/cache";
 import {
   Cart,
   CART_QUERY,
@@ -16,7 +17,6 @@ import {
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
 import CartFile from "./cart/CartFile";
-import cache from "../util/cache";
 
 interface ICart {
   open: boolean;
