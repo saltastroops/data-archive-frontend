@@ -7,6 +7,8 @@ import ResetPasswordForm, {
   RESET_PASSWORD_MUTATION,
   VERIFY_TOKEN_QUERY
 } from "../../components/ResetPasswordForm";
+import cache from "../../util/cache";
+jest.mock("../../util/cache");
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
@@ -22,7 +24,9 @@ describe("ResetPasswordForm", () => {
     };
     const wrapper = mount(
       <MockedProvider>
-        <ResetPasswordForm {...defaultProps} />
+        <MemoryRouter initialEntries={["/password-reset"]}>
+          <ResetPasswordForm {...defaultProps} />
+        </MemoryRouter>
       </MockedProvider>
     );
     expect(wrapper).toBeDefined();
@@ -40,10 +44,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "",
-              success: true
+              status: true
             }
           }
         }
@@ -89,10 +93,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "tatus",
               message: "",
-              success: true
+              status: true
             }
           }
         }
@@ -127,10 +131,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "A broken token",
-              success: false
+              status: false
             }
           }
         }
@@ -212,10 +216,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "",
-              success: true
+              status: true
             }
           }
         }
@@ -281,10 +285,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "",
-              success: true
+              status: true
             }
           }
         }
@@ -354,10 +358,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "",
-              success: true
+              status: true
             }
           }
         }
@@ -411,6 +415,7 @@ describe("ResetPasswordForm", () => {
   });
 
   it("should call a mutation query when everything is fine", async () => {
+    (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
     const defaultProps = {
       match: { params: { token: "abc-known-3" } }
     };
@@ -442,10 +447,10 @@ describe("ResetPasswordForm", () => {
         },
         result: {
           data: {
-            verifyPasswordResetToken: {
-              __typename: "Success",
+            passwordResetTokenStatus: {
+              __typename: "Status",
               message: "",
-              success: true
+              status: true
             }
           }
         }

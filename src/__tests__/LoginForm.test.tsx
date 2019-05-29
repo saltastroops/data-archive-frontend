@@ -34,7 +34,9 @@ describe("LoginForm Component", () => {
     // LoginForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <LoginForm />
+        <MemoryRouter initialEntries={["/login"]}>
+          <LoginForm />
+        </MemoryRouter>
       </MockedProvider>
     );
     // The actual form.
@@ -133,7 +135,9 @@ describe("LoginForm Component", () => {
     // LoginForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <LoginForm />
+        <MemoryRouter initialEntries={["/login"]}>
+          <LoginForm />
+        </MemoryRouter>
       </MockedProvider>
     );
 
@@ -172,7 +176,9 @@ describe("LoginForm Component", () => {
     // LoginForm component wrapper
     const wrapper = mount(
       <MockedProvider>
-        <LoginForm />
+        <MemoryRouter initialEntries={["/login"]}>
+          <LoginForm />
+        </MemoryRouter>
       </MockedProvider>
     );
 

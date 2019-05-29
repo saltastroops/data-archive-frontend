@@ -129,12 +129,34 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
         </div>
       </label>
     </div>
-    <button
-      className="button is-success is-fullwidth is-rounded"
-      data-test="signIn"
+    <div
+      className="field"
     >
-      Sign in
-    </button>
+      <button
+        className="button is-success is-fullwidth"
+        data-test="signIn"
+      >
+        Sign in
+      </button>
+    </div>
+    <div
+      className="field"
+    >
+      <Link
+        className="button is-info is-fullwidth"
+        data-test="reset-password"
+        to="/request-reset-password"
+      >
+        <a
+          className="button is-info is-fullwidth"
+          data-test="reset-password"
+          href="/request-reset-password"
+          onClick={[Function]}
+        >
+          I forgot my password
+        </a>
+      </Link>
+    </div>
   </fieldset>
 </form>
 `;
