@@ -5,10 +5,12 @@ import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
 
 import wait from "waait";
+jest.mock("../../../util/cache");
 import App from "../../../App";
 import SearchForm from "../../../components/searchFormComponents/SearchForm";
 import { CART_QUERY } from "../../../util/Cart";
 import click from "../../../util/click";
+import cache from "../../../util/cache";
 
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
@@ -24,12 +26,13 @@ const mocks = [
   {
     request: {
       query: CART_QUERY,
-      variables: {}
+      variables: { user: "none" }
     },
     result: {
       data: {
         cart: []
-      }
+      },
+      loading: false
     }
   }
 ];
@@ -112,6 +115,8 @@ describe("Search Form", () => {
   });
 
   it("should cache values and errors", async () => {
+    (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
+
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <MemoryRouter>
@@ -126,6 +131,8 @@ describe("Search Form", () => {
 
     // Navigate to the search form
     const searchFormLink = wrapper.find('a[href="/"]').first();
+
+    await wait(0);
     click(searchFormLink);
 
     await wait(0);
@@ -165,8 +172,8 @@ describe("Search Form", () => {
     expect(observationNightErrorMessage.length).toBeGreaterThan(0);
 
     // Navigate away from the search form
-    const cartLink = wrapper.find('a[href="/cart"]').first();
-    click(cartLink);
+    const loginLink = wrapper.find('a[href="/login"]').first();
+    click(loginLink);
 
     await wait(0);
     wrapper.update();

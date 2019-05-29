@@ -96,22 +96,16 @@ class App extends React.Component<{}, IAppState> {
             return <p>Loading...</p>;
           }
 
-          // const currentUser =
-          //   data && data.user
-          //     ? {
-          //         familyName: data.user.familyName,
-          //         givenName: data.user.givenName,
-          //         isAdmin: data.user.roles.some(
-          //           (role: string) => role === "ADMIN"
-          //         )
-          //       }
-          //     : null;
-
-          const currentUser = {
-            familyName: "Macebele",
-            givenName: "Nhlavutelo",
-            isAdmin: true
-          };
+          const currentUser =
+            data && data.user
+              ? {
+                  familyName: data.user.familyName,
+                  givenName: data.user.givenName,
+                  isAdmin: data.user.roles.some(
+                    (role: string) => role === "ADMIN"
+                  )
+                }
+              : null;
 
           return (
             <>

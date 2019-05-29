@@ -17,7 +17,6 @@ import {
 } from "../util/Cart";
 import CartFile from "./cart/CartFile";
 import cache from "../util/cache";
-import { async } from "q";
 
 interface ICart {
   open: boolean;
@@ -45,8 +44,6 @@ class CartModal extends React.Component<ICart, any> {
           cart.groupByObservation().forEach((v, k) => {
             groupedCart.push({ files: v, id: k });
           });
-          console.log("DC: ", cart);
-          console.log("GC: ", groupedCart);
           return (
             <Modal open={open} onClose={() => openCart(false)} center={true}>
               <div className={"section"}>

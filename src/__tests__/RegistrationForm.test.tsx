@@ -8,6 +8,9 @@ import App from "../App";
 import RegistrationForm from "../components/RegistrationForm";
 import { SIGNUP_MUTATION } from "../graphql/Mutations";
 import click from "../util/click";
+import cache from "../util/cache";
+
+jest.mock("../util/cache");
 
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
@@ -453,6 +456,7 @@ describe("RegistrationForm Component", () => {
   });
 
   it("should cache values and errors", async () => {
+    (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
     const wrapper = mount(
       <MockedProvider>
         <MemoryRouter>
@@ -489,8 +493,8 @@ describe("RegistrationForm Component", () => {
     expect(emailErrorMessage.length).toBeGreaterThan(0);
 
     // Navigate away from the registration form
-    const cartLink = wrapper.find('a[href="/cart"]').first();
-    click(cartLink);
+    const homeLink = wrapper.find('a[href="/"]').first();
+    click(homeLink);
 
     await wait(0);
     wrapper.update();

@@ -154,7 +154,7 @@ describe("RSS ", () => {
     });
   });
 
-  describe("Polarimetric imaging", () => {
+  describe("Imaging polarimetric", () => {
     it("should render correctly", () => {
       const onChange = jest.fn();
       const rss: IRSS = {
