@@ -34,8 +34,8 @@ export const RESET_PASSWORD_MUTATION = gql`
 
 export const VERIFY_TOKEN_QUERY = gql`
   query VERIFY_TOKEN_QUERY($token: String!) {
-    verifyPasswordResetToken(token: $token) {
-      success
+    passwordResetTokenStatus(token: $token) {
+      status
       message
     }
   }
@@ -118,6 +118,7 @@ class ResetPasswordForm extends React.Component<any, any> {
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
         {({ data, error }: any) => {
+          console.log({ error });
           if (error) {
             return (
               <Message
@@ -126,8 +127,8 @@ class ResetPasswordForm extends React.Component<any, any> {
               />
             );
           }
-          if (data.verifyPasswordResetToken) {
-            if (!data.verifyPasswordResetToken.success) {
+          if (data.passwordResetTokenStatus) {
+            if (!data.passwordResetTokenStatus.status) {
               return (
                 <>
                   <Message
