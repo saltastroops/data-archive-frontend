@@ -105,6 +105,7 @@ class CartModal extends React.Component<ICart, any> {
                           className={"button is-primary"}
                           onClick={() => openCart(false)}
                         >
+                          {/* TODO need to make a data request mutation */}
                           <span>
                             Request <FontAwesomeIcon icon={faDownload} />
                           </span>
