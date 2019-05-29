@@ -798,7 +798,8 @@ class SearchResultsTable extends React.Component<
         __typename: "CartObservation",
         id: file.observationId,
         name: "Obs " + file.observationId
-      }
+      },
+      targetName: file.targetName
     }));
 
     // Add or remove from the cart, depending on the checkbox state

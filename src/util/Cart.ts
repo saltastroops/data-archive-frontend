@@ -135,6 +135,8 @@ export interface ICartFile {
   id: string;
   name: string;
   observation?: IObservation | null;
+  size?: string;
+  targetName?: string;
 }
 
 /**
@@ -148,7 +150,7 @@ export interface ICartFile {
  *     Observation name.
  */
 
-interface IObservation {
+export interface IObservation {
   id: string;
   name: string;
 }
@@ -159,6 +161,7 @@ export const CART_QUERY = gql`
       id
       name
       observation
+      targetName
     }
   }
 `;
