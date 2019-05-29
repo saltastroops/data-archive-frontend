@@ -49,12 +49,14 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { parts, madeAt, uri } = this.props.dataRequest;
+    const { parts, madeAt, id } = this.props.dataRequest;
 
     const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
 
     const reRequestAll =
       !mayDownloadAll && !parts.some(part => part.status === "PENDING");
+    // TO UPDATE
+    const filename = "data-file-request.zip";
 
     return (
       <Table>
@@ -74,7 +76,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 {mayDownloadAll && (
                   <a
                     className="button download-all is-small is-success is-rounded"
-                    href={uri}
+                    href={`${
+                      process.env.REACT_APP_BACKEND_URI
+                    }/downloads/data-requests/${id}/${filename}`}
                   >
                     Download all
                   </a>
@@ -95,7 +99,13 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
         </thead>
         <tbody>
           {parts.map((part: IDataRequestPart) => {
-            return <DataRequestTableRow key={part.id} dataRequestPart={part} />;
+            return (
+              <DataRequestTableRow
+                key={part.id}
+                dataRequestId={id}
+                dataRequestPart={part}
+              />
+            );
           })}
         </tbody>
       </Table>
