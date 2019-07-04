@@ -19,18 +19,19 @@ import {
   CART_QUERY,
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
-import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
+import { Observation } from "../SearchPage";
 
 interface ISearchResultsTableProps {
   columns: ISearchResultsTableColumn[];
   maxHeight?: number;
   maxWidth: number;
-  searchResults: IObservation[];
+  searchResults: Observation[];
 }
 
 interface ISearchResultsTableState {
@@ -759,8 +760,7 @@ class SearchResultsTable extends React.Component<
           observationHeader: true,
           observationIndex
         },
-        [DataKeys.OBSERVATION_NAME]: observation.name || "",
-        [DataKeys.PROPOSAL_CODE]: observation.proposal || ""
+        [DataKeys.OBSERVATION_NAME]: observation.name || ""
       });
       result.files.forEach((file, observationFileIndex) => {
         data.push({
@@ -771,7 +771,6 @@ class SearchResultsTable extends React.Component<
             observationIndex
           },
           [DataKeys.OBSERVATION_NAME]: observation.name || "",
-          [DataKeys.PROPOSAL_CODE]: observation.proposal || "",
           ...file
         });
       });

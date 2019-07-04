@@ -23,30 +23,7 @@ import {
   ITelescope,
   IWhereCondition
 } from "./types";
-
-const GENERAL_OBSERVATION_NIGHT = "A.ObsNight";
-
-const GENERAL_PRINCIPAL_INVESTIGATOR = "A.PrincipalInvestigator";
-
-const GENERAL_PROPOSAL_CODE = "A.ProposalCode";
-
-const TARGET_RIGHT_ASCENSION = "Target.RightAscension";
-
-const TARGET_DECLINATION = "Target.Declination";
-
-export const SALT_ID = "SALT.ID";
-
-export const SALTICAM_ID = "SALTICAM.ID";
-
-const SALTICAM_DETECTOR_MODE = "SALTICAM.DetectorMode";
-
-export const RSS_ID = "RSS.ID";
-
-const RSS_DETECTOR_MODE = "RSS.DetectorMode";
-
-export const HRS_ID = "HRS.ID";
-
-const HRS_MODE = "HRS.Mode";
+import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 
 /**
  * Map observation query parameters to a where condition.
@@ -118,22 +95,22 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
     const startTimeString = startTime.format("YYYY-MM-DD");
     const endTime = startTime.add(1, "day");
     const endTimeString = endTime.format("YYYY-MM-DD");
-    conditions.push(greaterThan(GENERAL_OBSERVATION_NIGHT, startTimeString));
-    conditions.push(lessThan(GENERAL_OBSERVATION_NIGHT, endTimeString));
+    conditions.push(greaterThan(DataKeys.OBSERVATION_NIGHT, startTimeString));
+    conditions.push(lessThan(DataKeys.OBSERVATION_NIGHT, endTimeString));
   }
 
   // Principal Investigator
   const principalInvestigator = trim(general.principalInvestigator);
   if (principalInvestigator) {
     conditions.push(
-      contains(GENERAL_PRINCIPAL_INVESTIGATOR, principalInvestigator)
+      contains(DataKeys.PROPOSAL_PI_FAMILY_NAME, principalInvestigator)
     );
   }
 
   // Proposal code
   const proposalCode = trim(general.proposalCode);
   if (proposalCode) {
-    conditions.push(contains(GENERAL_PROPOSAL_CODE, proposalCode));
+    conditions.push(contains(DataKeys.PROPOSAL_CODE, proposalCode));
   }
 
   return and(conditions);
@@ -166,10 +143,10 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     conditions.push(
       withinRadius({
         declination: declinations[0],
-        declinationColumn: TARGET_DECLINATION,
+        declinationColumn: DataKeys.TARGET_DECLINATION,
         radius,
         rightAscension: rightAscensions[0],
-        rightAscensionColumn: TARGET_RIGHT_ASCENSION
+        rightAscensionColumn: DataKeys.TARGET_RIGHT_ASCENSION
       })
     );
   } else {
@@ -178,19 +155,19 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
       const ra1 = rightAscensions[0];
       const ra2 = rightAscensions[1];
       if (ra1 < ra2) {
-        conditions.push(greaterEqual(TARGET_RIGHT_ASCENSION, ra1));
-        conditions.push(lessEqual(TARGET_RIGHT_ASCENSION, ra2));
+        conditions.push(greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra1));
+        conditions.push(lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2));
       } else {
         conditions.push(
           // The interval includes the "jump" from 360 to 0 degrees
           or([
             and([
-              greaterEqual(TARGET_RIGHT_ASCENSION, ra1),
-              lessEqual(TARGET_RIGHT_ASCENSION, 360)
+              greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra1),
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, 360)
             ]),
             and([
-              greaterEqual(TARGET_RIGHT_ASCENSION, 0),
-              lessEqual(TARGET_RIGHT_ASCENSION, ra2)
+              greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, 0),
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2)
             ])
           ])
         );
@@ -199,8 +176,10 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
 
     // Declination range
     if (declinations.length) {
-      conditions.push(greaterEqual(TARGET_DECLINATION, declinations[0]));
-      conditions.push(lessEqual(TARGET_DECLINATION, declinations[1]));
+      conditions.push(
+        greaterEqual(DataKeys.TARGET_DECLINATION, declinations[0])
+      );
+      conditions.push(lessEqual(DataKeys.TARGET_DECLINATION, declinations[1]));
     }
   }
 
@@ -221,8 +200,12 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
  *     The where condition for the query parameters.
  */
 export function telescopeWhereCondition(
-  telescope: ITelescope
+  telescope: ITelescope | undefined
 ): IWhereCondition {
+  if (!telescope) {
+    return and([]);
+  }
+
   const conditions: IWhereCondition[] = [];
 
   // Telescope-specific conditions
@@ -256,7 +239,7 @@ export function saltWhereCondition(salt: ISALT) {
   const conditions: IWhereCondition[] = [];
 
   // SALT is used
-  conditions.push(not(isNull(SALT_ID)));
+  conditions.push(equals(DataKeys.TELESCOPE_NAME, "SALT"));
 
   // Instrument
   const instrument = salt.instrument;
@@ -294,16 +277,16 @@ export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // SALTICAM is used
-  conditions.push(not(isNull(SALTICAM_ID)));
+  conditions.push(not(isNull(DataKeys.SALTICAM_ID)));
 
   // Detector mode
   const detectorMode = trim(salticam.detectorMode);
   switch (detectorMode) {
     case "Normal":
-      conditions.push(equals(SALTICAM_DETECTOR_MODE, "NORMAL"));
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "NORMAL"));
       break;
     case "Slot Mode":
-      conditions.push(equals(SALTICAM_DETECTOR_MODE, "SLOT MODE"));
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
   }
 
   return and(conditions);
@@ -326,16 +309,16 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // RSS is used
-  conditions.push(not(isNull(RSS_ID)));
+  conditions.push(not(isNull(DataKeys.RSS_ID)));
 
   // Detector mode
   const detectorMode = trim(rss.detectorMode);
   switch (detectorMode) {
     case "Normal":
-      conditions.push(equals(RSS_DETECTOR_MODE, "NORMAL"));
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "NORMAL"));
       break;
     case "Slot Mode":
-      conditions.push(equals(RSS_DETECTOR_MODE, "SLOT MODE"));
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SLOT MODE"));
   }
 
   return and(conditions);
@@ -358,22 +341,24 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // HRS is used
-  conditions.push(not(isNull(HRS_ID)));
+  conditions.push(not(isNull(DataKeys.HRS_ID)));
 
   // Detector mode
   const mode = trim(hrs.mode);
   switch (mode) {
     case "Low Resolution":
-      conditions.push(equals(HRS_MODE, "LR"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
       break;
     case "Medium Resolution":
-      conditions.push(equals(HRS_MODE, "MR"));
+      conditions.push(
+        equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
+      );
       break;
     case "High Resolution":
-      conditions.push(equals(HRS_MODE, "HR"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
       break;
     case "High Stability":
-      conditions.push(equals(HRS_MODE, "HS"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
       break;
   }
   return and(conditions);
