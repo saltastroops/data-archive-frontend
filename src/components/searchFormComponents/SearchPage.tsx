@@ -44,8 +44,13 @@ interface ISearchPageState {
 class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   constructor(props: ISearchPageProps) {
     super(props);
-
+    /**
+     * NB! The react-virtualized package has the first column to the default
+     * to 25px width, and that may be small to display the column header and row
+     * width exceeding 25px. Hence, the dummy column is added caters for that..
+     */
     const columns: ISearchResultsTableColumn[] = [
+      { dataKey: "dummyName", name: "dummy", visible: true },
       {
         dataKey: DataKeys.OBSERVATION_NAME,
         name: "Observation",

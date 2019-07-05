@@ -275,6 +275,11 @@ class SearchResultsTable extends React.Component<
    */
   public render() {
     const { image, open } = this.state;
+    const { columns } = this.props;
+
+    console.log(columns.length);
+
+    console.log(this.visibleColumns.length);
 
     // Calculate the table height
     const height = this.tableHeight();
@@ -506,6 +511,7 @@ class SearchResultsTable extends React.Component<
    * Similarly, the row index does not include the header.
    */
   private cellContent = ({ columnIndex, rowIndex }: any) => {
+    console.log(columnIndex, "|", this.visibleColumns.length);
     const rowDatum = this.state.sortedRowData.get(rowIndex);
     const dataKey = this.visibleColumns[columnIndex].dataKey;
     if (!rowDatum) {
@@ -518,6 +524,7 @@ class SearchResultsTable extends React.Component<
         case DataKeys.DECLINATION:
           return rowDatum[dataKey].toFixed(4);
         case DataKeys.FILENAME:
+          console.log("here 2");
           return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
             <button
               className="is-link"
@@ -564,15 +571,21 @@ class SearchResultsTable extends React.Component<
     rowIndex: number;
     style: object;
   }) => {
+    /**
+     * NB! The react-virtualized package has the first column to the default
+     * to 25px width, and that may be small to display the column row having
+     * cell contect exceeding 25px. Hence, there is a dummy cell content which you
+     * cannot see, for columns greater than 1 but will see if column headers
+     * are less than one. This condition caters for that by returning only an
+     * empty string if column headers to display are less than.
+     */
     if (columnIndex < 1) {
       return "";
     }
 
     return (
       <div className={this.rowClassName(rowIndex)} key={key} style={style}>
-        <span>
-          {this.cellContent({ columnIndex: columnIndex - 1, rowIndex })}
-        </span>
+        <span>{this.cellContent({ columnIndex, rowIndex })}</span>
       </div>
     );
   };
@@ -608,12 +621,22 @@ class SearchResultsTable extends React.Component<
     key: string;
     style: object;
   }) => {
+    console.log("now", columnIndex);
+    /**
+     * NB! The react-virtualized package has the first column to the default
+     * to 25px width, and that may be small to display the column having column
+     * header exceeding 25px. Hence, there is a dummy column header which you
+     * cannot see, for columns greater than 1 but will see if column headers
+     * are less than one. This condition caters for that by returning only an
+     * empty string if column headers to display are less than.
+     */
     if (columnIndex < 1) {
       return "";
     }
 
-    const dataKey = this.visibleColumns[columnIndex - 1].dataKey;
-    const label = this.visibleColumns[columnIndex - 1].name;
+    const dataKey = this.visibleColumns[columnIndex].dataKey;
+    const label = this.visibleColumns[columnIndex].name;
+    console.log(label);
 
     return (
       <SearchResultsTableHeader
