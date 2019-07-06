@@ -565,12 +565,10 @@ class SearchResultsTable extends React.Component<
     style: object;
   }) => {
     /**
-     * NB! The react-virtualized package has the first column to the default
-     * to 25px width, and that may be small to display the column row having
-     * cell contect exceeding 25px. Hence, there is a dummy cell content which you
-     * cannot see, for columns greater than 1 but will see if column headers
-     * are less than one. This condition caters for that by returning only an
-     * empty string if column headers to display are less than.
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
      */
     if (columnIndex < 1) {
       return "";
@@ -615,12 +613,10 @@ class SearchResultsTable extends React.Component<
     style: object;
   }) => {
     /**
-     * NB! The react-virtualized package has the first column to the default
-     * to 25px width, and that may be small to display the column having column
-     * header exceeding 25px. Hence, there is a dummy column header which you
-     * cannot see, for columns greater than 1 but will see if column headers
-     * are less than one. This condition caters for that by returning only an
-     * empty string if column headers to display are less than.
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
      */
     if (columnIndex < 1) {
       return "";
