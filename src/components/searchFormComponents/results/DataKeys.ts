@@ -16,6 +16,7 @@ const DataKeys = {
   PREVIEW_IMAGE_URL: "url",
   PROPOSAL_CODE: "Proposal.proposalCode",
   PROPOSAL_PI_FAMILY_NAME: "Proposal.principalInvestigatorFamilyName",
+  PROPOSAL_TITLE: "Proposal.title",
   PUBLIC_FROM: "Observation.publicFrom",
   RIGHT_ASCENSION: "Target.rightAscension",
   RSS_DETECTOR_MODE: "RSS.detectorMode",

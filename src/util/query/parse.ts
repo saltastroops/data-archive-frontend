@@ -22,7 +22,7 @@ export const MAXIMUM_COORDINATE_SEARCH_RADIUS = 10;
  * The date is assumed to be given as UTC.
  */
 export function parseDate(date: string) {
-  const t = moment.utc(date, "YYYY-MM-DD");
+  const t = moment.utc(date + "T00:00:00");
   if (!t.isValid()) {
     throw new Error(`${date} is not a valid date.`);
   }

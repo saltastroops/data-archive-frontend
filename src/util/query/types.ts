@@ -95,6 +95,7 @@ export interface IGeneral {
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
+  proposalTitle?: string;
 }
 
 /**

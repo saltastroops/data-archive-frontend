@@ -73,6 +73,74 @@ export function whereCondition(queryParameters: IObservationQueryParameters) {
 }
 
 /**
+ * Recursively remove all AND and OR conditions which have an empty array of child
+ * conditions.
+ *
+ * For example, the condition
+ *
+ * {
+ *   AND: [
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *     { OR: [] },
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *   ]
+ * }
+ *
+ * is pruned to
+ *
+ * {
+ *   AND: [
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *   ]
+ * }
+ *
+ * A copy of the original condition is pruned and returned.
+ *
+ * Parameters:
+ * -----------
+ * condition: object
+ *     The condition to prune.
+ *
+ * Returns:
+ * --------
+ * pruned:
+ *     The pruned condition.
+ */
+export function prune(condition: object) {
+  if (typeof condition !== "object") {
+    throw new Error("The condition must be an object.");
+  }
+
+  function _prune(o: any) {
+    if (Array.isArray(o)) {
+      // Prune all array itens and then remove all empty objects.
+      const pruned: any[] = o
+        .map(item => _prune(item))
+        .filter((k: any) => Object.keys(k).length);
+      return pruned;
+    } else if (typeof o === "object") {
+      // Prune all properties, and create an object with these (pruned)
+      // properties. Pruned AND or OR conditions are only included if they have
+      // a conditions array with at least one item.
+      const pruned: any = {};
+      for (let p of Object.keys(o)) {
+        const v = _prune(o[p]);
+        if (!["AND", "OR"].includes(p) || v.length) {
+          pruned[p] = v;
+        }
+      }
+      return pruned;
+    } else {
+      // Return the object as is.
+      return o;
+    }
+  }
+
+  return _prune(condition);
+}
+
+/**
  * Map general query parameters to a where condition.
  *
  * Parameters:
@@ -91,12 +159,9 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   // Night when the observation was taken
   const observationNight = trim(general.observationNight);
   if (observationNight) {
-    const startTime = parseDate(observationNight).add(14, "hours"); // noon SAST
-    const startTimeString = startTime.format("YYYY-MM-DD");
-    const endTime = startTime.add(1, "day");
-    const endTimeString = endTime.format("YYYY-MM-DD");
-    conditions.push(greaterThan(DataKeys.OBSERVATION_NIGHT, startTimeString));
-    conditions.push(lessThan(DataKeys.OBSERVATION_NIGHT, endTimeString));
+    const night = parseDate(observationNight); // noon SAST
+    const nightString = night.format("YYYY-MM-DD");
+    conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightString));
   }
 
   // Principal Investigator
@@ -111,6 +176,12 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   const proposalCode = trim(general.proposalCode);
   if (proposalCode) {
     conditions.push(contains(DataKeys.PROPOSAL_CODE, proposalCode));
+  }
+
+  // Proposal title
+  const proposalTitle = trim(general.proposalTitle);
+  if (proposalTitle) {
+    conditions.push(contains(DataKeys.PROPOSAL_TITLE, proposalTitle));
   }
 
   return and(conditions);
