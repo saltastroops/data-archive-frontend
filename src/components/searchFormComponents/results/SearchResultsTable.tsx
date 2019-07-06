@@ -564,15 +564,19 @@ class SearchResultsTable extends React.Component<
     rowIndex: number;
     style: object;
   }) => {
+    /**
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
+     */
     if (columnIndex < 1) {
       return "";
     }
 
     return (
       <div className={this.rowClassName(rowIndex)} key={key} style={style}>
-        <span>
-          {this.cellContent({ columnIndex: columnIndex - 1, rowIndex })}
-        </span>
+        <span>{this.cellContent({ columnIndex, rowIndex })}</span>
       </div>
     );
   };
@@ -608,12 +612,18 @@ class SearchResultsTable extends React.Component<
     key: string;
     style: object;
   }) => {
+    /**
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
+     */
     if (columnIndex < 1) {
       return "";
     }
 
-    const dataKey = this.visibleColumns[columnIndex - 1].dataKey;
-    const label = this.visibleColumns[columnIndex - 1].name;
+    const dataKey = this.visibleColumns[columnIndex].dataKey;
+    const label = this.visibleColumns[columnIndex].name;
 
     return (
       <SearchResultsTableHeader
