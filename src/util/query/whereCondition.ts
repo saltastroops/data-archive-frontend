@@ -1,12 +1,12 @@
+import DataKeys from "../../components/searchFormComponents/results/DataKeys";
+import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
   and,
   contains,
   equals,
   greaterEqual,
-  greaterThan,
   isNull,
   lessEqual,
-  lessThan,
   not,
   or,
   startsWith,
@@ -24,15 +24,6 @@ import {
   ITelescope,
   IWhereCondition
 } from "./types";
-import DataKeys from "../../components/searchFormComponents/results/DataKeys";
-import {
-  GALAXY,
-  ISM,
-  SOLAR_SYSTEM_BODY,
-  STAR,
-  TARGET_TYPE_CODES,
-  TargetType
-} from "../../utils/TargetType";
 
 /**
  * Map observation query parameters to a where condition.
@@ -133,7 +124,7 @@ export function prune(condition: object) {
       // properties. Pruned AND or OR conditions are only included if they have
       // a conditions array with at least one item.
       const pruned: any = {};
-      for (let p of Object.keys(o)) {
+      for (const p of Object.keys(o)) {
         const v = _prune(o[p]);
         if (!["AND", "OR"].includes(p) || v.length) {
           pruned[p] = v;

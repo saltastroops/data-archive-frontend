@@ -1,18 +1,14 @@
 import * as React from "react";
-import {
-  IGeneral,
-  ITarget,
-  ITelescope
-} from "../../utils/ObservationQueryParameters";
+import { Query } from "react-apollo";
+import { DATA_FILES_QUERY } from "../../graphql/Query";
+import { whereCondition } from "../../util/query/whereCondition";
+import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
 import SearchResultsTable from "./results/SearchResultsTable";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
-import { Query } from "react-apollo";
-import { DATA_FILES_QUERY } from "../../graphql/Query";
-import { whereCondition } from "../../util/query/whereCondition";
 
 /**
  * Properties for the search page.
@@ -53,7 +49,7 @@ interface ISearchResult {
   ];
 }
 
-export interface Observation {
+export interface IObservation {
   available: boolean;
   files: [
     {
@@ -215,13 +211,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * The array of observations is returned.
    *
    */
-  private parseSearchResults(results: ISearchResult[]): Observation[] {
-    const observationsMap = new Map<string, Observation>();
+  private parseSearchResults(results: ISearchResult[]): IObservation[] {
+    const observationsMap = new Map<string, IObservation>();
     const observations = [];
 
     const now = Date.now();
 
-    for (let result of results) {
+    for (const result of results) {
       // The metadata is a list of name-value pairs. We need to convert this
       // into a plain object.
       const metadata = result.metadata.reduce(
@@ -249,12 +245,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           (telescopeObservationId ? " #" + telescopeObservationId : "");
         const ownedByUser = result.ownedByUser;
         const isPublic = now > metadata[DataKeys.START_TIME];
-        const observation: Observation = {
+        const observation: IObservation = {
           available: ownedByUser || isPublic,
+          files: [metadata],
           id: observationId,
           name: observationName,
-          publicFrom: new Date(metadata[DataKeys.PUBLIC_FROM] as number),
-          files: [metadata]
+          publicFrom: new Date(metadata[DataKeys.PUBLIC_FROM] as number)
         };
 
         // Store the observation in the map of of observations (to facilitate
@@ -264,7 +260,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         observationsMap.set(observationId, observation);
       } else {
         // Add the data file
-        (observationsMap.get(observationId) as Observation).files.push(
+        (observationsMap.get(observationId) as IObservation).files.push(
           metadata
         );
       }

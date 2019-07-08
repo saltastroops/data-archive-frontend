@@ -1,4 +1,3 @@
-import moment from "moment";
 import {
   parseDate,
   parseDeclination,
@@ -59,7 +58,7 @@ export const validateDate = (date: string): string | undefined => {
   }
 
   // Validate all the date values
-  for (let d of dates) {
+  for (const d of dates) {
     try {
       parseDate(d);
     } catch (e) {
@@ -116,7 +115,7 @@ export const validateDeclination = (dec: string): string | undefined => {
   }
 
   // Validate all the declination values
-  for (let declination of declinations) {
+  for (const declination of declinations) {
     try {
       parseDeclination(declination);
     } catch (e) {
@@ -164,7 +163,7 @@ export const validateRightAscension = (ra: string): string | undefined => {
   }
 
   // Validate all the right ascension values
-  for (let rightAscension of rightAscensions) {
+  for (const rightAscension of rightAscensions) {
     try {
       parseRightAscension(rightAscension);
     } catch (e) {

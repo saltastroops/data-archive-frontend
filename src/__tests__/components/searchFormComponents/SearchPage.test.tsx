@@ -8,10 +8,10 @@ import wait from "waait";
 jest.mock("../../../util/cache");
 import App from "../../../App";
 import SearchForm from "../../../components/searchFormComponents/SearchForm";
+import SearchPage from "../../../components/searchFormComponents/SearchPage";
 import cache from "../../../util/cache";
 import { CART_QUERY } from "../../../util/Cart";
 import click from "../../../util/click";
-import SearchPage from "../../../components/searchFormComponents/SearchPage";
 
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {

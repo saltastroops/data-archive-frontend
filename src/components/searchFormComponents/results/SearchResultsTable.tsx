@@ -21,17 +21,17 @@ import {
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
-import { Observation } from "../SearchPage";
 
 interface ISearchResultsTableProps {
   columns: ISearchResultsTableColumn[];
   maxHeight?: number;
   maxWidth: number;
-  searchResults: Observation[];
+  searchResults: IObservation[];
 }
 
 interface ISearchResultsTableState {
