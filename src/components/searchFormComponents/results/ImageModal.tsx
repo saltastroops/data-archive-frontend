@@ -28,8 +28,15 @@ const TabList = styled.li`
 
 const Tab = styled.p`
   font-size: 25px;
-  font-weight: bold;
   color: ${props => props.color};
+`;
+
+const PreviewFigure = styled.figure.attrs({
+  className: "image is-2by2"
+})`
+  && {
+    margin-bottom: 10px;
+  }
 `;
 
 class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
@@ -102,21 +109,17 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
 
             if (imageTab) {
               return imageURIs.map((image: string) => (
-                <div key={image}>
-                  <figure className="image is-2by2">
+                <>
+                  <PreviewFigure key={image}>
                     <img
                       className="card-image"
                       id={image}
                       src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
                       alt={image}
                     />
-                  </figure>
-                  <a href={`${process.env.REACT_APP_BACKEND_URI}${image}`}>
-                    <p className={"notification"}>
-                      Click here to download the image.
-                    </p>
-                  </a>
-                </div>
+                  </PreviewFigure>
+                  <hr />
+                </>
               ));
             }
 
