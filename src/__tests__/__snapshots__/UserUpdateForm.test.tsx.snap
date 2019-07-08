@@ -29,7 +29,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
               },
             ],
             "componentStyle": ComponentStyle {
-              "componentId": "sc-jAaTju",
+              "componentId": "sc-iRbamj",
               "isStatic": true,
               "lastClassName": "c1",
               "rules": Array [
@@ -44,7 +44,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             "displayName": "styled.h1",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "sc-jAaTju",
+            "styledComponentId": "sc-iRbamj",
             "target": "h1",
             "toString": [Function],
             "warnTooManyClasses": [Function],
