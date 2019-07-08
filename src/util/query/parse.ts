@@ -141,6 +141,14 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     }
   }
 
+  // A search cone radius requires both a right ascension and a declination
+  const searchConeRadius = trim(target.searchConeRadius);
+  if (searchConeRadius && (!rightAscension || !declination)) {
+    throw new Error(
+      "Both a right ascension and a declination must be given if a cone search radius is specified."
+    );
+  }
+
   // There is no need to proceed if there are no coordinates
   if (!rightAscension && !declination) {
     return {
@@ -150,8 +158,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     };
   }
 
-  // Cpoordinate ranges and a search cone radius are mutually exclusive
-  const searchConeRadius = trim(target.searchConeRadius);
+  // Coordinate ranges and a search cone radius are mutually exclusive
   if (
     searchConeRadius &&
     (rightAscensionValues.length > 1 || declinationValues.length > 1)

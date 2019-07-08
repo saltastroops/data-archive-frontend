@@ -19,23 +19,24 @@ import {
   CART_QUERY,
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
-import { IFile, IObservation } from "../../../utils/ObservationQueryParameters";
+import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import ImageModal from "./ImageModal";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
+import { Observation } from "../SearchPage";
 
 interface ISearchResultsTableProps {
   columns: ISearchResultsTableColumn[];
   maxHeight?: number;
   maxWidth: number;
-  searchResults: IObservation[];
+  searchResults: Observation[];
 }
 
 interface ISearchResultsTableState {
   cart: Cart;
-  id: number;
+  image: string;
   open: boolean;
   sortBy?: string;
   sortDirection?: SortDirectionType;
@@ -102,11 +103,6 @@ const CartContainer = styled.div<ICartContainerProps>`
   left: 0;
   top: ${props => props.top}px;
   z-index: 10;
-`;
-
-const Filename = styled.p`
-  color: hsl(217, 71%, 53%);
-  cursor: pointer;
 `;
 
 /**
@@ -252,7 +248,7 @@ class SearchResultsTable extends React.Component<
     // Set the initial state
     this.state = {
       cart,
-      id: 0,
+      image: "",
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
@@ -279,14 +275,18 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    const { id, open } = this.state;
+    const { image, open } = this.state;
 
     // Calculate the table height
     const height = this.tableHeight();
 
     return (
       <>
-        <ImageModal id={id} closeModal={this.closePreviewModal} open={open} />
+        <ImageModal
+          closeModal={this.closePreviewModal}
+          image={{ url: image, alt: "Some text to show" }}
+          open={open}
+        />
         <Mutation
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}
@@ -517,19 +517,26 @@ class SearchResultsTable extends React.Component<
       // A normal table row
       switch (dataKey) {
         case DataKeys.DECLINATION:
-          return rowDatum[dataKey].toFixed(4);
+          return rowDatum[dataKey]
+            ? parseFloat(rowDatum[dataKey]).toFixed(4)
+            : "";
         case DataKeys.FILENAME:
-          return (
-            <Filename
+          return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
+            <button
+              className="is-link"
               onClick={() => {
-                this.openPreviewModal(rowDatum[DataKeys.FILE_ID]);
+                this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
               }}
             >
               {rowDatum[DataKeys.FILENAME]}
-            </Filename>
+            </button>
+          ) : (
+            rowDatum[DataKeys.FILENAME]
           );
         case DataKeys.RIGHT_ASCENSION:
-          return rowDatum[dataKey].toFixed(4);
+          return rowDatum[dataKey]
+            ? parseFloat(rowDatum[dataKey]).toFixed(4)
+            : "";
         default:
           return rowDatum[dataKey];
       }
@@ -563,12 +570,10 @@ class SearchResultsTable extends React.Component<
     style: object;
   }) => {
     /**
-     * NB! The react-virtualized package has the first column to the default
-     * to 25px width, and that may be small to display the column row having
-     * cell contect exceeding 25px. Hence, there is a dummy cell content which you
-     * cannot see, for columns greater than 1 but will see if column headers
-     * are less than one. This condition caters for that by returning only an
-     * empty string if column headers to display are less than.
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
      */
     if (columnIndex < 1) {
       return "";
@@ -585,7 +590,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    this.setState({ open: false, id: 0 });
+    this.setState({ open: false, image: "" });
   };
 
   /**
@@ -613,12 +618,10 @@ class SearchResultsTable extends React.Component<
     style: object;
   }) => {
     /**
-     * NB! The react-virtualized package has the first column to the default
-     * to 25px width, and that may be small to display the column having column
-     * header exceeding 25px. Hence, there is a dummy column header which you
-     * cannot see, for columns greater than 1 but will see if column headers
-     * are less than one. This condition caters for that by returning only an
-     * empty string if column headers to display are less than.
+     * The first column has the same width as the cart column and lies
+     * underneath. It should therefore be considered a dummy column, and no
+     * content should be returned for it. Also see the documentation for the
+     * render method.
      */
     if (columnIndex < 1) {
       return "";
@@ -643,8 +646,8 @@ class SearchResultsTable extends React.Component<
   /**
    * Open the preview modal.
    */
-  private openPreviewModal = (id: number) => {
-    this.setState({ open: true, id });
+  private openPreviewModal = (url: string) => {
+    this.setState({ open: true, image: url });
   };
 
   /**
@@ -771,8 +774,7 @@ class SearchResultsTable extends React.Component<
           observationHeader: true,
           observationIndex
         },
-        [DataKeys.OBSERVATION_NAME]: observation.name || "",
-        [DataKeys.PROPOSAL_CODE]: observation.proposal || ""
+        [DataKeys.OBSERVATION_NAME]: observation.name || ""
       });
       result.files.forEach((file, observationFileIndex) => {
         data.push({
@@ -783,7 +785,6 @@ class SearchResultsTable extends React.Component<
             observationIndex
           },
           [DataKeys.OBSERVATION_NAME]: observation.name || "",
-          [DataKeys.PROPOSAL_CODE]: observation.proposal || "",
           ...file
         });
       });

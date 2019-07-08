@@ -2,6 +2,8 @@
  * An interface marking a where condition.
  */
 /* tslint:disable:no-empty-interface */
+import { TargetType } from "../../utils/TargetType";
+
 export interface IWhereCondition {}
 /* tslint:enable:no-empty-interface */
 
@@ -95,6 +97,7 @@ export interface IGeneral {
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
+  proposalTitle?: string;
 }
 
 /**
@@ -127,12 +130,14 @@ export interface ITarget {
     rightAscension?: string;
     searchConeRadius?: string;
     searchConeRadiusUnits?: string;
+    targetTypes?: string;
   };
   name?: string;
   resolver?: string;
   rightAscension?: string;
   searchConeRadius?: string;
   searchConeRadiusUnits?: string;
+  targetTypes?: Set<TargetType>;
 }
 
 // TELESCOPES

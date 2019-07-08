@@ -35,6 +35,7 @@ import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
  */
 interface ISearchFormProps {
   cache?: ISearchFormCache;
+  error?: Error;
   search: ({
     general,
     target,
@@ -110,6 +111,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
+    const { error } = this.props;
     const { target, general, telescope, loading } = this.state;
 
     return (
@@ -136,16 +138,19 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <DataForm general={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
-            <button
-              disabled={loading}
-              className="button is-primary"
-              data-test="search-button"
-              type="button"
-              value="Search"
-              onClick={this.onSubmit}
-            >
-              search
-            </button>
+            {error && <div className="has-text-danger">{error.message}</div>}
+            <div>
+              <button
+                disabled={loading}
+                className="button is-primary"
+                data-test="search-button"
+                type="button"
+                value="Search"
+                onClick={this.onSubmit}
+              >
+                search
+              </button>
+            </div>
           </ButtonGrid>
         </ParentGrid>
       </>
