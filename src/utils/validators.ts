@@ -1,257 +1,213 @@
 import moment from "moment";
+import {
+  parseDate,
+  parseDeclination,
+  parseRightAscension
+} from "../util/query/parse";
 
 // TODO: Update once parse methods are available in util
 
 /**
- * A method used to check if the given value(string) is a floating point number
+ * Check whether the string is a valid number.
  *
- * @param value:
- *     A string value to tested.
- * @return Boolean:
- *        True if the value is a float else false.
+ * Parameters:
+ * -----------
+ * value : string
+ *     The string to check.
+ *
+ * Returns:
+ * --------
+ * boolean :
+ *    Whether the string is a valid number.
  */
 export const isFloat = (value: string) => {
-  const floatRegex = /^-?\d+(?:[.,]\d*?)?$/; // check optional sign, check decimal and check optional "." or "," followed by optional decimal
-  if (!floatRegex.test(value)) {
-    return false;
-  }
-  return !isNaN(parseFloat(value));
+  return /^[-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][-+]?[0-9]+)?$/.test(value);
 };
 
 /**
- * This method check is given right ascension is within range and a correct time format (HH:MM:SS)
+ * Validate a date string.
  *
- * @param time
- *    String representing Degrees arc minutes arc seconds
- * @return String/undefined
- *    String Error ifvtime can't be verified to be a aa valid time else nothing
+ * The string may contain either a single date or two dates separated by two or
+ * more dots (e.g., 2019-07-08 .. 2019-07-11). Each date must be parsable by
+ * MomentJS and must constitute a valid date. If a date range is given, the
+ * first date must not be later than the second date.
+ *
+ * Empty strings are considered a valid value.
+ *
+ * Parameters:
+ * -----------
+ * date : string
+ *     The string to check.
+ *
+ * Returns:
+ * --------
+ * string :
+ *     The validation error, or undefined if there is none.
  */
-const raTimeError = (time: string) => {
-  // regular expression to match required time format
-  const re = /^(\d+):(\d+):(\d+)$/;
-
-  const regs: any = time.match(re);
-  if (regs) {
-    // 24-hour value between 0 and 23
-    if (regs[1] > 23) {
-      return "Invalid value for hours: " + regs[1];
-    }
-    // minute value between 0 and 59
-    if (regs[2] > 59) {
-      return "Invalid value for minutes: " + regs[2];
-    }
-    // seconds value between 0 and 59
-    if (regs[3] > 59) {
-      return "Invalid value for seconds: " + regs[3];
-    }
-    return;
-  } else {
-    return "Right ascension should be in degrees or HH:MM:SS only";
+export const validateDate = (date: string): string | undefined => {
+  // Empty strings are valid
+  if (!date) {
+    return undefined;
   }
+
+  // Split ranges by '..' (or '...' or '...', ...)
+  const dates = date.split(/\s*\.{2,}\s*/);
+
+  // Check that there is a date or a date range
+  if (dates.length < 1 || dates.length > 2) {
+    return `${date} is neither a date nor a date range.`;
+  }
+
+  // Validate all the date values
+  for (let d of dates) {
+    try {
+      parseDate(d);
+    } catch (e) {
+      return `${d} is not a valid date.`;
+    }
+  }
+
+  // In a date range the first date must not be later than the second
+  if (dates.length > 1) {
+    const date1 = parseDate(dates[0]);
+    const date2 = parseDate(dates[1]);
+    if (date1.isAfter(date2)) {
+      return "In a date range the first date must not be later than the second date.";
+    }
+  }
+
+  // The date string is valid
+  return undefined;
 };
 
 /**
- * This method check is given declination is within range
+ * Validate a declination string.
  *
- * @param degree
- *    String a float number
- * @return
- *    Error or nothing/undefined
+ * The string may contain either a single declination or two declinations
+ * separated by two or more dots (e.g., 11.5 .. 12.6). Each declination may be
+ * given as a single float or in degrees, arcminutes and arcseconds. In case of
+ * the latter it does not matter what symbols are used to separate the degrees,
+ * arcminutes and arcseconds.
+ *
+ * Empty strings are considered a valid value.
+ *
+ * Parameters:
+ * -----------
+ * dec : string
+ *     The string to check.
+ *
+ * Returns:
+ * --------
+ * string :
+ *    The validation error, or undefined if the string is valid.
  */
-const validateDecDegrees = (degree: string) => {
-  if (parseFloat(degree) < -90 || parseFloat(degree) > 90) {
-    return "Declination should be between -90 and 90 degrees";
+export const validateDeclination = (dec: string): string | undefined => {
+  // Empty strings are valid
+  if (!dec) {
+    return undefined;
   }
-  return;
+
+  // Split ranges by '..' (or '...' or '...', ...)
+  const declinations = dec.split(/\s*\.{2,}\s*/);
+
+  // Check that there is a declination or a declination range
+  if (declinations.length < 1 || declinations.length > 2) {
+    return `${dec} is neither a declination nor a declination range.`;
+  }
+
+  // Validate all the declination values
+  for (let declination of declinations) {
+    try {
+      parseDeclination(declination);
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  // The declination string is valid
+  return undefined;
 };
 
 /**
- * This method check is given declination is within range and a correct DMS
+ * Validate a right ascension string.
  *
- * @param dms
- *    String representing Degrees arc minutes arc seconds
- * @return String/undefined
- *    String Error if dms can't be verified to be a aa valid DMS else nothing
+ * The string may contain either a single right ascension or two right
+ * ascensions separated by two or more dots (e.g., 11.5 .. 12.6). Each right
+ * ascension may be given as a single float or in hours, minutes and seconds. In
+ * case of the latter it does not matter what symbols are used to separate the
+ * hours, minutes and seconds.
+ *
+ * Empty strings are considered a valid value.
+ *
+ * Parameters:
+ * -----------
+ * ra : string
+ *     The string to check.
+ *
+ * Returns:
+ * --------
+ * string :
+ *    The validation error, or undefined if the string is valid.
  */
-const validateDecDms = (dms: string) => {
-  const decs = dms.split(/[^0-9]+/).filter(d => d !== ""); // Split string at none numbers and remove white space and empty string
-  if (!decs || decs.length !== 3) {
-    // expecting 3 numbers separated by any thing else it should fail
-    return "Declination should be in degrees or Degree:minutes:seconds";
+export const validateRightAscension = (ra: string): string | undefined => {
+  // Empty strings are valid
+  if (!ra) {
+    return undefined;
   }
-  if (-90 > parseFloat(decs[0]) || parseFloat(decs[0]) > 90) {
-    // degress are between -90 and 90
-    return "Declination should be between -90D 0M 0S and 90D 0M 0S degrees.\n";
+
+  // Split ranges by '..' (or '...' or '...', ...)
+  const rightAscensions = ra.split(/\s*\.{2,}\s*/);
+
+  // Check that there is a right ascension or a right ascension range
+  if (rightAscensions.length < 1 || rightAscensions.length > 2) {
+    return `${ra} is neither a right ascension nor a right ascension range. Ranges are indicated by two dots (e.g., 11 .. 12).`;
   }
-  if (
-    (parseFloat(decs[0]) === 90 || parseFloat(decs[0]) === -90) &&
-    (parseFloat(decs[1]) !== 0 || parseFloat(decs[2]) !== 0)
-  ) {
-    //
-    return "Declination should be between -90D 0M 0S and 90D 0M 0S degrees.\n";
+
+  // Validate all the right ascension values
+  for (let rightAscension of rightAscensions) {
+    try {
+      parseRightAscension(rightAscension);
+    } catch (e) {
+      return e.message;
+    }
   }
-  if (
-    parseFloat(decs[1]) < 0 ||
-    parseFloat(decs[1]) > 59 ||
-    parseFloat(decs[2]) < 0 ||
-    parseFloat(decs[2]) > 59
-  ) {
-    return "Declination minutes and seconds should be between 0 and 59";
-  }
-  return;
+
+  // The right ascension string is valid
+  return undefined;
 };
 
 /**
- * This method test if string is a declination
- * It only accept two notation D"M'S and degrees else error
+ * Validate a search cone radius string.
  *
- * @param dec:
- *     A string value to tested.
- * @return
- *    Error if string can not be a declination. else nothing
- */
-export const validateDeclination = (dec: string) => {
-  if (dec.trim() === "" || dec === null || dec === undefined) {
-    return;
-  }
-  if (isFloat(dec)) {
-    return validateDecDegrees(dec.trim());
-  }
-
-  let error;
-  const decs = dec.split("..");
-  if (decs.length === 1) {
-    error = validateDecDms(dec.trim());
-    if (error || error !== "") {
-      return error;
-    }
-  }
-
-  if (decs.length > 2) {
-    return "Only two values of declination are allowed";
-  }
-  if (decs.length === 2) {
-    // dec range
-    const dec0 = decs[0].trim();
-    const dec1 = decs[1].trim();
-    if (isFloat(dec0) && isFloat(dec1)) {
-      return validateDecDegrees(dec0) || validateDecDegrees(dec1);
-    }
-    return validateDecDms(dec0) || validateDecDms(dec1);
-  }
-
-  return;
-};
-
-export const validateName = () => {
-  return "";
-};
-
-/**
- * This method test if string is a right ascension for range values need to separated by '..'
- * It only accept two notation HH:MM:SS and degrees else error
+ * The radius must be a positive number.
  *
- * @param ra:
- *     A string value to tested.
- * @return
- *    Error if string can not be a right ascension. else nothing
- */
-export const validateRightAscension = (ra: string) => {
-  let error = "";
-  if (ra.trim() === "" || ra === null || ra === undefined) {
-    return;
-  }
-  if (isFloat(ra)) {
-    return 0 <= parseFloat(ra) && parseFloat(ra) <= 360
-      ? undefined
-      : "Declination should be between 0 and 360 degrees";
-  }
-  const ras = ra.split("..");
-  if (ras.length > 2) {
-    return 'Only two right ascension are permitted separated by ".."';
-  }
-  try {
-    if (ras.length === 2) {
-      const ra0 = ras[0].trim();
-      const ra1 = ras[1].trim();
-      if (isFloat(ra0)) {
-        return 0 <= parseFloat(ra0) && parseFloat(ra0) <= 360
-          ? undefined
-          : "Declination should be between 0 and 360 degrees";
-      }
-      if (isFloat(ra1)) {
-        return 0 <= parseFloat(ra1) && parseFloat(ra1) <= 360
-          ? undefined
-          : "Declination should be between 0 and 360 degrees";
-      }
-      error = raTimeError(ra1) || raTimeError(ra0) || "";
-      if (error !== "") {
-        return error;
-      }
-    }
-    if (ras.length === 1) {
-      error = raTimeError(ra) || "";
-      if (error !== "") {
-        return error;
-      }
-    }
-  } catch (e) {
-    return 'Invalid right ascension please use degrees or "HH:MM:SS"';
-  }
-  return;
-};
-
-/**
- * This method test if string can is a date(s)
- * Date range is separated by '..'
+ * Empty strings are considered a valid value.
  *
- * @param date:
- *     A string value to tested.
- * @return :
- *    Error if string can not be a date. else nothing
+ * Parameters:
+ * -----------
+ * radius : string
+ *     The string to check.
+ *
+ * Returns:
+ * --------
+ * string :
+ *    The validation error, or undefined if the string is valid.
  */
-export const validateDate = (date: string) => {
-  if (date === null || date === undefined || date.trim() === "") {
-    return;
+export const validateSearchConeRadius = (
+  radius: string
+): string | undefined => {
+  // Empty strings are valid
+  if (!radius) {
+    return undefined;
   }
-  const re = /^(\d{4})-(\d{2})-(\d{2})$/;
-  const regs: any = date.match(re);
 
-  const dates = date.split("..");
-  if (dates.length > 2) {
-    return "Only two dates are permitted.";
+  // Validate the radius value
+  if (!isFloat(radius) || Number(radius) <= 0) {
+    return "The cone search radius must be a positive number.";
   }
-  if (dates.length === 2) {
-    const day0 = dates[0].trim();
-    const day1 = dates[1].trim();
-    if (
-      !day0.match(re) ||
-      !day1.match(re) ||
-      !moment(day0, "YYYY-MM-DD", true).isValid() ||
-      !moment(day1, "YYYY-MM-DD", true).isValid()
-    ) {
-      return "You have an invalid date.";
-    }
-  }
-  if (dates.length === 1) {
-    if (
-      !date.match(re) ||
-      (!moment(date, "YYYY-MM-DD", true).isValid() || !regs)
-    ) {
-      return "You have an invalid date.";
-    }
-  }
-  return;
-};
 
-export const validateSearchConeRadius = (radius: string) => {
-  if (radius.trim() === "" || radius === null || radius === undefined) {
-    return;
-  }
-  if (isFloat(radius) && parseFloat(radius) >= 0) {
-    return;
-  }
-  return "Search radius should be a floating point number greater and zero.";
+  // The radius value is valid
+  return undefined;
 };
 
 /**
