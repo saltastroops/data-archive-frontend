@@ -114,7 +114,7 @@ const CartContainer = styled.div<ICartContainerProps>`
  * 2. By the observation index.
  * 3. By the file index within an observation.
  *
- * The sort direction (scending or descending) is indicated by the sortDirection
+ * The sort direction (ascending or descending) is indicated by the sortDirection
  * parameter.
  *
  * Observation headers are always ranked top within an observation.
@@ -455,7 +455,7 @@ class SearchResultsTable extends React.Component<
           </div>
         );
       } else {
-        // Am observation header row.
+        // An observation header row.
         const files = rowDatum.meta.observation.files;
         const allInCart = files.every((file: IFile) =>
           this.state.cart.contains(file)

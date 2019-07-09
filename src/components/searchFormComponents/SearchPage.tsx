@@ -205,7 +205,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   /**
    * Parse search results, grouping them into observations.
    *
-   * The observations are sorted ion the order they are found in the search
+   * The observations are sorted in the order they are found in the search
    * results.
    *
    * The array of observations is returned.
