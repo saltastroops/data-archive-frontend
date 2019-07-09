@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 1`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observationName",
+    "name": "Observation",
+    "visible": true,
+  },
+]
+`;
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 2`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observationName",
+    "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Instrument.instrumentName",
+    "name": "Instrument",
+    "visible": true,
+  },
+]
+`;
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 3`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observationName",
+    "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Target.rightAscension",
+    "name": "Right Ascension",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Target.declination",
+    "name": "Declination",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Proposal.proposalCode",
+    "name": "Proposal",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Proposal.principalInvestigatorFamilyName",
+    "name": "PI",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "Instrument.instrumentName",
+    "name": "Instrument",
+    "visible": true,
+  },
+]
+`;

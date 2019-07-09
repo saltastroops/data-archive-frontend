@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Query } from "react-apollo";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
-import { whereCondition } from "../../util/query/whereCondition";
+import { prune, whereCondition } from "../../util/query/whereCondition";
 import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
 import SearchResultsTable from "./results/SearchResultsTable";
+import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 
@@ -32,9 +33,9 @@ interface ISearchPageProps {
  *     The columns for the search results table.
  */
 interface ISearchPageState {
-  columns: string[];
   error: Error | null;
-  resultsTableColumns: ISearchResultsTableColumn[];
+  searchColumns: string[];
+  tableColumns: ISearchResultsTableColumn[];
   where: string;
 }
 
@@ -68,41 +69,17 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   constructor(props: ISearchPageProps) {
     super(props);
 
-    /**
-     * The SearchResultsTable class sets first column's width to the cart
-     * column's width and puts the former underneath the latter. So
-     * effectively the first column is ignored, and a dummy column needs to be
-     * added to compensate for that.
-     */
-    const columns: ISearchResultsTableColumn[] = [
-      { dataKey: "dummyName", name: "dummy", visible: true },
-      {
-        dataKey: DataKeys.OBSERVATION_NAME,
-        name: "Observation",
-        visible: true
-      },
-      { dataKey: DataKeys.PROPOSAL_CODE, name: "Proposal", visible: true },
-      {
-        dataKey: DataKeys.TARGET_TYPE_EXPLANATION,
-        name: "Target Type",
-        visible: true
-      },
-      { dataKey: DataKeys.TARGET_NAME, name: "Target", visible: true },
-      { dataKey: DataKeys.TARGET_RIGHT_ASCENSION, name: "RA", visible: true },
-      { dataKey: DataKeys.TARGET_DECLINATION, name: "RA", visible: true }
-    ];
-
     this.state = {
-      columns: [],
       error: null,
-      resultsTableColumns: columns,
+      searchColumns: [],
+      tableColumns: [],
       where: ""
     };
   }
 
   render() {
     const { cache, screenDimensions } = this.props;
-    const { error: validationError, resultsTableColumns } = this.state;
+    const { error: validationError, tableColumns } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend
@@ -132,7 +109,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     return (
       <Query
         query={DATA_FILES_QUERY}
-        variables={{ where: this.state.where, columns: this.state.columns }}
+        variables={{
+          where: this.state.where,
+          columns: this.state.searchColumns
+        }}
         skip={!this.state.where}
       >
         {({ data, error, loading }: any) => {
@@ -157,13 +137,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                     }}
                   >
                     <SearchResultsTable
-                      columns={resultsTableColumns}
+                      columns={tableColumns}
                       maxWidth={maxResultsTableWidth}
                       searchResults={results}
                     />
                   </div>
                   <SearchResultsTableColumnSelector
-                    columns={resultsTableColumns}
+                    columns={tableColumns}
                     onChange={this.updateResultsTableColumnVisibility}
                   />
                 </>
@@ -187,19 +167,22 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     target: ITarget;
     telescope: any; // fighting TypeScript; telescope might be undefined
   }) => {
-    let where: string;
     try {
-      where = JSON.stringify(whereCondition({ general, target, telescope }));
-      this.setState(() => ({ error: null }));
+      const whereObject = prune(whereCondition({ general, target, telescope }));
+      const where = JSON.stringify(whereObject);
+      const searchColumns = this.searchColumns(whereObject);
+      const tableColumns = searchResultsTableColumns(searchColumns);
+
+      this.setState(() => ({
+        error: null,
+        searchColumns,
+        tableColumns,
+        where
+      }));
     } catch (e) {
       this.setState(() => ({ error: e }));
       return;
     }
-
-    this.setState(() => ({
-      columns: this.searchColumns(),
-      where
-    }));
   };
 
   /**
@@ -250,7 +233,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           files: [metadata],
           id: observationId,
           name: observationName,
-          publicFrom: new Date(metadata[DataKeys.PUBLIC_FROM] as number)
+          publicFrom: new Date(metadata[
+            DataKeys.OBSERVATION_PUBLIC_FROM
+          ] as number)
         };
 
         // Store the observation in the map of of observations (to facilitate
@@ -269,21 +254,44 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     return observations;
   }
 
-  private searchColumns = () => {
-    return [
-      DataKeys.OBSERVATION_ID,
-      DataKeys.PROPOSAL_CODE,
-      DataKeys.TARGET_TYPE_EXPLANATION,
-      DataKeys.TARGET_TYPE_NUMERIC_CODE,
-      DataKeys.PUBLIC_FROM,
-      DataKeys.RSS_EXPOSUSURE_TIME,
-      DataKeys.START_TIME,
-      DataKeys.TARGET_RIGHT_ASCENSION,
-      DataKeys.TARGET_DECLINATION,
-      DataKeys.TARGET_NAME,
-      DataKeys.TELESCOPE_NAME,
-      DataKeys.TELESCOPE_OBSERVATION_ID
-    ];
+  private searchColumns = (whereObject: any): string[] => {
+    const columns = new Set<string>();
+
+    // Parse the where condition recursively for columns
+    function _columnsFromObject(o: any) {
+      if (o.column) {
+        // Store this column
+        columns.add(o.column);
+      } else if (Array.isArray(o)) {
+        for (const item of o) {
+          // Collect the columns in the array items
+          _columnsFromObject(item);
+        }
+      } else if (typeof o === "object") {
+        // Collect the columns in the child objects
+        for (const key of Object.keys(o)) {
+          _columnsFromObject(o[key]);
+        }
+      }
+    }
+
+    // Add some columns which should be queried at any rate
+    columns.add(DataKeys.OBSERVATION_ID);
+    columns.add(DataKeys.PROPOSAL_CODE);
+    columns.add(DataKeys.OBSERVATION_PUBLIC_FROM);
+    columns.add(DataKeys.TELESCOPE_NAME);
+    columns.add(DataKeys.TELESCOPE_OBSERVATION_ID);
+
+    // Collect all columns needed for the where condition
+    _columnsFromObject(whereObject);
+
+    // If the numeric code of the target type is queried, its explanation should
+    // be queried as well
+    if (columns.has(DataKeys.TARGET_TYPE_NUMERIC_CODE)) {
+      columns.add(DataKeys.TARGET_TYPE_EXPLANATION);
+    }
+
+    return Array.from(columns);
   };
 
   /**
@@ -293,7 +301,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     dataKey: string,
     visible: boolean
   ) => {
-    const columns = this.state.resultsTableColumns;
+    const columns = this.state.tableColumns;
     const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
     const updatedColumn = {
       ...columns[columnIndex],
@@ -306,7 +314,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ...columns.slice(columnIndex + 1)
       ];
       this.setState({
-        resultsTableColumns: updatedColumns
+        tableColumns: updatedColumns
       });
     }
   };
