@@ -14,6 +14,7 @@ describe("SearchResultsTableColumns", () => {
         DataKeys.PROPOSAL_PI_FAMILY_NAME,
         DataKeys.TARGET_TYPE_NUMERIC_CODE,
         DataKeys.TARGET_DECLINATION,
+        DataKeys.TELESCOPE_NAME,
         DataKeys.INSTRUMENT,
         DataKeys.PROPOSAL_CODE,
         DataKeys.TELESCOPE_OBSERVATION_ID,

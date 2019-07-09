@@ -68,6 +68,12 @@ Array [
     "visible": true,
   },
   Object {
+    "dataKey": "Telescope.telescopeName",
+    "name": "Telescope",
+    "visible": true,
+    "width": 100,
+  },
+  Object {
     "dataKey": "Instrument.instrumentName",
     "name": "Instrument",
     "visible": true,

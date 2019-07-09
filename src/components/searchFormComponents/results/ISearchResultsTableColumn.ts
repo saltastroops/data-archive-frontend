@@ -14,4 +14,5 @@ export default interface ISearchResultsTableColumn {
   dataKey: string;
   name: string;
   visible: boolean;
+  width?: number;
 }

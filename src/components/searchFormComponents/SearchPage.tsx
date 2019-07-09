@@ -277,6 +277,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     // Add some columns which should be queried at any rate
     columns.add(DataKeys.OBSERVATION_ID);
+    columns.add(DataKeys.OBSERVATION_NIGHT);
     columns.add(DataKeys.PROPOSAL_CODE);
     columns.add(DataKeys.OBSERVATION_PUBLIC_FROM);
     columns.add(DataKeys.TELESCOPE_NAME);

@@ -602,7 +602,7 @@ class SearchResultsTable extends React.Component<
       return SearchResultsTable.CART_COLUMN_WIDTH;
     }
 
-    return 200;
+    return this.visibleColumns[index].width || 200;
   };
 
   /**

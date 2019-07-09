@@ -26,7 +26,7 @@ export function searchResultsTableColumns(
     DataKeys.OBSERVATION_ID
   ];
 
-  // The SearchResultsTable class sets first column's width to the cart
+  // The SearchResultsTable class sets the first column's width to the cart
   // column's width and puts the former underneath the latter. So
   // effectively the first column is ignored, and a dummy column needs to be
   // added to compensate for that.
@@ -80,7 +80,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.TARGET_TYPE_EXPLANATION:
       return { dataKey, name: "TargetType", visible: true };
     case DataKeys.TELESCOPE_NAME:
-      return { dataKey, name: "Telescope", visible: true };
+      return { dataKey, name: "Telescope", visible: true, width: 100 };
     default:
       return { dataKey, name: dataKey, visible: true };
   }
