@@ -110,8 +110,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       <Query
         query={DATA_FILES_QUERY}
         variables={{
-          where: this.state.where,
-          columns: this.state.searchColumns
+          columns: this.state.searchColumns,
+          where: this.state.where
         }}
         skip={!this.state.where}
       >
@@ -278,8 +278,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     // Add some columns which should be queried at any rate
     columns.add(DataKeys.OBSERVATION_ID);
     columns.add(DataKeys.OBSERVATION_NIGHT);
-    columns.add(DataKeys.PROPOSAL_CODE);
     columns.add(DataKeys.OBSERVATION_PUBLIC_FROM);
+    columns.add(DataKeys.PROPOSAL_CODE);
     columns.add(DataKeys.TELESCOPE_NAME);
     columns.add(DataKeys.TELESCOPE_OBSERVATION_ID);
 

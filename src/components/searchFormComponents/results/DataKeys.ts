@@ -5,8 +5,8 @@
  */
 const DataKeys = {
   CART: "cart",
+  DATA_FILE_FILENAME: "DataFile.dataFileName",
   DECLINATION: "Target.declination",
-  FILENAME: "DataFile.dataFileName",
   HRS_ID: "HRS.hrsId",
   HRS_OBSERVATION_MODE: "HRS.observationMode",
   INSTRUMENT: "Instrument.instrumentName",

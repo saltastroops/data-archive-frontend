@@ -520,7 +520,7 @@ class SearchResultsTable extends React.Component<
           return rowDatum[dataKey]
             ? parseFloat(rowDatum[dataKey]).toFixed(4)
             : "";
-        case DataKeys.FILENAME:
+        case DataKeys.DATA_FILE_FILENAME:
           return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
             <button
               className="is-link"
@@ -528,10 +528,10 @@ class SearchResultsTable extends React.Component<
                 this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
               }}
             >
-              {rowDatum[DataKeys.FILENAME]}
+              {rowDatum[DataKeys.DATA_FILE_FILENAME]}
             </button>
           ) : (
-            rowDatum[DataKeys.FILENAME]
+            rowDatum[DataKeys.DATA_FILE_FILENAME]
           );
         case DataKeys.RIGHT_ASCENSION:
           return rowDatum[dataKey]
