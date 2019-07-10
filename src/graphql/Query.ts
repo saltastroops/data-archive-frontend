@@ -33,6 +33,18 @@ const DATA_FILES_QUERY = gql`
   }
 `;
 
+/**
+ * Retrieve data previews
+ */
+const DATA_PREVIEW_QUERY = gql`
+  query DATA_PREVIEW_QUERY($dataFileId: Int!) {
+    dataPreview(dataFileId: $dataFileId) {
+      fitsHeader
+      imageURIs
+    }
+  }
+`;
+
 // TODO UPDATE
 /**
  * Retrieving the user information.
@@ -72,4 +84,9 @@ const USER_DATA_REQUESTS_QUERY = gql`
   }
 `;
 
-export { DATA_FILES_QUERY, USER_DATA_REQUESTS_QUERY, USER_QUERY };
+export {
+  DATA_FILES_QUERY,
+  DATA_PREVIEW_QUERY,
+  USER_DATA_REQUESTS_QUERY,
+  USER_QUERY
+};
