@@ -72,11 +72,21 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
     case DataKeys.TARGET_DECLINATION:
-      return { dataKey, name: "Declination", visible: true };
+      return {
+        dataKey,
+        format: formatNumber(4),
+        name: "Declination",
+        visible: true
+      };
     case DataKeys.TARGET_NAME:
       return { dataKey, name: "Target", visible: true };
     case DataKeys.TARGET_RIGHT_ASCENSION:
-      return { dataKey, name: "Right Ascension", visible: true };
+      return {
+        dataKey,
+        format: formatNumber(4),
+        name: "Right Ascension",
+        visible: true
+      };
     case DataKeys.TARGET_TYPE_EXPLANATION:
       return { dataKey, name: "TargetType", visible: true };
     case DataKeys.TELESCOPE_NAME:
@@ -151,4 +161,21 @@ function sort(columns: ISearchResultsTableColumn[]) {
   };
 
   return [...columns].sort(cmp);
+}
+
+/**
+ * Returns a function which formats strings as a a number with a fixed number of
+ * digits after the decimal point.
+ *
+ * Parameters:
+ * -----------
+ * n: number
+ *     Number of digits after the decimal point.
+ *
+ * Returns:
+ * --------
+ * The format function.
+ */
+function formatNumber(n: number) {
+  return (value: string) => Number(value).toFixed(n);
 }
