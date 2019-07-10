@@ -462,9 +462,32 @@ describe("parseTargetPosition", () => {
 
   // search cone radius
 
+  it("should throw an error if a search cone radius is given without a right ascension", () => {
+    const f = () =>
+      parseTargetPosition({
+        declination: "-15",
+        errors: {},
+        searchConeRadius: "2",
+        searchConeRadiusUnits: "arcminutes"
+      });
+    expect(f).toThrow("a right ascension and a declination must be given");
+  });
+
+  it("should throw an error if a search cone radius is given without a declination", () => {
+    const f = () =>
+      parseTargetPosition({
+        errors: {},
+        rightAscension: "25",
+        searchConeRadius: "2",
+        searchConeRadiusUnits: "arcminutes"
+      });
+    expect(f).toThrow("a right ascension and a declination must be given");
+  });
+
   it("should throw an error if both a coordinate range and a search cone radius are given", () => {
     let f = () =>
       parseTargetPosition({
+        declination: "-15",
         errors: {},
         rightAscension: "3 .. 5",
         searchConeRadius: "2",
@@ -476,6 +499,7 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "3 .. 5",
         errors: {},
+        rightAscension: "124",
         searchConeRadius: "2",
         searchConeRadiusUnits: "arcminutes"
       });

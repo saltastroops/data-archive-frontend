@@ -1,14 +1,13 @@
 import * as React from "react";
-import {
-  IGeneral,
-  ITarget,
-  ITelescope
-} from "../../utils/ObservationQueryParameters";
-import { fakeSearchResults } from "../fakeSearchResults";
+import { Query } from "react-apollo";
+import { DATA_FILES_QUERY } from "../../graphql/Query";
+import { prune, whereCondition } from "../../util/query/whereCondition";
+import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
 import SearchResultsTable from "./results/SearchResultsTable";
+import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 
@@ -28,14 +27,44 @@ interface ISearchPageProps {
 /**
  * The state of the search page.
  *
- * results:
- *     The search results.
- * resultsTableColumns:
- *     The columns for the search results table.
+ * dbColumns:
+ *     The (database) columns whose values should be returned by the search
+ *     query,
+ * error:
+ *     An error. This does not include GraphQL errors.
+ * tableColumns:
+ *     The (table) columns to display in the search results table.
+ *  where:
+ *     JSON string with the where condition for the search query.
  */
 interface ISearchPageState {
-  results: any[];
-  resultsTableColumns: ISearchResultsTableColumn[];
+  databaseColumns: string[];
+  error: Error | null;
+  tableColumns: ISearchResultsTableColumn[];
+  where: string;
+}
+
+interface ISearchResult {
+  id: number;
+  ownedByUser: boolean;
+  metadata: [
+    {
+      name: string;
+      value: boolean | number | string;
+    }
+  ];
+}
+
+export interface IObservation {
+  available: boolean;
+  files: [
+    {
+      [key: string]: boolean | number | string;
+    }
+  ];
+  id: number | string;
+  name: string;
+  publicFrom: Date;
 }
 
 /**
@@ -45,37 +74,17 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   constructor(props: ISearchPageProps) {
     super(props);
 
-    /**
-     * The SearchResultsTable class sets first column's width to the cart
-     * column's width and puts the former underneath the latter. So
-     * effectively the first column is ignored, and a dummy column needs to be
-     * added to compensate for that.
-     */
-    const columns: ISearchResultsTableColumn[] = [
-      { dataKey: "dummyName", name: "dummy", visible: true },
-      {
-        dataKey: DataKeys.OBSERVATION_NAME,
-        name: "Observation",
-        visible: true
-      },
-      { dataKey: DataKeys.PROPOSAL_CODE, name: "Proposal", visible: true },
-      { dataKey: DataKeys.TARGET_NAME, name: "Target", visible: true },
-      { dataKey: DataKeys.RIGHT_ASCENSION, name: "RA", visible: true },
-      { dataKey: DataKeys.DECLINATION, name: "Dec", visible: true },
-      { dataKey: DataKeys.TELESCOPE, name: "Telescope", visible: true },
-      { dataKey: DataKeys.INSTRUMENT, name: "Instrument", visible: true },
-      { dataKey: DataKeys.FILENAME, name: "File", visible: true }
-    ];
-
     this.state = {
-      results: [],
-      resultsTableColumns: columns
+      databaseColumns: [],
+      error: null,
+      tableColumns: [],
+      where: ""
     };
   }
 
   render() {
     const { cache, screenDimensions } = this.props;
-    const { resultsTableColumns, results } = this.state;
+    const { error: validationError, tableColumns } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend
@@ -103,30 +112,51 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
     return (
-      <>
-        <SearchForm cache={cache} search={this.searchArchive} />
-        {results && results.length !== 0 && (
-          <>
-            <div
-              style={{
-                marginLeft: resultsTableContainerMargin,
-                marginRight: resultsTableContainerMargin,
-                width: maxResultsTableWidth
-              }}
-            >
-              <SearchResultsTable
-                columns={resultsTableColumns}
-                maxWidth={maxResultsTableWidth}
-                searchResults={results}
+      <Query
+        query={DATA_FILES_QUERY}
+        variables={{
+          columns: this.state.databaseColumns,
+          where: this.state.where
+        }}
+        skip={!this.state.where}
+      >
+        {({ data, error, loading }: any) => {
+          const results =
+            data && !loading && !error
+              ? this.parseSearchResults(data.dataFiles.dataFiles)
+              : [];
+          return (
+            <>
+              <SearchForm
+                cache={cache}
+                search={this.searchArchive}
+                error={validationError || error}
               />
-            </div>
-            <SearchResultsTableColumnSelector
-              columns={resultsTableColumns}
-              onChange={this.updateResultsTableColumnVisibility}
-            />
-          </>
-        )}
-      </>
+              {results && results.length !== 0 && (
+                <>
+                  <div
+                    style={{
+                      marginLeft: resultsTableContainerMargin,
+                      marginRight: resultsTableContainerMargin,
+                      width: maxResultsTableWidth
+                    }}
+                  >
+                    <SearchResultsTable
+                      columns={tableColumns}
+                      maxWidth={maxResultsTableWidth}
+                      searchResults={results}
+                    />
+                  </div>
+                  <SearchResultsTableColumnSelector
+                    columns={tableColumns}
+                    onChange={this.updateResultsTableColumnVisibility}
+                  />
+                </>
+              )}
+            </>
+          );
+        }}
+      </Query>
     );
   }
 
@@ -140,12 +170,134 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }: {
     general: IGeneral;
     target: ITarget;
-    telescope: ITelescope | undefined;
+    telescope: any; // fighting TypeScript; telescope might be undefined
   }) => {
-    // TODO query the server
-    this.setState(() => ({
-      results: fakeSearchResults(10000)
-    }));
+    try {
+      const whereObject = prune(whereCondition({ general, target, telescope }));
+      const where = JSON.stringify(whereObject);
+      const databaseColumns = this.databaseColumns(whereObject);
+      const tableColumns = searchResultsTableColumns(databaseColumns);
+
+      this.setState(() => ({
+        databaseColumns: databaseColumns,
+        error: null,
+        tableColumns,
+        where
+      }));
+    } catch (e) {
+      this.setState(() => ({ error: e }));
+      return;
+    }
+  };
+
+  /**
+   * Parse search results, grouping them into observations.
+   *
+   * The observations are sorted in the order they are found in the search
+   * results.
+   *
+   * The array of observations is returned.
+   *
+   */
+  private parseSearchResults(results: ISearchResult[]): IObservation[] {
+    const observationsMap = new Map<string, IObservation>();
+    const observations = [];
+
+    const now = Date.now();
+
+    for (const result of results) {
+      // The metadata is a list of name-value pairs. We need to convert this
+      // into a plain object.
+      const metadata = result.metadata.reduce(
+        (o, item) => ({ ...o, [item.name]: item.value }),
+        {} as any
+      );
+
+      const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
+      if (!observationsMap.has(observationId)) {
+        // Create a new observations object. A string of the form "TN - #id" is
+        // used as observation name, where TN is the telescope name and id is
+        // identifier used by the telescope for the observation. If there is
+        // no such identifier for the observation, only the telescope name is
+        // used.
+        // It is assumed that an observation is public if and only if the
+        // currently considered data file is public, and that it is owned by the
+        // user if the currently considered data file is owned by the user.
+        // The assumptions are valid because both properties are indeed defined
+        // per observation (and not per data file).
+        const telescopeName = metadata[DataKeys.TELESCOPE_NAME];
+        const telescopeObservationId =
+          metadata[DataKeys.TELESCOPE_OBSERVATION_ID];
+        const observationName =
+          telescopeName +
+          (telescopeObservationId ? " #" + telescopeObservationId : "");
+        const ownedByUser = result.ownedByUser;
+        const isPublic = now > metadata[DataKeys.START_TIME];
+        const observation: IObservation = {
+          available: ownedByUser || isPublic,
+          files: [metadata],
+          id: observationId,
+          name: observationName,
+          publicFrom: new Date(metadata[
+            DataKeys.OBSERVATION_PUBLIC_FROM
+          ] as number)
+        };
+
+        // Store the observation in the map of of observations (to facilitate
+        // looking it up) and in the array of observations (to keep track of the
+        // correct order
+        observations.push(observation);
+        observationsMap.set(observationId, observation);
+      } else {
+        // Add the data file
+        (observationsMap.get(observationId) as IObservation).files.push(
+          metadata
+        );
+      }
+    }
+
+    return observations;
+  }
+
+  private databaseColumns = (whereObject: any): string[] => {
+    const columns = new Set<string>();
+
+    // Parse the where condition recursively for columns
+    function _columnsFromObject(o: any) {
+      if (o.column) {
+        // Store this column
+        columns.add(o.column);
+      } else if (Array.isArray(o)) {
+        for (const item of o) {
+          // Collect the columns in the array items
+          _columnsFromObject(item);
+        }
+      } else if (typeof o === "object") {
+        // Collect the columns in the child objects
+        for (const key of Object.keys(o)) {
+          _columnsFromObject(o[key]);
+        }
+      }
+    }
+
+    // Add some columns which should be queried at any rate
+    columns.add(DataKeys.OBSERVATION_ID);
+    columns.add(DataKeys.OBSERVATION_NIGHT);
+    columns.add(DataKeys.OBSERVATION_PUBLIC_FROM);
+    columns.add(DataKeys.PROPOSAL_CODE);
+    columns.add(DataKeys.TELESCOPE_NAME);
+    columns.add(DataKeys.TELESCOPE_OBSERVATION_ID);
+
+    // Collect all columns needed for the where condition
+    _columnsFromObject(whereObject);
+
+    // If the numeric code of the target type is queried, its explanation should
+    // be queried as well
+    if (columns.has(DataKeys.TARGET_TYPE_NUMERIC_CODE)) {
+      columns.add(DataKeys.TARGET_TYPE_EXPLANATION);
+    }
+
+    return Array.from(columns);
   };
 
   /**
@@ -155,7 +307,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     dataKey: string,
     visible: boolean
   ) => {
-    const columns = this.state.resultsTableColumns;
+    const columns = this.state.tableColumns;
     const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
     const updatedColumn = {
       ...columns[columnIndex],
@@ -168,7 +320,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ...columns.slice(columnIndex + 1)
       ];
       this.setState({
-        resultsTableColumns: updatedColumns
+        tableColumns: updatedColumns
       });
     }
   };

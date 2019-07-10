@@ -1,5 +1,38 @@
 import gql from "graphql-tag";
 
+/**
+ *
+ */
+const DATA_FILES_QUERY = gql`
+  query DATA_FILES_QUERY(
+    $columns: [String!]!
+    $where: String!
+    $startIndex: Int
+    $limit: Int
+  ) {
+    dataFiles(
+      columns: $columns
+      where: $where
+      startIndex: $startIndex
+      limit: $limit
+    ) {
+      dataFiles {
+        id
+        ownedByUser
+        metadata {
+          name
+          value
+        }
+      }
+      pageInfo {
+        itemsPerPage
+        itemsTotal
+        startIndex
+      }
+    }
+  }
+`;
+
 // TODO UPDATE
 /**
  * Retrieving the user information.
@@ -39,16 +72,4 @@ const USER_DATA_REQUESTS_QUERY = gql`
   }
 `;
 
-/**
- * Retrieve data previews
- */
-const DATA_PREVIEW_QUERY = gql`
-  query DATA_PREVIEW_QUERY($dataFileId: Int!) {
-    dataPreview(dataFileId: $dataFileId) {
-      fitsHeader
-      imageURIs
-    }
-  }
-`;
-
-export { USER_DATA_REQUESTS_QUERY, DATA_PREVIEW_QUERY, USER_QUERY };
+export { DATA_FILES_QUERY, USER_DATA_REQUESTS_QUERY, USER_QUERY };
