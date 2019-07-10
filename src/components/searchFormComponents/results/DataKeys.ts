@@ -5,6 +5,7 @@ const DataKeys = {
   CART: "cart",
   DECLINATION: "declination",
   FILENAME: "filename",
+  FILE_ID: "id",
   INSTRUMENT: "instrument",
   OBSERVATION_NAME: "observationName",
   PREVIEW_IMAGE_URL: "url",

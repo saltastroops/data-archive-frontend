@@ -39,4 +39,16 @@ const USER_DATA_REQUESTS_QUERY = gql`
   }
 `;
 
-export { USER_DATA_REQUESTS_QUERY, USER_QUERY };
+/**
+ * Retrieve data previews
+ */
+const DATA_PREVIEW_QUERY = gql`
+  query DATA_PREVIEW_QUERY($dataFileId: Int!) {
+    dataPreview(dataFileId: $dataFileId) {
+      fitsHeader
+      imageURIs
+    }
+  }
+`;
+
+export { USER_DATA_REQUESTS_QUERY, DATA_PREVIEW_QUERY, USER_QUERY };

@@ -35,7 +35,7 @@ interface ISearchResultsTableProps {
 
 interface ISearchResultsTableState {
   cart: Cart;
-  image: string;
+  id: number;
   open: boolean;
   sortBy?: string;
   sortDirection?: SortDirectionType;
@@ -102,6 +102,11 @@ const CartContainer = styled.div<ICartContainerProps>`
   left: 0;
   top: ${props => props.top}px;
   z-index: 10;
+`;
+
+const Filename = styled.p`
+  color: hsl(217, 71%, 53%);
+  cursor: pointer;
 `;
 
 /**
@@ -247,7 +252,7 @@ class SearchResultsTable extends React.Component<
     // Set the initial state
     this.state = {
       cart,
-      image: "",
+      id: 0,
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
@@ -274,18 +279,14 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    const { image, open } = this.state;
+    const { id, open } = this.state;
 
     // Calculate the table height
     const height = this.tableHeight();
 
     return (
       <>
-        <ImageModal
-          closeModal={this.closePreviewModal}
-          image={{ url: image, alt: "Some text to show" }}
-          open={open}
-        />
+        <ImageModal id={id} closeModal={this.closePreviewModal} open={open} />
         <Mutation
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}
@@ -518,17 +519,14 @@ class SearchResultsTable extends React.Component<
         case DataKeys.DECLINATION:
           return rowDatum[dataKey].toFixed(4);
         case DataKeys.FILENAME:
-          return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
-            <button
-              className="is-link"
+          return (
+            <Filename
               onClick={() => {
-                this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
+                this.openPreviewModal(rowDatum[DataKeys.FILE_ID]);
               }}
             >
               {rowDatum[DataKeys.FILENAME]}
-            </button>
-          ) : (
-            rowDatum[DataKeys.FILENAME]
+            </Filename>
           );
         case DataKeys.RIGHT_ASCENSION:
           return rowDatum[dataKey].toFixed(4);
@@ -585,7 +583,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    this.setState({ open: false, image: "" });
+    this.setState({ open: false, id: 0 });
   };
 
   /**
@@ -641,8 +639,8 @@ class SearchResultsTable extends React.Component<
   /**
    * Open the preview modal.
    */
-  private openPreviewModal = (url: string) => {
-    this.setState({ open: true, image: url });
+  private openPreviewModal = (id: number) => {
+    this.setState({ open: true, id });
   };
 
   /**
