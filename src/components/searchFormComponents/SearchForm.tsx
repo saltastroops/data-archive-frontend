@@ -29,6 +29,8 @@ import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
  *
  * cache:
  *     The cache for storing the form content.
+ * error:
+ *     An error.
  * search:
  *     The function for carrying out the search. It must expect an object with
  *     the general, target and telescope data as its only argument.

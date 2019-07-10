@@ -27,14 +27,19 @@ interface ISearchPageProps {
 /**
  * The state of the search page.
  *
- * results:
- *     The search results.
- * resultsTableColumns:
- *     The columns for the search results table.
+ * dbColumns:
+ *     The (database) columns whose values should be returned by the search
+ *     query,
+ * error:
+ *     An error. This does not include GraphQL errors.
+ * tableColumns:
+ *     The (table) columns to display in the search results table.
+ *  where:
+ *     JSON string with the where condition for the search query.
  */
 interface ISearchPageState {
+  dbColumns: string[];
   error: Error | null;
-  searchColumns: string[];
   tableColumns: ISearchResultsTableColumn[];
   where: string;
 }
@@ -71,7 +76,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     this.state = {
       error: null,
-      searchColumns: [],
+      dbColumns: [],
       tableColumns: [],
       where: ""
     };
@@ -110,7 +115,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       <Query
         query={DATA_FILES_QUERY}
         variables={{
-          columns: this.state.searchColumns,
+          columns: this.state.dbColumns,
           where: this.state.where
         }}
         skip={!this.state.where}
@@ -175,7 +180,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
       this.setState(() => ({
         error: null,
-        searchColumns,
+        dbColumns: searchColumns,
         tableColumns,
         where
       }));
