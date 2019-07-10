@@ -38,7 +38,7 @@ interface ISearchPageProps {
  *     JSON string with the where condition for the search query.
  */
 interface ISearchPageState {
-  dbColumns: string[];
+  databaseColumns: string[];
   error: Error | null;
   tableColumns: ISearchResultsTableColumn[];
   where: string;
@@ -75,8 +75,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     super(props);
 
     this.state = {
+      databaseColumns: [],
       error: null,
-      dbColumns: [],
       tableColumns: [],
       where: ""
     };
@@ -115,7 +115,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       <Query
         query={DATA_FILES_QUERY}
         variables={{
-          columns: this.state.dbColumns,
+          columns: this.state.databaseColumns,
           where: this.state.where
         }}
         skip={!this.state.where}
@@ -175,12 +175,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     try {
       const whereObject = prune(whereCondition({ general, target, telescope }));
       const where = JSON.stringify(whereObject);
-      const searchColumns = this.searchColumns(whereObject);
-      const tableColumns = searchResultsTableColumns(searchColumns);
+      const databaseColumns = this.databaseColumns(whereObject);
+      const tableColumns = searchResultsTableColumns(databaseColumns);
 
       this.setState(() => ({
+        databaseColumns: databaseColumns,
         error: null,
-        dbColumns: searchColumns,
         tableColumns,
         where
       }));
@@ -259,7 +259,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     return observations;
   }
 
-  private searchColumns = (whereObject: any): string[] => {
+  private databaseColumns = (whereObject: any): string[] => {
     const columns = new Set<string>();
 
     // Parse the where condition recursively for columns
