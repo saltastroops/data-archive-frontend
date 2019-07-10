@@ -283,8 +283,8 @@ class SearchResultsTable extends React.Component<
     return (
       <>
         <ImageModal
+          dataFileId={1119}
           closeModal={this.closePreviewModal}
-          image={{ url: image, alt: "Some text to show" }}
           open={open}
         />
         <Mutation

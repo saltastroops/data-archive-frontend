@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { DATA_PREVIEW_QUERY } from "../../../graphql/Query";
 
 interface IImageModalProps {
-  id: number;
-  open: boolean;
   closeModal: () => void;
+  dataFileId: number;
+  open: boolean;
 }
 
 interface IImageModalState {
@@ -20,14 +20,15 @@ interface IImageModalState {
 const TabList = styled.li`
   background-color: transparent;
   border: none;
-  cursor: pointer;
   display: inline;
-  margin-right: 5px;
+  margin-right: 10px;
   padding: 5;
 `;
 
-const Tab = styled.p`
+const Tab = styled.p<{ bold: boolean }>`
   font-size: 25px;
+  font-weight: ${props => (props.bold ? "bold" : "normal")};
+  cursor: ${props => props.color && "pointer"};
   color: ${props => props.color};
 `;
 
@@ -35,7 +36,7 @@ const PreviewFigure = styled.figure.attrs({
   className: "image is-2by2"
 })`
   && {
-    margin-bottom: 10px;
+    height: 100%;
   }
 `;
 
@@ -48,16 +49,17 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
   };
 
   render() {
-    const { id, open, closeModal } = this.props;
+    const { dataFileId, open, closeModal } = this.props;
     const { headerTab, imageTab } = this.state.activeTab;
 
     return (
-      <Modal open={open} onClose={closeModal} center={true}>
+      <Modal open={open} onClose={closeModal} center={true} blockScroll={false}>
         <div className="tabs">
           <ul>
             <TabList>
               <Tab
-                color={imageTab ? "hsl(217, 71%, 53%)" : undefined}
+                color={imageTab ? undefined : "hsl(217, 71%, 53%)"}
+                bold={imageTab}
                 onClick={() =>
                   this.setState({
                     activeTab: { headerTab: false, imageTab: true }
@@ -69,7 +71,8 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
             </TabList>
             <TabList>
               <Tab
-                color={headerTab ? "hsl(217, 71%, 53%)" : undefined}
+                color={headerTab ? undefined : "hsl(217, 71%, 53%)"}
+                bold={headerTab}
                 onClick={() =>
                   this.setState({
                     activeTab: { headerTab: true, imageTab: false }
@@ -83,7 +86,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
         </div>
         <Query
           query={DATA_PREVIEW_QUERY}
-          variables={{ dataFileId: id }}
+          variables={{ dataFileId }}
           skip={!open}
         >
           {({ data, loading, error }: any) => {
@@ -107,27 +110,22 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
 
             const { fitsHeader, imageURIs } = data.dataPreview;
 
-            if (imageTab) {
-              return imageURIs.map((image: string) => (
-                <>
-                  <PreviewFigure key={image}>
-                    <img
-                      className="card-image"
-                      id={image}
-                      src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
-                      alt={image}
-                    />
-                  </PreviewFigure>
-                  <hr />
-                </>
-              ));
-            }
-
-            if (headerTab) {
-              return <pre>{fitsHeader}</pre>;
-            }
-
-            return null;
+            return (
+              <div style={{ maxHeight: 600, overflowY: "auto" }}>
+                {imageTab &&
+                  imageURIs.map((image: string) => (
+                    <PreviewFigure key={image}>
+                      <img
+                        className="card-image"
+                        id={image}
+                        src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
+                        alt={image}
+                      />
+                    </PreviewFigure>
+                  ))}
+                {headerTab && <pre>{fitsHeader}</pre>}
+              </div>
+            );
           }}
         </Query>
       </Modal>
