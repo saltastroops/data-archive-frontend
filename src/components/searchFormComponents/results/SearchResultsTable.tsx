@@ -286,7 +286,11 @@ class SearchResultsTable extends React.Component<
 
     return (
       <>
-        <ImageModal id={id} closeModal={this.closePreviewModal} open={open} />
+        <ImageModal
+          dataFileId={1119}
+          closeModal={this.closePreviewModal}
+          open={open}
+        />
         <Mutation
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}

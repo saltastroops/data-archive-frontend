@@ -7,9 +7,9 @@ import styled from "styled-components";
 import { DATA_PREVIEW_QUERY } from "../../../graphql/Query";
 
 interface IImageModalProps {
-  id: number;
-  open: boolean;
   closeModal: () => void;
+  dataFileId: number;
+  open: boolean;
 }
 
 interface IImageModalState {
@@ -50,7 +50,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
   };
 
   render() {
-    const { id, open, closeModal } = this.props;
+    const { dataFileId, open, closeModal } = this.props;
     const { headerTab, imageTab } = this.state.activeTab;
 
     return (
@@ -85,7 +85,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
         </div>
         <Query
           query={DATA_PREVIEW_QUERY}
-          variables={{ dataFileId: id }}
+          variables={{ dataFileId }}
           skip={!open}
         >
           {({ data, loading, error }: any) => {
@@ -111,7 +111,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
 
             if (imageTab) {
               return (
-                <Carousel>
+                <Carousel showThumbs={false}>
                   {imageURIs.map((image: string) => (
                     <PreviewFigure key={image}>
                       <img
