@@ -1,7 +1,5 @@
 import * as React from "react";
 import { Query } from "react-apollo";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Modal from "react-responsive-modal";
 import styled from "styled-components";
 import { DATA_PREVIEW_QUERY } from "../../../graphql/Query";
@@ -114,20 +112,17 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
 
             return (
               <div style={{ maxHeight: 600, overflowY: "auto" }}>
-                {imageTab && (
-                  <Carousel showThumbs={false}>
-                    {imageURIs.map((image: string) => (
-                      <PreviewFigure key={image}>
-                        <img
-                          className="card-image"
-                          id={image}
-                          src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
-                          alt={image}
-                        />
-                      </PreviewFigure>
-                    ))}
-                  </Carousel>
-                )}
+                {imageTab &&
+                  imageURIs.map((image: string) => (
+                    <PreviewFigure key={image}>
+                      <img
+                        className="card-image"
+                        id={image}
+                        src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
+                        alt={image}
+                      />
+                    </PreviewFigure>
+                  ))}
                 {headerTab && <pre>{fitsHeader}</pre>}
               </div>
             );
