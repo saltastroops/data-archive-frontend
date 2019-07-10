@@ -103,7 +103,7 @@ exports[`TargetForm should render correctly 1`] = `
       </p>
       <SelectField
         data-test="radius-units-select"
-        name="radiusUnits"
+        name="searchConeRadiusUnits"
         onChange={[Function]}
         value="arcseconds"
       >
@@ -242,7 +242,7 @@ exports[`TargetForm should render correctly 2`] = `
       </p>
       <SelectField
         data-test="radius-units-select"
-        name="radiusUnits"
+        name="searchConeRadiusUnits"
         onChange={[Function]}
         value="arcseconds"
       >
@@ -382,7 +382,7 @@ exports[`TargetForm should render correctly 3`] = `
       </p>
       <SelectField
         data-test="radius-units-select"
-        name="radiusUnits"
+        name="searchConeRadiusUnits"
         onChange={[Function]}
         value="arcminutes"
       >

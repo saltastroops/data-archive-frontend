@@ -23,6 +23,7 @@ import {
   telescopeWhereCondition,
   whereCondition
 } from "../util/query/whereCondition";
+import { TargetType } from "../utils/TargetType";
 
 describe("whereCondition", () => {
   it("should map query parameters correctly", () => {
@@ -177,6 +178,30 @@ describe("targetWhereCondition", () => {
       })
     ).toMatchSnapshot();
   });
+
+  it("should map target types to starts with conditions", () => {
+    expect(
+      targetWhereCondition({ errors: {}, targetTypes: new Set<TargetType>([]) })
+    );
+    expect(
+      targetWhereCondition({
+        errors: {},
+        targetTypes: new Set<TargetType>(["Galaxy"])
+      })
+    );
+    expect(
+      targetWhereCondition({
+        errors: {},
+        targetTypes: new Set<TargetType>(["Galaxy", "Star"])
+      })
+    );
+    expect(
+      targetWhereCondition({
+        errors: {},
+        targetTypes: new Set<TargetType>(["ISM", "Solar System Body", "Galaxy"])
+      })
+    );
+  });
 });
 
 describe("telescopeWhereCondition", () => {
@@ -209,7 +234,10 @@ describe("saltWhereCondition", () => {
       name: "SALT"
     };
     const expected = {
-      AND: [{ NOT: { IS_NULL: SALT_ID } }, salticamWhereCondition(salticam)]
+      AND: [
+        { EQUALS: { column: "Telescope.telescopeName", value: "SALT" } },
+        salticamWhereCondition(salticam)
+      ]
     };
     expect(saltWhereCondition(salt)).toEqual(expected);
   });
@@ -225,7 +253,10 @@ describe("saltWhereCondition", () => {
       name: "SALT"
     };
     const expected = {
-      AND: [{ NOT: { IS_NULL: SALT_ID } }, rssWhereCondition(rss)]
+      AND: [
+        { EQUALS: { column: "Telescope.telescopeName", value: "SALT" } },
+        rssWhereCondition(rss)
+      ]
     };
     expect(saltWhereCondition(salt)).toEqual(expected);
   });
@@ -241,7 +272,10 @@ describe("saltWhereCondition", () => {
       name: "SALT"
     };
     const expected = {
-      AND: [{ NOT: { IS_NULL: SALT_ID } }, hrsWhereCondition(hrs)]
+      AND: [
+        { EQUALS: { column: "Telescope.telescopeName", value: "SALT" } },
+        hrsWhereCondition(hrs)
+      ]
     };
     expect(saltWhereCondition(salt)).toEqual(expected);
   });

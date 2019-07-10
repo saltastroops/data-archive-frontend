@@ -45,9 +45,9 @@ export default class TargetTypesSelector extends React.Component<
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedTargetTypes = new Set<TargetType>(this.props.targetTypes);
     if (e.target.checked) {
-      updatedTargetTypes.add(e.target.value);
+      updatedTargetTypes.add(e.target.value as TargetType);
     } else {
-      updatedTargetTypes.delete(e.target.value);
+      updatedTargetTypes.delete(e.target.value as TargetType);
     }
 
     this.props.onChange(updatedTargetTypes);

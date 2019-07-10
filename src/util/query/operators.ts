@@ -67,12 +67,31 @@ export function greaterEqual(
     GREATER_EQUAL: { column, value }
   };
 }
+
 export function contains(
   column: string,
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
     CONTAINS: { column, value }
+  };
+}
+
+export function startsWith(
+  column: string,
+  value: DATABASE_VALUE
+): IWhereCondition {
+  return {
+    STARTS_WITH: { column, value }
+  };
+}
+
+export function endsWith(
+  column: string,
+  value: DATABASE_VALUE
+): IWhereCondition {
+  return {
+    ENDS_WITH: { column, value }
   };
 }
 

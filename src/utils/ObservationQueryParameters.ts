@@ -95,6 +95,8 @@ export type SearchConeRadiusUnits = "arcseconds" | "arcminutes" | "degrees";
  *     searchConeRadiusUnits.
  * searchConeRadiusUnits:
  *     Units of the search cone radius given by searchConeRadius.
+ * targetTypes:
+ *     Target types.
  *
  */
 export interface ITarget {

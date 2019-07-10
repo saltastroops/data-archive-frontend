@@ -194,7 +194,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             <p>Radius units</p>
             <SelectField
               data-test="radius-units-select"
-              name={"radiusUnits"}
+              name={"searchConeRadiusUnits"}
               onChange={handleChangeEvent}
               value={target.searchConeRadiusUnits}
             >
@@ -255,6 +255,7 @@ export const validatedTarget = async (target: ITarget) => {
       ? ""
       : `Target "${target.name}" Could not be resolved.`;
   }
+
   // Return the search parameters with the errors found
   return {
     ...target,

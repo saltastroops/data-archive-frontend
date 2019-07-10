@@ -17,12 +17,37 @@ export const MAXIMUM_COORDINATE_SEARCH_RADIUS = 10;
  * Parse the given string as a date, and return the date as a string as a
  * Moment instance.
  *
- * Thec string must have the format 'YYYY-MM-DD', and it must be a valid date.
+ * The date must be either of the form "yyyy-mm-dd", "dd mmmm yyyy" or
+ * "mmmm dd, yyyy", where mmmm is the month's full or abbreviated name.
+ * Single-digit days may (but need not) have a leading zero.
+ *
+ * Examples of valid date strings:
+ *
+ * 2019-07-08
+ * Jul 7, 2019
+ * Jul 07, 2019
+ * 7 Jul 2019
+ * 07 Jul 2019
+ * July 7, 2019
+ * July 07, 2019
+ * 7 July 2019
+ * 07 July 2019
  *
  * The date is assumed to be given as UTC.
  */
 export function parseDate(date: string) {
-  const t = moment.utc(date, "YYYY-MM-DD");
+  const dateFormats = [
+    "YYYY-MM-DD", // 2019-10-04
+    "MMM D, YYYY", // Oct 4, 2019
+    "MMM DD, YYYY", // Oct 04, 2019
+    "MMMM D, YYYY", // October 4, 2019
+    "MMMM DD, YYYY", // October 04, 2019
+    "D MMM YYYY", // 4 Oct 2019
+    "DD MMM YYYY", // 04 Oct 2019
+    "D MMMM YYYY", // 4 October 2019
+    "DD MMMM YYYY" // 04 October 2019
+  ];
+  const t = moment.utc(date, dateFormats, true);
   if (!t.isValid()) {
     throw new Error(`${date} is not a valid date.`);
   }
@@ -48,7 +73,7 @@ export function parseDate(date: string) {
  *    of a search cone.
  * 5. Default values are an empty array for the right ascensions and
  *    declinations and 0 for the search cone radius.
- * 56. If the lower limit is greater than the upper limit in a declination range,
+ * 6. If the lower limit is greater than the upper limit in a declination range,
  *    the limits are swapped. However, the order of the limits is not changed
  *    for right ascension ranges.
  *
@@ -69,6 +94,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   let rightAscensionValues: number[] = [];
   const rightAscension = trim(target.rightAscension);
   if (rightAscension) {
+    // Split ranges by '..' (or '..' or '...', ...)
     const rightAscensions = rightAscension.split(/\s*\.{2,}\s*/);
 
     // Check that there is a right ascension or a right ascension range
@@ -115,6 +141,14 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     }
   }
 
+  // A search cone radius requires both a right ascension and a declination
+  const searchConeRadius = trim(target.searchConeRadius);
+  if (searchConeRadius && (!rightAscension || !declination)) {
+    throw new Error(
+      "Both a right ascension and a declination must be given if a cone search radius is specified."
+    );
+  }
+
   // There is no need to proceed if there are no coordinates
   if (!rightAscension && !declination) {
     return {
@@ -124,8 +158,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     };
   }
 
-  // Cpoordinate ranges and a search cone radius are mutually exclusive
-  const searchConeRadius = trim(target.searchConeRadius);
+  // Coordinate ranges and a search cone radius are mutually exclusive
   if (
     searchConeRadius &&
     (rightAscensionValues.length > 1 || declinationValues.length > 1)

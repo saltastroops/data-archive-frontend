@@ -49,6 +49,7 @@ class SearchResultsTableHeader extends React.Component<
 
   render() {
     const { children, dataKey, sortBy, style } = this.props;
+
     const showSortIndicator = sortBy === dataKey;
 
     return (

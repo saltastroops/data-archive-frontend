@@ -5,7 +5,7 @@ Object {
   "AND": Array [
     Object {
       "CONTAINS": Object {
-        "column": "A.PrincipalInvestigator",
+        "column": "Proposal.principalInvestigatorFamilyName",
         "value": "Doe",
       },
     },
@@ -18,7 +18,7 @@ Object {
   "AND": Array [
     Object {
       "CONTAINS": Object {
-        "column": "A.ProposalCode",
+        "column": "Proposal.proposalCode",
         "value": "2-SCI",
       },
     },
@@ -30,15 +30,9 @@ exports[`generalWhereCondition should map an observation night to a greater equa
 Object {
   "AND": Array [
     Object {
-      "GREATER_THAN": Object {
-        "column": "A.ObsNight",
+      "EQUALS": Object {
+        "column": "Observation.night",
         "value": "2019-02-17",
-      },
-    },
-    Object {
-      "LESS_THAN": Object {
-        "column": "A.ObsNight",
-        "value": "2019-02-18",
       },
     },
   ],
@@ -49,26 +43,20 @@ exports[`generalWhereCondition should map input data correctly 1`] = `
 Object {
   "AND": Array [
     Object {
-      "GREATER_THAN": Object {
-        "column": "A.ObsNight",
+      "EQUALS": Object {
+        "column": "Observation.night",
         "value": "2019-05-13",
       },
     },
     Object {
-      "LESS_THAN": Object {
-        "column": "A.ObsNight",
-        "value": "2019-05-14",
-      },
-    },
-    Object {
       "CONTAINS": Object {
-        "column": "A.PrincipalInvestigator",
+        "column": "Proposal.principalInvestigatorFamilyName",
         "value": "Sipho",
       },
     },
     Object {
       "CONTAINS": Object {
-        "column": "A.ProposalCode",
+        "column": "Proposal.proposalCode",
         "value": "2019-1-SCI-042",
       },
     },
@@ -82,10 +70,10 @@ Object {
     Object {
       "WITHIN_RADIUS": Object {
         "declination": -5,
-        "declinationColumn": "Target.Declination",
+        "declinationColumn": "Target.declination",
         "radius": 0.04,
         "rightAscension": 17,
-        "rightAscensionColumn": "Target.RightAscension",
+        "rightAscensionColumn": "Target.rightAscension",
       },
     },
   ],
@@ -97,13 +85,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -0.55,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -0.45,
       },
     },
@@ -116,25 +104,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 5,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 9,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -0.55,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -0.45,
       },
     },
@@ -147,13 +135,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 12,
       },
     },
@@ -166,13 +154,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 12,
       },
     },
@@ -185,25 +173,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 115,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 200,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 12,
       },
     },
@@ -216,13 +204,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 12.95,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 13.05,
       },
     },
@@ -235,25 +223,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 12.95,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 13.05,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 12,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": 13,
       },
     },
@@ -266,13 +254,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 4,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 355,
       },
     },
@@ -289,13 +277,13 @@ Object {
           "AND": Array [
             Object {
               "GREATER_EQUAL": Object {
-                "column": "Target.RightAscension",
+                "column": "Target.rightAscension",
                 "value": 355,
               },
             },
             Object {
               "LESS_EQUAL": Object {
-                "column": "Target.RightAscension",
+                "column": "Target.rightAscension",
                 "value": 360,
               },
             },
@@ -305,13 +293,13 @@ Object {
           "AND": Array [
             Object {
               "GREATER_EQUAL": Object {
-                "column": "Target.RightAscension",
+                "column": "Target.rightAscension",
                 "value": 0,
               },
             },
             Object {
               "LESS_EQUAL": Object {
-                "column": "Target.RightAscension",
+                "column": "Target.rightAscension",
                 "value": 4,
               },
             },
@@ -328,25 +316,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 4,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.RightAscension",
+        "column": "Target.rightAscension",
         "value": 355,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -11,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.Declination",
+        "column": "Target.declination",
         "value": -12,
       },
     },

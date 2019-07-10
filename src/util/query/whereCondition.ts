@@ -1,14 +1,15 @@
+import DataKeys from "../../components/searchFormComponents/results/DataKeys";
+import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
   and,
   contains,
   equals,
   greaterEqual,
-  greaterThan,
   isNull,
   lessEqual,
-  lessThan,
   not,
   or,
+  startsWith,
   withinRadius
 } from "./operators";
 import { parseDate, parseTargetPosition, trim } from "./parse";
@@ -23,30 +24,6 @@ import {
   ITelescope,
   IWhereCondition
 } from "./types";
-
-const GENERAL_OBSERVATION_NIGHT = "A.ObsNight";
-
-const GENERAL_PRINCIPAL_INVESTIGATOR = "A.PrincipalInvestigator";
-
-const GENERAL_PROPOSAL_CODE = "A.ProposalCode";
-
-const TARGET_RIGHT_ASCENSION = "Target.RightAscension";
-
-const TARGET_DECLINATION = "Target.Declination";
-
-export const SALT_ID = "SALT.ID";
-
-export const SALTICAM_ID = "SALTICAM.ID";
-
-const SALTICAM_DETECTOR_MODE = "SALTICAM.DetectorMode";
-
-export const RSS_ID = "RSS.ID";
-
-const RSS_DETECTOR_MODE = "RSS.DetectorMode";
-
-export const HRS_ID = "HRS.ID";
-
-const HRS_MODE = "HRS.Mode";
 
 /**
  * Map observation query parameters to a where condition.
@@ -96,6 +73,74 @@ export function whereCondition(queryParameters: IObservationQueryParameters) {
 }
 
 /**
+ * Recursively remove all AND and OR conditions which have an empty array of child
+ * conditions.
+ *
+ * For example, the condition
+ *
+ * {
+ *   AND: [
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *     { OR: [] },
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *   ]
+ * }
+ *
+ * is pruned to
+ *
+ * {
+ *   AND: [
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *     { EQUALS: { column: 'A.a', value: 14 } },
+ *   ]
+ * }
+ *
+ * A copy of the original condition is pruned and returned.
+ *
+ * Parameters:
+ * -----------
+ * condition: object
+ *     The condition to prune.
+ *
+ * Returns:
+ * --------
+ * pruned:
+ *     The pruned condition.
+ */
+export function prune(condition: object) {
+  if (typeof condition !== "object") {
+    throw new Error("The condition must be an object.");
+  }
+
+  function _prune(o: any) {
+    if (Array.isArray(o)) {
+      // Prune all array itens and then remove all empty objects.
+      const pruned: any[] = o
+        .map(item => _prune(item))
+        .filter((k: any) => Object.keys(k).length);
+      return pruned;
+    } else if (typeof o === "object") {
+      // Prune all properties, and create an object with these (pruned)
+      // properties. Pruned AND or OR conditions are only included if they have
+      // a conditions array with at least one item.
+      const pruned: any = {};
+      for (const p of Object.keys(o)) {
+        const v = _prune(o[p]);
+        if (!["AND", "OR"].includes(p) || v.length) {
+          pruned[p] = v;
+        }
+      }
+      return pruned;
+    } else {
+      // Return the object as is.
+      return o;
+    }
+  }
+
+  return _prune(condition);
+}
+
+/**
  * Map general query parameters to a where condition.
  *
  * Parameters:
@@ -114,26 +159,29 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   // Night when the observation was taken
   const observationNight = trim(general.observationNight);
   if (observationNight) {
-    const startTime = parseDate(observationNight).add(14, "hours"); // noon SAST
-    const startTimeString = startTime.format("YYYY-MM-DD");
-    const endTime = startTime.add(1, "day");
-    const endTimeString = endTime.format("YYYY-MM-DD");
-    conditions.push(greaterThan(GENERAL_OBSERVATION_NIGHT, startTimeString));
-    conditions.push(lessThan(GENERAL_OBSERVATION_NIGHT, endTimeString));
+    const night = parseDate(observationNight); // noon SAST
+    const nightString = night.format("YYYY-MM-DD");
+    conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightString));
   }
 
   // Principal Investigator
   const principalInvestigator = trim(general.principalInvestigator);
   if (principalInvestigator) {
     conditions.push(
-      contains(GENERAL_PRINCIPAL_INVESTIGATOR, principalInvestigator)
+      contains(DataKeys.PROPOSAL_PI_FAMILY_NAME, principalInvestigator)
     );
   }
 
   // Proposal code
   const proposalCode = trim(general.proposalCode);
   if (proposalCode) {
-    conditions.push(contains(GENERAL_PROPOSAL_CODE, proposalCode));
+    conditions.push(contains(DataKeys.PROPOSAL_CODE, proposalCode));
+  }
+
+  // Proposal title
+  const proposalTitle = trim(general.proposalTitle);
+  if (proposalTitle) {
+    conditions.push(contains(DataKeys.PROPOSAL_TITLE, proposalTitle));
   }
 
   return and(conditions);
@@ -166,10 +214,10 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     conditions.push(
       withinRadius({
         declination: declinations[0],
-        declinationColumn: TARGET_DECLINATION,
+        declinationColumn: DataKeys.TARGET_DECLINATION,
         radius,
         rightAscension: rightAscensions[0],
-        rightAscensionColumn: TARGET_RIGHT_ASCENSION
+        rightAscensionColumn: DataKeys.TARGET_RIGHT_ASCENSION
       })
     );
   } else {
@@ -178,19 +226,19 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
       const ra1 = rightAscensions[0];
       const ra2 = rightAscensions[1];
       if (ra1 < ra2) {
-        conditions.push(greaterEqual(TARGET_RIGHT_ASCENSION, ra1));
-        conditions.push(lessEqual(TARGET_RIGHT_ASCENSION, ra2));
+        conditions.push(greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra1));
+        conditions.push(lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2));
       } else {
         conditions.push(
           // The interval includes the "jump" from 360 to 0 degrees
           or([
             and([
-              greaterEqual(TARGET_RIGHT_ASCENSION, ra1),
-              lessEqual(TARGET_RIGHT_ASCENSION, 360)
+              greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra1),
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, 360)
             ]),
             and([
-              greaterEqual(TARGET_RIGHT_ASCENSION, 0),
-              lessEqual(TARGET_RIGHT_ASCENSION, ra2)
+              greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, 0),
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2)
             ])
           ])
         );
@@ -199,9 +247,26 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
 
     // Declination range
     if (declinations.length) {
-      conditions.push(greaterEqual(TARGET_DECLINATION, declinations[0]));
-      conditions.push(lessEqual(TARGET_DECLINATION, declinations[1]));
+      conditions.push(
+        greaterEqual(DataKeys.TARGET_DECLINATION, declinations[0])
+      );
+      conditions.push(lessEqual(DataKeys.TARGET_DECLINATION, declinations[1]));
     }
+  }
+
+  // Target type
+  // The different target types have numeric codes starting with different
+  // numbers (such as "15" for galaxies or "50" for solar system bodies, which
+  // is how we query for them.
+  const targetTypes = target.targetTypes;
+  if (targetTypes && targetTypes.size > 0) {
+    const targetTypeConditions = Array.from(targetTypes).map(targetType =>
+      startsWith(
+        DataKeys.TARGET_TYPE_NUMERIC_CODE,
+        TARGET_TYPE_CODES.get(targetType) + "."
+      )
+    );
+    conditions.push(or(targetTypeConditions));
   }
 
   return and(conditions);
@@ -221,8 +286,12 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
  *     The where condition for the query parameters.
  */
 export function telescopeWhereCondition(
-  telescope: ITelescope
+  telescope: ITelescope | undefined
 ): IWhereCondition {
+  if (!telescope) {
+    return and([]);
+  }
+
   const conditions: IWhereCondition[] = [];
 
   // Telescope-specific conditions
@@ -256,7 +325,7 @@ export function saltWhereCondition(salt: ISALT) {
   const conditions: IWhereCondition[] = [];
 
   // SALT is used
-  conditions.push(not(isNull(SALT_ID)));
+  conditions.push(equals(DataKeys.TELESCOPE_NAME, "SALT"));
 
   // Instrument
   const instrument = salt.instrument;
@@ -294,16 +363,16 @@ export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // SALTICAM is used
-  conditions.push(not(isNull(SALTICAM_ID)));
+  conditions.push(not(isNull(DataKeys.SALTICAM_ID)));
 
   // Detector mode
   const detectorMode = trim(salticam.detectorMode);
   switch (detectorMode) {
     case "Normal":
-      conditions.push(equals(SALTICAM_DETECTOR_MODE, "NORMAL"));
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "NORMAL"));
       break;
     case "Slot Mode":
-      conditions.push(equals(SALTICAM_DETECTOR_MODE, "SLOT MODE"));
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
   }
 
   return and(conditions);
@@ -326,16 +395,16 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // RSS is used
-  conditions.push(not(isNull(RSS_ID)));
+  conditions.push(not(isNull(DataKeys.RSS_ID)));
 
   // Detector mode
   const detectorMode = trim(rss.detectorMode);
   switch (detectorMode) {
     case "Normal":
-      conditions.push(equals(RSS_DETECTOR_MODE, "NORMAL"));
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "NORMAL"));
       break;
     case "Slot Mode":
-      conditions.push(equals(RSS_DETECTOR_MODE, "SLOT MODE"));
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SLOT MODE"));
   }
 
   return and(conditions);
@@ -358,22 +427,24 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // HRS is used
-  conditions.push(not(isNull(HRS_ID)));
+  conditions.push(not(isNull(DataKeys.HRS_ID)));
 
   // Detector mode
   const mode = trim(hrs.mode);
   switch (mode) {
     case "Low Resolution":
-      conditions.push(equals(HRS_MODE, "LR"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
       break;
     case "Medium Resolution":
-      conditions.push(equals(HRS_MODE, "MR"));
+      conditions.push(
+        equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
+      );
       break;
     case "High Resolution":
-      conditions.push(equals(HRS_MODE, "HR"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
       break;
     case "High Stability":
-      conditions.push(equals(HRS_MODE, "HS"));
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
       break;
   }
   return and(conditions);
