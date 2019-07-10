@@ -109,28 +109,25 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
 
             const { fitsHeader, imageURIs } = data.dataPreview;
 
-            if (imageTab) {
-              return (
-                <Carousel showThumbs={false}>
-                  {imageURIs.map((image: string) => (
-                    <PreviewFigure key={image}>
-                      <img
-                        className="card-image"
-                        id={image}
-                        src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
-                        alt={image}
-                      />
-                    </PreviewFigure>
-                  ))}
-                </Carousel>
-              );
-            }
-
-            if (headerTab) {
-              return <pre>{fitsHeader}</pre>;
-            }
-
-            return null;
+            return (
+              <div style={{ maxHeight: 600, overflowY: "auto" }}>
+                {imageTab && (
+                  <Carousel showThumbs={false}>
+                    {imageURIs.map((image: string) => (
+                      <PreviewFigure key={image}>
+                        <img
+                          className="card-image"
+                          id={image}
+                          src={`${process.env.REACT_APP_BACKEND_URI}${image}`}
+                          alt={image}
+                        />
+                      </PreviewFigure>
+                    ))}
+                  </Carousel>
+                )}
+                {headerTab && <pre>{fitsHeader}</pre>}
+              </div>
+            );
           }}
         </Query>
       </Modal>
