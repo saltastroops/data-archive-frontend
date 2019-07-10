@@ -179,7 +179,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       const tableColumns = searchResultsTableColumns(databaseColumns);
 
       this.setState(() => ({
-        databaseColumns: databaseColumns,
+        databaseColumns,
         error: null,
         tableColumns,
         where
