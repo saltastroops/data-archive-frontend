@@ -27,8 +27,9 @@ const TabList = styled.li`
   padding: 5;
 `;
 
-const Tab = styled.p`
+const Tab = styled.p<{ bold: boolean }>`
   font-size: 25px;
+  font-weight: ${props => (props.bold ? "bold" : "normal")};
   cursor: ${props => props.color && "pointer"};
   color: ${props => props.color};
 `;
@@ -60,6 +61,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
             <TabList>
               <Tab
                 color={imageTab ? undefined : "hsl(217, 71%, 53%)"}
+                bold={imageTab}
                 onClick={() =>
                   this.setState({
                     activeTab: { headerTab: false, imageTab: true }
@@ -72,6 +74,7 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
             <TabList>
               <Tab
                 color={headerTab ? undefined : "hsl(217, 71%, 53%)"}
+                bold={headerTab}
                 onClick={() =>
                   this.setState({
                     activeTab: { headerTab: true, imageTab: false }
