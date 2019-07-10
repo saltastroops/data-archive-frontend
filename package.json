@@ -45,6 +45,7 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
+    "react-responsive-carousel": "^3.1.49",
     "react-responsive-modal": "^3.6.0",
     "react-responsive-picture": "^3.1.0",
     "react-router-dom": "^5.0.0",
