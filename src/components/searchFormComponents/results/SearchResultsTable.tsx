@@ -803,14 +803,14 @@ class SearchResultsTable extends React.Component<
     // Get the list of files to add or remove
     const updatedFiles = files.map(file => ({
       __typename: "CartFile",
-      id: file.id,
-      name: file.name,
+      id: file[DataKeys.DATA_FILE_ID],
+      name: file[DataKeys.DATA_FILE_FILENAME],
       observation: {
         __typename: "CartObservation",
-        id: file.observationId,
-        name: "Obs " + file.observationId
+        id: file[DataKeys.OBSERVATION_ID],
+        name: file[DataKeys.OBSERVATION_NAME]
       },
-      targetName: file.targetName
+      targetName: file[DataKeys.TARGET_NAME]
     }));
 
     // Add or remove from the cart, depending on the checkbox state

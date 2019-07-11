@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import DataKeys from "../components/searchFormComponents/results/DataKeys";
 
 /**
  * The cart of requested files.
@@ -46,7 +47,7 @@ export class Cart {
    *     Whether the cart contains the given file.
    */
   public contains(file: ICartFile) {
-    return this.cartFiles.some(f => f.id === file.id);
+    return this.cartFiles.some(f => f.id === file[DataKeys.DATA_FILE_ID]);
   }
 
   /**
@@ -132,11 +133,7 @@ export class Cart {
  *     Observation to which the file is linked.
  */
 export interface ICartFile {
-  id: string;
-  name: string;
-  observation?: IObservation | null;
-  size?: string;
-  targetName?: string;
+  [key: string]: any;
 }
 
 /**
