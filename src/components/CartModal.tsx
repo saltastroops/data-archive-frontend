@@ -42,7 +42,7 @@ class CartModal extends React.Component<ICart, any> {
           const groupedCart: any = [];
           const cart = new Cart(cartContent.cart);
           cart.groupByObservation().forEach((v, k) => {
-            groupedCart.push({ files: v, id: k });
+            groupedCart.push({ files: v, id: k, name: v[0].observation.name });
           });
           return (
             <Modal open={open} onClose={() => openCart(false)} center={true}>
@@ -65,7 +65,7 @@ class CartModal extends React.Component<ICart, any> {
                       {groupedCart.map((obz: any) => {
                         return (
                           <tr key={obz.id}>
-                            <td className="fixed-header-rest">{obz.id}</td>
+                            <td className="fixed-header-rest">{obz.name}</td>
                             {Array.from(obz.files).map(
                               (file: any, index: number) => (
                                 <CartFile

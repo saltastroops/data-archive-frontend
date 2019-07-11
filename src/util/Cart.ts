@@ -107,13 +107,13 @@ export class Cart {
    * }
    */
   public groupByObservation() {
-    const groups = new Map<string, Set<ICartFile>>();
+    const groups = new Map<string, ICartFile[]>();
     this.cartFiles.forEach(file => {
       const key = (file.observation && file.observation.id) || "";
       if (!groups.has(key)) {
-        groups.set(key, new Set<ICartFile>());
+        groups.set(key, []);
       }
-      (groups.get(key) as Set<ICartFile>).add(file);
+      (groups.get(key) as ICartFile[]).push(file);
     });
 
     return groups;
@@ -135,23 +135,6 @@ export class Cart {
 export interface ICartFile {
   [key: string]: any;
 }
-
-/**
- * Interface for an observation to which a cart file is linked.
- *
- * Properties
- * ----------
- * id:
- *     Unique observation id.
- * name:
- *     Observation name.
- */
-
-export interface IObservation {
-  id: string;
-  name: string;
-}
-
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
