@@ -36,7 +36,7 @@ interface ISearchResultsTableProps {
 
 interface ISearchResultsTableState {
   cart: Cart;
-  image: string;
+  dataFileId?: string;
   open: boolean;
   sortBy?: string;
   sortDirection?: SortDirectionType;
@@ -248,7 +248,6 @@ class SearchResultsTable extends React.Component<
     // Set the initial state
     this.state = {
       cart,
-      image: "",
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
@@ -275,18 +274,20 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    const { image, open } = this.state;
+    const { dataFileId, open } = this.state;
 
     // Calculate the table height
     const height = this.tableHeight();
 
     return (
       <>
-        <ImageModal
-          dataFileId={1119}
-          closeModal={this.closePreviewModal}
-          open={open}
-        />
+        {dataFileId && (
+          <ImageModal
+            dataFileId={dataFileId}
+            closeModal={this.closePreviewModal}
+            open={open}
+          />
+        )}
         <Mutation
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}
@@ -516,11 +517,14 @@ class SearchResultsTable extends React.Component<
     if (!rowDatum.meta.observationHeader) {
       // A normal table row
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
-        return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
+        return rowDatum[DataKeys.DATA_FILE_ID] ? (
           <button
             className="is-link"
             onClick={() => {
-              this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
+              const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                : rowDatum[DataKeys.DATA_FILE_ID];
+              this.openPreviewModal(dataFileId);
             }}
           >
             {rowDatum[DataKeys.DATA_FILE_FILENAME]}
@@ -540,7 +544,7 @@ class SearchResultsTable extends React.Component<
       const allInCart = files.every((file: IFile) =>
         this.state.cart.contains(file)
       );
-      if (columnIndex === 0) {
+      if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
       } else {
         return "";
@@ -584,7 +588,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    this.setState({ open: false, image: "" });
+    this.setState({ open: false, dataFileId: undefined });
   };
 
   /**
@@ -640,8 +644,8 @@ class SearchResultsTable extends React.Component<
   /**
    * Open the preview modal.
    */
-  private openPreviewModal = (url: string) => {
-    this.setState({ open: true, image: url });
+  private openPreviewModal = (dataFileId: string) => {
+    this.setState({ open: true, dataFileId });
   };
 
   /**

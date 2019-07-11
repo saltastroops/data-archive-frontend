@@ -21,6 +21,7 @@ export function searchResultsTableColumns(
   dbColumns: string[]
 ): ISearchResultsTableColumn[] {
   const ignoredDataKeys = [
+    DataKeys.DATA_FILE_ID,
     DataKeys.TARGET_TYPE_NUMERIC_CODE,
     DataKeys.TELESCOPE_OBSERVATION_ID,
     DataKeys.OBSERVATION_ID
@@ -57,6 +58,8 @@ export function searchResultsTableColumns(
  */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
+    case DataKeys.DATA_FILE_FILENAME:
+      return { dataKey, name: "File", visible: true };
     case DataKeys.INSTRUMENT:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:
@@ -113,6 +116,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
 function sort(columns: ISearchResultsTableColumn[]) {
   const orderedDataKeys = [
     DataKeys.OBSERVATION_NAME,
+    DataKeys.DATA_FILE_FILENAME,
     DataKeys.OBSERVATION_NIGHT,
     DataKeys.TARGET_NAME,
     DataKeys.TARGET_RIGHT_ASCENSION,

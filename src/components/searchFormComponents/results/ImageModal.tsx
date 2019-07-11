@@ -6,7 +6,7 @@ import { DATA_PREVIEW_QUERY } from "../../../graphql/Query";
 
 interface IImageModalProps {
   closeModal: () => void;
-  dataFileId: number;
+  dataFileId: string;
   open: boolean;
 }
 
