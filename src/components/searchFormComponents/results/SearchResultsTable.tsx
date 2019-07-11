@@ -23,7 +23,7 @@ import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
-import ImageModal from "./ImageModal";
+import PreviewModal from "./PreviewModal";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
 
@@ -282,7 +282,7 @@ class SearchResultsTable extends React.Component<
     return (
       <>
         {dataFileId && (
-          <ImageModal
+          <PreviewModal
             dataFileId={dataFileId}
             closeModal={this.closePreviewModal}
             open={open}
