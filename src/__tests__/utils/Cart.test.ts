@@ -1,188 +1,226 @@
 import { Cart, ICartFile } from "../../util/Cart";
+import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 
 describe("Cart", () => {
   it("should have the correct size", () => {
     let cart = new Cart([
-      { id: "A", name: "File A" },
-      { id: "F", name: "File F" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
     ]);
     expect(cart.size).toBe(2);
 
     cart = new Cart([
-      { id: "A", name: "File A" },
-      { id: "B", name: "File B" },
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "B", name: "File B" },
       {
-        id: "C",
+        [DataKeys.DATA_FILE_ID]: "C",
         name: "File C",
-        observation: { id: "Obs-B", name: "Observation B" }
+        observation: { [DataKeys.DATA_FILE_ID]: "Obs-B", name: "Observation B" }
       },
-      { id: "D", name: "File D" },
+      { [DataKeys.DATA_FILE_ID]: "D", name: "File D" },
       {
-        id: "E",
+        [DataKeys.DATA_FILE_ID]: "E",
         name: "File E",
-        observation: { id: "Obs-A", name: "Observation A" }
+        observation: { [DataKeys.DATA_FILE_ID]: "Obs-A", name: "Observation A" }
       },
-      { id: "F", name: "File F" }
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
     ]);
     expect(cart.size).toBe(6);
   });
 
   it("should return the correct files", () => {
-    const files = [{ id: "A", name: "File A" }, { id: "F", name: "File F" }];
+    const files = [
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
+    ];
     expect(new Cart(files).files).toBe(files);
   });
 
   it("should know what it contains", () => {
     const cart = new Cart([
-      { id: "A", name: "File A" },
-      { id: "F", name: "File F" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
     ]);
 
-    expect(cart.contains({ id: "A", name: "File A" })).toBe(true);
-    expect(cart.contains({ id: "F", name: "File A" })).toBe(true);
-    expect(cart.contains({ id: "AA", name: "File AA" })).toBe(false);
-    expect(cart.contains({ id: "B", name: "File B" })).toBe(false);
-    expect(cart.contains({ id: "", name: "File" })).toBe(false);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "A", name: "File A" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "F", name: "File A" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "AA", name: "File AA" })
+    ).toBe(false);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "B", name: "File B" })
+    ).toBe(false);
+    expect(cart.contains({ [DataKeys.DATA_FILE_ID]: "", name: "File" })).toBe(
+      false
+    );
   });
 
   it("should add files", () => {
     const cart = new Cart([
-      { id: "A", name: "File A" },
-      { id: "B", name: "File B" },
-      { id: "C", name: "File C" },
-      { id: "D", name: "File D" },
-      { id: "E", name: "File E" },
-      { id: "F", name: "File F" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "B", name: "File B" },
+      { [DataKeys.DATA_FILE_ID]: "C", name: "File C" },
+      { [DataKeys.DATA_FILE_ID]: "D", name: "File D" },
+      { [DataKeys.DATA_FILE_ID]: "E", name: "File E" },
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
     ]);
     cart.add([
-      { id: "A", name: "File A" },
-      { id: "Q", name: "File Q" },
-      { id: "D", name: "File D" },
-      { id: "R", name: "File R" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "Q", name: "File Q" },
+      { [DataKeys.DATA_FILE_ID]: "D", name: "File D" },
+      { [DataKeys.DATA_FILE_ID]: "R", name: "File R" }
     ]);
     expect(cart.size).toBe(8);
-    expect(cart.contains({ id: "A", name: "File A" })).toBe(true);
-    expect(cart.contains({ id: "B", name: "File B" })).toBe(true);
-    expect(cart.contains({ id: "C", name: "File C" })).toBe(true);
-    expect(cart.contains({ id: "D", name: "File D" })).toBe(true);
-    expect(cart.contains({ id: "E", name: "File E" })).toBe(true);
-    expect(cart.contains({ id: "F", name: "File F" })).toBe(true);
-    expect(cart.contains({ id: "Q", name: "File Q" })).toBe(true);
-    expect(cart.contains({ id: "R", name: "File R" })).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "A", name: "File A" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "B", name: "File B" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "C", name: "File C" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "D", name: "File D" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "E", name: "File E" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "F", name: "File F" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "Q", name: "File Q" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "R", name: "File R" })
+    ).toBe(true);
   });
 
   it("should remove files", () => {
     const cart = new Cart([
-      { id: "A", name: "File A" },
-      { id: "B", name: "File B" },
-      { id: "C", name: "File C" },
-      { id: "D", name: "File D" },
-      { id: "E", name: "File E" },
-      { id: "F", name: "File F" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "B", name: "File B" },
+      { [DataKeys.DATA_FILE_ID]: "C", name: "File C" },
+      { [DataKeys.DATA_FILE_ID]: "D", name: "File D" },
+      { [DataKeys.DATA_FILE_ID]: "E", name: "File E" },
+      { [DataKeys.DATA_FILE_ID]: "F", name: "File F" }
     ]);
     cart.remove([
-      { id: "A", name: "File A" },
-      { id: "Q", name: "File Q" },
-      { id: "D", name: "File D" },
-      { id: "R", name: "File R" }
+      { [DataKeys.DATA_FILE_ID]: "A", name: "File A" },
+      { [DataKeys.DATA_FILE_ID]: "Q", name: "File Q" },
+      { [DataKeys.DATA_FILE_ID]: "D", name: "File D" },
+      { [DataKeys.DATA_FILE_ID]: "R", name: "File R" }
     ]);
     expect(cart.size).toBe(4);
-    expect(cart.contains({ id: "B", name: "File B" })).toBe(true);
-    expect(cart.contains({ id: "C", name: "File C" })).toBe(true);
-    expect(cart.contains({ id: "E", name: "File E" })).toBe(true);
-    expect(cart.contains({ id: "F", name: "File F" })).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "B", name: "File B" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "C", name: "File C" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "E", name: "File E" })
+    ).toBe(true);
+    expect(
+      cart.contains({ [DataKeys.DATA_FILE_ID]: "F", name: "File F" })
+    ).toBe(true);
   });
 
   it("should provide cart items grouped by observation", () => {
     const cart = new Cart([
       {
-        id: "A",
-        name: "File A",
-        observation: { id: "Obs-A", name: "Observation A" }
+        [DataKeys.DATA_FILE_ID]: "A",
+        [DataKeys.DATA_FILE_FILENAME]: "File A",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
       },
-      { id: "B", name: "File B" },
-      { id: "C", name: "File C" },
+      { [DataKeys.DATA_FILE_ID]: "B", [DataKeys.DATA_FILE_FILENAME]: "File B" },
+      { [DataKeys.DATA_FILE_ID]: "C", [DataKeys.DATA_FILE_FILENAME]: "File C" },
       {
-        id: "D",
-        name: "File D",
-        observation: { id: "Obs-B", name: "Observation B" }
-      },
-      {
-        id: "E",
-        name: "File E",
-        observation: { id: "Obs-A", name: "Observation A" }
+        [DataKeys.DATA_FILE_ID]: "D",
+        [DataKeys.DATA_FILE_FILENAME]: "File D",
+        [DataKeys.OBSERVATION_ID]: "Obs-B",
+        [DataKeys.OBSERVATION_NAME]: "Observation B"
       },
       {
-        id: "F",
-        name: "File F",
-        observation: { id: "Obs-A", name: "Observation A" }
+        [DataKeys.DATA_FILE_ID]: "E",
+        [DataKeys.DATA_FILE_FILENAME]: "File E",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
       },
       {
-        id: "G",
-        name: "File G",
-        observation: { id: "Obs-C", name: "Observation C" }
+        [DataKeys.DATA_FILE_ID]: "F",
+        [DataKeys.DATA_FILE_FILENAME]: "File F",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
       },
       {
-        id: "H",
-        name: "File H",
-        observation: { id: "Obs-B", name: "Observation B" }
+        [DataKeys.DATA_FILE_ID]: "G",
+        [DataKeys.DATA_FILE_FILENAME]: "File G",
+        [DataKeys.OBSERVATION_ID]: "Obs-C",
+        [DataKeys.OBSERVATION_NAME]: "Observation C"
       },
-      { id: "I", name: "File I" }
+      {
+        [DataKeys.DATA_FILE_ID]: "H",
+        [DataKeys.DATA_FILE_FILENAME]: "File H",
+        [DataKeys.OBSERVATION_ID]: "Obs-B",
+        [DataKeys.OBSERVATION_NAME]: "Observation B"
+      },
+      { [DataKeys.DATA_FILE_ID]: "I", [DataKeys.DATA_FILE_FILENAME]: "File I" }
     ]);
-    const expected = new Map<string, Set<ICartFile>>();
-    expected.set(
-      "",
-      new Set<ICartFile>([
-        { id: "B", name: "File B" },
-        { id: "C", name: "File C" },
-        { id: "I", name: "File I" }
-      ])
-    );
-    expected.set(
-      "Obs-A",
-      new Set<ICartFile>([
-        {
-          id: "A",
-          name: "File A",
-          observation: { id: "Obs-A", name: "Observation A" }
-        },
-        {
-          id: "E",
-          name: "File E",
-          observation: { id: "Obs-A", name: "Observation A" }
-        },
-        {
-          id: "F",
-          name: "File F",
-          observation: { id: "Obs-A", name: "Observation A" }
-        }
-      ])
-    );
-    expected.set(
-      "Obs-B",
-      new Set<ICartFile>([
-        {
-          id: "D",
-          name: "File D",
-          observation: { id: "Obs-B", name: "Observation B" }
-        },
-        {
-          id: "H",
-          name: "File H",
-          observation: { id: "Obs-B", name: "Observation B" }
-        }
-      ])
-    );
-    expected.set(
-      "Obs-C",
-      new Set<ICartFile>([
-        {
-          id: "G",
-          name: "File G",
-          observation: { id: "Obs-C", name: "Observation C" }
-        }
-      ])
-    );
+    const expected = new Map<string, ICartFile[]>();
+    expected.set("", [
+      { [DataKeys.DATA_FILE_ID]: "B", [DataKeys.DATA_FILE_FILENAME]: "File B" },
+      { [DataKeys.DATA_FILE_ID]: "C", [DataKeys.DATA_FILE_FILENAME]: "File C" },
+      { [DataKeys.DATA_FILE_ID]: "I", [DataKeys.DATA_FILE_FILENAME]: "File I" }
+    ]);
+    expected.set("Obs-A", [
+      {
+        [DataKeys.DATA_FILE_ID]: "A",
+        [DataKeys.DATA_FILE_FILENAME]: "File A",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
+      },
+      {
+        [DataKeys.DATA_FILE_ID]: "E",
+        [DataKeys.DATA_FILE_FILENAME]: "File E",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
+      },
+      {
+        [DataKeys.DATA_FILE_ID]: "F",
+        [DataKeys.DATA_FILE_FILENAME]: "File F",
+        [DataKeys.OBSERVATION_ID]: "Obs-A",
+        [DataKeys.OBSERVATION_NAME]: "Observation A"
+      }
+    ]);
+    expected.set("Obs-B", [
+      {
+        [DataKeys.DATA_FILE_ID]: "D",
+        [DataKeys.DATA_FILE_FILENAME]: "File D",
+        [DataKeys.OBSERVATION_ID]: "Obs-B",
+        [DataKeys.OBSERVATION_NAME]: "Observation B"
+      },
+      {
+        [DataKeys.DATA_FILE_ID]: "H",
+        [DataKeys.DATA_FILE_FILENAME]: "File H",
+        [DataKeys.OBSERVATION_ID]: "Obs-B",
+        [DataKeys.OBSERVATION_NAME]: "Observation B"
+      }
+    ]);
+    expected.set("Obs-C", [
+      {
+        [DataKeys.DATA_FILE_ID]: "G",
+        [DataKeys.DATA_FILE_FILENAME]: "File G",
+        [DataKeys.OBSERVATION_ID]: "Obs-C",
+        [DataKeys.OBSERVATION_NAME]: "Observation C"
+      }
+    ]);
     expect(cart.groupByObservation()).toEqual(expected);
   });
 });
