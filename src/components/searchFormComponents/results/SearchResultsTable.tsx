@@ -524,10 +524,14 @@ class SearchResultsTable extends React.Component<
               <button
                 className="is-link"
                 onClick={() => {
-                  // const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
-                  //   ? rowDatum[DataKeys.DATA_FILE_ID].toString()
-                  //   : rowDatum[DataKeys.DATA_FILE_ID];
-                  load("http://localhost:4001/previews/1234/test.fits");
+                  const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                    ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                    : rowDatum[DataKeys.DATA_FILE_ID];
+                  load(
+                    `${process.env.REACT_APP_BACKEND_URI}/data/${dataFileId}/${
+                      rowDatum[DataKeys.DATA_FILE_FILENAME]
+                    }`
+                  );
                   open();
                 }}
               >

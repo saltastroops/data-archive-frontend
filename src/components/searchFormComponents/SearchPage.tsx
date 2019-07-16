@@ -132,6 +132,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                   cache={cache}
                   search={this.searchArchive}
                   error={validationError || error}
+                  loading={loading}
                 />
                 {results && results.length !== 0 && (
                   <>

@@ -2,6 +2,7 @@
 
 exports[`Search Form render correctly 1`] = `
 <SearchForm
+  loading={false}
   search={[MockFunction]}
 />
 `;
