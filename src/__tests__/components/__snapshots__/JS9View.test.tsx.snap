@@ -18,7 +18,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 50;
   padding: 1.2rem;
 }
 
@@ -106,7 +106,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 50;
   padding: 1.2rem;
 ",
                   ],
@@ -284,7 +284,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 50;
   padding: 1.2rem;
 }
 
@@ -372,7 +372,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 50;
   padding: 1.2rem;
 ",
                   ],
