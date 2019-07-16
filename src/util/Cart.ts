@@ -15,7 +15,7 @@ export class Cart {
    * The files in the cart.
    *
    * While this method returns the original array of files rather than a copy,
-   * you are strongly discouraged from modifying it. Use the add abd remove
+   * you are strongly discouraged from modifying it. Use the add and remove
    * methods instead.
    */
   public get files() {
