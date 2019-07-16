@@ -143,16 +143,6 @@ function sort(columns: ISearchResultsTableColumn[]) {
   ) => {
     const index1 = orderedDataKeys.findIndex(key => column1.dataKey === key);
     const index2 = orderedDataKeys.findIndex(key => column2.dataKey === key);
-    let v;
-    if (index1 !== 1 && index2 !== -1) {
-      v = index1 - index2;
-    } else if (index1 !== -1 && index2 === -1) {
-      v = -1;
-    } else if (index1 === -1 && index2 !== -1) {
-      v = 1;
-    } else {
-      v = column1.name.localeCompare(column2.name, "en");
-    }
     if (index1 !== -1 && index2 !== -1) {
       return index1 - index2;
     } else if (index1 !== -1 && index2 === -1) {

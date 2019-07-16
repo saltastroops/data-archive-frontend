@@ -443,8 +443,8 @@ describe("UserUpdateForm Component", () => {
     const submitButton = wrapper.find('[data-test="update"]');
     submitButton.simulate("submit");
 
-    // The mutation has been called
-    await wait(0);
+    // Wait for the mutation to finish
+    await wait(10);
     wrapper.update();
     expect(updateUser).toHaveBeenCalled();
 

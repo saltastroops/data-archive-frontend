@@ -47,7 +47,9 @@ export class Cart {
    *     Whether the cart contains the given file.
    */
   public contains(file: ICartFile) {
-    return this.cartFiles.some(f => f.id === file[DataKeys.DATA_FILE_ID]);
+    return this.cartFiles.some(
+      f => f[DataKeys.DATA_FILE_ID] === file[DataKeys.DATA_FILE_ID]
+    );
   }
 
   /**
@@ -78,7 +80,10 @@ export class Cart {
    */
   public remove(files: ICartFile[]) {
     this.cartFiles = this.cartFiles.filter(
-      file => !files.some(f => file.id === f.id)
+      file =>
+        !files.some(
+          f => file[DataKeys.DATA_FILE_ID] === f[DataKeys.DATA_FILE_ID]
+        )
     );
   }
 
@@ -109,7 +114,7 @@ export class Cart {
   public groupByObservation() {
     const groups = new Map<string, ICartFile[]>();
     this.cartFiles.forEach(file => {
-      const key = (file.observation && file.observation.id) || "";
+      const key = file[DataKeys.OBSERVATION_ID] || "";
       if (!groups.has(key)) {
         groups.set(key, []);
       }

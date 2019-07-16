@@ -1,0 +1,533 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JS9View should display correctly for open=false 1`] = `
+.c0 {
+  background: rgba(0,0,0,0.75);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 50;
+  padding: 1.2rem;
+}
+
+.c1 {
+  max-width: 800px;
+  position: relative;
+  padding: 1.2rem;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
+  margin: auto;
+}
+
+.c2 {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<JS9View
+  fitsURL=""
+  onClose={[MockFunction]}
+  open={false}
+>
+  <div
+    data-test="wrapper"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <CSSTransition
+      appear={true}
+      classNames={Object {}}
+      in={false}
+      timeout={500}
+    >
+      <Transition
+        appear={true}
+        enter={true}
+        exit={true}
+        in={false}
+        mountOnEnter={false}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={500}
+        unmountOnExit={false}
+      >
+        <styled.div
+          data-test="overlay"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          <StyledComponent
+            data-test="overlay"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": true,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 50;
+  padding: 1.2rem;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+          >
+            <div
+              className="c0"
+              data-test="overlay"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+            >
+              <styled.div
+                aria-modal="true"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                role="dialog"
+              >
+                <StyledComponent
+                  aria-modal="true"
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c1",
+                        "rules": Array [
+                          "
+  max-width: 800px;
+  position: relative;
+  padding: 1.2rem;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
+  margin: auto;
+",
+                        ],
+                      },
+                      "displayName": "styled.div",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "div",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  role="dialog"
+                >
+                  <div
+                    aria-modal="true"
+                    className="c1"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseUp={[Function]}
+                    role="dialog"
+                  >
+                    <div
+                      className="section"
+                    >
+                      <div
+                        className="JS9Menubar"
+                      />
+                      <div
+                        className="JS9"
+                      />
+                      <div
+                        className="JS9Colorbar"
+                      />
+                    </div>
+                    <styled.button
+                      data-test="close"
+                      onClick={[MockFunction]}
+                    >
+                      <StyledComponent
+                        data-test="close"
+                        forwardedComponent={
+                          Object {
+                            "$$typeof": Symbol(react.forward_ref),
+                            "attrs": Array [],
+                            "componentStyle": ComponentStyle {
+                              "componentId": "sc-htpNat",
+                              "isStatic": true,
+                              "lastClassName": "c2",
+                              "rules": Array [
+                                "
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+",
+                              ],
+                            },
+                            "displayName": "styled.button",
+                            "foldedComponentIds": Array [],
+                            "render": [Function],
+                            "styledComponentId": "sc-htpNat",
+                            "target": "button",
+                            "toString": [Function],
+                            "warnTooManyClasses": [Function],
+                            "withComponent": [Function],
+                          }
+                        }
+                        forwardedRef={null}
+                        onClick={[MockFunction]}
+                      >
+                        <button
+                          className="c2"
+                          data-test="close"
+                          onClick={[MockFunction]}
+                        >
+                          <svg
+                            height={28}
+                            viewBox="0 0 36 36"
+                            width={28}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+                            />
+                          </svg>
+                        </button>
+                      </StyledComponent>
+                    </styled.button>
+                  </div>
+                </StyledComponent>
+              </styled.div>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </Transition>
+    </CSSTransition>
+  </div>
+</JS9View>
+`;
+
+exports[`JS9View should display correctly for open=true 1`] = `
+.c0 {
+  background: rgba(0,0,0,0.75);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 50;
+  padding: 1.2rem;
+}
+
+.c1 {
+  max-width: 800px;
+  position: relative;
+  padding: 1.2rem;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
+  margin: auto;
+}
+
+.c2 {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<JS9View
+  fitsURL=""
+  onClose={[MockFunction]}
+  open={true}
+>
+  <div
+    data-test="wrapper"
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    <CSSTransition
+      appear={true}
+      classNames={Object {}}
+      in={true}
+      timeout={500}
+    >
+      <Transition
+        appear={true}
+        enter={true}
+        exit={true}
+        in={true}
+        mountOnEnter={false}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={500}
+        unmountOnExit={false}
+      >
+        <styled.div
+          data-test="overlay"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          <StyledComponent
+            data-test="overlay"
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": true,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 50;
+  padding: 1.2rem;
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+          >
+            <div
+              className="c0"
+              data-test="overlay"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+            >
+              <styled.div
+                aria-modal="true"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                role="dialog"
+              >
+                <StyledComponent
+                  aria-modal="true"
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "sc-bwzfXH",
+                        "isStatic": true,
+                        "lastClassName": "c1",
+                        "rules": Array [
+                          "
+  max-width: 800px;
+  position: relative;
+  padding: 1.2rem;
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
+  margin: auto;
+",
+                        ],
+                      },
+                      "displayName": "styled.div",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "sc-bwzfXH",
+                      "target": "div",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  role="dialog"
+                >
+                  <div
+                    aria-modal="true"
+                    className="c1"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseUp={[Function]}
+                    role="dialog"
+                  >
+                    <div
+                      className="section"
+                    >
+                      <div
+                        className="JS9Menubar"
+                      />
+                      <div
+                        className="JS9"
+                      />
+                      <div
+                        className="JS9Colorbar"
+                      />
+                    </div>
+                    <styled.button
+                      data-test="close"
+                      onClick={[MockFunction]}
+                    >
+                      <StyledComponent
+                        data-test="close"
+                        forwardedComponent={
+                          Object {
+                            "$$typeof": Symbol(react.forward_ref),
+                            "attrs": Array [],
+                            "componentStyle": ComponentStyle {
+                              "componentId": "sc-htpNat",
+                              "isStatic": true,
+                              "lastClassName": "c2",
+                              "rules": Array [
+                                "
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+",
+                              ],
+                            },
+                            "displayName": "styled.button",
+                            "foldedComponentIds": Array [],
+                            "render": [Function],
+                            "styledComponentId": "sc-htpNat",
+                            "target": "button",
+                            "toString": [Function],
+                            "warnTooManyClasses": [Function],
+                            "withComponent": [Function],
+                          }
+                        }
+                        forwardedRef={null}
+                        onClick={[MockFunction]}
+                      >
+                        <button
+                          className="c2"
+                          data-test="close"
+                          onClick={[MockFunction]}
+                        >
+                          <svg
+                            height={28}
+                            viewBox="0 0 36 36"
+                            width={28}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+                            />
+                          </svg>
+                        </button>
+                      </StyledComponent>
+                    </styled.button>
+                  </div>
+                </StyledComponent>
+              </styled.div>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </Transition>
+    </CSSTransition>
+  </div>
+</JS9View>
+`;
