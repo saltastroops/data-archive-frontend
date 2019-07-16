@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import DataKeys from "../components/searchFormComponents/results/DataKeys";
 
 /**
  * The cart of requested files.
@@ -46,7 +47,7 @@ export class Cart {
    *     Whether the cart contains the given file.
    */
   public contains(file: ICartFile) {
-    return this.cartFiles.some(f => f.id === file.id);
+    return this.cartFiles.some(f => f.id === file[DataKeys.DATA_FILE_ID]);
   }
 
   /**
@@ -106,13 +107,13 @@ export class Cart {
    * }
    */
   public groupByObservation() {
-    const groups = new Map<string, Set<ICartFile>>();
+    const groups = new Map<string, ICartFile[]>();
     this.cartFiles.forEach(file => {
       const key = (file.observation && file.observation.id) || "";
       if (!groups.has(key)) {
-        groups.set(key, new Set<ICartFile>());
+        groups.set(key, []);
       }
-      (groups.get(key) as Set<ICartFile>).add(file);
+      (groups.get(key) as ICartFile[]).push(file);
     });
 
     return groups;
@@ -132,29 +133,8 @@ export class Cart {
  *     Observation to which the file is linked.
  */
 export interface ICartFile {
-  id: string;
-  name: string;
-  observation?: IObservation | null;
-  size?: string;
-  targetName?: string;
+  [key: string]: any;
 }
-
-/**
- * Interface for an observation to which a cart file is linked.
- *
- * Properties
- * ----------
- * id:
- *     Unique observation id.
- * name:
- *     Observation name.
- */
-
-export interface IObservation {
-  id: string;
-  name: string;
-}
-
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {

@@ -21,6 +21,7 @@ export function searchResultsTableColumns(
   dbColumns: string[]
 ): ISearchResultsTableColumn[] {
   const ignoredDataKeys = [
+    DataKeys.DATA_FILE_ID,
     DataKeys.TARGET_TYPE_NUMERIC_CODE,
     DataKeys.TELESCOPE_OBSERVATION_ID,
     DataKeys.OBSERVATION_ID
@@ -57,6 +58,8 @@ export function searchResultsTableColumns(
  */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
+    case DataKeys.DATA_FILE_FILENAME:
+      return { dataKey, name: "File", visible: true };
     case DataKeys.INSTRUMENT:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:
@@ -72,11 +75,21 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
     case DataKeys.TARGET_DECLINATION:
-      return { dataKey, name: "Declination", visible: true };
+      return {
+        dataKey,
+        format: formatNumber(4),
+        name: "Declination",
+        visible: true
+      };
     case DataKeys.TARGET_NAME:
       return { dataKey, name: "Target", visible: true };
     case DataKeys.TARGET_RIGHT_ASCENSION:
-      return { dataKey, name: "Right Ascension", visible: true };
+      return {
+        dataKey,
+        format: formatNumber(4),
+        name: "Right Ascension",
+        visible: true
+      };
     case DataKeys.TARGET_TYPE_EXPLANATION:
       return { dataKey, name: "TargetType", visible: true };
     case DataKeys.TELESCOPE_NAME:
@@ -103,6 +116,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
 function sort(columns: ISearchResultsTableColumn[]) {
   const orderedDataKeys = [
     DataKeys.OBSERVATION_NAME,
+    DataKeys.DATA_FILE_FILENAME,
     DataKeys.OBSERVATION_NIGHT,
     DataKeys.TARGET_NAME,
     DataKeys.TARGET_RIGHT_ASCENSION,
@@ -151,4 +165,21 @@ function sort(columns: ISearchResultsTableColumn[]) {
   };
 
   return [...columns].sort(cmp);
+}
+
+/**
+ * Returns a function which formats strings as a a number with a fixed number of
+ * digits after the decimal point.
+ *
+ * Parameters:
+ * -----------
+ * n: number
+ *     Number of digits after the decimal point.
+ *
+ * Returns:
+ * --------
+ * The format function.
+ */
+function formatNumber(n: number) {
+  return (value: string) => Number(value).toFixed(n);
 }

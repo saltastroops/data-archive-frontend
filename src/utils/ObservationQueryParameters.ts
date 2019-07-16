@@ -430,21 +430,9 @@ export interface ISpUpNIC extends IInstrument {
 }
 
 export interface IFile {
-  id: string;
-  filename: string;
-  name: string;
-  dataType: string;
-  isReduced: boolean;
-  targetName: string;
-  rightAscension: number;
-  declination: number;
-  observationNight: string;
-  category: string;
-  telescope: string;
-  instrument: string;
-  observationId?: string;
-  url?: string;
+  [key: string]: any;
 }
+
 export interface IObservation {
   id: string;
   name: string | "Unknown Observation";

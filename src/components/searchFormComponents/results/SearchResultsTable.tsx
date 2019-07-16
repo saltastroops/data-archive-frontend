@@ -23,7 +23,7 @@ import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
-import ImageModal from "./ImageModal";
+import PreviewModal from "./PreviewModal";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
 
@@ -36,7 +36,7 @@ interface ISearchResultsTableProps {
 
 interface ISearchResultsTableState {
   cart: Cart;
-  image: string;
+  dataFileId?: string;
   open: boolean;
   sortBy?: string;
   sortDirection?: SortDirectionType;
@@ -248,7 +248,6 @@ class SearchResultsTable extends React.Component<
     // Set the initial state
     this.state = {
       cart,
-      image: "",
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
@@ -275,18 +274,20 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    const { image, open } = this.state;
+    const { dataFileId, open } = this.state;
 
     // Calculate the table height
     const height = this.tableHeight();
 
     return (
       <>
-        <ImageModal
-          dataFileId={1119}
-          closeModal={this.closePreviewModal}
-          open={open}
-        />
+        {dataFileId && (
+          <PreviewModal
+            dataFileId={dataFileId}
+            closeModal={this.closePreviewModal}
+            open={open}
+          />
+        )}
         <Mutation
           mutation={ADD_TO_CART_MUTATION}
           refetchQueries={[{ query: CART_QUERY }]}
@@ -515,30 +516,27 @@ class SearchResultsTable extends React.Component<
     }
     if (!rowDatum.meta.observationHeader) {
       // A normal table row
-      switch (dataKey) {
-        case DataKeys.DECLINATION:
-          return rowDatum[dataKey]
-            ? parseFloat(rowDatum[dataKey]).toFixed(4)
-            : "";
-        case DataKeys.DATA_FILE_FILENAME:
-          return rowDatum[DataKeys.PREVIEW_IMAGE_URL] ? (
-            <button
-              className="is-link"
-              onClick={() => {
-                this.openPreviewModal(rowDatum[DataKeys.PREVIEW_IMAGE_URL]);
-              }}
-            >
-              {rowDatum[DataKeys.DATA_FILE_FILENAME]}
-            </button>
-          ) : (
-            rowDatum[DataKeys.DATA_FILE_FILENAME]
-          );
-        case DataKeys.RIGHT_ASCENSION:
-          return rowDatum[dataKey]
-            ? parseFloat(rowDatum[dataKey]).toFixed(4)
-            : "";
-        default:
-          return rowDatum[dataKey];
+      if (dataKey === DataKeys.DATA_FILE_FILENAME) {
+        return rowDatum[DataKeys.DATA_FILE_ID] ? (
+          <button
+            className="is-link"
+            onClick={() => {
+              const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                : rowDatum[DataKeys.DATA_FILE_ID];
+              this.openPreviewModal(dataFileId);
+            }}
+          >
+            {rowDatum[DataKeys.DATA_FILE_FILENAME]}
+          </button>
+        ) : (
+          rowDatum[DataKeys.DATA_FILE_FILENAME]
+        );
+      } else {
+        const format = this.visibleColumns[columnIndex].format;
+        return format
+          ? format(rowDatum[dataKey].toString())
+          : rowDatum[dataKey];
       }
     } else {
       // Am observation header row.
@@ -546,7 +544,7 @@ class SearchResultsTable extends React.Component<
       const allInCart = files.every((file: IFile) =>
         this.state.cart.contains(file)
       );
-      if (columnIndex === 0) {
+      if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
       } else {
         return "";
@@ -590,7 +588,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    this.setState({ open: false, image: "" });
+    this.setState({ open: false, dataFileId: undefined });
   };
 
   /**
@@ -646,8 +644,8 @@ class SearchResultsTable extends React.Component<
   /**
    * Open the preview modal.
    */
-  private openPreviewModal = (url: string) => {
-    this.setState({ open: true, image: url });
+  private openPreviewModal = (dataFileId: string) => {
+    this.setState({ open: true, dataFileId });
   };
 
   /**
@@ -805,14 +803,14 @@ class SearchResultsTable extends React.Component<
     // Get the list of files to add or remove
     const updatedFiles = files.map(file => ({
       __typename: "CartFile",
-      id: file.id,
-      name: file.name,
+      id: file[DataKeys.DATA_FILE_ID],
+      name: file[DataKeys.DATA_FILE_FILENAME],
       observation: {
         __typename: "CartObservation",
-        id: file.observationId,
-        name: "Obs " + file.observationId
+        id: file[DataKeys.OBSERVATION_ID],
+        name: file[DataKeys.OBSERVATION_NAME]
       },
-      targetName: file.targetName
+      targetName: file[DataKeys.TARGET_NAME]
     }));
 
     // Add or remove from the cart, depending on the checkbox state

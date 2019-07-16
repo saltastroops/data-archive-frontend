@@ -213,6 +213,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         {} as any
       );
 
+      const telescopeName = metadata[DataKeys.TELESCOPE_NAME];
+      const telescopeObservationId =
+        metadata[DataKeys.TELESCOPE_OBSERVATION_ID];
+      const observationName =
+        telescopeName +
+        (telescopeObservationId ? " #" + telescopeObservationId : "");
+      metadata[DataKeys.OBSERVATION_NAME] = observationName;
+
       const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
       if (!observationsMap.has(observationId)) {
         // Create a new observations object. A string of the form "TN - #id" is
@@ -225,12 +233,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // user if the currently considered data file is owned by the user.
         // The assumptions are valid because both properties are indeed defined
         // per observation (and not per data file).
-        const telescopeName = metadata[DataKeys.TELESCOPE_NAME];
-        const telescopeObservationId =
-          metadata[DataKeys.TELESCOPE_OBSERVATION_ID];
-        const observationName =
-          telescopeName +
-          (telescopeObservationId ? " #" + telescopeObservationId : "");
         const ownedByUser = result.ownedByUser;
         const isPublic = now > metadata[DataKeys.START_TIME];
         const observation: IObservation = {
@@ -281,10 +283,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     }
 
     // Add some columns which should be queried at any rate
+    columns.add(DataKeys.DATA_FILE_FILENAME);
+    columns.add(DataKeys.DATA_FILE_ID);
     columns.add(DataKeys.OBSERVATION_ID);
     columns.add(DataKeys.OBSERVATION_NIGHT);
     columns.add(DataKeys.OBSERVATION_PUBLIC_FROM);
     columns.add(DataKeys.PROPOSAL_CODE);
+    columns.add(DataKeys.TARGET_NAME);
     columns.add(DataKeys.TELESCOPE_NAME);
     columns.add(DataKeys.TELESCOPE_OBSERVATION_ID);
 

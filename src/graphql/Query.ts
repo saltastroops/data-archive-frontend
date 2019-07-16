@@ -37,7 +37,7 @@ const DATA_FILES_QUERY = gql`
  * Retrieve data previews
  */
 const DATA_PREVIEW_QUERY = gql`
-  query DATA_PREVIEW_QUERY($dataFileId: Int!) {
+  query DATA_PREVIEW_QUERY($dataFileId: ID!) {
     dataPreview(dataFileId: $dataFileId) {
       fitsHeader
       imageURIs

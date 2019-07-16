@@ -4,13 +4,13 @@ import Modal from "react-responsive-modal";
 import styled from "styled-components";
 import { DATA_PREVIEW_QUERY } from "../../../graphql/Query";
 
-interface IImageModalProps {
+interface IPreviewModalProps {
   closeModal: () => void;
-  dataFileId: number;
+  dataFileId: string;
   open: boolean;
 }
 
-interface IImageModalState {
+interface IPreviewModalState {
   activeTab: {
     headerTab: boolean;
     imageTab: boolean;
@@ -40,7 +40,10 @@ const PreviewFigure = styled.figure.attrs({
   }
 `;
 
-class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
+class PreviewModal extends React.Component<
+  IPreviewModalProps,
+  IPreviewModalState
+> {
   state = {
     activeTab: {
       headerTab: false,
@@ -133,4 +136,4 @@ class ImageModal extends React.Component<IImageModalProps, IImageModalState> {
   }
 }
 
-export default ImageModal;
+export default PreviewModal;
