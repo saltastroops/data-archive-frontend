@@ -36,7 +36,6 @@ interface ISearchResultsTableProps {
 }
 
 interface ISearchResultsTableState {
-  cart: Cart;
   dataFileId?: string;
   open: boolean;
   sortBy?: string;
@@ -233,12 +232,6 @@ class SearchResultsTable extends React.Component<
   constructor(props: ISearchResultsTableProps) {
     super(props);
 
-    // Get current cart content
-    const cartContent: any = cache.readQuery({ query: CART_QUERY }) || {
-      cart: []
-    };
-    const cart = new Cart(cartContent.cart);
-
     const unsortedRowData = this.unsortedRowData();
     const sortedRowData = this.sortedRowData(
       unsortedRowData,
@@ -248,7 +241,6 @@ class SearchResultsTable extends React.Component<
 
     // Set the initial state
     this.state = {
-      cart,
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
@@ -282,8 +274,7 @@ class SearchResultsTable extends React.Component<
 
     return (
       <Query query={CART_QUERY}>
-        {({ data, loading, error }: any) => {
-          console.log("Data: ", data.cart);
+        {({ data }: any) => {
           const cart = new Cart(data.cart);
           return (
             <>
@@ -404,7 +395,9 @@ class SearchResultsTable extends React.Component<
                                               }
                                               height={height}
                                               onScroll={onScroll}
-                                              cellRenderer={this.cellRenderer}
+                                              cellRenderer={this.cellRenderer(
+                                                cart
+                                              )}
                                               rowHeight={
                                                 SearchResultsTable.ROW_HEIGHT
                                               }
@@ -536,7 +529,7 @@ class SearchResultsTable extends React.Component<
    * first column, i.e. technically columnIndex = 1 refers to the second column.
    * Similarly, the row index does not include the header.
    */
-  private cellContent = ({ columnIndex, rowIndex }: any) => {
+  private cellContent = ({ cart, columnIndex, rowIndex }: any) => {
     const rowDatum = this.state.sortedRowData.get(rowIndex);
     const dataKey = this.visibleColumns[columnIndex].dataKey;
     if (!rowDatum) {
@@ -570,9 +563,7 @@ class SearchResultsTable extends React.Component<
     } else {
       // An observation header row.
       const files = rowDatum.meta.observation.files;
-      const allInCart = files.every((file: IFile) =>
-        this.state.cart.contains(file)
-      );
+      const allInCart = files.every((file: IFile) => cart.contains(file));
       if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
       } else {
@@ -585,32 +576,34 @@ class SearchResultsTable extends React.Component<
    * The renderer for a table data cell. A column index of 0 refers to the
    * dummy column, and hence an empty string is returned for it.
    */
-  private cellRenderer = ({
-    columnIndex,
-    key,
-    rowIndex,
-    style
-  }: {
-    columnIndex: number;
-    key: string;
-    rowIndex: number;
-    style: object;
-  }) => {
-    /**
-     * The first column has the same width as the cart column and lies
-     * underneath. It should therefore be considered a dummy column, and no
-     * content should be returned for it. Also see the documentation for the
-     * render method.
-     */
-    if (columnIndex < 1) {
-      return "";
-    }
+  private cellRenderer = (cart: Cart) => {
+    return ({
+      columnIndex,
+      key,
+      rowIndex,
+      style
+    }: {
+      columnIndex: number;
+      key: string;
+      rowIndex: number;
+      style: object;
+    }) => {
+      /**
+       * The first column has the same width as the cart column and lies
+       * underneath. It should therefore be considered a dummy column, and no
+       * content should be returned for it. Also see the documentation for the
+       * render method.
+       */
+      if (columnIndex < 1) {
+        return "";
+      }
 
-    return (
-      <div className={this.rowClassName(rowIndex)} key={key} style={style}>
-        <span>{this.cellContent({ columnIndex, rowIndex })}</span>
-      </div>
-    );
+      return (
+        <div className={this.rowClassName(rowIndex)} key={key} style={style}>
+          <span>{this.cellContent({ cart, columnIndex, rowIndex })}</span>
+        </div>
+      );
+    };
   };
 
   /**
@@ -848,15 +841,6 @@ class SearchResultsTable extends React.Component<
     } else {
       await removeFromCart({ variables: { files: updatedFiles } });
     }
-
-    // Get current cart content
-    const cartContent: any = cache.readQuery({ query: CART_QUERY }) || {
-      cart: []
-    };
-    const cart = new Cart(cartContent.cart);
-
-    // Update the cart in the state
-    this.setState(() => ({ cart }));
   };
 
   /**
