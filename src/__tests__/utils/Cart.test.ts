@@ -1,5 +1,5 @@
-import { Cart, ICartFile } from "../../util/Cart";
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
+import { Cart, ICartFile } from "../../util/Cart";
 
 describe("Cart", () => {
   it("should have the correct size", () => {

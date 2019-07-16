@@ -5,9 +5,9 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
+import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
 import cache from "../../../../util/cache";
-import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 
 // IMPORTANT NOTE
 //
