@@ -118,11 +118,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
 
     return (
       <>
-        {loading && (
-          <div className="dimScreen">
-            <Spinner />
-          </div>
-        )}
         <ParentGrid>
           <TargetGrid>
             <TargetForm target={target} onChange={this.targetChange} />

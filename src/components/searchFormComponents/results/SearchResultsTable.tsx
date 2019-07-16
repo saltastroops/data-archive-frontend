@@ -528,7 +528,9 @@ class SearchResultsTable extends React.Component<
                     ? rowDatum[DataKeys.DATA_FILE_ID].toString()
                     : rowDatum[DataKeys.DATA_FILE_ID];
                   load(
-                    `${process.env.REACT_APP_BACKEND_URI}/headers/${dataFileId}`
+                    `${process.env.REACT_APP_BACKEND_URI}/data/${dataFileId}/${
+                      rowDatum[DataKeys.DATA_FILE_FILENAME]
+                    }`
                   );
                   open();
                 }}

@@ -121,15 +121,15 @@ const LoadSpinnerWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
+    background: #fff;
     z-index: 2;
   }
 `;
 
 const LoadSpinner = styled.div`
    {
-    border: 10px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    border: 10px solid #cccccc;
+    border-color: #cccccc transparent #cccccc transparent;
     border-radius: 50%;
     width: 200px;
     height: 200px;
