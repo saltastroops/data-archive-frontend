@@ -14,7 +14,7 @@ const Overlay = styled.div`
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 50;
   padding: 1.2rem;
 `;
 
