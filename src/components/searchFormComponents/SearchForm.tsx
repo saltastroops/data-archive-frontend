@@ -144,13 +144,13 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <div>
               <button
                 disabled={loading}
-                className="button is-primary"
+                className={`button is-primary ${loading && "is-loading"}`}
                 data-test="search-button"
                 type="button"
                 value="Search"
                 onClick={this.onSubmit}
               >
-                {loading ? "searching..." : "search"}
+                search
               </button>
             </div>
           </ButtonGrid>
