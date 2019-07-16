@@ -2,6 +2,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
+import { Spinner } from "./components/basicComponents/Grids";
 import CartModal from "./components/CartModal";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
 import JS9View, { JS9ViewContext } from "./components/JS9View";
@@ -113,7 +114,7 @@ class App extends React.Component<{}, IAppState> {
         <Query query={USER_QUERY}>
           {({ data, loading }: any) => {
             if (loading) {
-              return <p>Loading...</p>;
+              return <Spinner />;
             }
 
             const currentUser =

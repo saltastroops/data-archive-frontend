@@ -38,6 +38,7 @@ import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 interface ISearchFormProps {
   cache?: ISearchFormCache;
   error?: Error;
+  loading: boolean;
   search: ({
     general,
     target,
@@ -56,7 +57,6 @@ interface ISearchFormProps {
 class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
     general: { calibrations: new Set<CalibrationType>(), errors: {} },
-    loading: false,
     target: {
       errors: {},
       resolver: "Simbad",
@@ -113,8 +113,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
-    const { error } = this.props;
-    const { target, general, telescope, loading } = this.state;
+    const { error, loading } = this.props;
+    const { target, general, telescope } = this.state;
 
     return (
       <>
@@ -150,7 +150,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                 value="Search"
                 onClick={this.onSubmit}
               >
-                search
+                {loading ? "searching..." : "search"}
               </button>
             </div>
           </ButtonGrid>
@@ -171,7 +171,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     this.updateState({
       ...this.state,
       general,
-      loading: false,
       target,
       telescope
     });
