@@ -30,20 +30,23 @@ export class Cart {
   }
 
   /**
-   * Check whether the cart contains the file with a given id.
+   * Check whether the cart contains a file.
    *
+   * Files are compared by their id. So if any cart file has the same id as the
+   * given file, the function returns true, irrespective of any other key-value
+
    * Parameters
    * ----------
-   * fileId:
-   *     The file id whose existence in the cart is checked.
+   * file
+   *     The file whose existence in the cart is checked.
    *
    * Returns
    * -------
    * contains:
    *     Whether the cart contains the file with the given id.
    */
-  public contains(fileId: string) {
-    return this.cartFiles.some(f => f.id === fileId);
+  public contains(file: ICartFile) {
+    return this.cartFiles.some(f => f.id === file.id);
   }
 
   /**
@@ -57,7 +60,7 @@ export class Cart {
    */
   public add(files: ICartFile[]) {
     files.forEach(file => {
-      if (!this.contains(file.id)) {
+      if (!this.contains(file)) {
         this.cartFiles = [...this.cartFiles, file];
       }
     });
@@ -105,7 +108,7 @@ export class Cart {
   public groupByObservation() {
     const groups = new Map<string, ICartFile[]>();
     this.cartFiles.forEach(file => {
-      const key = file[DataKeys.OBSERVATION_ID] || "";
+      const key = file.observation.id || "";
       if (!groups.has(key)) {
         groups.set(key, []);
       }
@@ -127,17 +130,26 @@ export class Cart {
  *     File name.
  * observation:
  *     Observation to which the file is linked.
+ * target:
+ *     Target name.
  */
 export interface ICartFile {
-  [key: string]: any;
+  id: string;
+  name: string;
+  observation: { id: string; name: string };
+  target: string | null;
 }
+
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
       id
       name
-      observation
-      targetName
+      observation {
+        id
+        name
+      }
+      target
     }
   }
 `;

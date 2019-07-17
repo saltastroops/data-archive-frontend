@@ -2,7 +2,11 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
 import { prune, whereCondition } from "../../util/query/whereCondition";
-import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
+import {
+  IFile,
+  IGeneral,
+  ITarget
+} from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
@@ -58,11 +62,7 @@ interface ISearchResult {
 
 export interface IObservation {
   available: boolean;
-  files: [
-    {
-      [key: string]: boolean | number | string;
-    }
-  ];
+  files: [IFile];
   id: number | string;
   name: string;
   publicFrom: Date;
@@ -237,6 +237,22 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
+      const file = (observationName: string, metadata: any) => {
+        return {
+          ...metadata,
+          cartContent: {
+            id: metadata[DataKeys.DATA_FILE_ID].toString(),
+            name: metadata[DataKeys.DATA_FILE_FILENAME],
+            observation: {
+              __typename: "CartObservation",
+              id: metadata[DataKeys.OBSERVATION_ID].toString(),
+              name: metadata[DataKeys.OBSERVATION_NAME]
+            },
+            target: metadata[DataKeys.TARGET_NAME] || null
+          }
+        };
+      };
+
       const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
       if (!observationsMap.has(observationId)) {
         // Create a new observations object. A string of the form "TN - #id" is
@@ -253,7 +269,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const isPublic = now > metadata[DataKeys.START_TIME];
         const observation: IObservation = {
           available: ownedByUser || isPublic,
-          files: [metadata],
+          files: [file(observationName, metadata)],
           id: observationId,
           name: observationName,
           publicFrom: new Date(metadata[
@@ -269,7 +285,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       } else {
         // Add the data file
         (observationsMap.get(observationId) as IObservation).files.push(
-          metadata
+          file(observationName, metadata)
         );
       }
     }

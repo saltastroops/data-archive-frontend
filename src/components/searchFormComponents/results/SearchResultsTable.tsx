@@ -17,6 +17,7 @@ import {
   ADD_TO_CART_MUTATION,
   Cart,
   CART_QUERY,
+  ICartFile,
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
@@ -471,7 +472,7 @@ class SearchResultsTable extends React.Component<
             <span>
               <LargeCheckbox
                 data-test="observation-header-input"
-                checked={cart.contains(file[DataKeys.DATA_FILE_ID])}
+                checked={cart.contains(file.cartContent)}
                 onChange={e =>
                   this.updateCart(e, [file], addToCart, removeFromCart)
                 }
@@ -483,7 +484,7 @@ class SearchResultsTable extends React.Component<
         // An observation header row.
         const files = rowDatum.meta.observation.files;
         const allInCart = files.every((file: IFile) =>
-          cart.contains(file[DataKeys.DATA_FILE_ID])
+          cart.contains(file.cartContent)
         );
         // Checkbox for adding all the files of the observation to the cart
         // (or for removing them)
@@ -575,7 +576,7 @@ class SearchResultsTable extends React.Component<
       // An observation header row.
       const files = rowDatum.meta.observation.files;
       const allInCart = files.every((file: IFile) =>
-        cart.contains(file[DataKeys.DATA_FILE_ID])
+        cart.contains(file.cartContent)
       );
       if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
@@ -838,16 +839,10 @@ class SearchResultsTable extends React.Component<
     removeFromCart: any
   ) => {
     // Get the list of files to add or remove
+    console.log({ files });
     const updatedFiles = files.map(file => ({
       __typename: "CartFile",
-      id: file[DataKeys.DATA_FILE_ID],
-      name: file[DataKeys.DATA_FILE_FILENAME],
-      observation: {
-        __typename: "CartObservation",
-        id: file[DataKeys.OBSERVATION_ID],
-        name: file[DataKeys.OBSERVATION_NAME]
-      },
-      targetName: file[DataKeys.TARGET_NAME]
+      ...file.cartContent
     }));
 
     // Add or remove from the cart, depending on the checkbox state
