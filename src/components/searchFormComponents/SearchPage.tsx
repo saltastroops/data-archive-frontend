@@ -10,6 +10,7 @@ import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
+import cache from "../../util/cache";
 
 /**
  * Properties for the search page.
@@ -20,7 +21,8 @@ import SearchForm from "./SearchForm";
  *     The inner height and width of the browser window.
  */
 interface ISearchPageProps {
-  cache?: ISearchFormCache;
+  searchFormCache: ISearchFormCache;
+  searchPageCache: ISearchPageCache;
   screenDimensions: { innerHeight: number; innerWidth: number };
 }
 
@@ -55,6 +57,12 @@ interface ISearchResult {
   ];
 }
 
+export interface ISearchPageCache {
+  databaseColumns?: string[];
+  tableColumns?: ISearchResultsTableColumn[];
+  where?: string;
+}
+
 export interface IObservation {
   available: boolean;
   files: [
@@ -74,16 +82,21 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   constructor(props: ISearchPageProps) {
     super(props);
 
+    const { searchPageCache } = props;
+    const databaseColumns = searchPageCache.databaseColumns || [];
+    const tableColumns = searchPageCache.tableColumns || [];
+    const where = searchPageCache.where || "";
+
     this.state = {
-      databaseColumns: [],
+      databaseColumns,
       error: null,
-      tableColumns: [],
-      where: ""
+      tableColumns,
+      where
     };
   }
 
   render() {
-    const { cache, screenDimensions } = this.props;
+    const { searchFormCache, screenDimensions } = this.props;
     const { error: validationError, tableColumns } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
@@ -114,6 +127,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     return (
       <>
         <Query
+          notifyOnNetworkStatusChange
           query={DATA_FILES_QUERY}
           variables={{
             columns: this.state.databaseColumns,
@@ -121,7 +135,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           }}
           skip={!this.state.where}
         >
-          {({ data, error, loading }: any) => {
+          {({ data, error, loading, refetch }: any) => {
+            console.log(this.state.where);
             const results =
               data && !loading && !error
                 ? this.parseSearchResults(data.dataFiles.dataFiles)
@@ -129,8 +144,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             return (
               <>
                 <SearchForm
-                  cache={cache}
-                  search={this.searchArchive}
+                  cache={searchFormCache}
+                  search={this.searchArchive(refetch)}
                   error={validationError || error}
                   loading={loading}
                 />
@@ -164,33 +179,63 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   /**
-   * Perform an observation with the currently selected search parameters.
+   * Return a function which performs a data file search  with the currently
+   * selected search parameters.
+   *
+   * Parameters:
+   * -----------
+   * refetch: (v: any) => void
+   *     Function that triggers a new query.
    */
-  private searchArchive = async ({
-    general,
-    target,
-    telescope
-  }: {
-    general: IGeneral;
-    target: ITarget;
-    telescope: any; // fighting TypeScript; telescope might be undefined
-  }) => {
-    try {
-      const whereObject = prune(whereCondition({ general, target, telescope }));
-      const where = JSON.stringify(whereObject);
-      const databaseColumns = this.databaseColumns(whereObject);
-      const tableColumns = searchResultsTableColumns(databaseColumns);
+  private searchArchive = (refetch: (v: any) => void) => {
+    return async ({
+      general,
+      target,
+      telescope
+    }: {
+      general: IGeneral;
+      target: ITarget;
+      telescope: any; // fighting TypeScript; telescope might be undefined
+    }) => {
+      try {
+        const searchPageCache = this.props.searchPageCache;
+        const whereObject = prune(
+          whereCondition({ general, target, telescope })
+        );
+        const where = JSON.stringify(whereObject);
+        const databaseColumns = this.databaseColumns(whereObject);
+        const tableColumns = searchResultsTableColumns(databaseColumns);
 
-      this.setState(() => ({
-        databaseColumns,
-        error: null,
-        tableColumns,
-        where
-      }));
-    } catch (e) {
-      this.setState(() => ({ error: e }));
-      return;
-    }
+        // It seems that when it comes to the meta data Apollo does not update the
+        // cache content correctly. We therefore delete all data files from the
+        // cache before refetching the query. This code is taken from
+        //  https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
+        Object.keys((cache as any).data.data).forEach(key => {
+          key.match(/^Datafile/) && (cache as any).data.delete(key);
+        });
+
+        // Record the search parameters
+        searchPageCache.databaseColumns = [...databaseColumns];
+        searchPageCache.tableColumns = [...tableColumns];
+        searchPageCache.where = where;
+
+        // Clicking on the submit button should always trigger a new search
+        // query (even if none of the search parameters has changed) hence we
+        // use refetch after updating the state
+        this.setState(
+          () => ({
+            databaseColumns,
+            error: null,
+            tableColumns,
+            where
+          }),
+          () => refetch({ columns: databaseColumns, where })
+        );
+      } catch (e) {
+        this.setState(() => ({ error: e }));
+        return;
+      }
+    };
   };
 
   /**
@@ -315,6 +360,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     dataKey: string,
     visible: boolean
   ) => {
+    // Update the state
     const columns = this.state.tableColumns;
     const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
     const updatedColumn = {
@@ -327,9 +373,15 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         updatedColumn,
         ...columns.slice(columnIndex + 1)
       ];
-      this.setState({
-        tableColumns: updatedColumns
-      });
+      this.setState(
+        () => ({
+          tableColumns: updatedColumns
+        }),
+        () => {
+          // Keep the cache up-to-date
+          this.props.searchPageCache.tableColumns = this.state.tableColumns;
+        }
+      );
     }
   };
 }
