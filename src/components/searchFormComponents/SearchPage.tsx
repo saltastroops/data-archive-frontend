@@ -6,6 +6,7 @@ import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
+import Pagination from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
@@ -121,11 +122,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           }}
           skip={!this.state.where}
         >
-          {({ data, error, loading }: any) => {
+          {({ data, error, loading, refetch }: any) => {
             const results =
               data && !loading && !error
                 ? this.parseSearchResults(data.dataFiles.dataFiles)
                 : [];
+            const pageInfo =
+              data && !loading && !error ? data.dataFiles.pageInfo : {};
             return (
               <>
                 <SearchForm
@@ -147,6 +150,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         columns={tableColumns}
                         maxWidth={maxResultsTableWidth}
                         searchResults={results}
+                      />
+                      <Pagination
+                        refetch={refetch}
+                        pageInfo={pageInfo}
+                        refetchContent={this.refetchContent}
                       />
                     </div>
                     <SearchResultsTableColumnSelector
@@ -331,6 +339,15 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         tableColumns: updatedColumns
       });
     }
+  };
+
+  private refetchContent = (fromIndex: number, refetch: any) => {
+    refetch({
+      columns: this.state.databaseColumns,
+      limit: 100,
+      startIndex: fromIndex,
+      where: this.state.where
+    });
   };
 }
 

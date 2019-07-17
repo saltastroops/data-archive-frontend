@@ -13,7 +13,6 @@ import {
   SortDirectionType
 } from "react-virtualized";
 import styled from "styled-components";
-import cache from "../../../util/cache";
 import {
   ADD_TO_CART_MUTATION,
   Cart,
