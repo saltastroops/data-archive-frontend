@@ -471,7 +471,7 @@ class SearchResultsTable extends React.Component<
             <span>
               <LargeCheckbox
                 data-test="observation-header-input"
-                checked={cart.contains(file)}
+                checked={cart.contains(file[DataKeys.DATA_FILE_ID])}
                 onChange={e =>
                   this.updateCart(e, [file], addToCart, removeFromCart)
                 }
@@ -482,7 +482,9 @@ class SearchResultsTable extends React.Component<
       } else {
         // An observation header row.
         const files = rowDatum.meta.observation.files;
-        const allInCart = files.every((file: IFile) => cart.contains(file));
+        const allInCart = files.every((file: IFile) =>
+          cart.contains(file[DataKeys.DATA_FILE_ID])
+        );
         // Checkbox for adding all the files of the observation to the cart
         // (or for removing them)
         return (
@@ -572,7 +574,9 @@ class SearchResultsTable extends React.Component<
     } else {
       // An observation header row.
       const files = rowDatum.meta.observation.files;
-      const allInCart = files.every((file: IFile) => cart.contains(file));
+      const allInCart = files.every((file: IFile) =>
+        cart.contains(file[DataKeys.DATA_FILE_ID])
+      );
       if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
       } else {

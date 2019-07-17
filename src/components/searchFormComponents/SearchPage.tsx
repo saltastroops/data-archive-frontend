@@ -146,6 +146,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         width: maxResultsTableWidth
                       }}
                     >
+                      <Pagination
+                        refetch={refetch}
+                        pageInfo={pageInfo}
+                        refetchContent={this.refetchContent}
+                      />
                       <SearchResultsTable
                         columns={tableColumns}
                         maxWidth={maxResultsTableWidth}
@@ -344,7 +349,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   private refetchContent = (fromIndex: number, refetch: any) => {
     refetch({
       columns: this.state.databaseColumns,
-      limit: 100,
       startIndex: fromIndex,
       where: this.state.where
     });

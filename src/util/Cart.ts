@@ -30,26 +30,20 @@ export class Cart {
   }
 
   /**
-   * Check whether the cart contains the given file.
-   *
-   * Files are compared by their id. So if any cart file has the same id as the
-   * given file, the function returns true, irrespective of any other key-value
-   * pairs are equal.
+   * Check whether the cart contains the file with a given id.
    *
    * Parameters
    * ----------
-   * file:
-   *     The file whose existence in the cart is checked.
+   * fileId:
+   *     The file id whose existence in the cart is checked.
    *
    * Returns
    * -------
    * contains:
-   *     Whether the cart contains the given file.
+   *     Whether the cart contains the file with the given id.
    */
-  public contains(file: ICartFile) {
-    return this.cartFiles.some(
-      f => f[DataKeys.DATA_FILE_ID] === file[DataKeys.DATA_FILE_ID]
-    );
+  public contains(fileId: string) {
+    return this.cartFiles.some(f => f.id === fileId);
   }
 
   /**
@@ -63,7 +57,7 @@ export class Cart {
    */
   public add(files: ICartFile[]) {
     files.forEach(file => {
-      if (!this.contains(file)) {
+      if (!this.contains(file.id)) {
         this.cartFiles = [...this.cartFiles, file];
       }
     });
@@ -80,10 +74,7 @@ export class Cart {
    */
   public remove(files: ICartFile[]) {
     this.cartFiles = this.cartFiles.filter(
-      file =>
-        !files.some(
-          f => file[DataKeys.DATA_FILE_ID] === f[DataKeys.DATA_FILE_ID]
-        )
+      file => !files.some(f => file.id === f.id)
     );
   }
 

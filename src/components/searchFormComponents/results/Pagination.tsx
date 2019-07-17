@@ -36,7 +36,7 @@ const Pagination = (props: IPaginationProps) => {
       <div>
         <button
           disabled={startIndex + 1 === 1}
-          className="pagination-previous "
+          className="pagination-previous"
           onClick={() => refetchContent(previousIndex, refetch as any)}
         >
           Previous
