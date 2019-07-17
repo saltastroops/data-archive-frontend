@@ -18,12 +18,10 @@ import { TargetType } from "./TargetType";
  * telescope:
  *     Telescope (and instrument) details.
  */
-// TODO: Remove loading, replace with IObservationQueryParameters
 export interface ISearchFormState {
   general: IGeneral;
   target: ITarget;
   telescope?: ITelescope;
-  loading: boolean;
 }
 
 /**

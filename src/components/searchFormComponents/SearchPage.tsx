@@ -112,51 +112,54 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
     return (
-      <Query
-        query={DATA_FILES_QUERY}
-        variables={{
-          columns: this.state.databaseColumns,
-          where: this.state.where
-        }}
-        skip={!this.state.where}
-      >
-        {({ data, error, loading }: any) => {
-          const results =
-            data && !loading && !error
-              ? this.parseSearchResults(data.dataFiles.dataFiles)
-              : [];
-          return (
-            <>
-              <SearchForm
-                cache={cache}
-                search={this.searchArchive}
-                error={validationError || error}
-              />
-              {results && results.length !== 0 && (
-                <>
-                  <div
-                    style={{
-                      marginLeft: resultsTableContainerMargin,
-                      marginRight: resultsTableContainerMargin,
-                      width: maxResultsTableWidth
-                    }}
-                  >
-                    <SearchResultsTable
+      <>
+        <Query
+          query={DATA_FILES_QUERY}
+          variables={{
+            columns: this.state.databaseColumns,
+            where: this.state.where
+          }}
+          skip={!this.state.where}
+        >
+          {({ data, error, loading }: any) => {
+            const results =
+              data && !loading && !error
+                ? this.parseSearchResults(data.dataFiles.dataFiles)
+                : [];
+            return (
+              <>
+                <SearchForm
+                  cache={cache}
+                  search={this.searchArchive}
+                  error={validationError || error}
+                  loading={loading}
+                />
+                {results && results.length !== 0 && (
+                  <>
+                    <div
+                      style={{
+                        marginLeft: resultsTableContainerMargin,
+                        marginRight: resultsTableContainerMargin,
+                        width: maxResultsTableWidth
+                      }}
+                    >
+                      <SearchResultsTable
+                        columns={tableColumns}
+                        maxWidth={maxResultsTableWidth}
+                        searchResults={results}
+                      />
+                    </div>
+                    <SearchResultsTableColumnSelector
                       columns={tableColumns}
-                      maxWidth={maxResultsTableWidth}
-                      searchResults={results}
+                      onChange={this.updateResultsTableColumnVisibility}
                     />
-                  </div>
-                  <SearchResultsTableColumnSelector
-                    columns={tableColumns}
-                    onChange={this.updateResultsTableColumnVisibility}
-                  />
-                </>
-              )}
-            </>
-          );
-        }}
-      </Query>
+                  </>
+                )}
+              </>
+            );
+          }}
+        </Query>
+      </>
     );
   }
 

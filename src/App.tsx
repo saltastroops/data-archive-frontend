@@ -2,8 +2,10 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
+import { Spinner } from "./components/basicComponents/Grids";
 import CartModal from "./components/CartModal";
 import DataRequestsForm from "./components/dataRequest/DataRequestsForm";
+import JS9View, { JS9ViewContext } from "./components/JS9View";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
@@ -65,6 +67,8 @@ function ProtectedRoute({
 }
 
 interface IAppState {
+  js9ViewFITSURL: string;
+  js9ViewOpen: boolean;
   user?: IUser;
   screenDimensions: { innerHeight: number; innerWidth: number };
 }
@@ -75,6 +79,8 @@ interface IAppState {
 class App extends React.Component<{}, IAppState> {
   state = {
     cart: { open: false },
+    js9ViewFITSURL: "",
+    js9ViewOpen: false,
     screenDimensions: {
       innerHeight: window.innerHeight,
       innerWidth: window.innerWidth
@@ -90,132 +96,159 @@ class App extends React.Component<{}, IAppState> {
   };
 
   public render() {
+    const { js9ViewFITSURL, js9ViewOpen } = this.state;
     const { open } = this.state.cart;
     return (
-      <Query query={USER_QUERY}>
-        {({ data, loading }: any) => {
-          if (loading) {
-            return <p>Loading...</p>;
-          }
-
-          const currentUser =
-            data && data.user
-              ? {
-                  familyName: data.user.familyName,
-                  givenName: data.user.givenName,
-                  isAdmin: data.user.roles.some(
-                    (role: string) => role === "ADMIN"
-                  )
-                }
-              : null;
-
-          return (
-            <>
-              <NavigationBar user={currentUser} openCart={this.openCart} />
-              <CartModal
-                user={currentUser}
-                open={open}
-                openCart={this.openCart}
-              />
-
-              <Switch>
-                {/* search page */}
-                <Route
-                  exact={true}
-                  path="/"
-                  render={() => (
-                    <SearchPage
-                      cache={this.cache.searchForm}
-                      screenDimensions={this.state.screenDimensions}
-                    />
-                  )}
-                />
-
-                {/* registration page */}
-                <Route
-                  exact={true}
-                  path="/register"
-                  render={() => (
-                    <RegistrationForm cache={this.cache.registrationForm} />
-                  )}
-                />
-
-                {/* login page */}
-                <Route
-                  exact={true}
-                  path="/login"
-                  render={() => <LoginForm cache={this.cache.loginForm} />}
-                />
-
-                {/* account details page */}
-                <ProtectedRoute
-                  user={currentUser}
-                  exact={true}
-                  path="/account"
-                  component={() => (
-                    <h1 className="title">
-                      {currentUser
-                        ? `${currentUser.givenName} ${
-                            currentUser.familyName
-                          } Account`
-                        : "No User"}
-                    </h1>
-                  )}
-                />
-
-                {/* data requests page */}
-                <ProtectedRoute
-                  user={currentUser}
-                  exact={true}
-                  path="/data-requests"
-                  component={() => <DataRequestsForm />}
-                />
-
-                {/* admin page */}
-                <ProtectedRoute
-                  user={currentUser}
-                  exact={true}
-                  path="/admin"
-                  component={() => <h1 className="title">Admin page</h1>}
-                />
-
-                {/* update user page */}
-                <ProtectedRoute
-                  user={currentUser}
-                  exact={true}
-                  path="/user-update"
-                  component={() => (
-                    <UserUpdateForm cache={this.cache.userUpdateForm} />
-                  )}
-                />
-
-                {/* request reset password page */}
-                <Route
-                  exact={true}
-                  path="/request-reset-password"
-                  component={RequestResetPasswordForm}
-                />
-
-                {/* request reset password page */}
-                <Route
-                  exact={true}
-                  path="/reset-password/:token"
-                  component={ResetPasswordForm}
-                />
-
-                {/* page not found */}
-                <Route
-                  component={() => <h1 className="title">Page not found</h1>}
-                />
-              </Switch>
-            </>
-          );
+      <JS9ViewContext.Provider
+        value={{
+          close: this.js9ViewClose,
+          load: this.js9ViewLoad,
+          open: this.js9ViewOpen
         }}
-      </Query>
+      >
+        <JS9View
+          fitsURL={js9ViewFITSURL}
+          onClose={() => this.setState({ js9ViewOpen: false })}
+          open={js9ViewOpen}
+        />
+        <Query query={USER_QUERY}>
+          {({ data, loading }: any) => {
+            if (loading) {
+              return <Spinner />;
+            }
+
+            const currentUser =
+              data && data.user
+                ? {
+                    familyName: data.user.familyName,
+                    givenName: data.user.givenName,
+                    isAdmin: data.user.roles.some(
+                      (role: string) => role === "ADMIN"
+                    )
+                  }
+                : null;
+
+            return (
+              <>
+                <NavigationBar user={currentUser} openCart={this.openCart} />
+                <CartModal
+                  user={currentUser}
+                  open={open}
+                  openCart={this.openCart}
+                />
+
+                <Switch>
+                  {/* search page */}
+                  <Route
+                    exact={true}
+                    path="/"
+                    render={() => (
+                      <SearchPage
+                        cache={this.cache.searchForm}
+                        screenDimensions={this.state.screenDimensions}
+                      />
+                    )}
+                  />
+
+                  {/* registration page */}
+                  <Route
+                    exact={true}
+                    path="/register"
+                    render={() => (
+                      <RegistrationForm cache={this.cache.registrationForm} />
+                    )}
+                  />
+
+                  {/* login page */}
+                  <Route
+                    exact={true}
+                    path="/login"
+                    render={() => <LoginForm cache={this.cache.loginForm} />}
+                  />
+
+                  {/* account details page */}
+                  <ProtectedRoute
+                    user={currentUser}
+                    exact={true}
+                    path="/account"
+                    component={() => (
+                      <h1 className="title">
+                        {currentUser
+                          ? `${currentUser.givenName} ${
+                              currentUser.familyName
+                            } Account`
+                          : "No User"}
+                      </h1>
+                    )}
+                  />
+
+                  {/* data requests page */}
+                  <ProtectedRoute
+                    user={currentUser}
+                    exact={true}
+                    path="/data-requests"
+                    component={() => <DataRequestsForm />}
+                  />
+
+                  {/* admin page */}
+                  <ProtectedRoute
+                    user={currentUser}
+                    exact={true}
+                    path="/admin"
+                    component={() => <h1 className="title">Admin page</h1>}
+                  />
+
+                  {/* update user page */}
+                  <ProtectedRoute
+                    user={currentUser}
+                    exact={true}
+                    path="/user-update"
+                    component={() => (
+                      <UserUpdateForm cache={this.cache.userUpdateForm} />
+                    )}
+                  />
+
+                  {/* request reset password page */}
+                  <Route
+                    exact={true}
+                    path="/request-reset-password"
+                    component={RequestResetPasswordForm}
+                  />
+
+                  {/* request reset password page */}
+                  <Route
+                    exact={true}
+                    path="/reset-password/:token"
+                    component={ResetPasswordForm}
+                  />
+
+                  {/* page not found */}
+                  <Route
+                    component={() => <h1 className="title">Page not found</h1>}
+                  />
+                </Switch>
+              </>
+            );
+          }}
+        </Query>
+      </JS9ViewContext.Provider>
     );
   }
+
   public openCart = async (open: boolean) => {
     await this.setState(() => ({ ...this.state, cart: { open } }));
+  };
+
+  public js9ViewOpen = () => {
+    this.setState({ js9ViewOpen: true });
+  };
+
+  public js9ViewClose = () => {
+    this.setState({ js9ViewOpen: false });
+  };
+
+  public js9ViewLoad = (fitsURL: string) => {
+    this.setState({ js9ViewFITSURL: fitsURL });
   };
 }
 

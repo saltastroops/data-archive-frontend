@@ -22,6 +22,7 @@ import {
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import { JS9ViewContext } from "../../JS9View";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
@@ -540,17 +541,26 @@ class SearchResultsTable extends React.Component<
       // A normal table row
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         return rowDatum[DataKeys.DATA_FILE_ID] ? (
-          <button
-            className="is-link"
-            onClick={() => {
-              const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
-                ? rowDatum[DataKeys.DATA_FILE_ID].toString()
-                : rowDatum[DataKeys.DATA_FILE_ID];
-              this.openPreviewModal(dataFileId);
-            }}
-          >
-            {rowDatum[DataKeys.DATA_FILE_FILENAME]}
-          </button>
+          <JS9ViewContext.Consumer>
+            {({ load, open }) => (
+              <button
+                className="is-link"
+                onClick={() => {
+                  const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                    ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                    : rowDatum[DataKeys.DATA_FILE_ID];
+                  load(
+                    `${process.env.REACT_APP_BACKEND_URI}/data/${dataFileId}/${
+                      rowDatum[DataKeys.DATA_FILE_FILENAME]
+                    }`
+                  );
+                  open();
+                }}
+              >
+                {rowDatum[DataKeys.DATA_FILE_FILENAME]}
+              </button>
+            )}
+          </JS9ViewContext.Consumer>
         ) : (
           rowDatum[DataKeys.DATA_FILE_FILENAME]
         );
@@ -610,7 +620,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    this.setState({ open: false, dataFileId: undefined });
+    (window as any).js9close();
   };
 
   /**
@@ -667,7 +677,9 @@ class SearchResultsTable extends React.Component<
    * Open the preview modal.
    */
   private openPreviewModal = (dataFileId: string) => {
-    this.setState({ open: true, dataFileId });
+    (window as any).js9open(
+      "http://localhost:4001/previews/856/P201902200006-image-3.fits"
+    );
   };
 
   /**

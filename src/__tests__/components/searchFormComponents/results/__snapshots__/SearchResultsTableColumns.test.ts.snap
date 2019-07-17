@@ -49,11 +49,13 @@ Array [
   },
   Object {
     "dataKey": "Target.rightAscension",
+    "format": [Function],
     "name": "Right Ascension",
     "visible": true,
   },
   Object {
     "dataKey": "Target.declination",
+    "format": [Function],
     "name": "Declination",
     "visible": true,
   },
