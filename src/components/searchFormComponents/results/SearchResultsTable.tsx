@@ -276,7 +276,7 @@ class SearchResultsTable extends React.Component<
     return (
       <Query query={CART_QUERY}>
         {({ data }: any) => {
-          const cart = new Cart(data.cart);
+          const cart = new Cart(data.cart || []);
           return (
             <>
               {dataFileId && (
