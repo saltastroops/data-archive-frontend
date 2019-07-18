@@ -39,8 +39,8 @@ interface ISearchResultsTableProps {
 interface ISearchResultsTableState {
   dataFileId?: string;
   open: boolean;
-  sortBy?: string;
-  sortDirection?: SortDirectionType;
+  sortBy: string;
+  sortDirection: SortDirectionType;
   sortedRowData: List<IRowDatum>;
   unsortedRowData: List<IRowDatum>;
 }
@@ -233,18 +233,32 @@ class SearchResultsTable extends React.Component<
   constructor(props: ISearchResultsTableProps) {
     super(props);
 
-    const unsortedRowData = this.unsortedRowData();
-    const sortedRowData = this.sortedRowData(
-      unsortedRowData,
-      "",
-      SortDirection.ASC
-    );
-
-    // Set the initial state
+    // Set the initial state.
+    // The sorted and unsorted row data will be populated by the
+    // getDerivedStateFromProps lifecycle method.
     this.state = {
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
+      sortedRowData: List(),
+      unsortedRowData: List()
+    };
+  }
+
+  static getDerivedStateFromProps(
+    props: ISearchResultsTableProps,
+    state: ISearchResultsTableState
+  ) {
+    const unsortedRowData = SearchResultsTable.unsortedRowData(
+      props.searchResults
+    );
+    const sortedRowData = SearchResultsTable.sortedRowData(
+      unsortedRowData,
+      state.sortBy,
+      state.sortDirection
+    );
+
+    return {
       sortedRowData,
       unsortedRowData
     };
@@ -268,6 +282,7 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
+    console.log("RENDERING..", new Date(), this.props.searchResults);
     const { dataFileId, open } = this.state;
 
     // Calculate the table height
@@ -720,7 +735,7 @@ class SearchResultsTable extends React.Component<
     sortBy: string;
     sortDirection: SortDirectionType;
   }) => {
-    const sortedRowData = this.sortedRowData(
+    const sortedRowData = SearchResultsTable.sortedRowData(
       this.state.unsortedRowData,
       sortBy,
       sortDirection
@@ -735,7 +750,7 @@ class SearchResultsTable extends React.Component<
    * If the data is sorted, observation headers are included; otherwise they are
    * ignored.
    */
-  private sortedRowData = (
+  private static sortedRowData = (
     unsortedRowData: List<IRowDatum>,
     sortBy: string,
     sortDirection: SortDirectionType
@@ -787,7 +802,7 @@ class SearchResultsTable extends React.Component<
   private unsort = () => {
     const sortBy = "";
     const sortDirection = SortDirection.ASC;
-    const sortedRowData = this.sortedRowData(
+    const sortedRowData = SearchResultsTable.sortedRowData(
       this.state.unsortedRowData,
       sortBy,
       sortDirection
@@ -799,9 +814,9 @@ class SearchResultsTable extends React.Component<
   /**
    * Generate the row data for the table.
    */
-  private unsortedRowData = () => {
+  private static unsortedRowData = (searchResults: IObservation[]) => {
     const data: IRowDatum[] = [];
-    this.props.searchResults.forEach((result, observationIndex) => {
+    searchResults.forEach((result, observationIndex) => {
       const observation = result;
       data.push({
         meta: {
