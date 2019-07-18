@@ -64,9 +64,7 @@ const Pagination = (props: IPaginationProps) => {
           <span className="pagination-ellipsis">{startIndex + 1}</span>
           <span className="pagination-ellipsis">&hellip;</span>
           <span className="pagination-ellipsis">
-            {startIndex + itemsPerPage >= itemsTotal
-              ? itemsTotal
-              : itemsPerPage + startIndex}
+            {startIndex + itemsOnCurrentPage}
           </span>
           <span className="pagination-ellipsis">of</span>
           <span className="pagination-ellipsis">{itemsTotal}</span>

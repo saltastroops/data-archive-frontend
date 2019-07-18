@@ -118,6 +118,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           query={DATA_FILES_QUERY}
           variables={{
             columns: this.state.databaseColumns,
+            limit: 100,
             where: this.state.where
           }}
           skip={!this.state.where}
@@ -129,6 +130,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                 : [];
             const pageInfo =
               data && !loading && !error ? data.dataFiles.pageInfo : {};
+            const dataFilesCount =
+              data && !loading && !error ? data.dataFiles.dataFiles.length : 0;
             return (
               <>
                 <SearchForm
@@ -147,21 +150,25 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                       }}
                     >
                       <Pagination
-                        refetch={refetch}
-                        pageInfo={pageInfo}
-                        refetchContent={this.refetchContent}
+                        fetchPage={(index: number, limit: number) => {}}
+                        itemsOnCurrentPage={dataFilesCount}
+                        itemsPerPage={pageInfo.itemsPerPage}
+                        itemsTotal={pageInfo.itemsTotal}
+                        startIndex={pageInfo.startIndex}
                       />
                       <SearchResultsTable
                         columns={tableColumns}
                         maxWidth={maxResultsTableWidth}
                         searchResults={results}
                       />
-                      <Pagination
-                        refetch={refetch}
-                        pageInfo={pageInfo}
-                        refetchContent={this.refetchContent}
-                      />
                     </div>
+                    <Pagination
+                      fetchPage={(index: number, limit: number) => {}}
+                      itemsOnCurrentPage={dataFilesCount}
+                      itemsPerPage={pageInfo.itemsPerPage}
+                      itemsTotal={pageInfo.itemsTotal}
+                      startIndex={pageInfo.startIndex}
+                    />
                     <SearchResultsTableColumnSelector
                       columns={tableColumns}
                       onChange={this.updateResultsTableColumnVisibility}
