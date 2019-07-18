@@ -26,7 +26,7 @@
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bulma": "^0.7.4",
     "dom-helpers": "^3.4.0",
     "enzyme": "^3.9.0",
