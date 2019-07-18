@@ -138,13 +138,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
               fetchMore({
                 variables: { limit, startIndex },
                 updateQuery: (prev: any, { fetchMoreResult }: any) => {
-                  console.log({ fetchMoreResult });
                   return fetchMoreResult;
                 }
               });
             };
-
-            console.log({ data, results });
 
             return (
               <>

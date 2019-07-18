@@ -282,7 +282,6 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    console.log("RENDERING..", new Date(), this.props.searchResults);
     const { dataFileId, open } = this.state;
 
     // Calculate the table height
@@ -854,7 +853,6 @@ class SearchResultsTable extends React.Component<
     removeFromCart: any
   ) => {
     // Get the list of files to add or remove
-    console.log({ files });
     const updatedFiles = files.map(file => ({
       __typename: "CartFile",
       ...file.cartContent
