@@ -10,36 +10,55 @@ const PaginationContainer = styled.div.attrs({
     margin-left: 30%
   }
 `;
+
 interface IPaginationProps {
-  pageInfo: {
-    startIndex: number;
-    itemsPerPage: number;
-    itemsTotal: number;
-  };
-  refetchContent: (fromIndex: number, refetch: any) => void;
-  refetch: () => void;
+  fetchPage: (startIndex: number, limit: number) => void;
+  itemsOnCurrentPage: number;
+  itemsPerPage: number;
+  itemsTotal: number;
+  startIndex: number;
 }
 
+/**
+ * A component for offset-based pagination.
+ *
+ * The following properties need to be passed to the component.
+ *
+ * fetchPage:
+ *     A method for fetching the next page. The method must expect a start index
+ *     and a limit as its arguments.
+ * itemsOnCurrentPage:
+ *     The number of items on the current page. Unless the current page is the
+ *     last page, this will be the same as the items per page.
+ * itemsPerPage:
+ *     The number of items to include on a page. For the last page the actual
+ *     number of items may be less.
+ * itemsTotal:
+ *     The total number of items for all pages combined.
+ * startIndex:
+ *     The index of the first item on the current page. An index offset of 0,
+ *     i.e. the start index for the first page is 0.
+ */
 const Pagination = (props: IPaginationProps) => {
-  const { startIndex, itemsPerPage, itemsTotal } = props.pageInfo;
-  const { refetchContent, refetch } = props;
-  const previousIndex =
-    startIndex + 1 - itemsPerPage <= 0 ? startIndex : startIndex - itemsPerPage;
-  const nextIndex =
-    startIndex + itemsPerPage >= itemsTotal
-      ? itemsTotal - 1
-      : startIndex + itemsPerPage;
+  const {
+    fetchPage,
+    itemsOnCurrentPage,
+    itemsPerPage,
+    itemsTotal,
+    startIndex
+  } = props;
+  const previousIndex = startIndex - itemsPerPage;
+  const nextIndex = startIndex + itemsOnCurrentPage;
 
-  console.log(previousIndex, startIndex, nextIndex);
   return (
     <PaginationContainer>
       <div>
         <button
-          disabled={startIndex + 1 === 1}
+          disabled={startIndex <= 0}
           className="pagination-previous"
-          onClick={() => refetchContent(previousIndex, refetch as any)}
+          onClick={() => fetchPage(previousIndex, itemsPerPage)}
         >
-          Previous
+          Previous page
         </button>
         <a>
           <span className="pagination-ellipsis">{startIndex + 1}</span>
@@ -55,7 +74,7 @@ const Pagination = (props: IPaginationProps) => {
         <button
           disabled={startIndex + itemsPerPage >= itemsTotal}
           className="pagination-next"
-          onClick={() => refetchContent(nextIndex, refetch as any)}
+          onClick={() => fetchPage(nextIndex, itemsPerPage)}
         >
           Next page
         </button>
