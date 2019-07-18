@@ -112,18 +112,19 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
+    const limit = 10;
     return (
       <>
         <Query
           query={DATA_FILES_QUERY}
           variables={{
             columns: this.state.databaseColumns,
-            limit: 100,
+            limit,
             where: this.state.where
           }}
           skip={!this.state.where}
         >
-          {({ data, error, loading, refetch }: any) => {
+          {({ data, error, loading, refetch, fetchMore }: any) => {
             const results =
               data && !loading && !error
                 ? this.parseSearchResults(data.dataFiles.dataFiles)
@@ -132,6 +133,19 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
               data && !loading && !error ? data.dataFiles.pageInfo : {};
             const dataFilesCount =
               data && !loading && !error ? data.dataFiles.dataFiles.length : 0;
+
+            const fetchPage = (startIndex: number, limit: number) => {
+              fetchMore({
+                variables: { limit, startIndex },
+                updateQuery: (prev: any, { fetchMoreResult }: any) => {
+                  console.log({ fetchMoreResult });
+                  return fetchMoreResult;
+                }
+              });
+            };
+
+            console.log({ data, results });
+
             return (
               <>
                 <SearchForm
@@ -150,7 +164,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                       }}
                     >
                       <Pagination
-                        fetchPage={(index: number, limit: number) => {}}
+                        fetchPage={fetchPage}
                         itemsOnCurrentPage={dataFilesCount}
                         itemsPerPage={pageInfo.itemsPerPage}
                         itemsTotal={pageInfo.itemsTotal}
@@ -163,7 +177,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                       />
                     </div>
                     <Pagination
-                      fetchPage={(index: number, limit: number) => {}}
+                      fetchPage={fetchPage}
                       itemsOnCurrentPage={dataFilesCount}
                       itemsPerPage={pageInfo.itemsPerPage}
                       itemsTotal={pageInfo.itemsTotal}
