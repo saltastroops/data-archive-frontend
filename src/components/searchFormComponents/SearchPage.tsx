@@ -15,6 +15,7 @@ import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
+import styled from "styled-components";
 
 /**
  * Properties for the search page.
@@ -69,6 +70,16 @@ export interface IObservation {
 }
 
 /**
+ * A blank div acting as a place holder if there is no data to displace to minimize pagination and searching shift/jump
+ *
+ */
+const ResultsPlaceHolder = styled.div`
+  display: grid;
+  display: block;
+  width: 100%;
+  height: 744px;
+`;
+/**
  * The page for searching observations.
  */
 class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
@@ -112,7 +123,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
-    const limit = 10;
+    const limit = 100;
     return (
       <>
         <Query
@@ -136,10 +147,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
             const fetchPage = (startIndex: number, limit: number) => {
               fetchMore({
-                variables: { limit, startIndex },
                 updateQuery: (prev: any, { fetchMoreResult }: any) => {
                   return fetchMoreResult;
-                }
+                },
+                variables: { limit, startIndex }
               });
             };
 
@@ -151,7 +162,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                   error={validationError || error}
                   loading={loading}
                 />
-                {results && results.length !== 0 && (
+                {results && results.length !== 0 ? (
                   <>
                     <div
                       style={{
@@ -160,6 +171,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         width: maxResultsTableWidth
                       }}
                     >
+                      <SearchResultsTableColumnSelector
+                        columns={tableColumns}
+                        onChange={this.updateResultsTableColumnVisibility}
+                      />
                       <Pagination
                         fetchPage={fetchPage}
                         itemsOnCurrentPage={dataFilesCount}
@@ -173,6 +188,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         searchResults={results}
                       />
                     </div>
+
                     <Pagination
                       fetchPage={fetchPage}
                       itemsOnCurrentPage={dataFilesCount}
@@ -180,11 +196,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                       itemsTotal={pageInfo.itemsTotal}
                       startIndex={pageInfo.startIndex}
                     />
-                    <SearchResultsTableColumnSelector
-                      columns={tableColumns}
-                      onChange={this.updateResultsTableColumnVisibility}
-                    />
                   </>
+                ) : (
+                  <ResultsPlaceHolder />
                 )}
               </>
             );

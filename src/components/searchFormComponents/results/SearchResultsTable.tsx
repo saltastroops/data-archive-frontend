@@ -431,14 +431,6 @@ class SearchResultsTable extends React.Component<
                             }}
                           </ScrollSync>
                         </div>
-                        <div>
-                          <button
-                            className="button is-normal"
-                            onClick={this.unsort}
-                          >
-                            Don't sort
-                          </button>
-                        </div>
                       </>
                     )}
                   </Mutation>
