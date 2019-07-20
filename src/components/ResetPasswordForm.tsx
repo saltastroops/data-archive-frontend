@@ -118,7 +118,6 @@ class ResetPasswordForm extends React.Component<any, any> {
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
         {({ data, error }: any) => {
-          console.log({ error });
           if (error) {
             return (
               <Message

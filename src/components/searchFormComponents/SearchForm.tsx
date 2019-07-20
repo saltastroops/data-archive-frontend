@@ -14,7 +14,6 @@ import {
   DataGrid,
   ParentGrid,
   ProposalGrid,
-  Spinner,
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";

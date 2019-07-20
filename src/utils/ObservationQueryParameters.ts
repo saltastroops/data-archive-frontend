@@ -2,6 +2,7 @@
 
 import { SalticamFilter } from "./SalticamFilter";
 import { TargetType } from "./TargetType";
+import { ICartFile } from "../util/Cart";
 
 /**
  * An interface describing the React state of the observation query form.
@@ -428,6 +429,7 @@ export interface ISpUpNIC extends IInstrument {
 }
 
 export interface IFile {
+  cartContent: ICartFile;
   [key: string]: any;
 }
 

@@ -33,7 +33,8 @@ export const typeDefs = gql`
   type CartFile {
     id: String!
     name: String!
-    observation: CartObservation
+    observation: CartObservation!
+    target: String
   }
 
   """
@@ -50,7 +51,8 @@ export const typeDefs = gql`
   input CartFileInput {
     id: String!
     name: String!
-    observation: CartObservationInput
+    observation: CartObservationInput!
+    target: String
   }
 
   """

@@ -46,7 +46,7 @@ const Grid = styled.div`
   }
 
   @media screen and (min-width: 1472px) {
-    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+    grid-template-columns: 182px 182px 182px 182px 182px 182px 182px;
   }
 `;
 

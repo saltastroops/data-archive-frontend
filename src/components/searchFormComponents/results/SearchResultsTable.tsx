@@ -4,6 +4,7 @@ import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import Query from "react-apollo/Query";
 import {
   AutoSizer,
   Grid,
@@ -12,11 +13,11 @@ import {
   SortDirectionType
 } from "react-virtualized";
 import styled from "styled-components";
-import cache from "../../../util/cache";
 import {
   ADD_TO_CART_MUTATION,
   Cart,
   CART_QUERY,
+  ICartFile,
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
@@ -36,11 +37,10 @@ interface ISearchResultsTableProps {
 }
 
 interface ISearchResultsTableState {
-  cart: Cart;
   dataFileId?: string;
   open: boolean;
-  sortBy?: string;
-  sortDirection?: SortDirectionType;
+  sortBy: string;
+  sortDirection: SortDirectionType;
   sortedRowData: List<IRowDatum>;
   unsortedRowData: List<IRowDatum>;
 }
@@ -233,25 +233,32 @@ class SearchResultsTable extends React.Component<
   constructor(props: ISearchResultsTableProps) {
     super(props);
 
-    // Get current cart content
-    const cartContent: any = cache.readQuery({ query: CART_QUERY }) || {
-      cart: []
-    };
-    const cart = new Cart(cartContent.cart);
-
-    const unsortedRowData = this.unsortedRowData();
-    const sortedRowData = this.sortedRowData(
-      unsortedRowData,
-      "",
-      SortDirection.ASC
-    );
-
-    // Set the initial state
+    // Set the initial state.
+    // The sorted and unsorted row data will be populated by the
+    // getDerivedStateFromProps lifecycle method.
     this.state = {
-      cart,
       open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
+      sortedRowData: List(),
+      unsortedRowData: List()
+    };
+  }
+
+  static getDerivedStateFromProps(
+    props: ISearchResultsTableProps,
+    state: ISearchResultsTableState
+  ) {
+    const unsortedRowData = SearchResultsTable.unsortedRowData(
+      props.searchResults
+    );
+    const sortedRowData = SearchResultsTable.sortedRowData(
+      unsortedRowData,
+      state.sortBy,
+      state.sortDirection
+    );
+
+    return {
       sortedRowData,
       unsortedRowData
     };
@@ -281,139 +288,158 @@ class SearchResultsTable extends React.Component<
     const height = this.tableHeight();
 
     return (
-      <>
-        {dataFileId && (
-          <PreviewModal
-            dataFileId={dataFileId}
-            closeModal={this.closePreviewModal}
-            open={open}
-          />
-        )}
-        <Mutation
-          mutation={ADD_TO_CART_MUTATION}
-          refetchQueries={[{ query: CART_QUERY }]}
-        >
-          {(addToCart: any) => (
-            <Mutation
-              mutation={REMOVE_FROM_CART_MUTATION}
-              refetchQueries={[{ query: CART_QUERY }]}
-            >
-              {(removeFromCart: any) => (
-                <>
-                  <div
-                    className="search-results table"
-                    style={{
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      width: this.tableWidth()
-                    }}
-                  >
-                    <ScrollSync>
-                      {({ onScroll, scrollLeft, scrollTop }) => {
-                        return (
-                          <GridRow data-test="search-results-table">
-                            <CartContainer top={0}>
-                              <Grid
-                                cellRenderer={this.cartHeaderRenderer}
-                                className="HeaderGrid"
-                                columnCount={1}
-                                columnWidth={
-                                  SearchResultsTable.CART_COLUMN_WIDTH
-                                }
-                                height={SearchResultsTable.HEADER_HEIGHT}
-                                rowCount={1}
-                                rowHeight={SearchResultsTable.HEADER_HEIGHT}
-                                width={SearchResultsTable.CART_COLUMN_WIDTH}
-                              />
-                            </CartContainer>
-                            <CartContainer
-                              top={SearchResultsTable.HEADER_HEIGHT}
-                            >
-                              <Grid
-                                cellRenderer={this.cartCellRendererFactory({
-                                  addToCart,
-                                  removeFromCart
-                                })}
-                                columnWidth={
-                                  SearchResultsTable.CART_COLUMN_WIDTH
-                                }
-                                columnCount={1}
-                                style={{ overflow: "hidden" }}
-                                height={height - scrollbarSize()}
-                                rowHeight={SearchResultsTable.ROW_HEIGHT}
-                                rowCount={this.state.sortedRowData.size}
-                                scrollTop={scrollTop}
-                                width={SearchResultsTable.CART_COLUMN_WIDTH}
-                              />
-                            </CartContainer>
-                            <GridColumn>
-                              <AutoSizer disableHeight={true}>
-                                {({ width }) => (
-                                  <div>
-                                    <div
-                                      style={{
-                                        height:
-                                          SearchResultsTable.HEADER_HEIGHT,
-                                        width: width - scrollbarSize()
-                                      }}
-                                    >
-                                      <Grid
-                                        style={{
-                                          overflow: "hidden",
-                                          width: "100%"
-                                        }}
-                                        columnWidth={this.columnWidth}
-                                        columnCount={this.visibleColumns.length}
-                                        height={height}
-                                        cellRenderer={this.headerRenderer}
-                                        rowHeight={
-                                          SearchResultsTable.HEADER_HEIGHT
-                                        }
-                                        rowCount={1}
-                                        scrollLeft={scrollLeft}
-                                        width={width - scrollbarSize()}
-                                      />
-                                    </div>
-                                    <div
-                                      style={{
-                                        height: height - scrollbarSize(),
-                                        width
-                                      }}
-                                    >
-                                      <Grid
-                                        style={{ width: "100%" }}
-                                        columnWidth={this.columnWidth}
-                                        columnCount={this.visibleColumns.length}
-                                        height={height}
-                                        onScroll={onScroll}
-                                        cellRenderer={this.cellRenderer}
-                                        rowHeight={
-                                          SearchResultsTable.ROW_HEIGHT
-                                        }
-                                        rowCount={this.state.sortedRowData.size}
-                                        width={width}
-                                      />
-                                    </div>
-                                  </div>
-                                )}
-                              </AutoSizer>
-                            </GridColumn>
-                          </GridRow>
-                        );
-                      }}
-                    </ScrollSync>
-                  </div>
-                  <div>
-                    <button className="button is-normal" onClick={this.unsort}>
-                      Don't sort
-                    </button>
-                  </div>
-                </>
+      <Query query={CART_QUERY}>
+        {({ data }: any) => {
+          const cart = new Cart(data.cart || []);
+          return (
+            <>
+              {dataFileId && (
+                <PreviewModal
+                  dataFileId={dataFileId}
+                  closeModal={this.closePreviewModal}
+                  open={open}
+                />
               )}
-            </Mutation>
-          )}
-        </Mutation>
-      </>
+              <Mutation
+                mutation={ADD_TO_CART_MUTATION}
+                refetchQueries={[{ query: CART_QUERY }]}
+              >
+                {(addToCart: any) => (
+                  <Mutation
+                    mutation={REMOVE_FROM_CART_MUTATION}
+                    refetchQueries={[{ query: CART_QUERY }]}
+                  >
+                    {(removeFromCart: any) => (
+                      <>
+                        <div
+                          className="search-results table"
+                          style={{
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            width: this.tableWidth()
+                          }}
+                        >
+                          <ScrollSync>
+                            {({ onScroll, scrollLeft, scrollTop }) => {
+                              return (
+                                <GridRow data-test="search-results-table">
+                                  <CartContainer top={0}>
+                                    <Grid
+                                      cellRenderer={this.cartHeaderRenderer}
+                                      className="HeaderGrid"
+                                      columnCount={1}
+                                      columnWidth={
+                                        SearchResultsTable.CART_COLUMN_WIDTH
+                                      }
+                                      height={SearchResultsTable.HEADER_HEIGHT}
+                                      rowCount={1}
+                                      rowHeight={
+                                        SearchResultsTable.HEADER_HEIGHT
+                                      }
+                                      width={
+                                        SearchResultsTable.CART_COLUMN_WIDTH
+                                      }
+                                    />
+                                  </CartContainer>
+                                  <CartContainer
+                                    top={SearchResultsTable.HEADER_HEIGHT}
+                                  >
+                                    <Grid
+                                      cellRenderer={this.cartCellRendererFactory(
+                                        {
+                                          addToCart,
+                                          cart,
+                                          removeFromCart
+                                        }
+                                      )}
+                                      columnWidth={
+                                        SearchResultsTable.CART_COLUMN_WIDTH
+                                      }
+                                      columnCount={1}
+                                      style={{ overflow: "hidden" }}
+                                      height={height - scrollbarSize()}
+                                      rowHeight={SearchResultsTable.ROW_HEIGHT}
+                                      rowCount={this.state.sortedRowData.size}
+                                      scrollTop={scrollTop}
+                                      width={
+                                        SearchResultsTable.CART_COLUMN_WIDTH
+                                      }
+                                    />
+                                  </CartContainer>
+                                  <GridColumn>
+                                    <AutoSizer disableHeight={true}>
+                                      {({ width }) => (
+                                        <div>
+                                          <div
+                                            style={{
+                                              height:
+                                                SearchResultsTable.HEADER_HEIGHT,
+                                              width: width - scrollbarSize()
+                                            }}
+                                          >
+                                            <Grid
+                                              style={{
+                                                overflow: "hidden",
+                                                width: "100%"
+                                              }}
+                                              columnWidth={this.columnWidth}
+                                              columnCount={
+                                                this.visibleColumns.length
+                                              }
+                                              height={height}
+                                              cellRenderer={this.headerRenderer}
+                                              rowHeight={
+                                                SearchResultsTable.HEADER_HEIGHT
+                                              }
+                                              rowCount={1}
+                                              scrollLeft={scrollLeft}
+                                              width={width - scrollbarSize()}
+                                            />
+                                          </div>
+                                          <div
+                                            style={{
+                                              height: height - scrollbarSize(),
+                                              width
+                                            }}
+                                          >
+                                            <Grid
+                                              style={{ width: "100%" }}
+                                              columnWidth={this.columnWidth}
+                                              columnCount={
+                                                this.visibleColumns.length
+                                              }
+                                              height={height}
+                                              onScroll={onScroll}
+                                              cellRenderer={this.cellRenderer(
+                                                cart
+                                              )}
+                                              rowHeight={
+                                                SearchResultsTable.ROW_HEIGHT
+                                              }
+                                              rowCount={
+                                                this.state.sortedRowData.size
+                                              }
+                                              width={width}
+                                            />
+                                          </div>
+                                        </div>
+                                      )}
+                                    </AutoSizer>
+                                  </GridColumn>
+                                </GridRow>
+                              );
+                            }}
+                          </ScrollSync>
+                        </div>
+                      </>
+                    )}
+                  </Mutation>
+                )}
+              </Mutation>
+            </>
+          );
+        }}
+      </Query>
     );
   }
 
@@ -421,7 +447,11 @@ class SearchResultsTable extends React.Component<
    * A factory for the renderer rendering the cells of the first column, which
    * lets the user put files into the cart (or remove them from the cart).
    */
-  private cartCellRendererFactory = ({ addToCart, removeFromCart }: any) => {
+  private cartCellRendererFactory = ({
+    addToCart,
+    removeFromCart,
+    cart
+  }: any) => {
     return ({
       key,
       rowIndex,
@@ -448,7 +478,7 @@ class SearchResultsTable extends React.Component<
             <span>
               <LargeCheckbox
                 data-test="observation-header-input"
-                checked={this.state.cart.contains(file)}
+                checked={cart.contains(file.cartContent)}
                 onChange={e =>
                   this.updateCart(e, [file], addToCart, removeFromCart)
                 }
@@ -460,7 +490,7 @@ class SearchResultsTable extends React.Component<
         // An observation header row.
         const files = rowDatum.meta.observation.files;
         const allInCart = files.every((file: IFile) =>
-          this.state.cart.contains(file)
+          cart.contains(file.cartContent)
         );
         // Checkbox for adding all the files of the observation to the cart
         // (or for removing them)
@@ -508,7 +538,7 @@ class SearchResultsTable extends React.Component<
    * first column, i.e. technically columnIndex = 1 refers to the second column.
    * Similarly, the row index does not include the header.
    */
-  private cellContent = ({ columnIndex, rowIndex }: any) => {
+  private cellContent = ({ cart, columnIndex, rowIndex }: any) => {
     const rowDatum = this.state.sortedRowData.get(rowIndex);
     const dataKey = this.visibleColumns[columnIndex].dataKey;
     if (!rowDatum) {
@@ -549,10 +579,10 @@ class SearchResultsTable extends React.Component<
           : rowDatum[dataKey];
       }
     } else {
-      // Am observation header row.
+      // An observation header row.
       const files = rowDatum.meta.observation.files;
       const allInCart = files.every((file: IFile) =>
-        this.state.cart.contains(file)
+        cart.contains(file.cartContent)
       );
       if (columnIndex === 1) {
         return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
@@ -566,32 +596,34 @@ class SearchResultsTable extends React.Component<
    * The renderer for a table data cell. A column index of 0 refers to the
    * dummy column, and hence an empty string is returned for it.
    */
-  private cellRenderer = ({
-    columnIndex,
-    key,
-    rowIndex,
-    style
-  }: {
-    columnIndex: number;
-    key: string;
-    rowIndex: number;
-    style: object;
-  }) => {
-    /**
-     * The first column has the same width as the cart column and lies
-     * underneath. It should therefore be considered a dummy column, and no
-     * content should be returned for it. Also see the documentation for the
-     * render method.
-     */
-    if (columnIndex < 1) {
-      return "";
-    }
+  private cellRenderer = (cart: Cart) => {
+    return ({
+      columnIndex,
+      key,
+      rowIndex,
+      style
+    }: {
+      columnIndex: number;
+      key: string;
+      rowIndex: number;
+      style: object;
+    }) => {
+      /**
+       * The first column has the same width as the cart column and lies
+       * underneath. It should therefore be considered a dummy column, and no
+       * content should be returned for it. Also see the documentation for the
+       * render method.
+       */
+      if (columnIndex < 1) {
+        return "";
+      }
 
-    return (
-      <div className={this.rowClassName(rowIndex)} key={key} style={style}>
-        <span>{this.cellContent({ columnIndex, rowIndex })}</span>
-      </div>
-    );
+      return (
+        <div className={this.rowClassName(rowIndex)} key={key} style={style}>
+          <span>{this.cellContent({ cart, columnIndex, rowIndex })}</span>
+        </div>
+      );
+    };
   };
 
   /**
@@ -694,7 +726,7 @@ class SearchResultsTable extends React.Component<
     sortBy: string;
     sortDirection: SortDirectionType;
   }) => {
-    const sortedRowData = this.sortedRowData(
+    const sortedRowData = SearchResultsTable.sortedRowData(
       this.state.unsortedRowData,
       sortBy,
       sortDirection
@@ -709,7 +741,7 @@ class SearchResultsTable extends React.Component<
    * If the data is sorted, observation headers are included; otherwise they are
    * ignored.
    */
-  private sortedRowData = (
+  private static sortedRowData = (
     unsortedRowData: List<IRowDatum>,
     sortBy: string,
     sortDirection: SortDirectionType
@@ -761,7 +793,7 @@ class SearchResultsTable extends React.Component<
   private unsort = () => {
     const sortBy = "";
     const sortDirection = SortDirection.ASC;
-    const sortedRowData = this.sortedRowData(
+    const sortedRowData = SearchResultsTable.sortedRowData(
       this.state.unsortedRowData,
       sortBy,
       sortDirection
@@ -773,9 +805,9 @@ class SearchResultsTable extends React.Component<
   /**
    * Generate the row data for the table.
    */
-  private unsortedRowData = () => {
+  private static unsortedRowData = (searchResults: IObservation[]) => {
     const data: IRowDatum[] = [];
-    this.props.searchResults.forEach((result, observationIndex) => {
+    searchResults.forEach((result, observationIndex) => {
       const observation = result;
       data.push({
         meta: {
@@ -815,14 +847,7 @@ class SearchResultsTable extends React.Component<
     // Get the list of files to add or remove
     const updatedFiles = files.map(file => ({
       __typename: "CartFile",
-      id: file[DataKeys.DATA_FILE_ID],
-      name: file[DataKeys.DATA_FILE_FILENAME],
-      observation: {
-        __typename: "CartObservation",
-        id: file[DataKeys.OBSERVATION_ID],
-        name: file[DataKeys.OBSERVATION_NAME]
-      },
-      targetName: file[DataKeys.TARGET_NAME]
+      ...file.cartContent
     }));
 
     // Add or remove from the cart, depending on the checkbox state
@@ -831,15 +856,6 @@ class SearchResultsTable extends React.Component<
     } else {
       await removeFromCart({ variables: { files: updatedFiles } });
     }
-
-    // Get current cart content
-    const cartContent: any = cache.readQuery({ query: CART_QUERY }) || {
-      cart: []
-    };
-    const cart = new Cart(cartContent.cart);
-
-    // Update the cart in the state
-    this.setState(() => ({ cart }));
   };
 
   /**

@@ -8,6 +8,7 @@ import { MockedProvider } from "react-apollo/test-utils";
 import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
 import cache from "../../../../util/cache";
+import { IObservation } from "../../../../components/searchFormComponents/SearchPage";
 
 // IMPORTANT NOTE
 //
@@ -15,7 +16,7 @@ import cache from "../../../../util/cache";
 // meaningful, as there does nbot seem much content in the table DOM recorded
 // in the snapshots.
 
-const dummySearchResults = [
+const dummySearchResults: any[] = [
   {
     files: [
       {
@@ -27,7 +28,13 @@ const dummySearchResults = [
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 20,
         [DataKeys.TARGET_NAME]: "target 001",
-        [DataKeys.TELESCOPE_NAME]: "SALT"
+        [DataKeys.TELESCOPE_NAME]: "SALT",
+        cartContent: {
+          id: "fileID-1",
+          name: "filename-1",
+          observation: { id: "Obs-A", name: "Observation A" },
+          target: null
+        }
       }
     ],
     id: "obsID-1",
@@ -44,7 +51,13 @@ const dummySearchResults = [
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 5,
         [DataKeys.TARGET_NAME]: "target 002",
-        [DataKeys.TELESCOPE_NAME]: "SALT"
+        [DataKeys.TELESCOPE_NAME]: "SALT",
+        cartContent: {
+          id: "fileID-2",
+          name: "filename-2",
+          observation: { id: "Obs-B", name: "Observation B" },
+          target: null
+        }
       },
       {
         [DataKeys.TARGET_DECLINATION]: -7,
@@ -55,7 +68,13 @@ const dummySearchResults = [
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 12.45,
         [DataKeys.TARGET_NAME]: "target 003",
-        [DataKeys.TELESCOPE_NAME]: "SALT"
+        [DataKeys.TELESCOPE_NAME]: "SALT",
+        cartContent: {
+          id: "fileID-3",
+          name: "filename-3",
+          observation: { id: "Obs-C", name: "Observation C" },
+          target: null
+        }
       }
     ],
     id: "obsID-2",
