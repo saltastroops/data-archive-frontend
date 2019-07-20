@@ -1,6 +1,8 @@
+import { ApolloClient, QueryOptions } from "apollo-client";
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
+import cache from "../../util/cache";
 import { prune, whereCondition } from "../../util/query/whereCondition";
 import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
@@ -10,7 +12,7 @@ import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
-import cache from "../../util/cache";
+import SearchQuery from "./SearchQuery";
 
 /**
  * Properties for the search page.
@@ -124,57 +126,59 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
+    const options: QueryOptions = {
+      fetchResults: !!this.state.where,
+      query: DATA_FILES_QUERY,
+      variables: {
+        columns: this.state.databaseColumns,
+        where: this.state.where
+      }
+    };
     return (
-      <>
-        <Query
-          notifyOnNetworkStatusChange
-          query={DATA_FILES_QUERY}
-          variables={{
-            columns: this.state.databaseColumns,
-            where: this.state.where
-          }}
-          skip={!this.state.where}
-        >
-          {({ data, error, loading, refetch }: any) => {
-            console.log(this.state.where);
-            const results =
-              data && !loading && !error
-                ? this.parseSearchResults(data.dataFiles.dataFiles)
-                : [];
-            return (
-              <>
-                <SearchForm
-                  cache={searchFormCache}
-                  search={this.searchArchive(refetch)}
-                  error={validationError || error}
-                  loading={loading}
-                />
-                {results && results.length !== 0 && (
-                  <>
-                    <div
-                      style={{
-                        marginLeft: resultsTableContainerMargin,
-                        marginRight: resultsTableContainerMargin,
-                        width: maxResultsTableWidth
-                      }}
-                    >
-                      <SearchResultsTable
+      <ApolloConsumer>
+        {client => (
+          <SearchQuery client={client} options={options}>
+            {({ data, error, loading, fetch }: any) => {
+              console.log(this.state.where, data, error, loading);
+              const results =
+                data && !loading && !error
+                  ? this.parseSearchResults(data.dataFiles.dataFiles)
+                  : [];
+              return (
+                <>
+                  <SearchForm
+                    cache={searchFormCache}
+                    search={this.searchArchive(fetch)}
+                    error={validationError || error}
+                    loading={loading}
+                  />
+                  {results && results.length !== 0 && (
+                    <>
+                      <div
+                        style={{
+                          marginLeft: resultsTableContainerMargin,
+                          marginRight: resultsTableContainerMargin,
+                          width: maxResultsTableWidth
+                        }}
+                      >
+                        <SearchResultsTable
+                          columns={tableColumns}
+                          maxWidth={maxResultsTableWidth}
+                          searchResults={results}
+                        />
+                      </div>
+                      <SearchResultsTableColumnSelector
                         columns={tableColumns}
-                        maxWidth={maxResultsTableWidth}
-                        searchResults={results}
+                        onChange={this.updateResultsTableColumnVisibility}
                       />
-                    </div>
-                    <SearchResultsTableColumnSelector
-                      columns={tableColumns}
-                      onChange={this.updateResultsTableColumnVisibility}
-                    />
-                  </>
-                )}
-              </>
-            );
-          }}
-        </Query>
-      </>
+                    </>
+                  )}
+                </>
+              );
+            }}
+          </SearchQuery>
+        )}
+      </ApolloConsumer>
     );
   }
 
@@ -187,7 +191,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * refetch: (v: any) => void
    *     Function that triggers a new query.
    */
-  private searchArchive = (refetch: (v: any) => void) => {
+  private searchArchive = (fetch: (v: QueryOptions) => void) => {
     return async ({
       general,
       target,
@@ -211,7 +215,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // cache before refetching the query. This code is taken from
         //  https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
         Object.keys((cache as any).data.data).forEach(key => {
-          key.match(/^Datafile/) && (cache as any).data.delete(key);
+          if (key.match(/^Datafile/)) {
+            (cache as any).data.delete(key);
+          }
         });
 
         // Record the search parameters
@@ -229,7 +235,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             tableColumns,
             where
           }),
-          () => refetch({ columns: databaseColumns, where })
+          () => {
+            const options: QueryOptions = {
+              fetchPolicy: "network-only",
+              query: DATA_FILES_QUERY,
+              variables: { columns: databaseColumns, where }
+            };
+            fetch(options);
+          }
         );
       } catch (e) {
         this.setState(() => ({ error: e }));
