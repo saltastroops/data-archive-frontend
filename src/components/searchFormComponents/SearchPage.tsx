@@ -139,7 +139,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         {client => (
           <SearchQuery client={client} options={options}>
             {({ data, error, loading, fetch }: any) => {
-              console.log(this.state.where, data, error, loading);
               const results =
                 data && !loading && !error
                   ? this.parseSearchResults(data.dataFiles.dataFiles)
