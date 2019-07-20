@@ -70,15 +70,15 @@ export interface IObservation {
 }
 
 /**
- * A blank div acting as a place holder if there is no data to displace to minimize pagination and searching shift/jump
+ * A blank div acting as a placeholder if there is no data to displace to minimize pagination and searching shift/jump
  *
  */
-const ResultsPlaceHolder = styled.div`
-  display: grid;
+const ResultsPlaceholder = styled.div`
   display: block;
   width: 100%;
   height: 744px;
 `;
+
 /**
  * The page for searching observations.
  */
@@ -198,7 +198,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                     />
                   </>
                 ) : (
-                  <ResultsPlaceHolder />
+                  <ResultsPlaceholder />
                 )}
               </>
             );
