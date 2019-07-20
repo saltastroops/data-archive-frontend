@@ -15,7 +15,7 @@ export class Cart {
    * The files in the cart.
    *
    * While this method returns the original array of files rather than a copy,
-   * you are strongly discouraged from modifying it. Use the add abd remove
+   * you are strongly discouraged from modifying it. Use the add and remove
    * methods instead.
    */
   public get files() {
@@ -30,26 +30,23 @@ export class Cart {
   }
 
   /**
-   * Check whether the cart contains the given file.
+   * Check whether the cart contains a file.
    *
    * Files are compared by their id. So if any cart file has the same id as the
    * given file, the function returns true, irrespective of any other key-value
-   * pairs are equal.
-   *
+
    * Parameters
    * ----------
-   * file:
+   * file
    *     The file whose existence in the cart is checked.
    *
    * Returns
    * -------
    * contains:
-   *     Whether the cart contains the given file.
+   *     Whether the cart contains the file with the given id.
    */
   public contains(file: ICartFile) {
-    return this.cartFiles.some(
-      f => f[DataKeys.DATA_FILE_ID] === file[DataKeys.DATA_FILE_ID]
-    );
+    return this.cartFiles.some(f => f.id === file.id);
   }
 
   /**
@@ -80,10 +77,7 @@ export class Cart {
    */
   public remove(files: ICartFile[]) {
     this.cartFiles = this.cartFiles.filter(
-      file =>
-        !files.some(
-          f => file[DataKeys.DATA_FILE_ID] === f[DataKeys.DATA_FILE_ID]
-        )
+      file => !files.some(f => file.id === f.id)
     );
   }
 
@@ -114,7 +108,7 @@ export class Cart {
   public groupByObservation() {
     const groups = new Map<string, ICartFile[]>();
     this.cartFiles.forEach(file => {
-      const key = file[DataKeys.OBSERVATION_ID] || "";
+      const key = file.observation.id || "";
       if (!groups.has(key)) {
         groups.set(key, []);
       }
@@ -136,17 +130,26 @@ export class Cart {
  *     File name.
  * observation:
  *     Observation to which the file is linked.
+ * target:
+ *     Target name.
  */
 export interface ICartFile {
-  [key: string]: any;
+  id: string;
+  name: string;
+  observation: { id: string; name: string };
+  target: string | null;
 }
+
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
       id
       name
-      observation
-      targetName
+      observation {
+        id
+        name
+      }
+      target
     }
   }
 `;

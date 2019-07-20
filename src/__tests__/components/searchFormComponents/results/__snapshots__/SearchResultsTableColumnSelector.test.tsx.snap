@@ -43,13 +43,18 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
 
 @media screen and (min-width:1472px) {
   .c0 {
-    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+    grid-template-columns: 182px 182px 182px 182px 182px 182px 182px;
   }
 }
 
 <SearchResultsTableColumnSelector
   columns={
     Array [
+      Object {
+        "dataKey": "dummy",
+        "name": "Dummy",
+        "visible": false,
+      },
       Object {
         "dataKey": "proposal",
         "name": "Proposal",
@@ -104,7 +109,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
   }
 
   @media screen and (min-width: 1472px) {
-    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+    grid-template-columns: 182px 182px 182px 182px 182px 182px 182px;
   }
 ",
             ],

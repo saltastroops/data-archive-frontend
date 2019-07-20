@@ -69,8 +69,6 @@ class DataRequestsForm extends React.Component {
 
           const { dataRequests } = data;
 
-          console.log(data);
-
           const sortedDataRequests = [...dataRequests];
           sortedDataRequests.sort(
             (a, b) => moment(b.madeAt).valueOf() - moment(a.madeAt).valueOf()

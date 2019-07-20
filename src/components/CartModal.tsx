@@ -16,7 +16,7 @@ import {
   ICartFile,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
-import CartFile from "./cart/CartFile";
+import CartFileRow from "./cart/CartFileRow";
 
 interface ICart {
   open: boolean;
@@ -49,9 +49,7 @@ class CartModal extends React.Component<ICart, any> {
               <div className={"section"}>
                 <div className={"cart-table"}>
                   <table
-                    className={
-                      "table is-striped  is-fullwidth is-outlined fixed-header"
-                    }
+                    className={"table is-fullwidth is-outlined fixed-header"}
                   >
                     <thead>
                       <tr className="notification cart-modal">
@@ -62,23 +60,19 @@ class CartModal extends React.Component<ICart, any> {
                       </tr>
                     </thead>
                     <tbody>
-                      {groupedCart.map((obz: any) => {
-                        return (
-                          <tr key={obz.id}>
-                            <td className="fixed-header-rest">{obz.name}</td>
-                            {Array.from(obz.files).map(
-                              (file: any, index: number) => (
-                                <CartFile
-                                  index={index}
-                                  id={file.id}
-                                  key={file.id}
-                                  file={file}
-                                  remove={this.remove}
-                                  removeFromCart={removeFromCart}
-                                />
-                              )
-                            )}
-                          </tr>
+                      {groupedCart.map((obz: any, obzIndex: number) => {
+                        return Array.from(obz.files).map(
+                          (file: any, index: number) => (
+                            <CartFileRow
+                              index={index}
+                              id={file.id}
+                              key={file.id}
+                              file={file}
+                              obzIndex={obzIndex}
+                              remove={this.remove}
+                              removeFromCart={removeFromCart}
+                            />
+                          )
                         );
                       })}
                     </tbody>

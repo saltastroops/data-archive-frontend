@@ -5,6 +5,7 @@ import SearchResultsTableColumn from "../../../../components/searchFormComponent
 import SearchResultsTableColumnSelector from "../../../../components/searchFormComponents/results/SearchResultsTableColumnSelector";
 
 const columns: SearchResultsTableColumn[] = [
+  { dataKey: "dummy", name: "Dummy", visible: false },
   { dataKey: "proposal", name: "Proposal", visible: true },
   { dataKey: "pi", name: "Principal Investigator", visible: false },
   { dataKey: "target", name: "Target Name", visible: true }

@@ -2,14 +2,20 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
 import { prune, whereCondition } from "../../util/query/whereCondition";
-import { IGeneral, ITarget } from "../../utils/ObservationQueryParameters";
+import {
+  IFile,
+  IGeneral,
+  ITarget
+} from "../../utils/ObservationQueryParameters";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
+import Pagination from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
+import styled from "styled-components";
 
 /**
  * Properties for the search page.
@@ -57,15 +63,21 @@ interface ISearchResult {
 
 export interface IObservation {
   available: boolean;
-  files: [
-    {
-      [key: string]: boolean | number | string;
-    }
-  ];
+  files: [IFile];
   id: number | string;
   name: string;
   publicFrom: Date;
 }
+
+/**
+ * A blank div acting as a placeholder if there is no data to displace to minimize pagination and searching shift/jump
+ *
+ */
+const ResultsPlaceholder = styled.div`
+  display: block;
+  width: 100%;
+  height: 744px;
+`;
 
 /**
  * The page for searching observations.
@@ -111,21 +123,37 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
+    const limit = 100;
     return (
       <>
         <Query
           query={DATA_FILES_QUERY}
           variables={{
             columns: this.state.databaseColumns,
+            limit,
             where: this.state.where
           }}
           skip={!this.state.where}
         >
-          {({ data, error, loading }: any) => {
+          {({ data, error, loading, refetch, fetchMore }: any) => {
             const results =
               data && !loading && !error
                 ? this.parseSearchResults(data.dataFiles.dataFiles)
                 : [];
+            const pageInfo =
+              data && !loading && !error ? data.dataFiles.pageInfo : {};
+            const dataFilesCount =
+              data && !loading && !error ? data.dataFiles.dataFiles.length : 0;
+
+            const fetchPage = (startIndex: number, limit: number) => {
+              fetchMore({
+                updateQuery: (prev: any, { fetchMoreResult }: any) => {
+                  return fetchMoreResult;
+                },
+                variables: { limit, startIndex }
+              });
+            };
+
             return (
               <>
                 <SearchForm
@@ -134,7 +162,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                   error={validationError || error}
                   loading={loading}
                 />
-                {results && results.length !== 0 && (
+                {results && results.length !== 0 ? (
                   <>
                     <div
                       style={{
@@ -143,17 +171,34 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         width: maxResultsTableWidth
                       }}
                     >
+                      <SearchResultsTableColumnSelector
+                        columns={tableColumns}
+                        onChange={this.updateResultsTableColumnVisibility}
+                      />
+                      <Pagination
+                        fetchPage={fetchPage}
+                        itemsOnCurrentPage={dataFilesCount}
+                        itemsPerPage={pageInfo.itemsPerPage}
+                        itemsTotal={pageInfo.itemsTotal}
+                        startIndex={pageInfo.startIndex}
+                      />
                       <SearchResultsTable
                         columns={tableColumns}
                         maxWidth={maxResultsTableWidth}
                         searchResults={results}
                       />
                     </div>
-                    <SearchResultsTableColumnSelector
-                      columns={tableColumns}
-                      onChange={this.updateResultsTableColumnVisibility}
+
+                    <Pagination
+                      fetchPage={fetchPage}
+                      itemsOnCurrentPage={dataFilesCount}
+                      itemsPerPage={pageInfo.itemsPerPage}
+                      itemsTotal={pageInfo.itemsTotal}
+                      startIndex={pageInfo.startIndex}
                     />
                   </>
+                ) : (
+                  <ResultsPlaceholder />
                 )}
               </>
             );
@@ -224,6 +269,22 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
+      const file = (observationName: string, metadata: any) => {
+        return {
+          ...metadata,
+          cartContent: {
+            id: metadata[DataKeys.DATA_FILE_ID].toString(),
+            name: metadata[DataKeys.DATA_FILE_FILENAME],
+            observation: {
+              __typename: "CartObservation",
+              id: metadata[DataKeys.OBSERVATION_ID].toString(),
+              name: metadata[DataKeys.OBSERVATION_NAME]
+            },
+            target: metadata[DataKeys.TARGET_NAME] || null
+          }
+        };
+      };
+
       const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
       if (!observationsMap.has(observationId)) {
         // Create a new observations object. A string of the form "TN - #id" is
@@ -240,7 +301,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const isPublic = now > metadata[DataKeys.START_TIME];
         const observation: IObservation = {
           available: ownedByUser || isPublic,
-          files: [metadata],
+          files: [file(observationName, metadata)],
           id: observationId,
           name: observationName,
           publicFrom: new Date(metadata[
@@ -256,7 +317,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       } else {
         // Add the data file
         (observationsMap.get(observationId) as IObservation).files.push(
-          metadata
+          file(observationName, metadata)
         );
       }
     }
@@ -331,6 +392,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         tableColumns: updatedColumns
       });
     }
+  };
+
+  private refetchContent = (fromIndex: number, refetch: any) => {
+    refetch({
+      columns: this.state.databaseColumns,
+      startIndex: fromIndex,
+      where: this.state.where
+    });
   };
 }
 

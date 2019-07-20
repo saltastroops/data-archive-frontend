@@ -46,7 +46,7 @@ const Grid = styled.div`
   }
 
   @media screen and (min-width: 1472px) {
-    grid-template-columns: 190px 190px 190px 190px 190px 190px;
+    grid-template-columns: 182px 182px 182px 182px 182px 182px 182px;
   }
 `;
 
@@ -63,19 +63,21 @@ class SearchResultsTableColumnSelector extends React.Component<
 
     return (
       <Grid>
-        {columns.map((column, index) => (
-          <div key={index}>
-            <label className="label">
-              <LargeCheckbox
-                type="checkbox"
-                checked={column.visible}
-                name={column.dataKey}
-                onChange={this.onChange}
-              />
-              {column.name}
-            </label>
-          </div>
-        ))}
+        {columns
+          .filter((column, index) => index > 0)
+          .map((column, index) => (
+            <div key={index}>
+              <label className="label">
+                <LargeCheckbox
+                  type="checkbox"
+                  checked={column.visible}
+                  name={column.dataKey}
+                  onChange={this.onChange}
+                />
+                {column.name}
+              </label>
+            </div>
+          ))}
       </Grid>
     );
   }
