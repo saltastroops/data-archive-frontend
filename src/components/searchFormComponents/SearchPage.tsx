@@ -21,6 +21,16 @@ import styled from "styled-components";
 import SearchQuery from "./SearchQuery";
 
 /**
+ * The default maximum number of results a query should return.
+ */
+export const DEFAULT_LIMIT = 10;
+
+/**
+ * The default start index for a query.
+ */
+export const DEFAULT_START_INDEX = 0;
+
+/**
  * Properties for the search page.
  *
  * cache:
@@ -50,6 +60,8 @@ interface ISearchPageProps {
 interface ISearchPageState {
   databaseColumns: string[];
   error: Error | null;
+  limit: number;
+  startIndex: number;
   tableColumns: ISearchResultsTableColumn[];
   where: string;
 }
@@ -67,6 +79,8 @@ interface ISearchResult {
 
 export interface ISearchPageCache {
   databaseColumns?: string[];
+  limit: number;
+  startIndex: number;
   tableColumns?: ISearchResultsTableColumn[];
   where?: string;
 }
@@ -98,12 +112,16 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     const { searchPageCache } = props;
     const databaseColumns = searchPageCache.databaseColumns || [];
+    const limit = searchPageCache.limit;
+    const startIndex = searchPageCache.startIndex;
     const tableColumns = searchPageCache.tableColumns || [];
     const where = searchPageCache.where || "";
 
     this.state = {
       databaseColumns,
       error: null,
+      limit,
+      startIndex,
       tableColumns,
       where
     };
@@ -111,7 +129,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
   render() {
     const { searchFormCache, screenDimensions } = this.props;
-    const { error: validationError, tableColumns } = this.state;
+    const {
+      error: validationError,
+      limit,
+      startIndex,
+      tableColumns,
+      where
+    } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend
@@ -138,13 +162,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
-    const limit = 100;
     const options: QueryOptions = {
       query: DATA_FILES_QUERY,
       variables: {
         columns: this.state.databaseColumns,
         limit,
-        where: this.state.where
+        startIndex,
+        where
       }
     };
     return (
@@ -167,15 +191,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                   ? data.dataFiles.dataFiles.length
                   : 0;
 
-              // const fetchPage = (startIndex: number, limit: number) => {
-              //   fetchMore({
-              //     updateQuery: (prev: any, { fetchMoreResult }: any) => {
-              //       return fetchMoreResult;
-              //     },
-              //     variables: { limit, startIndex }
-              //   });
-              // };
-
               return (
                 <>
                   <SearchForm
@@ -197,27 +212,28 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                           columns={tableColumns}
                           onChange={this.updateResultsTableColumnVisibility}
                         />
-                        {/*<Pagination*/}
-                        {/*  fetchPage={fetchPage}*/}
-                        {/*  itemsOnCurrentPage={dataFilesCount}*/}
-                        {/*  itemsPerPage={pageInfo.itemsPerPage}*/}
-                        {/*  itemsTotal={pageInfo.itemsTotal}*/}
-                        {/*  startIndex={pageInfo.startIndex}*/}
-                        {/*/>*/}
+                        <Pagination
+                          fetchPage={this.fetchPage(fetch)}
+                          itemsOnCurrentPage={dataFilesCount}
+                          itemsPerPage={pageInfo.itemsPerPage}
+                          itemsTotal={pageInfo.itemsTotal}
+                          startIndex={pageInfo.startIndex}
+                        />
                         <SearchResultsTable
                           columns={tableColumns}
                           maxWidth={maxResultsTableWidth}
                           searchResults={results}
                         />
+                        <div style={{ display: "grid" }}>
+                          <Pagination
+                            fetchPage={this.fetchPage(fetch)}
+                            itemsOnCurrentPage={dataFilesCount}
+                            itemsPerPage={pageInfo.itemsPerPage}
+                            itemsTotal={pageInfo.itemsTotal}
+                            startIndex={pageInfo.startIndex}
+                          />
+                        </div>
                       </div>
-
-                      {/*<Pagination*/}
-                      {/*  fetchPage={fetchPage}*/}
-                      {/*  itemsOnCurrentPage={dataFilesCount}*/}
-                      {/*  itemsPerPage={pageInfo.itemsPerPage}*/}
-                      {/*  itemsTotal={pageInfo.itemsTotal}*/}
-                      {/*  startIndex={pageInfo.startIndex}*/}
-                      {/*/>*/}
                     </>
                   ) : (
                     <ResultsPlaceholder />
@@ -232,16 +248,40 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   /**
+   * Return a function which fetches a new page.
+   */
+  private fetchPage = (fetch: (options: QueryOptions) => void) => {
+    return (startIndex: number, limit: number) => {
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
+
+      // Perform the query for the new page
+      const fetchPageOptions: QueryOptions = {
+        fetchPolicy: "cache-first",
+        query: DATA_FILES_QUERY,
+        variables: {
+          columns: this.state.databaseColumns,
+          limit,
+          startIndex,
+          where: this.state.where
+        }
+      };
+      fetch(fetchPageOptions);
+    };
+  };
+
+  /**
    * Return a function which performs a data file search  with the currently
    * selected search parameters.
    *
-   * Parameters:
-   * -----------
-   * refetch: (v: any) => void
+   * Parameters
+   * ----------
+   * fetch: (v: QueryOptions) => void
    *     Function that triggers a new query.
    */
-  private searchArchive = (fetch: (v: QueryOptions) => void) => {
-    return async ({
+  private searchArchive = (fetch: (options: QueryOptions) => void) => {
+    return ({
       general,
       target,
       telescope
@@ -288,7 +328,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             const options: QueryOptions = {
               fetchPolicy: "network-only",
               query: DATA_FILES_QUERY,
-              variables: { columns: databaseColumns, where }
+              variables: {
+                columns: databaseColumns,
+                limit: this.state.limit,
+                startIndex: this.state.startIndex,
+                where
+              }
             };
             fetch(options);
           }

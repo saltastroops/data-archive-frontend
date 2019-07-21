@@ -15,6 +15,8 @@ import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
 import SearchPage, {
+  DEFAULT_LIMIT,
+  DEFAULT_START_INDEX,
   ISearchPageCache
 } from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
@@ -95,7 +97,7 @@ class App extends React.Component<{}, IAppState> {
     loginForm: {},
     registrationForm: {},
     searchForm: {},
-    searchPage: {},
+    searchPage: { limit: DEFAULT_LIMIT, startIndex: DEFAULT_START_INDEX },
     userUpdateForm: {}
   };
 
