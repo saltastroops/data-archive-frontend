@@ -266,7 +266,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * Return a function which fetches a new page.
    */
   private fetchPage = (fetch: (options: QueryOptions) => void) => {
-    return (startIndex: number, limit: number) => {
+    return async (startIndex: number, limit: number) => {
       // Update the cache with the new limit and start index
       this.props.searchPageCache.limit = limit;
       this.props.searchPageCache.startIndex = startIndex;
@@ -282,7 +282,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           where: this.state.where
         }
       };
-      fetch(fetchPageOptions);
+      await fetch(fetchPageOptions);
+
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
     };
   };
 
@@ -336,10 +340,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           () => ({
             databaseColumns,
             error: null,
+            startIndex: 0,
             tableColumns,
             where
           }),
-          () => {
+          async () => {
             const options: QueryOptions = {
               fetchPolicy: "network-only",
               query: DATA_FILES_QUERY,
@@ -350,7 +355,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                 where
               }
             };
-            fetch(options);
+            await fetch(options);
+
+            // Update the cache with the new limit and start index
+            this.props.searchPageCache.limit = this.state.limit;
+            this.props.searchPageCache.startIndex = this.state.startIndex;
           }
         );
       } catch (e) {
