@@ -18,6 +18,7 @@ import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import styled from "styled-components";
+import SearchQuery from "./SearchQuery";
 
 /**
  * Properties for the search page.
@@ -138,86 +139,95 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
     const limit = 100;
+    const options: QueryOptions = {
+      query: DATA_FILES_QUERY,
+      variables: {
+        columns: this.state.databaseColumns,
+        limit,
+        where: this.state.where
+      }
+    };
     return (
-      <>
-        <Query
-          query={DATA_FILES_QUERY}
-          variables={{
-            columns: this.state.databaseColumns,
-            limit,
-            where: this.state.where
-          }}
-          skip={!this.state.where}
-        >
-          {({ data, error, loading, refetch, fetchMore }: any) => {
-            const results =
-              data && !loading && !error
-                ? this.parseSearchResults(data.dataFiles.dataFiles)
-                : [];
-            const pageInfo =
-              data && !loading && !error ? data.dataFiles.pageInfo : {};
-            const dataFilesCount =
-              data && !loading && !error ? data.dataFiles.dataFiles.length : 0;
+      <ApolloConsumer>
+        {client => (
+          <SearchQuery
+            client={client}
+            options={options}
+            skip={!this.state.where}
+          >
+            {({ data, error, loading, fetch }: any) => {
+              const results =
+                data && !loading && !error
+                  ? this.parseSearchResults(data.dataFiles.dataFiles)
+                  : [];
+              const pageInfo =
+                data && !loading && !error ? data.dataFiles.pageInfo : {};
+              const dataFilesCount =
+                data && !loading && !error
+                  ? data.dataFiles.dataFiles.length
+                  : 0;
 
-            const fetchPage = (startIndex: number, limit: number) => {
-              fetchMore({
-                updateQuery: (prev: any, { fetchMoreResult }: any) => {
-                  return fetchMoreResult;
-                },
-                variables: { limit, startIndex }
-              });
-            };
+              // const fetchPage = (startIndex: number, limit: number) => {
+              //   fetchMore({
+              //     updateQuery: (prev: any, { fetchMoreResult }: any) => {
+              //       return fetchMoreResult;
+              //     },
+              //     variables: { limit, startIndex }
+              //   });
+              // };
 
-            return (
-              <>
-                <SearchForm
-                  cache={cache}
-                  search={this.searchArchive}
-                  error={validationError || error}
-                  loading={loading}
-                />
-                {results && results.length !== 0 ? (
-                  <>
-                    <div
-                      style={{
-                        marginLeft: resultsTableContainerMargin,
-                        marginRight: resultsTableContainerMargin,
-                        width: maxResultsTableWidth
-                      }}
-                    >
-                      <SearchResultsTableColumnSelector
-                        columns={tableColumns}
-                        onChange={this.updateResultsTableColumnVisibility}
-                      />
-                      <Pagination
-                        fetchPage={fetchPage}
-                        itemsOnCurrentPage={dataFilesCount}
-                        itemsPerPage={pageInfo.itemsPerPage}
-                        itemsTotal={pageInfo.itemsTotal}
-                        startIndex={pageInfo.startIndex}
-                      />
-                      <SearchResultsTable
-                        columns={tableColumns}
-                        onChange={this.updateResultsTableColumnVisibility}
-                      />
-                    </div>
+              return (
+                <>
+                  <SearchForm
+                    cache={this.props.searchFormCache}
+                    search={this.searchArchive(fetch)}
+                    error={validationError || error}
+                    loading={loading}
+                  />
+                  {results && results.length !== 0 ? (
+                    <>
+                      <div
+                        style={{
+                          marginLeft: resultsTableContainerMargin,
+                          marginRight: resultsTableContainerMargin,
+                          width: maxResultsTableWidth
+                        }}
+                      >
+                        <SearchResultsTableColumnSelector
+                          columns={tableColumns}
+                          onChange={this.updateResultsTableColumnVisibility}
+                        />
+                        {/*<Pagination*/}
+                        {/*  fetchPage={fetchPage}*/}
+                        {/*  itemsOnCurrentPage={dataFilesCount}*/}
+                        {/*  itemsPerPage={pageInfo.itemsPerPage}*/}
+                        {/*  itemsTotal={pageInfo.itemsTotal}*/}
+                        {/*  startIndex={pageInfo.startIndex}*/}
+                        {/*/>*/}
+                        <SearchResultsTable
+                          columns={tableColumns}
+                          maxWidth={maxResultsTableWidth}
+                          searchResults={results}
+                        />
+                      </div>
 
-                    <Pagination
-                      fetchPage={fetchPage}
-                      itemsOnCurrentPage={dataFilesCount}
-                      itemsPerPage={pageInfo.itemsPerPage}
-                      itemsTotal={pageInfo.itemsTotal}
-                      startIndex={pageInfo.startIndex}
-                    />
-                  </>
-                ) : (
-                  <ResultsPlaceholder />
-                )}
-              </>
-            );
-          }}
-        </Query>
-      </>
+                      {/*<Pagination*/}
+                      {/*  fetchPage={fetchPage}*/}
+                      {/*  itemsOnCurrentPage={dataFilesCount}*/}
+                      {/*  itemsPerPage={pageInfo.itemsPerPage}*/}
+                      {/*  itemsTotal={pageInfo.itemsTotal}*/}
+                      {/*  startIndex={pageInfo.startIndex}*/}
+                      {/*/>*/}
+                    </>
+                  ) : (
+                    <ResultsPlaceholder />
+                  )}
+                </>
+              );
+            }}
+          </SearchQuery>
+        )}
+      </ApolloConsumer>
     );
   }
 
