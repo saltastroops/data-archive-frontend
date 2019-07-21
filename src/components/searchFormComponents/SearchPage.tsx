@@ -103,6 +103,19 @@ const ResultsPlaceholder = styled.div`
   height: 744px;
 `;
 
+const PaginationContainer = styled.div<{
+  marginTop: number;
+  marginBottom: number;
+}>`
+  && {
+    display: grid;
+    grid-template-columns: 500px;
+    justify-content: center;
+    margin-bottom: ${props => props.marginBottom}px;
+    margin-top: ${props => props.marginTop}px;
+  }
+`;
+
 /**
  * The page for searching observations.
  */
@@ -212,19 +225,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                           columns={tableColumns}
                           onChange={this.updateResultsTableColumnVisibility}
                         />
-                        <Pagination
-                          fetchPage={this.fetchPage(fetch)}
-                          itemsOnCurrentPage={dataFilesCount}
-                          itemsPerPage={pageInfo.itemsPerPage}
-                          itemsTotal={pageInfo.itemsTotal}
-                          startIndex={pageInfo.startIndex}
-                        />
-                        <SearchResultsTable
-                          columns={tableColumns}
-                          maxWidth={maxResultsTableWidth}
-                          searchResults={results}
-                        />
-                        <div style={{ display: "grid" }}>
+                        <PaginationContainer marginBottom={10} marginTop={20}>
                           <Pagination
                             fetchPage={this.fetchPage(fetch)}
                             itemsOnCurrentPage={dataFilesCount}
@@ -232,7 +233,21 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             itemsTotal={pageInfo.itemsTotal}
                             startIndex={pageInfo.startIndex}
                           />
-                        </div>
+                        </PaginationContainer>
+                        <SearchResultsTable
+                          columns={tableColumns}
+                          maxWidth={maxResultsTableWidth}
+                          searchResults={results}
+                        />
+                        <PaginationContainer marginBottom={40} marginTop={10}>
+                          <Pagination
+                            fetchPage={this.fetchPage(fetch)}
+                            itemsOnCurrentPage={dataFilesCount}
+                            itemsPerPage={pageInfo.itemsPerPage}
+                            itemsTotal={pageInfo.itemsTotal}
+                            startIndex={pageInfo.startIndex}
+                          />
+                        </PaginationContainer>
                       </div>
                     </>
                   ) : (
