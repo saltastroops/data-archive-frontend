@@ -12,7 +12,7 @@ import {
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
-import Pagination from "./results/Pagination";
+import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
@@ -23,7 +23,7 @@ import SearchQuery from "./SearchQuery";
 /**
  * The default maximum number of results a query should return.
  */
-export const DEFAULT_LIMIT = 10;
+export const DEFAULT_LIMIT = 100;
 
 /**
  * The default start index for a query.
@@ -192,7 +192,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             options={options}
             skip={!this.state.where}
           >
-            {({ data, error, loading, fetch }: any) => {
+            {({ data, error, loading, fetch, preload }: any) => {
               const results =
                 data && !loading && !error
                   ? this.parseSearchResults(data.dataFiles.dataFiles)
@@ -208,7 +208,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                 <>
                   <SearchForm
                     cache={this.props.searchFormCache}
-                    search={this.searchArchive(fetch)}
+                    search={this.searchArchive(fetch, preload)}
                     error={validationError || error}
                     loading={loading}
                   />
@@ -227,7 +227,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         />
                         <PaginationContainer marginBottom={10} marginTop={20}>
                           <Pagination
-                            fetchPage={this.fetchPage(fetch)}
+                            fetchPage={this.fetchPage(fetch, preload)}
                             itemsOnCurrentPage={dataFilesCount}
                             itemsPerPage={pageInfo.itemsPerPage}
                             itemsTotal={pageInfo.itemsTotal}
@@ -241,7 +241,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         />
                         <PaginationContainer marginBottom={40} marginTop={10}>
                           <Pagination
-                            fetchPage={this.fetchPage(fetch)}
+                            fetchPage={this.fetchPage(fetch, preload)}
                             itemsOnCurrentPage={dataFilesCount}
                             itemsPerPage={pageInfo.itemsPerPage}
                             itemsTotal={pageInfo.itemsTotal}
@@ -263,34 +263,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   /**
-   * Return a function which fetches a new page.
-   */
-  private fetchPage = (fetch: (options: QueryOptions) => void) => {
-    return async (startIndex: number, limit: number) => {
-      // Update the cache with the new limit and start index
-      this.props.searchPageCache.limit = limit;
-      this.props.searchPageCache.startIndex = startIndex;
-
-      // Perform the query for the new page
-      const fetchPageOptions: QueryOptions = {
-        fetchPolicy: "cache-first",
-        query: DATA_FILES_QUERY,
-        variables: {
-          columns: this.state.databaseColumns,
-          limit,
-          startIndex,
-          where: this.state.where
-        }
-      };
-      await fetch(fetchPageOptions);
-
-      // Update the cache with the new limit and start index
-      this.props.searchPageCache.limit = limit;
-      this.props.searchPageCache.startIndex = startIndex;
-    };
-  };
-
-  /**
    * Return a function which performs a data file search  with the currently
    * selected search parameters.
    *
@@ -299,7 +271,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * fetch: (v: QueryOptions) => void
    *     Function that triggers a new query.
    */
-  private searchArchive = (fetch: (options: QueryOptions) => void) => {
+  private searchArchive = (
+    fetch: (options: QueryOptions) => void,
+    preload: (options: QueryOptions) => void
+  ) => {
     return ({
       general,
       target,
@@ -318,12 +293,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const databaseColumns = this.databaseColumns(whereObject);
         const tableColumns = searchResultsTableColumns(databaseColumns);
 
-        // It seems that when it comes to the meta data Apollo does not update the
-        // cache content correctly. We therefore delete all data files from the
+        // It seems that when it comes to the meta data Apollo does not update
+        // the cache content correctly. We therefore delete all data files from
         // cache before refetching the query. This code is taken from
-        //  https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
+        // https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
         Object.keys((cache as any).data.data).forEach(key => {
-          if (key.match(/^Datafile/)) {
+          if (key.match(/^DataFile/)) {
             (cache as any).data.delete(key);
           }
         });
@@ -360,6 +335,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             // Update the cache with the new limit and start index
             this.props.searchPageCache.limit = this.state.limit;
             this.props.searchPageCache.startIndex = this.state.startIndex;
+
+            this.preloadPage(
+              preload,
+              this.state.limit,
+              this.state.limit + this.state.startIndex
+            );
           }
         );
       } catch (e) {
@@ -367,6 +348,80 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         return;
       }
     };
+  };
+
+  /**
+   * Return a function which fetches a new page.
+   */
+  private fetchPage = (
+    fetch: (options: QueryOptions) => void,
+    preload: (options: QueryOptions) => void
+  ) => {
+    return async (
+      startIndex: number,
+      limit: number,
+      direction: PaginationDirection
+    ) => {
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
+
+      // Perform the query for the new page
+      const fetchPageOptions: QueryOptions = {
+        fetchPolicy: "cache-first",
+        query: DATA_FILES_QUERY,
+        variables: {
+          columns: this.state.databaseColumns,
+          limit,
+          startIndex,
+          where: this.state.where
+        }
+      };
+      await fetch(fetchPageOptions);
+
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
+
+      // Preload the previous or next page
+      if (direction === "NEXT") {
+        this.preloadPage(preload, limit, startIndex + limit);
+      } else {
+        (fetchPageOptions.variables as any).startIndex = startIndex - limit;
+        this.preloadPage(preload, limit, startIndex + limit);
+      }
+    };
+  };
+
+  /**
+   * Preload a page.
+   *
+   * Parameters
+   * ----------
+   * preload: (options: QueryOptions) => void
+   *     Function for carrying out the preloading.
+   * limit: number
+   *     Maximum number of results to return.
+   * startIndex: number
+   *     Start index of the first result to return.
+   */
+  private preloadPage = (
+    preload: (options: QueryOptions) => void,
+    limit: number,
+    startIndex: number
+  ) => {
+    const { databaseColumns, where } = this.state;
+    const options: QueryOptions = {
+      fetchPolicy: "cache-first",
+      query: DATA_FILES_QUERY,
+      variables: {
+        columns: databaseColumns,
+        limit,
+        startIndex,
+        where
+      }
+    };
+    preload(options);
   };
 
   /**
@@ -530,14 +585,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         }
       );
     }
-  };
-
-  private refetchContent = (fromIndex: number, refetch: any) => {
-    refetch({
-      columns: this.state.databaseColumns,
-      startIndex: fromIndex,
-      where: this.state.where
-    });
   };
 }
 

@@ -1,7 +1,16 @@
 import * as React from "react";
 
+/**
+ * Whether the user is moving to the next or the previous page.
+ */
+export type PaginationDirection = "NEXT" | "PREVIOUS";
+
 interface IPaginationProps {
-  fetchPage: (startIndex: number, limit: number) => void;
+  fetchPage: (
+    startIndex: number,
+    limit: number,
+    direction: PaginationDirection
+  ) => void;
   itemsOnCurrentPage: number;
   itemsPerPage: number;
   itemsTotal: number;
@@ -44,7 +53,7 @@ const Pagination = (props: IPaginationProps) => {
       <button
         disabled={startIndex <= 0}
         className="pagination-previous"
-        onClick={() => fetchPage(previousIndex, itemsPerPage)}
+        onClick={() => fetchPage(previousIndex, itemsPerPage, "PREVIOUS")}
       >
         Previous page
       </button>
@@ -60,7 +69,7 @@ const Pagination = (props: IPaginationProps) => {
       <button
         disabled={startIndex + itemsPerPage >= itemsTotal}
         className="pagination-next"
-        onClick={() => fetchPage(nextIndex, itemsPerPage)}
+        onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
       >
         Next page
       </button>

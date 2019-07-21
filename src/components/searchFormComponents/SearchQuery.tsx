@@ -73,7 +73,13 @@ class SearchQuery extends React.Component<
 
   render() {
     return (
-      <>{this.props.children({ ...this.state, fetch: this.fetch } as any)}</>
+      <>
+        {this.props.children({
+          ...this.state,
+          fetch: this.fetch,
+          preload: this.preload
+        } as any)}
+      </>
     );
   }
 
