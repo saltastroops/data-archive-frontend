@@ -9,7 +9,7 @@ const DataKeys = {
   DATA_FILE_ID: "DataFile.dataFileId",
   HRS_ID: "HRS.hrsId",
   HRS_OBSERVATION_MODE: "HRS.observationMode",
-  INSTRUMENT: "Instrument.instrumentName",
+  INSTRUMENT_NAME: "Instrument.instrumentName",
   OBSERVATION_ID: "Observation.observationId",
   OBSERVATION_NAME: "observationName",
   OBSERVATION_NIGHT: "Observation.night",

@@ -60,7 +60,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
-    case DataKeys.INSTRUMENT:
+    case DataKeys.INSTRUMENT_NAME:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:
       return { dataKey, name: "Observation", visible: true };
@@ -126,7 +126,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
     DataKeys.PROPOSAL_PI_FAMILY_NAME,
     DataKeys.PROPOSAL_TITLE,
     DataKeys.TELESCOPE_NAME,
-    DataKeys.INSTRUMENT
+    DataKeys.INSTRUMENT_NAME
   ];
 
   // Compare two columns. The following rules are used:
