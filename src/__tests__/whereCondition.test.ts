@@ -1,13 +1,7 @@
 import {
-  DEFAULT_COORDINATE_SEARCH_RADIUS,
-  MAXIMUM_COORDINATE_SEARCH_RADIUS,
-  parseTargetPosition
-} from "../util/query/parse";
-import {
   IGeneral,
   IHRS,
   IObservationQueryParameters,
-  IRSS,
   ISALT,
   ISalticam,
   ITarget
@@ -16,7 +10,6 @@ import {
   generalWhereCondition,
   hrsWhereCondition,
   rssWhereCondition,
-  SALT_ID,
   salticamWhereCondition,
   saltWhereCondition,
   targetWhereCondition,
@@ -24,6 +17,7 @@ import {
   whereCondition
 } from "../util/query/whereCondition";
 import { TargetType } from "../utils/TargetType";
+import { IRSS } from "../utils/ObservationQueryParameters";
 
 describe("whereCondition", () => {
   it("should map query parameters correctly", () => {
@@ -223,11 +217,11 @@ describe("telescopeWhereCondition", () => {
 });
 
 describe("saltWhereCondition", () => {
-  it("should map SALTICAM query parameters correctly", () => {
+  it("should map Salticam query parameters correctly", () => {
     const salticam: ISalticam = {
       detectorMode: "Slot Mode",
       errors: {},
-      name: "SALTICAM"
+      name: "Salticam"
     };
     const salt: ISALT = {
       instrument: salticam,

@@ -5,6 +5,7 @@ import {
   contains,
   equals,
   greaterEqual,
+  isIn,
   isNull,
   lessEqual,
   not,
@@ -17,13 +18,13 @@ import {
   IGeneral,
   IHRS,
   IObservationQueryParameters,
-  IRSS,
   ISALT,
   ISalticam,
   ITarget,
   ITelescope,
   IWhereCondition
 } from "./types";
+import { IRSS } from "../../utils/ObservationQueryParameters";
 
 /**
  * Map observation query parameters to a where condition.
@@ -371,8 +372,17 @@ export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
     case "Normal":
       conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "NORMAL"));
       break;
+    case "Frame Transfer":
+      conditions.push(
+        equals(DataKeys.SALTICAM_DETECTOR_MODE, "FRAME TRANSFER")
+      );
+      break;
     case "Slot Mode":
       conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
+      break;
+    case "Drift Scan":
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "DRIFT SCAN"));
+      break;
   }
 
   // Filter
@@ -401,7 +411,12 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // RSS is used
-  conditions.push(not(isNull(DataKeys.RSS_ID)));
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "RSS"));
+
+  // RSS mode
+  if (rss.modes && rss.modes.names.size) {
+    conditions.push(isIn(DataKeys.RSS_MODE, Array.from(rss.modes.names)));
+  }
 
   // Detector mode
   const detectorMode = trim(rss.detectorMode);
@@ -409,8 +424,44 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
     case "Normal":
       conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "NORMAL"));
       break;
+    case "Frame Transfer":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "FRAME TRANSFER"));
+      break;
     case "Slot Mode":
       conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SLOT MODE"));
+      break;
+    case "Shuffle":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SHUFFLE"));
+      break;
+    case "Drift Scan":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "DRIFT SCAN"));
+      break;
+  }
+
+  // Fabry-Perot mode
+  if (rss.modes && rss.modes.fabryPerotMode) {
+    conditions.push(
+      equals(DataKeys.RSS_FABRY_PEROT_MODE, rss.modes.fabryPerotMode)
+    );
+  }
+
+  // Grating
+  if (rss.modes && rss.modes.grating) {
+    conditions.push(equals(DataKeys.RSS_GRATING, rss.modes.grating));
+  }
+
+  // Polarimetry pattern
+  if (
+    rss.modes &&
+    rss.modes.polarimetryModes &&
+    rss.modes.polarimetryModes.size
+  ) {
+    conditions.push(
+      isIn(
+        DataKeys.RSS_POLARIMETRY_PATTERN,
+        Array.from(rss.modes.polarimetryModes)
+      )
+    );
   }
 
   return and(conditions);
@@ -453,5 +504,6 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
       break;
   }
+
   return and(conditions);
 }

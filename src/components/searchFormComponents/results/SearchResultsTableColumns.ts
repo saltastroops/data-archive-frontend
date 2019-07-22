@@ -74,6 +74,16 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return { dataKey, name: "PI", visible: true };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
+    case DataKeys.RSS_DETECTOR_MODE:
+      return { dataKey, name: "RSS Detector Mode", visible: true };
+    case DataKeys.RSS_FABRY_PEROT_MODE:
+      return { dataKey, name: "RSS FP Mode", visible: true };
+    case DataKeys.RSS_GRATING:
+      return { dataKey, name: "RSS Grating", visible: true };
+    case DataKeys.RSS_MODE:
+      return { dataKey, name: "RSS Mode", visible: true };
+    case DataKeys.RSS_POLARIMETRY_PATTERN:
+      return { dataKey, name: "RSS Polarimetry Pattern", visible: true };
     case DataKeys.SALTICAM_DETECTOR_MODE:
       return { dataKey, name: "Detector Mode", visible: true };
     case DataKeys.SALTICAM_FILTER:

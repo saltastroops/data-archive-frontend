@@ -797,7 +797,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                 checked={false}
                                 data-test="linear"
                                 onChange={[Function]}
-                                value="Linear"
+                                value="LINEAR"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -836,7 +836,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear"
+                                  value="LINEAR"
                                 >
                                   <input
                                     checked={false}
@@ -844,7 +844,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                     data-test="linear"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear"
+                                    value="LINEAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -855,7 +855,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                 checked={false}
                                 data-test="linear-hi"
                                 onChange={[Function]}
-                                value="Linear Hi"
+                                value="LINEAR HI"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -894,7 +894,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear Hi"
+                                  value="LINEAR HI"
                                 >
                                   <input
                                     checked={false}
@@ -902,7 +902,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                     data-test="linear-hi"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear Hi"
+                                    value="LINEAR HI"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -910,13 +910,13 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                             </label>
                             <label>
                               <styled.input
-                                checked={true}
+                                checked={false}
                                 data-test="circular"
                                 onChange={[Function]}
-                                value="Circular"
+                                value="CIRCULAR"
                               >
                                 <StyledComponent
-                                  checked={true}
+                                  checked={false}
                                   data-test="circular"
                                   forwardedComponent={
                                     Object {
@@ -952,15 +952,15 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Circular"
+                                  value="CIRCULAR"
                                 >
                                   <input
-                                    checked={true}
+                                    checked={false}
                                     className="checkbox c2"
                                     data-test="circular"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Circular"
+                                    value="CIRCULAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -971,7 +971,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                 checked={false}
                                 data-test="all-stokes"
                                 onChange={[Function]}
-                                value="All Stokes"
+                                value="ALL STOKES"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -1010,7 +1010,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="All Stokes"
+                                  value="ALL STOKES"
                                 >
                                   <input
                                     checked={false}
@@ -1018,7 +1018,7 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                                     data-test="all-stokes"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="All Stokes"
+                                    value="ALL STOKES"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -2648,7 +2648,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="linear"
                                 onChange={[Function]}
-                                value="Linear"
+                                value="LINEAR"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -2687,7 +2687,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear"
+                                  value="LINEAR"
                                 >
                                   <input
                                     checked={false}
@@ -2695,7 +2695,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                     data-test="linear"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear"
+                                    value="LINEAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -2706,7 +2706,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="linear-hi"
                                 onChange={[Function]}
-                                value="Linear Hi"
+                                value="LINEAR HI"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -2745,7 +2745,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear Hi"
+                                  value="LINEAR HI"
                                 >
                                   <input
                                     checked={false}
@@ -2753,7 +2753,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                     data-test="linear-hi"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear Hi"
+                                    value="LINEAR HI"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -2764,7 +2764,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="circular"
                                 onChange={[Function]}
-                                value="Circular"
+                                value="CIRCULAR"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -2803,7 +2803,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Circular"
+                                  value="CIRCULAR"
                                 >
                                   <input
                                     checked={false}
@@ -2811,7 +2811,7 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                     data-test="circular"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Circular"
+                                    value="CIRCULAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -2819,13 +2819,13 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                             </label>
                             <label>
                               <styled.input
-                                checked={true}
+                                checked={false}
                                 data-test="all-stokes"
                                 onChange={[Function]}
-                                value="All Stokes"
+                                value="ALL STOKES"
                               >
                                 <StyledComponent
-                                  checked={true}
+                                  checked={false}
                                   data-test="all-stokes"
                                   forwardedComponent={
                                     Object {
@@ -2861,15 +2861,15 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="All Stokes"
+                                  value="ALL STOKES"
                                 >
                                   <input
-                                    checked={true}
+                                    checked={false}
                                     className="checkbox c2"
                                     data-test="all-stokes"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="All Stokes"
+                                    value="ALL STOKES"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -4565,7 +4565,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="linear"
                                 onChange={[Function]}
-                                value="Linear"
+                                value="LINEAR"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -4604,7 +4604,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear"
+                                  value="LINEAR"
                                 >
                                   <input
                                     checked={false}
@@ -4612,7 +4612,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                     data-test="linear"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear"
+                                    value="LINEAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -4620,13 +4620,13 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                             </label>
                             <label>
                               <styled.input
-                                checked={true}
+                                checked={false}
                                 data-test="linear-hi"
                                 onChange={[Function]}
-                                value="Linear Hi"
+                                value="LINEAR HI"
                               >
                                 <StyledComponent
-                                  checked={true}
+                                  checked={false}
                                   data-test="linear-hi"
                                   forwardedComponent={
                                     Object {
@@ -4662,15 +4662,15 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Linear Hi"
+                                  value="LINEAR HI"
                                 >
                                   <input
-                                    checked={true}
+                                    checked={false}
                                     className="checkbox c2"
                                     data-test="linear-hi"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Linear Hi"
+                                    value="LINEAR HI"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -4681,7 +4681,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="circular"
                                 onChange={[Function]}
-                                value="Circular"
+                                value="CIRCULAR"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -4720,7 +4720,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="Circular"
+                                  value="CIRCULAR"
                                 >
                                   <input
                                     checked={false}
@@ -4728,7 +4728,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                     data-test="circular"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="Circular"
+                                    value="CIRCULAR"
                                   />
                                 </StyledComponent>
                               </styled.input>
@@ -4739,7 +4739,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                 checked={false}
                                 data-test="all-stokes"
                                 onChange={[Function]}
-                                value="All Stokes"
+                                value="ALL STOKES"
                               >
                                 <StyledComponent
                                   checked={false}
@@ -4778,7 +4778,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                   }
                                   forwardedRef={null}
                                   onChange={[Function]}
-                                  value="All Stokes"
+                                  value="ALL STOKES"
                                 >
                                   <input
                                     checked={false}
@@ -4786,7 +4786,7 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                                     data-test="all-stokes"
                                     onChange={[Function]}
                                     type="checkbox"
-                                    value="All Stokes"
+                                    value="ALL STOKES"
                                   />
                                 </StyledComponent>
                               </styled.input>

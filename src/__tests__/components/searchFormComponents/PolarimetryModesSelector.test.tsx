@@ -22,7 +22,7 @@ describe("PolarimetryModesSelector", () => {
     const wrapper = mount(
       <PolarimetryModesSelector
         onChange={onChange}
-        polarimetryModes={new Set<RSSPolarimetryMode>(["Linear", "Circular"])}
+        polarimetryModes={new Set<RSSPolarimetryMode>(["LINEAR", "CIRCULAR"])}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -33,16 +33,16 @@ describe("PolarimetryModesSelector", () => {
     const wrapper = mount(
       <PolarimetryModesSelector
         onChange={onChange}
-        polarimetryModes={new Set<RSSPolarimetryMode>(["Linear", "Circular"])}
+        polarimetryModes={new Set<RSSPolarimetryMode>(["LINEAR", "CIRCULAR"])}
       />
     );
     const linearHiCheckbox = wrapper.find('input[data-test="linear-hi"]');
     linearHiCheckbox.simulate("change", {
-      target: { checked: true, value: "Linear Hi" }
+      target: { checked: true, value: "LINEAR HI" }
     });
     await wait(0);
     expect(onChange).toHaveBeenCalledWith(
-      new Set<RSSPolarimetryMode>(["Linear", "Circular", "Linear Hi"])
+      new Set<RSSPolarimetryMode>(["LINEAR", "CIRCULAR", "LINEAR HI"])
     );
   });
 
@@ -51,16 +51,16 @@ describe("PolarimetryModesSelector", () => {
     const wrapper = mount(
       <PolarimetryModesSelector
         onChange={onChange}
-        polarimetryModes={new Set<RSSPolarimetryMode>(["Linear", "Circular"])}
+        polarimetryModes={new Set<RSSPolarimetryMode>(["LINEAR", "CIRCULAR"])}
       />
     );
     const circularCheckbox = wrapper.find('input[data-test="circular"]');
     circularCheckbox.simulate("change", {
-      target: { checked: false, value: "Circular" }
+      target: { checked: false, value: "CIRCULAR" }
     });
     await wait(0);
     expect(onChange).toHaveBeenCalledWith(
-      new Set<RSSPolarimetryMode>(["Linear"])
+      new Set<RSSPolarimetryMode>(["LINEAR"])
     );
   });
 });
