@@ -53,6 +53,7 @@ const Pagination = (props: IPaginationProps) => {
       <button
         disabled={startIndex <= 0}
         className="pagination-previous"
+        data-test="pagination-previous"
         onClick={() => fetchPage(previousIndex, itemsPerPage, "PREVIOUS")}
       >
         Previous page
@@ -69,6 +70,7 @@ const Pagination = (props: IPaginationProps) => {
       <button
         disabled={startIndex + itemsPerPage >= itemsTotal}
         className="pagination-next"
+        data-test="pagination-next"
         onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
       >
         Next page
