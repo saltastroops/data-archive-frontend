@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-import DataKeys from "../components/searchFormComponents/results/DataKeys";
 
 /**
  * The cart of requested files.
@@ -34,7 +33,7 @@ export class Cart {
    *
    * Files are compared by their id. So if any cart file has the same id as the
    * given file, the function returns true, irrespective of any other key-value
-
+   *
    * Parameters
    * ----------
    * file

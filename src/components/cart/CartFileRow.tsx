@@ -1,8 +1,8 @@
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { ICartFile } from "../../util/Cart";
 import styled from "styled-components";
+import { ICartFile } from "../../util/Cart";
 
 interface ICartFileRowProps {
   file: ICartFile;

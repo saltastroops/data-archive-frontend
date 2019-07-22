@@ -1,6 +1,7 @@
-import { ApolloClient, QueryOptions } from "apollo-client";
+import { QueryOptions } from "apollo-client";
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
+import styled from "styled-components";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
 import cache from "../../util/cache";
 import { prune, whereCondition } from "../../util/query/whereCondition";
@@ -17,7 +18,6 @@ import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
-import styled from "styled-components";
 import SearchQuery from "./SearchQuery";
 
 /**
@@ -141,7 +141,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   render() {
-    const { searchFormCache, screenDimensions } = this.props;
+    const { screenDimensions } = this.props;
     const {
       error: validationError,
       limit,

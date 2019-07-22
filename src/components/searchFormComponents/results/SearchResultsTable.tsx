@@ -17,7 +17,6 @@ import {
   ADD_TO_CART_MUTATION,
   Cart,
   CART_QUERY,
-  ICartFile,
   REMOVE_FROM_CART_MUTATION
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
@@ -216,6 +215,12 @@ class SearchResultsTable extends React.Component<
   ISearchResultsTableState
 > {
   /**
+   * Return the visible columns.
+   */
+  private get visibleColumns() {
+    return this.props.columns.filter(column => column.visible);
+  }
+  /**
    * The height of the table header in pixels.
    */
   public static HEADER_HEIGHT = 40;
@@ -229,21 +234,6 @@ class SearchResultsTable extends React.Component<
    * The width of the cart column in pixels.
    */
   public static CART_COLUMN_WIDTH = 25;
-
-  constructor(props: ISearchResultsTableProps) {
-    super(props);
-
-    // Set the initial state.
-    // The sorted and unsorted row data will be populated by the
-    // getDerivedStateFromProps lifecycle method.
-    this.state = {
-      open: false,
-      sortBy: "",
-      sortDirection: SortDirection.ASC,
-      sortedRowData: List(),
-      unsortedRowData: List()
-    };
-  }
 
   static getDerivedStateFromProps(
     props: ISearchResultsTableProps,
@@ -261,6 +251,79 @@ class SearchResultsTable extends React.Component<
     return {
       sortedRowData,
       unsortedRowData
+    };
+  }
+
+  /**
+   * Create sorted row data from given unsorted row data.
+   *
+   * If the data is sorted, observation headers are included; otherwise they are
+   * ignored.
+   */
+  private static sortedRowData = (
+    unsortedRowData: List<IRowDatum>,
+    sortBy: string,
+    sortDirection: SortDirectionType
+  ) => {
+    if (sortBy) {
+      const comparator = (a: IRowDatum, b: IRowDatum) =>
+        cmp(a, b, sortBy, sortDirection);
+      const retainObservationHeaders = sortBy === DataKeys.OBSERVATION_NAME;
+      return unsortedRowData
+        .filter(
+          item => retainObservationHeaders || !item.meta.observationHeader
+        )
+        .sort(comparator);
+    } else {
+      return List(unsortedRowData);
+    }
+  };
+
+  /**
+   * Generate the row data for the table.
+   */
+  private static unsortedRowData = (searchResults: IObservation[]) => {
+    const data: IRowDatum[] = [];
+    searchResults.forEach((result, observationIndex) => {
+      const observation = result;
+      data.push({
+        meta: {
+          observation,
+          observationFileIndex: -1,
+          observationHeader: true,
+          observationIndex
+        },
+        [DataKeys.OBSERVATION_NAME]: observation.name || ""
+      });
+      result.files.forEach((file, observationFileIndex) => {
+        data.push({
+          meta: {
+            observation,
+            observationFileIndex,
+            observationHeader: false,
+            observationIndex
+          },
+          [DataKeys.OBSERVATION_NAME]: observation.name || "",
+          ...file
+        });
+      });
+    });
+
+    return List(data);
+  };
+
+  constructor(props: ISearchResultsTableProps) {
+    super(props);
+
+    // Set the initial state.
+    // The sorted and unsorted row data will be populated by the
+    // getDerivedStateFromProps lifecycle method.
+    this.state = {
+      open: false,
+      sortBy: "",
+      sortDirection: SortDirection.ASC,
+      sortedRowData: List(),
+      unsortedRowData: List()
     };
   }
 
@@ -736,31 +799,6 @@ class SearchResultsTable extends React.Component<
   };
 
   /**
-   * Create sorted row data from given unsorted row data.
-   *
-   * If the data is sorted, observation headers are included; otherwise they are
-   * ignored.
-   */
-  private static sortedRowData = (
-    unsortedRowData: List<IRowDatum>,
-    sortBy: string,
-    sortDirection: SortDirectionType
-  ) => {
-    if (sortBy) {
-      const comparator = (a: IRowDatum, b: IRowDatum) =>
-        cmp(a, b, sortBy, sortDirection);
-      const retainObservationHeaders = sortBy === DataKeys.OBSERVATION_NAME;
-      return unsortedRowData
-        .filter(
-          item => retainObservationHeaders || !item.meta.observationHeader
-        )
-        .sort(comparator);
-    } else {
-      return List(unsortedRowData);
-    }
-  };
-
-  /**
    * Return the table height.
    */
   private tableHeight = () => {
@@ -803,39 +841,6 @@ class SearchResultsTable extends React.Component<
   };
 
   /**
-   * Generate the row data for the table.
-   */
-  private static unsortedRowData = (searchResults: IObservation[]) => {
-    const data: IRowDatum[] = [];
-    searchResults.forEach((result, observationIndex) => {
-      const observation = result;
-      data.push({
-        meta: {
-          observation,
-          observationFileIndex: -1,
-          observationHeader: true,
-          observationIndex
-        },
-        [DataKeys.OBSERVATION_NAME]: observation.name || ""
-      });
-      result.files.forEach((file, observationFileIndex) => {
-        data.push({
-          meta: {
-            observation,
-            observationFileIndex,
-            observationHeader: false,
-            observationIndex
-          },
-          [DataKeys.OBSERVATION_NAME]: observation.name || "",
-          ...file
-        });
-      });
-    });
-
-    return List(data);
-  };
-
-  /**
    * Update the cart.
    */
   private updateCart = async (
@@ -857,13 +862,6 @@ class SearchResultsTable extends React.Component<
       await removeFromCart({ variables: { files: updatedFiles } });
     }
   };
-
-  /**
-   * Return the visible columns.
-   */
-  private get visibleColumns() {
-    return this.props.columns.filter(column => column.visible);
-  }
 }
 
 export default SearchResultsTable;

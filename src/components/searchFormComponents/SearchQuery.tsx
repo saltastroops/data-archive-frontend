@@ -63,9 +63,6 @@ class SearchQuery extends React.Component<
     error: undefined,
     loading: false
   };
-  constructor(props: ISearchQueryProps) {
-    super(props);
-  }
 
   componentDidMount(): void {
     this.fetch(this.props.options, !!this.props.skip);

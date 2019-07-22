@@ -1,8 +1,8 @@
 // TypeScript interfaces describing the state of the search form
 
+import { ICartFile } from "../util/Cart";
 import { SalticamFilter } from "./SalticamFilter";
 import { TargetType } from "./TargetType";
-import { ICartFile } from "../util/Cart";
 
 /**
  * An interface describing the React state of the observation query form.
