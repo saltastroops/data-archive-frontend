@@ -58,6 +58,8 @@ export function searchResultsTableColumns(
  */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
+    case DataKeys.DATA_CATEGORY:
+      return { dataKey, name: "Data Category", visible: true };
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
     case DataKeys.HRS_OBSERVATION_MODE:

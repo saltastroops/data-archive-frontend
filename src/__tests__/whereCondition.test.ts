@@ -1,5 +1,4 @@
 import {
-  IGeneral,
   IHRS,
   IObservationQueryParameters,
   ISALT,
@@ -17,12 +16,13 @@ import {
   telescopeWhereCondition,
   whereCondition
 } from "../util/query/whereCondition";
+import { IGeneral, IRSS } from "../utils/ObservationQueryParameters";
 import { TargetType } from "../utils/TargetType";
-import { IRSS } from "../utils/ObservationQueryParameters";
 
 describe("whereCondition", () => {
   it("should map query parameters correctly", () => {
     const general: IGeneral = {
+      calibrations: new Set(),
       errors: {},
       observationNight: "2019-02-19",
       principalInvestigator: "John",
@@ -63,37 +63,58 @@ describe("whereCondition", () => {
 describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night format", () => {
     const f = () =>
-      generalWhereCondition({ errors: {}, observationNight: "invaliddate" });
+      generalWhereCondition({
+        errors: {},
+        observationNight: "invaliddate",
+        calibrations: new Set()
+      });
     expect(f).toThrow(/invaliddate.*valid/);
   });
 
   it("should raise an error for an invalid observation night", () => {
     const f = () =>
-      generalWhereCondition({ errors: {}, observationNight: "2019-02-29" });
+      generalWhereCondition({
+        errors: {},
+        observationNight: "2019-02-29",
+        calibrations: new Set()
+      });
     expect(f).toThrow(/2019-02-29.*valid/);
   });
 
   it("should map an observation night to a greater equal and less equal condition spanning one night", () => {
     expect(
-      generalWhereCondition({ errors: {}, observationNight: "2019-02-17" })
+      generalWhereCondition({
+        errors: {},
+        observationNight: "2019-02-17",
+        calibrations: new Set()
+      })
     ).toMatchSnapshot();
   });
 
   it("should map a Principal Investigator to a contains condition", () => {
     expect(
-      generalWhereCondition({ errors: {}, principalInvestigator: "Doe" })
+      generalWhereCondition({
+        errors: {},
+        principalInvestigator: "Doe",
+        calibrations: new Set()
+      })
     ).toMatchSnapshot();
   });
 
   it("should map a proposal code to a contains condition", () => {
     expect(
-      generalWhereCondition({ errors: {}, proposalCode: "2-SCI" })
+      generalWhereCondition({
+        errors: {},
+        proposalCode: "2-SCI",
+        calibrations: new Set()
+      })
     ).toMatchSnapshot();
   });
 
   it("should map input data correctly", () => {
     expect(
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
         observationNight: "2019-05-13",
         principalInvestigator: "Sipho",

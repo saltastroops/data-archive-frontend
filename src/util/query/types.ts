@@ -1,4 +1,4 @@
-import { IRSS } from "../../utils/ObservationQueryParameters";
+import { IGeneral, IRSS } from "../../utils/ObservationQueryParameters";
 
 /**
  * An interface marking a where condition.
@@ -74,32 +74,6 @@ export interface IObservationQueryParameters {
   general: IGeneral;
   target: ITarget;
   telescope: ITelescope;
-}
-
-/**
- * An interface for query parameters related to general information.
- *
- * Properties:
- * -----------
- * errors:
- *     Error messages.
- * observationNight:
- *     Date of the night when the observation was taken. This
- *     refers to the date whe the night started.
- * proposalCode:
- *     Identifier of the proposal to which the observation belongs.
- * proposalTitle:
- *     Title of the proposal to which the observation belongs.
- *
- */
-export interface IGeneral {
-  errors: {
-    observationNight?: string;
-  };
-  observationNight?: string;
-  principalInvestigator?: string;
-  proposalCode?: string;
-  proposalTitle?: string;
 }
 
 /**

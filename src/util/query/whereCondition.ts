@@ -1,4 +1,5 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
+import { IBVIT, IGeneral, IRSS } from "../../utils/ObservationQueryParameters";
 import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
   and,
@@ -15,7 +16,6 @@ import {
 } from "./operators";
 import { parseDate, parseTargetPosition, trim } from "./parse";
 import {
-  IGeneral,
   IHRS,
   IObservationQueryParameters,
   ISALT,
@@ -24,7 +24,6 @@ import {
   ITelescope,
   IWhereCondition
 } from "./types";
-import { IBVIT, IRSS } from "../../utils/ObservationQueryParameters";
 
 /**
  * Map observation query parameters to a where condition.
@@ -183,6 +182,12 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   const proposalTitle = trim(general.proposalTitle);
   if (proposalTitle) {
     conditions.push(contains(DataKeys.PROPOSAL_TITLE, proposalTitle));
+  }
+
+  // Data category
+  if (general.calibrations.size > 0) {
+    const dataCategories = [...Array.from(general.calibrations), "Science"];
+    conditions.push(isIn(DataKeys.DATA_CATEGORY, dataCategories));
   }
 
   return and(conditions);

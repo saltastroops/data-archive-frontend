@@ -7,8 +7,8 @@ import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
-import cache from "../../../../util/cache";
 import { IObservation } from "../../../../components/searchFormComponents/SearchPage";
+import cache from "../../../../util/cache";
 
 // IMPORTANT NOTE
 //
