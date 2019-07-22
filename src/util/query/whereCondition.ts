@@ -331,7 +331,7 @@ export function saltWhereCondition(salt: ISALT) {
   const instrument = salt.instrument;
   if (instrument) {
     switch (instrument.name) {
-      case "SALTICAM":
+      case "Salticam":
         conditions.push(salticamWhereCondition(instrument as ISalticam));
         break;
       case "RSS":
@@ -347,12 +347,12 @@ export function saltWhereCondition(salt: ISALT) {
 }
 
 /**
- * Map SALTICAM query parameters to a where condition.
+ * Map Salticam query parameters to a where condition.
  *
  * Parameters:
  * -----------
  * salticam:
- *    SALTICAM query parameters.
+ *    Salticam query parameters.
  *
  * Returns:
  * --------
@@ -362,8 +362,8 @@ export function saltWhereCondition(salt: ISALT) {
 export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
-  // SALTICAM is used
-  conditions.push(not(isNull(DataKeys.SALTICAM_ID)));
+  // Salticam is used
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "Salticam"));
 
   // Detector mode
   const detectorMode = trim(salticam.detectorMode);
@@ -373,6 +373,12 @@ export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
       break;
     case "Slot Mode":
       conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
+  }
+
+  // Filter
+  const filter = trim(salticam.filter);
+  if (filter) {
+    conditions.push(equals(DataKeys.SALTICAM_FILTER, filter));
   }
 
   return and(conditions);

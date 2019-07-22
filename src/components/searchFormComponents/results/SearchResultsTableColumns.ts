@@ -74,6 +74,10 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return { dataKey, name: "PI", visible: true };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
+    case DataKeys.SALTICAM_DETECTOR_MODE:
+      return { dataKey, name: "Detector Mode", visible: true };
+    case DataKeys.SALTICAM_FILTER:
+      return { dataKey, name: "Filter", visible: true };
     case DataKeys.TARGET_DECLINATION:
       return {
         dataKey,

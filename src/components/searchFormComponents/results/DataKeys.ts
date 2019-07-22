@@ -21,6 +21,7 @@ const DataKeys = {
   RSS_EXPOSUSURE_TIME: "RSS.exposureTime",
   RSS_ID: "RSS.rssId",
   SALTICAM_DETECTOR_MODE: "Salticam.detectorMode",
+  SALTICAM_FILTER: "Salticam.filterName",
   SALTICAM_ID: "Salticam.salticamId",
   START_TIME: "DataFile.startTime",
   TARGET_DECLINATION: "Target.declination",
