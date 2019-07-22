@@ -60,6 +60,8 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
+    case DataKeys.HRS_OBSERVATION_MODE:
+      return { dataKey, name: "HRS Mode", visible: true };
     case DataKeys.INSTRUMENT_NAME:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:

@@ -484,24 +484,27 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // HRS is used
-  conditions.push(not(isNull(DataKeys.HRS_ID)));
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "HRS"));
 
   // Detector mode
   const mode = trim(hrs.mode);
   switch (mode) {
-    case "Low Resolution":
+    case "LOW RESOLUTION":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
       break;
-    case "Medium Resolution":
+    case "MEDIUM RESOLUTION":
       conditions.push(
         equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
       );
       break;
-    case "High Resolution":
+    case "HIGH RESOLUTION":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
       break;
-    case "High Stability":
+    case "HIGH STABILITY":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
+      break;
+    case "INT CAL FIBRE":
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "INT CAL FIBRE"));
       break;
   }
 
