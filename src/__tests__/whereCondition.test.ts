@@ -7,6 +7,7 @@ import {
   ITarget
 } from "../util/query/types";
 import {
+  bvitWhereCondition,
   generalWhereCondition,
   hrsWhereCondition,
   rssWhereCondition,
@@ -290,6 +291,13 @@ describe("rssWhereCondition", () => {
 });
 
 describe("hrsWhereCondition", () => {
+  // TODO: Add unit tests
+  it("should work", () => {
+    // to be filled with life
+  });
+});
+
+describe("bvitWhereCondition", () => {
   // TODO: Add unit tests
   it("should work", () => {
     // to be filled with life

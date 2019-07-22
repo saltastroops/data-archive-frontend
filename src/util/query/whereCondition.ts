@@ -24,7 +24,7 @@ import {
   ITelescope,
   IWhereCondition
 } from "./types";
-import { IRSS } from "../../utils/ObservationQueryParameters";
+import { IBVIT, IRSS } from "../../utils/ObservationQueryParameters";
 
 /**
  * Map observation query parameters to a where condition.
@@ -341,6 +341,8 @@ export function saltWhereCondition(salt: ISALT) {
       case "HRS":
         conditions.push(hrsWhereCondition(instrument as IHRS));
         break;
+      case "BVIT":
+        conditions.push(bvitWhereCondition(instrument as IBVIT));
     }
   }
 
@@ -507,6 +509,28 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "INT CAL FIBRE"));
       break;
   }
+
+  return and(conditions);
+}
+
+/**
+ * Map BVIT query parameters to a where condition.
+ *
+ * Parameters:
+ * -----------
+ * bvit:
+ *    BVIT query parameters.
+ *
+ * Returns:
+ * --------
+ * condition:
+ *     The where condition for the query parameters.
+ */
+export function bvitWhereCondition(bvit: IBVIT): IWhereCondition {
+  const conditions: IWhereCondition[] = [];
+
+  // BVIT is used
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "BVIT"));
 
   return and(conditions);
 }
