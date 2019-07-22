@@ -7,6 +7,7 @@ describe("SearchResultsTableColumns", () => {
       let dbColumns: string[] = [];
       expect(searchResultsTableColumns(dbColumns)).toMatchSnapshot();
 
+      dbColumns = [DataKeys.INSTRUMENT_NAME];
       expect(searchResultsTableColumns(dbColumns)).toMatchSnapshot();
 
       dbColumns = [
