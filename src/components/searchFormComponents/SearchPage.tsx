@@ -455,7 +455,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
-      const file = (observationName: string, metadata: any) => {
+      const file = () => {
         return {
           ...metadata,
           cartContent: {
@@ -487,7 +487,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const isPublic = now > metadata[DataKeys.START_TIME];
         const observation: IObservation = {
           available: ownedByUser || isPublic,
-          files: [file(observationName, metadata)],
+          files: [file()],
           id: observationId,
           name: observationName,
           publicFrom: new Date(metadata[
@@ -502,9 +502,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         observationsMap.set(observationId, observation);
       } else {
         // Add the data file
-        (observationsMap.get(observationId) as IObservation).files.push(
-          file(observationName, metadata)
-        );
+        (observationsMap.get(observationId) as IObservation).files.push(file());
       }
     }
 
