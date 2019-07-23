@@ -64,7 +64,87 @@ To run all the tests of this application execute the command `yarn test` in the 
 
 ## Deployment
 
-{ Deployment steps to follow below. }
+Deployment Error tracking will will be monitored by Sentry, given that environment variable `REACT_APP_SENTRY_DSN` is set. 
+Learn more about [sentry here](https://sentry.io/welcome/).
 
-Deployment Error tracking will will be monitored by Sentry.
-learn more about [sentry here](https://sentry.io/welcome/).
+### install and configure nginx
+
+Make sure that Apache2 is not installed
+```bash
+sudo apt-get remove apache2
+``` 
+
+and the install nginx
+```bash
+sudo apt-get install nginx
+```
+
+Update nginx site available default 
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+and add the code below
+```text
+server {
+   listen 80 default_server;
+   root /var/www/frontend/build;  # path to the build directory for your project
+   server_name xxxxx/;  # server name e.g mywebsite.saao.ac.za
+   index index.html index.htm;
+   location / {
+   }
+}
+```
+
+Create a symbolic link between sites available and sites enabled
+```bash
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+```
+
+start nginx service
+```bash
+sudo service nginx start
+```
+
+If nginx service is running you can restart nginx service by
+```bash
+sudo service nginx restart
+```
+
+### Updating code on the server
+
+Login the server and navigate to code.
+
+```bash
+cd /var/www/frontend
+```
+Use git to pull correct branch
+
+```bash
+git checkout .
+git checkout development
+git pull 
+```
+
+Install all the dependency
+```bash
+yarn install
+```
+remove current build folder if it exist
+```bash
+rm -r build
+```
+And build the project
+```bash
+yarn build
+```
+
+If necessary restart nginx or reboot server
+```bash
+sudo service nginx restart
+    or
+sudo reboot
+```
+
+All of the above steps are explained properly on [link](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7)
+
