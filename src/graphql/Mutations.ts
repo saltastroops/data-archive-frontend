@@ -51,8 +51,13 @@ export const SIGNUP_MUTATION = gql`
  *     The uusername.
  */
 export const LOGIN_MUTATION = gql`
-  mutation LOGIN_MUTATION($username: String!, $password: String!) {
-    login(password: $password, username: $username) @client
+  mutation LOGIN_MUTATION(
+    $affiliation: String!
+    $username: String!
+    $password: String!
+  ) {
+    login(affiliation: $affiliation, password: $password, username: $username)
+      @client
   }
 `;
 

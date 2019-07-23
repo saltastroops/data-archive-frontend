@@ -149,10 +149,15 @@ export const resolvers = {
      */
     login: async (
       _: any,
-      { username, password }: { username: string; password: string },
+      {
+        affiliation,
+        username,
+        password
+      }: { affiliation: string; username: string; password: string },
       { cache }: any
     ) => {
       const login = await api.login({
+        affiliation,
         password,
         username
       });

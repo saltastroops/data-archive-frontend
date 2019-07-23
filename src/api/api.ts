@@ -20,8 +20,13 @@ export default {
    * --------
    * true
    */
-  login: async (credentials: { password: string; username: string }) => {
+  login: async (credentials: {
+    affiliation: string;
+    password: string;
+    username: string;
+  }) => {
     return baseAxiosClient().post("/auth/login", {
+      affiliation: credentials.affiliation,
       password: credentials.password,
       username: credentials.username
     });
