@@ -1,5 +1,6 @@
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
+import moment from "moment";
 
 /**
  * Get the search results table columns for an array of database column names.
@@ -58,22 +59,45 @@ export function searchResultsTableColumns(
  */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
+    case DataKeys.DATA_CATEGORY:
+      return { dataKey, name: "Data Category", visible: true };
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
-    case DataKeys.INSTRUMENT:
+    case DataKeys.HRS_OBSERVATION_MODE:
+      return { dataKey, name: "HRS Mode", visible: true };
+    case DataKeys.INSTRUMENT_NAME:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:
       return { dataKey, name: "Observation", visible: true };
     case DataKeys.OBSERVATION_NIGHT:
-      return { dataKey, name: "Night", visible: true };
+      return { dataKey, name: "Night", visible: true, format: formatTimestamp };
     case DataKeys.OBSERVATION_PUBLIC_FROM:
-      return { dataKey, name: "Release Date", visible: true };
+      return {
+        dataKey,
+        name: "Release Date",
+        visible: true,
+        format: formatTimestamp
+      };
     case DataKeys.PROPOSAL_CODE:
       return { dataKey, name: "Proposal", visible: true };
     case DataKeys.PROPOSAL_PI_FAMILY_NAME:
       return { dataKey, name: "PI", visible: true };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
+    case DataKeys.RSS_DETECTOR_MODE:
+      return { dataKey, name: "RSS Detector Mode", visible: true };
+    case DataKeys.RSS_FABRY_PEROT_MODE:
+      return { dataKey, name: "RSS FP Mode", visible: true };
+    case DataKeys.RSS_GRATING:
+      return { dataKey, name: "RSS Grating", visible: true };
+    case DataKeys.RSS_MODE:
+      return { dataKey, name: "RSS Mode", visible: true };
+    case DataKeys.RSS_POLARIMETRY_PATTERN:
+      return { dataKey, name: "RSS Polarimetry Pattern", visible: true };
+    case DataKeys.SALTICAM_DETECTOR_MODE:
+      return { dataKey, name: "Detector Mode", visible: true };
+    case DataKeys.SALTICAM_FILTER:
+      return { dataKey, name: "Filter", visible: true };
     case DataKeys.TARGET_DECLINATION:
       return {
         dataKey,
@@ -126,7 +150,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
     DataKeys.PROPOSAL_PI_FAMILY_NAME,
     DataKeys.PROPOSAL_TITLE,
     DataKeys.TELESCOPE_NAME,
-    DataKeys.INSTRUMENT
+    DataKeys.INSTRUMENT_NAME
   ];
 
   // Compare two columns. The following rules are used:
@@ -172,4 +196,21 @@ function sort(columns: ISearchResultsTableColumn[]) {
  */
 function formatNumber(n: number) {
   return (value: string) => Number(value).toFixed(n);
+}
+
+/**
+ * Format a Unix timestamp as a string with the day, the month's abbreviated
+ * name and the four-digit year, such as 1 Jan 2019 or 23 Aug 2020.
+ *
+ * Parameters:
+ * -----------
+ * t: string
+ *     Unix timestamp.
+ *
+ * Returns:
+ * --------
+ * The formatted date string.
+ */
+function formatTimestamp(t: string) {
+  return moment(parseInt(t)).format("D MMM YYYY");
 }

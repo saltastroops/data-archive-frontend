@@ -1,3 +1,5 @@
+import { IGeneral, IRSS } from "../../utils/ObservationQueryParameters";
+
 /**
  * An interface marking a where condition.
  */
@@ -72,32 +74,6 @@ export interface IObservationQueryParameters {
   general: IGeneral;
   target: ITarget;
   telescope: ITelescope;
-}
-
-/**
- * An interface for query parameters related to general information.
- *
- * Properties:
- * -----------
- * errors:
- *     Error messages.
- * observationNight:
- *     Date of the night when the observation was taken. This
- *     refers to the date whe the night started.
- * proposalCode:
- *     Identifier of the proposal to which the observation belongs.
- * proposalTitle:
- *     Title of the proposal to which the observation belongs.
- *
- */
-export interface IGeneral {
-  errors: {
-    observationNight?: string;
-  };
-  observationNight?: string;
-  principalInvestigator?: string;
-  proposalCode?: string;
-  proposalTitle?: string;
 }
 
 /**
@@ -243,34 +219,6 @@ export interface ISalticam extends IInstrument {
   exposureTime?: string;
   filter?: string;
   name: "Salticam";
-}
-
-/**
- * An interface for query parameters related to RSS.
- *
- * Properties:
- * -----------
- * detectorMode:
- *     Detector mode.
- * errors:
- *     Errors.
- * exposureTime:
- *     Exposure time.
- * filter:
- *     Filter.
- * name:
- *     The string "RSS".
- */
-export interface IRSS extends IInstrument {
-  detectorMode?: "Normal" | "Slot Mode";
-  errors: {
-    detectorMode?: string;
-    exposureTime?: string;
-    filter?: string;
-  };
-  exposureTime?: string;
-  filter?: string;
-  name: "RSS";
 }
 
 /**

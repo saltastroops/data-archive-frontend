@@ -277,7 +277,7 @@ export interface IRSSModes {
   errors: {
     fabryPerotMode?: string;
     grating?: string;
-    polarimetryModes?: string;
+    polarimetryModes?: Set<string>;
   };
   fabryPerotMode?: RSSFabryPerotMode;
   grating?: RSSGrating;
@@ -310,11 +310,10 @@ export type RSSInstrumentMode =
 export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF" | "";
 
 export type RSSPolarimetryMode =
-  | "All Stokes"
-  | "Circular"
-  | "Linear"
-  | "Linear Hi"
-  | "";
+  | "ALL STOKES"
+  | "CIRCULAR"
+  | "LINEAR"
+  | "LINEAR HI";
 
 /**
  * An interface for query parameters related to HRS.

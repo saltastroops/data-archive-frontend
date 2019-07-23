@@ -1,10 +1,12 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
+import { IBVIT, IGeneral, IRSS } from "../../utils/ObservationQueryParameters";
 import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
   and,
   contains,
   equals,
   greaterEqual,
+  isIn,
   isNull,
   lessEqual,
   not,
@@ -14,10 +16,8 @@ import {
 } from "./operators";
 import { parseDate, parseTargetPosition, trim } from "./parse";
 import {
-  IGeneral,
   IHRS,
   IObservationQueryParameters,
-  IRSS,
   ISALT,
   ISalticam,
   ITarget,
@@ -184,6 +184,12 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
     conditions.push(contains(DataKeys.PROPOSAL_TITLE, proposalTitle));
   }
 
+  // Data category
+  if (general.calibrations.size > 0) {
+    const dataCategories = [...Array.from(general.calibrations), "Science"];
+    conditions.push(isIn(DataKeys.DATA_CATEGORY, dataCategories));
+  }
+
   return and(conditions);
 }
 
@@ -331,7 +337,7 @@ export function saltWhereCondition(salt: ISALT) {
   const instrument = salt.instrument;
   if (instrument) {
     switch (instrument.name) {
-      case "SALTICAM":
+      case "Salticam":
         conditions.push(salticamWhereCondition(instrument as ISalticam));
         break;
       case "RSS":
@@ -340,6 +346,8 @@ export function saltWhereCondition(salt: ISALT) {
       case "HRS":
         conditions.push(hrsWhereCondition(instrument as IHRS));
         break;
+      case "BVIT":
+        conditions.push(bvitWhereCondition(instrument as IBVIT));
     }
   }
 
@@ -347,12 +355,12 @@ export function saltWhereCondition(salt: ISALT) {
 }
 
 /**
- * Map SALTICAM query parameters to a where condition.
+ * Map Salticam query parameters to a where condition.
  *
  * Parameters:
  * -----------
  * salticam:
- *    SALTICAM query parameters.
+ *    Salticam query parameters.
  *
  * Returns:
  * --------
@@ -362,8 +370,8 @@ export function saltWhereCondition(salt: ISALT) {
 export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
-  // SALTICAM is used
-  conditions.push(not(isNull(DataKeys.SALTICAM_ID)));
+  // Salticam is used
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "Salticam"));
 
   // Detector mode
   const detectorMode = trim(salticam.detectorMode);
@@ -371,8 +379,23 @@ export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
     case "Normal":
       conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "NORMAL"));
       break;
+    case "Frame Transfer":
+      conditions.push(
+        equals(DataKeys.SALTICAM_DETECTOR_MODE, "FRAME TRANSFER")
+      );
+      break;
     case "Slot Mode":
       conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
+      break;
+    case "Drift Scan":
+      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "DRIFT SCAN"));
+      break;
+  }
+
+  // Filter
+  const filter = trim(salticam.filter);
+  if (filter) {
+    conditions.push(equals(DataKeys.SALTICAM_FILTER, filter));
   }
 
   return and(conditions);
@@ -395,7 +418,12 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // RSS is used
-  conditions.push(not(isNull(DataKeys.RSS_ID)));
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "RSS"));
+
+  // RSS mode
+  if (rss.modes && rss.modes.names.size) {
+    conditions.push(isIn(DataKeys.RSS_MODE, Array.from(rss.modes.names)));
+  }
 
   // Detector mode
   const detectorMode = trim(rss.detectorMode);
@@ -403,8 +431,44 @@ export function rssWhereCondition(rss: IRSS): IWhereCondition {
     case "Normal":
       conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "NORMAL"));
       break;
+    case "Frame Transfer":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "FRAME TRANSFER"));
+      break;
     case "Slot Mode":
       conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SLOT MODE"));
+      break;
+    case "Shuffle":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SHUFFLE"));
+      break;
+    case "Drift Scan":
+      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "DRIFT SCAN"));
+      break;
+  }
+
+  // Fabry-Perot mode
+  if (rss.modes && rss.modes.fabryPerotMode) {
+    conditions.push(
+      equals(DataKeys.RSS_FABRY_PEROT_MODE, rss.modes.fabryPerotMode)
+    );
+  }
+
+  // Grating
+  if (rss.modes && rss.modes.grating) {
+    conditions.push(equals(DataKeys.RSS_GRATING, rss.modes.grating));
+  }
+
+  // Polarimetry pattern
+  if (
+    rss.modes &&
+    rss.modes.polarimetryModes &&
+    rss.modes.polarimetryModes.size
+  ) {
+    conditions.push(
+      isIn(
+        DataKeys.RSS_POLARIMETRY_PATTERN,
+        Array.from(rss.modes.polarimetryModes)
+      )
+    );
   }
 
   return and(conditions);
@@ -427,25 +491,51 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // HRS is used
-  conditions.push(not(isNull(DataKeys.HRS_ID)));
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "HRS"));
 
   // Detector mode
   const mode = trim(hrs.mode);
   switch (mode) {
-    case "Low Resolution":
+    case "LOW RESOLUTION":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
       break;
-    case "Medium Resolution":
+    case "MEDIUM RESOLUTION":
       conditions.push(
         equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
       );
       break;
-    case "High Resolution":
+    case "HIGH RESOLUTION":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
       break;
-    case "High Stability":
+    case "HIGH STABILITY":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
       break;
+    case "INT CAL FIBRE":
+      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "INT CAL FIBRE"));
+      break;
   }
+
+  return and(conditions);
+}
+
+/**
+ * Map BVIT query parameters to a where condition.
+ *
+ * Parameters:
+ * -----------
+ * bvit:
+ *    BVIT query parameters.
+ *
+ * Returns:
+ * --------
+ * condition:
+ *     The where condition for the query parameters.
+ */
+export function bvitWhereCondition(bvit: IBVIT): IWhereCondition {
+  const conditions: IWhereCondition[] = [];
+
+  // BVIT is used
+  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "BVIT"));
+
   return and(conditions);
 }

@@ -7,8 +7,8 @@ import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
-import cache from "../../../../util/cache";
 import { IObservation } from "../../../../components/searchFormComponents/SearchPage";
+import cache from "../../../../util/cache";
 
 // IMPORTANT NOTE
 //
@@ -23,7 +23,7 @@ const dummySearchResults: any[] = [
         [DataKeys.TARGET_DECLINATION]: -20,
         [DataKeys.DATA_FILE_FILENAME]: "filename-1",
         [DataKeys.DATA_FILE_ID]: "fileID-1",
-        [DataKeys.INSTRUMENT]: "RSS",
+        [DataKeys.INSTRUMENT_NAME]: "RSS",
         [DataKeys.OBSERVATION_NAME]: "name-1",
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 20,
@@ -46,7 +46,7 @@ const dummySearchResults: any[] = [
         [DataKeys.TARGET_DECLINATION]: -25,
         [DataKeys.DATA_FILE_FILENAME]: "filename-2",
         [DataKeys.DATA_FILE_ID]: "fileID-2",
-        [DataKeys.INSTRUMENT]: "RSS",
+        [DataKeys.INSTRUMENT_NAME]: "RSS",
         [DataKeys.OBSERVATION_NAME]: "name-2",
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 5,
@@ -63,7 +63,7 @@ const dummySearchResults: any[] = [
         [DataKeys.TARGET_DECLINATION]: -7,
         [DataKeys.DATA_FILE_FILENAME]: "filename-3",
         [DataKeys.DATA_FILE_ID]: "fileID-3",
-        [DataKeys.INSTRUMENT]: "RSS",
+        [DataKeys.INSTRUMENT_NAME]: "RSS",
         [DataKeys.OBSERVATION_NAME]: "name-2",
         [DataKeys.OBSERVATION_NIGHT]: "2010-01-01",
         [DataKeys.TARGET_RIGHT_ASCENSION]: 12.45,

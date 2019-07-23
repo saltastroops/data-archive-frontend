@@ -68,6 +68,15 @@ export function greaterEqual(
   };
 }
 
+export function isIn(
+  column: string,
+  values: DATABASE_VALUE[]
+): IWhereCondition {
+  return {
+    IS_IN: { column, values }
+  };
+}
+
 export function contains(
   column: string,
   value: DATABASE_VALUE
