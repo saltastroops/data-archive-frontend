@@ -1,5 +1,6 @@
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
+import moment from "moment";
 
 /**
  * Get the search results table columns for an array of database column names.
@@ -69,9 +70,14 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.OBSERVATION_NAME:
       return { dataKey, name: "Observation", visible: true };
     case DataKeys.OBSERVATION_NIGHT:
-      return { dataKey, name: "Night", visible: true };
+      return { dataKey, name: "Night", visible: true, format: formatTimestamp };
     case DataKeys.OBSERVATION_PUBLIC_FROM:
-      return { dataKey, name: "Release Date", visible: true };
+      return {
+        dataKey,
+        name: "Release Date",
+        visible: true,
+        format: formatTimestamp
+      };
     case DataKeys.PROPOSAL_CODE:
       return { dataKey, name: "Proposal", visible: true };
     case DataKeys.PROPOSAL_PI_FAMILY_NAME:
@@ -190,4 +196,21 @@ function sort(columns: ISearchResultsTableColumn[]) {
  */
 function formatNumber(n: number) {
   return (value: string) => Number(value).toFixed(n);
+}
+
+/**
+ * Format a Unix timestamp as a string with the day, the month's abbreviated
+ * name and the four-digit year, such as 1 Jan 2019 or 23 Aug 2020.
+ *
+ * Parameters:
+ * -----------
+ * t: string
+ *     Unix timestamp.
+ *
+ * Returns:
+ * --------
+ * The formatted date string.
+ */
+function formatTimestamp(t: string) {
+  return moment(parseInt(t)).format("D MMM YYYY");
 }
