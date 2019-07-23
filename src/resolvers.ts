@@ -138,6 +138,8 @@ export const resolvers = {
      *
      * Parameters:
      * -----------
+     * affiliation
+     *    How users want to login
      * username
      *    The username.
      * password
@@ -153,7 +155,7 @@ export const resolvers = {
         affiliation,
         username,
         password
-      }: { affiliation: string; username: string; password: string },
+      }: { affiliation?: string; username: string; password: string },
       { cache }: any
     ) => {
       const login = await api.login({

@@ -13,7 +13,8 @@ export default {
    * Parameters:
    * -----------
    * credentials:
-   *     The authentication credentials. They must contain the username and
+   *     Have optional affiliation,
+   *     The authentication credentials. They must contain username and
    *     password.
    *
    * Returns:
@@ -21,7 +22,7 @@ export default {
    * true
    */
   login: async (credentials: {
-    affiliation: string;
+    affiliation?: string;
     password: string;
     username: string;
   }) => {
