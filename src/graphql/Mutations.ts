@@ -52,12 +52,15 @@ export const SIGNUP_MUTATION = gql`
  */
 export const LOGIN_MUTATION = gql`
   mutation LOGIN_MUTATION(
-    $affiliation: String
+    $authProvider: AuthProvider!
     $username: String!
     $password: String!
   ) {
-    login(affiliation: $affiliation, password: $password, username: $username)
-      @client
+    login(
+      authProvider: $authProvider
+      password: $password
+      username: $username
+    ) @client
   }
 `;
 

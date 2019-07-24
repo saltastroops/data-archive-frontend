@@ -237,7 +237,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               ) : null}
 
               <fieldset disabled={loading} aria-disabled={loading}>
-                {/* Affiliations */}
+                {/* Authentication provider */}
                 <div className="field">
                   <label className="label">
                     Login with
