@@ -6,12 +6,15 @@ import styled from "styled-components";
 import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
+import SelectField from "./basicComponents/SelectField";
 
 /**
  * Input for the login form.
  *
  * Properties:
  * -----------
+ * authProvider:
+ *     Authentication provider
  * password:
  *     The password, which must have at least 7 characters.
  * username:
@@ -19,9 +22,17 @@ import InputField from "./basicComponents/InputField";
  * }
  */
 interface ILoginFormInput {
+  authProvider: AuthProvider;
   username: string;
   password: string;
 }
+
+/**
+ * Supported authentication providers.
+ */
+type AuthProvider =
+  | "SDB" // this data archive
+  | "SSDA"; // SALT Science Database
 
 /**
  * State of the login form.
@@ -117,7 +128,7 @@ const validateLoginForm = (loginInput: {
  * The login form for authenticating the user.
  */
 class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
-  public state = {
+  public state: ILoginFormState = {
     errors: {
       password: "",
       responseError: "",
@@ -125,6 +136,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     },
     loggedIn: false,
     userInput: {
+      authProvider: "SSDA",
       password: "",
       username: ""
     }
@@ -164,6 +176,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           },
           loggedIn: true,
           userInput: {
+            authProvider: "SSDA",
             password: "",
             username: ""
           }
@@ -184,7 +197,9 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
   /**
    * Update the form content according to the user input.
    */
-  onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  onInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
     // Update the userInput property of the state when input field values change
@@ -198,7 +213,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
 
   render() {
     const { errors, loggedIn } = this.state;
-    const { password, username } = this.state.userInput;
+    const { authProvider, password, username } = this.state.userInput;
 
     // Go to the main page after successfully logging in.
     if (loggedIn) {
@@ -222,6 +237,24 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               ) : null}
 
               <fieldset disabled={loading} aria-disabled={loading}>
+                {/* Authentication provider */}
+                <div className="field">
+                  <label className="label">
+                    Login with
+                    <div className={"control is-child"}>
+                      <SelectField
+                        className="authProvider"
+                        name="authProvider"
+                        value={authProvider}
+                        onChange={this.onInputChange}
+                      >
+                        <option value="SSDA">SAAO/SALT Data Archive</option>
+                        <option value="SDB">SALT Web Manager</option>
+                      </SelectField>
+                    </div>
+                  </label>
+                </div>
+
                 {/* username */}
                 <div className="field">
                   <label className="label">

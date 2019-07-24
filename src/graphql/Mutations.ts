@@ -51,8 +51,16 @@ export const SIGNUP_MUTATION = gql`
  *     The uusername.
  */
 export const LOGIN_MUTATION = gql`
-  mutation LOGIN_MUTATION($username: String!, $password: String!) {
-    login(password: $password, username: $username) @client
+  mutation LOGIN_MUTATION(
+    $authProvider: AuthProvider!
+    $username: String!
+    $password: String!
+  ) {
+    login(
+      authProvider: $authProvider
+      password: $password
+      username: $username
+    ) @client
   }
 `;
 

@@ -14,14 +14,20 @@ export default {
    * -----------
    * credentials:
    *     The authentication credentials. They must contain the username and
-   *     password.
+   *     password, as well as the authentication provider (such as "SSDA" or
+   *     "SDB").
    *
    * Returns:
    * --------
    * true
    */
-  login: async (credentials: { password: string; username: string }) => {
+  login: async (credentials: {
+    authProvider: string;
+    password: string;
+    username: string;
+  }) => {
     return baseAxiosClient().post("/auth/login", {
+      authProvider: credentials.authProvider,
       password: credentials.password,
       username: credentials.username
     });

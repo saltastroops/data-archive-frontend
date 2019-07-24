@@ -62,9 +62,133 @@ To run the application execute the command `yarn start` in the project's root di
 To run all the tests of this application execute the command `yarn test` in the project's root directory.
  
 
-## Deployment
+## Deployment on an Ubuntu 18 server
 
-{ Deployment steps to follow below. }
+### Error tracking
 
-Deployment Error tracking will will be monitored by Sentry.
-learn more about [sentry here](https://sentry.io/welcome/).
+Errors are monitored [Sentry](https://sentry.io/welcome/) if the environment variable `REACT_APP_SENTRY_DSN` is set in the environment file (see the section on setting up environment variables).
+
+### Installing and configuring nginx
+
+Start by installing yarn.
+
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+```
+
+This will also install node.
+
+Make sure that Apache2 is not installed
+
+```bash
+sudo apt-get remove apache2
+``` 
+
+and then install nginx.
+
+```bash
+sudo apt-get install nginx
+```
+
+Open the default configuration for nginx
+
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+and add the code below. Here and is the following it is assumed that the code is located in a folder `/var/www/frontend`. You may choose any other folder; update the commands below accordingly.
+
+```text
+server {
+   listen 80 default_server;
+   root /var/www/frontend/build;  # path to the build directory for your project
+   server_name xxxxx/;  # server name e.g mywebsite.saao.ac.za
+   index index.html index.htm;
+   location / {
+   }
+}
+```
+
+Create a symbolic link in the `sites-enabled` folder to the updated configuration file.
+ 
+```bash
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+```
+
+Start the nginx service.
+
+```bash
+sudo service nginx start
+```
+
+If the nginx service is running already, you can restart it with
+
+```bash
+sudo service nginx restart
+```
+
+### Installing the code on the server
+
+Clone the repository,
+
+```bash
+git clone https://github.com/saltastroops/data-archive-frontend.git /var/www/frontend
+```
+
+and checkout the correct branch.
+
+```bash
+cd /var/www/frontend
+git checkout master
+```
+
+Then carry out the steps described in the section on updating the code.
+
+### Updating the code on the server
+
+Navigate to the code directory,
+
+```bash
+cd /var/www/frontend
+```
+
+and pull the latest version of the code from the repository.
+
+```bash
+git pull 
+```
+
+Install all the dependencies,
+
+```bash
+yarn install
+```
+
+remove current build folder if it exists,
+
+```bash
+rm -r build
+```
+
+and build the project.
+
+```bash
+yarn build
+```
+
+If necessary, restart nginx,
+
+```bash
+sudo service nginx restart
+```
+
+or reboot the server.
+
+```bash
+sudo reboot
+```
+
+The above steps are explained in detail [in this article](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
+
