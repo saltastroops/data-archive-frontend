@@ -13,56 +13,48 @@ describe("Pagination", () => {
 
   it("should render correctly with correct props", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={100}
-          itemsTotal={201}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={100}
+        itemsTotal={201}
+        startIndex={0}
+      />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
 
     const wrapper2 = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={10}
-          itemsPerPage={10}
-          itemsTotal={201}
-          startIndex={10}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={10}
+        itemsPerPage={10}
+        itemsTotal={201}
+        startIndex={10}
+      />
     );
     expect(toJson(wrapper2)).toMatchSnapshot();
 
     const wrapper3 = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={1000}
-          itemsPerPage={1000}
-          itemsTotal={201}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={201}
+        itemsPerPage={1000}
+        itemsTotal={201}
+        startIndex={0}
+      />
     );
     expect(toJson(wrapper3)).toMatchSnapshot();
   });
 
-  it("should enable previous button when there is previous data", () => {
+  it("should enable the previous button when there is previous data", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={10}
-          itemsPerPage={10}
-          itemsTotal={201}
-          startIndex={11}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={10}
+        itemsPerPage={10}
+        itemsTotal={201}
+        startIndex={11}
+      />
     );
     expect(
       wrapper
@@ -72,17 +64,15 @@ describe("Pagination", () => {
     ).toBeFalsy();
   });
 
-  it("should disable previous button when no previous data", () => {
+  it("should disable the previous button when there is no previous data", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={100}
-          itemsTotal={201}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={100}
+        itemsTotal={201}
+        startIndex={0}
+      />
     );
     expect(
       wrapper
@@ -94,15 +84,13 @@ describe("Pagination", () => {
 
   it("should enable next button when there is next data", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={100}
-          itemsTotal={201}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={100}
+        itemsTotal={201}
+        startIndex={0}
+      />
     );
     expect(
       wrapper
@@ -112,17 +100,15 @@ describe("Pagination", () => {
     ).toBeFalsy();
   });
 
-  it("should disable next button when there is no next data", () => {
+  it("should disable the next button when there is no next data", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={100}
-          itemsTotal={100}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={100}
+        itemsTotal={100}
+        startIndex={0}
+      />
     );
     expect(
       wrapper
@@ -132,17 +118,15 @@ describe("Pagination", () => {
     ).toBeTruthy();
   });
 
-  it("should disable both next and previous button when there is no next and previous data", () => {
+  it("should disable both the next and the previous button when there is no next and previous data to fetch", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={100}
-          itemsTotal={100}
-          startIndex={0}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={100}
+        itemsTotal={100}
+        startIndex={0}
+      />
     );
     expect(
       wrapper
@@ -160,15 +144,13 @@ describe("Pagination", () => {
 
   it("should not disable next and fetchPage button when there is next and previous data", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={10}
-          itemsTotal={100}
-          startIndex={11}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={10}
+        itemsTotal={100}
+        startIndex={11}
+      />
     );
     expect(
       wrapper
@@ -184,17 +166,15 @@ describe("Pagination", () => {
     ).toBeFalsy();
   });
 
-  it("should call fetchPage with 'PREVIOUS' when previous button is clicked", () => {
+  it("should fetchPage with the correct parameters when the previous button is clicked", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={100}
-          itemsPerPage={10}
-          itemsTotal={100}
-          startIndex={10}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={100}
+        itemsPerPage={10}
+        itemsTotal={100}
+        startIndex={10}
+      />
     );
 
     const previousButton = wrapper
@@ -204,17 +184,15 @@ describe("Pagination", () => {
     expect(fetchPage).toHaveBeenCalledWith(0, 10, "PREVIOUS");
   });
 
-  it("should call fetchPage with 'NEXT' when next button is clicked", () => {
+  it("should fetchPage with the correct parameters when the next button is clicked", () => {
     const wrapper = mount(
-      <MockedProvider>
-        <Pagination
-          fetchPage={fetchPage}
-          itemsOnCurrentPage={10}
-          itemsPerPage={10}
-          itemsTotal={100}
-          startIndex={10}
-        />
-      </MockedProvider>
+      <Pagination
+        fetchPage={fetchPage}
+        itemsOnCurrentPage={10}
+        itemsPerPage={10}
+        itemsTotal={100}
+        startIndex={10}
+      />
     );
 
     const previousButton = wrapper
