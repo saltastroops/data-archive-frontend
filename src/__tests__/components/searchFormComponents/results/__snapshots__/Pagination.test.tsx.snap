@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should render correctly with correct props 1`] = `
+<Pagination
+  fetchPage={[MockFunction]}
+  itemsOnCurrentPage={100}
+  itemsPerPage={100}
+  itemsTotal={201}
+  startIndex={0}
+>
+  <div>
+    <button
+      className="pagination-previous"
+      data-test="pagination-previous"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Previous page
+    </button>
+    <a>
+      <span
+        className="pagination-ellipsis"
+      >
+        1
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        …
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        100
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        of
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        201
+      </span>
+    </a>
+    <button
+      className="pagination-next"
+      data-test="pagination-next"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Next page
+    </button>
+  </div>
+</Pagination>
+`;
+
+exports[`Pagination should render correctly with correct props 2`] = `
+<Pagination
+  fetchPage={[MockFunction]}
+  itemsOnCurrentPage={10}
+  itemsPerPage={10}
+  itemsTotal={201}
+  startIndex={10}
+>
+  <div>
+    <button
+      className="pagination-previous"
+      data-test="pagination-previous"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Previous page
+    </button>
+    <a>
+      <span
+        className="pagination-ellipsis"
+      >
+        11
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        …
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        20
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        of
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        201
+      </span>
+    </a>
+    <button
+      className="pagination-next"
+      data-test="pagination-next"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Next page
+    </button>
+  </div>
+</Pagination>
+`;
+
+exports[`Pagination should render correctly with correct props 3`] = `
+<Pagination
+  fetchPage={[MockFunction]}
+  itemsOnCurrentPage={201}
+  itemsPerPage={1000}
+  itemsTotal={201}
+  startIndex={0}
+>
+  <div>
+    <button
+      className="pagination-previous"
+      data-test="pagination-previous"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Previous page
+    </button>
+    <a>
+      <span
+        className="pagination-ellipsis"
+      >
+        1
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        …
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        201
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        of
+      </span>
+      <span
+        className="pagination-ellipsis"
+      >
+        201
+      </span>
+    </a>
+    <button
+      className="pagination-next"
+      data-test="pagination-next"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Next page
+    </button>
+  </div>
+</Pagination>
+`;

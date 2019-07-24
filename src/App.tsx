@@ -14,7 +14,11 @@ import RegistrationForm, {
 import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
-import SearchPage from "./components/searchFormComponents/SearchPage";
+import SearchPage, {
+  DEFAULT_LIMIT,
+  DEFAULT_START_INDEX,
+  ISearchPageCache
+} from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
@@ -36,6 +40,7 @@ interface ICache {
   loginForm: ILoginFormCache;
   registrationForm: IRegistrationFormCache;
   searchForm: ISearchFormCache;
+  searchPage: ISearchPageCache;
   userUpdateForm: IUserUpdateFormCache;
 }
 
@@ -92,6 +97,7 @@ class App extends React.Component<{}, IAppState> {
     loginForm: {},
     registrationForm: {},
     searchForm: {},
+    searchPage: { limit: DEFAULT_LIMIT, startIndex: DEFAULT_START_INDEX },
     userUpdateForm: {}
   };
 
@@ -144,7 +150,8 @@ class App extends React.Component<{}, IAppState> {
                     path="/"
                     render={() => (
                       <SearchPage
-                        cache={this.cache.searchForm}
+                        searchFormCache={this.cache.searchForm}
+                        searchPageCache={this.cache.searchPage}
                         screenDimensions={this.state.screenDimensions}
                       />
                     )}

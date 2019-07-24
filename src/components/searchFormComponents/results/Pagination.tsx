@@ -1,18 +1,16 @@
 import * as React from "react";
-import styled from "styled-components";
 
-const PaginationContainer = styled.div.attrs({
-  className: ""
-})`
-  && {
-    display: block;
-    margin-top: 20px
-    margin-left: 30%
-  }
-`;
+/**
+ * Whether the user is moving to the next or the previous page.
+ */
+export type PaginationDirection = "NEXT" | "PREVIOUS";
 
 interface IPaginationProps {
-  fetchPage: (startIndex: number, limit: number) => void;
+  fetchPage: (
+    startIndex: number,
+    limit: number,
+    direction: PaginationDirection
+  ) => void;
   itemsOnCurrentPage: number;
   itemsPerPage: number;
   itemsTotal: number;
@@ -51,33 +49,34 @@ const Pagination = (props: IPaginationProps) => {
   const nextIndex = startIndex + itemsOnCurrentPage;
 
   return (
-    <PaginationContainer>
-      <div>
-        <button
-          disabled={startIndex <= 0}
-          className="pagination-previous"
-          onClick={() => fetchPage(previousIndex, itemsPerPage)}
-        >
-          Previous page
-        </button>
-        <a>
-          <span className="pagination-ellipsis">{startIndex + 1}</span>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <span className="pagination-ellipsis">
-            {startIndex + itemsOnCurrentPage}
-          </span>
-          <span className="pagination-ellipsis">of</span>
-          <span className="pagination-ellipsis">{itemsTotal}</span>
-        </a>
-        <button
-          disabled={startIndex + itemsPerPage >= itemsTotal}
-          className="pagination-next"
-          onClick={() => fetchPage(nextIndex, itemsPerPage)}
-        >
-          Next page
-        </button>
-      </div>
-    </PaginationContainer>
+    <div>
+      <button
+        disabled={startIndex <= 0}
+        className="pagination-previous"
+        data-test="pagination-previous"
+        onClick={() => fetchPage(previousIndex, itemsPerPage, "PREVIOUS")}
+      >
+        Previous page
+      </button>
+      <a>
+        <span className="pagination-ellipsis">{startIndex + 1}</span>
+        <span className="pagination-ellipsis">&hellip;</span>
+        <span className="pagination-ellipsis">
+          {startIndex + itemsOnCurrentPage}
+        </span>
+        <span className="pagination-ellipsis">of</span>
+        <span className="pagination-ellipsis">{itemsTotal}</span>
+      </a>
+      <button
+        disabled={startIndex + itemsPerPage >= itemsTotal}
+        className="pagination-next"
+        data-test="pagination-next"
+        onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
+      >
+        Next page
+      </button>
+    </div>
   );
 };
+
 export default Pagination;

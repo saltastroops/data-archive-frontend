@@ -8,6 +8,7 @@ import {
   ITarget,
   ITelescope
 } from "../../utils/ObservationQueryParameters";
+import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
 
 export default interface ISearchFormCache {
   general?: IGeneral;

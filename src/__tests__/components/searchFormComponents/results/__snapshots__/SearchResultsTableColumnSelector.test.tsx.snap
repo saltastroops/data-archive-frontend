@@ -53,7 +53,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       Object {
         "dataKey": "dummy",
         "name": "Dummy",
-        "visible": false,
+        "visible": true,
       },
       Object {
         "dataKey": "proposal",

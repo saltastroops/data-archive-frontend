@@ -63,21 +63,20 @@ class SearchResultsTableColumnSelector extends React.Component<
 
     return (
       <Grid>
-        {columns
-          .filter((column, index) => index > 0)
-          .map((column, index) => (
-            <div key={index}>
-              <label className="label">
-                <LargeCheckbox
-                  type="checkbox"
-                  checked={column.visible}
-                  name={column.dataKey}
-                  onChange={this.onChange}
-                />
-                {column.name}
-              </label>
-            </div>
-          ))}
+        {/* The first column is a dummy one, which should be ignored. */}
+        {columns.slice(1).map((column, index) => (
+          <div key={index}>
+            <label className="label">
+              <LargeCheckbox
+                type="checkbox"
+                checked={column.visible}
+                name={column.dataKey}
+                onChange={this.onChange}
+              />
+              {column.name}
+            </label>
+          </div>
+        ))}
       </Grid>
     );
   }

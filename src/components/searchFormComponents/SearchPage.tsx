@@ -1,6 +1,9 @@
+import { QueryOptions } from "apollo-client";
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
+import styled from "styled-components";
 import { DATA_FILES_QUERY } from "../../graphql/Query";
+import cache from "../../util/cache";
 import { prune, whereCondition } from "../../util/query/whereCondition";
 import {
   IFile,
@@ -10,12 +13,22 @@ import {
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
-import Pagination from "./results/Pagination";
+import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
-import styled from "styled-components";
+import SearchQuery from "./SearchQuery";
+
+/**
+ * The default maximum number of results a query should return.
+ */
+export const DEFAULT_LIMIT = 100;
+
+/**
+ * The default start index for a query.
+ */
+export const DEFAULT_START_INDEX = 0;
 
 /**
  * Properties for the search page.
@@ -26,7 +39,8 @@ import styled from "styled-components";
  *     The inner height and width of the browser window.
  */
 interface ISearchPageProps {
-  cache?: ISearchFormCache;
+  searchFormCache: ISearchFormCache;
+  searchPageCache: ISearchPageCache;
   screenDimensions: { innerHeight: number; innerWidth: number };
 }
 
@@ -46,6 +60,8 @@ interface ISearchPageProps {
 interface ISearchPageState {
   databaseColumns: string[];
   error: Error | null;
+  limit: number;
+  startIndex: number;
   tableColumns: ISearchResultsTableColumn[];
   where: string;
 }
@@ -59,6 +75,14 @@ interface ISearchResult {
       value: boolean | number | string;
     }
   ];
+}
+
+export interface ISearchPageCache {
+  databaseColumns?: string[];
+  limit: number;
+  startIndex: number;
+  tableColumns?: ISearchResultsTableColumn[];
+  where?: string;
 }
 
 export interface IObservation {
@@ -79,6 +103,19 @@ const ResultsPlaceholder = styled.div`
   height: 744px;
 `;
 
+const PaginationContainer = styled.div<{
+  marginTop: number;
+  marginBottom: number;
+}>`
+  && {
+    display: grid;
+    grid-template-columns: 500px;
+    justify-content: center;
+    margin-bottom: ${props => props.marginBottom}px;
+    margin-top: ${props => props.marginTop}px;
+  }
+`;
+
 /**
  * The page for searching observations.
  */
@@ -86,17 +123,32 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   constructor(props: ISearchPageProps) {
     super(props);
 
+    const { searchPageCache } = props;
+    const databaseColumns = searchPageCache.databaseColumns || [];
+    const limit = searchPageCache.limit;
+    const startIndex = searchPageCache.startIndex;
+    const tableColumns = searchPageCache.tableColumns || [];
+    const where = searchPageCache.where || "";
+
     this.state = {
-      databaseColumns: [],
+      databaseColumns,
       error: null,
-      tableColumns: [],
-      where: ""
+      limit,
+      startIndex,
+      tableColumns,
+      where
     };
   }
 
   render() {
-    const { cache, screenDimensions } = this.props;
-    const { error: validationError, tableColumns } = this.state;
+    const { screenDimensions } = this.props;
+    const {
+      error: validationError,
+      limit,
+      startIndex,
+      tableColumns,
+      where
+    } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend
@@ -123,119 +175,253 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       containerDivWidth - maxResultsTableWidth < 0
         ? (containerDivWidth - maxResultsTableWidth) / 2
         : "auto";
-    const limit = 100;
+    const options: QueryOptions = {
+      query: DATA_FILES_QUERY,
+      variables: {
+        columns: this.state.databaseColumns,
+        limit,
+        startIndex,
+        where
+      }
+    };
     return (
-      <>
-        <Query
-          query={DATA_FILES_QUERY}
-          variables={{
-            columns: this.state.databaseColumns,
-            limit,
-            where: this.state.where
-          }}
-          skip={!this.state.where}
-        >
-          {({ data, error, loading, refetch, fetchMore }: any) => {
-            const results =
-              data && !loading && !error
-                ? this.parseSearchResults(data.dataFiles.dataFiles)
-                : [];
-            const pageInfo =
-              data && !loading && !error ? data.dataFiles.pageInfo : {};
-            const dataFilesCount =
-              data && !loading && !error ? data.dataFiles.dataFiles.length : 0;
+      <ApolloConsumer>
+        {client => (
+          <SearchQuery
+            client={client}
+            options={options}
+            skip={!this.state.where}
+          >
+            {({ data, error, loading, fetch, preload }: any) => {
+              const results =
+                data && !loading && !error
+                  ? this.parseSearchResults(data.dataFiles.dataFiles)
+                  : [];
+              const pageInfo =
+                data && !loading && !error ? data.dataFiles.pageInfo : {};
+              const dataFilesCount =
+                data && !loading && !error
+                  ? data.dataFiles.dataFiles.length
+                  : 0;
 
-            const fetchPage = (startIndex: number, limit: number) => {
-              fetchMore({
-                updateQuery: (prev: any, { fetchMoreResult }: any) => {
-                  return fetchMoreResult;
-                },
-                variables: { limit, startIndex }
-              });
-            };
-
-            return (
-              <>
-                <SearchForm
-                  cache={cache}
-                  search={this.searchArchive}
-                  error={validationError || error}
-                  loading={loading}
-                />
-                {results && results.length !== 0 ? (
-                  <>
-                    <div
-                      style={{
-                        marginLeft: resultsTableContainerMargin,
-                        marginRight: resultsTableContainerMargin,
-                        width: maxResultsTableWidth
-                      }}
-                    >
-                      <SearchResultsTableColumnSelector
-                        columns={tableColumns}
-                        onChange={this.updateResultsTableColumnVisibility}
-                      />
-                      <Pagination
-                        fetchPage={fetchPage}
-                        itemsOnCurrentPage={dataFilesCount}
-                        itemsPerPage={pageInfo.itemsPerPage}
-                        itemsTotal={pageInfo.itemsTotal}
-                        startIndex={pageInfo.startIndex}
-                      />
-                      <SearchResultsTable
-                        columns={tableColumns}
-                        maxWidth={maxResultsTableWidth}
-                        searchResults={results}
-                      />
-                    </div>
-
-                    <Pagination
-                      fetchPage={fetchPage}
-                      itemsOnCurrentPage={dataFilesCount}
-                      itemsPerPage={pageInfo.itemsPerPage}
-                      itemsTotal={pageInfo.itemsTotal}
-                      startIndex={pageInfo.startIndex}
-                    />
-                  </>
-                ) : (
-                  <ResultsPlaceholder />
-                )}
-              </>
-            );
-          }}
-        </Query>
-      </>
+              return (
+                <>
+                  <SearchForm
+                    cache={this.props.searchFormCache}
+                    search={this.searchArchive(fetch, preload)}
+                    error={validationError || error}
+                    loading={loading}
+                  />
+                  {results && results.length !== 0 ? (
+                    <>
+                      <div
+                        style={{
+                          marginLeft: resultsTableContainerMargin,
+                          marginRight: resultsTableContainerMargin,
+                          width: maxResultsTableWidth
+                        }}
+                      >
+                        <SearchResultsTableColumnSelector
+                          columns={tableColumns}
+                          onChange={this.updateResultsTableColumnVisibility}
+                        />
+                        <PaginationContainer marginBottom={10} marginTop={20}>
+                          <Pagination
+                            fetchPage={this.fetchPage(fetch, preload)}
+                            itemsOnCurrentPage={dataFilesCount}
+                            itemsPerPage={pageInfo.itemsPerPage}
+                            itemsTotal={pageInfo.itemsTotal}
+                            startIndex={pageInfo.startIndex}
+                          />
+                        </PaginationContainer>
+                        <SearchResultsTable
+                          columns={tableColumns}
+                          maxWidth={maxResultsTableWidth}
+                          searchResults={results}
+                        />
+                        <PaginationContainer marginBottom={40} marginTop={10}>
+                          <Pagination
+                            fetchPage={this.fetchPage(fetch, preload)}
+                            itemsOnCurrentPage={dataFilesCount}
+                            itemsPerPage={pageInfo.itemsPerPage}
+                            itemsTotal={pageInfo.itemsTotal}
+                            startIndex={pageInfo.startIndex}
+                          />
+                        </PaginationContainer>
+                      </div>
+                    </>
+                  ) : (
+                    <ResultsPlaceholder />
+                  )}
+                </>
+              );
+            }}
+          </SearchQuery>
+        )}
+      </ApolloConsumer>
     );
   }
 
   /**
-   * Perform an observation with the currently selected search parameters.
+   * Return a function which performs a data file search  with the currently
+   * selected search parameters.
+   *
+   * Parameters
+   * ----------
+   * fetch: (v: QueryOptions) => void
+   *     Function that triggers a new query.
    */
-  private searchArchive = async ({
-    general,
-    target,
-    telescope
-  }: {
-    general: IGeneral;
-    target: ITarget;
-    telescope: any; // fighting TypeScript; telescope might be undefined
-  }) => {
-    try {
-      const whereObject = prune(whereCondition({ general, target, telescope }));
-      const where = JSON.stringify(whereObject);
-      const databaseColumns = this.databaseColumns(whereObject);
-      const tableColumns = searchResultsTableColumns(databaseColumns);
+  private searchArchive = (
+    fetch: (options: QueryOptions) => void,
+    preload: (options: QueryOptions) => void
+  ) => {
+    return ({
+      general,
+      target,
+      telescope
+    }: {
+      general: IGeneral;
+      target: ITarget;
+      telescope: any; // fighting TypeScript; telescope might be undefined
+    }) => {
+      try {
+        const searchPageCache = this.props.searchPageCache;
+        const whereObject = prune(
+          whereCondition({ general, target, telescope })
+        );
+        const where = JSON.stringify(whereObject);
+        const databaseColumns = this.databaseColumns(whereObject);
+        const tableColumns = searchResultsTableColumns(databaseColumns);
 
-      this.setState(() => ({
-        databaseColumns,
-        error: null,
-        tableColumns,
+        // It seems that when it comes to the meta data Apollo does not update
+        // the cache content correctly. We therefore delete all data files from
+        // cache before refetching the query. This code is taken from
+        // https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
+        Object.keys((cache as any).data.data).forEach(key => {
+          if (key.match(/^DataFile/)) {
+            (cache as any).data.delete(key);
+          }
+        });
+
+        // Record the search parameters
+        searchPageCache.databaseColumns = [...databaseColumns];
+        searchPageCache.tableColumns = [...tableColumns];
+        searchPageCache.where = where;
+
+        // Clicking on the submit button should always trigger a new search
+        // query (even if none of the search parameters has changed) hence we
+        // use refetch after updating the state
+        this.setState(
+          () => ({
+            databaseColumns,
+            error: null,
+            startIndex: 0,
+            tableColumns,
+            where
+          }),
+          async () => {
+            const options: QueryOptions = {
+              fetchPolicy: "network-only",
+              query: DATA_FILES_QUERY,
+              variables: {
+                columns: databaseColumns,
+                limit: this.state.limit,
+                startIndex: this.state.startIndex,
+                where
+              }
+            };
+            await fetch(options);
+
+            // Update the cache with the new limit and start index
+            this.props.searchPageCache.limit = this.state.limit;
+            this.props.searchPageCache.startIndex = this.state.startIndex;
+
+            this.preloadPage(
+              preload,
+              this.state.limit,
+              this.state.limit + this.state.startIndex
+            );
+          }
+        );
+      } catch (e) {
+        this.setState(() => ({ error: e }));
+        return;
+      }
+    };
+  };
+
+  /**
+   * Return a function which fetches a new page.
+   */
+  private fetchPage = (
+    fetch: (options: QueryOptions) => void,
+    preload: (options: QueryOptions) => void
+  ) => {
+    return async (
+      startIndex: number,
+      limit: number,
+      direction: PaginationDirection
+    ) => {
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
+
+      // Perform the query for the new page
+      const fetchPageOptions: QueryOptions = {
+        fetchPolicy: "cache-first",
+        query: DATA_FILES_QUERY,
+        variables: {
+          columns: this.state.databaseColumns,
+          limit,
+          startIndex,
+          where: this.state.where
+        }
+      };
+      await fetch(fetchPageOptions);
+
+      // Update the cache with the new limit and start index
+      this.props.searchPageCache.limit = limit;
+      this.props.searchPageCache.startIndex = startIndex;
+
+      // Preload the previous or next page
+      if (direction === "NEXT") {
+        this.preloadPage(preload, limit, startIndex + limit);
+      } else {
+        (fetchPageOptions.variables as any).startIndex = startIndex - limit;
+        this.preloadPage(preload, limit, startIndex + limit);
+      }
+    };
+  };
+
+  /**
+   * Preload a page.
+   *
+   * Parameters
+   * ----------
+   * preload: (options: QueryOptions) => void
+   *     Function for carrying out the preloading.
+   * limit: number
+   *     Maximum number of results to return.
+   * startIndex: number
+   *     Start index of the first result to return.
+   */
+  private preloadPage = (
+    preload: (options: QueryOptions) => void,
+    limit: number,
+    startIndex: number
+  ) => {
+    const { databaseColumns, where } = this.state;
+    const options: QueryOptions = {
+      fetchPolicy: "cache-first",
+      query: DATA_FILES_QUERY,
+      variables: {
+        columns: databaseColumns,
+        limit,
+        startIndex,
         where
-      }));
-    } catch (e) {
-      this.setState(() => ({ error: e }));
-      return;
-    }
+      }
+    };
+    preload(options);
   };
 
   /**
@@ -269,7 +455,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
-      const file = (observationName: string, metadata: any) => {
+      const file = () => {
         return {
           ...metadata,
           cartContent: {
@@ -301,7 +487,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const isPublic = now > metadata[DataKeys.START_TIME];
         const observation: IObservation = {
           available: ownedByUser || isPublic,
-          files: [file(observationName, metadata)],
+          files: [file()],
           id: observationId,
           name: observationName,
           publicFrom: new Date(metadata[
@@ -316,9 +502,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         observationsMap.set(observationId, observation);
       } else {
         // Add the data file
-        (observationsMap.get(observationId) as IObservation).files.push(
-          file(observationName, metadata)
-        );
+        (observationsMap.get(observationId) as IObservation).files.push(file());
       }
     }
 
@@ -376,6 +560,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     dataKey: string,
     visible: boolean
   ) => {
+    // Update the state
     const columns = this.state.tableColumns;
     const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
     const updatedColumn = {
@@ -388,18 +573,16 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         updatedColumn,
         ...columns.slice(columnIndex + 1)
       ];
-      this.setState({
-        tableColumns: updatedColumns
-      });
+      this.setState(
+        () => ({
+          tableColumns: updatedColumns
+        }),
+        () => {
+          // Keep the cache up-to-date
+          this.props.searchPageCache.tableColumns = this.state.tableColumns;
+        }
+      );
     }
-  };
-
-  private refetchContent = (fromIndex: number, refetch: any) => {
-    refetch({
-      columns: this.state.databaseColumns,
-      startIndex: fromIndex,
-      where: this.state.where
-    });
   };
 }
 
