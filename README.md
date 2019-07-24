@@ -62,29 +62,44 @@ To run the application execute the command `yarn start` in the project's root di
 To run all the tests of this application execute the command `yarn test` in the project's root directory.
  
 
-## Deployment
+## Deployment on an Ubuntu 18 server
 
-Deployment Error tracking will will be monitored by Sentry, given that environment variable `REACT_APP_SENTRY_DSN` is set. 
-Learn more about [sentry here](https://sentry.io/welcome/).
+### Error tracking
 
-### install and configure nginx
+Errors are monitored [Sentry](https://sentry.io/welcome/) if the environment variable `REACT_APP_SENTRY_DSN` is set in the environment file (see the section on setting up environment variables).
+
+### Installing and configuring nginx
+
+Start by installing yarn.
+
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+```
+
+This will also install node.
 
 Make sure that Apache2 is not installed
+
 ```bash
 sudo apt-get remove apache2
 ``` 
 
-and the install nginx
+and then install nginx.
+
 ```bash
 sudo apt-get install nginx
 ```
 
-Update nginx site available default 
+Open the default configuration for nginx
+
 ```bash
 sudo nano /etc/nginx/sites-available/default
 ```
 
-and add the code below
+and add the code below. Here and is the following it is assumed that the code is located in a folder `/var/www/frontend`. You may choose any other folder; update the commands below accordingly.
+
 ```text
 server {
    listen 80 default_server;
@@ -96,55 +111,84 @@ server {
 }
 ```
 
-Create a symbolic link between sites available and sites enabled
+Create a symbolic link in the `sites-enabled` folder to the updated configuration file.
+ 
 ```bash
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 ```
 
-start nginx service
+Start the nginx service.
+
 ```bash
 sudo service nginx start
 ```
 
-If nginx service is running you can restart nginx service by
+If the nginx service is running already, you can restart it with
+
 ```bash
 sudo service nginx restart
 ```
 
-### Updating code on the server
+### Installing the code on the server
 
-Login the server and navigate to code.
+Clone the repository,
+
+```bash
+git clone https://github.com/saltastroops/data-archive-frontend.git /var/www/frontend
+```
+
+and checkout the correct branch.
+
+```bash
+cd /var/www/frontend
+git checkout master
+```
+
+Then carry out the steps described in the section on updating the code.
+
+### Updating the code on the server
+
+Navigate to the code directory,
 
 ```bash
 cd /var/www/frontend
 ```
-Use git to pull correct branch
+
+and pull the latest version of the code from the repository.
 
 ```bash
-git checkout .
-git checkout development
 git pull 
 ```
 
-Install all the dependency
+Install all the dependencies,
+
 ```bash
 yarn install
 ```
-remove current build folder if it exist
+
+remove current build folder if it exists,
+
 ```bash
 rm -r build
 ```
-And build the project
+
+and build the project.
+
 ```bash
 yarn build
 ```
 
-If necessary restart nginx or reboot server
+If necessary, restart nginx,
+
 ```bash
 sudo service nginx restart
-    or
+```
+
+or reboot the server.
+
+```bash
 sudo reboot
 ```
 
-All of the above steps are explained properly on [link](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7)
+The above steps are explained in detail [in this article](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
 
