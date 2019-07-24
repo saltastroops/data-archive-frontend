@@ -13,6 +13,8 @@ import SelectField from "./basicComponents/SelectField";
  *
  * Properties:
  * -----------
+ * authProvider:
+ *     Authentication provider
  * password:
  *     The password, which must have at least 7 characters.
  * username:
@@ -20,9 +22,17 @@ import SelectField from "./basicComponents/SelectField";
  * }
  */
 interface ILoginFormInput {
+  authProvider: AuthProvider;
   username: string;
   password: string;
 }
+
+/**
+ * Supported authentication providers.
+ */
+type AuthProvider =
+  | "SDB" // this data archive
+  | "SSDA"; // SALT Science Database
 
 /**
  * State of the login form.
@@ -118,7 +128,7 @@ const validateLoginForm = (loginInput: {
  * The login form for authenticating the user.
  */
 class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
-  public state = {
+  public state: ILoginFormState = {
     errors: {
       password: "",
       responseError: "",
@@ -126,7 +136,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     },
     loggedIn: false,
     userInput: {
-      affiliation: "SAAO/SALT",
+      authProvider: "SSDA",
       password: "",
       username: ""
     }
@@ -166,7 +176,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           },
           loggedIn: true,
           userInput: {
-            affiliation: "SAAO/SALT",
+            authProvider: "SSDA",
             password: "",
             username: ""
           }
@@ -203,7 +213,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
 
   render() {
     const { errors, loggedIn } = this.state;
-    const { affiliation, password, username } = this.state.userInput;
+    const { authProvider, password, username } = this.state.userInput;
 
     // Go to the main page after successfully logging in.
     if (loggedIn) {
@@ -233,13 +243,13 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                     Login with
                     <div className={"control is-child"}>
                       <SelectField
-                        className="affiliation"
-                        name="affiliation"
-                        value={affiliation}
+                        className="authProvider"
+                        name="authProvider"
+                        value={authProvider}
                         onChange={this.onInputChange}
                       >
-                        <option value="SAAO/SALT">SAAO/SALT</option>
-                        <option value="Web Manager">Web Manager</option>
+                        <option value="SSDA">SAAO/SALT Data Archive</option>
+                        <option value="SDB">SALT Web Manager</option>
                       </SelectField>
                     </div>
                   </label>

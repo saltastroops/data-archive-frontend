@@ -13,21 +13,21 @@ export default {
    * Parameters:
    * -----------
    * credentials:
-   *     Have optional affiliation,
-   *     The authentication credentials. They must contain username and
-   *     password.
+   *     The authentication credentials. They must contain the username and
+   *     password, as well as the authentication provider (such as "SSDA" or
+   *     "SDB").
    *
    * Returns:
    * --------
    * true
    */
   login: async (credentials: {
-    affiliation?: string;
+    authProvider: string;
     password: string;
     username: string;
   }) => {
     return baseAxiosClient().post("/auth/login", {
-      affiliation: credentials.affiliation,
+      authProvider: credentials.authProvider,
       password: credentials.password,
       username: credentials.username
     });

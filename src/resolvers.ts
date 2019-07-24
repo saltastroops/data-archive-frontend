@@ -56,6 +56,21 @@ export const typeDefs = gql`
   }
 
   """
+  Enumeration of the supported authentication providers.
+  """
+  enum AuthProvider {
+    """
+    This data archive.
+    """
+    SSDA
+
+    """
+    The SALT Science Database.
+    """
+    SDB
+  }
+
+  """
   Input for an observation to which a file in the cart is linked
   """
   input CartObservationInput {
@@ -71,28 +86,34 @@ export const typeDefs = gql`
     User id.
     """
     id: ID!
+
     """
     Family name ("surname").
     """
     familyName: String!
+
     """
     Given name ("first name").
     """
     givenName: String!
+
     """
     Username, which must not contain upper case letters.
     """
     username: String!
+
     """
     Email address, which will be stored as lower case.
     """
     email: String!
+
     """
-    Affiliation, such as a university or an institute.
+    Authentication provider.
     """
-    affiliation: String!
+    authProvider: AuthProvider!
+
     """
-    User roles, which defines the user's permissions.
+    User roles, which define the user's permissions.
     """
     roles: [Role!]!
   }
@@ -152,14 +173,14 @@ export const resolvers = {
     login: async (
       _: any,
       {
-        affiliation,
+        authProvider,
         username,
         password
-      }: { affiliation?: string; username: string; password: string },
+      }: { authProvider: string; username: string; password: string },
       { cache }: any
     ) => {
       const login = await api.login({
-        affiliation,
+        authProvider,
         password,
         username
       });
