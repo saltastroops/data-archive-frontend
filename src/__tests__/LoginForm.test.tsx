@@ -47,6 +47,7 @@ describe("LoginForm Component", () => {
 
   it("submits valid input successfully", async () => {
     const userDetails = {
+      authProvider: "SSDA",
       password: "securepassword",
       username: "sj"
     };
@@ -224,6 +225,7 @@ describe("LoginForm Component", () => {
 
   it("displays an error message if the login fails", async () => {
     const userDetails = {
+      authProvider: "SSDA",
       password: "securepassword",
       username: "sj"
     };
