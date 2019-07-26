@@ -1,5 +1,17 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
-import { IBVIT, IGeneral, IRSS } from "../../utils/ObservationQueryParameters";
+import {
+  HRSMode,
+  IBVIT,
+  IGeneral,
+  IHRS,
+  IObservationQueryParameters,
+  IRSS,
+  ISALT,
+  ISalticam,
+  ITarget,
+  ITelescope,
+  IWhereCondition
+} from "../../utils/ObservationQueryParameters";
 import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
   and,
@@ -7,23 +19,12 @@ import {
   equals,
   greaterEqual,
   isIn,
-  isNull,
   lessEqual,
-  not,
   or,
   startsWith,
   withinRadius
 } from "./operators";
 import { parseDate, parseTargetPosition, trim } from "./parse";
-import {
-  IHRS,
-  IObservationQueryParameters,
-  ISALT,
-  ISalticam,
-  ITarget,
-  ITelescope,
-  IWhereCondition
-} from "./types";
 
 /**
  * Map observation query parameters to a where condition.
@@ -494,23 +495,23 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
   conditions.push(equals(DataKeys.INSTRUMENT_NAME, "HRS"));
 
   // Detector mode
-  const mode = trim(hrs.mode);
+  const mode = trim(hrs.mode) as HRSMode;
   switch (mode) {
-    case "LOW RESOLUTION":
+    case "Low Resolution":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
       break;
-    case "MEDIUM RESOLUTION":
+    case "Medium Resolution":
       conditions.push(
         equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
       );
       break;
-    case "HIGH RESOLUTION":
+    case "High Resolution":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
       break;
-    case "HIGH STABILITY":
+    case "High Stability":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
       break;
-    case "INT CAL FIBRE":
+    case "Int Cal Fibre":
       conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "INT CAL FIBRE"));
       break;
   }

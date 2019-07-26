@@ -506,9 +506,9 @@ describe("rssWhereCondition", () => {
 describe("hrsWhereCondition", () => {
   it("should map the mode correctly", () => {
     const modes: HRSMode[] = [
-      "LOW RESOLUTION",
-      "HIGH RESOLUTION",
-      "INT CAL FIBRE"
+      "Low Resolution",
+      "High Resolution",
+      "Int Cal Fibre"
     ];
     modes.forEach(mode => {
       const hrs: IHRS = {
@@ -519,7 +519,9 @@ describe("hrsWhereCondition", () => {
       const expected = {
         AND: [
           { EQUALS: { column: "Instrument.instrumentName", value: "HRS" } },
-          { EQUALS: { column: "HRS.observationMode", value: mode } }
+          {
+            EQUALS: { column: "HRS.observationMode", value: mode.toUpperCase() }
+          }
         ]
       };
       expect(hrsWhereCondition(hrs)).toEqual(expected);

@@ -1,6 +1,9 @@
 import isNumber from "is-number";
 import moment from "moment";
-import { ITarget, ITargetPosition } from "./types";
+import {
+  ITarget,
+  ITargetPosition
+} from "../../utils/ObservationQueryParameters";
 
 /**
  * The default radius to use for cone searches and coordinate ranges, in

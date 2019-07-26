@@ -4,6 +4,10 @@ import { ICartFile } from "../util/Cart";
 import { SalticamFilter } from "./SalticamFilter";
 import { TargetType } from "./TargetType";
 
+/* tslint:disable:no-empty-interface */
+export interface IWhereCondition {}
+/* tslint:enable:no-empty-interface */
+
 /**
  * An interface describing the React state of the observation query form.
  *
@@ -108,6 +112,26 @@ export interface ITarget {
   searchConeRadius?: string;
   searchConeRadiusUnits: SearchConeRadiusUnits;
   targetTypes: Set<TargetType>;
+}
+
+/**
+ * An interface describing a target position.
+ *
+ * Properties:
+ * -----------
+ * declinations:
+ *     An array of 0, 1 or 2 declinations, in degrees. If there are two
+ *     declinations, they are taken to be the ends of an interval.
+ * rightAscensions:
+ *     An array of 0, 1 or 2 right ascensions, in degrees. If there are two
+ *     right ascensions, they are taken to be the ends of an interval.
+ * searchConeRadius:
+ *     The radius for a cone search, in degrees.
+ */
+export interface ITargetPosition {
+  rightAscensions: number[];
+  declinations: number[];
+  searchConeRadius: number;
 }
 
 export interface ITargetErrors {
@@ -231,7 +255,7 @@ export interface IInstrument {
  *     The string "Salticam".
  */
 export interface ISalticam extends IInstrument {
-  detectorMode?: "Normal" | "Slot Mode";
+  detectorMode?: "Drift Scan" | "Frame Transfer" | "Normal" | "Slot Mode";
   errors: {
     detectorMode?: string;
     exposureTime?: string;
@@ -285,7 +309,12 @@ export interface IRSSModes {
   polarimetryModes?: Set<RSSPolarimetryMode>;
 }
 
-export type RSSDetectorMode = "Normal" | "Slot Mode" | "";
+export type RSSDetectorMode =
+  | "Drift Scan"
+  | "Frame Transfer"
+  | "Normal"
+  | "Shuffle"
+  | "Slot Mode";
 
 export type RSSGrating =
   | "Open"
@@ -307,7 +336,7 @@ export type RSSInstrumentMode =
   | "Spectropolarimetry"
   | "Spectroscopy";
 
-export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF" | "";
+export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF";
 
 export type RSSPolarimetryMode =
   | "ALL STOKES"
@@ -439,4 +468,49 @@ export interface IObservation {
   telescope: string;
   startTime: string;
   files: IFile[];
+}
+
+/**
+ * An interface describing the React state of the observation query form.
+ *
+ * This state is used for populating all search form fields (and error messages)
+ * and is parsed into the GraphQL query for searching observations.
+ *
+ * Properties:
+ * -----------
+ * general:
+ *     General information about the observation.
+ * target:
+ *     Target details.
+ * telescope:
+ *     Telescope (and instrument) details.
+ */
+export interface IObservationQueryParameters {
+  general: IGeneral;
+  target: ITarget;
+  telescope: ITelescope;
+}
+
+/**
+ * An interface describing the arguments for the WITHIN_RADIUS operator.
+ *
+ * Properties:
+ * -----------
+ * declination:
+ *     The declination of the centre position, in degrees.
+ * declinationColumn:
+ *     The name of the declination column.
+ * radius:
+ *     The radius of the search cone.
+ * rightAscension:
+ *     The right ascension of the centre position, in degrees.
+ * rightAscensionColumn:
+ *     The name of the right ascension column.
+ */
+export interface IWithinRadiusArguments {
+  declination: number;
+  declinationColumn: string;
+  radius: number;
+  rightAscension: number;
+  rightAscensionColumn: string;
 }

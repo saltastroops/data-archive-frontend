@@ -64,6 +64,30 @@ Object {
 }
 `;
 
+exports[`rssWhereCondition should map the RSS modes correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "EQUALS": Object {
+        "column": "Instrument.instrumentName",
+        "value": "RSS",
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "RssMode.rssMode",
+        "values": Array [
+          "Spectroscopy",
+          "MOS",
+          "FP Polarimatry",
+          "Polarimetric Imaging",
+        ],
+      },
+    },
+  ],
+}
+`;
+
 exports[`rssWhereCondition should map the polarimetry modes correctly 1`] = `
 Object {
   "AND": Array [
