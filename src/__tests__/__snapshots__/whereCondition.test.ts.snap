@@ -64,6 +64,37 @@ Object {
 }
 `;
 
+exports[`rssWhereCondition should map the polarimetry modes correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "EQUALS": Object {
+        "column": "Instrument.instrumentName",
+        "value": "RSS",
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "RssMode.rssMode",
+        "values": Array [
+          "Spectropolarimetry",
+          "Polarimetric imaging",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "RSS.polarimetryProcedurePattern",
+        "values": Array [
+          "LINEAR",
+          "CIRCULAR",
+        ],
+      },
+    },
+  ],
+}
+`;
+
 exports[`targetWhereCondition should map a single position to a within condition 1`] = `
 Object {
   "AND": Array [
