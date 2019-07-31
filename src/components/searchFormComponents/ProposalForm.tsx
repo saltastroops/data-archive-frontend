@@ -46,6 +46,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               error={errors.proposalCode}
               name={"proposalCode"}
               onChange={this.change}
+              title={"The proposal code for SALT it looks like '2019-SCI-031'"}
               value={proposalCode || ""}
             />
           </SubGrid>
@@ -56,6 +57,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               name={"principalInvestigator"}
               value={principalInvestigator || ""}
               error={errors.principalInvestigator || ""}
+              title={"Principal investigator for the proposal "}
               onChange={this.change}
             />
           </SubGrid>
@@ -69,6 +71,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               name={"proposalTitle"}
               value={proposalTitle || ""}
               error={errors.proposalTitle}
+              title={"Program's title"}
               onChange={this.change}
             />
           </SubGrid>
@@ -79,6 +82,9 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
+              title={`
+                The night of the observation.\nYou can also input a date range by separating them with "..". E.g: 2019-01-01..2019-02-28
+              `}
               onChange={this.change}
             />
           </SubGrid>

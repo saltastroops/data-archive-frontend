@@ -74,9 +74,9 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.OBSERVATION_PUBLIC_FROM:
       return {
         dataKey,
+        format: formatTimestamp,
         name: "Release Date",
-        visible: true,
-        format: formatTimestamp
+        visible: true
       };
     case DataKeys.PROPOSAL_CODE:
       return { dataKey, name: "Proposal", visible: true };

@@ -120,6 +120,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"name"}
               value={target.name || ""}
               error={target.errors.name}
+              title={`
+              Target name need to be resolved before it could be searched.
+              `}
               onChange={handleChangeEvent}
             />
           </SubGrid>
@@ -164,6 +167,12 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={handleChangeEvent}
+              title={`
+              Object's right ascension.
+You can input a right ascension  range by separating them with ".." or "...".
+E.g 150..170.123.
+Format hours minutes seconds and degrees are supported.
+              `}
               error={target.errors.rightAscension}
             />
           </SubGrid>
@@ -175,6 +184,12 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"declination"}
               value={target.declination || ""}
               onChange={handleChangeEvent}
+              title={`
+              Object's declination.
+You can input a right ascension  range by separating them with ".." or "...".
+E.g 15...70.123.
+Format degrees minutes seconds and degrees are supported.
+              `}
               error={target.errors.declination}
             />
           </SubGrid>
@@ -187,6 +202,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"searchConeRadius"}
               value={target.searchConeRadius || ""}
               onChange={handleChangeEvent}
+              title={
+                "Radius from a point given by right ascension and declination"
+              }
               error={target.errors.searchConeRadius}
             />
           </SubGrid>
