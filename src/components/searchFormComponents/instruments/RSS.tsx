@@ -108,10 +108,10 @@ const RSS = (props: IRssProps) => {
 
   const instrumentModes: RSSInstrumentMode[] = [
     "Fabry Perot",
-    "FP polarimetry",
+    // "FP polarimetry",
     "Imaging",
     "MOS",
-    "MOS polarimetry",
+    // "MOS polarimetry",
     "Polarimetric imaging",
     "Spectropolarimetry",
     "Spectroscopy"

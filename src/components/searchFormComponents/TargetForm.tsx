@@ -120,6 +120,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"name"}
               value={target.name || ""}
               error={target.errors.name}
+              title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
               onChange={handleChangeEvent}
             />
           </SubGrid>
@@ -130,6 +131,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 <SelectField
                   data-test={"resolver-select"}
                   name={"resolver"}
+                  title="Resolver for resolving the target name to a target position"
                   value={target.resolver}
                   onChange={handleChangeEvent}
                 >
@@ -164,6 +166,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={handleChangeEvent}
+              title='Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14'
               error={target.errors.rightAscension}
             />
           </SubGrid>
@@ -175,6 +178,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"declination"}
               value={target.declination || ""}
               onChange={handleChangeEvent}
+              title='Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51'
               error={target.errors.declination}
             />
           </SubGrid>
@@ -187,6 +191,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"searchConeRadius"}
               value={target.searchConeRadius || ""}
               onChange={handleChangeEvent}
+              title="Radius of the search cone in the selected units."
               error={target.errors.searchConeRadius}
             />
           </SubGrid>
@@ -196,6 +201,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               data-test="radius-units-select"
               name={"searchConeRadiusUnits"}
               onChange={handleChangeEvent}
+              title="Units of the search cone radius"
               value={target.searchConeRadiusUnits}
             >
               <option value="arcseconds">Arcseconds</option>

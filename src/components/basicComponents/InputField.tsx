@@ -19,7 +19,7 @@ const Error = styled.p.attrs({
  * addition, you may pass an error argument with an error message to display.
  */
 const InputField = (props: IInputProps) => {
-  const { className, error, ...rest } = props;
+  const { error, ...rest } = props;
   return (
     <div className="control">
       <input
