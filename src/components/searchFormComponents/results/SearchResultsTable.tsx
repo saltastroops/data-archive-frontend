@@ -60,6 +60,7 @@ interface ISearchResultsTableState {
  *     The observation's index in the list of observations.
  */
 interface IRowDatumMeta {
+  available: boolean;
   observation: any;
   observationFileIndex: number;
   observationHeader: boolean;
@@ -288,6 +289,7 @@ class SearchResultsTable extends React.Component<
       const observation = result;
       data.push({
         meta: {
+          available: observation.available,
           observation,
           observationFileIndex: -1,
           observationHeader: true,
@@ -298,6 +300,7 @@ class SearchResultsTable extends React.Component<
       result.files.forEach((file, observationFileIndex) => {
         data.push({
           meta: {
+            available: observation.available,
             observation,
             observationFileIndex,
             observationHeader: false,
@@ -611,30 +614,36 @@ class SearchResultsTable extends React.Component<
     if (!rowDatum.meta.observationHeader) {
       // A normal table row
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
-        return rowDatum[DataKeys.DATA_FILE_ID] ? (
-          <JS9ViewContext.Consumer>
-            {({ load, open }) => (
-              <button
-                className="is-link"
-                onClick={() => {
-                  const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
-                    ? rowDatum[DataKeys.DATA_FILE_ID].toString()
-                    : rowDatum[DataKeys.DATA_FILE_ID];
-                  load(
-                    `${process.env.REACT_APP_BACKEND_URI}/data/${dataFileId}/${
-                      rowDatum[DataKeys.DATA_FILE_FILENAME]
-                    }`
-                  );
-                  open();
-                }}
-              >
-                {rowDatum[DataKeys.DATA_FILE_FILENAME]}
-              </button>
-            )}
-          </JS9ViewContext.Consumer>
-        ) : (
-          rowDatum[DataKeys.DATA_FILE_FILENAME]
-        );
+        if (rowDatum[DataKeys.DATA_FILE_ID]) {
+          return rowDatum.meta.available ? (
+            <JS9ViewContext.Consumer>
+              {({ load, open }) => (
+                <button
+                  className="is-link"
+                  onClick={() => {
+                    const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                      ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                      : rowDatum[DataKeys.DATA_FILE_ID];
+                    load(
+                      `${
+                        process.env.REACT_APP_BACKEND_URI
+                      }/data/${dataFileId}/${
+                        rowDatum[DataKeys.DATA_FILE_FILENAME]
+                      }`
+                    );
+                    open();
+                  }}
+                >
+                  {rowDatum[DataKeys.DATA_FILE_FILENAME]}
+                </button>
+              )}
+            </JS9ViewContext.Consumer>
+          ) : (
+            "proprietary"
+          );
+        } else {
+          return rowDatum[DataKeys.DATA_FILE_FILENAME];
+        }
       } else {
         const format = this.visibleColumns[columnIndex].format;
         return format
