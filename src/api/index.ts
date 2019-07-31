@@ -15,7 +15,7 @@ export const baseAxiosClient = (config?: { [key: string]: any }) => ({
   _client: axios.create(configuration(config)),
 
   _handleError(error: any) {
-    if (error.response && error.response.data) {
+    if (error.response && error.response.data && error.response.data.message) {
       throw new Error(error.response.data.message);
     } else {
       throw error;
