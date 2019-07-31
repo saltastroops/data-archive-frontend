@@ -59,6 +59,45 @@ export function parseDate(date: string) {
 }
 
 /**
+ * Parse the observation night.
+ *
+ * The given string may either be a single string understood by the parseDate
+ * function or two such strings separated by at least two dots.
+ *
+ * Parameters:
+ * -----------
+ * night:
+ *     A single date or a date range.
+ *
+ * Returns:
+ * --------
+ * The array of one or two dates.
+ */
+export function parseObservationNight(night: string) {
+  // Split ranges by '..' (or '..' or '...', ...)
+  const nights = night.split(/\s*\.{2,}\s*/);
+
+  // Check that there is a right ascension or a right ascension range
+  if (nights.length < 1 || nights.length > 2) {
+    throw new Error(`${night} is neither a date nor a date range.`);
+  }
+
+  // Convert the strings to dates
+  const dates = nights.map(v => parseDate(v));
+
+  // Make sure the date order is correct
+  if (
+    dates.length == 2 &&
+    dates[0].startOf("day").isAfter(dates[1].startOf("day"))
+  ) {
+    throw new Error("The first night must not be later than the last night.");
+  }
+
+  console.log(dates);
+  return dates;
+}
+
+/**
  * Parse the target position.
  *
  * The following rules are applied for parsing.
