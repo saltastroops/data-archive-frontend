@@ -2,6 +2,7 @@ import noScroll from "no-scroll";
 import React from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import styled from "styled-components";
+import { baseAxiosClient } from "../api";
 
 const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.75);
@@ -76,6 +77,15 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
 
   shouldClose: boolean | null = null;
 
+  close = () => {
+    // Close pop up windows sich as the one for displaying the header
+    document
+      .querySelectorAll("#dhtmlwindowholder .dhtmlwindow")
+      .forEach(e => ((e as HTMLElement).style.display = "none"));
+
+    this.props.onClose();
+  };
+
   handleOpen = () => {
     document.addEventListener("keydown", this.handleKeydown);
   };
@@ -94,13 +104,13 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
       return;
     }
 
-    this.props.onClose();
+    this.close();
 
     this.shouldClose = null;
   };
 
   handleClickCloseIcon = (event: any) => {
-    this.props.onClose();
+    this.close();
   };
 
   handleKeydown = (event: any) => {
@@ -108,7 +118,7 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
       return;
     }
 
-    this.props.onClose();
+    this.close();
   };
 
   handleModalEvent = () => {
@@ -139,22 +149,29 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
     window.removeEventListener("keydown", this.handleKeydown);
   }
 
-  componentDidUpdate(
+  async componentDidUpdate(
     prevProps: Readonly<IJS9ViewProps>,
     prevState: Readonly<IJS9ViewState>,
     snapshot?: any
-  ): void {
+  ): Promise<void> {
     const { fitsURL } = this.props;
 
     if (fitsURL && fitsURL !== prevProps.fitsURL) {
       if ((window as any).JS9) {
-        (window as any).JS9.Load(fitsURL);
+        try {
+          const fits = await baseAxiosClient({ responseType: "blob" }).get(
+            fitsURL
+          );
+          (window as any).JS9.Load(fits.data);
+        } catch (e) {
+          alert(e.message);
+        }
       }
     }
   }
 
   render() {
-    const { closeIconSize, onClose, open } = this.props;
+    const { closeIconSize, open } = this.props;
 
     return (
       <div data-test="wrapper" style={{ display: open ? "block" : "none" }}>
@@ -176,7 +193,7 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
                 <div className="JS9" />
                 <div className="JS9Colorbar" />
               </div>
-              <CloseButton data-test="close" onClick={onClose}>
+              <CloseButton data-test="close" onClick={this.close}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={closeIconSize || 28}
@@ -204,7 +221,7 @@ export default JS9View;
  * - load: Function for loading a FITS image.
  * - open: Function for opening the modal.
  *
- * A callk to the load function should not automatically open the modal./
+ * A call to the load function should not automatically open the modal.
  */
 export const JS9ViewContext = React.createContext({
   close: () => {
@@ -214,6 +231,6 @@ export const JS9ViewContext = React.createContext({
     // do nothing
   },
   open: () => {
-    console.log("OPEN");
+    // do nothing
   }
 });

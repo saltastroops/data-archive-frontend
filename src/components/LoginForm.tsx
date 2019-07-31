@@ -163,10 +163,12 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     }
 
     try {
+      // Log the user in
       const logUserIn = await login({
         variables: { ...this.state.userInput }
       });
 
+      // Update the form according to whether logging in was successful
       if (logUserIn.data.login) {
         this.updateState({
           errors: {
@@ -176,7 +178,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           },
           loggedIn: true,
           userInput: {
-            authProvider: "SSDA",
+            authProvider: this.state.userInput.authProvider,
             password: "",
             username: ""
           }
