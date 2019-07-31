@@ -120,9 +120,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"name"}
               value={target.name || ""}
               error={target.errors.name}
-              title={`
-              Target name need to be resolved before it could be searched.
-              `}
+              title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
               onChange={handleChangeEvent}
             />
           </SubGrid>
@@ -133,6 +131,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 <SelectField
                   data-test={"resolver-select"}
                   name={"resolver"}
+                  title="Resolver for resolving the target name to a target position"
                   value={target.resolver}
                   onChange={handleChangeEvent}
                 >
@@ -167,12 +166,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
               name={"rightAscension"}
               value={target.rightAscension || ""}
               onChange={handleChangeEvent}
-              title={`
-              Object's right ascension.
-You can input a right ascension  range by separating them with ".." or "...".
-E.g 150..170.123.
-Format hours minutes seconds and degrees are supported.
-              `}
+              title='Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14'
               error={target.errors.rightAscension}
             />
           </SubGrid>
@@ -184,12 +178,7 @@ Format hours minutes seconds and degrees are supported.
               name={"declination"}
               value={target.declination || ""}
               onChange={handleChangeEvent}
-              title={`
-              Object's declination.
-You can input a right ascension  range by separating them with ".." or "...".
-E.g 15...70.123.
-Format degrees minutes seconds and degrees are supported.
-              `}
+              title='Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51'
               error={target.errors.declination}
             />
           </SubGrid>
@@ -202,9 +191,7 @@ Format degrees minutes seconds and degrees are supported.
               name={"searchConeRadius"}
               value={target.searchConeRadius || ""}
               onChange={handleChangeEvent}
-              title={
-                "Radius from a point given by right ascension and declination"
-              }
+              title="Radius of the search cone in the selected units."
               error={target.errors.searchConeRadius}
             />
           </SubGrid>
@@ -214,6 +201,7 @@ Format degrees minutes seconds and degrees are supported.
               data-test="radius-units-select"
               name={"searchConeRadiusUnits"}
               onChange={handleChangeEvent}
+              title="Units of the search cone radius"
               value={target.searchConeRadiusUnits}
             >
               <option value="arcseconds">Arcseconds</option>
