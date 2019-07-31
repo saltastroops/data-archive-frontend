@@ -1,4 +1,7 @@
-import { IWhereCondition, IWithinRadiusArguments } from "./types";
+import {
+  IWhereCondition,
+  IWithinRadiusArguments
+} from "../../utils/ObservationQueryParameters";
 
 type DATABASE_VALUE = string | number | boolean;
 

@@ -67,6 +67,46 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       <label
         className="label"
       >
+        Login with
+        <div
+          className="control is-child"
+        >
+          <SelectField
+            className="authProvider"
+            name="authProvider"
+            onChange={[Function]}
+            value="SSDA"
+          >
+            <div
+              className="control select authProvider"
+            >
+              <select
+                name="authProvider"
+                onChange={[Function]}
+                value="SSDA"
+              >
+                <option
+                  value="SSDA"
+                >
+                  SAAO/SALT Data Archive
+                </option>
+                <option
+                  value="SDB"
+                >
+                  SALT Web Manager
+                </option>
+              </select>
+            </div>
+          </SelectField>
+        </div>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
         Username
         <div
           className="control is-child"

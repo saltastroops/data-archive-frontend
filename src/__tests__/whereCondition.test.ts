@@ -1,10 +1,4 @@
-import {
-  IHRS,
-  IObservationQueryParameters,
-  ISALT,
-  ISalticam,
-  ITarget
-} from "../util/query/types";
+import { ISALT, ITarget } from "../util/query/types";
 import {
   bvitWhereCondition,
   generalWhereCondition,
@@ -16,7 +10,18 @@ import {
   telescopeWhereCondition,
   whereCondition
 } from "../util/query/whereCondition";
-import { IGeneral, IRSS } from "../utils/ObservationQueryParameters";
+import {
+  HRSMode,
+  IGeneral,
+  IHRS,
+  IObservationQueryParameters,
+  IRSS,
+  ISalticam,
+  RSSFabryPerotMode,
+  RSSGrating,
+  RSSInstrumentMode,
+  RSSPolarimetryMode
+} from "../utils/ObservationQueryParameters";
 import { TargetType } from "../utils/TargetType";
 
 describe("whereCondition", () => {
@@ -298,23 +303,229 @@ describe("saltWhereCondition", () => {
 });
 
 describe("salticamWhereCondition", () => {
-  // TODO: Add unit tests
-  it("should work", () => {
-    // to be filled with life
+  it("should map the detector mode correctly", () => {
+    const detectorModes: any = [
+      "Drift Scan",
+      "Frame Transfer",
+      "Normal",
+      "Slot Mode"
+    ];
+    const expectedModes = [
+      "DRIFT SCAN",
+      "FRAME TRANSFER",
+      "NORMAL",
+      "SLOT MODE"
+    ];
+    detectorModes.forEach((_, index: number) => {
+      const salticam: ISalticam = {
+        errors: {},
+        name: "Salticam",
+        detectorMode: detectorModes[index]
+      };
+      const expected = {
+        AND: [
+          {
+            EQUALS: { column: "Instrument.instrumentName", value: "Salticam" }
+          },
+          {
+            EQUALS: {
+              column: "Salticam.detectorMode",
+              value: expectedModes[index]
+            }
+          }
+        ]
+      };
+      expect(salticamWhereCondition(salticam)).toEqual(expected);
+    });
+  });
+
+  it("should map the filter correctly", () => {
+    const filters: any = ["R-S1", "340-35", "SR708-25", "Sv-S1"];
+    filters.forEach((filter: any) => {
+      const salticam: ISalticam = {
+        errors: {},
+        name: "Salticam",
+        filter
+      };
+      const expected = {
+        AND: [
+          {
+            EQUALS: { column: "Instrument.instrumentName", value: "Salticam" }
+          },
+          { EQUALS: { column: "Salticam.filterName", value: filter } }
+        ]
+      };
+      expect(salticamWhereCondition(salticam)).toEqual(expected);
+    });
+  });
+
+  it("should combine conditions with an AND", () => {
+    const salticam: ISalticam = {
+      errors: {},
+      name: "Salticam",
+      detectorMode: "Frame Transfer",
+      filter: "R-S1"
+    };
+    const expected = {
+      AND: [
+        { EQUALS: { column: "Instrument.instrumentName", value: "Salticam" } },
+        {
+          EQUALS: { column: "Salticam.detectorMode", value: "FRAME TRANSFER" }
+        },
+        { EQUALS: { column: "Salticam.filterName", value: "R-S1" } }
+      ]
+    };
+    expect(salticamWhereCondition(salticam)).toEqual(expected);
   });
 });
 
 describe("rssWhereCondition", () => {
-  // TODO: Add unit tests
-  it("should work", () => {
-    // to be filled with life
+  it("should map the detector mode correctly", () => {
+    const detectorModes: any = [
+      "Drift Scan",
+      "Frame Transfer",
+      "Normal",
+      "Shuffle",
+      "Slot Mode"
+    ];
+    const expectedModes = [
+      "DRIFT SCAN",
+      "FRAME TRANSFER",
+      "NORMAL",
+      "SHUFFLE",
+      "SLOT MODE"
+    ];
+    detectorModes.forEach((_, index: number) => {
+      const rss: IRSS = {
+        errors: {},
+        name: "RSS",
+        detectorMode: detectorModes[index]
+      };
+      const expected = {
+        AND: [
+          { EQUALS: { column: "Instrument.instrumentName", value: "RSS" } },
+          {
+            EQUALS: { column: "RSS.detectorMode", value: expectedModes[index] }
+          }
+        ]
+      };
+      expect(rssWhereCondition(rss)).toEqual(expected);
+    });
+  });
+
+  it("should map the RSS modes correctly", () => {
+    const modeNames: any = new Set([
+      "Spectroscopy",
+      "MOS",
+      "FP Polarimatry",
+      "Polarimetric Imaging"
+    ]);
+    const rss: IRSS = {
+      errors: {},
+      name: "RSS",
+      modes: {
+        errors: {},
+        names: modeNames
+      }
+    };
+    expect(rssWhereCondition(rss)).toMatchSnapshot();
+  });
+
+  it("should map the grating correctly", () => {
+    const gratings: RSSGrating[] = ["Open", "pg1300", "pg3000"];
+    gratings.forEach(grating => {
+      const rss: IRSS = {
+        errors: {},
+        name: "RSS",
+        modes: {
+          errors: {},
+          grating,
+          names: new Set<RSSInstrumentMode>(["Spectroscopy"])
+        }
+      };
+      const expected = {
+        AND: [
+          { EQUALS: { column: "Instrument.instrumentName", value: "RSS" } },
+          { IS_IN: { column: "RssMode.rssMode", values: ["Spectroscopy"] } },
+          { EQUALS: { column: "RSS.grating", value: grating } }
+        ]
+      };
+      expect(rssWhereCondition(rss)).toEqual(expected);
+    });
+  });
+
+  it("should map the Fabry-Perot mode correctly", () => {
+    const fabryPerotModes: RSSFabryPerotMode[] = ["HR", "LR", "MR", "TF"];
+    fabryPerotModes.forEach(fabryPerotMode => {
+      const rss: IRSS = {
+        errors: {},
+        name: "RSS",
+        modes: {
+          errors: {},
+          fabryPerotMode,
+          names: new Set<RSSInstrumentMode>(["Spectroscopy"])
+        }
+      };
+      const expected = {
+        AND: [
+          { EQUALS: { column: "Instrument.instrumentName", value: "RSS" } },
+          { IS_IN: { column: "RssMode.rssMode", values: ["Spectroscopy"] } },
+          {
+            EQUALS: {
+              column: "RssFabryPerotMode.rssFabryPerotMode",
+              value: fabryPerotMode
+            }
+          }
+        ]
+      };
+      expect(rssWhereCondition(rss)).toEqual(expected);
+    });
+  });
+
+  it("should map the polarimetry modes correctly", () => {
+    const polarimetryModes = new Set<RSSPolarimetryMode>([
+      "LINEAR",
+      "CIRCULAR"
+    ]);
+    const rss: IRSS = {
+      errors: {},
+      name: "RSS",
+      modes: {
+        errors: {},
+        names: new Set<RSSInstrumentMode>([
+          "Spectropolarimetry",
+          "Polarimetric imaging"
+        ]),
+        polarimetryModes
+      }
+    };
+    expect(rssWhereCondition(rss)).toMatchSnapshot();
   });
 });
 
 describe("hrsWhereCondition", () => {
-  // TODO: Add unit tests
-  it("should work", () => {
-    // to be filled with life
+  it("should map the mode correctly", () => {
+    const modes: HRSMode[] = [
+      "Low Resolution",
+      "High Resolution",
+      "Int Cal Fibre"
+    ];
+    modes.forEach(mode => {
+      const hrs: IHRS = {
+        name: "HRS",
+        errors: {},
+        mode
+      };
+      const expected = {
+        AND: [
+          { EQUALS: { column: "Instrument.instrumentName", value: "HRS" } },
+          {
+            EQUALS: { column: "HRS.observationMode", value: mode.toUpperCase() }
+          }
+        ]
+      };
+      expect(hrsWhereCondition(hrs)).toEqual(expected);
+    });
   });
 });
 
