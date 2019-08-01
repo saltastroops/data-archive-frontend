@@ -9,6 +9,7 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import Modal from "react-responsive-modal";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import { CREATE_DATA_REQUEST } from "../graphql/Mutations";
 import cache from "../util/cache";
 import {
@@ -24,6 +25,18 @@ interface ICart {
   openCart: (open: boolean) => void;
   user?: any;
 }
+
+const ErrorMessage = styled.p.attrs({
+  className: "error tile"
+})`
+  && {
+    text-align: left;
+    margin: 3px 0 3px 0;
+    padding: 2px 0 2px 0;
+    background-color: hsl(348, 100%, 61%);
+    color: white;
+  }
+`;
 
 class CartModal extends React.Component<ICart, any> {
   render() {
@@ -50,13 +63,20 @@ class CartModal extends React.Component<ICart, any> {
           );
           return (
             <Mutation mutation={CREATE_DATA_REQUEST}>
-              {(createDataRequest: any) => (
+              {(createDataRequest: any, { error }: any) => (
                 <Modal
                   open={open}
                   onClose={() => openCart(false)}
                   center={true}
                 >
                   <div className={"section"}>
+                    {error ? (
+                      <ErrorMessage>
+                        {error.message
+                          .replace("Network error: ", "")
+                          .replace("GraphQL error: ", "")}
+                      </ErrorMessage>
+                    ) : null}
                     <div className={"cart-table"}>
                       <table
                         className={
@@ -114,7 +134,9 @@ class CartModal extends React.Component<ICart, any> {
                                   createDataRequest,
                                   dataFileIds
                                 );
-                                openCart(false);
+                                if (!error) {
+                                  openCart(false);
+                                }
                               }}
                             >
                               <span>
