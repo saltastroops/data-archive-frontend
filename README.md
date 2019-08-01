@@ -107,6 +107,7 @@ server {
    server_name xxxxx/;  # server name e.g mywebsite.saao.ac.za
    index index.html index.htm;
    location / {
+       try_files $uri /index.html;
    }
 }
 ```
