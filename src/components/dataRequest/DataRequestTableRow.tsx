@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IDataFile, IDataRequestPart } from "./DataRequestsForm";
+import { IDataFile, IDataRequestObervation } from "./DataRequestsForm";
 
 /**
  * Props of the data request table row component.
@@ -14,7 +14,7 @@ import { IDataFile, IDataRequestPart } from "./DataRequestsForm";
 
 interface IDataRequestTableRowProps {
   dataRequestId: string;
-  dataRequestPart: IDataRequestPart;
+  dataRequestObservation: IDataRequestObervation;
 }
 
 /**
@@ -22,7 +22,7 @@ interface IDataRequestTableRowProps {
  */
 class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
-    const { dataFiles, status, id } = this.props.dataRequestPart;
+    const { dataFiles, status, id, name } = this.props.dataRequestObservation;
     const { dataRequestId } = this.props;
     // TO UPDATE
     const filename = "part-data-file-request.zip";
@@ -55,8 +55,8 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
 
     return (
       <tr>
-        <td>{dataFiles[0].observation.name}</td>
-        <td>
+        <td>{name}</td>
+        {/*<td>
           <p>{statusText}</p>
           <p>
             {downloadButton && (
@@ -75,7 +75,7 @@ class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
               </button>
             )}
           </p>
-        </td>
+            </td>*/}
         <td>
           <ul>
             {dataFiles.map((file: IDataFile) => {

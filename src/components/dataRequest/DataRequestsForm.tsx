@@ -21,17 +21,17 @@ export interface IDataFile {
   observation: IObservation;
 }
 
-export interface IDataRequestPart {
+export interface IDataRequestObervation {
   dataFiles: IDataFile[];
   id: string;
   status: DataRequestStatus;
-  uri: string;
+  name: string;
 }
 
 export interface IDataRequest {
   id: string;
   madeAt: string;
-  parts: IDataRequestPart[];
+  observations: IDataRequestObervation[];
   uri: string;
 }
 
@@ -76,7 +76,7 @@ class DataRequestsForm extends React.Component {
 
           return (
             <>
-              <Heading>Data Request</Heading>
+              <Heading>Data Requests</Heading>
 
               {sortedDataRequests.map((dataRequest: IDataRequest) => {
                 return (

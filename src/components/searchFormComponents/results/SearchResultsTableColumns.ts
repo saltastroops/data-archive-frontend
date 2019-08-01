@@ -141,6 +141,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
   const orderedDataKeys = [
     DataKeys.OBSERVATION_NAME,
     DataKeys.DATA_FILE_FILENAME,
+    DataKeys.DATA_CATEGORY,
     DataKeys.OBSERVATION_NIGHT,
     DataKeys.TARGET_NAME,
     DataKeys.TARGET_RIGHT_ASCENSION,

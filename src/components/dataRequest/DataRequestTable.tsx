@@ -1,7 +1,7 @@
 import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
-import { IDataRequest, IDataRequestPart } from "./DataRequestsForm";
+import { IDataRequest, IDataRequestObervation } from "./DataRequestsForm";
 import DataRequestTableRow from "./DataRequestTableRow";
 
 /**
@@ -49,12 +49,15 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { parts, madeAt, id } = this.props.dataRequest;
+    const { observations, madeAt, id } = this.props.dataRequest;
 
-    const mayDownloadAll = parts.every(part => part.status === "SUCCESSFUL");
+    const mayDownloadAll = observations.every(
+      observation => observation.status === "SUCCESSFUL"
+    );
 
     const reRequestAll =
-      !mayDownloadAll && !parts.some(part => part.status === "PENDING");
+      !mayDownloadAll &&
+      !observations.some(observation => observation.status === "PENDING");
     // TO UPDATE
     const filename = "data-file-request.zip";
 
@@ -93,17 +96,17 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
           </tr>
           <tr>
             <th>Observation</th>
-            <th>Status</th>
+            {/*<th>Status</th>*/}
             <th>Files</th>
           </tr>
         </thead>
         <tbody>
-          {parts.map((part: IDataRequestPart) => {
+          {observations.map((observation: IDataRequestObervation) => {
             return (
               <DataRequestTableRow
-                key={part.id}
+                key={observation.id}
                 dataRequestId={id}
-                dataRequestPart={part}
+                dataRequestObservation={observation}
               />
             );
           })}
