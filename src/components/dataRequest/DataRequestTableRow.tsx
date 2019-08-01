@@ -22,36 +22,36 @@ interface IDataRequestTableRowProps {
  */
 class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
-    const { dataFiles, status, id, name } = this.props.dataRequestObservation;
+    const { dataFiles, id, name } = this.props.dataRequestObservation;
     const { dataRequestId } = this.props;
     // TO UPDATE
-    const filename = "part-data-file-request.zip";
+    // const filename = "part-data-file-request.zip";
 
-    let downloadButton = false;
-    let reRequestButton = false;
-    let statusText = "";
+    // let downloadButton = false;
+    // let reRequestButton = false;
+    // let statusText = "";
 
-    // Converting the status for meaningful display
-    switch (status) {
-      case "SUCCESSFUL":
-        statusText = "Available";
-        downloadButton = true;
-        break;
-      case "FAILED":
-        statusText = "Failed";
-        reRequestButton = true;
-        break;
-      case "PENDING":
-        statusText = "Pending";
-        break;
-      case "EXPIRED":
-        statusText = "Expired";
-        reRequestButton = true;
-        break;
-      default:
-        statusText = "Unknown";
-        break;
-    }
+    // // Converting the status for meaningful display
+    // switch (status) {
+    //   case "SUCCESSFUL":
+    //     statusText = "Available";
+    //     downloadButton = true;
+    //     break;
+    //   case "FAILED":
+    //     statusText = "Failed";
+    //     reRequestButton = true;
+    //     break;
+    //   case "PENDING":
+    //     statusText = "Pending";
+    //     break;
+    //   case "EXPIRED":
+    //     statusText = "Expired";
+    //     reRequestButton = true;
+    //     break;
+    //   default:
+    //     statusText = "Unknown";
+    //     break;
+    // }
 
     return (
       <tr>
