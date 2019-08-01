@@ -68,16 +68,11 @@ const USER_DATA_REQUESTS_QUERY = gql`
     dataRequests(limit: $limit, startIndex: $startIndex) {
       id
       uri
-      parts {
+      observations {
         id
-        status
-        uri
         dataFiles {
           id
           name
-          observation {
-            name
-          }
         }
       }
     }
