@@ -252,11 +252,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                     </>
                   ) : (
                     <ResultsPlaceholder>
-                      {results && results.length === 0 && this.state.where && (
-                        <div>
-                          Oops. There are no results for this search query.
-                        </div>
-                      )}
+                      {!loading &&
+                        results &&
+                        results.length === 0 &&
+                        this.state.where && (
+                          <div>
+                            Oops. There are no results for this search query.
+                          </div>
+                        )}
                     </ResultsPlaceholder>
                   )}
                 </>
@@ -490,7 +493,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // The assumptions are valid because both properties are indeed defined
         // per observation (and not per data file).
         const ownedByUser = result.ownedByUser;
-        const isPublic = now > metadata[DataKeys.START_TIME];
+        const isPublic = now > metadata[DataKeys.OBSERVATION_PUBLIC_FROM];
         const observation: IObservation = {
           available: ownedByUser || isPublic,
           files: [file()],
