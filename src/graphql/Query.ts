@@ -70,6 +70,7 @@ const USER_DATA_REQUESTS_QUERY = gql`
       uri
       observations {
         id
+        name
         dataFiles {
           id
           name

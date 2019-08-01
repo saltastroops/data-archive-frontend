@@ -8,7 +8,7 @@ import {
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
 
 const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
-  const parts = statusValues.map((status, index) => ({
+  const observations = statusValues.map((status, index) => ({
     dataFiles: [
       {
         id: `file-${index}a`,
@@ -27,15 +27,14 @@ const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
         }
       }
     ],
-    id: `part-${index}`,
-    status,
-    uri: `http://demo/data-request/part/part-${index}`
+    id: `obz-${index}`,
+    name: `part-${index}`
   }));
 
   const dataReqest = {
     id: "request-1",
     madeAt: "2018-12-01 20:00",
-    parts,
+    observations,
     uri: `http://demo/data-request/request-1`
   } as IDataRequest;
 
