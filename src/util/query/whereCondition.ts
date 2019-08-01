@@ -24,7 +24,12 @@ import {
   startsWith,
   withinRadius
 } from "./operators";
-import { parseDate, parseTargetPosition, trim } from "./parse";
+import {
+  parseDate,
+  parseObservationNight,
+  parseTargetPosition,
+  trim
+} from "./parse";
 
 /**
  * Map observation query parameters to a where condition.
@@ -160,9 +165,18 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   // Night when the observation was taken
   const observationNight = trim(general.observationNight);
   if (observationNight) {
-    const night = parseDate(observationNight); // noon SAST
-    const nightString = night.format("YYYY-MM-DD");
-    conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightString));
+    const nights = parseObservationNight(observationNight); // noon SAST
+    const nightStrings = nights.map(night => night.format("YYYY-MM-DD"));
+    if (nightStrings.length == 1) {
+      conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightStrings[0]));
+    } else {
+      conditions.push(
+        and([
+          greaterEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[0]),
+          lessEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[1])
+        ])
+      );
+    }
   }
 
   // Principal Investigator

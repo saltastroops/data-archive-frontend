@@ -64,6 +64,41 @@ Object {
 }
 `;
 
+exports[`generalWhereCondition should map input data correctly 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "AND": Array [
+        Object {
+          "GREATER_EQUAL": Object {
+            "column": "Observation.night",
+            "value": "2019-05-01",
+          },
+        },
+        Object {
+          "LESS_EQUAL": Object {
+            "column": "Observation.night",
+            "value": "2019-05-13",
+          },
+        },
+      ],
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "Proposal.principalInvestigatorFamilyName",
+        "value": "Sipho",
+      },
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "Proposal.proposalCode",
+        "value": "2019-1-SCI-042",
+      },
+    },
+  ],
+}
+`;
+
 exports[`rssWhereCondition should map the RSS modes correctly 1`] = `
 Object {
   "AND": Array [

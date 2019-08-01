@@ -639,7 +639,17 @@ class SearchResultsTable extends React.Component<
               )}
             </JS9ViewContext.Consumer>
           ) : (
-            "proprietary"
+            <button
+              className="is-link"
+              onClick={() => {
+                const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
+                  ? rowDatum[DataKeys.DATA_FILE_ID].toString()
+                  : rowDatum[DataKeys.DATA_FILE_ID];
+                this.openPreviewModal(dataFileId);
+              }}
+            >
+              Preview
+            </button>
           );
         } else {
           return rowDatum[DataKeys.DATA_FILE_FILENAME];
@@ -702,7 +712,7 @@ class SearchResultsTable extends React.Component<
    * Close the preview modal.
    */
   private closePreviewModal = () => {
-    (window as any).js9close();
+    this.setState(() => ({ open: false }));
   };
 
   /**
@@ -759,9 +769,7 @@ class SearchResultsTable extends React.Component<
    * Open the preview modal.
    */
   private openPreviewModal = (dataFileId: string) => {
-    (window as any).js9open(
-      "http://localhost:4001/previews/856/P201902200006-image-3.fits"
-    );
+    this.setState(() => ({ dataFileId, open: true }));
   };
 
   /**

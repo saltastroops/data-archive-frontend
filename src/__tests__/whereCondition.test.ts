@@ -86,6 +86,32 @@ describe("generalWhereCondition", () => {
     expect(f).toThrow(/2019-02-29.*valid/);
   });
 
+  it("should raise an error for an invalid observation night range", () => {
+    let f = () =>
+      generalWhereCondition({
+        errors: {},
+        observationNight: "2019-02-29 ..",
+        calibrations: new Set()
+      });
+    expect(f).toThrow(/2019-02-29.*valid/);
+
+    f = () =>
+      generalWhereCondition({
+        errors: {},
+        observationNight: ".. 2019-02-29",
+        calibrations: new Set()
+      });
+    expect(f).toThrow("not a valid");
+
+    f = () =>
+      generalWhereCondition({
+        errors: {},
+        observationNight: "2019-02-29 .. 2020",
+        calibrations: new Set()
+      });
+    expect(f).toThrow("not a valid");
+  });
+
   it("should map an observation night to a greater equal and less equal condition spanning one night", () => {
     expect(
       generalWhereCondition({
@@ -122,6 +148,16 @@ describe("generalWhereCondition", () => {
         calibrations: new Set(),
         errors: {},
         observationNight: "2019-05-13",
+        principalInvestigator: "Sipho",
+        proposalCode: "2019-1-SCI-042"
+      })
+    ).toMatchSnapshot();
+
+    expect(
+      generalWhereCondition({
+        calibrations: new Set(),
+        errors: {},
+        observationNight: "2019-05-01 .. 2019-05-13",
         principalInvestigator: "Sipho",
         proposalCode: "2019-1-SCI-042"
       })
