@@ -171,7 +171,7 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
       conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightStrings[0]));
     } else {
       conditions.push(
-        or([
+        and([
           greaterEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[0]),
           lessEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[1])
         ])

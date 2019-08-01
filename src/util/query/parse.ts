@@ -93,7 +93,6 @@ export function parseObservationNight(night: string) {
     throw new Error("The first night must not be later than the last night.");
   }
 
-  console.log(dates);
   return dates;
 }
 
