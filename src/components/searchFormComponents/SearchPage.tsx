@@ -537,6 +537,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     }
 
     // Add some columns which should be queried at any rate
+    columns.add(DataKeys.DATA_CATEGORY);
     columns.add(DataKeys.DATA_FILE_FILENAME);
     columns.add(DataKeys.DATA_FILE_ID);
     columns.add(DataKeys.INSTRUMENT_NAME);
