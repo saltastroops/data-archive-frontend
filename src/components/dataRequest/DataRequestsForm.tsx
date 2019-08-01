@@ -76,7 +76,7 @@ class DataRequestsForm extends React.Component {
 
           return (
             <>
-              <Heading>Data Request</Heading>
+              <Heading>Data Requests</Heading>
 
               {sortedDataRequests.map((dataRequest: IDataRequest) => {
                 return (
