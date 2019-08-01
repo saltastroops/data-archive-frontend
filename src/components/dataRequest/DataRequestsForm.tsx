@@ -24,7 +24,6 @@ export interface IDataFile {
 export interface IDataRequestObervation {
   dataFiles: IDataFile[];
   id: string;
-  status: DataRequestStatus;
   name: string;
 }
 
@@ -32,6 +31,7 @@ export interface IDataRequest {
   id: string;
   madeAt: string;
   observations: IDataRequestObervation[];
+  status: DataRequestStatus;
   uri: string;
 }
 

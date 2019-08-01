@@ -49,15 +49,12 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { observations, madeAt, id } = this.props.dataRequest;
+    const { observations, madeAt, id, status } = this.props.dataRequest;
 
-    const mayDownloadAll = observations.every(
-      observation => observation.status === "SUCCESSFUL"
-    );
+    const mayDownloadAll = status === "SUCCESSFUL";
 
-    const reRequestAll =
-      !mayDownloadAll &&
-      !observations.some(observation => observation.status === "PENDING");
+    const reRequestAll = status === "FAILED";
+
     // TO UPDATE
     const filename = "data-file-request.zip";
 
