@@ -1,6 +1,6 @@
+import moment from "moment";
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
-import moment from "moment";
 
 /**
  * Get the search results table columns for an array of database column names.

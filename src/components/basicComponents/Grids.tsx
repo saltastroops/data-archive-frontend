@@ -91,6 +91,14 @@ const SubGrid = styled.div.attrs({
     padding-left: 10px;
   }
 `;
+const SubGridRight = styled.div.attrs({
+  className: "sub-grid"
+})`
+  && {
+    text-align: right;
+    padding-left: 10px;
+  }
+`;
 
 const SubGrid4 = styled.div.attrs({
   className: "sub-grid4"
@@ -160,6 +168,7 @@ export {
   TargetGrid,
   SubGrid4,
   SubGrid,
+  SubGridRight,
   MainGrid,
   ButtonGrid,
   Span,
