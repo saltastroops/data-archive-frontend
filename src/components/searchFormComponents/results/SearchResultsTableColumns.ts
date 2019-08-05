@@ -1,6 +1,6 @@
+import moment from "moment";
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
-import moment from "moment";
 
 /**
  * Get the search results table columns for an array of database column names.
@@ -213,5 +213,5 @@ function formatNumber(n: number) {
  * The formatted date string.
  */
 function formatTimestamp(t: string) {
-  return moment(parseInt(t)).format("D MMM YYYY");
+  return moment(parseInt(t, 10)).format("D MMM YYYY");
 }

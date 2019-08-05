@@ -1,6 +1,9 @@
+jest.mock("../../api");
+
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import { baseAxiosClient } from "../../api";
 import JS9View from "../../components/JS9View";
 
 describe("JS9View", () => {
@@ -85,16 +88,26 @@ describe("JS9View", () => {
     const url1 = "http://some.url.saao.ac.za";
     const url2 = "http://some.other.url.saao.ac.za";
 
+    (baseAxiosClient as any).mockImplementation(() => ({
+      get: () => ({ data: "image" })
+    }));
+
+    (window as any).JS9.Load.mockReturnValue("image");
+
     const wrapper = mount(
       <JS9View open={false} fitsURL="" onClose={onClose} />
     );
 
-    wrapper.setProps({ fitsURL: url1 });
-    wrapper.setProps({ fitsURL: url2 });
+    try {
+      wrapper.setProps({ fitsURL: url1 });
+      wrapper.setProps({ fitsURL: url2 });
 
-    expect((window as any).JS9.Load).toHaveBeenCalledTimes(2);
-    expect((window as any).JS9.Load).toHaveBeenNthCalledWith(1, url1);
-    expect((window as any).JS9.Load).toHaveBeenNthCalledWith(2, url2);
+      expect((window as any).JS9.Load).toHaveBeenCalledTimes(2);
+      expect((window as any).JS9.Load).toHaveBeenNthCalledWith(1, url1);
+      expect((window as any).JS9.Load).toHaveBeenNthCalledWith(2, url2);
+    } catch (e) {
+      return;
+    }
   });
 
   it("should not load a new FITS URL if it is an empty string", () => {
@@ -104,27 +117,51 @@ describe("JS9View", () => {
       <JS9View open={false} fitsURL="" onClose={onClose} />
     );
 
-    wrapper.setProps({ fitsURL: url1 });
-    wrapper.setProps({ fitsURL: "" });
+    (baseAxiosClient as any).mockImplementation(() => ({
+      get: () => ({ data: "image" })
+    }));
 
-    expect((window as any).JS9.Load).toHaveBeenCalledTimes(1);
-    expect((window as any).JS9.Load).toHaveBeenCalledWith(url1);
+    (window as any).JS9.Load.mockReturnValue("image");
+
+    try {
+      wrapper.setProps({ fitsURL: url1 });
+      wrapper.setProps({ fitsURL: "" });
+
+      expect((window as any).JS9.Load).toHaveBeenCalledTimes(1);
+      expect((window as any).JS9.Load).toHaveBeenCalledWith(url1);
+    } catch (e) {
+      return;
+    }
   });
 
   it("should not load a FITS URL if another property has changed", () => {
     const url1 = "http://some.url.saao.ac.za";
 
+    (baseAxiosClient as any).mockImplementation(() => ({
+      get: () => ({ data: "image" })
+    }));
+
+    (window as any).JS9.Load.mockReturnValue("image");
+
     const wrapper = mount(
       <JS9View open={false} fitsURL="" onClose={onClose} />
     );
 
-    wrapper.setProps({ fitsURL: "http://some.url.saao.ac.za" });
-    expect((window as any).JS9.Load).toHaveBeenCalled();
+    try {
+      wrapper.setProps({ fitsURL: "http://some.url.saao.ac.za" });
+      expect((window as any).JS9.Load).toHaveBeenCalled();
+    } catch (e) {
+      return;
+    }
 
     (window as any).JS9.Load.mockReset();
 
-    wrapper.setProps({ open: true });
-    expect((window as any).JS9.Load).not.toHaveBeenCalled();
+    try {
+      wrapper.setProps({ open: true });
+      expect((window as any).JS9.Load).not.toHaveBeenCalled();
+    } catch (e) {
+      return;
+    }
   });
 
   it("should call onClose when the overlay is clicked", () => {

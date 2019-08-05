@@ -87,7 +87,7 @@ export function parseObservationNight(night: string) {
 
   // Make sure the date order is correct
   if (
-    dates.length == 2 &&
+    dates.length === 2 &&
     dates[0].startOf("day").isAfter(dates[1].startOf("day"))
   ) {
     throw new Error("The first night must not be later than the last night.");

@@ -167,7 +167,7 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   if (observationNight) {
     const nights = parseObservationNight(observationNight); // noon SAST
     const nightStrings = nights.map(night => night.format("YYYY-MM-DD"));
-    if (nightStrings.length == 1) {
+    if (nightStrings.length === 1) {
       conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightStrings[0]));
     } else {
       conditions.push(

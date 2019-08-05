@@ -26,7 +26,7 @@ exports[`DataRequestTable should render correctly 1`] = `
               },
             },
           ],
-          "id": "obz-0",
+          "id": "1",
           "name": "part-0",
         },
         Object {
@@ -48,7 +48,7 @@ exports[`DataRequestTable should render correctly 1`] = `
               },
             },
           ],
-          "id": "obz-1",
+          "id": "2",
           "name": "part-1",
         },
         Object {
@@ -70,10 +70,11 @@ exports[`DataRequestTable should render correctly 1`] = `
               },
             },
           ],
-          "id": "obz-2",
+          "id": "3",
           "name": "part-2",
         },
       ],
+      "status": "SUCCESSFUL",
       "uri": "http://demo/data-request/request-1",
     }
   }
@@ -138,11 +139,12 @@ exports[`DataRequestTable should render correctly 1`] = `
                   }
                 }
               >
-                <button
-                  className="button re-request-all is-small is-danger is-rounded"
+                <a
+                  className="button download-all is-small is-success is-rounded"
+                  href="http://test/downloads/data-requests/request-1/data_request_request-1.zip"
                 >
-                  Re-request all
-                </button>
+                  Download all
+                </a>
               </p>
             </th>
           </tr>
@@ -157,7 +159,6 @@ exports[`DataRequestTable should render correctly 1`] = `
         </thead>
         <tbody>
           <DataRequestTableRow
-            dataRequestId="request-1"
             dataRequestObservation={
               Object {
                 "dataFiles": Array [
@@ -178,11 +179,11 @@ exports[`DataRequestTable should render correctly 1`] = `
                     },
                   },
                 ],
-                "id": "obz-0",
+                "id": "1",
                 "name": "part-0",
               }
             }
-            key="obz-0"
+            key="1"
           >
             <tr>
               <td>
@@ -205,7 +206,6 @@ exports[`DataRequestTable should render correctly 1`] = `
             </tr>
           </DataRequestTableRow>
           <DataRequestTableRow
-            dataRequestId="request-1"
             dataRequestObservation={
               Object {
                 "dataFiles": Array [
@@ -226,11 +226,11 @@ exports[`DataRequestTable should render correctly 1`] = `
                     },
                   },
                 ],
-                "id": "obz-1",
+                "id": "2",
                 "name": "part-1",
               }
             }
-            key="obz-1"
+            key="2"
           >
             <tr>
               <td>
@@ -253,7 +253,6 @@ exports[`DataRequestTable should render correctly 1`] = `
             </tr>
           </DataRequestTableRow>
           <DataRequestTableRow
-            dataRequestId="request-1"
             dataRequestObservation={
               Object {
                 "dataFiles": Array [
@@ -274,11 +273,11 @@ exports[`DataRequestTable should render correctly 1`] = `
                     },
                   },
                 ],
-                "id": "obz-2",
+                "id": "3",
                 "name": "part-2",
               }
             }
-            key="obz-2"
+            key="3"
           >
             <tr>
               <td>

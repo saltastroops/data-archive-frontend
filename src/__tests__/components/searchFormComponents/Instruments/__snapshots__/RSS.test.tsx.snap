@@ -189,67 +189,6 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -369,67 +308,6 @@ exports[`RSS  Imaging polarimetric should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -1218,67 +1096,6 @@ exports[`RSS  Imaging should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -1398,67 +1215,6 @@ exports[`RSS  Imaging should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -1975,67 +1731,6 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -2155,67 +1850,6 @@ exports[`RSS  MOS polarimetry should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={true}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={true}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={true}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -3070,67 +2704,6 @@ exports[`RSS  MOS should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -3250,67 +2823,6 @@ exports[`RSS  MOS should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -3892,67 +3404,6 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -4072,67 +3523,6 @@ exports[`RSS  Spectropolarimetry should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -4987,67 +4377,6 @@ exports[`RSS  Spectroscopy should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -5167,67 +4496,6 @@ exports[`RSS  Spectroscopy should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div
@@ -5791,67 +5059,6 @@ exports[`RSS  should render correctly 1`] = `
                 </label>
               </div>
               <div
-                key="FP polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="FP polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="FP polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="FP polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  FP polarimetry
-                </label>
-              </div>
-              <div
                 key="Imaging"
               >
                 <label>
@@ -5971,67 +5178,6 @@ exports[`RSS  should render correctly 1`] = `
                     </StyledComponent>
                   </styled.input>
                   MOS
-                </label>
-              </div>
-              <div
-                key="MOS polarimetry"
-              >
-                <label>
-                  <styled.input
-                    checked={false}
-                    name="MOS polarimetry"
-                    onChange={[Function]}
-                    type="checkbox"
-                  >
-                    <StyledComponent
-                      checked={false}
-                      forwardedComponent={
-                        Object {
-                          "$$typeof": Symbol(react.forward_ref),
-                          "attrs": Array [
-                            Object {
-                              "className": "checkbox",
-                              "type": "checkbox",
-                            },
-                          ],
-                          "componentStyle": ComponentStyle {
-                            "componentId": "sc-jTzLTM",
-                            "isStatic": true,
-                            "lastClassName": "c2",
-                            "rules": Array [
-                              "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                            ],
-                          },
-                          "displayName": "styled.input",
-                          "foldedComponentIds": Array [],
-                          "render": [Function],
-                          "styledComponentId": "sc-jTzLTM",
-                          "target": "input",
-                          "toString": [Function],
-                          "warnTooManyClasses": [Function],
-                          "withComponent": [Function],
-                        }
-                      }
-                      forwardedRef={null}
-                      name="MOS polarimetry"
-                      onChange={[Function]}
-                      type="checkbox"
-                    >
-                      <input
-                        checked={false}
-                        className="checkbox c2"
-                        name="MOS polarimetry"
-                        onChange={[Function]}
-                        type="checkbox"
-                      />
-                    </StyledComponent>
-                  </styled.input>
-                  MOS polarimetry
                 </label>
               </div>
               <div

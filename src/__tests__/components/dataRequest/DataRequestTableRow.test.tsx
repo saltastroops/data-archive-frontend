@@ -1,14 +1,11 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import {
-  DataRequestStatus,
-  IDataRequest
-} from "../../../components/dataRequest/DataRequestsForm";
+import { DataRequestStatus } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTableRow from "../../../components/dataRequest/DataRequestTableRow";
 
 const dummyDataRequestPartWrapper = (status: DataRequestStatus) => {
-  const dataRequestPart = {
+  const dataRequestObservation = {
     dataFiles: [
       {
         id: "file-1",
@@ -28,13 +25,13 @@ const dummyDataRequestPartWrapper = (status: DataRequestStatus) => {
       }
     ],
     id: "part-1",
-    status,
-    uri: "http://demo/data-request/part-1"
+    name: "obz-1",
+    status
   };
   return mount(
     <table>
       <tbody>
-        <DataRequestTableRow dataRequestPart={dataRequestPart} />
+        <DataRequestTableRow dataRequestObservation={dataRequestObservation} />
       </tbody>
     </table>
   );
@@ -53,23 +50,5 @@ describe("DataRequestTableRow", () => {
 
     wrapper = dummyDataRequestPartWrapper("EXPIRED");
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it("includes and excludes download and re-request links as required", async () => {
-    let wrapper = dummyDataRequestPartWrapper("SUCCESSFUL");
-    expect(wrapper.find(".download").length).toBe(1);
-    expect(wrapper.find(".re-request").length).toBe(0);
-
-    wrapper = dummyDataRequestPartWrapper("PENDING");
-    expect(wrapper.find(".download").length).toBe(0);
-    expect(wrapper.find(".re-request").length).toBe(0);
-
-    wrapper = dummyDataRequestPartWrapper("FAILED");
-    expect(wrapper.find(".download").length).toBe(0);
-    expect(wrapper.find(".re-request").length).toBe(1);
-
-    wrapper = dummyDataRequestPartWrapper("EXPIRED");
-    expect(wrapper.find(".download").length).toBe(0);
-    expect(wrapper.find(".re-request").length).toBe(1);
   });
 });

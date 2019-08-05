@@ -199,7 +199,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
                     </div>
                     <styled.button
                       data-test="close"
-                      onClick={[MockFunction]}
+                      onClick={[Function]}
                     >
                       <StyledComponent
                         data-test="close"
@@ -234,12 +234,12 @@ exports[`JS9View should display correctly for open=false 1`] = `
                           }
                         }
                         forwardedRef={null}
-                        onClick={[MockFunction]}
+                        onClick={[Function]}
                       >
                         <button
                           className="c2"
                           data-test="close"
-                          onClick={[MockFunction]}
+                          onClick={[Function]}
                         >
                           <svg
                             height={28}
@@ -465,7 +465,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
                     </div>
                     <styled.button
                       data-test="close"
-                      onClick={[MockFunction]}
+                      onClick={[Function]}
                     >
                       <StyledComponent
                         data-test="close"
@@ -500,12 +500,12 @@ exports[`JS9View should display correctly for open=true 1`] = `
                           }
                         }
                         forwardedRef={null}
-                        onClick={[MockFunction]}
+                        onClick={[Function]}
                       >
                         <button
                           className="c2"
                           data-test="close"
-                          onClick={[MockFunction]}
+                          onClick={[Function]}
                         >
                           <svg
                             height={28}
