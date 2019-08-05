@@ -8,14 +8,17 @@ import {
   validateSearchConeRadius
 } from "../../utils/validators";
 import {
+  HelpGrid,
   InnerMainGrid,
   MainGrid,
+  RightSubGrid,
   SingleColumnGrid,
   SubGrid
 } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 import TargetTypesSelector from "./TargetTypesSelector";
+import HelpButton from "../basicComponents/HelpButton";
 
 interface ITargetFormProps {
   target: ITarget;
@@ -114,15 +117,24 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
         <MainGrid>
           <SubGrid>
             <p>Target name</p>
-            <InputField
-              data-test="target-name-input"
-              disabled={loading}
-              name={"name"}
-              value={target.name || ""}
-              error={target.errors.name}
-              title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
-              onChange={handleChangeEvent}
-            />
+            <HelpGrid>
+              <InputField
+                data-test="target-name-input"
+                disabled={loading}
+                name={"name"}
+                value={target.name || ""}
+                error={target.errors.name}
+                title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+                onChange={handleChangeEvent}
+              />
+              <HelpButton
+                message={`
+                  Target name.
+                  This is used to determine the target position to search for.
+                  It must be possible to resolve the name with the chosen resolver.
+                  `}
+              />
+            </HelpGrid>
           </SubGrid>
           <SubGrid>
             <InnerMainGrid>

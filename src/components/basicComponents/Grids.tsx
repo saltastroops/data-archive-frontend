@@ -82,12 +82,29 @@ const InnerMainGrid = styled.div.attrs({
     grid-template-columns: 40% 40%;
   }
 `;
+const HelpGrid = styled.div.attrs({
+  className: "field has-addons-right"
+})`
+  && {
+    display: grid;
+    grid-template-columns: 90% 10%;
+  }
+`;
 
 const SubGrid = styled.div.attrs({
   className: "sub-grid"
 })`
   && {
     text-align: left;
+    padding-left: 10px;
+  }
+`;
+
+const RightSubGrid = styled.div.attrs({
+  className: "sub-grid"
+})`
+  && {
+    text-align: right;
     padding-left: 10px;
   }
 `;
@@ -160,7 +177,9 @@ export {
   TargetGrid,
   SubGrid4,
   SubGrid,
+  RightSubGrid,
   MainGrid,
+  HelpGrid,
   ButtonGrid,
   Span,
   Spinner,
