@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  help?: {
+    message: string;
+    showHelp: boolean;
+  };
 }
 
 /**
@@ -13,6 +17,17 @@ const Error = styled.p.attrs({
 })``;
 
 /**
+ * A paragraph with an help message.
+ */
+export const HelpMessage = styled.p.attrs({
+  className: ""
+})`
+  && {
+    max-width: 110%;
+  }
+`;
+
+/**
  * An input field with an error message underneath it.
  *
  * The field accepts all attributes you can pass to an HTML input element. In
@@ -20,6 +35,7 @@ const Error = styled.p.attrs({
  */
 const InputField = (props: IInputProps) => {
   const { error, ...rest } = props;
+  const { message, showHelp } = props.help || { message: "", showHelp: false };
   return (
     <div className="control">
       <input
@@ -27,6 +43,7 @@ const InputField = (props: IInputProps) => {
         {...rest}
       />
       {error && <Error>{error}</Error>}
+      {showHelp && <HelpMessage>{message}</HelpMessage>}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCircle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import targetPosition from "target-position";
 import { ITarget } from "../../utils/ObservationQueryParameters";
@@ -9,16 +11,15 @@ import {
 } from "../../utils/validators";
 import {
   HelpGrid,
-  InnerMainGrid,
+  ResolverContainer,
   MainGrid,
-  RightSubGrid,
   SingleColumnGrid,
   SubGrid
 } from "../basicComponents/Grids";
+import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
 import SelectField from "../basicComponents/SelectField";
 import TargetTypesSelector from "./TargetTypesSelector";
-import HelpButton from "../basicComponents/HelpButton";
 
 interface ITargetFormProps {
   target: ITarget;
@@ -27,6 +28,7 @@ interface ITargetFormProps {
 
 interface ITargetFormState {
   loading: boolean;
+  showHelpOf: string;
 }
 
 /**
@@ -34,13 +36,21 @@ interface ITargetFormState {
  * search.
  */
 class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
-  state = { loading: false };
+  state = { loading: false, showHelpOf: "" };
 
   // Function for updating the loading property of the state
   updateLoadingStatus = (loading: boolean) => {
     this.setState(() => ({
       loading
     }));
+  };
+
+  showHelpOf = (name: string) => {
+    if (this.state.showHelpOf === name) {
+      this.setState(() => ({ showHelpOf: "" }));
+    } else {
+      this.setState(() => ({ showHelpOf: name }));
+    }
   };
 
   // Function for resolving the target name to a position
@@ -85,7 +95,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
 
   render() {
     const { target, onChange } = this.props;
-    const { loading } = this.state;
+    const { loading, showHelpOf } = this.state;
 
     // Function for handling changes made to the search parameters
     const handleChangeEvent = (
@@ -124,26 +134,33 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 name={"name"}
                 value={target.name || ""}
                 error={target.errors.name}
-                title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+                help={{
+                  message: `
+                      Target name.
+                      This is used to determine the target position to search for.
+                      It must be possible to resolve the name with the chosen resolver.
+                    `,
+                  showHelp: showHelpOf === "name"
+                }}
                 onChange={handleChangeEvent}
               />
-              <HelpButton
-                message={`
-                  Target name.
-                  This is used to determine the target position to search for.
-                  It must be possible to resolve the name with the chosen resolver.
-                  `}
-              />
+              <HelpButton name={"name"} showHelp={this.showHelpOf} />
             </HelpGrid>
           </SubGrid>
           <SubGrid>
-            <InnerMainGrid>
-              <SubGrid>
-                <p>Resolver</p>
+            <p>Resolver</p>
+            <HelpGrid>
+              <ResolverContainer
+                help={{
+                  message: `
+                        Resolver for resolving the target name to a target position
+                    `,
+                  showHelp: showHelpOf === "resolver"
+                }}
+              >
                 <SelectField
                   data-test={"resolver-select"}
                   name={"resolver"}
-                  title="Resolver for resolving the target name to a target position"
                   value={target.resolver}
                   onChange={handleChangeEvent}
                 >
@@ -151,9 +168,6 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                   <option value="NED">NED</option>
                   <option value="VizieR">VizieR</option>
                 </SelectField>
-              </SubGrid>
-              <SubGrid>
-                <br />
                 <button
                   className={`button is-info ${loading &&
                     "is-loading disable"}`}
@@ -164,48 +178,75 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
                 >
                   resolve
                 </button>
-              </SubGrid>
-            </InnerMainGrid>
+              </ResolverContainer>
+              <HelpButton name={"resolver"} showHelp={this.showHelpOf} />
+            </HelpGrid>
           </SubGrid>
         </MainGrid>
 
         <MainGrid>
           <SubGrid>
             <p>Right ascension</p>
-            <InputField
-              data-test="right-ascension-input"
-              disabled={loading}
-              name={"rightAscension"}
-              value={target.rightAscension || ""}
-              onChange={handleChangeEvent}
-              title='Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14'
-              error={target.errors.rightAscension}
-            />
+            <HelpGrid>
+              <InputField
+                data-test="right-ascension-input"
+                disabled={loading}
+                name={"rightAscension"}
+                value={target.rightAscension || ""}
+                help={{
+                  message: `
+                      Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14
+                    `,
+                  showHelp: showHelpOf === "rightAscension"
+                }}
+                onChange={handleChangeEvent}
+                error={target.errors.rightAscension}
+              />
+              <HelpButton name={"rightAscension"} showHelp={this.showHelpOf} />
+            </HelpGrid>
           </SubGrid>
           <SubGrid>
             <p>Declination</p>
-            <InputField
-              data-test="declination-input"
-              disabled={loading}
-              name={"declination"}
-              value={target.declination || ""}
-              onChange={handleChangeEvent}
-              title='Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51'
-              error={target.errors.declination}
-            />
+            <HelpGrid>
+              <InputField
+                data-test="declination-input"
+                disabled={loading}
+                name={"declination"}
+                value={target.declination || ""}
+                help={{
+                  message: `
+                     Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51`,
+                  showHelp: showHelpOf === "declination"
+                }}
+                onChange={handleChangeEvent}
+                error={target.errors.declination}
+              />
+              <HelpButton name={"declination"} showHelp={this.showHelpOf} />
+            </HelpGrid>
           </SubGrid>
         </MainGrid>
         <MainGrid>
           <SubGrid>
             <p>Search radius</p>
-            <InputField
-              data-test="search-cone-radius-input"
-              name={"searchConeRadius"}
-              value={target.searchConeRadius || ""}
-              onChange={handleChangeEvent}
-              title="Radius of the search cone in the selected units."
-              error={target.errors.searchConeRadius}
-            />
+            <HelpGrid>
+              <InputField
+                data-test="search-cone-radius-input"
+                name={"searchConeRadius"}
+                value={target.searchConeRadius || ""}
+                help={{
+                  message: `
+                     Radius of the search cone in the selected units.
+                     `,
+                  showHelp: showHelpOf === "searchConeRadius"
+                }}
+                onChange={handleChangeEvent}
+                error={target.errors.searchConeRadius}
+              />
+              <HelpButton
+                name={"searchConeRadius"}
+                showHelp={this.showHelpOf}
+              />
+            </HelpGrid>
           </SubGrid>
           <SubGrid>
             <p>Radius units</p>

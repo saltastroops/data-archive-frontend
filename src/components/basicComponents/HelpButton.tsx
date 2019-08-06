@@ -1,4 +1,4 @@
-import { faQuestion } from "@fortawesome/free-solid-svg-icons/faQuestion";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCircle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import Modal from "react-responsive-modal";
@@ -6,57 +6,22 @@ import styled from "styled-components";
 import Message from "./Message";
 
 interface IHelpButtonProps {
-  message: string;
+  name: string;
+  showHelp: (name: string) => void;
 }
 
-const Button = styled.button.attrs({
-  className: "button is-rounded"
-})`
+const HelpButtonContainer = styled.div.attrs({})`
   && {
-  }
-`;
-const MessageBlock = styled.div.attrs({
-  className: ""
-})`
-  && {
-    papping-top: 30px
-    margin: 30px
+    margin-top: 7px;
   }
 `;
 
-// No test will be done on it as well for the above reason
-
-class HelpButton extends React.Component<IHelpButtonProps, any> {
-  state = {
-    open: false
-  };
-  openModal = (open: boolean) => {
-    this.setState(() => ({ open }));
-    console.log(this.state);
-  };
-  render() {
-    const { message } = this.props;
-    return (
-      <>
-        <Modal
-          open={this.state.open}
-          onClose={() => this.openModal(false)}
-          center={true}
-        >
-          <MessageBlock>
-            <Message message={message} />
-          </MessageBlock>
-        </Modal>
-        <div className={"control"}>
-          <Button
-            className={`button is-rounded`}
-            onClick={() => this.openModal(true)}
-          >
-            <FontAwesomeIcon icon={faQuestion} />
-          </Button>
-        </div>
-      </>
-    );
-  }
-}
+const HelpButton = (props: IHelpButtonProps) => {
+  const { name, showHelp } = props;
+  return (
+    <HelpButtonContainer onClick={() => showHelp(name)} className={"control"}>
+      <FontAwesomeIcon icon={faQuestionCircle} />
+    </HelpButtonContainer>
+  );
+};
 export default HelpButton;

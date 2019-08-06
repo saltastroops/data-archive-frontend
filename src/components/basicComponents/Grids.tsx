@@ -1,13 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
 import "../../App.css";
+import { HelpMessage } from "./InputField";
 
 const ParentGrid = styled.div.attrs({
   className: "grid-container",
   disable: true
 })`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   padding: 10px;
   gap: 20px;
 
@@ -74,7 +75,7 @@ const SingleColumnGrid = styled.div.attrs({
   }
 `;
 
-const InnerMainGrid = styled.div.attrs({
+const ResolverGrid = styled.div.attrs({
   className: "inner-main-grid"
 })`
   && {
@@ -82,12 +83,23 @@ const InnerMainGrid = styled.div.attrs({
     grid-template-columns: 40% 40%;
   }
 `;
+
+export const ResolverContainer = (props: any) => {
+  const { children } = props;
+  const { message, showHelp } = props.help || { message: "", showHelp: false };
+  return (
+    <div className={"control"}>
+      <ResolverGrid>{children}</ResolverGrid>
+      {showHelp && <HelpMessage>{message}</HelpMessage>}
+    </div>
+  );
+};
 const HelpGrid = styled.div.attrs({
-  className: "field has-addons-right"
+  className: "field"
 })`
   && {
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 95% 5%;
   }
 `;
 
@@ -114,7 +126,7 @@ const SubGrid4 = styled.div.attrs({
 })`
   && {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 `;
 
@@ -183,5 +195,5 @@ export {
   ButtonGrid,
   Span,
   Spinner,
-  InnerMainGrid
+  ResolverGrid
 };
