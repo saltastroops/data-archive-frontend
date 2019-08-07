@@ -29,6 +29,20 @@ exports[`Data Form should render correctly 1`] = `
     <label>
       <styled.span>
         <styled.input
+          checked={false}
+          data-test="rejected-checkbox"
+          id="rejected-checkbox"
+          name="rejected"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Rejected
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
           checked={true}
           data-test="arcs-checkbox"
           id="arcs-checkbox"
@@ -115,6 +129,20 @@ exports[`Data Form should render correctly 2`] = `
     <label>
       <styled.span>
         <styled.input
+          checked={false}
+          data-test="rejected-checkbox"
+          id="rejected-checkbox"
+          name="rejected"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Rejected
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
           checked={true}
           data-test="arcs-checkbox"
           id="arcs-checkbox"
@@ -196,6 +224,20 @@ exports[`Data Form should render correctly 3`] = `
       </styled.span>
       <styled.span>
         Science
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="rejected-checkbox"
+          id="rejected-checkbox"
+          name="rejected"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Rejected
       </styled.span>
     </label>
     <label>

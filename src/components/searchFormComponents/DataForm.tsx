@@ -4,7 +4,7 @@ import {
   CalibrationType,
   IGeneral
 } from "../../utils/ObservationQueryParameters";
-import { MainGrid, Span, SubGrid, SubGrid5 } from "../basicComponents/Grids";
+import { MainGrid, Span, SubGrid, SubGrid6 } from "../basicComponents/Grids";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -28,17 +28,21 @@ class DataForm extends React.Component<IDataFormProps, {}> {
   // Add or remove the calibration type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name as any;
-    let { science } = this.props.general;
+    let { science, rejected } = this.props.general;
     const updated = new Set<CalibrationType>(this.props.general.calibrations);
     if (e.target.checked) {
       if (name === "science") {
         science = "Science";
+      } else if (name === "rejected") {
+        rejected = "Rejected";
       } else {
         updated.add(name);
       }
     } else {
       if (name === "science") {
         science = "";
+      } else if (name === "rejected") {
+        rejected = "";
       } else {
         updated.delete(name);
       }
@@ -46,12 +50,13 @@ class DataForm extends React.Component<IDataFormProps, {}> {
     this.props.onChange({
       ...this.props.general,
       calibrations: updated,
+      rejected,
       science
     });
   };
 
   render() {
-    const { calibrations, science } = this.props.general;
+    const { calibrations, rejected, science } = this.props.general;
     return (
       <>
         <MainGrid>
@@ -59,7 +64,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             <h5 className={"title is-5"}>Include:</h5>
           </SubGrid>
         </MainGrid>
-        <SubGrid5>
+        <SubGrid6>
           <label>
             <Span>
               <LargeCheckbox
@@ -71,6 +76,18 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               />
             </Span>
             <Span>Science</Span>
+          </label>
+          <label>
+            <Span>
+              <LargeCheckbox
+                id="rejected-checkbox"
+                checked={rejected ? true : false}
+                data-test="rejected-checkbox"
+                onChange={this.changeCheckbox}
+                name="rejected"
+              />
+            </Span>
+            <Span>Rejected</Span>
           </label>
           <label>
             <Span>
@@ -120,7 +137,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
             </Span>
             <Span>Standards</Span>
           </label>
-        </SubGrid5>
+        </SubGrid6>
       </>
     );
   }

@@ -61,6 +61,7 @@ export interface IGeneralErrors {
   proposalTitle?: string;
   calibrations?: string;
   science?: string;
+  rejected?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
@@ -70,6 +71,7 @@ export interface IGeneral {
   proposalTitle?: string;
   calibrations: Set<CalibrationType>;
   science: string;
+  rejected: string;
 }
 
 /**

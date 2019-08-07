@@ -214,6 +214,11 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
     conditions.push(isIn(DataKeys.DATA_CATEGORY, [general.science]));
   }
 
+  // Observation status
+  if (general.rejected) {
+    conditions.push(isIn(DataKeys.OBSERVATION_STATUS, [general.rejected]));
+  }
+
   return and(conditions);
 }
 

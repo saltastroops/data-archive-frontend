@@ -58,6 +58,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     general: {
       calibrations: new Set<CalibrationType>(),
       errors: {},
+      rejected: "",
       science: "Science"
     },
     target: {

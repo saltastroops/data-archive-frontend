@@ -14,6 +14,7 @@ const DataKeys = {
   OBSERVATION_NAME: "observationName",
   OBSERVATION_NIGHT: "Observation.night",
   OBSERVATION_PUBLIC_FROM: "Observation.publicFrom",
+  OBSERVATION_STATUS: "ObservationStatus.status",
   PROPOSAL_CODE: "Proposal.proposalCode",
   PROPOSAL_PI_FAMILY_NAME: "Proposal.principalInvestigatorFamilyName",
   PROPOSAL_TITLE: "Proposal.title",
