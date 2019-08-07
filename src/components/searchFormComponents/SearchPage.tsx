@@ -299,6 +299,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           whereCondition({ general, target, telescope })
         );
         const where = JSON.stringify(whereObject);
+        console.log(where);
         const databaseColumns = this.databaseColumns(whereObject);
         const tableColumns = searchResultsTableColumns(databaseColumns);
 

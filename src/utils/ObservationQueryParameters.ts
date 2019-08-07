@@ -50,6 +50,8 @@ export type CalibrationType = "arc" | "bias" | "flat" | "standard";
  *     Title of the proposal to which the observation belongs.
  * calibrations:
  *     Calibration types to include in the search results
+ * science:
+ *     The science data type to include in the search results.
  *
  */
 export interface IGeneralErrors {
@@ -58,6 +60,7 @@ export interface IGeneralErrors {
   proposalCode?: string;
   proposalTitle?: string;
   calibrations?: string;
+  science?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
@@ -66,6 +69,7 @@ export interface IGeneral {
   proposalCode?: string;
   proposalTitle?: string;
   calibrations: Set<CalibrationType>;
+  science: string;
 }
 
 /**

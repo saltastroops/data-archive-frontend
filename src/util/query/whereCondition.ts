@@ -200,9 +200,18 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   }
 
   // Data category
-  if (general.calibrations.size > 0) {
-    const dataCategories = [...Array.from(general.calibrations), "Science"];
+  if (general.calibrations.size > 0 && general.science) {
+    const dataCategories = [
+      ...Array.from(general.calibrations),
+      general.science
+    ];
     conditions.push(isIn(DataKeys.DATA_CATEGORY, dataCategories));
+  } else if (general.calibrations.size > 0) {
+    conditions.push(
+      isIn(DataKeys.DATA_CATEGORY, [...Array.from(general.calibrations)])
+    );
+  } else if (general.science) {
+    conditions.push(isIn(DataKeys.DATA_CATEGORY, [general.science]));
   }
 
   return and(conditions);

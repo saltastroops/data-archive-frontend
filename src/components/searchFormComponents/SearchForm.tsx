@@ -55,7 +55,11 @@ interface ISearchFormProps {
  */
 class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
-    general: { calibrations: new Set<CalibrationType>(), errors: {} },
+    general: {
+      calibrations: new Set<CalibrationType>(),
+      errors: {},
+      science: "Science"
+    },
     target: {
       errors: {},
       resolver: "Simbad",
