@@ -14,6 +14,7 @@ import {
   DataGrid,
   ParentGrid,
   ProposalGrid,
+  Span,
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
@@ -134,8 +135,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <DataForm general={general} onChange={this.generalChange} />
           </DataGrid>
           <ButtonGrid>
-            {error && <div className="has-text-danger">{error.message}</div>}
-            <div>
+            <Span>
+              {error && <div className="has-text-danger">{error.message}</div>}
               <button
                 disabled={loading}
                 className={`button is-primary ${loading && "is-loading"}`}
@@ -146,7 +147,17 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
               >
                 search
               </button>
-            </div>
+            </Span>
+            <Span />
+            <Span>
+              <a
+                className={"warning"}
+                data-test="reset-all-button"
+                onClick={this.resetAll}
+              >
+                reset all
+              </a>
+            </Span>
           </ButtonGrid>
         </ParentGrid>
       </>
@@ -193,6 +204,22 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         }
       }
     );
+  };
+
+  private resetAll = () => {
+    const newState = {
+      ...this.state,
+      general: { calibrations: new Set<CalibrationType>(), errors: {} },
+      target: {
+        errors: {},
+        resolver: "Simbad",
+        searchConeRadius: "",
+        searchConeRadiusUnits: "arcseconds",
+        targetTypes: new Set<TargetType>()
+      },
+      telescope: {}
+    };
+    this.updateState(newState);
   };
 }
 

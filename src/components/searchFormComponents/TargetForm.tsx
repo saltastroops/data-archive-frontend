@@ -223,27 +223,10 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
         </SingleColumnGrid>
         <MainGrid>
           <SubGrid />
-          <SubGridRight>
-            <button className={"button is-warning"} onClick={this.resetState}>
-              reset all
-            </button>
-          </SubGridRight>
         </MainGrid>
       </>
     );
   }
-
-  resetState = () => {
-    this.props.onChange({
-      declination: "",
-      errors: {},
-      resolver: "Simbad",
-      rightAscension: "",
-      searchConeRadius: "",
-      searchConeRadiusUnits: "arcseconds",
-      targetTypes: new Set<TargetType>()
-    });
-  };
 }
 
 /**
