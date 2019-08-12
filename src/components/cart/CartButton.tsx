@@ -54,7 +54,7 @@ const CartButton = (props: ICartButtonProps) => {
         >
           <FontAwesomeIcon icon={faShoppingCart} />
         </span>
-        <ButtonSpan>Cart</ButtonSpan>
+        <ButtonSpan />
       </Button>
     </ButtonContainer>
   );
