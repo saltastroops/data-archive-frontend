@@ -4,7 +4,12 @@ import {
   CalibrationType,
   IGeneral
 } from "../../utils/ObservationQueryParameters";
-import { MainGrid, Span, SubGrid, SubGrid6 } from "../basicComponents/Grids";
+import {
+  SingleColumnGrid,
+  Span,
+  SubGrid,
+  SubGrid5
+} from "../basicComponents/Grids";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -59,85 +64,97 @@ class DataForm extends React.Component<IDataFormProps, {}> {
     const { calibrations, rejected, science } = this.props.general;
     return (
       <>
-        <MainGrid>
+        <SingleColumnGrid>
           <SubGrid>
-            <h5 className={"title is-5"}>Include:</h5>
+            <h5 className={"title is-5"}>Data category</h5>
           </SubGrid>
-        </MainGrid>
-        <SubGrid6>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="science-checkbox"
-                checked={science ? true : false}
-                data-test="science-checkbox"
-                onChange={this.changeCheckbox}
-                name="science"
-              />
-            </Span>
-            <Span>Science</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="rejected-checkbox"
-                checked={rejected ? true : false}
-                data-test="rejected-checkbox"
-                onChange={this.changeCheckbox}
-                name="rejected"
-              />
-            </Span>
-            <Span>Rejected</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="arcs-checkbox"
-                checked={calibrations.has("arc")}
-                data-test="arcs-checkbox"
-                onChange={this.changeCheckbox}
-                name="arc"
-              />
-            </Span>
-            <Span>Arcs</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="biases-checkbox"
-                checked={calibrations.has("bias")}
-                data-test="biases-checkbox"
-                onChange={this.changeCheckbox}
-                name="bias"
-              />
-            </Span>
-            <Span>Biases</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="flats-checkbox"
-                checked={calibrations.has("flat")}
-                data-test="flats-checkbox"
-                onChange={this.changeCheckbox}
-                name="flat"
-              />
-            </Span>
-            <Span>Flats</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="standards-checkbox"
-                checked={calibrations.has("standard")}
-                data-test="standards-checkbox"
-                onChange={this.changeCheckbox}
-                name="standard"
-              />
-            </Span>
-            <Span>Standards</Span>
-          </label>
-        </SubGrid6>
+        </SingleColumnGrid>
+        <SingleColumnGrid>
+          <SubGrid5>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="science-checkbox"
+                  checked={science ? true : false}
+                  data-test="science-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="science"
+                />
+              </Span>
+              <Span>Science</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="arcs-checkbox"
+                  checked={calibrations.has("arc")}
+                  data-test="arcs-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="arc"
+                />
+              </Span>
+              <Span>Arcs</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="biases-checkbox"
+                  checked={calibrations.has("bias")}
+                  data-test="biases-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="bias"
+                />
+              </Span>
+              <Span>Biases</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="flats-checkbox"
+                  checked={calibrations.has("flat")}
+                  data-test="flats-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="flat"
+                />
+              </Span>
+              <Span>Flats</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="standards-checkbox"
+                  checked={calibrations.has("standard")}
+                  data-test="standards-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="standard"
+                />
+              </Span>
+              <Span>Standards</Span>
+            </label>
+          </SubGrid5>
+        </SingleColumnGrid>
+
+        <SingleColumnGrid>
+          <SubGrid>
+            <h5 className={"title is-5"}>Data status</h5>
+          </SubGrid>
+        </SingleColumnGrid>
+        <SingleColumnGrid>
+          <SubGrid>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="rejected-checkbox"
+                  checked={rejected ? true : false}
+                  data-test="rejected-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="rejected"
+                />
+              </Span>
+              <Span>Rejected</Span>
+            </label>
+          </SubGrid>
+        </SingleColumnGrid>
       </>
     );
   }

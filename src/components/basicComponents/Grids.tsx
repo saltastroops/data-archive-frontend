@@ -101,12 +101,12 @@ const SubGrid4 = styled.div.attrs({
   }
 `;
 
-const SubGrid6 = styled.div.attrs({
+const SubGrid5 = styled.div.attrs({
   className: "sub-grid6"
 })`
   && {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
   }
 `;
 
@@ -168,7 +168,7 @@ export {
   DataGrid,
   TargetGrid,
   SubGrid4,
-  SubGrid6,
+  SubGrid5,
   SubGrid,
   MainGrid,
   ButtonGrid,

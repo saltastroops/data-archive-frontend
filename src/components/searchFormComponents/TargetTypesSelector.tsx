@@ -7,6 +7,7 @@ import {
   STAR,
   TargetType
 } from "../../utils/TargetType";
+import { Span } from "../basicComponents/Grids";
 import { LargeCheckbox } from "../basicComponents/LargeCheckbox";
 
 interface ITargetTypesSelectorProps {
@@ -59,39 +60,49 @@ export default class TargetTypesSelector extends React.Component<
     return (
       <TargetTypesDiv>
         <label>
-          <LargeCheckbox
-            checked={targetTypes.has(GALAXY)}
-            data-test="galaxy"
-            onChange={this.onChange}
-            value={GALAXY}
-          />
-          Galaxy
+          <label>
+            <Span>
+              <LargeCheckbox
+                checked={targetTypes.has(GALAXY)}
+                data-test="galaxy"
+                onChange={this.onChange}
+                value={GALAXY}
+              />
+            </Span>
+            Galaxy
+          </label>
         </label>
         <label>
-          <LargeCheckbox
-            checked={targetTypes.has(ISM)}
-            data-test="ism"
-            onChange={this.onChange}
-            value={ISM}
-          />
+          <Span>
+            <LargeCheckbox
+              checked={targetTypes.has(ISM)}
+              data-test="ism"
+              onChange={this.onChange}
+              value={ISM}
+            />
+          </Span>
           ISM
         </label>
         <label>
-          <LargeCheckbox
-            checked={targetTypes.has(SOLAR_SYSTEM_BODY)}
-            data-test="solar-system-body"
-            onChange={this.onChange}
-            value={SOLAR_SYSTEM_BODY}
-          />
+          <Span>
+            <LargeCheckbox
+              checked={targetTypes.has(SOLAR_SYSTEM_BODY)}
+              data-test="solar-system-body"
+              onChange={this.onChange}
+              value={SOLAR_SYSTEM_BODY}
+            />
+          </Span>
           Solar System Body
         </label>
         <label>
-          <LargeCheckbox
-            checked={targetTypes.has(STAR)}
-            data-test="star"
-            onChange={this.onChange}
-            value={STAR}
-          />
+          <Span>
+            <LargeCheckbox
+              checked={targetTypes.has(STAR)}
+              data-test="star"
+              onChange={this.onChange}
+              value={STAR}
+            />
+          </Span>
           Star
         </label>
       </TargetTypesDiv>
