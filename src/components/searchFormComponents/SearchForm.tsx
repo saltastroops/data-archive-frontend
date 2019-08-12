@@ -151,7 +151,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <Span />
             <Span>
               <a
-                className={"warning"}
+                className={"button is-text"}
                 data-test="reset-all-button"
                 onClick={this.resetAll}
               >
