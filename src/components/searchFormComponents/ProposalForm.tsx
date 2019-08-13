@@ -10,9 +10,7 @@ interface IProposalFormProps {
   onChange: (value: IGeneral) => void;
 }
 
-interface IProposalFormState {
-  showHelpOf: string;
-}
+interface IProposalFormState {}
 
 /**
  * A form for selecting general search parameters.
@@ -35,13 +33,6 @@ class ProposalForm extends React.Component<
       }
     });
   };
-  showHelpOf = (name: string) => {
-    if (this.state.showHelpOf === name) {
-      this.setState(() => ({ showHelpOf: "" }));
-    } else {
-      this.setState(() => ({ showHelpOf: name }));
-    }
-  };
 
   render() {
     const {
@@ -51,7 +42,6 @@ class ProposalForm extends React.Component<
       proposalCode,
       proposalTitle
     } = this.props.proposal;
-    const { showHelpOf } = this.state;
     return (
       <>
         <MainGrid>

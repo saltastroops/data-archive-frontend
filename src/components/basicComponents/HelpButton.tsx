@@ -2,9 +2,7 @@ import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCi
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import ReactDOM from "react-dom";
-import Modal from "react-responsive-modal";
 import styled from "styled-components";
-import Message from "./Message";
 
 interface IHelpButtonProps {
   left?: boolean;
@@ -46,15 +44,14 @@ class HelpButton extends React.Component<IHelpButtonProps, any> {
     }
   };
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this);
-    document.addEventListener("mousedown", (e: any) => {
+    document.addEventListener("mousedown", () => {
       this.updateState(false);
     });
   }
-  componentWillUnmountMount() {
-    document.removeEventListener("mousedown", (e: any) =>
-      this.updateState(false)
-    );
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", () => {
+      // do nothing
+    });
   }
   render() {
     const { toolTipMessage, left } = this.props;

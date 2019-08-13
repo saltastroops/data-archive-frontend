@@ -1,5 +1,3 @@
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCircle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import targetPosition from "target-position";
 import { ITarget } from "../../utils/ObservationQueryParameters";
@@ -11,8 +9,8 @@ import {
 } from "../../utils/validators";
 import {
   HelpGrid,
-  ResolverContainer,
   MainGrid,
+  ResolverContainer,
   SingleColumnGrid,
   SubGrid
 } from "../basicComponents/Grids";
@@ -28,7 +26,6 @@ interface ITargetFormProps {
 
 interface ITargetFormState {
   loading: boolean;
-  showHelpOf: string;
 }
 
 /**
@@ -36,21 +33,13 @@ interface ITargetFormState {
  * search.
  */
 class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
-  state = { loading: false, showHelpOf: "" };
+  state = { loading: false };
 
   // Function for updating the loading property of the state
   updateLoadingStatus = (loading: boolean) => {
     this.setState(() => ({
       loading
     }));
-  };
-
-  showHelpOf = (name: string) => {
-    if (this.state.showHelpOf === name) {
-      this.setState(() => ({ showHelpOf: "" }));
-    } else {
-      this.setState(() => ({ showHelpOf: name }));
-    }
   };
 
   // Function for resolving the target name to a position
@@ -95,7 +84,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
 
   render() {
     const { target, onChange } = this.props;
-    const { loading, showHelpOf } = this.state;
+    const { loading } = this.state;
 
     // Function for handling changes made to the search parameters
     const handleChangeEvent = (
