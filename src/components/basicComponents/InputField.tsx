@@ -3,10 +3,6 @@ import styled from "styled-components";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
-  help?: {
-    message: string;
-    showHelp: boolean;
-  };
 }
 
 /**
@@ -35,7 +31,6 @@ export const HelpMessage = styled.p.attrs({
  */
 const InputField = (props: IInputProps) => {
   const { error, ...rest } = props;
-  const { message, showHelp } = props.help || { message: "", showHelp: false };
   return (
     <div className="control">
       <input
@@ -43,7 +38,6 @@ const InputField = (props: IInputProps) => {
         {...rest}
       />
       {error && <Error>{error}</Error>}
-      {showHelp && <HelpMessage>{message}</HelpMessage>}
     </div>
   );
 };

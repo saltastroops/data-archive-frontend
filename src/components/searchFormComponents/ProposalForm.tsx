@@ -56,86 +56,67 @@ class ProposalForm extends React.Component<
       <>
         <MainGrid>
           <SubGrid>
-            <p>Proposal code</p>
             <HelpGrid>
-              <InputField
-                data-test="proposal-code-input"
-                error={errors.proposalCode}
-                name={"proposalCode"}
-                onChange={this.change}
-                help={{
-                  message: `
-                      Proposal code, such as 2019-1-SCI-042
-                    `,
-                  showHelp: showHelpOf === "proposalCode"
-                }}
-                value={proposalCode || ""}
+              <p>Proposal code</p>
+              <HelpButton
+                toolTipMessage={"Proposal code, such as 2019-1-SCI-042."}
               />
-              <HelpButton name={"proposalCode"} showHelp={this.showHelpOf} />
             </HelpGrid>
+            <InputField
+              data-test="proposal-code-input"
+              error={errors.proposalCode}
+              name={"proposalCode"}
+              onChange={this.change}
+              value={proposalCode || ""}
+            />
           </SubGrid>
           <SubGrid>
-            <p>Principal investigator</p>
             <HelpGrid>
-              <InputField
-                data-test="principal-investigator-input"
-                name={"principalInvestigator"}
-                value={principalInvestigator || ""}
-                error={errors.principalInvestigator || ""}
-                onChange={this.change}
-                help={{
-                  message: "Principal investigator for the proposal",
-                  showHelp: showHelpOf === "principalInvestigator"
-                }}
-              />
+              <p>Principal investigator</p>
               <HelpButton
-                name={"principalInvestigator"}
-                showHelp={this.showHelpOf}
+                toolTipMessage={"Principal investigator for the proposal."}
               />
             </HelpGrid>
+            <InputField
+              data-test="principal-investigator-input"
+              name={"principalInvestigator"}
+              value={principalInvestigator || ""}
+              error={errors.principalInvestigator || ""}
+              onChange={this.change}
+            />
           </SubGrid>
         </MainGrid>
 
         <MainGrid>
           <SubGrid>
-            <p>Proposal title</p>
             <HelpGrid>
-              <InputField
-                data-test="proposal-title-input"
-                name={"proposalTitle"}
-                value={proposalTitle || ""}
-                error={errors.proposalTitle}
-                onChange={this.change}
-                help={{
-                  message: "Proposal title",
-                  showHelp: showHelpOf === "proposalTitle"
-                }}
-              />
-              <HelpButton name={"proposalTitle"} showHelp={this.showHelpOf} />
+              <p>Proposal title</p>
+              <HelpButton toolTipMessage={"Proposal title."} />
             </HelpGrid>
+            <InputField
+              data-test="proposal-title-input"
+              name={"proposalTitle"}
+              value={proposalTitle || ""}
+              error={errors.proposalTitle}
+              onChange={this.change}
+            />
           </SubGrid>
           <SubGrid>
-            <p>Observation night</p>
             <HelpGrid>
-              <InputField
-                data-test="observation-night-input"
-                name={"observationNight"}
-                value={observationNight || ""}
-                error={errors.observationNight}
-                onChange={this.change}
-                help={{
-                  message: `
-                      Night of the observation. You can input a date range by separating two dates with "..." For example: 2019-01-01 .. 2019-02-28
-
-                    `,
-                  showHelp: showHelpOf === "observationNight"
-                }}
-              />
+              <p>Observation night</p>
               <HelpButton
-                name={"observationNight"}
-                showHelp={this.showHelpOf}
+                toolTipMessage={
+                  'Night of the observation. You can input a date range by separating two dates with "..." For example: 2019-01-01 .. 2019-02-28.'
+                }
               />
             </HelpGrid>
+            <InputField
+              data-test="observation-night-input"
+              name={"observationNight"}
+              value={observationNight || ""}
+              error={errors.observationNight}
+              onChange={this.change}
+            />
           </SubGrid>
         </MainGrid>
       </>

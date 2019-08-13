@@ -126,127 +126,118 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
       <>
         <MainGrid>
           <SubGrid>
-            <p>Target name</p>
             <HelpGrid>
-              <InputField
-                data-test="target-name-input"
-                disabled={loading}
-                name={"name"}
-                value={target.name || ""}
-                error={target.errors.name}
-                help={{
-                  message: `
-                      Target name.
-                      This is used to determine the target position to search for.
-                      It must be possible to resolve the name with the chosen resolver.
-                    `,
-                  showHelp: showHelpOf === "name"
-                }}
-                onChange={handleChangeEvent}
+              <p>Target name </p>
+              <HelpButton
+                left={true}
+                toolTipMessage={
+                  "Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+                }
               />
-              <HelpButton name={"name"} showHelp={this.showHelpOf} />
             </HelpGrid>
+
+            <InputField
+              data-test="target-name-input"
+              disabled={loading}
+              name={"name"}
+              value={target.name || ""}
+              error={target.errors.name}
+              onChange={handleChangeEvent}
+            />
           </SubGrid>
           <SubGrid>
-            <p>Resolver</p>
             <HelpGrid>
-              <ResolverContainer
-                help={{
-                  message: `
-                        Resolver for resolving the target name to a target position
-                    `,
-                  showHelp: showHelpOf === "resolver"
-                }}
-              >
-                <SelectField
-                  data-test={"resolver-select"}
-                  name={"resolver"}
-                  value={target.resolver}
-                  onChange={handleChangeEvent}
-                >
-                  <option value="Simbad">Simbad</option>
-                  <option value="NED">NED</option>
-                  <option value="VizieR">VizieR</option>
-                </SelectField>
-                <button
-                  className={`button is-info ${loading &&
-                    "is-loading disable"}`}
-                  type="button"
-                  onClick={this.resolve}
-                  title={`${loading ? "Loading." : ""}`}
-                  disabled={loading}
-                >
-                  resolve
-                </button>
-              </ResolverContainer>
-              <HelpButton name={"resolver"} showHelp={this.showHelpOf} />
+              <p>Resolver</p>
+              <HelpButton
+                left={true}
+                toolTipMessage={
+                  "Resolver for resolving the target name to a target position."
+                }
+              />
             </HelpGrid>
+
+            <ResolverContainer>
+              <SelectField
+                data-test={"resolver-select"}
+                name={"resolver"}
+                value={target.resolver}
+                onChange={handleChangeEvent}
+              >
+                <option value="Simbad">Simbad</option>
+                <option value="NED">NED</option>
+                <option value="VizieR">VizieR</option>
+              </SelectField>
+              <button
+                className={`button is-info ${loading && "is-loading disable"}`}
+                type="button"
+                onClick={this.resolve}
+                title={`${loading ? "Loading." : ""}`}
+                disabled={loading}
+              >
+                resolve
+              </button>
+            </ResolverContainer>
           </SubGrid>
         </MainGrid>
 
         <MainGrid>
           <SubGrid>
-            <p>Right ascension</p>
             <HelpGrid>
-              <InputField
-                data-test="right-ascension-input"
-                disabled={loading}
-                name={"rightAscension"}
-                value={target.rightAscension || ""}
-                help={{
-                  message: `
-                      Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14
-                    `,
-                  showHelp: showHelpOf === "rightAscension"
-                }}
-                onChange={handleChangeEvent}
-                error={target.errors.rightAscension}
+              <p>Right ascension</p>
+              <HelpButton
+                left={true}
+                toolTipMessage={
+                  '   Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with "..". For example: 11 .. 14.'
+                }
               />
-              <HelpButton name={"rightAscension"} showHelp={this.showHelpOf} />
             </HelpGrid>
+            <InputField
+              data-test="right-ascension-input"
+              disabled={loading}
+              name={"rightAscension"}
+              value={target.rightAscension || ""}
+              onChange={handleChangeEvent}
+              error={target.errors.rightAscension}
+            />
           </SubGrid>
           <SubGrid>
-            <p>Declination</p>
             <HelpGrid>
-              <InputField
-                data-test="declination-input"
-                disabled={loading}
-                name={"declination"}
-                value={target.declination || ""}
-                help={{
-                  message: `
-                     Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51`,
-                  showHelp: showHelpOf === "declination"
-                }}
-                onChange={handleChangeEvent}
-                error={target.errors.declination}
+              <p>Declination</p>
+              <HelpButton
+                left={true}
+                toolTipMessage={
+                  'Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with "..". For example: -57 .. -51`.'
+                }
               />
-              <HelpButton name={"declination"} showHelp={this.showHelpOf} />
             </HelpGrid>
+            <InputField
+              data-test="declination-input"
+              disabled={loading}
+              name={"declination"}
+              value={target.declination || ""}
+              onChange={handleChangeEvent}
+              error={target.errors.declination}
+            />
           </SubGrid>
         </MainGrid>
         <MainGrid>
           <SubGrid>
-            <p>Search radius</p>
             <HelpGrid>
-              <InputField
-                data-test="search-cone-radius-input"
-                name={"searchConeRadius"}
-                value={target.searchConeRadius || ""}
-                help={{
-                  message: `
-                     Radius of the search cone in the selected units.
-                     `,
-                  showHelp: showHelpOf === "searchConeRadius"
-                }}
-                onChange={handleChangeEvent}
-                error={target.errors.searchConeRadius}
-              />
+              <p>Search radius</p>
               <HelpButton
-                name={"searchConeRadius"}
-                showHelp={this.showHelpOf}
+                left={true}
+                toolTipMessage={
+                  " Radius of the search cone in the selected units."
+                }
               />
             </HelpGrid>
+            <InputField
+              data-test="search-cone-radius-input"
+              name={"searchConeRadius"}
+              value={target.searchConeRadius || ""}
+              onChange={handleChangeEvent}
+              error={target.errors.searchConeRadius}
+            />
           </SubGrid>
           <SubGrid>
             <p>Radius units</p>

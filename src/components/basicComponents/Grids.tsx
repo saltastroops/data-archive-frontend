@@ -98,8 +98,8 @@ const HelpGrid = styled.div.attrs({
   className: "field"
 })`
   && {
-    display: grid;
-    grid-template-columns: 95% 5%;
+    display: inline-flex;
+    margin-bottom: 0;
   }
 `;
 
