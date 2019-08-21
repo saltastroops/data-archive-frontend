@@ -16,6 +16,20 @@ const ParentGrid = styled.div.attrs({
   }
 `;
 
+const ParentGridSingle = styled.div.attrs({
+  className: "grid-container",
+  disable: true
+})`
+  display: grid;
+  grid-template-columns: auto;
+  padding: 10px;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
+  }
+`;
+
 const TargetGrid = styled.div.attrs({
   className: "grid-item target-form"
 })`
@@ -101,6 +115,15 @@ const SubGrid4 = styled.div.attrs({
   }
 `;
 
+export const SubGrid6 = styled.div.attrs({
+  className: "sub-grid4"
+})`
+  && {
+    display: grid;
+    grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+  }
+`;
+
 const Span = styled.span.attrs({
   className: "span"
 })`
@@ -153,6 +176,7 @@ const Spinner = () => (
 
 export {
   ParentGrid,
+  ParentGridSingle,
   ProposalGrid,
   SingleColumnGrid,
   TelescopeGrid,
