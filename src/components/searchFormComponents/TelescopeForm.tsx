@@ -1,21 +1,18 @@
 import * as React from "react";
-import {
-  ILesedi,
-  IOneDotNineM,
-  ISALT,
-  ITelescope,
-  TelescopeName
-} from "../../utils/ObservationQueryParameters";
-import { MainGrid, SubGrid } from "../basicComponents/Grids";
-import SelectField, { AnyOption } from "../basicComponents/SelectField";
-import LesediForm from "./telescopes/LesediForm";
-import OneNineMForm from "./telescopes/OneNineMForm";
-import SaltForm from "./telescopes/SaltForm";
-
-const TELESCOPES: TelescopeName[] = ["SALT", "1.9 m", "Lesedi"];
+import { ITelescope } from "../../utils/ObservationQueryParameters";
+import { SubGrid6 } from "../basicComponents/Grids";
+import DetectorModeSelector from "./instruments/DetectorModeSelector";
+import FabryPerot from "./instruments/FabryPerot";
+import Filters from "./instruments/Filters";
+import HrsMode from "./instruments/HrsMode";
+import InstrumentsSelector from "./instruments/InstrumentsSelector";
+import ModeSelector from "./instruments/ModeSelector";
+import RssGrating from "./instruments/RssGrating";
+import RssPolarimetryImaging from "./instruments/RssPolarimetryImaging";
+import TelescopeSelector from "./instruments/TelescopeSelector";
 
 interface ITelescopeFormProps {
-  telescope?: ITelescope;
+  telescope: ITelescope;
   onChange: (value: any) => void;
 }
 
@@ -25,61 +22,86 @@ interface ITelescopeFormProps {
 class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
   render() {
     const { telescope, onChange } = this.props;
+    const selectedTelescopes =
+      telescope.telescopes.length > 0 ? telescope.telescopes : ["All"];
+    const selectedInstruments = telescope.instruments || ["All"];
+    const selectedModes: string[] = telescope.modes || ["All"];
+    const selectedDetectorMode = telescope.detectorMode || ["All"];
+    const selectedFilters: string[] = telescope.filters || ["All"];
 
     // Function for updating telescope-related parameters
-    const changeTelescope = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const value = e.target.value;
-      onChange({
-        name: value
-      });
+    const mainSelected = (telescopes: string[]) => {
+      onChange(telescopes);
     };
 
-    // Function for updating instrument-related properties
-    const changeTelescopeParameter = (key: string, value: any) => {
+    const onSelect = (newSelection: any) => {
       onChange({
         ...telescope,
-        [key]: value
+        ...newSelection
       });
     };
 
-    const name = (telescope && telescope.name) || "";
     return (
       <>
-        <MainGrid>
-          <SubGrid>
-            <p>Telescope</p>
-            <SelectField
-              name={"telescope"}
-              onChange={changeTelescope}
-              value={name || ""}
-            >
-              <AnyOption />
-              {TELESCOPES.map(t => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </SelectField>
-          </SubGrid>
-        </MainGrid>
-        {name === "SALT" && (
-          <SaltForm
-            salt={telescope as ISALT}
-            onChange={changeTelescopeParameter}
+        <SubGrid6>
+          <TelescopeSelector
+            onSelect={mainSelected}
+            telescopes={selectedTelescopes}
           />
-        )}
-        {name === "Lesedi" && (
-          <LesediForm
-            lesedi={telescope as ILesedi}
-            onChange={changeTelescopeParameter}
+
+          <InstrumentsSelector
+            onSelect={mainSelected}
+            selectedTelescopes={selectedTelescopes}
+            instruments={selectedInstruments}
           />
-        )}
-        {name === "1.9 m" && (
-          <OneNineMForm
-            oneNineM={telescope as IOneDotNineM}
-            onChange={changeTelescopeParameter}
+
+          <ModeSelector
+            modes={selectedModes}
+            selectedTelescopes={selectedTelescopes}
+            selectedInstruments={selectedInstruments}
+            onSelect={onSelect}
           />
-        )}
+
+          <DetectorModeSelector
+            detectorMode={selectedDetectorMode}
+            selectedTelescopes={selectedTelescopes}
+            selectedInstruments={selectedInstruments}
+            onSelect={onSelect}
+          />
+
+          <Filters
+            onSelect={onSelect}
+            instruments={selectedInstruments}
+            filters={selectedFilters}
+          />
+          {selectedInstruments.some((t: string) => t === "HRS") && (
+            <HrsMode hrsMode={telescope.hrsMode} onSelect={onSelect} />
+          )}
+        </SubGrid6>
+        <SubGrid6>
+          {selectedModes.some(mode => mode === "Fabry Perot") && (
+            <FabryPerot onSelect={onSelect} fabryPerot={telescope.fabryPerot} />
+          )}
+          {selectedModes.some(
+            mode =>
+              mode === "MOS" ||
+              mode === "Spectropolarimetry" ||
+              mode === "Spectroscopy"
+          ) && (
+            <RssGrating onSelect={onSelect} rssGrating={telescope.rssGrating} />
+          )}
+          {selectedModes.some(
+            mode =>
+              mode === "Polarimetric imaging" ||
+              mode === "Spectropolarimetry" ||
+              mode === "Spectroscopy"
+          ) && (
+            <RssPolarimetryImaging
+              onSelect={onSelect}
+              rssPolarimetryImaging={telescope.rssPolarimetryImaging}
+            />
+          )}
+        </SubGrid6>
       </>
     );
   }

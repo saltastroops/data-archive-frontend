@@ -26,7 +26,7 @@ export interface IWhereCondition {}
 export interface ISearchFormState {
   general: IGeneral;
   target: ITarget;
-  telescope?: ITelescope;
+  telescope: ITelescope;
 }
 
 /**
@@ -162,7 +162,18 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  name?: TelescopeName;
+  telescopes: TelescopeName[];
+  instruments?: InstrumentName[];
+  detectorMode?: any;
+  modes?: any;
+  grating?: any;
+  filters?: any;
+  polarimetry?: any;
+  resolution?: any;
+  hrsMode?: string[];
+  fabryPerot?: string[];
+  rssGrating?: string[];
+  rssPolarimetryImaging?: string[];
 }
 
 /**
