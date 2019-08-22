@@ -36,11 +36,8 @@ const HrsMode = (props: IHrsModeProps) => {
       <p>HRS Mode</p>
       <MultiSelectField
         name={"hrsMode"}
-        onChangeCapture={select}
+        onChange={select}
         value={hrsMode || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {HRS_MODES.sort().map(i => (

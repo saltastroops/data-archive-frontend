@@ -30,11 +30,8 @@ const TelescopeSelector = (props: ITelescopeSelectorProps) => {
       <p>Telescope</p>
       <MultiSelectField
         name={"telescopes"}
-        onChangeCapture={select}
+        onChange={select}
         value={telescopes || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {TELESCOPE.sort().map(i => (

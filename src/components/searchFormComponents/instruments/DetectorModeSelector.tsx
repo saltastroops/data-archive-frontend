@@ -77,11 +77,8 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
       <p>Detector Mode</p>
       <MultiSelectField
         name={"detectorMode"}
-        onChangeCapture={select}
+        onChange={select}
         value={detectorMode || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {DETECTOR_MODE_TO_DISPLAY.sort().map(i => (

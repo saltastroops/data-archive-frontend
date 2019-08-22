@@ -72,11 +72,8 @@ const ModeSelector = (props: IModeSelectorProps) => {
       <p>Mode</p>
       <MultiSelectField
         name={"modes"}
-        onChangeCapture={select}
+        onChange={select}
         value={modes || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {MODE_TO_DISPLAY.sort().map(i => (

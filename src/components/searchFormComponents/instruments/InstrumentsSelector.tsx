@@ -51,11 +51,8 @@ const InstrumentsSelector = (props: IInstrumentsSelectorProps) => {
       <p>Instruments </p>
       <MultiSelectField
         name={"instruments"}
-        onChangeCapture={select}
+        onChange={select}
         value={instruments || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {FILTERS_TO_DISPLAY.sort().map(i => (

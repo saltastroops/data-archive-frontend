@@ -180,11 +180,8 @@ const Filters = (props: IFiltersProps) => {
       <p>Filters</p>
       <MultiSelectField
         name={"filters"}
-        onChangeCapture={select}
+        onChange={select}
         value={filters || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {FILTERS_TO_DISPLAY.sort().map(i => (

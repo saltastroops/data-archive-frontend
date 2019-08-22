@@ -77,8 +77,6 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           {selectedInstruments.some((t: string) => t === "HRS") && (
             <HrsMode hrsMode={telescope.hrsMode} onSelect={onSelect} />
           )}
-        </SubGrid6>
-        <SubGrid6>
           {selectedModes.some(mode => mode === "Fabry Perot") && (
             <FabryPerot onSelect={onSelect} fabryPerot={telescope.fabryPerot} />
           )}

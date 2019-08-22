@@ -35,11 +35,8 @@ const FabryPerot = (props: IFabryPerotProps) => {
       <p>Fabry perot</p>
       <MultiSelectField
         name={"fabryPerot"}
-        onChangeCapture={select}
+        onChange={select}
         value={fabryPerot || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {FABRY_PEROT.sort().map(i => (

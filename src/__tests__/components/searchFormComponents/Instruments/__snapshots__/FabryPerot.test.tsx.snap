@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FabryPerot should render correctly 1`] = `
+.c0 {
+  width: 95%;
+}
+
+<FabryPerot
+  fabryPerot={Array []}
+  onSelect={[MockFunction]}
+>
+  <div>
+    <p>
+      Fabry perot
+    </p>
+    <MultiSelectField
+      name="fabryPerot"
+      onChange={[Function]}
+      value={Array []}
+    >
+      <styled.div
+        className="control select is-multiple "
+      >
+        <StyledComponent
+          className="control select is-multiple "
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  width: 95%;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="control select is-multiple  c0"
+          >
+            <select
+              multiple={true}
+              name="fabryPerot"
+              onChange={[Function]}
+              size={6}
+              style={
+                Object {
+                  "width": "216px",
+                }
+              }
+              value={Array []}
+            >
+              <AllOption>
+                <option
+                  value="All"
+                >
+                  All
+                </option>
+              </AllOption>
+              <option
+                key="High resolution"
+                value="High resolution"
+              >
+                High resolution
+              </option>
+              <option
+                key="Low resolution"
+                value="Low resolution"
+              >
+                Low resolution
+              </option>
+              <option
+                key="Medium resolution"
+                value="Medium resolution"
+              >
+                Medium resolution
+              </option>
+              <option
+                key="Tunable filter"
+                value="Tunable filter"
+              >
+                Tunable filter
+              </option>
+            </select>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </MultiSelectField>
+  </div>
+</FabryPerot>
+`;

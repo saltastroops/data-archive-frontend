@@ -32,11 +32,8 @@ const RssPolarimetryImaging = (props: IRssPolarimetryImagingProps) => {
       <p>RSS Polarimetry Imaging</p>
       <MultiSelectField
         name={"rssPolarimetryImaging"}
-        onChangeCapture={select}
+        onChange={select}
         value={rssPolarimetryImaging || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {RSS_POLARIMETRY.sort().map(i => (

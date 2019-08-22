@@ -40,11 +40,8 @@ const RssGrating = (props: IRssGratingProps) => {
       <p>RSS grating</p>
       <MultiSelectField
         name={"rssGrating"}
-        onChangeCapture={select}
+        onChange={select}
         value={rssGrating || ["All"]}
-        onChange={() => {
-          /*Do nothing*/
-        }}
       >
         <AllOption />
         {RSS_GRATINGS.sort().map(i => (
