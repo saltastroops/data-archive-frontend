@@ -12,6 +12,7 @@ exports[`TargetForm should render correctly 1`] = `
         disabled={false}
         name="name"
         onChange={[Function]}
+        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value=""
       />
     </styled.div>
@@ -25,6 +26,7 @@ exports[`TargetForm should render correctly 1`] = `
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
+            title="Resolver for resolving the target name to a target position"
             value="Simbad"
           >
             <option
@@ -69,6 +71,7 @@ exports[`TargetForm should render correctly 1`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
@@ -81,6 +84,7 @@ exports[`TargetForm should render correctly 1`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
@@ -94,6 +98,7 @@ exports[`TargetForm should render correctly 1`] = `
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
+        title="Radius of the search cone in the selected units."
         value=""
       />
     </styled.div>
@@ -105,6 +110,7 @@ exports[`TargetForm should render correctly 1`] = `
         data-test="radius-units-select"
         name="searchConeRadiusUnits"
         onChange={[Function]}
+        title="Units of the search cone radius"
         value="arcseconds"
       >
         <option
@@ -151,6 +157,7 @@ exports[`TargetForm should render correctly 2`] = `
         disabled={false}
         name="name"
         onChange={[Function]}
+        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value="NGC 1234"
       />
     </styled.div>
@@ -164,6 +171,7 @@ exports[`TargetForm should render correctly 2`] = `
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
+            title="Resolver for resolving the target name to a target position"
             value="Simbad"
           >
             <option
@@ -208,6 +216,7 @@ exports[`TargetForm should render correctly 2`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
@@ -220,6 +229,7 @@ exports[`TargetForm should render correctly 2`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
@@ -233,6 +243,7 @@ exports[`TargetForm should render correctly 2`] = `
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
+        title="Radius of the search cone in the selected units."
         value=""
       />
     </styled.div>
@@ -244,6 +255,7 @@ exports[`TargetForm should render correctly 2`] = `
         data-test="radius-units-select"
         name="searchConeRadiusUnits"
         onChange={[Function]}
+        title="Units of the search cone radius"
         value="arcseconds"
       >
         <option
@@ -291,6 +303,7 @@ exports[`TargetForm should render correctly 3`] = `
         error="this is an error"
         name="name"
         onChange={[Function]}
+        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value=""
       />
     </styled.div>
@@ -304,6 +317,7 @@ exports[`TargetForm should render correctly 3`] = `
             data-test="resolver-select"
             name="resolver"
             onChange={[Function]}
+            title="Resolver for resolving the target name to a target position"
             value="Simbad"
           >
             <option
@@ -348,6 +362,7 @@ exports[`TargetForm should render correctly 3`] = `
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
+        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
@@ -360,6 +375,7 @@ exports[`TargetForm should render correctly 3`] = `
         disabled={false}
         name="declination"
         onChange={[Function]}
+        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
@@ -373,6 +389,7 @@ exports[`TargetForm should render correctly 3`] = `
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
+        title="Radius of the search cone in the selected units."
         value="12.1"
       />
     </styled.div>
@@ -384,6 +401,7 @@ exports[`TargetForm should render correctly 3`] = `
         data-test="radius-units-select"
         name="searchConeRadiusUnits"
         onChange={[Function]}
+        title="Units of the search cone radius"
         value="arcminutes"
       >
         <option

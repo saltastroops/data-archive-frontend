@@ -3,242 +3,241 @@
 exports[`Telescope form rendering should render correctly 1`] = `
 <Fragment>
   <styled.div>
-    <styled.div>
-      <p>
-        Telescope
-      </p>
-      <SelectField
-        name="telescope"
-        onChange={[Function]}
-        value="SALT"
-      >
-        <AnyOption />
-        <option
-          key="SALT"
-          value="SALT"
-        >
-          SALT
-        </option>
-        <option
-          key="1.9 m"
-          value="1.9 m"
-        >
-          1.9 m
-        </option>
-        <option
-          key="Lesedi"
-          value="Lesedi"
-        >
-          Lesedi
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <SaltForm
-    onChange={[Function]}
-    salt={
-      Object {
-        "instrument": Object {
-          "name": "RSS",
-        },
-        "name": "SALT",
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "SALT",
+        ]
       }
-    }
-  />
+    />
+    <InstrumentsSelector
+      instruments={
+        Array [
+          "RSS",
+        ]
+      }
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <ModeSelector
+      modes={
+        Array [
+          "MOS",
+          "Fabry Perot",
+          "Spectropolarimetry",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "RSS",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorMode={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "RSS",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "RSS",
+        ]
+      }
+      onSelect={[Function]}
+    />
+    <FabryPerot
+      onSelect={[Function]}
+    />
+    <RssGrating
+      onSelect={[Function]}
+    />
+    <RssPolarimetryImaging
+      onSelect={[Function]}
+    />
+  </styled.div>
 </Fragment>
 `;
 
 exports[`Telescope form rendering should render correctly 2`] = `
 <Fragment>
   <styled.div>
-    <styled.div>
-      <p>
-        Telescope
-      </p>
-      <SelectField
-        name="telescope"
-        onChange={[Function]}
-        value="Lesedi"
-      >
-        <AnyOption />
-        <option
-          key="SALT"
-          value="SALT"
-        >
-          SALT
-        </option>
-        <option
-          key="1.9 m"
-          value="1.9 m"
-        >
-          1.9 m
-        </option>
-        <option
-          key="Lesedi"
-          value="Lesedi"
-        >
-          Lesedi
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <LesediForm
-    lesedi={
-      Object {
-        "instrument": Object {
-          "name": "SHOC",
-        },
-        "name": "Lesedi",
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "Lesedi",
+        ]
       }
-    }
-    onChange={[Function]}
-  />
+    />
+    <InstrumentsSelector
+      instruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <ModeSelector
+      modes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorMode={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      onSelect={[Function]}
+    />
+  </styled.div>
 </Fragment>
 `;
 
 exports[`Telescope form rendering should render correctly 3`] = `
 <Fragment>
   <styled.div>
-    <styled.div>
-      <p>
-        Telescope
-      </p>
-      <SelectField
-        name="telescope"
-        onChange={[Function]}
-        value="SALT"
-      >
-        <AnyOption />
-        <option
-          key="SALT"
-          value="SALT"
-        >
-          SALT
-        </option>
-        <option
-          key="1.9 m"
-          value="1.9 m"
-        >
-          1.9 m
-        </option>
-        <option
-          key="Lesedi"
-          value="Lesedi"
-        >
-          Lesedi
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <SaltForm
-    onChange={[Function]}
-    salt={
-      Object {
-        "instrument": Object {
-          "name": "HRS",
-        },
-        "name": "SALT",
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "SALT",
+        ]
       }
-    }
-  />
-</Fragment>
-`;
-
-exports[`Telescope form rendering should render correctly 4`] = `
-<Fragment>
-  <styled.div>
-    <styled.div>
-      <p>
-        Telescope
-      </p>
-      <SelectField
-        name="telescope"
-        onChange={[Function]}
-        value="SALT"
-      >
-        <AnyOption />
-        <option
-          key="SALT"
-          value="SALT"
-        >
-          SALT
-        </option>
-        <option
-          key="1.9 m"
-          value="1.9 m"
-        >
-          1.9 m
-        </option>
-        <option
-          key="Lesedi"
-          value="Lesedi"
-        >
-          Lesedi
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <SaltForm
-    onChange={[Function]}
-    salt={
-      Object {
-        "instrument": Object {
-          "mode": "Fabry Perot",
-          "name": "RSS",
-        },
-        "name": "SALT",
+    />
+    <InstrumentsSelector
+      instruments={
+        Array [
+          "Salticam",
+        ]
       }
-    }
-  />
-</Fragment>
-`;
-
-exports[`Telescope form rendering should render correctly 5`] = `
-<Fragment>
-  <styled.div>
-    <styled.div>
-      <p>
-        Telescope
-      </p>
-      <SelectField
-        name="telescope"
-        onChange={[Function]}
-        value="SALT"
-      >
-        <AnyOption />
-        <option
-          key="SALT"
-          value="SALT"
-        >
-          SALT
-        </option>
-        <option
-          key="1.9 m"
-          value="1.9 m"
-        >
-          1.9 m
-        </option>
-        <option
-          key="Lesedi"
-          value="Lesedi"
-        >
-          Lesedi
-        </option>
-      </SelectField>
-    </styled.div>
-  </styled.div>
-  <SaltForm
-    onChange={[Function]}
-    salt={
-      Object {
-        "instrument": Object {
-          "detectorMode": "Normal",
-          "mode": "Fabry Perot",
-          "name": "RSS",
-        },
-        "name": "SALT",
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
       }
-    }
-  />
+    />
+    <ModeSelector
+      modes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorMode={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      onSelect={[Function]}
+    />
+  </styled.div>
 </Fragment>
 `;

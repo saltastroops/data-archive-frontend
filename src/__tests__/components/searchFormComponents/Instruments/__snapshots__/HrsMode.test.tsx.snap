@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hrs Mode should render correctly 1`] = `
+.c0 {
+  width: 95%;
+}
+
+<HrsMode
+  hrsMode={Array []}
+  onSelect={[MockFunction]}
+>
+  <div>
+    <p>
+      HRS Mode
+    </p>
+    <MultiSelectField
+      name="hrsMode"
+      onChange={[Function]}
+      value={Array []}
+    >
+      <styled.div
+        className="control select is-multiple "
+      >
+        <StyledComponent
+          className="control select is-multiple "
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  width: 95%;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="control select is-multiple  c0"
+          >
+            <select
+              multiple={true}
+              name="hrsMode"
+              onChange={[Function]}
+              size={6}
+              style={
+                Object {
+                  "width": "216px",
+                }
+              }
+              value={Array []}
+            >
+              <AllOption>
+                <option
+                  value="All"
+                >
+                  All
+                </option>
+              </AllOption>
+              <option
+                key="High Stability"
+                value="High Stability"
+              >
+                High Stability
+              </option>
+              <option
+                key="High resolution"
+                value="High resolution"
+              >
+                High resolution
+              </option>
+              <option
+                key="Int Cal Fibre"
+                value="Int Cal Fibre"
+              >
+                Int Cal Fibre
+              </option>
+              <option
+                key="Low resolution"
+                value="Low resolution"
+              >
+                Low resolution
+              </option>
+              <option
+                key="Medium resolution"
+                value="Medium resolution"
+              >
+                Medium resolution
+              </option>
+            </select>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </MultiSelectField>
+  </div>
+</HrsMode>
+`;

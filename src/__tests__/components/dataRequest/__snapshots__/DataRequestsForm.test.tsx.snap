@@ -92,6 +92,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "status",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "observations",
                               },
                               "selectionSet": Object {
@@ -211,7 +222,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             },
@@ -335,6 +346,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "status",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "observations",
                               },
                               "selectionSet": Object {
@@ -454,7 +476,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             } => Object {
@@ -530,6 +552,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "name": Object {
                                 "kind": "Name",
                                 "value": "uri",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "status",
                               },
                               "selectionSet": undefined,
                             },
@@ -680,7 +713,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             },
@@ -767,6 +800,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "status",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "observations",
                               },
                               "selectionSet": Object {
@@ -907,7 +951,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             } => Object {
@@ -993,6 +1037,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "status",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "observations",
                               },
                               "selectionSet": Object {
@@ -1133,7 +1188,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             },
@@ -1216,6 +1271,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "uri",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "status",
                                 },
                                 "selectionSet": undefined,
                               },
@@ -1366,7 +1432,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -1499,6 +1565,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -1618,7 +1695,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               } => Object {
@@ -1694,6 +1771,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "uri",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "status",
                                 },
                                 "selectionSet": undefined,
                               },
@@ -1844,7 +1932,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -1931,6 +2019,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -2071,7 +2170,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               } => Object {
@@ -2157,6 +2256,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -2297,7 +2407,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -2380,6 +2490,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "name": Object {
                                     "kind": "Name",
                                     "value": "uri",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "status",
                                   },
                                   "selectionSet": undefined,
                                 },
@@ -2530,7 +2651,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -2667,6 +2788,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -2786,7 +2918,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 } => Object {
@@ -2862,6 +2994,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "name": Object {
                                     "kind": "Name",
                                     "value": "uri",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "status",
                                   },
                                   "selectionSet": undefined,
                                 },
@@ -3012,7 +3155,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -3099,6 +3242,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -3239,7 +3393,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 } => Object {
@@ -3325,6 +3479,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -3465,7 +3630,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -3548,6 +3713,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "name": Object {
                                       "kind": "Name",
                                       "value": "uri",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "status",
                                     },
                                     "selectionSet": undefined,
                                   },
@@ -3698,7 +3874,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 267,
+                      "end": 280,
                       "start": 0,
                     },
                   },
@@ -3786,6 +3962,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "name": Object {
                                 "kind": "Name",
                                 "value": "uri",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "status",
                               },
                               "selectionSet": undefined,
                             },
@@ -3936,7 +4123,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 267,
+                "end": 280,
                 "start": 0,
               },
             } => Map {},
@@ -4060,6 +4247,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -4179,7 +4377,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 } => Object {
@@ -4255,6 +4453,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "name": Object {
                                     "kind": "Name",
                                     "value": "uri",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "status",
                                   },
                                   "selectionSet": undefined,
                                 },
@@ -4405,7 +4614,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -4492,6 +4701,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -4632,7 +4852,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 } => Object {
@@ -4718,6 +4938,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "status",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "observations",
                                   },
                                   "selectionSet": Object {
@@ -4858,7 +5089,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -4941,6 +5172,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "name": Object {
                                       "kind": "Name",
                                       "value": "uri",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "status",
                                     },
                                     "selectionSet": undefined,
                                   },
@@ -5091,7 +5333,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 267,
+                      "end": 280,
                       "start": 0,
                     },
                   },
@@ -5185,6 +5427,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "uri",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "status",
                                 },
                                 "selectionSet": undefined,
                               },
@@ -5335,7 +5588,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -5444,6 +5697,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "name": Object {
                                       "kind": "Name",
                                       "value": "uri",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "status",
                                     },
                                     "selectionSet": undefined,
                                   },
@@ -5573,7 +5837,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 267,
+                      "end": 280,
                       "start": 0,
                     },
                   },
@@ -5672,6 +5936,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "name": Object {
                                     "kind": "Name",
                                     "value": "uri",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "status",
                                   },
                                   "selectionSet": undefined,
                                 },
@@ -5822,7 +6097,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -5963,6 +6238,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -6082,7 +6368,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               } => Object {
@@ -6158,6 +6444,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "uri",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "status",
                                 },
                                 "selectionSet": undefined,
                               },
@@ -6308,7 +6605,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -6395,6 +6692,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -6535,7 +6843,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               } => Object {
@@ -6621,6 +6929,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "status",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "observations",
                                 },
                                 "selectionSet": Object {
@@ -6761,7 +7080,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 267,
+                  "end": 280,
                   "start": 0,
                 },
               },
@@ -6844,6 +7163,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "name": Object {
                                     "kind": "Name",
                                     "value": "uri",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "status",
                                   },
                                   "selectionSet": undefined,
                                 },
@@ -6994,7 +7324,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 267,
+                    "end": 280,
                     "start": 0,
                   },
                 },
@@ -7088,6 +7418,17 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                             "name": Object {
                               "kind": "Name",
                               "value": "uri",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "status",
                             },
                             "selectionSet": undefined,
                           },
@@ -7217,7 +7558,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 267,
+              "end": 280,
               "start": 0,
             },
           }
