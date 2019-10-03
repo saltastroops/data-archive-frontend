@@ -13,6 +13,17 @@ const Error = styled.p.attrs({
 })``;
 
 /**
+ * A paragraph with an help message.
+ */
+export const HelpMessage = styled.p.attrs({
+  className: ""
+})`
+  && {
+    max-width: 110%;
+  }
+`;
+
+/**
  * An input field with an error message underneath it.
  *
  * The field accepts all attributes you can pass to an HTML input element. In

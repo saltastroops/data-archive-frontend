@@ -13,7 +13,9 @@ const Message = (props: IMessageProps) => {
   const { message, type } = props;
   return (
     <div className={`notification ${!type ? "" : "is-" + type} `}>
-      {message}
+      {message.split(/\n/g).map((part: string) => (
+        <p key={part}>{part}</p>
+      ))}
     </div>
   );
 };

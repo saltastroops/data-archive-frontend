@@ -13,6 +13,7 @@ import {
   ButtonGrid,
   DataGrid,
   ParentGrid,
+  ParentGridSingle,
   ProposalGrid,
   TargetGrid,
   TelescopeGrid
@@ -62,6 +63,9 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       searchConeRadius: "",
       searchConeRadiusUnits: "arcseconds",
       targetTypes: new Set<TargetType>()
+    },
+    telescope: {
+      telescopes: []
     }
   };
 
@@ -76,8 +80,10 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
    * Handle changes of telescope-related parameters.
    */
   public telescopeChange = (value: ITelescope) => {
+    console.log(value);
     const newState = {
       ...this.state,
+      ...value,
       telescope: {
         ...value
       }
@@ -114,6 +120,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public render() {
     const { error, loading } = this.props;
     const { target, general, telescope } = this.state;
+    console.log(telescope);
 
     return (
       <>
@@ -122,17 +129,22 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <TargetForm target={target} onChange={this.targetChange} />
           </TargetGrid>
           <ProposalGrid>
-            <ProposalForm proposal={general} onChange={this.generalChange} />
+            <ProposalForm
+              proposal={general}
+              general={general}
+              onChange={this.generalChange}
+            />
           </ProposalGrid>
+        </ParentGrid>
+        <ParentGridSingle>
           <TelescopeGrid>
             <TelescopeForm
               telescope={telescope}
               onChange={this.telescopeChange}
             />
           </TelescopeGrid>
-          <DataGrid>
-            <DataForm general={general} onChange={this.generalChange} />
-          </DataGrid>
+        </ParentGridSingle>
+        <ParentGrid>
           <ButtonGrid>
             {error && <div className="has-text-danger">{error.message}</div>}
             <div>

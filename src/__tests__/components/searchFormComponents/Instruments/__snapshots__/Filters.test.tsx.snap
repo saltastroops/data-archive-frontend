@@ -1,0 +1,657 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filters should render correctly 1`] = `
+.c0 {
+  width: 95%;
+}
+
+<Filters
+  filters={Array []}
+  onSelect={[MockFunction]}
+>
+  <div>
+    <p>
+      Filters
+    </p>
+    <MultiSelectField
+      name="filters"
+      onChange={[Function]}
+      value={Array []}
+    >
+      <styled.div
+        className="control select is-multiple "
+      >
+        <StyledComponent
+          className="control select is-multiple "
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  width: 95%;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="control select is-multiple  c0"
+          >
+            <select
+              multiple={true}
+              name="filters"
+              onChange={[Function]}
+              size={6}
+              style={
+                Object {
+                  "width": "216px",
+                }
+              }
+              value={Array []}
+            >
+              <AllOption>
+                <option
+                  value="All"
+                >
+                  All
+                </option>
+              </AllOption>
+              <option
+                key="340nm 35nm FWHM"
+                value="340nm 35nm FWHM"
+              >
+                340nm 35nm FWHM
+              </option>
+              <option
+                key="380nm 40nm FWHM"
+                value="380nm 40nm FWHM"
+              >
+                380nm 40nm FWHM
+              </option>
+              <option
+                key="B"
+                value="B"
+              >
+                B
+              </option>
+              <option
+                key="Cousins I"
+                value="Cousins I"
+              >
+                Cousins I
+              </option>
+              <option
+                key="Cousins R"
+                value="Cousins R"
+              >
+                Cousins R
+              </option>
+              <option
+                key="Fused silica clear"
+                value="Fused silica clear"
+              >
+                Fused silica clear
+              </option>
+              <option
+                key="H-alpha"
+                value="H-alpha"
+              >
+                H-alpha
+              </option>
+              <option
+                key="H-beta narrow"
+                value="H-beta narrow"
+              >
+                H-beta narrow
+              </option>
+              <option
+                key="H-beta wide"
+                value="H-beta wide"
+              >
+                H-beta wide
+              </option>
+              <option
+                key="Halpha-S1"
+                value="Halpha-S1"
+              >
+                Halpha-S1
+              </option>
+              <option
+                key="Hbn-S1"
+                value="Hbn-S1"
+              >
+                Hbn-S1
+              </option>
+              <option
+                key="Hbw-S1"
+                value="Hbw-S1"
+              >
+                Hbw-S1
+              </option>
+              <option
+                key="Johnson B"
+                value="Johnson B"
+              >
+                Johnson B
+              </option>
+              <option
+                key="Johnson U"
+                value="Johnson U"
+              >
+                Johnson U
+              </option>
+              <option
+                key="Johnson V"
+                value="Johnson V"
+              >
+                Johnson V
+              </option>
+              <option
+                key="R"
+                value="R"
+              >
+                R
+              </option>
+              <option
+                key="S-SDSS-g"
+                value="S-SDSS-g"
+              >
+                S-SDSS-g
+              </option>
+              <option
+                key="S-SDSS-i"
+                value="S-SDSS-i"
+              >
+                S-SDSS-i
+              </option>
+              <option
+                key="S-SDSS-r"
+                value="S-SDSS-r"
+              >
+                S-SDSS-r
+              </option>
+              <option
+                key="S-SDSS-u"
+                value="S-SDSS-u"
+              >
+                S-SDSS-u
+              </option>
+              <option
+                key="S-SDSS-z"
+                value="S-SDSS-z"
+              >
+                S-SDSS-z
+              </option>
+              <option
+                key="SCAM-B"
+                value="SCAM-B"
+              >
+                SCAM-B
+              </option>
+              <option
+                key="SCAM-I"
+                value="SCAM-I"
+              >
+                SCAM-I
+              </option>
+              <option
+                key="SCAM-R"
+                value="SCAM-R"
+              >
+                SCAM-R
+              </option>
+              <option
+                key="SCAM-U"
+                value="SCAM-U"
+              >
+                SCAM-U
+              </option>
+              <option
+                key="SCAM-V"
+                value="SCAM-V"
+              >
+                SCAM-V
+              </option>
+              <option
+                key="SCAM340-35"
+                value="SCAM340-35"
+              >
+                SCAM340-35
+              </option>
+              <option
+                key="SCAM380-40"
+                value="SCAM380-40"
+              >
+                SCAM380-40
+              </option>
+              <option
+                key="SDSS g'"
+                value="SDSS g'"
+              >
+                SDSS g'
+              </option>
+              <option
+                key="SDSS i'"
+                value="SDSS i'"
+              >
+                SDSS i'
+              </option>
+              <option
+                key="SDSS r'"
+                value="SDSS r'"
+              >
+                SDSS r'
+              </option>
+              <option
+                key="SDSS u'"
+                value="SDSS u'"
+              >
+                SDSS u'
+              </option>
+              <option
+                key="SDSS z'"
+                value="SDSS z'"
+              >
+                SDSS z'
+              </option>
+              <option
+                key="SR613-21"
+                value="SR613-21"
+              >
+                SR613-21
+              </option>
+              <option
+                key="SR708-25"
+                value="SR708-25"
+              >
+                SR708-25
+              </option>
+              <option
+                key="SR815-29"
+                value="SR815-29"
+              >
+                SR815-29
+              </option>
+              <option
+                key="SR862-32"
+                value="SR862-32"
+              >
+                SR862-32
+              </option>
+              <option
+                key="SRE 1"
+                value="SRE 1"
+              >
+                SRE 1
+              </option>
+              <option
+                key="SRE 2"
+                value="SRE 2"
+              >
+                SRE 2
+              </option>
+              <option
+                key="SRE 3"
+                value="SRE 3"
+              >
+                SRE 3
+              </option>
+              <option
+                key="SRE 4"
+                value="SRE 4"
+              >
+                SRE 4
+              </option>
+              <option
+                key="Sb-S1"
+                value="Sb-S1"
+              >
+                Sb-S1
+              </option>
+              <option
+                key="Stroemgren b"
+                value="Stroemgren b"
+              >
+                Stroemgren b
+              </option>
+              <option
+                key="Stroemgren u"
+                value="Stroemgren u"
+              >
+                Stroemgren u
+              </option>
+              <option
+                key="Stroemgren v"
+                value="Stroemgren v"
+              >
+                Stroemgren v
+              </option>
+              <option
+                key="Stroemgren y"
+                value="Stroemgren y"
+              >
+                Stroemgren y
+              </option>
+              <option
+                key="Su-S1"
+                value="Su-S1"
+              >
+                Su-S1
+              </option>
+              <option
+                key="Sv-S1"
+                value="Sv-S1"
+              >
+                Sv-S1
+              </option>
+              <option
+                key="Sy-S1"
+                value="Sy-S1"
+              >
+                Sy-S1
+              </option>
+              <option
+                key="U"
+                value="U"
+              >
+                U
+              </option>
+              <option
+                key="V"
+                value="V"
+              >
+                V
+              </option>
+              <option
+                key="pc00000"
+                value="pc00000"
+              >
+                pc00000
+              </option>
+              <option
+                key="pc03200"
+                value="pc03200"
+              >
+                pc03200
+              </option>
+              <option
+                key="pc03400"
+                value="pc03400"
+              >
+                pc03400
+              </option>
+              <option
+                key="pc03850"
+                value="pc03850"
+              >
+                pc03850
+              </option>
+              <option
+                key="pc04600"
+                value="pc04600"
+              >
+                pc04600
+              </option>
+              <option
+                key="pi04340"
+                value="pi04340"
+              >
+                pi04340
+              </option>
+              <option
+                key="pi04400"
+                value="pi04400"
+              >
+                pi04400
+              </option>
+              <option
+                key="pi04465"
+                value="pi04465"
+              >
+                pi04465
+              </option>
+              <option
+                key="pi04530"
+                value="pi04530"
+              >
+                pi04530
+              </option>
+              <option
+                key="pi04600"
+                value="pi04600"
+              >
+                pi04600
+              </option>
+              <option
+                key="pi04670"
+                value="pi04670"
+              >
+                pi04670
+              </option>
+              <option
+                key="pi04740"
+                value="pi04740"
+              >
+                pi04740
+              </option>
+              <option
+                key="pi04820"
+                value="pi04820"
+              >
+                pi04820
+              </option>
+              <option
+                key="pi04895"
+                value="pi04895"
+              >
+                pi04895
+              </option>
+              <option
+                key="pi04975"
+                value="pi04975"
+              >
+                pi04975
+              </option>
+              <option
+                key="pi05060"
+                value="pi05060"
+              >
+                pi05060
+              </option>
+              <option
+                key="pi05145"
+                value="pi05145"
+              >
+                pi05145
+              </option>
+              <option
+                key="pi05235"
+                value="pi05235"
+              >
+                pi05235
+              </option>
+              <option
+                key="pi05325"
+                value="pi05325"
+              >
+                pi05325
+              </option>
+              <option
+                key="pi05420"
+                value="pi05420"
+              >
+                pi05420
+              </option>
+              <option
+                key="pi05520"
+                value="pi05520"
+              >
+                pi05520
+              </option>
+              <option
+                key="pi05620"
+                value="pi05620"
+              >
+                pi05620
+              </option>
+              <option
+                key="pi05725"
+                value="pi05725"
+              >
+                pi05725
+              </option>
+              <option
+                key="pi05830"
+                value="pi05830"
+              >
+                pi05830
+              </option>
+              <option
+                key="pi05945"
+                value="pi05945"
+              >
+                pi05945
+              </option>
+              <option
+                key="pi06055"
+                value="pi06055"
+              >
+                pi06055
+              </option>
+              <option
+                key="pi06170"
+                value="pi06170"
+              >
+                pi06170
+              </option>
+              <option
+                key="pi06290"
+                value="pi06290"
+              >
+                pi06290
+              </option>
+              <option
+                key="pi06410"
+                value="pi06410"
+              >
+                pi06410
+              </option>
+              <option
+                key="pi06530"
+                value="pi06530"
+              >
+                pi06530
+              </option>
+              <option
+                key="pi06645"
+                value="pi06645"
+              >
+                pi06645
+              </option>
+              <option
+                key="pi06765"
+                value="pi06765"
+              >
+                pi06765
+              </option>
+              <option
+                key="pi06885"
+                value="pi06885"
+              >
+                pi06885
+              </option>
+              <option
+                key="pi07005"
+                value="pi07005"
+              >
+                pi07005
+              </option>
+              <option
+                key="pi07130"
+                value="pi07130"
+              >
+                pi07130
+              </option>
+              <option
+                key="pi07260"
+                value="pi07260"
+              >
+                pi07260
+              </option>
+              <option
+                key="pi07390"
+                value="pi07390"
+              >
+                pi07390
+              </option>
+              <option
+                key="pi07535"
+                value="pi07535"
+              >
+                pi07535
+              </option>
+              <option
+                key="pi07685"
+                value="pi07685"
+              >
+                pi07685
+              </option>
+              <option
+                key="pi07840"
+                value="pi07840"
+              >
+                pi07840
+              </option>
+              <option
+                key="pi08005"
+                value="pi08005"
+              >
+                pi08005
+              </option>
+              <option
+                key="pi08175"
+                value="pi08175"
+              >
+                pi08175
+              </option>
+              <option
+                key="pi08350"
+                value="pi08350"
+              >
+                pi08350
+              </option>
+              <option
+                key="pi08535"
+                value="pi08535"
+              >
+                pi08535
+              </option>
+              <option
+                key="pi08730"
+                value="pi08730"
+              >
+                pi08730
+              </option>
+            </select>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </MultiSelectField>
+  </div>
+</Filters>
+`;

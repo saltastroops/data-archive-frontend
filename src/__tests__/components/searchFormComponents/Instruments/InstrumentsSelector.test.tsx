@@ -1,13 +1,13 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SHOC from "../../../../components/searchFormComponents/instruments/SHOC";
+import InstrumentsSelector from "../../../../components/searchFormComponents/instruments/InstrumentsSelector";
 
-const onChange = jest.fn();
-describe("SHOC ", () => {
+const onSelect = jest.fn() as any;
+describe("InstrumentsSelector", () => {
   it("should be defined", () => {
     expect(
-      mount(<SHOC shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
+      mount(<InstrumentsSelector instruments={[]} onSelect={onSelect} />)
     ).toBeDefined();
   });
 
@@ -15,7 +15,7 @@ describe("SHOC ", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
-        mount(<SHOC shoc={{ errors: {}, name: "SHOC" }} onChange={onChange} />)
+        mount(<InstrumentsSelector instruments={[]} onSelect={onSelect} />)
       )
     ).toMatchSnapshot();
   });

@@ -51,10 +51,10 @@ describe("Search Form", () => {
     expect(mainDiv.length).toBeGreaterThan(0);
   });
 
-  it("should contain five grid-item and one button", () => {
+  it("should contain four grid-item and one button", () => {
     const wrapper = mount(<SearchForm loading={false} search={jest.fn()} />);
     const items = wrapper.find("div.grid-item");
-    expect(items.length).toEqual(5);
+    expect(items.length).toEqual(4);
     const button = wrapper.find("button.is-primary");
     expect(button.length).toEqual(1);
   });
@@ -67,8 +67,6 @@ describe("Search Form", () => {
     expect(proposal.length).toEqual(1);
     const telescope = wrapper.find("div.telescope-form");
     expect(telescope.length).toEqual(1);
-    const data = wrapper.find("div.data-form");
-    expect(data.length).toEqual(1);
   });
 
   it("should update state when typing", () => {
