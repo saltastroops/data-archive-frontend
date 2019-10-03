@@ -11,6 +11,7 @@ exports[`Proposal Form render correctly 1`] = `
         data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
+        title="Proposal code, such as 2019-1-SCI-042"
         value=""
       />
     </styled.div>
@@ -23,6 +24,7 @@ exports[`Proposal Form render correctly 1`] = `
         error=""
         name="principalInvestigator"
         onChange={[Function]}
+        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
@@ -36,6 +38,7 @@ exports[`Proposal Form render correctly 1`] = `
         data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
+        title="Proposal title"
         value=""
       />
     </styled.div>
@@ -47,6 +50,7 @@ exports[`Proposal Form render correctly 1`] = `
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
+        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>
@@ -65,6 +69,7 @@ exports[`Proposal Form render correctly 2`] = `
         data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
+        title="Proposal code, such as 2019-1-SCI-042"
         value=""
       />
     </styled.div>
@@ -77,6 +82,7 @@ exports[`Proposal Form render correctly 2`] = `
         error=""
         name="principalInvestigator"
         onChange={[Function]}
+        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
@@ -90,6 +96,7 @@ exports[`Proposal Form render correctly 2`] = `
         data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
+        title="Proposal title"
         value="hello"
       />
     </styled.div>
@@ -101,6 +108,7 @@ exports[`Proposal Form render correctly 2`] = `
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
+        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>
@@ -120,6 +128,7 @@ exports[`Proposal Form render correctly 3`] = `
         error="invalid proposal code"
         name="proposalCode"
         onChange={[Function]}
+        title="Proposal code, such as 2019-1-SCI-042"
         value="Code1"
       />
     </styled.div>
@@ -132,6 +141,7 @@ exports[`Proposal Form render correctly 3`] = `
         error="invalid Principal Investigator"
         name="principalInvestigator"
         onChange={[Function]}
+        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
@@ -146,6 +156,7 @@ exports[`Proposal Form render correctly 3`] = `
         error="invalid proposal title"
         name="proposalTitle"
         onChange={[Function]}
+        title="Proposal title"
         value=""
       />
     </styled.div>
@@ -157,6 +168,7 @@ exports[`Proposal Form render correctly 3`] = `
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
+        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>

@@ -12,7 +12,8 @@ import {
   MainGrid,
   ResolverContainer,
   SingleColumnGrid,
-  SubGrid
+  SubGrid,
+  SubGridRight
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
@@ -253,6 +254,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
             />
           </SubGrid>
         </SingleColumnGrid>
+        <MainGrid>
+          <SubGrid />
+        </MainGrid>
       </>
     );
   }
