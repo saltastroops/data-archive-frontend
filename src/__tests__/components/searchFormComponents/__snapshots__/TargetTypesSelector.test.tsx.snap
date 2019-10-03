@@ -2,6 +2,11 @@
 
 exports[`TargetTypesSelector should render correctly with no target types 1`] = `
 .c1.c1 {
+  font-size: 22px;
+  padding-right: 10px;
+}
+
+.c2.c2 {
   width: 18px;
   height: 18px;
 }
@@ -25,7 +30,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
+            "componentId": "sc-jzJRlG",
             "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
@@ -43,7 +48,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
+          "styledComponentId": "sc-jzJRlG",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -56,235 +61,401 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
         className="c0"
       >
         <label>
-          <styled.input
-            checked={false}
-            data-test="galaxy"
-            onChange={[Function]}
-            value="Galaxy"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="galaxy"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+          <label>
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-gqjmRU",
+                      "isStatic": true,
+                      "lastClassName": "c1",
+                      "rules": Array [
+                        "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                      ],
                     },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-gqjmRU",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c1"
+                >
+                  <styled.input
+                    checked={false}
+                    data-test="galaxy"
+                    onChange={[Function]}
+                    value="Galaxy"
+                  >
+                    <StyledComponent
+                      checked={false}
+                      data-test="galaxy"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [
+                            Object {
+                              "className": "checkbox",
+                              "type": "checkbox",
+                            },
+                          ],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-fjdhpX",
+                            "isStatic": true,
+                            "lastClassName": "c2",
+                            "rules": Array [
+                              "
   && {
     width: 18px;
     height: 18px;
   }
 ",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Galaxy"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="galaxy"
-                onChange={[Function]}
-                type="checkbox"
-                value="Galaxy"
-              />
-            </StyledComponent>
-          </styled.input>
-          Galaxy
+                            ],
+                          },
+                          "displayName": "styled.input",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-fjdhpX",
+                          "target": "input",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      onChange={[Function]}
+                      value="Galaxy"
+                    >
+                      <input
+                        checked={false}
+                        className="checkbox c2"
+                        data-test="galaxy"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Galaxy"
+                      />
+                    </StyledComponent>
+                  </styled.input>
+                </span>
+              </StyledComponent>
+            </styled.span>
+            Galaxy
+          </label>
         </label>
         <label>
-          <styled.input
-            checked={false}
-            data-test="ism"
-            onChange={[Function]}
-            value="ISM"
-          >
+          <styled.span>
             <StyledComponent
-              checked={false}
-              data-test="ism"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="ISM"
             >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="ism"
-                onChange={[Function]}
-                type="checkbox"
-                value="ISM"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={false}
+                  data-test="ism"
+                  onChange={[Function]}
+                  value="ISM"
+                >
+                  <StyledComponent
+                    checked={false}
+                    data-test="ism"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="ISM"
+                  >
+                    <input
+                      checked={false}
+                      className="checkbox c2"
+                      data-test="ism"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="ISM"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           ISM
         </label>
         <label>
-          <styled.input
-            checked={false}
-            data-test="solar-system-body"
-            onChange={[Function]}
-            value="Solar System Body"
-          >
+          <styled.span>
             <StyledComponent
-              checked={false}
-              data-test="solar-system-body"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="Solar System Body"
             >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="solar-system-body"
-                onChange={[Function]}
-                type="checkbox"
-                value="Solar System Body"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={false}
+                  data-test="solar-system-body"
+                  onChange={[Function]}
+                  value="Solar System Body"
+                >
+                  <StyledComponent
+                    checked={false}
+                    data-test="solar-system-body"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="Solar System Body"
+                  >
+                    <input
+                      checked={false}
+                      className="checkbox c2"
+                      data-test="solar-system-body"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="Solar System Body"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           Solar System Body
         </label>
         <label>
-          <styled.input
-            checked={false}
-            data-test="star"
-            onChange={[Function]}
-            value="Star"
-          >
+          <styled.span>
             <StyledComponent
-              checked={false}
-              data-test="star"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="Star"
             >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="star"
-                onChange={[Function]}
-                type="checkbox"
-                value="Star"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={false}
+                  data-test="star"
+                  onChange={[Function]}
+                  value="Star"
+                >
+                  <StyledComponent
+                    checked={false}
+                    data-test="star"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="Star"
+                  >
+                    <input
+                      checked={false}
+                      className="checkbox c2"
+                      data-test="star"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="Star"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           Star
         </label>
       </div>
@@ -295,6 +466,11 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
 
 exports[`TargetTypesSelector should render correctly with target types 1`] = `
 .c1.c1 {
+  font-size: 22px;
+  padding-right: 10px;
+}
+
+.c2.c2 {
   width: 18px;
   height: 18px;
 }
@@ -323,7 +499,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
+            "componentId": "sc-jzJRlG",
             "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
@@ -341,7 +517,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
+          "styledComponentId": "sc-jzJRlG",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -354,235 +530,401 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
         className="c0"
       >
         <label>
-          <styled.input
-            checked={true}
-            data-test="galaxy"
-            onChange={[Function]}
-            value="Galaxy"
-          >
-            <StyledComponent
-              checked={true}
-              data-test="galaxy"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+          <label>
+            <styled.span>
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [
+                      Object {
+                        "className": "span",
+                      },
+                    ],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-gqjmRU",
+                      "isStatic": true,
+                      "lastClassName": "c1",
+                      "rules": Array [
+                        "
+  && {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+",
+                      ],
                     },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
+                    "displayName": "styled.span",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-gqjmRU",
+                    "target": "span",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+              >
+                <span
+                  className="span c1"
+                >
+                  <styled.input
+                    checked={true}
+                    data-test="galaxy"
+                    onChange={[Function]}
+                    value="Galaxy"
+                  >
+                    <StyledComponent
+                      checked={true}
+                      data-test="galaxy"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [
+                            Object {
+                              "className": "checkbox",
+                              "type": "checkbox",
+                            },
+                          ],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-fjdhpX",
+                            "isStatic": true,
+                            "lastClassName": "c2",
+                            "rules": Array [
+                              "
   && {
     width: 18px;
     height: 18px;
   }
 ",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Galaxy"
-            >
-              <input
-                checked={true}
-                className="checkbox c1"
-                data-test="galaxy"
-                onChange={[Function]}
-                type="checkbox"
-                value="Galaxy"
-              />
-            </StyledComponent>
-          </styled.input>
-          Galaxy
+                            ],
+                          },
+                          "displayName": "styled.input",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-fjdhpX",
+                          "target": "input",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                      onChange={[Function]}
+                      value="Galaxy"
+                    >
+                      <input
+                        checked={true}
+                        className="checkbox c2"
+                        data-test="galaxy"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Galaxy"
+                      />
+                    </StyledComponent>
+                  </styled.input>
+                </span>
+              </StyledComponent>
+            </styled.span>
+            Galaxy
+          </label>
         </label>
         <label>
-          <styled.input
-            checked={true}
-            data-test="ism"
-            onChange={[Function]}
-            value="ISM"
-          >
+          <styled.span>
             <StyledComponent
-              checked={true}
-              data-test="ism"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="ISM"
             >
-              <input
-                checked={true}
-                className="checkbox c1"
-                data-test="ism"
-                onChange={[Function]}
-                type="checkbox"
-                value="ISM"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={true}
+                  data-test="ism"
+                  onChange={[Function]}
+                  value="ISM"
+                >
+                  <StyledComponent
+                    checked={true}
+                    data-test="ism"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="ISM"
+                  >
+                    <input
+                      checked={true}
+                      className="checkbox c2"
+                      data-test="ism"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="ISM"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           ISM
         </label>
         <label>
-          <styled.input
-            checked={false}
-            data-test="solar-system-body"
-            onChange={[Function]}
-            value="Solar System Body"
-          >
+          <styled.span>
             <StyledComponent
-              checked={false}
-              data-test="solar-system-body"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="Solar System Body"
             >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="solar-system-body"
-                onChange={[Function]}
-                type="checkbox"
-                value="Solar System Body"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={false}
+                  data-test="solar-system-body"
+                  onChange={[Function]}
+                  value="Solar System Body"
+                >
+                  <StyledComponent
+                    checked={false}
+                    data-test="solar-system-body"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="Solar System Body"
+                  >
+                    <input
+                      checked={false}
+                      className="checkbox c2"
+                      data-test="solar-system-body"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="Solar System Body"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           Solar System Body
         </label>
         <label>
-          <styled.input
-            checked={false}
-            data-test="star"
-            onChange={[Function]}
-            value="Star"
-          >
+          <styled.span>
             <StyledComponent
-              checked={false}
-              data-test="star"
               forwardedComponent={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [
                     Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
+                      "className": "span",
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
+                    "componentId": "sc-gqjmRU",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
   && {
-    width: 18px;
-    height: 18px;
+    font-size: 22px;
+    padding-right: 10px;
   }
 ",
                     ],
                   },
-                  "displayName": "styled.input",
+                  "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
+                  "styledComponentId": "sc-gqjmRU",
+                  "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
               }
               forwardedRef={null}
-              onChange={[Function]}
-              value="Star"
             >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="star"
-                onChange={[Function]}
-                type="checkbox"
-                value="Star"
-              />
+              <span
+                className="span c1"
+              >
+                <styled.input
+                  checked={false}
+                  data-test="star"
+                  onChange={[Function]}
+                  value="Star"
+                >
+                  <StyledComponent
+                    checked={false}
+                    data-test="star"
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {
+                            "className": "checkbox",
+                            "type": "checkbox",
+                          },
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-fjdhpX",
+                          "isStatic": true,
+                          "lastClassName": "c2",
+                          "rules": Array [
+                            "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.input",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-fjdhpX",
+                        "target": "input",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onChange={[Function]}
+                    value="Star"
+                  >
+                    <input
+                      checked={false}
+                      className="checkbox c2"
+                      data-test="star"
+                      onChange={[Function]}
+                      type="checkbox"
+                      value="Star"
+                    />
+                  </StyledComponent>
+                </styled.input>
+              </span>
             </StyledComponent>
-          </styled.input>
+          </styled.span>
           Star
         </label>
       </div>

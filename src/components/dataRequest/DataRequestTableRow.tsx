@@ -13,7 +13,6 @@ import { IDataFile, IDataRequestObervation } from "./DataRequestsForm";
  */
 
 interface IDataRequestTableRowProps {
-  dataRequestId: string;
   dataRequestObservation: IDataRequestObervation;
 }
 
@@ -23,7 +22,6 @@ interface IDataRequestTableRowProps {
 class DataRequestTableRow extends React.Component<IDataRequestTableRowProps> {
   render() {
     const { dataFiles, id, name } = this.props.dataRequestObservation;
-    const { dataRequestId } = this.props;
     // TO UPDATE
     // const filename = "part-data-file-request.zip";
 

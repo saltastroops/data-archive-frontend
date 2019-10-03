@@ -69,9 +69,9 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night format", () => {
     const f = () =>
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: "invaliddate",
-        calibrations: new Set()
+        observationNight: "invaliddate"
       });
     expect(f).toThrow(/invaliddate.*valid/);
   });
@@ -79,9 +79,9 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night", () => {
     const f = () =>
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29",
-        calibrations: new Set()
+        observationNight: "2019-02-29"
       });
     expect(f).toThrow(/2019-02-29.*valid/);
   });
@@ -89,25 +89,25 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night range", () => {
     let f = () =>
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29 ..",
-        calibrations: new Set()
+        observationNight: "2019-02-29 .."
       });
     expect(f).toThrow(/2019-02-29.*valid/);
 
     f = () =>
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: ".. 2019-02-29",
-        calibrations: new Set()
+        observationNight: ".. 2019-02-29"
       });
     expect(f).toThrow("not a valid");
 
     f = () =>
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29 .. 2020",
-        calibrations: new Set()
+        observationNight: "2019-02-29 .. 2020"
       });
     expect(f).toThrow("not a valid");
   });
@@ -115,9 +115,9 @@ describe("generalWhereCondition", () => {
   it("should map an observation night to a greater equal and less equal condition spanning one night", () => {
     expect(
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-17",
-        calibrations: new Set()
+        observationNight: "2019-02-17"
       })
     ).toMatchSnapshot();
   });
@@ -125,9 +125,9 @@ describe("generalWhereCondition", () => {
   it("should map a Principal Investigator to a contains condition", () => {
     expect(
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        principalInvestigator: "Doe",
-        calibrations: new Set()
+        principalInvestigator: "Doe"
       })
     ).toMatchSnapshot();
   });
@@ -135,9 +135,9 @@ describe("generalWhereCondition", () => {
   it("should map a proposal code to a contains condition", () => {
     expect(
       generalWhereCondition({
+        calibrations: new Set(),
         errors: {},
-        proposalCode: "2-SCI",
-        calibrations: new Set()
+        proposalCode: "2-SCI"
       })
     ).toMatchSnapshot();
   });
@@ -354,9 +354,9 @@ describe("salticamWhereCondition", () => {
     ];
     detectorModes.forEach((_, index: number) => {
       const salticam: ISalticam = {
+        detectorMode: detectorModes[index],
         errors: {},
-        name: "Salticam",
-        detectorMode: detectorModes[index]
+        name: "Salticam"
       };
       const expected = {
         AND: [
@@ -380,8 +380,8 @@ describe("salticamWhereCondition", () => {
     filters.forEach((filter: any) => {
       const salticam: ISalticam = {
         errors: {},
-        name: "Salticam",
-        filter
+        filter,
+        name: "Salticam"
       };
       const expected = {
         AND: [
@@ -397,10 +397,10 @@ describe("salticamWhereCondition", () => {
 
   it("should combine conditions with an AND", () => {
     const salticam: ISalticam = {
-      errors: {},
-      name: "Salticam",
       detectorMode: "Frame Transfer",
-      filter: "R-S1"
+      errors: {},
+      filter: "R-S1",
+      name: "Salticam"
     };
     const expected = {
       AND: [
@@ -433,9 +433,9 @@ describe("rssWhereCondition", () => {
     ];
     detectorModes.forEach((_, index: number) => {
       const rss: IRSS = {
+        detectorMode: detectorModes[index],
         errors: {},
-        name: "RSS",
-        detectorMode: detectorModes[index]
+        name: "RSS"
       };
       const expected = {
         AND: [
@@ -458,11 +458,11 @@ describe("rssWhereCondition", () => {
     ]);
     const rss: IRSS = {
       errors: {},
-      name: "RSS",
       modes: {
         errors: {},
         names: modeNames
-      }
+      },
+      name: "RSS"
     };
     expect(rssWhereCondition(rss)).toMatchSnapshot();
   });
@@ -472,12 +472,12 @@ describe("rssWhereCondition", () => {
     gratings.forEach(grating => {
       const rss: IRSS = {
         errors: {},
-        name: "RSS",
         modes: {
           errors: {},
           grating,
           names: new Set<RSSInstrumentMode>(["Spectroscopy"])
-        }
+        },
+        name: "RSS"
       };
       const expected = {
         AND: [
@@ -495,12 +495,12 @@ describe("rssWhereCondition", () => {
     fabryPerotModes.forEach(fabryPerotMode => {
       const rss: IRSS = {
         errors: {},
-        name: "RSS",
         modes: {
           errors: {},
           fabryPerotMode,
           names: new Set<RSSInstrumentMode>(["Spectroscopy"])
-        }
+        },
+        name: "RSS"
       };
       const expected = {
         AND: [
@@ -525,7 +525,6 @@ describe("rssWhereCondition", () => {
     ]);
     const rss: IRSS = {
       errors: {},
-      name: "RSS",
       modes: {
         errors: {},
         names: new Set<RSSInstrumentMode>([
@@ -533,7 +532,8 @@ describe("rssWhereCondition", () => {
           "Polarimetric imaging"
         ]),
         polarimetryModes
-      }
+      },
+      name: "RSS"
     };
     expect(rssWhereCondition(rss)).toMatchSnapshot();
   });
@@ -548,9 +548,9 @@ describe("hrsWhereCondition", () => {
     ];
     modes.forEach(mode => {
       const hrs: IHRS = {
-        name: "HRS",
         errors: {},
-        mode
+        mode,
+        name: "HRS"
       };
       const expected = {
         AND: [

@@ -213,5 +213,5 @@ function formatNumber(n: number) {
  * The formatted date string.
  */
 function formatTimestamp(t: string) {
-  return moment(parseInt(t)).format("D MMM YYYY");
+  return moment(parseInt(t, 10)).format("D MMM YYYY");
 }

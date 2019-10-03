@@ -153,6 +153,15 @@ export const SubGrid6 = styled.div.attrs({
   }
 `;
 
+const SubGrid5 = styled.div.attrs({
+  className: "sub-grid6"
+})`
+  && {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+  }
+`;
+
 const Span = styled.span.attrs({
   className: "span"
 })`
@@ -212,6 +221,7 @@ export {
   DataGrid,
   TargetGrid,
   SubGrid4,
+  SubGrid5,
   SubGrid,
   RightSubGrid,
   MainGrid,

@@ -7,8 +7,8 @@ import {
 } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
 
-const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
-  const observations = statusValues.map((status, index) => ({
+const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
+  const observations = ["1", "2", "3"].map((id, index) => ({
     dataFiles: [
       {
         id: `file-${index}a`,
@@ -27,7 +27,7 @@ const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
         }
       }
     ],
-    id: `obz-${index}`,
+    id,
     name: `part-${index}`
   }));
 
@@ -35,6 +35,7 @@ const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
     id: "request-1",
     madeAt: "2018-12-01 20:00",
     observations,
+    status,
     uri: `http://demo/data-request/request-1`
   } as IDataRequest;
 
@@ -43,77 +44,32 @@ const dummyDataRequestsWrapper = (...statusValues: DataRequestStatus[]) => {
 
 describe("DataRequestTable", () => {
   it("should render correctly", () => {
-    expect(
-      toJson(dummyDataRequestsWrapper("SUCCESSFUL", "FAILED", "EXPIRED"))
-    ).toMatchSnapshot();
+    expect(toJson(dummyDataRequestsWrapper("SUCCESSFUL"))).toMatchSnapshot();
   });
 
-  it("includes a link for downloading all files if all request parts are marked successful", async () => {
-    // all parts are marked successful
-
-    let wrapper = dummyDataRequestsWrapper("SUCCESSFUL");
-    expect(wrapper.find(".download-all").length).toBe(1);
-
-    wrapper = dummyDataRequestsWrapper("SUCCESSFUL", "SUCCESSFUL");
-    expect(wrapper.find(".download-all").length).toBe(1);
-
-    wrapper = dummyDataRequestsWrapper(
-      "SUCCESSFUL",
-      "SUCCESSFUL",
-      "SUCCESSFUL"
-    );
+  it("includes a link for downloading all files if data request status is successful", async () => {
+    const wrapper = dummyDataRequestsWrapper("SUCCESSFUL");
     expect(wrapper.find(".download-all").length).toBe(1);
   });
 
-  it("does not include a link for downloading all files if at least one request part is not marked successful", async () => {
+  it("does not include a link for downloading all if data request status is not successful", async () => {
     let wrapper = dummyDataRequestsWrapper("PENDING");
     expect(wrapper.find(".download-all").length).toBe(0);
 
     wrapper = dummyDataRequestsWrapper("FAILED");
     expect(wrapper.find(".download-all").length).toBe(0);
-
-    wrapper = dummyDataRequestsWrapper("EXPIRED");
-    expect(wrapper.find(".download-all").length).toBe(0);
-
-    wrapper = dummyDataRequestsWrapper("EXPIRED", "PENDING");
-    expect(wrapper.find(".download-all").length).toBe(0);
-
-    wrapper = dummyDataRequestsWrapper("SUCCESSFUL", "PENDING", "SUCCESSFUL");
-    expect(wrapper.find(".download-all").length).toBe(0);
   });
 
-  it("includes a link for re-requesting all files if not all parts are marked successful and none is pending", () => {
-    let wrapper = dummyDataRequestsWrapper("EXPIRED");
-    expect(wrapper.find(".re-request-all").length).toBe(1);
-
-    wrapper = dummyDataRequestsWrapper("FAILED");
-    expect(wrapper.find(".re-request-all").length).toBe(1);
-
-    wrapper = dummyDataRequestsWrapper("SUCCESSFUL", "FAILED");
-    expect(wrapper.find(".re-request-all").length).toBe(1);
-
-    wrapper = dummyDataRequestsWrapper("EXPIRED", "SUCCESSFUL", "EXPIRED");
+  it("includes a link for re-requesting if data request status is not successful and none is pending", () => {
+    const wrapper = dummyDataRequestsWrapper("FAILED");
     expect(wrapper.find(".re-request-all").length).toBe(1);
   });
 
-  it("does not include a link for re-requesting all files if all parts are marked successful or there is a pending one", () => {
+  it("does not include a link for re-requesting all if data request status is successful or pending", () => {
     let wrapper = dummyDataRequestsWrapper("SUCCESSFUL");
     expect(wrapper.find(".re-request-all").length).toBe(0);
 
-    wrapper = dummyDataRequestsWrapper("SUCCESSFUL", "SUCCESSFUL");
-    expect(wrapper.find(".re-request-all").length).toBe(0);
-
-    wrapper = dummyDataRequestsWrapper(
-      "SUCCESSFUL",
-      "SUCCESSFUL",
-      "SUCCESSFUL"
-    );
-    expect(wrapper.find(".re-request-all").length).toBe(0);
-
     wrapper = dummyDataRequestsWrapper("PENDING");
-    expect(wrapper.find(".re-request-all").length).toBe(0);
-
-    wrapper = dummyDataRequestsWrapper("FAILED", "EXPIRED", "PENDING");
     expect(wrapper.find(".re-request-all").length).toBe(0);
   });
 });

@@ -56,7 +56,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const reRequestAll = status === "FAILED";
 
     // TO UPDATE
-    const filename = "data-file-request.zip";
+    const filename = `data_request_${id}.zip`;
 
     return (
       <Table>
@@ -102,7 +102,6 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             return (
               <DataRequestTableRow
                 key={observation.id}
-                dataRequestId={id}
                 dataRequestObservation={observation}
               />
             );

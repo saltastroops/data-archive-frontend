@@ -13,6 +13,7 @@ import {
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
+import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
@@ -58,9 +59,13 @@ interface ISearchPageProps {
  *     JSON string with the where condition for the search query.
  */
 interface ISearchPageState {
+  allSearchColumns: ISearchResultsTableColumn[];
   databaseColumns: string[];
   error: Error | null;
   limit: number;
+  modal: {
+    open: boolean;
+  };
   startIndex: number;
   tableColumns: ISearchResultsTableColumn[];
   where: string;
@@ -78,6 +83,7 @@ interface ISearchResult {
 }
 
 export interface ISearchPageCache {
+  allSearchColumns?: ISearchResultsTableColumn[];
   databaseColumns?: string[];
   limit: number;
   startIndex: number;
@@ -116,6 +122,14 @@ const PaginationContainer = styled.div<{
   }
 `;
 
+const ColumnsButtonContainer = styled.div.attrs({})`
+  && {
+    display: grid;
+    grid-template-columns: 500px;
+    justify-content: center;
+  }
+`;
+
 /**
  * The page for searching observations.
  */
@@ -127,13 +141,18 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     const databaseColumns = searchPageCache.databaseColumns || [];
     const limit = searchPageCache.limit;
     const startIndex = searchPageCache.startIndex;
+    const allSearchColumns = searchPageCache.allSearchColumns || [];
     const tableColumns = searchPageCache.tableColumns || [];
     const where = searchPageCache.where || "";
 
     this.state = {
+      allSearchColumns,
       databaseColumns,
       error: null,
       limit,
+      modal: {
+        open: false
+      },
       startIndex,
       tableColumns,
       where
@@ -143,6 +162,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   render() {
     const { screenDimensions } = this.props;
     const {
+      allSearchColumns,
       error: validationError,
       limit,
       startIndex,
@@ -184,6 +204,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         where
       }
     };
+
+    const displayedHeaders = this.removeDummyColumn(tableColumns);
+    const notDisplayedHeaders = this.removeDummyColumn(allSearchColumns).filter(
+      (c: any) =>
+        !displayedHeaders.filter((dc: any) => c.dataKey === dc.dataKey).length
+    );
     return (
       <ApolloConsumer>
         {client => (
@@ -221,10 +247,34 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                           width: maxResultsTableWidth
                         }}
                       >
-                        <SearchResultsTableColumnSelector
+                        {/* <SearchResultsTableColumnSelector
                           columns={tableColumns}
                           onChange={this.updateResultsTableColumnVisibility}
-                        />
+                        /> */}
+
+                        {this.state.modal.open && (
+                          <ManageTableResultHeaders
+                            closeModal={this.closePreviewModal}
+                            displayed={this.removeDummyColumn(tableColumns)}
+                            notDisplayed={notDisplayedHeaders}
+                            onChange={this.updateResultsTableColumnVisibility}
+                          />
+                        )}
+
+                        <ColumnsButtonContainer>
+                          <button
+                            className={"button"}
+                            onClick={() =>
+                              this.setState({
+                                ...this.state,
+                                modal: { open: !this.state.modal.open }
+                              })
+                            }
+                          >
+                            Manage hedears for display
+                          </button>
+                        </ColumnsButtonContainer>
+
                         <PaginationContainer marginBottom={10} marginTop={20}>
                           <Pagination
                             fetchPage={this.fetchPage(fetch, preload)}
@@ -272,6 +322,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   /**
+   * Close the preview modal.
+   */
+  private closePreviewModal = () => {
+    this.setState(() => ({ ...this.state, modal: { open: false } }));
+  };
+
+  /**
    * Return a function which performs a data file search  with the currently
    * selected search parameters.
    *
@@ -300,6 +357,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         );
         const where = JSON.stringify(whereObject);
         const databaseColumns = this.databaseColumns(whereObject);
+        const allSearchColumns = searchResultsTableColumns(databaseColumns);
         const tableColumns = searchResultsTableColumns(databaseColumns);
 
         // It seems that when it comes to the meta data Apollo does not update
@@ -314,6 +372,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
         // Record the search parameters
         searchPageCache.databaseColumns = [...databaseColumns];
+        searchPageCache.allSearchColumns = [...allSearchColumns];
         searchPageCache.tableColumns = [...tableColumns];
         searchPageCache.where = where;
 
@@ -322,6 +381,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // use refetch after updating the state
         this.setState(
           () => ({
+            allSearchColumns,
             databaseColumns,
             error: null,
             startIndex: 0,
@@ -568,33 +628,68 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * Update the visibility status of a results table column.
    */
   private updateResultsTableColumnVisibility = (
-    dataKey: string,
-    visible: boolean
+    displayed: ISearchResultsTableColumn[],
+    notDisplayed: ISearchResultsTableColumn[]
   ) => {
-    // Update the state
-    const columns = this.state.tableColumns;
-    const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
-    const updatedColumn = {
-      ...columns[columnIndex],
-      visible
-    };
-    if (columnIndex >= 0) {
-      const updatedColumns = [
-        ...columns.slice(0, columnIndex),
-        updatedColumn,
-        ...columns.slice(columnIndex + 1)
-      ];
-      this.setState(
-        () => ({
-          tableColumns: updatedColumns
-        }),
-        () => {
-          // Keep the cache up-to-date
-          this.props.searchPageCache.tableColumns = this.state.tableColumns;
-        }
-      );
-    }
+    this.setState(
+      () => ({
+        allSearchColumns: [
+          { dataKey: "dummyName", name: "dummy", visible: true },
+          ...notDisplayed
+        ],
+        modal: { open: !this.state.modal.open },
+        tableColumns: [
+          { dataKey: "dummyName", name: "dummy", visible: true },
+          ...displayed
+        ]
+      }),
+      () => {
+        // Keep the cache up-to-date
+        this.props.searchPageCache.tableColumns = this.state.tableColumns;
+        this.props.searchPageCache.allSearchColumns = this.state.allSearchColumns;
+      }
+    );
   };
+
+  /**
+   * Remove a dummy column
+   */
+  private removeDummyColumn = (
+    columns: ISearchResultsTableColumn[]
+  ): ISearchResultsTableColumn[] =>
+    columns.filter((c: any) => c.dataKey !== "dummyName");
+
+  /**
+   * Update the visibility status of a results table column.
+   */
+  // private updateResultsTableColumnVisibility = (
+  //   dataKey: string,
+  //   visible: boolean
+  // ) => {
+  //   // Update the state
+  //   const columns = this.state.tableColumns;
+  //   const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
+  //   const updatedColumn = {
+  //     ...columns[columnIndex],
+  //     visible
+  //   };
+  //   if (columnIndex >= 0) {
+  //     const updatedColumns = [
+  //       ...columns.slice(0, columnIndex),
+  //       updatedColumn,
+  //       ...columns.slice(columnIndex + 1)
+  //     ];
+  //     this.setState(
+  //       () => ({
+  //         tableColumns: updatedColumns
+  //       }),
+  //       () => {
+  //         // Keep the cache up-to-date
+  //         this.props.searchPageCache.tableColumns = this.state.tableColumns;
+  //       }
+  //     );
+  //   }
+  // };
 }
 
 export default SearchPage;
