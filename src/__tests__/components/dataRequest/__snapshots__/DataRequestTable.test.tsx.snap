@@ -137,13 +137,7 @@ exports[`DataRequestTable should render correctly 1`] = `
                     "right": 0,
                   }
                 }
-              >
-                <button
-                  className="button re-request-all is-small is-danger is-rounded"
-                >
-                  Re-request all
-                </button>
-              </p>
+              />
             </th>
           </tr>
           <tr>
