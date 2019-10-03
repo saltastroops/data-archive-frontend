@@ -13,6 +13,9 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { Cart, CART_QUERY } from "../util/Cart";
+import Query from "react-apollo/Query";
+import CartButton from "./cart/CartButton";
 
 /**
  * The navigation bar containing links to all pages, as well as a link for
@@ -234,16 +237,16 @@ class NavigationBar extends React.Component<
                     )}
 
                     {/* Cart icon */}
-                    <div className={"navbar-item is-hidden-descktop"}>
-                      <div
-                        className="button is-link is-outlined"
-                        onClick={() => openCart(true)}
-                      >
-                        <span>
-                          <FontAwesomeIcon icon={faShoppingCart} /> CART
-                        </span>
-                      </div>
-                    </div>
+                    <Query query={CART_QUERY}>
+                      {({ data }: any) => {
+                        return (
+                          <CartButton
+                            openCart={openCart}
+                            cartItemsNumber={data.cart.length}
+                          />
+                        );
+                      }}
+                    </Query>
                   </div>
                 </div>
               </Nav>
