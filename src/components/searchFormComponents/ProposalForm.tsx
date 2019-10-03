@@ -24,10 +24,16 @@ interface IProposalFormProps {
   onChange: (value: IGeneral) => void;
 }
 
+interface IProposalFormState {}
+
 /**
  * A form for selecting general search parameters.
  */
-class ProposalForm extends React.Component<IProposalFormProps, {}> {
+class ProposalForm extends React.Component<
+  IProposalFormProps,
+  IProposalFormState
+> {
+  state = { showHelpOf: "" };
   // Function for handling input changes.
   change = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -67,29 +73,36 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       proposalCode,
       proposalTitle
     } = this.props.proposal;
-
     return (
       <>
         <MainGrid>
           <SubGrid>
-            <p>Proposal code</p>
+            <HelpGrid>
+              <p>Proposal code</p>
+              <HelpButton
+                toolTipMessage={"Proposal code, such as 2019-1-SCI-042."}
+              />
+            </HelpGrid>
             <InputField
               data-test="proposal-code-input"
               error={errors.proposalCode}
               name={"proposalCode"}
               onChange={this.change}
-              title="Proposal code, such as 2019-1-SCI-042"
               value={proposalCode || ""}
             />
           </SubGrid>
           <SubGrid>
-            <p>Principal investigator</p>
+            <HelpGrid>
+              <p>Principal investigator</p>
+              <HelpButton
+                toolTipMessage={"Principal investigator for the proposal."}
+              />
+            </HelpGrid>
             <InputField
               data-test="principal-investigator-input"
               name={"principalInvestigator"}
               value={principalInvestigator || ""}
               error={errors.principalInvestigator || ""}
-              title="Principal investigator for the proposal"
               onChange={this.change}
             />
           </SubGrid>
@@ -97,24 +110,32 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
 
         <MainGrid>
           <SubGrid>
-            <p>Proposal title</p>
+            <HelpGrid>
+              <p>Proposal title</p>
+              <HelpButton toolTipMessage={"Proposal title."} />
+            </HelpGrid>
             <InputField
               data-test="proposal-title-input"
               name={"proposalTitle"}
               value={proposalTitle || ""}
               error={errors.proposalTitle}
-              title="Proposal title"
               onChange={this.change}
             />
           </SubGrid>
           <SubGrid>
-            <p>Observation night</p>
+            <HelpGrid>
+              <p>Observation night</p>
+              <HelpButton
+                toolTipMessage={
+                  'Night of the observation. You can input a date range by separating two dates with "..." For example: 2019-01-01 .. 2019-02-28.'
+                }
+              />
+            </HelpGrid>
             <InputField
               data-test="observation-night-input"
               name={"observationNight"}
               value={observationNight || ""}
               error={errors.observationNight}
-              title='Night of the observation. You can input a date range by separating two dates with "..." For example: 2019-01-01 .. 2019-02-28'
               onChange={this.change}
             />
           </SubGrid>
