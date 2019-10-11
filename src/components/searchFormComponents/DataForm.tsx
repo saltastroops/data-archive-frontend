@@ -87,7 +87,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="arcs-checkbox"
-                  checked={calibrations.has("arc")}
+                  checked={calibrations.has("Arc")}
                   data-test="arcs-checkbox"
                   onChange={this.changeCheckbox}
                   name="arc"
@@ -99,7 +99,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="biases-checkbox"
-                  checked={calibrations.has("bias")}
+                  checked={calibrations.has("Bias")}
                   data-test="biases-checkbox"
                   onChange={this.changeCheckbox}
                   name="bias"
@@ -111,7 +111,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="flats-checkbox"
-                  checked={calibrations.has("flat")}
+                  checked={calibrations.has("Flat")}
                   data-test="flats-checkbox"
                   onChange={this.changeCheckbox}
                   name="flat"
@@ -123,7 +123,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="standards-checkbox"
-                  checked={calibrations.has("standard")}
+                  checked={calibrations.has("Standard")}
                   data-test="standards-checkbox"
                   onChange={this.changeCheckbox}
                   name="standard"

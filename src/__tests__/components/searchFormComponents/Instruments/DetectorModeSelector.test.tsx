@@ -7,7 +7,7 @@ const onSelect = jest.fn() as any;
 describe("Detector Mode Selector", () => {
   it("should be defined", () => {
     expect(
-      mount(<DetectorModeSelector detectorMode={[]} onSelect={onSelect} />)
+      mount(<DetectorModeSelector detectorModes={[]} onSelect={onSelect} />)
     ).toBeDefined();
   });
 
@@ -15,7 +15,7 @@ describe("Detector Mode Selector", () => {
     // Use mount instead of shallow for better snapshots
     expect(
       toJson(
-        mount(<DetectorModeSelector detectorMode={[]} onSelect={onSelect} />)
+        mount(<DetectorModeSelector detectorModes={[]} onSelect={onSelect} />)
       )
     ).toMatchSnapshot();
   });

@@ -4,101 +4,121 @@ exports[`TargetForm should render correctly 1`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Target name
-      </p>
+      <styled.div>
+        <p>
+          Target name 
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+        />
+      </styled.div>
       <InputField
         data-test="target-name-input"
         disabled={false}
         name="name"
         onChange={[Function]}
-        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value=""
       />
     </styled.div>
     <styled.div>
       <styled.div>
-        <styled.div>
-          <p>
-            Resolver
-          </p>
-          <SelectField
-            data-test="resolver-select"
-            name="resolver"
-            onChange={[Function]}
-            title="Resolver for resolving the target name to a target position"
+        <p>
+          Resolver
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Resolver for resolving the target name to a target position."
+        />
+      </styled.div>
+      <ResolverContainer>
+        <SelectField
+          data-test="resolver-select"
+          name="resolver"
+          onChange={[Function]}
+          value="Simbad"
+        >
+          <option
             value="Simbad"
           >
-            <option
-              value="Simbad"
-            >
-              Simbad
-            </option>
-            <option
-              value="NED"
-            >
-              NED
-            </option>
-            <option
-              value="VizieR"
-            >
-              VizieR
-            </option>
-          </SelectField>
-        </styled.div>
-        <styled.div>
-          <br />
-          <button
-            className="button is-info false"
-            disabled={false}
-            onClick={[Function]}
-            title=""
-            type="button"
+            Simbad
+          </option>
+          <option
+            value="NED"
           >
-            resolve
-          </button>
-        </styled.div>
-      </styled.div>
+            NED
+          </option>
+          <option
+            value="VizieR"
+          >
+            VizieR
+          </option>
+        </SelectField>
+        <button
+          className="button is-info false"
+          disabled={false}
+          onClick={[Function]}
+          title=""
+          type="button"
+        >
+          resolve
+        </button>
+      </ResolverContainer>
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Right ascension
-      </p>
+      <styled.div>
+        <p>
+          Right ascension
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="   Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14."
+        />
+      </styled.div>
       <InputField
         data-test="right-ascension-input"
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Declination
-      </p>
+      <styled.div>
+        <p>
+          Declination
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51\`."
+        />
+      </styled.div>
       <InputField
         data-test="declination-input"
         disabled={false}
         name="declination"
         onChange={[Function]}
-        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Search radius
-      </p>
+      <styled.div>
+        <p>
+          Search radius
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage=" Radius of the search cone in the selected units."
+        />
+      </styled.div>
       <InputField
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
-        title="Radius of the search cone in the selected units."
         value=""
       />
     </styled.div>
@@ -144,14 +164,6 @@ exports[`TargetForm should render correctly 1`] = `
   </styled.div>
   <styled.div>
     <styled.div />
-    <styled.div>
-      <button
-        className="button is-warning"
-        onClick={[Function]}
-      >
-        reset all
-      </button>
-    </styled.div>
   </styled.div>
 </Fragment>
 `;
@@ -160,101 +172,121 @@ exports[`TargetForm should render correctly 2`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Target name
-      </p>
+      <styled.div>
+        <p>
+          Target name 
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+        />
+      </styled.div>
       <InputField
         data-test="target-name-input"
         disabled={false}
         name="name"
         onChange={[Function]}
-        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value="NGC 1234"
       />
     </styled.div>
     <styled.div>
       <styled.div>
-        <styled.div>
-          <p>
-            Resolver
-          </p>
-          <SelectField
-            data-test="resolver-select"
-            name="resolver"
-            onChange={[Function]}
-            title="Resolver for resolving the target name to a target position"
+        <p>
+          Resolver
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Resolver for resolving the target name to a target position."
+        />
+      </styled.div>
+      <ResolverContainer>
+        <SelectField
+          data-test="resolver-select"
+          name="resolver"
+          onChange={[Function]}
+          value="Simbad"
+        >
+          <option
             value="Simbad"
           >
-            <option
-              value="Simbad"
-            >
-              Simbad
-            </option>
-            <option
-              value="NED"
-            >
-              NED
-            </option>
-            <option
-              value="VizieR"
-            >
-              VizieR
-            </option>
-          </SelectField>
-        </styled.div>
-        <styled.div>
-          <br />
-          <button
-            className="button is-info false"
-            disabled={false}
-            onClick={[Function]}
-            title=""
-            type="button"
+            Simbad
+          </option>
+          <option
+            value="NED"
           >
-            resolve
-          </button>
-        </styled.div>
-      </styled.div>
+            NED
+          </option>
+          <option
+            value="VizieR"
+          >
+            VizieR
+          </option>
+        </SelectField>
+        <button
+          className="button is-info false"
+          disabled={false}
+          onClick={[Function]}
+          title=""
+          type="button"
+        >
+          resolve
+        </button>
+      </ResolverContainer>
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Right ascension
-      </p>
+      <styled.div>
+        <p>
+          Right ascension
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="   Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14."
+        />
+      </styled.div>
       <InputField
         data-test="right-ascension-input"
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Declination
-      </p>
+      <styled.div>
+        <p>
+          Declination
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51\`."
+        />
+      </styled.div>
       <InputField
         data-test="declination-input"
         disabled={false}
         name="declination"
         onChange={[Function]}
-        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Search radius
-      </p>
+      <styled.div>
+        <p>
+          Search radius
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage=" Radius of the search cone in the selected units."
+        />
+      </styled.div>
       <InputField
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
-        title="Radius of the search cone in the selected units."
         value=""
       />
     </styled.div>
@@ -300,14 +332,6 @@ exports[`TargetForm should render correctly 2`] = `
   </styled.div>
   <styled.div>
     <styled.div />
-    <styled.div>
-      <button
-        className="button is-warning"
-        onClick={[Function]}
-      >
-        reset all
-      </button>
-    </styled.div>
   </styled.div>
 </Fragment>
 `;
@@ -316,102 +340,122 @@ exports[`TargetForm should render correctly 3`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Target name
-      </p>
+      <styled.div>
+        <p>
+          Target name 
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
+        />
+      </styled.div>
       <InputField
         data-test="target-name-input"
         disabled={false}
         error="this is an error"
         name="name"
         onChange={[Function]}
-        title="Target name. This is used to determine the target position to search for. It must be possible to resolve the name with the chosen resolver."
         value=""
       />
     </styled.div>
     <styled.div>
       <styled.div>
-        <styled.div>
-          <p>
-            Resolver
-          </p>
-          <SelectField
-            data-test="resolver-select"
-            name="resolver"
-            onChange={[Function]}
-            title="Resolver for resolving the target name to a target position"
+        <p>
+          Resolver
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Resolver for resolving the target name to a target position."
+        />
+      </styled.div>
+      <ResolverContainer>
+        <SelectField
+          data-test="resolver-select"
+          name="resolver"
+          onChange={[Function]}
+          value="Simbad"
+        >
+          <option
             value="Simbad"
           >
-            <option
-              value="Simbad"
-            >
-              Simbad
-            </option>
-            <option
-              value="NED"
-            >
-              NED
-            </option>
-            <option
-              value="VizieR"
-            >
-              VizieR
-            </option>
-          </SelectField>
-        </styled.div>
-        <styled.div>
-          <br />
-          <button
-            className="button is-info false"
-            disabled={false}
-            onClick={[Function]}
-            title=""
-            type="button"
+            Simbad
+          </option>
+          <option
+            value="NED"
           >
-            resolve
-          </button>
-        </styled.div>
-      </styled.div>
+            NED
+          </option>
+          <option
+            value="VizieR"
+          >
+            VizieR
+          </option>
+        </SelectField>
+        <button
+          className="button is-info false"
+          disabled={false}
+          onClick={[Function]}
+          title=""
+          type="button"
+        >
+          resolve
+        </button>
+      </ResolverContainer>
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Right ascension
-      </p>
+      <styled.div>
+        <p>
+          Right ascension
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="   Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14."
+        />
+      </styled.div>
       <InputField
         data-test="right-ascension-input"
         disabled={false}
         name="rightAscension"
         onChange={[Function]}
-        title="Right ascension, either as decimal degrees or as a sexagesimal value. You can input a range by separating two right ascensions with \\"..\\". For example: 11 .. 14"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Declination
-      </p>
+      <styled.div>
+        <p>
+          Declination
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51\`."
+        />
+      </styled.div>
       <InputField
         data-test="declination-input"
         disabled={false}
         name="declination"
         onChange={[Function]}
-        title="Declination, either as decimal degrees or as a sexagesimal value. You can input a range by separating two declinations with \\"..\\". For example: -57 .. -51"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Search radius
-      </p>
+      <styled.div>
+        <p>
+          Search radius
+        </p>
+        <HelpButton
+          left={true}
+          toolTipMessage=" Radius of the search cone in the selected units."
+        />
+      </styled.div>
       <InputField
         data-test="search-cone-radius-input"
         name="searchConeRadius"
         onChange={[Function]}
-        title="Radius of the search cone in the selected units."
         value="12.1"
       />
     </styled.div>
@@ -457,14 +501,6 @@ exports[`TargetForm should render correctly 3`] = `
   </styled.div>
   <styled.div>
     <styled.div />
-    <styled.div>
-      <button
-        className="button is-warning"
-        onClick={[Function]}
-      >
-        reset all
-      </button>
-    </styled.div>
   </styled.div>
 </Fragment>
 `;

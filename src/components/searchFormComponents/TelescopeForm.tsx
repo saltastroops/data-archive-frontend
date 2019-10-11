@@ -2,13 +2,13 @@ import * as React from "react";
 import { ITelescope } from "../../utils/ObservationQueryParameters";
 import { SubGrid6 } from "../basicComponents/Grids";
 import DetectorModeSelector from "./instruments/DetectorModeSelector";
-import FabryPerot from "./instruments/FabryPerot";
+import RssFabryPerotModeSelector from "./instruments/RssFabryPerotModeSelector";
 import Filters from "./instruments/Filters";
 import HrsMode from "./instruments/HrsMode";
-import InstrumentsSelector from "./instruments/InstrumentsSelector";
-import ModeSelector from "./instruments/ModeSelector";
-import RssGrating from "./instruments/RssGrating";
-import RssPolarimetryImaging from "./instruments/RssPolarimetryImaging";
+import InstrumentSelector from "./instruments/InstrumentSelector";
+import InstrumentModeSelector from "./instruments/InstrumentModeSelector";
+import RssGratingSelector from "./instruments/RssGratingSelector";
+import RssPolarimetryModeSelector from "./instruments/RssPolarimetryModeSelector";
 import TelescopeSelector from "./instruments/TelescopeSelector";
 
 interface ITelescopeFormProps {
@@ -25,14 +25,11 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     const selectedTelescopes =
       telescope.telescopes.length > 0 ? telescope.telescopes : ["All"];
     const selectedInstruments = telescope.instruments || ["All"];
-    const selectedModes: string[] = telescope.modes || ["All"];
-    const selectedDetectorMode = telescope.detectorMode || ["All"];
+    const selectedInstrumentModes: string[] = telescope.instrumentModes || [
+      "All"
+    ];
+    const selectedDetectorMode = telescope.detectorModes || ["All"];
     const selectedFilters: string[] = telescope.filters || ["All"];
-
-    // Function for updating telescope-related parameters
-    const mainSelected = (telescopes: string[]) => {
-      onChange(telescopes);
-    };
 
     const onSelect = (newSelection: any) => {
       onChange({
@@ -45,25 +42,25 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
       <>
         <SubGrid6>
           <TelescopeSelector
-            onSelect={mainSelected}
+            onSelect={onSelect}
             telescopes={selectedTelescopes}
           />
 
-          <InstrumentsSelector
-            onSelect={mainSelected}
+          <InstrumentSelector
+            onSelect={onSelect}
             selectedTelescopes={selectedTelescopes}
             instruments={selectedInstruments}
           />
 
-          <ModeSelector
-            modes={selectedModes}
+          <InstrumentModeSelector
+            instrumentModes={selectedInstrumentModes}
             selectedTelescopes={selectedTelescopes}
             selectedInstruments={selectedInstruments}
             onSelect={onSelect}
           />
 
           <DetectorModeSelector
-            detectorMode={selectedDetectorMode}
+            detectorModes={selectedDetectorMode}
             selectedTelescopes={selectedTelescopes}
             selectedInstruments={selectedInstruments}
             onSelect={onSelect}
@@ -75,28 +72,32 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
             filters={selectedFilters}
           />
           {selectedInstruments.some((t: string) => t === "HRS") && (
-            <HrsMode hrsMode={telescope.hrsMode} onSelect={onSelect} />
+            <HrsMode hrsModes={telescope.hrsModes} onSelect={onSelect} />
           )}
-          {selectedModes.some(mode => mode === "Fabry Perot") && (
-            <FabryPerot onSelect={onSelect} fabryPerot={telescope.fabryPerot} />
+          {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
+            <RssFabryPerotModeSelector
+              onSelect={onSelect}
+              rssFabryPerotModes={telescope.rssFabryPerotModes}
+            />
           )}
-          {selectedModes.some(
+          {selectedInstrumentModes.some(
             mode =>
               mode === "MOS" ||
               mode === "Spectropolarimetry" ||
               mode === "Spectroscopy"
           ) && (
-            <RssGrating onSelect={onSelect} rssGrating={telescope.rssGrating} />
-          )}
-          {selectedModes.some(
-            mode =>
-              mode === "Polarimetric imaging" ||
-              mode === "Spectropolarimetry" ||
-              mode === "Spectroscopy"
-          ) && (
-            <RssPolarimetryImaging
+            <RssGratingSelector
               onSelect={onSelect}
-              rssPolarimetryImaging={telescope.rssPolarimetryImaging}
+              rssGratings={telescope.rssGratings}
+            />
+          )}
+          {selectedInstrumentModes.some(
+            mode =>
+              mode === "Polarimetric Imaging" || mode === "Spectropolarimetry"
+          ) && (
+            <RssPolarimetryModeSelector
+              onSelect={onSelect}
+              rssPolarimetryModes={telescope.rssPolarimetryModes}
             />
           )}
         </SubGrid6>

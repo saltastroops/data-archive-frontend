@@ -3,23 +3,28 @@ import MultiSelectField, {
   AllOption
 } from "../../basicComponents/MultiSelectField";
 
-interface ITelescopeSelectorProps {
-  telescopes?: string[];
+interface IFabryPerotModeProps {
+  rssFabryPerotModes?: string[];
   onSelect: (value: any) => void;
 }
 
-const TELESCOPES = ["SALT", "1.9 m", "Lesedi"];
+export const FABRY_PEROT_MODES = [
+  "Low Resolution",
+  "Medium Resolution",
+  "High Resolution",
+  "Tunable Filter"
+];
 /**
- * A form for selecting telescope names.
+ * A form for selecting the Fabry Perot mode.
  */
-const TelescopeSelector = (props: ITelescopeSelectorProps) => {
-  const { onSelect, telescopes } = props;
+const RssFabryPerotModeSelector = (props: IFabryPerotModeProps) => {
+  const { onSelect, rssFabryPerotModes } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      telescopes: Array.from(values).map((t: any) => {
+      rssFabryPerotModes: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
@@ -27,14 +32,14 @@ const TelescopeSelector = (props: ITelescopeSelectorProps) => {
 
   return (
     <div>
-      <p>Telescope</p>
+      <p>Fabry perot</p>
       <MultiSelectField
-        name={"telescopes"}
+        name={"fabryPerotModes"}
         onChange={select}
-        value={telescopes || ["All"]}
+        value={rssFabryPerotModes || ["All"]}
       >
         <AllOption />
-        {TELESCOPES.sort().map(i => (
+        {FABRY_PEROT_MODES.sort().map(i => (
           <option key={i} value={i}>
             {i}
           </option>
@@ -44,4 +49,4 @@ const TelescopeSelector = (props: ITelescopeSelectorProps) => {
   );
 };
 
-export default TelescopeSelector;
+export default RssFabryPerotModeSelector;

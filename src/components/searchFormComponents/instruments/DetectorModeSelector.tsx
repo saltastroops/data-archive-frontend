@@ -15,7 +15,7 @@ export const RSS_DETECTOR_MODES = ["Shuffle"];
 export const SALTICAM_DETECTOR_MODES = [];
 
 interface IDetectorModeSelectorProps {
-  detectorMode: string[];
+  detectorModes: string[];
   selectedInstruments?: string[];
   selectedTelescopes?: string[];
   onSelect: (value: any) => void;
@@ -55,14 +55,14 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
     onSelect,
     selectedInstruments,
     selectedTelescopes,
-    detectorMode
+    detectorModes
   } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      detectorMode: Array.from(values).map((t: any) => {
+      detectorModes: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
@@ -74,11 +74,11 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
 
   return (
     <div>
-      <p>Detector Mode</p>
+      <p>Detector mode</p>
       <MultiSelectField
-        name={"detectorMode"}
+        name="detectorModes"
         onChange={select}
-        value={detectorMode || ["All"]}
+        value={detectorModes || ["All"]}
       >
         <AllOption />
         {DETECTOR_MODE_TO_DISPLAY.sort().map(i => (

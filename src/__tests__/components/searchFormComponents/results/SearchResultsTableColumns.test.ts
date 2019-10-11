@@ -11,7 +11,7 @@ describe("SearchResultsTableColumns", () => {
       expect(searchResultsTableColumns(dbColumns)).toMatchSnapshot();
 
       dbColumns = [
-        DataKeys.PROPOSAL_PI_FAMILY_NAME,
+        DataKeys.PROPOSAL_PI,
         DataKeys.TARGET_TYPE_NUMERIC_CODE,
         DataKeys.TARGET_DECLINATION,
         DataKeys.TELESCOPE_NAME,

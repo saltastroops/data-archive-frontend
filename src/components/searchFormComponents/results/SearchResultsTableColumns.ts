@@ -80,7 +80,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       };
     case DataKeys.PROPOSAL_CODE:
       return { dataKey, name: "Proposal", visible: true };
-    case DataKeys.PROPOSAL_PI_FAMILY_NAME:
+    case DataKeys.PROPOSAL_PI:
       return { dataKey, name: "PI", visible: true };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
@@ -148,7 +148,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
     DataKeys.TARGET_DECLINATION,
     DataKeys.TARGET_TYPE_EXPLANATION,
     DataKeys.PROPOSAL_CODE,
-    DataKeys.PROPOSAL_PI_FAMILY_NAME,
+    DataKeys.PROPOSAL_PI,
     DataKeys.PROPOSAL_TITLE,
     DataKeys.TELESCOPE_NAME,
     DataKeys.INSTRUMENT_NAME

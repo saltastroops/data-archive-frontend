@@ -76,7 +76,7 @@ describe("Telescope form rendering", () => {
         telescope={{
           telescopes: ["SALT"],
           instrument: ["RSS"],
-          modes: ["MOS", "Fabry Perot"]
+          instrumentModes: ["MOS", "Fabry Perot"]
         }}
       />
     );
@@ -91,7 +91,7 @@ describe("Telescope form rendering", () => {
             onChange={onChange}
             telescope={{
               instruments: ["RSS"],
-              modes: ["MOS", "Fabry Perot", "Spectropolarimetry"],
+              instrumentModes: ["MOS", "Fabry Perot", "Spectropolarimetry"],
               telescopes: ["SALT"]
             }}
           />

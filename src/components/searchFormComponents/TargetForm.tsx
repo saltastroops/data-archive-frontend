@@ -12,8 +12,7 @@ import {
   MainGrid,
   ResolverContainer,
   SingleColumnGrid,
-  SubGrid,
-  SubGridRight
+  SubGrid
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";

@@ -30,7 +30,7 @@ exports[`Data Form should render correctly 1`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="arcs-checkbox"
             id="arcs-checkbox"
             name="arc"
@@ -145,7 +145,7 @@ exports[`Data Form should render correctly 2`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="arcs-checkbox"
             id="arcs-checkbox"
             name="arc"
@@ -187,7 +187,7 @@ exports[`Data Form should render correctly 2`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="standards-checkbox"
             id="standards-checkbox"
             name="standard"
@@ -260,7 +260,7 @@ exports[`Data Form should render correctly 3`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="arcs-checkbox"
             id="arcs-checkbox"
             name="arc"
@@ -274,7 +274,7 @@ exports[`Data Form should render correctly 3`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="biases-checkbox"
             id="biases-checkbox"
             name="bias"
@@ -288,7 +288,7 @@ exports[`Data Form should render correctly 3`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="flats-checkbox"
             id="flats-checkbox"
             name="flat"
@@ -302,7 +302,7 @@ exports[`Data Form should render correctly 3`] = `
       <label>
         <styled.span>
           <styled.input
-            checked={true}
+            checked={false}
             data-test="standards-checkbox"
             id="standards-checkbox"
             name="standard"

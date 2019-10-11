@@ -5,8 +5,8 @@ exports[`FabryPerot should render correctly 1`] = `
   width: 95%;
 }
 
-<FabryPerot
-  fabryPerot={Array []}
+<RssFabryPerotModeSelector
+  fabryPerotModes={Array []}
   onSelect={[MockFunction]}
 >
   <div>
@@ -14,9 +14,13 @@ exports[`FabryPerot should render correctly 1`] = `
       Fabry perot
     </p>
     <MultiSelectField
-      name="fabryPerot"
+      name="fabryPerotModes"
       onChange={[Function]}
-      value={Array []}
+      value={
+        Array [
+          "All",
+        ]
+      }
     >
       <styled.div
         className="control select is-multiple "
@@ -54,7 +58,7 @@ exports[`FabryPerot should render correctly 1`] = `
           >
             <select
               multiple={true}
-              name="fabryPerot"
+              name="fabryPerotModes"
               onChange={[Function]}
               size={6}
               style={
@@ -62,7 +66,11 @@ exports[`FabryPerot should render correctly 1`] = `
                   "width": "216px",
                 }
               }
-              value={Array []}
+              value={
+                Array [
+                  "All",
+                ]
+              }
             >
               <AllOption>
                 <option
@@ -72,28 +80,28 @@ exports[`FabryPerot should render correctly 1`] = `
                 </option>
               </AllOption>
               <option
-                key="High resolution"
-                value="High resolution"
+                key="High Resolution"
+                value="High Resolution"
               >
-                High resolution
+                High Resolution
               </option>
               <option
-                key="Low resolution"
-                value="Low resolution"
+                key="Low Resolution"
+                value="Low Resolution"
               >
-                Low resolution
+                Low Resolution
               </option>
               <option
-                key="Medium resolution"
-                value="Medium resolution"
+                key="Medium Resolution"
+                value="Medium Resolution"
               >
-                Medium resolution
+                Medium Resolution
               </option>
               <option
-                key="Tunable filter"
-                value="Tunable filter"
+                key="Tunable Filter"
+                value="Tunable Filter"
               >
-                Tunable filter
+                Tunable Filter
               </option>
             </select>
           </div>
@@ -101,5 +109,5 @@ exports[`FabryPerot should render correctly 1`] = `
       </styled.div>
     </MultiSelectField>
   </div>
-</FabryPerot>
+</RssFabryPerotModeSelector>
 `;

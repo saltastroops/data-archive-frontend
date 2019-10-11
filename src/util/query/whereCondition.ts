@@ -182,9 +182,7 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   // Principal Investigator
   const principalInvestigator = trim(general.principalInvestigator);
   if (principalInvestigator) {
-    conditions.push(
-      contains(DataKeys.PROPOSAL_PI_FAMILY_NAME, principalInvestigator)
-    );
+    conditions.push(contains(DataKeys.PROPOSAL_PI, principalInvestigator));
   }
 
   // Proposal code

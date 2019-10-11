@@ -86,7 +86,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
    * Handle changes of telescope-related parameters.
    */
   public telescopeChange = (value: ITelescope) => {
-    console.log(value);
     const newState = {
       ...this.state,
       ...value,
@@ -126,7 +125,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public render() {
     const { error, loading } = this.props;
     const { target, general, telescope } = this.state;
-    console.log(telescope);
 
     return (
       <>

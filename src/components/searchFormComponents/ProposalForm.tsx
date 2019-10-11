@@ -5,8 +5,15 @@ import {
   IGeneral
 } from "../../utils/ObservationQueryParameters";
 import { validateDate } from "../../utils/validators";
-import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
+import {
+  HelpGrid,
+  MainGrid,
+  Span,
+  SubGrid,
+  SubGrid4
+} from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
+import HelpButton from "../basicComponents/HelpButton";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -19,7 +26,6 @@ const LargeCheckbox = styled.input.attrs({
 `;
 
 interface IProposalFormProps {
-  proposal: IGeneral;
   general: IGeneral;
   onChange: (value: IGeneral) => void;
 }
@@ -39,10 +45,10 @@ class ProposalForm extends React.Component<
     const name = e.target.name;
     const value = e.target.value;
     this.props.onChange({
-      ...this.props.proposal,
+      ...this.props.general,
       [name]: value,
       errors: {
-        ...this.props.proposal.errors,
+        ...this.props.general.errors,
         [name]: ""
       }
     });
@@ -65,14 +71,14 @@ class ProposalForm extends React.Component<
   };
 
   render() {
-    const { calibrations } = this.props.general;
     const {
+      calibrations,
       errors,
       principalInvestigator,
       observationNight,
       proposalCode,
       proposalTitle
-    } = this.props.proposal;
+    } = this.props.general;
     return (
       <>
         <MainGrid>
@@ -150,10 +156,10 @@ class ProposalForm extends React.Component<
             <Span>
               <LargeCheckbox
                 id="arcs-checkbox"
-                checked={calibrations.has("arc")}
+                checked={calibrations.has("Arc")}
                 data-test="arcs-checkbox"
                 onChange={this.changeCheckbox}
-                name="arc"
+                name="Arc"
               />
             </Span>
             <Span>Arcs</Span>
@@ -162,10 +168,10 @@ class ProposalForm extends React.Component<
             <Span>
               <LargeCheckbox
                 id="biases-checkbox"
-                checked={calibrations.has("bias")}
+                checked={calibrations.has("Bias")}
                 data-test="biases-checkbox"
                 onChange={this.changeCheckbox}
-                name="bias"
+                name="Bias"
               />
             </Span>
             <Span>Biases</Span>
@@ -174,10 +180,10 @@ class ProposalForm extends React.Component<
             <Span>
               <LargeCheckbox
                 id="flats-checkbox"
-                checked={calibrations.has("flat")}
+                checked={calibrations.has("Flat")}
                 data-test="flats-checkbox"
                 onChange={this.changeCheckbox}
-                name="flat"
+                name="Flat"
               />
             </Span>
             <Span>Flats</Span>
@@ -186,10 +192,10 @@ class ProposalForm extends React.Component<
             <Span>
               <LargeCheckbox
                 id="standards-checkbox"
-                checked={calibrations.has("standard")}
+                checked={calibrations.has("Standard")}
                 data-test="standards-checkbox"
                 onChange={this.changeCheckbox}
-                name="standard"
+                name="Standard"
               />
             </Span>
             <Span>Standards</Span>

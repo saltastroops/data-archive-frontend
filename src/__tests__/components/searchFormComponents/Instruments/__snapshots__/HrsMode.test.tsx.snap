@@ -6,12 +6,12 @@ exports[`Hrs Mode should render correctly 1`] = `
 }
 
 <HrsMode
-  hrsMode={Array []}
+  hrsModes={Array []}
   onSelect={[MockFunction]}
 >
   <div>
     <p>
-      HRS Mode
+      HRS mode
     </p>
     <MultiSelectField
       name="hrsMode"

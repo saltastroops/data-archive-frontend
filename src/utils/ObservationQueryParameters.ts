@@ -32,7 +32,7 @@ export interface ISearchFormState {
 /**
  * The available calibration types.
  */
-export type CalibrationType = "arc" | "bias" | "flat" | "standard";
+export type CalibrationType = "Arc" | "Bias" | "Flat" | "Standard";
 
 /**
  * An interface for query parameters related to general information.
@@ -168,18 +168,15 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  telescopes: TelescopeName[];
-  instruments?: InstrumentName[];
-  detectorMode?: any;
-  modes?: any;
-  grating?: any;
-  filters?: any;
-  polarimetry?: any;
-  resolution?: any;
-  hrsMode?: string[];
-  fabryPerot?: string[];
-  rssGrating?: string[];
-  rssPolarimetryImaging?: string[];
+  detectorModes?: Array<DetectorMode | "All">;
+  filters?: Array<string>;
+  hrsModes?: Array<HRSMode | "All">;
+  instrumentModes?: Array<InstrumentMode | "All">;
+  instruments?: Array<InstrumentName | "All">;
+  rssFabryPerotModes?: Array<RSSFabryPerotMode | "All">;
+  rssGratings?: Array<RSSGrating | "All">;
+  rssPolarimetryModes?: Array<RSSPolarimetryMode | "All">;
+  telescopes: Array<TelescopeName | "All">;
 }
 
 /**
@@ -240,6 +237,28 @@ export type InstrumentName =
   | "SpUpNIC"
   | "SHOC"
   | "HIPPO";
+
+/**
+ * The available instrument modes.
+ */
+export type InstrumentMode =
+  | "Fabry Perot"
+  | "Imaging"
+  | "MOS"
+  | "Polarimetric Imaging"
+  | "Spectropolarimetry"
+  | "Spectroscopy"
+  | "Streaming";
+
+/**
+ * The available detector modes.
+ */
+export type DetectorMode =
+  | "Drift Scan"
+  | "Frame Transfer"
+  | "Normal"
+  | "Shuffle"
+  | "Slot Mode";
 
 /**
  * An interface for query parameters related to an instrument.
