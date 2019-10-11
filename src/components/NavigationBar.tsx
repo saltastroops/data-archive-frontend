@@ -242,7 +242,9 @@ class NavigationBar extends React.Component<
                         return (
                           <CartButton
                             openCart={openCart}
-                            cartItemsNumber={data.cart.length}
+                            cartItemsNumber={
+                              data && data.cart ? data.cart.length : 0
+                            }
                           />
                         );
                       }}
