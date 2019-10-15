@@ -176,7 +176,7 @@ export interface ITelescope {
   rssFabryPerotModes?: Array<RSSFabryPerotMode | "All">;
   rssGratings?: Array<RSSGrating | "All">;
   rssPolarimetryModes?: Array<RSSPolarimetryMode | "All">;
-  telescopes: Array<TelescopeName | "All">;
+  telescopes?: Array<TelescopeName | "All">;
 }
 
 /**
