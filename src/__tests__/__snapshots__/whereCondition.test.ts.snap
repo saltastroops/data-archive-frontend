@@ -376,3 +376,105 @@ Object {
   ],
 }
 `;
+
+exports[`telescopeWhereCondition should map All correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map All together with other items correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map conditions correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "IS_IN": Object {
+        "column": "detector_mode.detector_mode",
+        "values": Array [
+          "Normal",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "filter.name",
+        "values": Array [
+          "Johnson U",
+          "Cousins I",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "hrs_mode.hrs_mode",
+        "values": Array [
+          "High Stability",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument.name",
+        "values": Array [
+          "RSS",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument_mode.instrument_mode",
+        "values": Array [
+          "Imaging",
+          "Spectroscopy",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_fabry_perot_mode.fabry_perot_mode",
+        "values": Array [
+          "MR",
+          "HR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_grating.grating",
+        "values": Array [
+          "pg0900",
+          "pg1800",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "polarization_mode.name",
+        "values": Array [
+          "LINEAR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "telescope.name",
+        "values": Array [
+          "Lesedi",
+          "SALT",
+        ],
+      },
+    },
+  ],
+}
+`;
+
+exports[`telescopeWhereCondition should map empty arrays correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;

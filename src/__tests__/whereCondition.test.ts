@@ -255,3 +255,69 @@ describe("targetWhereCondition", () => {
     );
   });
 });
+
+describe("telescopeWhereCondition", () => {
+  it("should map conditions correctly", () => {
+    expect(
+      telescopeWhereCondition({
+        detectorModes: ["Normal"],
+        filters: ["Johnson U", "Cousins I"],
+        hrsModes: ["High Stability"],
+        instruments: ["RSS"],
+        instrumentModes: ["Imaging", "Spectroscopy"],
+        rssFabryPerotModes: ["MR", "HR"],
+        rssGratings: ["pg0900", "pg1800"],
+        rssPolarimetryModes: ["LINEAR"],
+        telescopes: ["Lesedi", "SALT"]
+      })
+    ).toMatchSnapshot();
+  });
+
+  it("should map empty arrays correctly", () => {
+    expect(
+      telescopeWhereCondition({
+        detectorModes: [],
+        filters: [],
+        hrsModes: [],
+        instruments: [],
+        instrumentModes: [],
+        rssFabryPerotModes: [],
+        rssGratings: [],
+        rssPolarimetryModes: [],
+        telescopes: []
+      })
+    ).toMatchSnapshot();
+  });
+
+  it("should map All correctly", () => {
+    expect(
+      telescopeWhereCondition({
+        detectorModes: ["All"],
+        filters: ["All"],
+        hrsModes: ["All"],
+        instruments: ["All"],
+        instrumentModes: ["All"],
+        rssFabryPerotModes: ["All"],
+        rssGratings: ["All"],
+        rssPolarimetryModes: ["All"],
+        telescopes: ["All"]
+      })
+    ).toMatchSnapshot();
+  });
+
+  it("should map All together with other items correctly", () => {
+    expect(
+      telescopeWhereCondition({
+        detectorModes: ["All", "Normal"],
+        filters: ["Johnson U", "All", "Cousins I"],
+        hrsModes: ["High Stability", "All"],
+        instruments: ["RSS", "All"],
+        instrumentModes: ["All", "Imaging", "Spectroscopy"],
+        rssFabryPerotModes: ["MR", "HR", "All"],
+        rssGratings: ["All", "pg0900", "pg1800"],
+        rssPolarimetryModes: ["LINEAR", "All"],
+        telescopes: ["Lesedi", "All", "SALT"]
+      })
+    ).toMatchSnapshot();
+  });
+});
