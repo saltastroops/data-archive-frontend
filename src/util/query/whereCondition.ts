@@ -1,13 +1,7 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 import {
-  HRSMode,
-  IBVIT,
   IGeneral,
-  IHRS,
   IObservationQueryParameters,
-  IRSS,
-  ISALT,
-  ISalticam,
   ITarget,
   ITelescope,
   IWhereCondition
@@ -24,13 +18,7 @@ import {
   startsWith,
   withinRadius
 } from "./operators";
-import {
-  parseDate,
-  parseObservationNight,
-  parseTargetPosition,
-  trim
-} from "./parse";
-import { WhereConditionContent } from "../../../../backend/src/util/observationsQuery";
+import { parseObservationNight, parseTargetPosition, trim } from "./parse";
 
 /**
  * Map observation query parameters to a where condition.
