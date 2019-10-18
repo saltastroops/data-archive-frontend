@@ -6,16 +6,9 @@ import {
   whereCondition
 } from "../util/query/whereCondition";
 import {
-  HRSMode,
   IGeneral,
-  IHRS,
   IObservationQueryParameters,
-  IRSS,
-  ISalticam,
-  RSSFabryPerotMode,
-  RSSGrating,
-  RSSInstrumentMode,
-  RSSPolarimetryMode
+  IRSS
 } from "../utils/ObservationQueryParameters";
 import { TargetType } from "../utils/TargetType";
 
