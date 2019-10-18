@@ -23,7 +23,9 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
   render() {
     const { telescope, onChange } = this.props;
     const selectedTelescopes =
-      telescope.telescopes.length > 0 ? telescope.telescopes : ["All"];
+      telescope.telescopes && telescope.telescopes.length > 0
+        ? telescope.telescopes
+        : ["All"];
     const selectedInstruments = telescope.instruments || ["All"];
     const selectedInstrumentModes: string[] = telescope.instrumentModes || [
       "All"
