@@ -364,21 +364,25 @@ export type RSSGrating =
 
 export type RSSInstrumentMode =
   | "Fabry Perot"
-  | "FP polarimetry"
+  | "FP Polarimetry"
   | "Imaging"
-  | "Polarimetric imaging"
+  | "Polarimetric Imaging"
   | "MOS"
-  | "MOS polarimetry"
+  | "MOS Polarimetry"
   | "Spectropolarimetry"
   | "Spectroscopy";
 
-export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF";
+export type RSSFabryPerotMode =
+  | "High Resolution"
+  | "Low Resolution"
+  | "Medium Resolution"
+  | "Tunable Filter";
 
 export type RSSPolarimetryMode =
-  | "ALL STOKES"
-  | "CIRCULAR"
-  | "LINEAR"
-  | "LINEAR HI";
+  | "All Stokes"
+  | "Circular"
+  | "Linear"
+  | "Linear Hi";
 
 /**
  * An interface for query parameters related to HRS.
