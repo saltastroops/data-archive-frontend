@@ -11,7 +11,6 @@ import { TargetType } from "../../utils/TargetType";
 import { isError } from "../../utils/validators";
 import {
   ButtonGrid,
-  DataGrid,
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
@@ -19,7 +18,6 @@ import {
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
-import DataForm from "./DataForm";
 import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm, { validatedProposal } from "./ProposalForm";
 import TargetForm, { validatedTarget } from "./TargetForm";
