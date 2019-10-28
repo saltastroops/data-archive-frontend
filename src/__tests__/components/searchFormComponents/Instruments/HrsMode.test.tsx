@@ -6,13 +6,13 @@ import HrsMode from "../../../../components/searchFormComponents/instruments/Hrs
 const onSelect = jest.fn() as any;
 describe("Hrs Mode", () => {
   it("should be defined", () => {
-    expect(mount(<HrsMode hrsMode={[]} onSelect={onSelect} />)).toBeDefined();
+    expect(mount(<HrsMode hrsModes={[]} onSelect={onSelect} />)).toBeDefined();
   });
 
   it("should render correctly", () => {
     // Use mount instead of shallow for better snapshots
     expect(
-      toJson(mount(<HrsMode hrsMode={[]} onSelect={onSelect} />))
+      toJson(mount(<HrsMode hrsModes={[]} onSelect={onSelect} />))
     ).toMatchSnapshot();
   });
 });

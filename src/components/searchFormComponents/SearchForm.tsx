@@ -11,7 +11,6 @@ import { TargetType } from "../../utils/TargetType";
 import { isError } from "../../utils/validators";
 import {
   ButtonGrid,
-  DataGrid,
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
@@ -19,7 +18,6 @@ import {
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
-import DataForm from "./DataForm";
 import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm, { validatedProposal } from "./ProposalForm";
 import TargetForm, { validatedTarget } from "./TargetForm";
@@ -86,7 +84,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
    * Handle changes of telescope-related parameters.
    */
   public telescopeChange = (value: ITelescope) => {
-    console.log(value);
     const newState = {
       ...this.state,
       ...value,
@@ -126,7 +123,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public render() {
     const { error, loading } = this.props;
     const { target, general, telescope } = this.state;
-    console.log(telescope);
 
     return (
       <>
@@ -135,11 +131,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <TargetForm target={target} onChange={this.targetChange} />
           </TargetGrid>
           <ProposalGrid>
-            <ProposalForm
-              proposal={general}
-              general={general}
-              onChange={this.generalChange}
-            />
+            <ProposalForm general={general} onChange={this.generalChange} />
           </ProposalGrid>
         </ParentGrid>
         <ParentGridSingle>

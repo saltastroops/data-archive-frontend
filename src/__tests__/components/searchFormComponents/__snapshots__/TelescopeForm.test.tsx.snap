@@ -11,7 +11,7 @@ exports[`Telescope form rendering should render correctly 1`] = `
         ]
       }
     />
-    <InstrumentsSelector
+    <InstrumentSelector
       instruments={
         Array [
           "RSS",
@@ -24,8 +24,8 @@ exports[`Telescope form rendering should render correctly 1`] = `
         ]
       }
     />
-    <ModeSelector
-      modes={
+    <InstrumentModeSelector
+      instrumentModes={
         Array [
           "MOS",
           "Fabry Perot",
@@ -45,7 +45,7 @@ exports[`Telescope form rendering should render correctly 1`] = `
       }
     />
     <DetectorModeSelector
-      detectorMode={
+      detectorModes={
         Array [
           "All",
         ]
@@ -75,13 +75,13 @@ exports[`Telescope form rendering should render correctly 1`] = `
       }
       onSelect={[Function]}
     />
-    <FabryPerot
+    <RssFabryPerotModeSelector
       onSelect={[Function]}
     />
-    <RssGrating
+    <RssGratingSelector
       onSelect={[Function]}
     />
-    <RssPolarimetryImaging
+    <RssPolarimetryModeSelector
       onSelect={[Function]}
     />
   </styled.div>
@@ -99,7 +99,7 @@ exports[`Telescope form rendering should render correctly 2`] = `
         ]
       }
     />
-    <InstrumentsSelector
+    <InstrumentSelector
       instruments={
         Array [
           "SHOC",
@@ -112,8 +112,8 @@ exports[`Telescope form rendering should render correctly 2`] = `
         ]
       }
     />
-    <ModeSelector
-      modes={
+    <InstrumentModeSelector
+      instrumentModes={
         Array [
           "All",
         ]
@@ -131,7 +131,7 @@ exports[`Telescope form rendering should render correctly 2`] = `
       }
     />
     <DetectorModeSelector
-      detectorMode={
+      detectorModes={
         Array [
           "All",
         ]
@@ -176,7 +176,7 @@ exports[`Telescope form rendering should render correctly 3`] = `
         ]
       }
     />
-    <InstrumentsSelector
+    <InstrumentSelector
       instruments={
         Array [
           "Salticam",
@@ -189,8 +189,8 @@ exports[`Telescope form rendering should render correctly 3`] = `
         ]
       }
     />
-    <ModeSelector
-      modes={
+    <InstrumentModeSelector
+      instrumentModes={
         Array [
           "All",
         ]
@@ -208,7 +208,7 @@ exports[`Telescope form rendering should render correctly 3`] = `
       }
     />
     <DetectorModeSelector
-      detectorMode={
+      detectorModes={
         Array [
           "All",
         ]

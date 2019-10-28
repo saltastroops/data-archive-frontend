@@ -5,7 +5,7 @@ Object {
   "AND": Array [
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.principalInvestigatorFamilyName",
+        "column": "proposal.pi",
         "value": "Doe",
       },
     },
@@ -18,7 +18,7 @@ Object {
   "AND": Array [
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.proposalCode",
+        "column": "proposal.proposal_code",
         "value": "2-SCI",
       },
     },
@@ -31,7 +31,7 @@ Object {
   "AND": Array [
     Object {
       "EQUALS": Object {
-        "column": "Observation.night",
+        "column": "observation_time.night",
         "value": "2019-02-17",
       },
     },
@@ -44,19 +44,19 @@ Object {
   "AND": Array [
     Object {
       "EQUALS": Object {
-        "column": "Observation.night",
+        "column": "observation_time.night",
         "value": "2019-05-13",
       },
     },
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.principalInvestigatorFamilyName",
+        "column": "proposal.pi",
         "value": "Sipho",
       },
     },
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.proposalCode",
+        "column": "proposal.proposal_code",
         "value": "2019-1-SCI-042",
       },
     },
@@ -71,13 +71,13 @@ Object {
       "AND": Array [
         Object {
           "GREATER_EQUAL": Object {
-            "column": "Observation.night",
+            "column": "observation_time.night",
             "value": "2019-05-01",
           },
         },
         Object {
           "LESS_EQUAL": Object {
-            "column": "Observation.night",
+            "column": "observation_time.night",
             "value": "2019-05-13",
           },
         },
@@ -85,69 +85,14 @@ Object {
     },
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.principalInvestigatorFamilyName",
+        "column": "proposal.pi",
         "value": "Sipho",
       },
     },
     Object {
       "CONTAINS": Object {
-        "column": "Proposal.proposalCode",
+        "column": "proposal.proposal_code",
         "value": "2019-1-SCI-042",
-      },
-    },
-  ],
-}
-`;
-
-exports[`rssWhereCondition should map the RSS modes correctly 1`] = `
-Object {
-  "AND": Array [
-    Object {
-      "EQUALS": Object {
-        "column": "Instrument.instrumentName",
-        "value": "RSS",
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "RssMode.rssMode",
-        "values": Array [
-          "Spectroscopy",
-          "MOS",
-          "FP Polarimatry",
-          "Polarimetric Imaging",
-        ],
-      },
-    },
-  ],
-}
-`;
-
-exports[`rssWhereCondition should map the polarimetry modes correctly 1`] = `
-Object {
-  "AND": Array [
-    Object {
-      "EQUALS": Object {
-        "column": "Instrument.instrumentName",
-        "value": "RSS",
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "RssMode.rssMode",
-        "values": Array [
-          "Spectropolarimetry",
-          "Polarimetric imaging",
-        ],
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "RSS.polarimetryProcedurePattern",
-        "values": Array [
-          "LINEAR",
-          "CIRCULAR",
-        ],
       },
     },
   ],
@@ -160,10 +105,10 @@ Object {
     Object {
       "WITHIN_RADIUS": Object {
         "declination": -5,
-        "declinationColumn": "Target.declination",
+        "declinationColumn": "position.dec",
         "radius": 0.04,
         "rightAscension": 17,
-        "rightAscensionColumn": "Target.rightAscension",
+        "rightAscensionColumn": "position.ra",
       },
     },
   ],
@@ -175,13 +120,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -0.55,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -0.45,
       },
     },
@@ -194,25 +139,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 5,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 9,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -0.55,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -0.45,
       },
     },
@@ -225,13 +170,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 12,
       },
     },
@@ -244,13 +189,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 12,
       },
     },
@@ -263,25 +208,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 115,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 200,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 10,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 12,
       },
     },
@@ -294,13 +239,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 12.95,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 13.05,
       },
     },
@@ -313,25 +258,25 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 12.95,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 13.05,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 12,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": 13,
       },
     },
@@ -344,13 +289,13 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 4,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 355,
       },
     },
@@ -367,13 +312,13 @@ Object {
           "AND": Array [
             Object {
               "GREATER_EQUAL": Object {
-                "column": "Target.rightAscension",
+                "column": "position.ra",
                 "value": 355,
               },
             },
             Object {
               "LESS_EQUAL": Object {
-                "column": "Target.rightAscension",
+                "column": "position.ra",
                 "value": 360,
               },
             },
@@ -383,13 +328,13 @@ Object {
           "AND": Array [
             Object {
               "GREATER_EQUAL": Object {
-                "column": "Target.rightAscension",
+                "column": "position.ra",
                 "value": 0,
               },
             },
             Object {
               "LESS_EQUAL": Object {
-                "column": "Target.rightAscension",
+                "column": "position.ra",
                 "value": 4,
               },
             },
@@ -406,28 +351,130 @@ Object {
   "AND": Array [
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 4,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.rightAscension",
+        "column": "position.ra",
         "value": 355,
       },
     },
     Object {
       "GREATER_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -11,
       },
     },
     Object {
       "LESS_EQUAL": Object {
-        "column": "Target.declination",
+        "column": "position.dec",
         "value": -12,
       },
     },
   ],
+}
+`;
+
+exports[`telescopeWhereCondition should map All correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map All together with other items correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map conditions correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "IS_IN": Object {
+        "column": "detector_mode.detector_mode",
+        "values": Array [
+          "Normal",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "filter.name",
+        "values": Array [
+          "Johnson U",
+          "Cousins I",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "hrs_mode.hrs_mode",
+        "values": Array [
+          "High Stability",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument.name",
+        "values": Array [
+          "RSS",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument_mode.instrument_mode",
+        "values": Array [
+          "Imaging",
+          "Spectroscopy",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_fabry_perot_mode.fabry_perot_mode",
+        "values": Array [
+          "MR",
+          "HR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_grating.grating",
+        "values": Array [
+          "pg0900",
+          "pg1800",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "polarization_mode.name",
+        "values": Array [
+          "LINEAR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "telescope.name",
+        "values": Array [
+          "Lesedi",
+          "SALT",
+        ],
+      },
+    },
+  ],
+}
+`;
+
+exports[`telescopeWhereCondition should map empty arrays correctly 1`] = `
+Object {
+  "AND": Array [],
 }
 `;

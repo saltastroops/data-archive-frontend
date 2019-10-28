@@ -5,16 +5,16 @@ exports[`RssGrating should render correctly 1`] = `
   width: 95%;
 }
 
-<RssGrating
+<RssGratingSelector
   onSelect={[MockFunction]}
-  rssGrating={Array []}
+  rssGratings={Array []}
 >
   <div>
     <p>
       RSS grating
     </p>
     <MultiSelectField
-      name="rssGrating"
+      name="rssGratings"
       onChange={[Function]}
       value={Array []}
     >
@@ -54,7 +54,7 @@ exports[`RssGrating should render correctly 1`] = `
           >
             <select
               multiple={true}
-              name="rssGrating"
+              name="rssGratings"
               onChange={[Function]}
               size={6}
               style={
@@ -119,5 +119,5 @@ exports[`RssGrating should render correctly 1`] = `
       </styled.div>
     </MultiSelectField>
   </div>
-</RssGrating>
+</RssGratingSelector>
 `;

@@ -17,7 +17,6 @@ import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
-import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
 
@@ -508,6 +507,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     const now = Date.now();
 
+    let calibrationCounter = 1;
+
     for (const result of results) {
       // The metadata is a list of name-value pairs. We need to convert this
       // into a plain object.
@@ -524,7 +525,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
+      const observationId = metadata[DataKeys.OBSERVATION_ID]
+        ? metadata[DataKeys.OBSERVATION_ID].toString()
+        : `Calibration-${calibrationCounter++}`;
       const file = () => {
+        const observationName = metadata[DataKeys.OBSERVATION_NAME]
+          ? metadata[DataKeys.OBSERVATION_NAME]
+          : "Non-Science";
         return {
           ...metadata,
           cartContent: {
@@ -532,15 +539,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             name: metadata[DataKeys.DATA_FILE_FILENAME],
             observation: {
               __typename: "CartObservation",
-              id: metadata[DataKeys.OBSERVATION_ID].toString(),
-              name: metadata[DataKeys.OBSERVATION_NAME]
+              id: observationId,
+              name: observationName
             },
             target: metadata[DataKeys.TARGET_NAME] || null
           }
         };
       };
 
-      const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
       if (!observationsMap.has(observationId)) {
         // Create a new observations object. A string of the form "TN - #id" is
         // used as observation name, where TN is the telescope name and id is

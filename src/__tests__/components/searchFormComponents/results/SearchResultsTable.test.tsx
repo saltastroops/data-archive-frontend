@@ -13,7 +13,7 @@ import cache from "../../../../util/cache";
 // IMPORTANT NOTE
 //
 // While the snapshot tests in this file pass, they are not particularly
-// meaningful, as there does nbot seem much content in the table DOM recorded
+// meaningful, as there does not seem much content in the table DOM recorded
 // in the snapshots.
 
 const dummySearchResults: any[] = [
