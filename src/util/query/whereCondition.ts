@@ -388,7 +388,7 @@ export function telescopeWhereCondition(
  * -------
  * A copy of the array without any "All" item.
  */
-function withoutAll<T>(items: Array<T> | undefined): Array<T> {
+function withoutAll<T>(items: T[] | undefined): T[] {
   if (!items) {
     return [];
   }

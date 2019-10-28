@@ -12,8 +12,8 @@ import {
   SubGrid,
   SubGrid4
 } from "../basicComponents/Grids";
-import InputField from "../basicComponents/InputField";
 import HelpButton from "../basicComponents/HelpButton";
+import InputField from "../basicComponents/InputField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
@@ -30,15 +30,12 @@ interface IProposalFormProps {
   onChange: (value: IGeneral) => void;
 }
 
-interface IProposalFormState {}
+// interface IProposalFormState {}
 
 /**
  * A form for selecting general search parameters.
  */
-class ProposalForm extends React.Component<
-  IProposalFormProps,
-  IProposalFormState
-> {
+class ProposalForm extends React.Component<IProposalFormProps, {}> {
   state = { showHelpOf: "" };
   // Function for handling input changes.
   change = (e: React.ChangeEvent<HTMLInputElement>) => {

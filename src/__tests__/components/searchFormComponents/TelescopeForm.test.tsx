@@ -74,9 +74,9 @@ describe("Telescope form rendering", () => {
       <TelescopeForm
         onChange={onChange}
         telescope={{
-          telescopes: ["SALT"],
-          instrument: ["RSS"],
-          instrumentModes: ["MOS", "Fabry Perot"]
+          instrumentModes: ["MOS", "Fabry Perot"],
+          instruments: ["RSS"],
+          telescopes: ["SALT"]
         }}
       />
     );
@@ -90,8 +90,8 @@ describe("Telescope form rendering", () => {
           <TelescopeForm
             onChange={onChange}
             telescope={{
-              instruments: ["RSS"],
               instrumentModes: ["MOS", "Fabry Perot", "Spectropolarimetry"],
+              instruments: ["RSS"],
               telescopes: ["SALT"]
             }}
           />

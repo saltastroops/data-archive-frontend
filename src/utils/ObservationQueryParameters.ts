@@ -169,7 +169,7 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  */
 export interface ITelescope {
   detectorModes?: Array<DetectorMode | "All">;
-  filters?: Array<string>;
+  filters?: string[];
   hrsModes?: Array<HRSMode | "All">;
   instrumentModes?: Array<InstrumentMode | "All">;
   instruments?: Array<InstrumentName | "All">;
