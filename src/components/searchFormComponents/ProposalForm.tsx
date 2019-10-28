@@ -30,8 +30,6 @@ interface IProposalFormProps {
   onChange: (value: IGeneral) => void;
 }
 
-// interface IProposalFormState {}
-
 /**
  * A form for selecting general search parameters.
  */
