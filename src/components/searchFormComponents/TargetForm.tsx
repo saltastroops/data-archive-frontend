@@ -12,8 +12,7 @@ import {
   MainGrid,
   ResolverContainer,
   SingleColumnGrid,
-  SubGrid,
-  SubGridRight
+  SubGrid
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
@@ -276,15 +275,11 @@ export const validatedTarget = async (target: ITarget) => {
           return {
             declination:
               `${position.declination}` !== target.declination
-                ? `The given target name resolves to a different declination with ${
-                    target.resolver
-                  }.`
+                ? `The given target name resolves to a different declination with ${target.resolver}.`
                 : "",
             rightAscension:
               `${position.rightAscension}` !== target.rightAscension
-                ? `The given target name resolves to a different right ascension with ${
-                    target.resolver
-                  }.`
+                ? `The given target name resolves to a different right ascension with ${target.resolver}.`
                 : ""
           };
         }
