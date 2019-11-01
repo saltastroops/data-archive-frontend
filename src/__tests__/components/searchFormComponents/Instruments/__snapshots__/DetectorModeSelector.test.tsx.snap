@@ -6,15 +6,15 @@ exports[`Detector Mode Selector should render correctly 1`] = `
 }
 
 <DetectorModeSelector
-  detectorMode={Array []}
+  detectorModes={Array []}
   onSelect={[MockFunction]}
 >
   <div>
     <p>
-      Detector Mode
+      Detector mode
     </p>
     <MultiSelectField
-      name="detectorMode"
+      name="detectorModes"
       onChange={[Function]}
       value={Array []}
     >
@@ -54,7 +54,7 @@ exports[`Detector Mode Selector should render correctly 1`] = `
           >
             <select
               multiple={true}
-              name="detectorMode"
+              name="detectorModes"
               onChange={[Function]}
               size={6}
               style={

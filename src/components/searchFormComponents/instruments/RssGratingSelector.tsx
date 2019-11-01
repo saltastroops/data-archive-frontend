@@ -3,28 +3,33 @@ import MultiSelectField, {
   AllOption
 } from "../../basicComponents/MultiSelectField";
 
-interface IFabryPerotProps {
-  fabryPerot?: string[];
+interface IRssGratingSelectorProps {
+  rssGratings?: string[];
   onSelect: (value: any) => void;
 }
 
-export const FABRY_PEROT = [
-  "Low resolution",
-  "Medium resolution",
-  "High resolution",
-  "Tunable filter"
+// Rss grating
+export const RSS_GRATINGS = [
+  "Open",
+  "PG0300",
+  "PG0900",
+  "PG1300",
+  "PG1800",
+  "PG2300",
+  "PG3000"
 ];
+
 /**
- * A form for selecting FabryPerot-related search parameters.
+ * A form for selecting RssGrating-related search parameters.
  */
-const FabryPerot = (props: IFabryPerotProps) => {
-  const { onSelect, fabryPerot } = props;
+const RssGratingSelector = (props: IRssGratingSelectorProps) => {
+  const { onSelect, rssGratings } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      fabryPerot: Array.from(values).map((t: any) => {
+      rssGratings: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
@@ -32,14 +37,14 @@ const FabryPerot = (props: IFabryPerotProps) => {
 
   return (
     <div>
-      <p>Fabry perot</p>
+      <p>RSS grating</p>
       <MultiSelectField
-        name={"fabryPerot"}
+        name={"rssGratings"}
         onChange={select}
-        value={fabryPerot || ["All"]}
+        value={rssGratings || ["All"]}
       >
         <AllOption />
-        {FABRY_PEROT.sort().map(i => (
+        {RSS_GRATINGS.sort().map(i => (
           <option key={i} value={i}>
             {i}
           </option>
@@ -49,4 +54,4 @@ const FabryPerot = (props: IFabryPerotProps) => {
   );
 };
 
-export default FabryPerot;
+export default RssGratingSelector;

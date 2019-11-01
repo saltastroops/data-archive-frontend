@@ -5,7 +5,7 @@ exports[`InstrumentsSelector should render correctly 1`] = `
   width: 95%;
 }
 
-<InstrumentsSelector
+<InstrumentSelector
   instruments={Array []}
   onSelect={[MockFunction]}
 >
@@ -119,5 +119,5 @@ exports[`InstrumentsSelector should render correctly 1`] = `
       </styled.div>
     </MultiSelectField>
   </div>
-</InstrumentsSelector>
+</InstrumentSelector>
 `;

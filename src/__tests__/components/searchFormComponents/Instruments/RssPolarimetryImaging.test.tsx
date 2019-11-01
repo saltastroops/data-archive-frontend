@@ -1,14 +1,17 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import RssPolarimetryImaging from "../../../../components/searchFormComponents/instruments/RssPolarimetryImaging";
+import RssPolarimetryModeSelector from "../../../../components/searchFormComponents/instruments/RssPolarimetryModeSelector";
 
 const onSelect = jest.fn() as any;
 describe("Rss Polarimetry Imaging", () => {
   it("should be defined", () => {
     expect(
       mount(
-        <RssPolarimetryImaging rssPolarimetryImaging={[]} onSelect={onSelect} />
+        <RssPolarimetryModeSelector
+          rssPolarimetryModes={[]}
+          onSelect={onSelect}
+        />
       )
     ).toBeDefined();
   });
@@ -18,8 +21,8 @@ describe("Rss Polarimetry Imaging", () => {
     expect(
       toJson(
         mount(
-          <RssPolarimetryImaging
-            rssPolarimetryImaging={[]}
+          <RssPolarimetryModeSelector
+            rssPolarimetryModes={[]}
             onSelect={onSelect}
           />
         )

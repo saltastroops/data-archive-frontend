@@ -60,37 +60,37 @@ export default class PolarimetryModesSelector extends React.Component<
       <PolarimetryModesDiv>
         <label>
           <LargeCheckbox
-            checked={polarimetryModes.has("LINEAR")}
+            checked={polarimetryModes.has("Linear")}
             data-test="linear"
             onChange={this.onChange}
-            value={"LINEAR"}
+            value={"Linear"}
           />
           Linear
         </label>
         <label>
           <LargeCheckbox
-            checked={polarimetryModes.has("LINEAR HI")}
+            checked={polarimetryModes.has("Linear Hi")}
             data-test="linear-hi"
             onChange={this.onChange}
-            value={"LINEAR HI"}
+            value={"Linear Hi"}
           />
           Linear Hi
         </label>
         <label>
           <LargeCheckbox
-            checked={polarimetryModes.has("CIRCULAR")}
+            checked={polarimetryModes.has("Circular")}
             data-test="circular"
             onChange={this.onChange}
-            value={"CIRCULAR"}
+            value={"Circular"}
           />
           Circular
         </label>
         <label>
           <LargeCheckbox
-            checked={polarimetryModes.has("ALL STOKES")}
+            checked={polarimetryModes.has("All Stokes")}
             data-test="all-stokes"
             onChange={this.onChange}
-            value={"ALL STOKES"}
+            value={"All Stokes"}
           />
           All Stokes
         </label>

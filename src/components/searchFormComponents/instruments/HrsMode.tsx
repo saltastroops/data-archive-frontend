@@ -4,7 +4,7 @@ import MultiSelectField, {
 } from "../../basicComponents/MultiSelectField";
 
 interface IHrsModeProps {
-  hrsMode?: string[];
+  hrsModes?: string[];
   onSelect: (value: any) => void;
 }
 
@@ -19,7 +19,7 @@ const HRS_MODES = [
  * A form for selecting HrsMode-related search parameters.
  */
 const HrsMode = (props: IHrsModeProps) => {
-  const { onSelect, hrsMode } = props;
+  const { onSelect, hrsModes } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
@@ -33,11 +33,11 @@ const HrsMode = (props: IHrsModeProps) => {
 
   return (
     <div>
-      <p>HRS Mode</p>
+      <p>HRS mode</p>
       <MultiSelectField
         name={"hrsMode"}
         onChange={select}
-        value={hrsMode || ["All"]}
+        value={hrsModes || ["All"]}
       >
         <AllOption />
         {HRS_MODES.sort().map(i => (

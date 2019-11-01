@@ -33,7 +33,7 @@ export interface ISearchFormState {
 /**
  * The available calibration types.
  */
-export type CalibrationType = "arc" | "bias" | "flat" | "standard";
+export type CalibrationType = "Arc" | "Bias" | "Flat" | "Standard";
 
 /**
  * An interface for query parameters related to general information.
@@ -169,18 +169,15 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  telescopes: TelescopeName[];
-  instruments?: InstrumentName[];
-  detectorMode?: any;
-  modes?: any;
-  grating?: any;
-  filters?: any;
-  polarimetry?: any;
-  resolution?: any;
-  hrsMode?: string[];
-  fabryPerot?: string[];
-  rssGrating?: string[];
-  rssPolarimetryImaging?: string[];
+  detectorModes?: Array<DetectorMode | "All">;
+  filters?: string[];
+  hrsModes?: Array<HRSMode | "All">;
+  instrumentModes?: Array<InstrumentMode | "All">;
+  instruments?: Array<InstrumentName | "All">;
+  rssFabryPerotModes?: Array<RSSFabryPerotMode | "All">;
+  rssGratings?: Array<RSSGrating | "All">;
+  rssPolarimetryModes?: Array<RSSPolarimetryMode | "All">;
+  telescopes?: Array<TelescopeName | "All">;
 }
 
 /**
@@ -241,6 +238,28 @@ export type InstrumentName =
   | "SpUpNIC"
   | "SHOC"
   | "HIPPO";
+
+/**
+ * The available instrument modes.
+ */
+export type InstrumentMode =
+  | "Fabry Perot"
+  | "Imaging"
+  | "MOS"
+  | "Polarimetric Imaging"
+  | "Spectropolarimetry"
+  | "Spectroscopy"
+  | "Streaming";
+
+/**
+ * The available detector modes.
+ */
+export type DetectorMode =
+  | "Drift Scan"
+  | "Frame Transfer"
+  | "Normal"
+  | "Shuffle"
+  | "Slot Mode";
 
 /**
  * An interface for query parameters related to an instrument.
@@ -346,21 +365,25 @@ export type RSSGrating =
 
 export type RSSInstrumentMode =
   | "Fabry Perot"
-  | "FP polarimetry"
+  | "FP Polarimetry"
   | "Imaging"
-  | "Polarimetric imaging"
+  | "Polarimetric Imaging"
   | "MOS"
-  | "MOS polarimetry"
+  | "MOS Polarimetry"
   | "Spectropolarimetry"
   | "Spectroscopy";
 
-export type RSSFabryPerotMode = "HR" | "LR" | "MR" | "TF";
+export type RSSFabryPerotMode =
+  | "High Resolution"
+  | "Low Resolution"
+  | "Medium Resolution"
+  | "Tunable Filter";
 
 export type RSSPolarimetryMode =
-  | "ALL STOKES"
-  | "CIRCULAR"
-  | "LINEAR"
-  | "LINEAR HI";
+  | "All Stokes"
+  | "Circular"
+  | "Linear"
+  | "Linear Hi";
 
 /**
  * An interface for query parameters related to HRS.

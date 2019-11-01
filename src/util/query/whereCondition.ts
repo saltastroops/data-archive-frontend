@@ -2,11 +2,7 @@ import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 import {
   HRSMode,
   IGeneral,
-  IHRS,
   IObservationQueryParameters,
-  IRSS,
-  ISALT,
-  ISalticam,
   ITarget,
   ITelescope,
   IWhereCondition
@@ -176,9 +172,7 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   // Principal Investigator
   const principalInvestigator = trim(general.principalInvestigator);
   if (principalInvestigator) {
-    conditions.push(
-      contains(DataKeys.PROPOSAL_PI_FAMILY_NAME, principalInvestigator)
-    );
+    conditions.push(contains(DataKeys.PROPOSAL_PI, principalInvestigator));
   }
 
   // Proposal code
@@ -321,18 +315,21 @@ export function telescopeWhereCondition(
     return and([]);
   }
 
-  const conditions: IWhereCondition[] = [];
+  // Remove "All" from every array.
+  const detectorModes = withoutAll(telescope.detectorModes);
+  const filters = withoutAll(telescope.filters);
+  const hrsModes = withoutAll(telescope.hrsModes);
+  const instruments = withoutAll(telescope.instruments);
+  const instrumentModes = withoutAll(telescope.instrumentModes);
+  const rssFabryPerotModes = withoutAll(telescope.rssFabryPerotModes);
+  const rssGratings = withoutAll(telescope.rssGratings);
+  const rssPolarimetryModes = withoutAll(telescope.rssPolarimetryModes);
+  const telescopes = withoutAll(telescope.telescopes);
 
-  // Telescope-specific conditions
-  // TODO this is not working now
-  switch (telescope.telescopes[0]) {
-    case "SALT":
-      conditions.push(saltWhereCondition(telescope as ISALT));
-      break;
-    case "Lesedi":
-      break;
-    case "1.9 m":
-      break;
+  // detector modes
+  const conditions: IWhereCondition[] = [];
+  if (detectorModes.length) {
+    conditions.push(isIn(DataKeys.DETECTOR_MODE, detectorModes));
   }
 
   return and(conditions);
@@ -373,188 +370,65 @@ export function saltWhereCondition(salt: ISALT) {
       case "BVIT":
         conditions.push(bvitWhereCondition());
     }
+  // filters
+  if (filters.length) {
+    conditions.push(isIn(DataKeys.FILTER, filters));
+
+  }
+
+  // HRS modes
+  if (hrsModes.length) {
+    conditions.push(isIn(DataKeys.HRS_MODE, hrsModes));
+  }
+
+  // instruments
+  if (instruments.length) {
+    conditions.push(isIn(DataKeys.INSTRUMENT_NAME, instruments));
+  }
+
+  // instrument modes
+  if (instrumentModes.length) {
+    conditions.push(isIn(DataKeys.INSTRUMENT_MODE, instrumentModes));
+  }
+
+  // RSS Fabry-Perot modes
+  if (rssFabryPerotModes.length) {
+    conditions.push(isIn(DataKeys.RSS_FABRY_PEROT_MODE, rssFabryPerotModes));
+  }
+
+  // RSS gratings
+  if (rssGratings.length) {
+    conditions.push(isIn(DataKeys.RSS_GRATING, rssGratings));
+  }
+
+  // Polarimetry patterns
+  if (rssPolarimetryModes.length) {
+    conditions.push(isIn(DataKeys.POLARIZATION_MODE, rssPolarimetryModes));
+  }
+
+  // Telescopes
+  if (telescopes.length) {
+    conditions.push(isIn(DataKeys.TELESCOPE_NAME, telescopes));
   }
 
   return and(conditions);
 }
 
 /**
- * Map Salticam query parameters to a where condition.
+ * Returns a copy of an array without any "All" element.
  *
- * Parameters:
- * -----------
- * salticam:
- *    Salticam query parameters.
+ * An empty array is returned if undefined is passed as array.
  *
- * Returns:
- * --------
- * condition:
- *     The where condition for the query parameters.
+ * Parameters
+ * ----------
+ * items:
+ *     Array.
+ *
+ * Returns
+ * -------
+ * A copy of the array without any "All" item.
  */
-export function salticamWhereCondition(salticam: ISalticam): IWhereCondition {
-  const conditions: IWhereCondition[] = [];
 
-  // Salticam is used
-  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "Salticam"));
-
-  // Detector mode
-  const detectorMode = trim(salticam.detectorMode);
-  switch (detectorMode) {
-    case "Normal":
-      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "NORMAL"));
-      break;
-    case "Frame Transfer":
-      conditions.push(
-        equals(DataKeys.SALTICAM_DETECTOR_MODE, "FRAME TRANSFER")
-      );
-      break;
-    case "Slot Mode":
-      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "SLOT MODE"));
-      break;
-    case "Drift Scan":
-      conditions.push(equals(DataKeys.SALTICAM_DETECTOR_MODE, "DRIFT SCAN"));
-      break;
-  }
-
-  // Filter
-  const filter = trim(salticam.filter);
-  if (filter) {
-    conditions.push(equals(DataKeys.SALTICAM_FILTER, filter));
-  }
-
-  return and(conditions);
-}
-
-/**
- * Map RSS query parameters to a where condition.
- *
- * Parameters:
- * -----------
- * rss:
- *    RSS query parameters.
- *
- * Returns:
- * --------
- * condition:
- *     The where condition for the query parameters.
- */
-export function rssWhereCondition(rss: IRSS): IWhereCondition {
-  const conditions: IWhereCondition[] = [];
-
-  // RSS is used
-  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "RSS"));
-
-  // RSS mode
-  if (rss.modes && rss.modes.names.size) {
-    conditions.push(isIn(DataKeys.RSS_MODE, Array.from(rss.modes.names)));
-  }
-
-  // Detector mode
-  const detectorMode = trim(rss.detectorMode);
-  switch (detectorMode) {
-    case "Normal":
-      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "NORMAL"));
-      break;
-    case "Frame Transfer":
-      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "FRAME TRANSFER"));
-      break;
-    case "Slot Mode":
-      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SLOT MODE"));
-      break;
-    case "Shuffle":
-      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "SHUFFLE"));
-      break;
-    case "Drift Scan":
-      conditions.push(equals(DataKeys.RSS_DETECTOR_MODE, "DRIFT SCAN"));
-      break;
-  }
-
-  // Fabry-Perot mode
-  if (rss.modes && rss.modes.fabryPerotMode) {
-    conditions.push(
-      equals(DataKeys.RSS_FABRY_PEROT_MODE, rss.modes.fabryPerotMode)
-    );
-  }
-
-  // Grating
-  if (rss.modes && rss.modes.grating) {
-    conditions.push(equals(DataKeys.RSS_GRATING, rss.modes.grating));
-  }
-
-  // Polarimetry pattern
-  if (
-    rss.modes &&
-    rss.modes.polarimetryModes &&
-    rss.modes.polarimetryModes.size
-  ) {
-    conditions.push(
-      isIn(
-        DataKeys.RSS_POLARIMETRY_PATTERN,
-        Array.from(rss.modes.polarimetryModes)
-      )
-    );
-  }
-
-  return and(conditions);
-}
-
-/**
- * Map HRS query parameters to a where condition.
- *
- * Parameters:
- * -----------
- * hrs:
- *    HRS query parameters.
- *
- * Returns:
- * --------
- * condition:
- *     The where condition for the query parameters.
- */
-export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
-  const conditions: IWhereCondition[] = [];
-
-  // HRS is used
-  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "HRS"));
-
-  // Detector mode
-  const mode = trim(hrs.mode) as HRSMode;
-  switch (mode) {
-    case "Low Resolution":
-      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "LOW RESOLUTION"));
-      break;
-    case "Medium Resolution":
-      conditions.push(
-        equals(DataKeys.HRS_OBSERVATION_MODE, "MEDIUM RESOLUTION")
-      );
-      break;
-    case "High Resolution":
-      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH RESOLUTION"));
-      break;
-    case "High Stability":
-      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "HIGH STABILITY"));
-      break;
-    case "Int Cal Fibre":
-      conditions.push(equals(DataKeys.HRS_OBSERVATION_MODE, "INT CAL FIBRE"));
-      break;
-  }
-
-  return and(conditions);
-}
-
-/**
- * Map BVIT query parameters to a where condition.
- *
- * Parameters:
- * -----------
- * bvit:
- *    BVIT query parameters.
- *
- * Returns:
- * --------
- * condition:
- *     The where condition for the query parameters.
- */
 export function bvitWhereCondition(): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
@@ -562,4 +436,13 @@ export function bvitWhereCondition(): IWhereCondition {
   conditions.push(equals(DataKeys.INSTRUMENT_NAME, "BVIT"));
 
   return and(conditions);
+}
+function withoutAll<T>(items: T[] | undefined): T[] {
+  if (!items) {
+    return [];
+  }
+  if (items && items.some(item => item.toString() === "All")) {
+    return [];
+  }
+  return [...items];
 }

@@ -10,7 +10,7 @@ describe("Proposal Form", () => {
   it("should render", () => {
     expect(
       <ProposalForm
-        proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+        general={{ calibrations: new Set<CalibrationType>(), errors: {} }}
         onChange={onChange}
       />
     ).toBeDefined();
@@ -21,7 +21,7 @@ describe("Proposal Form", () => {
       toJson(
         shallow(
           <ProposalForm
-            proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+            general={{ calibrations: new Set<CalibrationType>(), errors: {} }}
             onChange={onChange}
           />
         )
@@ -32,7 +32,7 @@ describe("Proposal Form", () => {
       toJson(
         shallow(
           <ProposalForm
-            proposal={{
+            general={{
               calibrations: new Set<CalibrationType>(),
               errors: {},
               proposalTitle: "hello"
@@ -46,7 +46,7 @@ describe("Proposal Form", () => {
       toJson(
         shallow(
           <ProposalForm
-            proposal={{
+            general={{
               calibrations: new Set<CalibrationType>(),
               errors: {
                 principalInvestigator: "invalid Principal Investigator",
@@ -67,7 +67,7 @@ describe("Proposal form on change", () => {
   it("should call onChange with the correct value", () => {
     const wrapper = mount(
       <ProposalForm
-        proposal={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+        general={{ calibrations: new Set<CalibrationType>(), errors: {} }}
         onChange={onChange}
       />
     );

@@ -5,8 +5,8 @@ exports[`Mode Selector should render correctly 1`] = `
   width: 95%;
 }
 
-<ModeSelector
-  modes={Array []}
+<InstrumentModeSelector
+  instrumentModes={Array []}
   onSelect={[MockFunction]}
 >
   <div>
@@ -14,7 +14,7 @@ exports[`Mode Selector should render correctly 1`] = `
       Mode
     </p>
     <MultiSelectField
-      name="modes"
+      name="instrumentModes"
       onChange={[Function]}
       value={Array []}
     >
@@ -54,7 +54,7 @@ exports[`Mode Selector should render correctly 1`] = `
           >
             <select
               multiple={true}
-              name="modes"
+              name="instrumentModes"
               onChange={[Function]}
               size={6}
               style={
@@ -90,10 +90,10 @@ exports[`Mode Selector should render correctly 1`] = `
                 MOS
               </option>
               <option
-                key="Polarimetric imaging"
-                value="Polarimetric imaging"
+                key="Polarimetric Imaging"
+                value="Polarimetric Imaging"
               >
-                Polarimetric imaging
+                Polarimetric Imaging
               </option>
               <option
                 key="Spectropolarimetry"
@@ -119,5 +119,5 @@ exports[`Mode Selector should render correctly 1`] = `
       </styled.div>
     </MultiSelectField>
   </div>
-</ModeSelector>
+</InstrumentModeSelector>
 `;

@@ -7,17 +7,17 @@ import MultiSelectField, {
 export const COMMON_RSS_BVIT_MODES = ["Imaging"];
 export const RSS_MODES = [
   "Fabry Perot",
-  // "FP polarimetry",
+  // "FP Polarimetry",
   "MOS",
-  // "MOS polarimetry",
-  "Polarimetric imaging",
+  // "MOS Polarimetry",
+  "Polarimetric Imaging",
   "Spectropolarimetry",
   "Spectroscopy"
 ];
 export const BVIT_MODES = ["Streaming"];
 
-interface IModeSelectorProps {
-  modes: string[];
+interface IInstrumentModeSelectorProps {
+  instrumentModes: string[];
   selectedInstruments?: string[];
   selectedTelescopes?: string[];
   onSelect: (value: any) => void;
@@ -50,14 +50,19 @@ const modesToDisplay = (instruments: string[], telescopes: string[]) => {
 /**
  * A form for selecting ModeSelector-related search parameters.
  */
-const ModeSelector = (props: IModeSelectorProps) => {
-  const { onSelect, selectedInstruments, selectedTelescopes, modes } = props;
+const InstrumentModeSelector = (props: IInstrumentModeSelectorProps) => {
+  const {
+    onSelect,
+    selectedInstruments,
+    selectedTelescopes,
+    instrumentModes
+  } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      modes: Array.from(values).map((t: any) => {
+      instrumentModes: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
@@ -71,9 +76,9 @@ const ModeSelector = (props: IModeSelectorProps) => {
     <div>
       <p>Mode</p>
       <MultiSelectField
-        name={"modes"}
+        name={"instrumentModes"}
         onChange={select}
-        value={modes || ["All"]}
+        value={instrumentModes || ["All"]}
       >
         <AllOption />
         {MODE_TO_DISPLAY.sort().map(i => (
@@ -86,4 +91,4 @@ const ModeSelector = (props: IModeSelectorProps) => {
   );
 };
 
-export default ModeSelector;
+export default InstrumentModeSelector;

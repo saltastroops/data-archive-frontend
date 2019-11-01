@@ -5,16 +5,16 @@ exports[`Rss Polarimetry Imaging should render correctly 1`] = `
   width: 95%;
 }
 
-<RssPolarimetryImaging
+<RssPolarimetryModeSelector
   onSelect={[MockFunction]}
-  rssPolarimetryImaging={Array []}
+  rssPolarimetryModes={Array []}
 >
   <div>
     <p>
-      RSS Polarimetry Imaging
+      RSS polarimetry mode
     </p>
     <MultiSelectField
-      name="rssPolarimetryImaging"
+      name="rssPolarimetry"
       onChange={[Function]}
       value={Array []}
     >
@@ -54,7 +54,7 @@ exports[`Rss Polarimetry Imaging should render correctly 1`] = `
           >
             <select
               multiple={true}
-              name="rssPolarimetryImaging"
+              name="rssPolarimetry"
               onChange={[Function]}
               size={6}
               style={
@@ -101,5 +101,5 @@ exports[`Rss Polarimetry Imaging should render correctly 1`] = `
       </styled.div>
     </MultiSelectField>
   </div>
-</RssPolarimetryImaging>
+</RssPolarimetryModeSelector>
 `;

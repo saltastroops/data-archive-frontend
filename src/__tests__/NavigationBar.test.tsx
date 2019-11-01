@@ -7,6 +7,7 @@ import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { CART_QUERY } from "../util/Cart";
 
 const mockUser = (familyName: string, givenName: string, isAdmin: boolean) => ({
   familyName,

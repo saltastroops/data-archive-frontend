@@ -8,7 +8,7 @@ import MultiSelectField, {
 const SAAO_INSTRUMENTS: InstrumentName[] = ["SpUpNIC", "SHOC", "HIPPO"];
 const SALT_INSTRUMENTS: InstrumentName[] = ["Salticam", "RSS", "HRS", "BVIT"];
 
-interface IInstrumentsSelectorProps {
+interface IInstrumentSelectorProps {
   instruments: string[];
   selectedTelescopes?: string[];
   onSelect: (value: any) => void;
@@ -31,7 +31,7 @@ const instrumentsToDisplay = (telescopes: string[]) => {
 /**
  * A form for selecting InstrumentsSelector-related search parameters.
  */
-const InstrumentsSelector = (props: IInstrumentsSelectorProps) => {
+const InstrumentSelector = (props: IInstrumentSelectorProps) => {
   const { onSelect, instruments, selectedTelescopes } = props;
 
   // Function for handling change events
@@ -40,8 +40,7 @@ const InstrumentsSelector = (props: IInstrumentsSelectorProps) => {
     onSelect({
       instruments: Array.from(values).map((t: any) => {
         return t.text;
-      }),
-      telescopes: selectedTelescopes
+      })
     });
   };
   const FILTERS_TO_DISPLAY = instrumentsToDisplay(selectedTelescopes || []);
@@ -65,4 +64,4 @@ const InstrumentsSelector = (props: IInstrumentsSelectorProps) => {
   );
 };
 
-export default InstrumentsSelector;
+export default InstrumentSelector;

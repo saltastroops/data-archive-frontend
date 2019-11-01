@@ -3,33 +3,27 @@ import MultiSelectField, {
   AllOption
 } from "../../basicComponents/MultiSelectField";
 
-interface IRssGratingProps {
-  rssGrating?: string[];
+interface IRssPolarimetryModeSelectorProps {
+  rssPolarimetryModes?: string[];
   onSelect: (value: any) => void;
 }
 
 // Rss grating
-export const RSS_GRATINGS = [
-  "Open",
-  "PG0300",
-  "PG0900",
-  "PG1300",
-  "PG1800",
-  "PG2300",
-  "PG3000"
-];
+const RSS_POLARIMETRY = ["Linear", "Linear Hi", "Circular", "All Stokes"];
 
 /**
- * A form for selecting RssGrating-related search parameters.
+ * A form for selecting Rss Polarimetry Imaging-related search parameters.
  */
-const RssGrating = (props: IRssGratingProps) => {
-  const { onSelect, rssGrating } = props;
+const RssPolarimetryModeSelector = (
+  props: IRssPolarimetryModeSelectorProps
+) => {
+  const { onSelect, rssPolarimetryModes } = props;
 
   // Function for handling change events
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      rssGrating: Array.from(values).map((t: any) => {
+      rssPolarimetryModes: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
@@ -37,14 +31,14 @@ const RssGrating = (props: IRssGratingProps) => {
 
   return (
     <div>
-      <p>RSS grating</p>
+      <p>RSS polarimetry mode</p>
       <MultiSelectField
-        name={"rssGrating"}
+        name={"rssPolarimetry"}
         onChange={select}
-        value={rssGrating || ["All"]}
+        value={rssPolarimetryModes || ["All"]}
       >
         <AllOption />
-        {RSS_GRATINGS.sort().map(i => (
+        {RSS_POLARIMETRY.sort().map(i => (
           <option key={i} value={i}>
             {i}
           </option>
@@ -54,4 +48,4 @@ const RssGrating = (props: IRssGratingProps) => {
   );
 };
 
-export default RssGrating;
+export default RssPolarimetryModeSelector;
