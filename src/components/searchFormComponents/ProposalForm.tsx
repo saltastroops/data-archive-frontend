@@ -14,7 +14,6 @@ import {
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
-import HelpButton from "../basicComponents/HelpButton";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
