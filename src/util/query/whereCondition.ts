@@ -1,6 +1,5 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 import {
-  HRSMode,
   IGeneral,
   IObservationQueryParameters,
   ITarget,
@@ -332,48 +331,9 @@ export function telescopeWhereCondition(
     conditions.push(isIn(DataKeys.DETECTOR_MODE, detectorModes));
   }
 
-  return and(conditions);
-}
-
-/**
- * Map SALT query parameters to a where condition.
- *
- * Parameters:
- * -----------
- * salt:
- *    SALT query parameters.
- *
- * Returns:
- * --------
- * condition:
- *     The where condition for the query parameters.
- */
-export function saltWhereCondition(salt: ISALT) {
-  const conditions: IWhereCondition[] = [];
-
-  // SALT is used
-  conditions.push(equals(DataKeys.TELESCOPE_NAME, "SALT"));
-
-  // Instrument
-  const instrument = salt.instrument;
-  if (instrument) {
-    switch (instrument.name) {
-      case "Salticam":
-        conditions.push(salticamWhereCondition(instrument as ISalticam));
-        break;
-      case "RSS":
-        conditions.push(rssWhereCondition(instrument as IRSS));
-        break;
-      case "HRS":
-        conditions.push(hrsWhereCondition(instrument as IHRS));
-        break;
-      case "BVIT":
-        conditions.push(bvitWhereCondition());
-    }
   // filters
   if (filters.length) {
     conditions.push(isIn(DataKeys.FILTER, filters));
-
   }
 
   // HRS modes
@@ -428,15 +388,6 @@ export function saltWhereCondition(salt: ISALT) {
  * -------
  * A copy of the array without any "All" item.
  */
-
-export function bvitWhereCondition(): IWhereCondition {
-  const conditions: IWhereCondition[] = [];
-
-  // BVIT is used
-  conditions.push(equals(DataKeys.INSTRUMENT_NAME, "BVIT"));
-
-  return and(conditions);
-}
 function withoutAll<T>(items: T[] | undefined): T[] {
   if (!items) {
     return [];
