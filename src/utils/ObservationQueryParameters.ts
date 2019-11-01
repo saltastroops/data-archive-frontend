@@ -25,6 +25,7 @@ export interface IWhereCondition {}
  */
 export interface ISearchFormState {
   general: IGeneral;
+  limitError: string | undefined;
   target: ITarget;
   telescope: ITelescope;
 }

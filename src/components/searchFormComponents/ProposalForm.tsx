@@ -5,8 +5,15 @@ import {
   IGeneral
 } from "../../utils/ObservationQueryParameters";
 import { validateDate } from "../../utils/validators";
-import { MainGrid, Span, SubGrid, SubGrid4 } from "../basicComponents/Grids";
+import {
+  HelpGrid,
+  MainGrid,
+  Span,
+  SubGrid,
+  SubGrid4
+} from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
+import HelpButton from "../basicComponents/HelpButton";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",

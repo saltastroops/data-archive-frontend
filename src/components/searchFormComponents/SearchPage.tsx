@@ -24,7 +24,7 @@ import SearchQuery from "./SearchQuery";
 /**
  * The default maximum number of results a query should return.
  */
-export const DEFAULT_LIMIT = 100;
+export const DEFAULT_LIMIT = "100";
 
 /**
  * The default start index for a query.
@@ -58,11 +58,11 @@ interface ISearchPageProps {
  *  where:
  *     JSON string with the where condition for the search query.
  */
-interface ISearchPageState {
+export interface ISearchPageState {
   allSearchColumns: ISearchResultsTableColumn[];
   databaseColumns: string[];
   error: Error | null;
-  limit: number;
+  limit: string;
   modal: {
     open: boolean;
   };
@@ -85,7 +85,7 @@ interface ISearchResult {
 export interface ISearchPageCache {
   allSearchColumns?: ISearchResultsTableColumn[];
   databaseColumns?: string[];
-  limit: number;
+  limit: string;
   startIndex: number;
   tableColumns?: ISearchResultsTableColumn[];
   where?: string;
@@ -236,7 +236,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                     cache={this.props.searchFormCache}
                     search={this.searchArchive(fetch, preload)}
                     error={validationError || error}
+                    limit={this.state.limit}
                     loading={loading}
+                    updateItemsPerPage={this.updateItemsPerPage}
                   />
                   {results && results.length !== 0 ? (
                     <>
@@ -408,7 +410,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             this.preloadPage(
               preload,
               this.state.limit,
-              this.state.limit + this.state.startIndex
+              parseInt(this.state.limit, 10) + this.state.startIndex
             );
           }
         );
@@ -428,7 +430,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   ) => {
     return async (
       startIndex: number,
-      limit: number,
+      limit: string,
       direction: PaginationDirection
     ) => {
       // Update the cache with the new limit and start index
@@ -454,10 +456,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
       // Preload the previous or next page
       if (direction === "NEXT") {
-        this.preloadPage(preload, limit, startIndex + limit);
+        this.preloadPage(preload, limit, startIndex + parseInt(limit, 10));
       } else {
-        (fetchPageOptions.variables as any).startIndex = startIndex - limit;
-        this.preloadPage(preload, limit, startIndex + limit);
+        (fetchPageOptions.variables as any).startIndex =
+          startIndex - parseInt(limit, 10);
+        this.preloadPage(preload, limit, startIndex + parseInt(limit, 10));
       }
     };
   };
@@ -469,14 +472,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * ----------
    * preload: (options: QueryOptions) => void
    *     Function for carrying out the preloading.
-   * limit: number
+   * limit: string
    *     Maximum number of results to return.
    * startIndex: number
    *     Start index of the first result to return.
    */
   private preloadPage = (
     preload: (options: QueryOptions) => void,
-    limit: number,
+    limit: string,
     startIndex: number
   ) => {
     const { databaseColumns, where } = this.state;
@@ -485,7 +488,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       query: DATA_FILES_QUERY,
       variables: {
         columns: databaseColumns,
-        limit,
+        limit: parseInt(limit, 10),
         startIndex,
         where
       }
@@ -690,6 +693,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   //     );
   //   }
   // };
+  private updateItemsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const limit = e.target.value;
+    this.setState(() => ({
+      ...this.state,
+      limit
+    }));
+  };
 }
 
 export default SearchPage;

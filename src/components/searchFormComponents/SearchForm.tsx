@@ -8,22 +8,25 @@ import {
   ITelescope
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
-import { isError } from "../../utils/validators";
+import { isError, validateDate } from "../../utils/validators";
 import {
   ButtonGrid,
-  DataGrid,
+  MainGrid,
+  NumberGrid,
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
   Span,
+  SubGrid,
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
-import DataForm from "./DataForm";
+import InputField from "../basicComponents/InputField";
 import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm, { validatedProposal } from "./ProposalForm";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
+import { ISearchPageState } from "./SearchPage";
 
 /**
  * Properties for the search form.
@@ -39,7 +42,10 @@ import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 interface ISearchFormProps {
   cache?: ISearchFormCache;
   error?: Error;
+  limitError?: string;
   loading: boolean;
+  updateItemsPerPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  limit: any;
   search: ({
     general,
     target,
@@ -63,6 +69,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       rejected: "",
       science: "Science"
     },
+    limitError: undefined,
     target: {
       errors: {},
       resolver: "Simbad",
@@ -86,7 +93,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
    * Handle changes of telescope-related parameters.
    */
   public telescopeChange = (value: ITelescope) => {
-    console.log(value);
     const newState = {
       ...this.state,
       ...value,
@@ -124,9 +130,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
-    const { error, loading } = this.props;
-    const { target, general, telescope } = this.state;
-    console.log(telescope);
+    const { error, loading, limit, updateItemsPerPage } = this.props;
+    const { general, limitError, target, telescope } = this.state;
 
     return (
       <>
@@ -152,29 +157,48 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         </ParentGridSingle>
         <ParentGrid>
           <ButtonGrid>
-            <Span>
-              {error && <div className="has-text-danger">{error.message}</div>}
-              <button
-                disabled={loading}
-                className={`button is-primary ${loading && "is-loading"}`}
-                data-test="search-button"
-                type="button"
-                value="Search"
-                onClick={this.onSubmit}
-              >
-                search
-              </button>
-            </Span>
-            <Span />
-            <Span>
-              <a
-                className={"button is-text"}
-                data-test="reset-all-button"
-                onClick={this.resetAll}
-              >
-                reset all
-              </a>
-            </Span>
+            <MainGrid>
+              <SubGrid>
+                <a
+                  className={"button is-text"}
+                  data-test="reset-all-button"
+                  onClick={this.resetAll}
+                >
+                  reset all
+                </a>
+                <NumberGrid>
+                  <p>Number of results</p>
+                  <InputField
+                    error={limitError}
+                    name={"items-per-page"}
+                    value={limit}
+                    onChange={updateItemsPerPage}
+                  />
+                </NumberGrid>
+              </SubGrid>
+              <SubGrid>
+                <p />
+              </SubGrid>
+              <SubGrid>
+                <NumberGrid>
+                  <Span>
+                    {error && (
+                      <div className="has-text-danger">{error.message}</div>
+                    )}
+                    <button
+                      disabled={loading}
+                      className={`button is-primary ${loading && "is-loading"}`}
+                      data-test="search-button"
+                      type="button"
+                      value="Search"
+                      onClick={this.onSubmit}
+                    >
+                      search
+                    </button>
+                  </Span>
+                </NumberGrid>
+              </SubGrid>
+            </MainGrid>
           </ButtonGrid>
         </ParentGrid>
       </>
@@ -189,6 +213,10 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const target = await validatedTarget(this.state.target);
     const general = await validatedProposal(this.state.general);
     const telescope = await validatedTelescope(this.state.telescope);
+    this.setState({
+      ...this.state,
+      limitError: validatedLimit(this.props.limit)
+    });
 
     this.updateState({
       ...this.state,
@@ -201,7 +229,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         general.errors,
         target.errors,
         (telescope && telescope.errors) || {}
-      )
+      ) &&
+      isValidLimit(this.props.limit)
     ) {
       this.props.search({ general, target, telescope });
     }
@@ -239,5 +268,12 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     this.updateState(newState);
   };
 }
-
+const isValidLimit = (limit: string) => {
+  return /^\+?(0|[1-9]\d*)$/.test(limit);
+};
+const validatedLimit = (limit: string) => {
+  return !isValidLimit(limit)
+    ? "Limit should be a positive integer"
+    : undefined;
+};
 export default SearchForm;
