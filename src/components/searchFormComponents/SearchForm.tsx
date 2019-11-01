@@ -8,7 +8,7 @@ import {
   ITelescope
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
-import { isError, validateDate } from "../../utils/validators";
+import { isError } from "../../utils/validators";
 import {
   ButtonGrid,
   MainGrid,
@@ -26,7 +26,6 @@ import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm, { validatedProposal } from "./ProposalForm";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
-import { ISearchPageState } from "./SearchPage";
 
 /**
  * Properties for the search form.

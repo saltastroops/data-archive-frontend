@@ -1,20 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import {
-  faShoppingCart,
-  faSignInAlt,
-  faUserPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import Query from "react-apollo/Query";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import { Cart, CART_QUERY } from "../util/Cart";
-import Query from "react-apollo/Query";
+import { CART_QUERY } from "../util/Cart";
 import CartButton from "./cart/CartButton";
 
 /**

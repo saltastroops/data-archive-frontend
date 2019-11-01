@@ -17,7 +17,6 @@ import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
-import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
 

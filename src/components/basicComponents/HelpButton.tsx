@@ -1,7 +1,6 @@
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCircle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 interface IHelpButtonProps {

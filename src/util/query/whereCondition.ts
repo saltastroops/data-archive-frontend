@@ -1,7 +1,6 @@
 import DataKeys from "../../components/searchFormComponents/results/DataKeys";
 import {
   HRSMode,
-  IBVIT,
   IGeneral,
   IHRS,
   IObservationQueryParameters,
@@ -24,12 +23,7 @@ import {
   startsWith,
   withinRadius
 } from "./operators";
-import {
-  parseDate,
-  parseObservationNight,
-  parseTargetPosition,
-  trim
-} from "./parse";
+import { parseObservationNight, parseTargetPosition, trim } from "./parse";
 
 /**
  * Map observation query parameters to a where condition.
@@ -377,7 +371,7 @@ export function saltWhereCondition(salt: ISALT) {
         conditions.push(hrsWhereCondition(instrument as IHRS));
         break;
       case "BVIT":
-        conditions.push(bvitWhereCondition(instrument as IBVIT));
+        conditions.push(bvitWhereCondition());
     }
   }
 
@@ -561,7 +555,7 @@ export function hrsWhereCondition(hrs: IHRS): IWhereCondition {
  * condition:
  *     The where condition for the query parameters.
  */
-export function bvitWhereCondition(bvit: IBVIT): IWhereCondition {
+export function bvitWhereCondition(): IWhereCondition {
   const conditions: IWhereCondition[] = [];
 
   // BVIT is used
