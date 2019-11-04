@@ -521,9 +521,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ? metadata[DataKeys.OBSERVATION_ID].toString()
         : `Calibration-${calibrationCounter++}`;
       const file = () => {
-        const observationName = metadata[DataKeys.OBSERVATION_NAME]
-          ? metadata[DataKeys.OBSERVATION_NAME]
-          : "Non-Science";
         return {
           ...metadata,
           cartContent: {
