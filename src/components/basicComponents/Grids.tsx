@@ -162,6 +162,17 @@ const SubGrid5 = styled.div.attrs({
   }
 `;
 
+const NumberGrid = styled.div.attrs({
+  className: "grid-item"
+})`
+  display: grid;
+  grid-template-columns: auto;
+  padding: 6px;
+  gap: 5px;
+  width: 105%
+  text-align: left;
+`;
+
 const Span = styled.span.attrs({
   className: "span"
 })`
@@ -225,6 +236,7 @@ export {
   SubGrid,
   RightSubGrid,
   MainGrid,
+  NumberGrid,
   HelpGrid,
   ButtonGrid,
   Span,

@@ -97,7 +97,7 @@ class App extends React.Component<{}, IAppState> {
     loginForm: {},
     registrationForm: {},
     searchForm: {},
-    searchPage: { limit: DEFAULT_LIMIT, startIndex: DEFAULT_START_INDEX },
+    searchPage: { startIndex: DEFAULT_START_INDEX },
     userUpdateForm: {}
   };
 

@@ -55,6 +55,7 @@ export type CalibrationType = "Arc" | "Bias" | "Flat" | "Standard";
  *
  */
 export interface IGeneralErrors {
+  limit?: string;
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;
@@ -65,6 +66,7 @@ export interface IGeneralErrors {
 }
 export interface IGeneral {
   errors: IGeneralErrors;
+  limit: string;
   observationNight?: string;
   principalInvestigator?: string;
   proposalCode?: string;

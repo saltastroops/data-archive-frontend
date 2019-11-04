@@ -16,7 +16,6 @@ describe("TelescopeForm", () => {
 
   it("should have a select element with name 'telescope'", () => {
     const telescope = wrapper.find('select[name="telescopes"]');
-    console.log("XXX::: ", telescope.debug());
     expect(telescope).toBeDefined();
   });
   it("should have a select element with name 'instruments'", () => {

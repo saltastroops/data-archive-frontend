@@ -51,14 +51,6 @@ describe("Search Form", () => {
     expect(mainDiv.length).toBeGreaterThan(0);
   });
 
-  it("should contain four grid-item and one button", () => {
-    const wrapper = mount(<SearchForm loading={false} search={jest.fn()} />);
-    const items = wrapper.find("div.grid-item");
-    expect(items.length).toEqual(4);
-    const button = wrapper.find("button.is-primary");
-    expect(button.length).toEqual(1);
-  });
-
   it("should contain target, proposal, telescope and data form", () => {
     const wrapper = mount(<SearchForm loading={false} search={jest.fn()} />);
     const target = wrapper.find("div.target-form");
