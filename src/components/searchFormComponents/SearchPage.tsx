@@ -195,7 +195,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         columns: this.state.databaseColumns,
         limit: parseInt(
           (searchFormCache.general && searchFormCache.general.limit) ||
-            DEFAULT_LIMIT
+            DEFAULT_LIMIT,
+          10
         ),
         startIndex,
         where
@@ -386,7 +387,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             where
           }),
           async () => {
-            const limit = parseInt(general.limit || DEFAULT_LIMIT);
+            const limit = parseInt(general.limit || DEFAULT_LIMIT, 10);
             const options: QueryOptions = {
               fetchPolicy: "network-only",
               query: DATA_FILES_QUERY,

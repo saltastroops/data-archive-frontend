@@ -24,9 +24,9 @@ import {
 import InputField from "../basicComponents/InputField";
 import ISearchFormCache from "./ISearchFormCache";
 import ProposalForm from "./ProposalForm";
+import { DEFAULT_LIMIT } from "./SearchPage";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
-import { DEFAULT_LIMIT } from "./SearchPage";
 
 /**
  * Properties for the search form.
@@ -63,8 +63,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
     general: {
       calibrations: new Set<CalibrationType>(),
-      limit: DEFAULT_LIMIT,
       errors: {},
+      limit: DEFAULT_LIMIT,
       rejected: "",
       science: "Science"
     },
@@ -272,10 +272,10 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const value = e.target.value;
     this.generalChange({
       ...this.state.general,
-      limit: value,
       errors: {
         ...this.state.general.errors
-      }
+      },
+      limit: value
     });
   };
 
