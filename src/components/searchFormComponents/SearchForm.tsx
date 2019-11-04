@@ -8,7 +8,7 @@ import {
   ITelescope
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
-import { isError } from "../../utils/validators";
+import { isError, validateDate } from "../../utils/validators";
 import {
   ButtonGrid,
   MainGrid,
@@ -23,9 +23,10 @@ import {
 } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import ISearchFormCache from "./ISearchFormCache";
-import ProposalForm, { validatedProposal } from "./ProposalForm";
+import ProposalForm from "./ProposalForm";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
+import { DEFAULT_LIMIT } from "./SearchPage";
 
 /**
  * Properties for the search form.
@@ -43,8 +44,6 @@ interface ISearchFormProps {
   error?: Error;
   limitError?: string;
   loading: boolean;
-  updateItemsPerPage: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  limit: any;
   search: ({
     general,
     target,
@@ -64,11 +63,11 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
     general: {
       calibrations: new Set<CalibrationType>(),
+      limit: DEFAULT_LIMIT,
       errors: {},
       rejected: "",
       science: "Science"
     },
-    limitError: undefined,
     target: {
       errors: {},
       resolver: "Simbad",
@@ -129,8 +128,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
-    const { error, loading, limit, updateItemsPerPage } = this.props;
-    const { general, limitError, target, telescope } = this.state;
+    const { error, loading } = this.props;
+    const { general, target, telescope } = this.state;
 
     return (
       <>
@@ -164,10 +163,10 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                 <NumberGrid>
                   <p>Number of results</p>
                   <InputField
-                    error={limitError}
+                    error={general.errors.limit}
                     name={"items-per-page"}
-                    value={limit}
-                    onChange={updateItemsPerPage}
+                    value={general.limit}
+                    onChange={this.updateItemsPerPage}
                   />
                 </NumberGrid>
               </SubGrid>
@@ -206,12 +205,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   private onSubmit = async () => {
     // Add errors to the search parameter details
     const target = await validatedTarget(this.state.target);
-    const general = await validatedProposal(this.state.general);
+    const general = this.validatedGeneral(this.state.general);
     const telescope = await validatedTelescope(this.state.telescope);
-    this.setState({
-      ...this.state,
-      limitError: validatedLimit(this.props.limit)
-    });
 
     this.updateState({
       ...this.state,
@@ -224,11 +219,34 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         general.errors,
         target.errors,
         (telescope && telescope.errors) || {}
-      ) &&
-      isValidLimit(this.props.limit)
+      )
     ) {
       this.props.search({ general, target, telescope });
     }
+  };
+
+  /**
+   * Validate the general details.
+   */
+  private validatedGeneral = (general: IGeneral) => {
+    return {
+      ...general,
+      errors: {
+        limit: this.validateLimit(general.limit || ""),
+        observationNight: validateDate(general.observationNight || "")
+      }
+    };
+  };
+
+  /**
+   * Validate the limit, i.e. the maximum number of search results per page.
+   */
+  private validateLimit = (limit: string) => {
+    const isPositiveInt = /^\+?([1-9]\d*)$/.test(limit);
+    if (!isPositiveInt) {
+      return "The number of search results must be a positive integer.";
+    }
+    return "";
   };
 
   /**
@@ -247,6 +265,23 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     );
   };
 
+  /**
+   * Update the number of items to show per page.
+   */
+  private updateItemsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    this.generalChange({
+      ...this.state.general,
+      limit: value,
+      errors: {
+        ...this.state.general.errors
+      }
+    });
+  };
+
+  /**
+   * Reset the query parameters.
+   */
   private resetAll = () => {
     const newState = {
       ...this.state,
@@ -263,12 +298,5 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     this.updateState(newState);
   };
 }
-const isValidLimit = (limit: string) => {
-  return /^\+?(0|[1-9]\d*)$/.test(limit);
-};
-const validatedLimit = (limit: string) => {
-  return !isValidLimit(limit)
-    ? "Limit should be a positive integer"
-    : undefined;
-};
+
 export default SearchForm;

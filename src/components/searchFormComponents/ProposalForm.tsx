@@ -4,7 +4,6 @@ import {
   CalibrationType,
   IGeneral
 } from "../../utils/ObservationQueryParameters";
-import { validateDate } from "../../utils/validators";
 import {
   HelpGrid,
   MainGrid,
@@ -200,12 +199,5 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
     );
   }
 }
-export const validatedProposal = (general: IGeneral) => {
-  return {
-    ...general,
-    errors: {
-      observationNight: validateDate(general.observationNight || "")
-    }
-  };
-};
+
 export default ProposalForm;

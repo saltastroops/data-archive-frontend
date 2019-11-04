@@ -8,11 +8,11 @@ export type PaginationDirection = "NEXT" | "PREVIOUS";
 interface IPaginationProps {
   fetchPage: (
     startIndex: number,
-    limit: string,
+    limit: number,
     direction: PaginationDirection
   ) => void;
   itemsOnCurrentPage: number;
-  itemsPerPage: string;
+  itemsPerPage: number;
   itemsTotal: number;
   startIndex: number;
 }
@@ -45,7 +45,7 @@ const Pagination = (props: IPaginationProps) => {
     itemsTotal,
     startIndex
   } = props;
-  const previousIndex = startIndex - parseInt(itemsPerPage, 10);
+  const previousIndex = startIndex - itemsPerPage;
   const nextIndex = startIndex + itemsOnCurrentPage;
 
   return (
@@ -68,7 +68,7 @@ const Pagination = (props: IPaginationProps) => {
         <span className="pagination-ellipsis">{itemsTotal}</span>
       </a>
       <button
-        disabled={startIndex + parseInt(itemsPerPage, 10) >= itemsTotal}
+        disabled={startIndex + itemsPerPage >= itemsTotal}
         className="pagination-next"
         data-test="pagination-next"
         onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
