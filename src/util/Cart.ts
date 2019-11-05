@@ -81,6 +81,13 @@ export class Cart {
   }
 
   /**
+   * Removes all files from the cart.
+   */
+  public clear() {
+    this.cartFiles = [];
+  }
+
+  /**
    * Returns the cart files grouped by observation.
    *
    * The files are returned as a map whose keys are the observation ids. Each
@@ -162,5 +169,11 @@ export const ADD_TO_CART_MUTATION = gql`
 export const REMOVE_FROM_CART_MUTATION = gql`
   mutation REMOVE_FROM_CART_MUTATION($files: [CartFileInput!]!) {
     removeFromCart(files: $files) @client
+  }
+`;
+
+export const CLEAR_CART_MUTATION = gql`
+  mutation CLEAR_CART_MUTATION {
+    clearCart @client
   }
 `;
