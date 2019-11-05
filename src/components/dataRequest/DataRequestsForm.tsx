@@ -45,6 +45,7 @@ class DataRequestsForm extends React.Component {
           limit: 5,
           startIndex: 0
         }}
+        pollInterval={30000}
       >
         {({ data, loading, error }: any) => {
           if (loading) {
