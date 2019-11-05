@@ -3,38 +3,25 @@ import toJson from "enzyme-to-json";
 import * as React from "react";
 import {
   DataRequestStatus,
+  IDataFile,
   IDataRequest
 } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
 
 const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
-  const observations = ["1", "2", "3"].map((id, index) => ({
-    dataFiles: [
-      {
-        id: `file-${index}a`,
-        name: `filename ${index}a`,
-        observation: {
-          id: `obs-${index}a`,
-          name: `Observation ${index}a`
-        }
-      },
-      {
-        id: `file-${index}b`,
-        name: `filename ${index}b`,
-        observation: {
-          id: `obs-${index}b`,
-          name: `Observation ${index}b`
-        }
-      }
-    ],
-    id,
-    name: `part-${index}`
-  }));
+  const df: IDataFile = {
+    id: `file-${1}a`,
+    name: `filename ${1}a`
+  };
+  const dataFiles = ["1", "2", "3"].map((id, index) => ({
+    id: `file-${index}`,
+    name: `filename ${index}`
+  })) as IDataFile[];
 
   const dataReqest = {
+    dataFiles,
     id: "request-1",
     madeAt: "2018-12-01 20:00",
-    observations,
     status,
     uri: `http://demo/data-request/request-1`
   } as IDataRequest;

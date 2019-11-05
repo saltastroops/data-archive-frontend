@@ -18,29 +18,17 @@ const Heading = styled.h1.attrs({
 export interface IDataFile {
   id: string;
   name: string;
-  observation: IObservation;
-}
-
-export interface IDataRequestObervation {
-  dataFiles: IDataFile[];
-  id: string;
-  name: string;
 }
 
 export interface IDataRequest {
   id: string;
   madeAt: string;
-  observations: IDataRequestObervation[];
+  dataFiles: IDataFile[];
   status: DataRequestStatus;
   uri: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
-
-interface IObservation {
-  id: string;
-  name: string;
-}
 
 /**
  * A component for displaying the user's data requests.
