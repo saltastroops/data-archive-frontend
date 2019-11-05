@@ -132,3 +132,7 @@
   display: inline-block;
   overflow: hidden;
 }
+
+.request-pending {
+  font-style: italic;
+}
