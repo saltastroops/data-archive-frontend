@@ -54,6 +54,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
     const reRequestAll = status === "FAILED";
 
+    const pending = status === "PENDING";
+
     // TO UPDATE
     const filename = `data_request_${id}.zip`;
 
@@ -87,6 +89,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                     Re-request all
                   </button>
                 )}
+                {pending && <span className="request-pending">Pending</span>}
               </p>
             </th>
           </tr>
