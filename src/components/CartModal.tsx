@@ -11,6 +11,7 @@ import Modal from "react-responsive-modal";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CREATE_DATA_REQUEST } from "../graphql/Mutations";
+import { USER_DATA_REQUESTS_QUERY } from "../graphql/Query";
 import cache from "../util/cache";
 import {
   Cart,
@@ -62,7 +63,18 @@ class CartModal extends React.Component<ICart, any> {
             parseInt(file.id, 10)
           );
           return (
-            <Mutation mutation={CREATE_DATA_REQUEST}>
+            <Mutation
+              mutation={CREATE_DATA_REQUEST}
+              refetchQueries={[
+                {
+                  query: USER_DATA_REQUESTS_QUERY,
+                  variables: {
+                    limit: 5,
+                    startIndex: 0
+                  }
+                }
+              ]}
+            >
               {(createDataRequest: any, { error }: any) => (
                 <Modal
                   open={open}
