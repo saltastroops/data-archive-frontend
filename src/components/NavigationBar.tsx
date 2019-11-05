@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import {
-  faShoppingCart,
-  faSignInAlt,
-  faUserPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import Query from "react-apollo/Query";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { CART_QUERY } from "../util/Cart";
+import CartButton from "./cart/CartButton";
 
 /**
  * The navigation bar containing links to all pages, as well as a link for
@@ -234,16 +233,18 @@ class NavigationBar extends React.Component<
                     )}
 
                     {/* Cart icon */}
-                    <div className={"navbar-item is-hidden-descktop"}>
-                      <div
-                        className="button is-link is-outlined"
-                        onClick={() => openCart(true)}
-                      >
-                        <span>
-                          <FontAwesomeIcon icon={faShoppingCart} /> CART
-                        </span>
-                      </div>
-                    </div>
+                    <Query query={CART_QUERY}>
+                      {({ data }: any) => {
+                        return (
+                          <CartButton
+                            openCart={openCart}
+                            cartItemsNumber={
+                              data && data.cart ? data.cart.length : 0
+                            }
+                          />
+                        );
+                      }}
+                    </Query>
                   </div>
                 </div>
               </Nav>

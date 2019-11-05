@@ -4,56 +4,139 @@ exports[`Proposal Form render correctly 1`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal code
-      </p>
+      <styled.div>
+        <p>
+          Proposal code
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal code, such as 2019-1-SCI-042."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
-        title="Proposal code, such as 2019-1-SCI-042"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Principal investigator
-      </p>
+      <styled.div>
+        <p>
+          Principal investigator
+        </p>
+        <HelpButton
+          toolTipMessage="Principal investigator for the proposal."
+        />
+      </styled.div>
       <InputField
         data-test="principal-investigator-input"
         error=""
         name="principalInvestigator"
         onChange={[Function]}
-        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal title
-      </p>
+      <styled.div>
+        <p>
+          Proposal title
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal title."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
-        title="Proposal title"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Observation night
-      </p>
+      <styled.div>
+        <p>
+          Observation night
+        </p>
+        <HelpButton
+          toolTipMessage="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28."
+        />
+      </styled.div>
       <InputField
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
-        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <h5
+        className="title is-5"
+      >
+        Include:
+      </h5>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="arcs-checkbox"
+          id="arcs-checkbox"
+          name="Arc"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Arcs
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="biases-checkbox"
+          id="biases-checkbox"
+          name="Bias"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Biases
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="flats-checkbox"
+          id="flats-checkbox"
+          name="Flat"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Flats
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="standards-checkbox"
+          id="standards-checkbox"
+          name="Standard"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Standards
+      </styled.span>
+    </label>
   </styled.div>
 </Fragment>
 `;
@@ -62,56 +145,139 @@ exports[`Proposal Form render correctly 2`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal code
-      </p>
+      <styled.div>
+        <p>
+          Proposal code
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal code, such as 2019-1-SCI-042."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-code-input"
         name="proposalCode"
         onChange={[Function]}
-        title="Proposal code, such as 2019-1-SCI-042"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Principal investigator
-      </p>
+      <styled.div>
+        <p>
+          Principal investigator
+        </p>
+        <HelpButton
+          toolTipMessage="Principal investigator for the proposal."
+        />
+      </styled.div>
       <InputField
         data-test="principal-investigator-input"
         error=""
         name="principalInvestigator"
         onChange={[Function]}
-        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal title
-      </p>
+      <styled.div>
+        <p>
+          Proposal title
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal title."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-title-input"
         name="proposalTitle"
         onChange={[Function]}
-        title="Proposal title"
         value="hello"
       />
     </styled.div>
     <styled.div>
-      <p>
-        Observation night
-      </p>
+      <styled.div>
+        <p>
+          Observation night
+        </p>
+        <HelpButton
+          toolTipMessage="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28."
+        />
+      </styled.div>
       <InputField
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
-        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <h5
+        className="title is-5"
+      >
+        Include:
+      </h5>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="arcs-checkbox"
+          id="arcs-checkbox"
+          name="Arc"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Arcs
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="biases-checkbox"
+          id="biases-checkbox"
+          name="Bias"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Biases
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="flats-checkbox"
+          id="flats-checkbox"
+          name="Flat"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Flats
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="standards-checkbox"
+          id="standards-checkbox"
+          name="Standard"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Standards
+      </styled.span>
+    </label>
   </styled.div>
 </Fragment>
 `;
@@ -120,58 +286,141 @@ exports[`Proposal Form render correctly 3`] = `
 <Fragment>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal code
-      </p>
+      <styled.div>
+        <p>
+          Proposal code
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal code, such as 2019-1-SCI-042."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-code-input"
         error="invalid proposal code"
         name="proposalCode"
         onChange={[Function]}
-        title="Proposal code, such as 2019-1-SCI-042"
         value="Code1"
       />
     </styled.div>
     <styled.div>
-      <p>
-        Principal investigator
-      </p>
+      <styled.div>
+        <p>
+          Principal investigator
+        </p>
+        <HelpButton
+          toolTipMessage="Principal investigator for the proposal."
+        />
+      </styled.div>
       <InputField
         data-test="principal-investigator-input"
         error="invalid Principal Investigator"
         name="principalInvestigator"
         onChange={[Function]}
-        title="Principal investigator for the proposal"
         value=""
       />
     </styled.div>
   </styled.div>
   <styled.div>
     <styled.div>
-      <p>
-        Proposal title
-      </p>
+      <styled.div>
+        <p>
+          Proposal title
+        </p>
+        <HelpButton
+          toolTipMessage="Proposal title."
+        />
+      </styled.div>
       <InputField
         data-test="proposal-title-input"
         error="invalid proposal title"
         name="proposalTitle"
         onChange={[Function]}
-        title="Proposal title"
         value=""
       />
     </styled.div>
     <styled.div>
-      <p>
-        Observation night
-      </p>
+      <styled.div>
+        <p>
+          Observation night
+        </p>
+        <HelpButton
+          toolTipMessage="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28."
+        />
+      </styled.div>
       <InputField
         data-test="observation-night-input"
         name="observationNight"
         onChange={[Function]}
-        title="Night of the observation. You can input a date range by separating two dates with \\"...\\" For example: 2019-01-01 .. 2019-02-28"
         value=""
       />
     </styled.div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <h5
+        className="title is-5"
+      >
+        Include:
+      </h5>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="arcs-checkbox"
+          id="arcs-checkbox"
+          name="Arc"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Arcs
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="biases-checkbox"
+          id="biases-checkbox"
+          name="Bias"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Biases
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="flats-checkbox"
+          id="flats-checkbox"
+          name="Flat"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Flats
+      </styled.span>
+    </label>
+    <label>
+      <styled.span>
+        <styled.input
+          checked={false}
+          data-test="standards-checkbox"
+          id="standards-checkbox"
+          name="Standard"
+          onChange={[Function]}
+        />
+      </styled.span>
+      <styled.span>
+        Standards
+      </styled.span>
+    </label>
   </styled.div>
 </Fragment>
 `;

@@ -1,13 +1,13 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import SpUpNIC from "../../../../components/searchFormComponents/instruments/SpUpNIC";
+import InstrumentModeSelector from "../../../../components/searchFormComponents/instruments/InstrumentModeSelector";
 
-const onChange = jest.fn();
-describe("SpUpNIC ", () => {
+const onSelect = jest.fn() as any;
+describe("Mode Selector", () => {
   it("should be defined", () => {
     expect(
-      <SpUpNIC spUpNic={{ errors: {}, name: "SpUpNIC" }} onChange={onChange} />
+      mount(<InstrumentModeSelector instrumentModes={[]} onSelect={onSelect} />)
     ).toBeDefined();
   });
 
@@ -16,10 +16,7 @@ describe("SpUpNIC ", () => {
     expect(
       toJson(
         mount(
-          <SpUpNIC
-            spUpNic={{ errors: {}, name: "SpUpNIC" }}
-            onChange={onChange}
-          />
+          <InstrumentModeSelector instrumentModes={[]} onSelect={onSelect} />
         )
       )
     ).toMatchSnapshot();

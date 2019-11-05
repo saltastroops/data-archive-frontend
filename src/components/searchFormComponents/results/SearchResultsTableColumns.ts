@@ -63,8 +63,14 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return { dataKey, name: "Data Category", visible: true };
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
-    case DataKeys.HRS_OBSERVATION_MODE:
+    case DataKeys.DETECTOR_MODE:
+      return { dataKey, name: "Detector Mode", visible: true };
+    case DataKeys.FILTER:
+      return { dataKey, name: "Filter", visible: true };
+    case DataKeys.HRS_MODE:
       return { dataKey, name: "HRS Mode", visible: true };
+    case DataKeys.INSTRUMENT_MODE:
+      return { dataKey, name: "RSS Mode", visible: true };
     case DataKeys.INSTRUMENT_NAME:
       return { dataKey, name: "Instrument", visible: true };
     case DataKeys.OBSERVATION_NAME:
@@ -78,26 +84,18 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         name: "Release Date",
         visible: true
       };
+    case DataKeys.POLARIZATION_MODE:
+      return { dataKey, name: "Polarimetry Pattern", visible: true };
     case DataKeys.PROPOSAL_CODE:
       return { dataKey, name: "Proposal", visible: true };
-    case DataKeys.PROPOSAL_PI_FAMILY_NAME:
+    case DataKeys.PROPOSAL_PI:
       return { dataKey, name: "PI", visible: true };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: true };
-    case DataKeys.RSS_DETECTOR_MODE:
-      return { dataKey, name: "RSS Detector Mode", visible: true };
     case DataKeys.RSS_FABRY_PEROT_MODE:
       return { dataKey, name: "RSS FP Mode", visible: true };
     case DataKeys.RSS_GRATING:
       return { dataKey, name: "RSS Grating", visible: true };
-    case DataKeys.RSS_MODE:
-      return { dataKey, name: "RSS Mode", visible: true };
-    case DataKeys.RSS_POLARIMETRY_PATTERN:
-      return { dataKey, name: "RSS Polarimetry Pattern", visible: true };
-    case DataKeys.SALTICAM_DETECTOR_MODE:
-      return { dataKey, name: "Detector Mode", visible: true };
-    case DataKeys.SALTICAM_FILTER:
-      return { dataKey, name: "Filter", visible: true };
     case DataKeys.TARGET_DECLINATION:
       return {
         dataKey,
@@ -148,7 +146,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
     DataKeys.TARGET_DECLINATION,
     DataKeys.TARGET_TYPE_EXPLANATION,
     DataKeys.PROPOSAL_CODE,
-    DataKeys.PROPOSAL_PI_FAMILY_NAME,
+    DataKeys.PROPOSAL_PI,
     DataKeys.PROPOSAL_TITLE,
     DataKeys.TELESCOPE_NAME,
     DataKeys.INSTRUMENT_NAME

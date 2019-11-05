@@ -1,6 +1,8 @@
 import * as Sentry from "@sentry/browser";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
+import "bulma-badge/dist/css/bulma-badge.min.css";
+import "bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css";
 import "bulma/css/bulma.css";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";

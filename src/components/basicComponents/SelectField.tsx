@@ -13,7 +13,7 @@ const SelectField = (props: ISelectProps) => {
   const { className, children, ...rest } = props;
   return (
     <div className={`control select ${className || ""}`}>
-      <select {...rest}>{props.children}</select>
+      <select {...rest}>{children}</select>
     </div>
   );
 };
@@ -25,7 +25,7 @@ export default SelectField;
  * attribute has the value "".
  */
 export const AnyOption = () => (
-  <option key="any" value="">
+  <option key="all" value="All">
     Any
   </option>
 );

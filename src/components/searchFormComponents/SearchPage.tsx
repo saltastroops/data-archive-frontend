@@ -17,14 +17,13 @@ import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import { searchResultsTableColumns } from "./results/SearchResultsTableColumns";
-import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
 
 /**
  * The default maximum number of results a query should return.
  */
-export const DEFAULT_LIMIT = 100;
+export const DEFAULT_LIMIT = "100";
 
 /**
  * The default start index for a query.
@@ -58,11 +57,10 @@ interface ISearchPageProps {
  *  where:
  *     JSON string with the where condition for the search query.
  */
-interface ISearchPageState {
+export interface ISearchPageState {
   allSearchColumns: ISearchResultsTableColumn[];
   databaseColumns: string[];
   error: Error | null;
-  limit: number;
   modal: {
     open: boolean;
   };
@@ -85,7 +83,6 @@ interface ISearchResult {
 export interface ISearchPageCache {
   allSearchColumns?: ISearchResultsTableColumn[];
   databaseColumns?: string[];
-  limit: number;
   startIndex: number;
   tableColumns?: ISearchResultsTableColumn[];
   where?: string;
@@ -139,7 +136,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     const { searchPageCache } = props;
     const databaseColumns = searchPageCache.databaseColumns || [];
-    const limit = searchPageCache.limit;
     const startIndex = searchPageCache.startIndex;
     const allSearchColumns = searchPageCache.allSearchColumns || [];
     const tableColumns = searchPageCache.tableColumns || [];
@@ -149,7 +145,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       allSearchColumns,
       databaseColumns,
       error: null,
-      limit,
       modal: {
         open: false
       },
@@ -160,11 +155,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   }
 
   render() {
-    const { screenDimensions } = this.props;
+    const { screenDimensions, searchFormCache } = this.props;
     const {
       allSearchColumns,
       error: validationError,
-      limit,
       startIndex,
       tableColumns,
       where
@@ -199,7 +193,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       query: DATA_FILES_QUERY,
       variables: {
         columns: this.state.databaseColumns,
-        limit,
+        limit: parseInt(
+          (searchFormCache.general && searchFormCache.general.limit) ||
+            DEFAULT_LIMIT,
+          10
+        ),
         startIndex,
         where
       }
@@ -233,7 +231,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
               return (
                 <>
                   <SearchForm
-                    cache={this.props.searchFormCache}
+                    cache={searchFormCache}
                     search={this.searchArchive(fetch, preload)}
                     error={validationError || error}
                     loading={loading}
@@ -389,27 +387,23 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             where
           }),
           async () => {
+            const limit = parseInt(general.limit || DEFAULT_LIMIT, 10);
             const options: QueryOptions = {
               fetchPolicy: "network-only",
               query: DATA_FILES_QUERY,
               variables: {
                 columns: databaseColumns,
-                limit: this.state.limit,
+                limit,
                 startIndex: this.state.startIndex,
                 where
               }
             };
             await fetch(options);
 
-            // Update the cache with the new limit and start index
-            this.props.searchPageCache.limit = this.state.limit;
+            // Update the cache with the new start index
             this.props.searchPageCache.startIndex = this.state.startIndex;
 
-            this.preloadPage(
-              preload,
-              this.state.limit,
-              this.state.limit + this.state.startIndex
-            );
+            this.preloadPage(preload, limit, limit + this.state.startIndex);
           }
         );
       } catch (e) {
@@ -431,8 +425,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       limit: number,
       direction: PaginationDirection
     ) => {
-      // Update the cache with the new limit and start index
-      this.props.searchPageCache.limit = limit;
+      // Update the cache with the new start index
       this.props.searchPageCache.startIndex = startIndex;
 
       // Perform the query for the new page
@@ -449,7 +442,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       await fetch(fetchPageOptions);
 
       // Update the cache with the new limit and start index
-      this.props.searchPageCache.limit = limit;
       this.props.searchPageCache.startIndex = startIndex;
 
       // Preload the previous or next page
@@ -469,7 +461,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
    * ----------
    * preload: (options: QueryOptions) => void
    *     Function for carrying out the preloading.
-   * limit: number
+   * limit: string
    *     Maximum number of results to return.
    * startIndex: number
    *     Start index of the first result to return.
@@ -508,6 +500,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     const now = Date.now();
 
+    let calibrationCounter = 1;
+
     for (const result of results) {
       // The metadata is a list of name-value pairs. We need to convert this
       // into a plain object.
@@ -524,6 +518,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         (telescopeObservationId ? " #" + telescopeObservationId : "");
       metadata[DataKeys.OBSERVATION_NAME] = observationName;
 
+      const observationId = metadata[DataKeys.OBSERVATION_ID]
+        ? metadata[DataKeys.OBSERVATION_ID].toString()
+        : `Calibration-${calibrationCounter++}`;
       const file = () => {
         return {
           ...metadata,
@@ -532,15 +529,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             name: metadata[DataKeys.DATA_FILE_FILENAME],
             observation: {
               __typename: "CartObservation",
-              id: metadata[DataKeys.OBSERVATION_ID].toString(),
-              name: metadata[DataKeys.OBSERVATION_NAME]
+              id: observationId,
+              name: observationName
             },
             target: metadata[DataKeys.TARGET_NAME] || null
           }
         };
       };
 
-      const observationId = metadata[DataKeys.OBSERVATION_ID].toString();
       if (!observationsMap.has(observationId)) {
         // Create a new observations object. A string of the form "TN - #id" is
         // used as observation name, where TN is the telescope name and id is
