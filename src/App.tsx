@@ -15,7 +15,6 @@ import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
 import SearchPage, {
-  DEFAULT_LIMIT,
   DEFAULT_START_INDEX,
   ISearchPageCache
 } from "./components/searchFormComponents/SearchPage";
