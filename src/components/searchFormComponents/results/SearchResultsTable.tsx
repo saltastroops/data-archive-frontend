@@ -638,19 +638,7 @@ class SearchResultsTable extends React.Component<
                 </button>
               )}
             </JS9ViewContext.Consumer>
-          ) : (
-            <button
-              className="is-link"
-              onClick={() => {
-                const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
-                  ? rowDatum[DataKeys.DATA_FILE_ID].toString()
-                  : rowDatum[DataKeys.DATA_FILE_ID];
-                this.openPreviewModal(dataFileId);
-              }}
-            >
-              Preview
-            </button>
-          );
+          ) : null;
         } else {
           return rowDatum[DataKeys.DATA_FILE_FILENAME];
         }
