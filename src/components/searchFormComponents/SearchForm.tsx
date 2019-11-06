@@ -64,7 +64,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     general: {
       errors: {},
       limit: DEFAULT_LIMIT,
-      productTypes: new Set<ProductType>(),
+      productTypes: new Set<ProductType>(["Science"]),
       rejected: false
     },
     target: {
