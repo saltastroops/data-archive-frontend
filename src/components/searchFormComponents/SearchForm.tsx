@@ -66,7 +66,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       errors: {},
       limit: DEFAULT_LIMIT,
       rejected: "",
-      science: "Science"
+      science: ""
     },
     target: {
       errors: {},

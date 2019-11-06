@@ -7,9 +7,10 @@ import {
 import {
   HelpGrid,
   MainGrid,
+  SingleColumnGrid,
   Span,
   SubGrid,
-  SubGrid4
+  SubGrid5
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
@@ -50,17 +51,31 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
 
   // Add or remove the calibration type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name as CalibrationType;
-
+    const name = e.target.name as any;
+    let { science, rejected } = this.props.general;
     const updated = new Set<CalibrationType>(this.props.general.calibrations);
     if (e.target.checked) {
-      updated.add(name);
+      if (name === "Science") {
+        science = "Science";
+      } else if (name === "Rejected") {
+        rejected = "Rejected";
+      } else {
+        updated.add(name);
+      }
     } else {
-      updated.delete(name);
+      if (name === "Science") {
+        science = "";
+      } else if (name === "Rejected") {
+        rejected = "";
+      } else {
+        updated.delete(name);
+      }
     }
     this.props.onChange({
       ...this.props.general,
-      calibrations: updated
+      calibrations: updated,
+      rejected,
+      science
     });
   };
 
@@ -71,7 +86,9 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       principalInvestigator,
       observationNight,
       proposalCode,
-      proposalTitle
+      proposalTitle,
+      rejected,
+      science
     } = this.props.general;
     return (
       <>
@@ -140,61 +157,97 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
             />
           </SubGrid>
         </MainGrid>
-        <MainGrid>
+        <SingleColumnGrid>
           <SubGrid>
-            <h5 className={"title is-5"}>Include:</h5>
+            <h5 className={"title is-5"}>Data category</h5>
           </SubGrid>
-        </MainGrid>
-        <SubGrid4>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="arcs-checkbox"
-                checked={calibrations.has("Arc")}
-                data-test="arcs-checkbox"
-                onChange={this.changeCheckbox}
-                name="Arc"
-              />
-            </Span>
-            <Span>Arcs</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="biases-checkbox"
-                checked={calibrations.has("Bias")}
-                data-test="biases-checkbox"
-                onChange={this.changeCheckbox}
-                name="Bias"
-              />
-            </Span>
-            <Span>Biases</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="flats-checkbox"
-                checked={calibrations.has("Flat")}
-                data-test="flats-checkbox"
-                onChange={this.changeCheckbox}
-                name="Flat"
-              />
-            </Span>
-            <Span>Flats</Span>
-          </label>
-          <label>
-            <Span>
-              <LargeCheckbox
-                id="standards-checkbox"
-                checked={calibrations.has("Standard")}
-                data-test="standards-checkbox"
-                onChange={this.changeCheckbox}
-                name="Standard"
-              />
-            </Span>
-            <Span>Standards</Span>
-          </label>
-        </SubGrid4>
+        </SingleColumnGrid>
+        <SingleColumnGrid>
+          <SubGrid5>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="science-checkbox"
+                  checked={!!science}
+                  data-test="science-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Science"
+                />
+              </Span>
+              <Span>Science</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="arcs-checkbox"
+                  checked={calibrations.has("Arc")}
+                  data-test="arcs-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Arc"
+                />
+              </Span>
+              <Span>Arcs</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="biases-checkbox"
+                  checked={calibrations.has("Bias")}
+                  data-test="biases-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Bias"
+                />
+              </Span>
+              <Span>Biases</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="flats-checkbox"
+                  checked={calibrations.has("Flat")}
+                  data-test="flats-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Flat"
+                />
+              </Span>
+              <Span>Flats</Span>
+            </label>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="standards-checkbox"
+                  checked={calibrations.has("Standard")}
+                  data-test="standards-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Standard"
+                />
+              </Span>
+              <Span>Standard</Span>
+            </label>
+          </SubGrid5>
+        </SingleColumnGrid>
+
+        <SingleColumnGrid>
+          <SubGrid>
+            <h5 className={"title is-5"}>Data status</h5>
+          </SubGrid>
+        </SingleColumnGrid>
+        <SingleColumnGrid>
+          <SubGrid>
+            <label>
+              <Span>
+                <LargeCheckbox
+                  id="rejected-checkbox"
+                  checked={!!rejected}
+                  data-test="rejected-checkbox"
+                  onChange={this.changeCheckbox}
+                  name="Rejected"
+                />
+              </Span>
+              <Span>Rejected</Span>
+            </label>
+          </SubGrid>
+        </SingleColumnGrid>
       </>
     );
   }
