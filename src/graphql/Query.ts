@@ -69,12 +69,12 @@ const USER_DATA_REQUESTS_QUERY = gql`
       id
       uri
       status
-      observations {
+      dataFiles {
         id
         name
-        dataFiles {
-          id
+        metadata {
           name
+          value
         }
       }
     }
