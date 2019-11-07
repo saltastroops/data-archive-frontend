@@ -2,7 +2,7 @@ import { mount, ReactWrapper, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import DataForm from "../../../components/searchFormComponents/DataForm";
-import { CalibrationType } from "../../../utils/ObservationQueryParameters";
+import { ProductType } from "../../../utils/ObservationQueryParameters";
 
 const onChange = jest.fn();
 
@@ -12,7 +12,7 @@ describe("Data Form", () => {
   beforeEach(() => {
     wrapper = mount(
       <DataForm
-        general={{ calibrations: new Set<CalibrationType>(), errors: {} }}
+        general={{ productTypes: new Set<ProductType>(), errors: {} }}
         onChange={onChange}
       />
     );
@@ -28,8 +28,8 @@ describe("Data Form", () => {
         shallow(
           <DataForm
             general={{
-              calibrations: new Set<CalibrationType>(["arc"]),
-              errors: {}
+              errors: {},
+              productTypes: new Set<ProductType>(["arc"])
             }}
             onChange={onChange}
           />
@@ -41,8 +41,8 @@ describe("Data Form", () => {
         shallow(
           <DataForm
             general={{
-              calibrations: new Set<CalibrationType>(["arc", "standard"]),
-              errors: {}
+              errors: {},
+              productTypes: new Set<ProductType>(["Arc", "Standard"])
             }}
             onChange={onChange}
           />
@@ -54,13 +54,13 @@ describe("Data Form", () => {
         shallow(
           <DataForm
             general={{
-              calibrations: new Set<CalibrationType>([
-                "arc",
-                "bias",
-                "flat",
-                "standard"
-              ]),
-              errors: {}
+              errors: {},
+              productTypes: new Set<ProductType>([
+                "Arc",
+                "Bias",
+                "Flat",
+                "Standard"
+              ])
             }}
             onChange={onChange}
           />
@@ -73,30 +73,30 @@ describe("Data Form", () => {
     // Select flats...
     const flats = wrapper.find('[data-test="flats-checkbox"] input');
     flats.simulate("change", {
-      target: { checked: true, name: "flat" }
+      target: { checked: true, name: "Flat" }
     });
     expect(onChange).toBeCalledWith({
-      calibrations: new Set<CalibrationType>(["flat"]),
-      errors: {}
+      errors: {},
+      productTypes: new Set<ProductType>(["Flat"])
     });
 
     // ... and unselect them again
     flats.simulate("change", {
-      target: { checked: false, name: "flat" }
+      target: { checked: false, name: "Flat" }
     });
     expect(onChange).toBeCalledWith({
-      calibrations: new Set<CalibrationType>([]),
-      errors: {}
+      errors: {},
+      productTypes: new Set<ProductType>([])
     });
 
     // select arcs
     const arcs = wrapper.find('[data-test="arcs-checkbox"] input');
     arcs.simulate("change", {
-      target: { checked: true, name: "arc" }
+      target: { checked: true, name: "Arc" }
     });
     expect(onChange).toBeCalledWith({
-      calibrations: new Set<CalibrationType>(["arc"]),
-      errors: {}
+      errors: {},
+      productTypes: new Set<ProductType>(["Arc"])
     });
   });
 });
