@@ -19,30 +19,38 @@ import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
  * The array of columns for the search results table.
  */
 export function searchResultsTableColumns(
-  dbColumns: string[]
+  tableColumns: ISearchResultsTableColumn[]
 ): ISearchResultsTableColumn[] {
-  const ignoredDataKeys = [
-    DataKeys.DATA_FILE_ID,
-    DataKeys.TARGET_TYPE_NUMERIC_CODE,
-    DataKeys.TELESCOPE_OBSERVATION_ID,
-    DataKeys.OBSERVATION_ID
-  ];
-
   // The SearchResultsTable class sets the first column's width to the cart
   // column's width and puts the former underneath the latter. So
   // effectively the first column is ignored, and a dummy column needs to be
   // added to compensate for that.
-  const columns = [
+  return [
     { dataKey: "dummyName", name: "dummy", visible: true },
     {
       dataKey: DataKeys.OBSERVATION_NAME,
       name: "Observation",
       visible: true
     },
-    ...sort(dbColumns.map(tableColumn))
+    ...sort(
+      tableColumns.filter(
+        column => column.dataKey !== DataKeys.OBSERVATION_NAME && column.visible
+      )
+    )
   ];
+}
 
-  return columns.filter(column => !ignoredDataKeys.includes(column.dataKey));
+/**
+ * All available results table columns.
+ *
+ * Returns:
+ * --------
+ * An array of all available results table columns.
+ */
+export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
+  return Object.keys(DataKeys).map(dataKey =>
+    tableColumn((DataKeys as any)[dataKey])
+  );
 }
 
 /**

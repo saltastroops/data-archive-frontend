@@ -656,7 +656,9 @@ class SearchResultsTable extends React.Component<
         }
       } else {
         const format = this.visibleColumns[columnIndex].format;
-        return format && rowDatum[dataKey] !== undefined
+        return format &&
+          rowDatum[dataKey] !== undefined &&
+          rowDatum[dataKey] !== null
           ? format(rowDatum[dataKey].toString())
           : rowDatum[dataKey];
       }

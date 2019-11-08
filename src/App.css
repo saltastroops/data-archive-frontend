@@ -132,3 +132,7 @@
   display: inline-block;
   overflow: hidden;
 }
+
+.column-group-selector:not(:first-child) {
+  margin-top: 1em;
+}
