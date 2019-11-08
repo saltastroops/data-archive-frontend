@@ -92,9 +92,9 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.OBSERVATION_NIGHT:
       return {
         dataKey,
+        format: formatTimestamp,
         name: "Observation Night",
-        visible: true,
-        format: formatTimestamp
+        visible: true
       };
     case DataKeys.OBSERVATION_PUBLIC_FROM:
       return {

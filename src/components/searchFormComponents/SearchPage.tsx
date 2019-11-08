@@ -20,9 +20,9 @@ import {
   availableResultsTableColumns,
   searchResultsTableColumns
 } from "./results/SearchResultsTableColumns";
+import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
-import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 
 /**
  * The default maximum number of results a query should return.
