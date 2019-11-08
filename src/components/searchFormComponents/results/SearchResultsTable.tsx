@@ -25,7 +25,6 @@ import { JS9ViewContext } from "../../JS9View";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
-import PreviewModal from "./PreviewModal";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
 
 interface ISearchResultsTableProps {
@@ -37,7 +36,6 @@ interface ISearchResultsTableProps {
 
 interface ISearchResultsTableState {
   dataFileId?: string;
-  open: boolean;
   sortBy: string;
   sortDirection: SortDirectionType;
   sortedRowData: List<IRowDatum>;
@@ -322,7 +320,6 @@ class SearchResultsTable extends React.Component<
     // The sorted and unsorted row data will be populated by the
     // getDerivedStateFromProps lifecycle method.
     this.state = {
-      open: false,
       sortBy: "",
       sortDirection: SortDirection.ASC,
       sortedRowData: List(),
@@ -348,8 +345,6 @@ class SearchResultsTable extends React.Component<
    * a background with full opacity.
    */
   public render() {
-    const { dataFileId, open } = this.state;
-
     // Calculate the table height
     const height = this.tableHeight();
 
@@ -359,13 +354,6 @@ class SearchResultsTable extends React.Component<
           const cart = new Cart(data.cart || []);
           return (
             <>
-              {dataFileId && (
-                <PreviewModal
-                  dataFileId={dataFileId}
-                  closeModal={this.closePreviewModal}
-                  open={open}
-                />
-              )}
               <Mutation
                 mutation={ADD_TO_CART_MUTATION}
                 refetchQueries={[{ query: CART_QUERY }]}
@@ -638,19 +626,7 @@ class SearchResultsTable extends React.Component<
                 </button>
               )}
             </JS9ViewContext.Consumer>
-          ) : (
-            <button
-              className="is-link"
-              onClick={() => {
-                const dataFileId = rowDatum[DataKeys.DATA_FILE_ID]
-                  ? rowDatum[DataKeys.DATA_FILE_ID].toString()
-                  : rowDatum[DataKeys.DATA_FILE_ID];
-                this.openPreviewModal(dataFileId);
-              }}
-            >
-              Preview
-            </button>
-          );
+          ) : null;
         } else {
           return rowDatum[DataKeys.DATA_FILE_FILENAME];
         }
@@ -709,13 +685,6 @@ class SearchResultsTable extends React.Component<
   };
 
   /**
-   * Close the preview modal.
-   */
-  private closePreviewModal = () => {
-    this.setState(() => ({ open: false }));
-  };
-
-  /**
    * The width of a column (in pixels). A column index of 0 refers to the first
    * column.
    */
@@ -763,13 +732,6 @@ class SearchResultsTable extends React.Component<
         {label}
       </SearchResultsTableHeader>
     );
-  };
-
-  /**
-   * Open the preview modal.
-   */
-  private openPreviewModal = (dataFileId: string) => {
-    this.setState(() => ({ dataFileId, open: true }));
   };
 
   /**

@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
-const MultiSelectContainer = styled.div<{
-  className: string;
-}>`
+const MultiSelectContainer = styled.div<{ className: string }>`
   width: 95%;
 `;
 
