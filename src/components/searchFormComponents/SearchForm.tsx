@@ -1,11 +1,11 @@
 import * as _ from "lodash";
 import * as React from "react";
 import {
-  CalibrationType,
   IGeneral,
   ISearchFormState,
   ITarget,
-  ITelescope
+  ITelescope,
+  ProductType
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
 import { isError, validateDate } from "../../utils/validators";
@@ -64,11 +64,10 @@ interface ISearchFormProps {
 class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public state: ISearchFormState = {
     general: {
-      calibrations: new Set<CalibrationType>(),
       errors: {},
       limit: DEFAULT_LIMIT,
-      rejected: "",
-      science: "Science"
+      productTypes: new Set<ProductType>(["Science"]),
+      rejected: false
     },
     target: {
       errors: {},
@@ -288,7 +287,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   private resetAll = () => {
     const newState = {
       ...this.state,
-      general: { calibrations: new Set<CalibrationType>(), errors: {} },
+      general: { calibrations: new Set<ProductType>(), errors: {} },
       target: {
         errors: {},
         resolver: "Simbad",

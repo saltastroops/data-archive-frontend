@@ -1,8 +1,7 @@
 import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
-import { IDataRequest, IDataRequestObervation } from "./DataRequestsForm";
-import DataRequestTableRow from "./DataRequestTableRow";
+import { IDataRequest } from "./DataRequestsForm";
 
 /**
  * Properties of the data request table component.
@@ -49,7 +48,7 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { observations, madeAt, id, status } = this.props.dataRequest;
+    const { dataFiles, madeAt, id, status } = this.props.dataRequest;
 
     const mayDownloadAll = status === "SUCCESSFUL";
 
@@ -92,21 +91,15 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             </th>
           </tr>
           <tr>
-            <th>Observation</th>
-            {/*<th>Status</th>*/}
             <th>Files</th>
           </tr>
+          {dataFiles.map(file => (
+            <tr key={file.id}>
+              <td>{file.name}</td>
+            </tr>
+          ))}
         </thead>
-        <tbody>
-          {observations.map((observation: IDataRequestObervation) => {
-            return (
-              <DataRequestTableRow
-                key={observation.id}
-                dataRequestObservation={observation}
-              />
-            );
-          })}
-        </tbody>
+        <tbody />
       </Table>
     );
   }
