@@ -64,19 +64,30 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.DATA_FILE_FILENAME:
       return { dataKey, name: "File", visible: true };
     case DataKeys.DETECTOR_MODE:
-      return { dataKey, name: "Detector Mode", visible: true };
+      return { dataKey, name: "Detector Mode", visible: false };
+    case DataKeys.EXPOSURE_TIME:
+      return { dataKey, name: "Exposure Time", visible: false };
     case DataKeys.FILTER:
-      return { dataKey, name: "Filter", visible: true };
+      return { dataKey, name: "Filter", visible: false };
     case DataKeys.HRS_MODE:
-      return { dataKey, name: "HRS Mode", visible: true };
+      return { dataKey, name: "HRS Mode", visible: false };
     case DataKeys.INSTRUMENT_MODE:
-      return { dataKey, name: "RSS Mode", visible: true };
+      return { dataKey, name: "Instrument Mode", visible: false };
     case DataKeys.INSTRUMENT_NAME:
-      return { dataKey, name: "Instrument", visible: true };
+      return { dataKey, name: "Instrument", visible: false };
+    case DataKeys.MAXIMUM_WAVELENGTH:
+      return { dataKey, name: "Maximum Wavelength", visible: false };
+    case DataKeys.MINIMUM_WAVELENGTH:
+      return { dataKey, name: "Minimum Wavelength", visible: false };
     case DataKeys.OBSERVATION_NAME:
-      return { dataKey, name: "Observation", visible: true };
+      return { dataKey, name: "Observation Name", visible: false };
     case DataKeys.OBSERVATION_NIGHT:
-      return { dataKey, name: "Night", visible: true, format: formatTimestamp };
+      return {
+        dataKey,
+        name: "Observation Night",
+        visible: true,
+        format: formatTimestamp
+      };
     case DataKeys.OBSERVATION_PUBLIC_FROM:
       return {
         dataKey,
@@ -84,18 +95,22 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         name: "Release Date",
         visible: true
       };
+    case DataKeys.OBSERVATION_STATUS:
+      return { dataKey, name: "Observation Status", visible: false };
     case DataKeys.POLARIZATION_MODE:
-      return { dataKey, name: "Polarimetry Pattern", visible: true };
+      return { dataKey, name: "Polarimetry Pattern", visible: false };
     case DataKeys.PROPOSAL_CODE:
-      return { dataKey, name: "Proposal", visible: true };
+      return { dataKey, name: "Proposal Code", visible: false };
     case DataKeys.PROPOSAL_PI:
-      return { dataKey, name: "PI", visible: true };
+      return { dataKey, name: "PI", visible: false };
     case DataKeys.PROPOSAL_TITLE:
-      return { dataKey, name: "Proposal Title", visible: true };
+      return { dataKey, name: "Proposal Title", visible: false };
     case DataKeys.RSS_FABRY_PEROT_MODE:
-      return { dataKey, name: "RSS FP Mode", visible: true };
+      return { dataKey, name: "RSS Fabry-Perot Mode", visible: false };
     case DataKeys.RSS_GRATING:
-      return { dataKey, name: "RSS Grating", visible: true };
+      return { dataKey, name: "RSS Grating", visible: false };
+    case DataKeys.SPECTRAL_RESOLUTION:
+      return { dataKey, name: "Spectral Resolution", visible: false };
     case DataKeys.TARGET_DECLINATION:
       return {
         dataKey,
@@ -104,7 +119,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         visible: true
       };
     case DataKeys.TARGET_NAME:
-      return { dataKey, name: "Target", visible: true };
+      return { dataKey, name: "Target Name", visible: true };
     case DataKeys.TARGET_RIGHT_ASCENSION:
       return {
         dataKey,
@@ -113,11 +128,11 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         visible: true
       };
     case DataKeys.TARGET_TYPE_EXPLANATION:
-      return { dataKey, name: "TargetType", visible: true };
+      return { dataKey, name: "Target Type", visible: false };
     case DataKeys.TELESCOPE_NAME:
-      return { dataKey, name: "Telescope", visible: true, width: 100 };
+      return { dataKey, name: "Telescope", visible: false, width: 100 };
     default:
-      return { dataKey, name: dataKey, visible: true };
+      return { dataKey, name: dataKey, visible: false };
   }
 }
 
