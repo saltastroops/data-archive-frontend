@@ -101,6 +101,28 @@ describe("Cart", () => {
     expect(cart.contains({ id: "F" } as ICartFile)).toBe(true);
   });
 
+  it("should clear the cart", () => {
+    const cart = new Cart([
+      {
+        id: "A",
+        name: "File A",
+        observation: { id: "Obs-A", name: "Observation A" }
+      } as ICartFile,
+      {
+        id: "D",
+        name: "File D",
+        observation: { id: "Obs-B", name: "Observation B" }
+      } as ICartFile,
+      {
+        id: "C",
+        name: "File C",
+        observation: { id: "Obs-D", name: " Observation D" }
+      } as ICartFile
+    ]);
+    cart.clear();
+    expect(cart.groupByObservation()).toEqual(new Map());
+  });
+
   it("should provide cart items grouped by observation", () => {
     const cart = new Cart([
       {

@@ -67,6 +67,7 @@ const USER_DATA_REQUESTS_QUERY = gql`
   query USER_DATA_REQUESTS_QUERY($limit: Int, $startIndex: Int!) {
     dataRequests(limit: $limit, startIndex: $startIndex) {
       id
+      madeAt
       uri
       status
       dataFiles {
