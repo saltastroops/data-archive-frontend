@@ -187,18 +187,10 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   }
 
   // Data category
-  if (general.calibrations.size > 0 && general.science) {
-    const dataCategories = [
-      ...Array.from(general.calibrations),
-      general.science
-    ];
-    conditions.push(isIn(DataKeys.DATA_CATEGORY, dataCategories));
-  } else if (general.calibrations.size > 0) {
+  if (general.productTypes.size > 0) {
     conditions.push(
-      isIn(DataKeys.DATA_CATEGORY, [...Array.from(general.calibrations)])
+      isIn(DataKeys.DATA_CATEGORY, Array.from(general.productTypes))
     );
-  } else if (general.science) {
-    conditions.push(isIn(DataKeys.DATA_CATEGORY, [general.science]));
   }
 
   // Observation status

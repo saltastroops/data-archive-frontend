@@ -1,9 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import {
-  CalibrationType,
-  IGeneral
-} from "../../utils/ObservationQueryParameters";
+import { IGeneral, ProductType } from "../../utils/ObservationQueryParameters";
 import {
   SingleColumnGrid,
   Span,
@@ -33,35 +30,30 @@ class DataForm extends React.Component<IDataFormProps, {}> {
   // Add or remove the calibration type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name as any;
-    let { science, rejected } = this.props.general;
-    const updated = new Set<CalibrationType>(this.props.general.calibrations);
+    let { rejected } = this.props.general;
+    const updated = new Set<ProductType>(this.props.general.productTypes);
     if (e.target.checked) {
-      if (name === "science") {
-        science = "Science";
-      } else if (name === "rejected") {
-        rejected = "Rejected";
+      if (name === "rejected") {
+        rejected = true;
       } else {
         updated.add(name);
       }
     } else {
-      if (name === "science") {
-        science = "";
-      } else if (name === "rejected") {
-        rejected = "";
+      if (name === "rejected") {
+        rejected = false;
       } else {
         updated.delete(name);
       }
     }
     this.props.onChange({
       ...this.props.general,
-      calibrations: updated,
-      rejected,
-      science
+      productTypes: updated,
+      rejected
     });
   };
 
   render() {
-    const { calibrations, rejected, science } = this.props.general;
+    const { productTypes, rejected } = this.props.general;
     return (
       <>
         <SingleColumnGrid>
@@ -75,7 +67,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="science-checkbox"
-                  checked={science ? true : false}
+                  checked={productTypes.has("Science")}
                   data-test="science-checkbox"
                   onChange={this.changeCheckbox}
                   name="science"
@@ -87,7 +79,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="arcs-checkbox"
-                  checked={calibrations.has("Arc")}
+                  checked={productTypes.has("Arc")}
                   data-test="arcs-checkbox"
                   onChange={this.changeCheckbox}
                   name="arc"
@@ -99,7 +91,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="biases-checkbox"
-                  checked={calibrations.has("Bias")}
+                  checked={productTypes.has("Bias")}
                   data-test="biases-checkbox"
                   onChange={this.changeCheckbox}
                   name="bias"
@@ -111,7 +103,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="flats-checkbox"
-                  checked={calibrations.has("Flat")}
+                  checked={productTypes.has("Flat")}
                   data-test="flats-checkbox"
                   onChange={this.changeCheckbox}
                   name="flat"
@@ -123,7 +115,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="standards-checkbox"
-                  checked={calibrations.has("Standard")}
+                  checked={productTypes.has("Standard")}
                   data-test="standards-checkbox"
                   onChange={this.changeCheckbox}
                   name="standard"
@@ -145,7 +137,7 @@ class DataForm extends React.Component<IDataFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="rejected-checkbox"
-                  checked={rejected ? true : false}
+                  checked={rejected}
                   data-test="rejected-checkbox"
                   onChange={this.changeCheckbox}
                   name="rejected"

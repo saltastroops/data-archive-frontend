@@ -32,7 +32,7 @@ export interface ISearchFormState {
 /**
  * The available calibration types.
  */
-export type CalibrationType = "Arc" | "Bias" | "Flat" | "Standard";
+export type ProductType = "Arc" | "Bias" | "Flat" | "Science" | "Standard";
 
 /**
  * An interface for query parameters related to general information.
@@ -60,8 +60,7 @@ export interface IGeneralErrors {
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
-  calibrations?: string;
-  science?: string;
+  productTypes?: string;
   rejected?: string;
 }
 export interface IGeneral {
@@ -71,9 +70,8 @@ export interface IGeneral {
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
-  calibrations: Set<CalibrationType>;
-  science: string;
-  rejected: string;
+  productTypes: Set<ProductType>;
+  rejected: boolean;
 }
 
 /**
