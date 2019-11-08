@@ -151,6 +151,21 @@ export const resolvers = {
       return true;
     },
 
+    // Clear the cart
+    clearCart: async (_: any, args: any, { cache }: any) => {
+      // Get current cart content
+      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+
+      // Remove the files
+      cart.clear();
+
+      // Store updated content both in the cache and in local storage
+      localStorage.setItem("cart", JSON.stringify(cart.files));
+      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
+
+      return true;
+    },
+
     /**
      * Login mutation.
      *

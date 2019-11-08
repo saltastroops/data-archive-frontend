@@ -15,10 +15,10 @@ import { TargetType } from "../utils/TargetType";
 describe("whereCondition", () => {
   it("should map query parameters correctly", () => {
     const general: IGeneral = {
-      calibrations: new Set(),
       errors: {},
       observationNight: "2019-02-19",
       principalInvestigator: "John",
+      productTypes: new Set(),
       proposalCode: "SCI"
     };
     const target: ITarget = {
@@ -57,9 +57,9 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night format", () => {
     const f = () =>
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: "invaliddate"
+        observationNight: "invaliddate",
+        productTypes: new Set()
       });
     expect(f).toThrow(/invaliddate.*valid/);
   });
@@ -67,9 +67,9 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night", () => {
     const f = () =>
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29"
+        observationNight: "2019-02-29",
+        productTypes: new Set()
       });
     expect(f).toThrow(/2019-02-29.*valid/);
   });
@@ -77,25 +77,25 @@ describe("generalWhereCondition", () => {
   it("should raise an error for an invalid observation night range", () => {
     let f = () =>
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29 .."
+        observationNight: "2019-02-29 ..",
+        productTypes: new Set()
       });
     expect(f).toThrow(/2019-02-29.*valid/);
 
     f = () =>
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: ".. 2019-02-29"
+        observationNight: ".. 2019-02-29",
+        productTypes: new Set()
       });
     expect(f).toThrow("not a valid");
 
     f = () =>
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-29 .. 2020"
+        observationNight: "2019-02-29 .. 2020",
+        productTypes: new Set()
       });
     expect(f).toThrow("not a valid");
   });
@@ -103,9 +103,9 @@ describe("generalWhereCondition", () => {
   it("should map an observation night to a greater equal and less equal condition spanning one night", () => {
     expect(
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        observationNight: "2019-02-17"
+        observationNight: "2019-02-17",
+        productTypes: new Set()
       })
     ).toMatchSnapshot();
   });
@@ -113,9 +113,9 @@ describe("generalWhereCondition", () => {
   it("should map a Principal Investigator to a contains condition", () => {
     expect(
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
-        principalInvestigator: "Doe"
+        principalInvestigator: "Doe",
+        productTypes: new Set()
       })
     ).toMatchSnapshot();
   });
@@ -123,8 +123,8 @@ describe("generalWhereCondition", () => {
   it("should map a proposal code to a contains condition", () => {
     expect(
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
+        productTypes: new Set(),
         proposalCode: "2-SCI"
       })
     ).toMatchSnapshot();
@@ -133,20 +133,20 @@ describe("generalWhereCondition", () => {
   it("should map input data correctly", () => {
     expect(
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
         observationNight: "2019-05-13",
         principalInvestigator: "Sipho",
+        productTypes: new Set(),
         proposalCode: "2019-1-SCI-042"
       })
     ).toMatchSnapshot();
 
     expect(
       generalWhereCondition({
-        calibrations: new Set(),
         errors: {},
         observationNight: "2019-05-01 .. 2019-05-13",
         principalInvestigator: "Sipho",
+        productTypes: new Set(),
         proposalCode: "2019-1-SCI-042"
       })
     ).toMatchSnapshot();
