@@ -25,9 +25,7 @@ const Table = styled.table.attrs({
 /**
  * The string to display for the creation date.
  *
- * If the date lies within the past 24 hours, the difference from now (such as
- * "5 seconds ago" or "17 hours ago") is returned. Otherwise the time is
- * returned as date and time (such as "on 21 Feb 2019 at 2:16").
+ * The time is returned as date and time (such as "on 21 Feb 2019 at 2:16").
  *
  * Parameters
  * ----------
@@ -36,11 +34,7 @@ const Table = styled.table.attrs({
  */
 const displayedTime = (madeAt: string) => {
   const t = moment(madeAt);
-  if (Date.now() - t.valueOf() < 24 * 3600 * 1000) {
-    return t.fromNow();
-  } else {
-    return `on ${t.format("D MMM YYYY")} at ${t.format("k:mm")}`;
-  }
+  return `on ${t.format("D MMM YYYY")} at ${t.format("k:mm")}`;
 };
 
 /**
@@ -53,6 +47,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const mayDownloadAll = status === "SUCCESSFUL";
 
     const reRequestAll = status === "FAILED";
+
+    const pending = status === "PENDING";
 
     // TO UPDATE
     const filename = `data_request_${id}.zip`;
@@ -87,6 +83,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                     Re-request all
                   </button>
                 )}
+                {pending && <span className="request-pending">Pending</span>}
               </p>
             </th>
           </tr>
