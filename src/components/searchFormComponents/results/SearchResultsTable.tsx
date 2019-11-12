@@ -632,11 +632,15 @@ class SearchResultsTable extends React.Component<
         }
       } else {
         const format = this.visibleColumns[columnIndex].format;
-        return format &&
+        if (
+          format &&
           rowDatum[dataKey] !== undefined &&
           rowDatum[dataKey] !== null
-          ? format(rowDatum[dataKey].toString())
-          : rowDatum[dataKey];
+        ) {
+          return format(rowDatum[dataKey].toString());
+        } else {
+          return rowDatum[dataKey];
+        }
       }
     } else {
       // An observation header row.
