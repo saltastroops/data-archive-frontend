@@ -44,7 +44,6 @@ describe("SearchResultsTableColumn", () => {
       <SearchResultsTableColumnSelector columns={columns} onChange={onChange} />
     );
 
-    console.log(wrapper.debug());
     const proposalInput = wrapper.find('input[name="proposal.proposal_code"]');
     proposalInput.simulate("change", {
       target: { name: "proposal.proposal_code", checked: false }
