@@ -25,7 +25,7 @@ const HrsMode = (props: IHrsModeProps) => {
   const select = (e: React.SyntheticEvent<HTMLSelectElement>) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
-      hrsMode: Array.from(values).map((t: any) => {
+      hrsModes: Array.from(values).map((t: any) => {
         return t.text;
       })
     });
