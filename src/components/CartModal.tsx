@@ -79,7 +79,7 @@ class CartModal extends React.Component<ICart, any> {
               {(createDataRequest: any, { error }: any) => (
                 <Mutation
                   mutation={CLEAR_CART_MUTATION}
-                  refetchQueries={CART_QUERY}
+                  refetchQueries={[{ query: CART_QUERY }]}
                 >
                   {(clearCart: any) => (
                     <Modal
