@@ -2,14 +2,10 @@ import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import SearchResultsTableColumn from "../../../../components/searchFormComponents/results/ISearchResultsTableColumn";
+import { availableResultsTableColumns } from "../../../../components/searchFormComponents/results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "../../../../components/searchFormComponents/results/SearchResultsTableColumnSelector";
 
-const columns: SearchResultsTableColumn[] = [
-  { dataKey: "dummy", name: "Dummy", visible: true },
-  { dataKey: "proposal", name: "Proposal", visible: true },
-  { dataKey: "pi", name: "Principal Investigator", visible: false },
-  { dataKey: "target", name: "Target Name", visible: true }
-];
+const columns: SearchResultsTableColumn[] = availableResultsTableColumns();
 
 describe("SearchResultsTableColumn", () => {
   it("should render correctly", () => {
@@ -31,9 +27,15 @@ describe("SearchResultsTableColumn", () => {
       />
     );
 
-    expect(wrapper.find('input[name="proposal"]').prop("checked")).toBeTruthy();
-    expect(wrapper.find('input[name="pi"]').prop("checked")).toBeFalsy();
-    expect(wrapper.find('input[name="target"]').prop("checked")).toBeTruthy();
+    expect(
+      wrapper.find('input[name="proposal.proposal_code"]').prop("checked")
+    ).toBeFalsy();
+    expect(
+      wrapper.find('input[name="proposal.pi"]').prop("checked")
+    ).toBeFalsy();
+    expect(
+      wrapper.find('input[name="target.name"]').prop("checked")
+    ).toBeTruthy();
   });
 
   it("should call onChange with the correct arguments when a checkbox is clicked", () => {
@@ -42,16 +44,22 @@ describe("SearchResultsTableColumn", () => {
       <SearchResultsTableColumnSelector columns={columns} onChange={onChange} />
     );
 
-    const proposalInput = wrapper.find('input[name="proposal"]');
+    const proposalInput = wrapper.find('input[name="proposal.proposal_code"]');
     proposalInput.simulate("change", {
-      target: { name: "proposal", checked: false }
+      target: { name: "proposal.proposal_code", checked: false }
     });
 
-    const piInput = wrapper.find('input[name="pi"]');
-    piInput.simulate("change", { target: { name: "pi", checked: true } });
+    const piInput = wrapper.find('input[name="proposal.pi"]');
+    piInput.simulate("change", {
+      target: { name: "proposal.pi", checked: true }
+    });
 
     expect(onChange).toHaveBeenCalledTimes(2);
-    expect(onChange).toHaveBeenNthCalledWith(1, "proposal", false);
-    expect(onChange).toHaveBeenNthCalledWith(2, "pi", true);
+    expect(onChange).toHaveBeenNthCalledWith(
+      1,
+      "proposal.proposal_code",
+      false
+    );
+    expect(onChange).toHaveBeenNthCalledWith(2, "proposal.pi", true);
   });
 });
