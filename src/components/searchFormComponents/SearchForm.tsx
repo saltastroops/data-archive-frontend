@@ -287,7 +287,12 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   private resetAll = () => {
     const newState = {
       ...this.state,
-      general: { calibrations: new Set<ProductType>(), errors: {} },
+      general: {
+        errors: {},
+        limit: DEFAULT_LIMIT,
+        productTypes: new Set<ProductType>(["Science"]),
+        rejected: false
+      },
       target: {
         errors: {},
         resolver: "Simbad",
