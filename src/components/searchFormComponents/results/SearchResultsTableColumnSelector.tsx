@@ -1,7 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import DataKeys from "./DataKeys";
 import SearchResultsTableColumn from "./ISearchResultsTableColumn";
+import SearchResultsTableColumnGroupSelector from "./SearchResultsTableColumnGroupSelector";
 
 /**
  * Properties for the search results table column selector.
@@ -15,75 +17,111 @@ import SearchResultsTableColumn from "./ISearchResultsTableColumn";
  *     hidden) as its arguments.
  */
 interface ISearchResultsTableColumnSelectorProps {
+  closeModal: () => void;
   columns: SearchResultsTableColumn[];
   onChange: (dataKey: string, visible: boolean) => void;
 }
 
-/**
- * Responsive grid for the checkboxes.
- */
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
-
-  @media screen and (min-width: 440px) {
-    grid-template-columns: 190px 190px;
-  }
-
-  @media screen and (min-width: 640px) {
-    grid-template-columns: 190px 190px 190px;
-  }
-
-  @media screen and (min-width: 840px) {
-    grid-template-columns: 190px 190px 190px 190px;
-  }
-
-  @media screen and (min-width: 1040px) {
-    grid-template-columns: 190px 190px 190px 190px 190px;
-  }
-
-  @media screen and (min-width: 1472px) {
-    grid-template-columns: 182px 182px 182px 182px 182px 182px 182px;
-  }
+const SelectorColumns = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 `;
 
-/**
- * Checkboxes for toggling the visibility of columns in the search results
- * table.
- */
 class SearchResultsTableColumnSelector extends React.Component<
-  ISearchResultsTableColumnSelectorProps,
-  {}
+  ISearchResultsTableColumnSelectorProps
 > {
   render() {
-    const { columns } = this.props;
+    const { closeModal, columns, onChange } = this.props;
+
+    const generalDataKeys = [
+      DataKeys.PROPOSAL_PI,
+      DataKeys.PROPOSAL_TITLE,
+      DataKeys.PROPOSAL_CODE,
+      DataKeys.OBSERVATION_NIGHT,
+      DataKeys.DATA_CATEGORY,
+      DataKeys.OBSERVATION_STATUS,
+      DataKeys.TELESCOPE_NAME,
+      DataKeys.OBSERVATION_PUBLIC_FROM
+    ];
+    const targetDataKeys = [
+      DataKeys.TARGET_NAME,
+      DataKeys.TARGET_RIGHT_ASCENSION,
+      DataKeys.TARGET_DECLINATION,
+      DataKeys.TARGET_TYPE_EXPLANATION
+    ];
+    const instrumentDataKeys = [
+      DataKeys.INSTRUMENT_NAME,
+      DataKeys.INSTRUMENT_MODE,
+      DataKeys.DETECTOR_MODE,
+      DataKeys.SPECTRAL_RESOLUTION,
+      DataKeys.MINIMUM_WAVELENGTH,
+      DataKeys.MAXIMUM_WAVELENGTH,
+      DataKeys.EXPOSURE_TIME,
+      DataKeys.POLARIZATION_MODE
+    ];
+    const saltDataKeys = [
+      DataKeys.RSS_FABRY_PEROT_MODE,
+      DataKeys.RSS_GRATING,
+      DataKeys.HRS_MODE
+    ];
+
+    // convert data keys to table columns
+    const keysToColumns = (dataKeys: string[]) =>
+      dataKeys.map(dataKey => {
+        const c = columns.find(column => column.dataKey === dataKey);
+        if (c === undefined) {
+          throw new Error(`No table column found for data key "${dataKey}".`);
+        }
+        return c;
+      });
 
     return (
-      <Grid>
-        {/* The first column is a dummy one, which should be ignored. */}
-        {columns.slice(1).map((column, index) => (
-          <div key={index}>
-            <label className="label">
-              <LargeCheckbox
-                type="checkbox"
-                checked={column.visible}
-                name={column.dataKey}
-                onChange={this.onChange}
-              />
-              {column.name}
-            </label>
-          </div>
-        ))}
-      </Grid>
+      <div className="modal is-active">
+        <div className="modal-background" onClick={closeModal} />
+        <div className="modal-card column is-mobile is-half is-offset-one-quarter">
+          <header className="modal-card-head">
+            <p className="modal-card-title">Columns to show</p>
+            <button
+              className="delete"
+              aria-label="close"
+              onClick={closeModal}
+            />
+          </header>
+          <section className="modal-card-body">
+            <SelectorColumns>
+              <div>
+                <SearchResultsTableColumnGroupSelector
+                  category="Target"
+                  columns={keysToColumns(targetDataKeys)}
+                  onChange={onChange}
+                />
+                <SearchResultsTableColumnGroupSelector
+                  category="SALT"
+                  columns={keysToColumns(saltDataKeys)}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <SearchResultsTableColumnGroupSelector
+                  category="General"
+                  columns={keysToColumns(generalDataKeys)}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <SearchResultsTableColumnGroupSelector
+                  category="Instrument"
+                  columns={keysToColumns(instrumentDataKeys)}
+                  onChange={onChange}
+                />
+              </div>
+            </SelectorColumns>
+          </section>
+        </div>
+      </div>
     );
   }
-
-  private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onChange(e.target.name, e.target.checked);
-  };
 }
 
 export default SearchResultsTableColumnSelector;

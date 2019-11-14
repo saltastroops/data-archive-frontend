@@ -133,6 +133,9 @@
   overflow: hidden;
 }
 
+.column-group-selector:not(:first-child) {
+  margin-top: 1em;
+}
 .request-pending {
   font-style: italic;
 }

@@ -27,11 +27,6 @@ Array [
     "name": "Observation",
     "visible": true,
   },
-  Object {
-    "dataKey": "instrument.name",
-    "name": "Instrument",
-    "visible": true,
-  },
 ]
 `;
 
@@ -45,39 +40,6 @@ Array [
   Object {
     "dataKey": "observation_group.name",
     "name": "Observation",
-    "visible": true,
-  },
-  Object {
-    "dataKey": "position.ra",
-    "format": [Function],
-    "name": "Right Ascension",
-    "visible": true,
-  },
-  Object {
-    "dataKey": "position.dec",
-    "format": [Function],
-    "name": "Declination",
-    "visible": true,
-  },
-  Object {
-    "dataKey": "proposal.proposal_code",
-    "name": "Proposal",
-    "visible": true,
-  },
-  Object {
-    "dataKey": "proposal.pi",
-    "name": "PI",
-    "visible": true,
-  },
-  Object {
-    "dataKey": "telescope.name",
-    "name": "Telescope",
-    "visible": true,
-    "width": 100,
-  },
-  Object {
-    "dataKey": "instrument.name",
-    "name": "Instrument",
     "visible": true,
   },
 ]
