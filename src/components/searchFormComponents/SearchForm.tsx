@@ -44,7 +44,9 @@ interface ISearchFormProps {
   error?: Error;
   limitError?: string;
   loading: boolean;
-  search: ({
+  search: (
+    startIndex: number
+  ) => ({
     general,
     target,
     telescope
@@ -220,7 +222,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         (telescope && telescope.errors) || {}
       )
     ) {
-      this.props.search({ general, target, telescope });
+      // Search with a start index of 0
+      this.props.search(0)({ general, target, telescope });
     }
   };
 
@@ -284,7 +287,12 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   private resetAll = () => {
     const newState = {
       ...this.state,
-      general: { calibrations: new Set<ProductType>(), errors: {} },
+      general: {
+        errors: {},
+        limit: DEFAULT_LIMIT,
+        productTypes: new Set<ProductType>(["Science"]),
+        rejected: false
+      },
       target: {
         errors: {},
         resolver: "Simbad",
