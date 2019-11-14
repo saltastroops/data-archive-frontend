@@ -4,7 +4,6 @@ import Query from "react-apollo/Query";
 import styled from "styled-components";
 import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
 import DataRequestTable from "./DataRequestTable";
-// import mockedRequestedData from "./requestedData.json";
 
 const Heading = styled.h1.attrs({
   className: "title is-3"
@@ -12,6 +11,18 @@ const Heading = styled.h1.attrs({
   && {
     text-align: center;
     margin: 20px 0 20px 0;
+  }
+`;
+
+const ErrorMessage = styled.p.attrs({
+  className: "error tile"
+})`
+  && {
+    text-align: left;
+    margin: 3px 0 3px 0;
+    padding: 2px 0 2px 0;
+    background-color: hsl(348, 100%, 61%);
+    color: white;
   }
 `;
 
@@ -53,7 +64,13 @@ class DataRequestsForm extends React.Component {
           }
 
           if (error) {
-            return <p>{error.message}</p>;
+            return (
+              <ErrorMessage>
+                {error.message
+                  .replace("Network error: ", "")
+                  .replace("GraphQL error: ", "")}
+              </ErrorMessage>
+            );
           }
 
           const { dataRequests } = data;
