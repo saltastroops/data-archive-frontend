@@ -93,12 +93,12 @@ class SearchQuery extends React.Component<
    * skip: boolean
    *     Whether the query should be skipped, i.e. not be executed.
    */
-  fetch = (options: QueryOptions, skip: boolean) => {
+  fetch = async (options: QueryOptions, skip: boolean) => {
     if (skip) {
       return;
     }
     this.setState(() => ({ data: undefined, error: undefined, loading: true }));
-    this.props.client
+    return this.props.client
       .query(options)
       .then(result =>
         this.setState(() => ({
