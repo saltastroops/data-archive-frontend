@@ -248,6 +248,9 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     if (!isPositiveInt) {
       return "The number of search results must be a positive integer.";
     }
+    if (Number(limit) > 10000) {
+      return "The maximum number of results to display is 10000.";
+    }
     return "";
   };
 
