@@ -95,40 +95,62 @@ class CartModal extends React.Component<ICart, any> {
                               .replace("GraphQL error: ", "")}
                           </ErrorMessage>
                         ) : null}
-                        <div className={"cart-table"}>
+                        <div
+                          className={
+                            "table-container cart-table-scroll-vertically"
+                          }
+                        >
                           <table
                             className={
-                              "table is-fullwidth is-outlined fixed-header"
+                              "table is-fullwidth is-outlined is-bordered"
                             }
                           >
                             <thead>
-                              <tr className="notification cart-modal">
-                                <th className="fixed-header-rest">
-                                  Observation
-                                </th>
-                                <th className="fixed-header-button">Remove</th>
-                                <th className="fixed-header-rest">Filename</th>
-                                <th className="fixed-header-rest">
-                                  Target name
-                                </th>
+                              <tr>
+                                <th>Observation</th>
+                                <th>Remove</th>
+                                <th>Filename</th>
+                                <th>Target name</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {groupedCart.map((obz: any, obzIndex: number) => {
-                                return Array.from(obz.files).map(
-                                  (file: any, index: number) => (
-                                    <CartFileRow
-                                      index={index}
-                                      id={file.id}
-                                      key={file.id}
-                                      file={file}
-                                      obzIndex={obzIndex}
-                                      remove={this.remove}
-                                      removeFromCart={removeFromCart}
-                                    />
-                                  )
-                                );
-                              })}
+                              {!groupedCart.length ? (
+                                <tr>
+                                  <td colSpan={4} rowSpan={20}>
+                                    <div
+                                      className={
+                                        "column is-center notification"
+                                      }
+                                    >
+                                      <p
+                                        className={
+                                          "has-text-centered has-text-info is-size-3"
+                                        }
+                                      >
+                                        The cart is empty.
+                                      </p>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ) : (
+                                groupedCart.map(
+                                  (obz: any, obzIndex: number) => {
+                                    return Array.from(obz.files).map(
+                                      (file: any, index: number) => (
+                                        <CartFileRow
+                                          index={index}
+                                          id={file.id}
+                                          key={file.id}
+                                          file={file}
+                                          obzIndex={obzIndex}
+                                          remove={this.remove}
+                                          removeFromCart={removeFromCart}
+                                        />
+                                      )
+                                    );
+                                  }
+                                )
+                              )}
                             </tbody>
                           </table>
                         </div>

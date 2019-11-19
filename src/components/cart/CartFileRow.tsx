@@ -25,10 +25,8 @@ const CartFileRow = (props: ICartFileRowProps) => {
   const { file, remove, removeFromCart, obzIndex, index } = props;
   return (
     <TableRow even={obzIndex % 2 === 0}>
-      <td className="fixed-header-rest">
-        {index === 0 && file.observation.name}
-      </td>
-      <td className="fixed-header-button">
+      <td>{index === 0 && file.observation.name}</td>
+      <td>
         <button
           className={"button is-danger"}
           onClick={e => remove(e, removeFromCart, [file])}
@@ -36,8 +34,8 @@ const CartFileRow = (props: ICartFileRowProps) => {
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </td>
-      <td className="fixed-header-rest">{file.name}</td>
-      <td className="fixed-header-rest">{file.target}</td>
+      <td>{file.name}</td>
+      <td>{file.target}</td>
     </TableRow>
   );
 };
