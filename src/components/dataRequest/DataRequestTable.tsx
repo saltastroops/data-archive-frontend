@@ -1,8 +1,8 @@
 import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
-import { IDataRequest } from "./DataRequestsForm";
 import DataKeys from "../searchFormComponents/results/DataKeys";
+import { IDataRequest } from "./DataRequestsForm";
 
 /**
  * Properties of the data request table component.
