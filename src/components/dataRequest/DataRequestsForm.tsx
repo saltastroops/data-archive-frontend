@@ -28,7 +28,7 @@ const ErrorMessage = styled.p.attrs({
 
 export interface IDataFile {
   id: string;
-  name: string;
+  metadata: Array<{ [key: string]: any }>;
 }
 
 export interface IDataRequest {

@@ -523,6 +523,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         {} as any
       );
 
+      // Add the id to the metadata as some code may look for it there.
+      metadata[DataKeys.DATA_FILE_ID] = result.id;
+
       const telescopeName = metadata[DataKeys.TELESCOPE_NAME];
       const telescopeObservationId =
         metadata[DataKeys.TELESCOPE_OBSERVATION_ID];
