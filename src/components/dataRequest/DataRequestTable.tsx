@@ -1,6 +1,10 @@
 import moment from "moment";
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import styled from "styled-components";
+import { CREATE_DATA_REQUEST } from "../../graphql/Mutations";
+import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
+import DataKeys from "../searchFormComponents/results/DataKeys";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
@@ -19,6 +23,18 @@ const Table = styled.table.attrs({
   className: "table is-striped is-narrowed is-hoverable is-fullwidth"
 })`
   && {
+  }
+`;
+
+const ErrorMessage = styled.p.attrs({
+  className: "error tile"
+})`
+  && {
+    text-align: left;
+    margin: 3px 0 3px 0;
+    padding: 2px 0 2px 0;
+    background-color: hsl(348, 100%, 61%);
+    color: white;
   }
 `;
 
@@ -50,7 +66,6 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
     const pending = status === "PENDING";
 
-    // TO UPDATE
     const filename = `data_request_${id}.zip`;
 
     return (
@@ -79,20 +94,56 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                   </a>
                 )}
                 {reRequestAll && (
-                  <button className="button re-request-all is-small is-danger is-rounded">
-                    Re-request all
-                  </button>
+                  <Mutation
+                    mutation={CREATE_DATA_REQUEST}
+                    refetchQueries={[
+                      {
+                        query: USER_DATA_REQUESTS_QUERY,
+                        variables: {
+                          limit: 5,
+                          startIndex: 0
+                        }
+                      }
+                    ]}
+                  >
+                    {(createDataRequest: any, { error }: any) => (
+                      <>
+                        <button
+                          className="button re-request-all is-small is-danger is-rounded"
+                          onClick={async () => {
+                            this.reCreateDataRequest(createDataRequest);
+                          }}
+                        >
+                          Re-request all
+                        </button>{" "}
+                        <span className="request-status">Failed</span>
+                        {error ? (
+                          <ErrorMessage>
+                            {error.message
+                              .replace("Network error: ", "")
+                              .replace("GraphQL error: ", "")}
+                          </ErrorMessage>
+                        ) : null}
+                      </>
+                    )}
+                  </Mutation>
                 )}
-                {pending && <span className="request-pending">Pending</span>}
+                {pending && <span className="request-status">Pending</span>}
               </p>
             </th>
           </tr>
           <tr>
             <th>Files</th>
           </tr>
-          {dataFiles.map(file => (
+          {dataFiles.map((file: any) => (
             <tr key={file.id}>
-              <td>{file.name}</td>
+              <td>
+                {
+                  file.metadata.find(
+                    (md: any) => md.name === DataKeys.DATA_FILE_FILENAME
+                  ).value
+                }
+              </td>
             </tr>
           ))}
         </thead>
@@ -100,6 +151,13 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       </Table>
     );
   }
+
+  reCreateDataRequest = async (create: any) => {
+    const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
+      parseInt(file.id, 10)
+    );
+    await create({ variables: { dataFiles: dataFileIds } });
+  };
 }
 
 export default DataRequestTable;
