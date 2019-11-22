@@ -110,6 +110,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                   >
                     {(createDataRequest: any, { error }: any) => (
                       <>
+                        <span>{reRequestData ? "Expired" : "Failed"}</span>{" "}
                         <button
                           className="button re-request-all is-small is-danger is-rounded"
                           onClick={async () => {
@@ -117,10 +118,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                           }}
                         >
                           {reRequestData ? "Re-request data" : "Try again"}
-                        </button>{" "}
-                        <span className="request-status">
-                          {reRequestData ? "Expired" : "Failed"}
-                        </span>
+                        </button>
                         {error ? (
                           <ErrorMessage>
                             {error.message
@@ -132,7 +130,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                     )}
                   </Mutation>
                 )}
-                {pending && <span className="request-status">Pending</span>}
+                {pending && <span className="request-pending">Pending</span>}
               </p>
             </th>
           </tr>

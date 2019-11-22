@@ -109,6 +109,6 @@
 .column-group-selector:not(:first-child) {
   margin-top: 1em;
 }
-.request-status {
+.request-pending {
   font-style: italic;
 }
