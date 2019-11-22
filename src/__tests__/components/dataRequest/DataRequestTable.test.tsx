@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
+import { MockedProvider } from "react-apollo/test-utils";
 import {
   DataRequestStatus,
   IDataFile,
@@ -27,7 +28,11 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
     uri: `http://demo/data-request/request-1`
   } as IDataRequest;
 
-  return mount(<DataRequestTable dataRequest={dataReqest} />);
+  return mount(
+    <MockedProvider>
+      <DataRequestTable dataRequest={dataReqest} />
+    </MockedProvider>
+  );
 };
 
 describe("DataRequestTable", () => {
