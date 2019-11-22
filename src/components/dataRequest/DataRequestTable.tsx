@@ -1,6 +1,7 @@
 import moment from "moment";
 import * as React from "react";
 import styled from "styled-components";
+import DataKeys from "../searchFormComponents/results/DataKeys";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
@@ -90,11 +91,17 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
           <tr>
             <th>Files</th>
           </tr>
-          {dataFiles.map(file => (
-            <tr key={file.id}>
-              <td>{file.name}</td>
-            </tr>
-          ))}
+          {dataFiles.map(file => {
+            const nameMetadata = file.metadata.find(
+              v => v.name === DataKeys.DATA_FILE_FILENAME
+            );
+            const name = nameMetadata ? nameMetadata.value : null;
+            return (
+              <tr key={file.id}>
+                <td>{name}</td>
+              </tr>
+            );
+          })}
         </thead>
         <tbody />
       </Table>

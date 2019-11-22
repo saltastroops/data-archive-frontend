@@ -7,15 +7,27 @@ exports[`DataRequestTable should render correctly 1`] = `
       "dataFiles": Array [
         Object {
           "id": "file-0",
-          "name": "filename 0",
+          "metadata": Array [
+            Object {
+              "artifact.name": "filename 0",
+            },
+          ],
         },
         Object {
           "id": "file-1",
-          "name": "filename 1",
+          "metadata": Array [
+            Object {
+              "artifact.name": "filename 1",
+            },
+          ],
         },
         Object {
           "id": "file-2",
-          "name": "filename 2",
+          "metadata": Array [
+            Object {
+              "artifact.name": "filename 2",
+            },
+          ],
         },
       ],
       "id": "request-1",
@@ -102,23 +114,17 @@ exports[`DataRequestTable should render correctly 1`] = `
           <tr
             key="file-0"
           >
-            <td>
-              filename 0
-            </td>
+            <td />
           </tr>
           <tr
             key="file-1"
           >
-            <td>
-              filename 1
-            </td>
+            <td />
           </tr>
           <tr
             key="file-2"
           >
-            <td>
-              filename 2
-            </td>
+            <td />
           </tr>
         </thead>
         <tbody />
