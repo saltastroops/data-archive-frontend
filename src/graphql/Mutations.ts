@@ -97,7 +97,6 @@ export const LOGOUT_MUTATION = gql`
  */
 export const UPDATE_USER_MUTATION = gql`
   mutation UPDATE_USER_MUTATION(
-    $id: ID
     $familyName: String
     $givenName: String
     $username: String
@@ -107,7 +106,6 @@ export const UPDATE_USER_MUTATION = gql`
     $newPassword: String
   ) {
     updateUser(
-      id: $id
       familyName: $familyName
       givenName: $givenName
       username: $username

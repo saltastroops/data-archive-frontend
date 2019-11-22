@@ -55,7 +55,6 @@ describe("UserUpdateForm Component", () => {
             email: "",
             familyName: "Doe",
             givenName: "John",
-            id: "",
             newPassword: "",
             password: "",
             roles: [],
@@ -387,7 +386,6 @@ describe("UserUpdateForm Component", () => {
             email: "",
             familyName: "Doe",
             givenName: "John",
-            id: "",
             newPassword: "",
             password: "oldpassword",
             username: ""
@@ -463,7 +461,6 @@ describe("UserUpdateForm Component", () => {
             email: "",
             familyName: "",
             givenName: "John",
-            id: "",
             newPassword: "",
             password: "oldpassword",
             username: ""

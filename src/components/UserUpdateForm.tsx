@@ -36,7 +36,6 @@ export interface IUserUpdateFormInput {
   confirmNewPassword?: string;
   email?: string;
   givenName?: string;
-  id?: string;
   familyName?: string;
   newPassword?: string;
   password: string;
@@ -152,7 +151,6 @@ class UserUpdateForm extends React.Component<
       email: "",
       familyName: "",
       givenName: "",
-      id: "",
       newPassword: "",
       password: "",
       username: ""
@@ -194,7 +192,6 @@ class UserUpdateForm extends React.Component<
           email: "",
           familyName: "",
           givenName: "",
-          id: "",
           newPassword: "",
           password: "",
           username: ""
@@ -237,7 +234,6 @@ class UserUpdateForm extends React.Component<
       email,
       familyName,
       givenName,
-      id,
       newPassword,
       password,
       username
@@ -256,19 +252,6 @@ class UserUpdateForm extends React.Component<
                 {errors.responseError ? (
                   <ErrorMessage>{errors.responseError}</ErrorMessage>
                 ) : null}
-
-                {/* ID */}
-                <div className="field">
-                  <label className="label">
-                    User ID
-                    <InputField
-                      error={errors.id}
-                      name={"id"}
-                      onChange={this.onInputChange}
-                      value={id}
-                    />
-                  </label>
-                </div>
 
                 {/* Given name */}
                 <div className="field">

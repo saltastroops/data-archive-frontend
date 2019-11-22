@@ -36,9 +36,6 @@ describe("NavigationBar", () => {
     // Data requests link is not shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeFalsy();
 
-    // Account details link is not shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeFalsy();
-
     // Logout link is not shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeFalsy();
 
@@ -70,9 +67,6 @@ describe("NavigationBar", () => {
     // Data requests link is shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
 
-    // Account details link is shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeTruthy();
-
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();
 
@@ -103,9 +97,6 @@ describe("NavigationBar", () => {
 
     // Data requests link is shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
-
-    // Account details link is shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeTruthy();
 
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();
