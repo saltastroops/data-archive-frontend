@@ -130,30 +130,6 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
           <NavLink
             activeClassName="has-text-weight-bold has-text-link"
             className="navbar-item"
-            to="/account"
-          >
-            <Route
-              path="\\\\/account"
-            >
-              <Link
-                aria-current={null}
-                className="navbar-item"
-                to="/account"
-              >
-                <a
-                  aria-current={null}
-                  className="navbar-item"
-                  href="/account"
-                  onClick={[Function]}
-                >
-                  Account
-                </a>
-              </Link>
-            </Route>
-          </NavLink>
-          <NavLink
-            activeClassName="has-text-weight-bold has-text-link"
-            className="navbar-item"
             to="/user-update"
           >
             <Route
@@ -680,30 +656,6 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         <div
           className="navbar-dropdown"
         >
-          <NavLink
-            activeClassName="has-text-weight-bold has-text-link"
-            className="navbar-item"
-            to="/account"
-          >
-            <Route
-              path="\\\\/account"
-            >
-              <Link
-                aria-current={null}
-                className="navbar-item"
-                to="/account"
-              >
-                <a
-                  aria-current={null}
-                  className="navbar-item"
-                  href="/account"
-                  onClick={[Function]}
-                >
-                  Account
-                </a>
-              </Link>
-            </Route>
-          </NavLink>
           <NavLink
             activeClassName="has-text-weight-bold has-text-link"
             className="navbar-item"

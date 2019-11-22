@@ -172,22 +172,6 @@ class App extends React.Component<{}, IAppState> {
                     render={() => <LoginForm cache={this.cache.loginForm} />}
                   />
 
-                  {/* account details page */}
-                  <ProtectedRoute
-                    user={currentUser}
-                    exact={true}
-                    path="/account"
-                    component={() => (
-                      <h1 className="title">
-                        {currentUser
-                          ? `${currentUser.givenName} ${
-                              currentUser.familyName
-                            } Account`
-                          : "No User"}
-                      </h1>
-                    )}
-                  />
-
                   {/* data requests page */}
                   <ProtectedRoute
                     user={currentUser}

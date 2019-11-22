@@ -257,19 +257,6 @@ class UserUpdateForm extends React.Component<
                   <ErrorMessage>{errors.responseError}</ErrorMessage>
                 ) : null}
 
-                {/* ID */}
-                <div className="field">
-                  <label className="label">
-                    User ID
-                    <InputField
-                      error={errors.id}
-                      name={"id"}
-                      onChange={this.onInputChange}
-                      value={id}
-                    />
-                  </label>
-                </div>
-
                 {/* Given name */}
                 <div className="field">
                   <label className="label">
