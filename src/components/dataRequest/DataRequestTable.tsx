@@ -62,7 +62,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
     const mayDownloadAll = status === "SUCCESSFUL";
 
-    const reRequestAll = status === "FAILED";
+    const tryAgain = status === "FAILED";
+
+    const reRequestData = status === "EXPIRED";
 
     const pending = status === "PENDING";
 
@@ -93,7 +95,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                     Download all
                   </a>
                 )}
-                {reRequestAll && (
+                {(reRequestData || tryAgain) && (
                   <Mutation
                     mutation={CREATE_DATA_REQUEST}
                     refetchQueries={[
@@ -111,12 +113,14 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                         <button
                           className="button re-request-all is-small is-danger is-rounded"
                           onClick={async () => {
-                            this.reCreateDataRequest(createDataRequest);
+                            this.recreateDataRequest(createDataRequest);
                           }}
                         >
-                          Re-request all
+                          {reRequestData ? "Re-request data" : "Try again"}
                         </button>{" "}
-                        <span className="request-status">Failed</span>
+                        <span className="request-status">
+                          {reRequestData ? "Expired" : "Failed"}
+                        </span>
                         {error ? (
                           <ErrorMessage>
                             {error.message
@@ -152,7 +156,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     );
   }
 
-  reCreateDataRequest = async (create: any) => {
+  recreateDataRequest = async (create: any) => {
     const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
       parseInt(file.id, 10)
     );
