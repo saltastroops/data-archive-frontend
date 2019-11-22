@@ -7,15 +7,16 @@ import {
   IDataRequest
 } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
+import DataKeys from "../../../components/searchFormComponents/results/DataKeys";
 
 const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
   const df: IDataFile = {
     id: `file-${1}a`,
-    name: `filename ${1}a`
+    metadata: [{ [DataKeys.DATA_FILE_FILENAME]: `filename ${1}a` }]
   };
   const dataFiles = ["1", "2", "3"].map((id, index) => ({
     id: `file-${index}`,
-    name: `filename ${index}`
+    metadata: [{ [DataKeys.DATA_FILE_FILENAME]: `filename ${index}` }]
   })) as IDataFile[];
 
   const dataReqest = {

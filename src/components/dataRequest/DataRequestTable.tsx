@@ -135,17 +135,17 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
           <tr>
             <th>Files</th>
           </tr>
-          {dataFiles.map((file: any) => (
-            <tr key={file.id}>
-              <td>
-                {
-                  file.metadata.find(
-                    (md: any) => md.name === DataKeys.DATA_FILE_FILENAME
-                  ).value
-                }
-              </td>
-            </tr>
-          ))}
+          {dataFiles.map(file => {
+            const nameMetadata = file.metadata.find(
+              v => v.name === DataKeys.DATA_FILE_FILENAME
+            );
+            const name = nameMetadata ? nameMetadata.value : null;
+            return (
+              <tr key={file.id}>
+                <td>{name}</td>
+              </tr>
+            );
+          })}
         </thead>
         <tbody />
       </Table>
