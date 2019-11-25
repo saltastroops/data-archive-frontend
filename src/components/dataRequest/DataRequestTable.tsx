@@ -26,6 +26,14 @@ const Table = styled.table.attrs({
   }
 `;
 
+const Button = styled.button.attrs({
+  className: "button re-request-all is-small is-danger is-rounded"
+})`
+  && {
+    margin-left: 10px;
+  }
+`;
+
 const ErrorMessage = styled.p.attrs({
   className: "error tile"
 })`
@@ -110,15 +118,14 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                   >
                     {(createDataRequest: any, { error }: any) => (
                       <>
-                        <span>{reRequestData ? "Expired" : "Failed"}</span>{" "}
-                        <button
-                          className="button re-request-all is-small is-danger is-rounded"
+                        <span>{reRequestData ? "Expired" : "Failed"}</span>
+                        <Button
                           onClick={async () => {
                             this.recreateDataRequest(createDataRequest);
                           }}
                         >
                           {reRequestData ? "Re-request data" : "Try again"}
-                        </button>
+                        </Button>
                         {error ? (
                           <ErrorMessage>
                             {error.message
