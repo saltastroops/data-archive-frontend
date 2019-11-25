@@ -146,7 +146,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                   href="/user-update"
                   onClick={[Function]}
                 >
-                  Account Edit
+                  Edit Account Details
                 </a>
               </Link>
             </Route>
@@ -675,7 +675,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                   href="/user-update"
                   onClick={[Function]}
                 >
-                  Account Edit
+                  Edit Account Details
                 </a>
               </Link>
             </Route>

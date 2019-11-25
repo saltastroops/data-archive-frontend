@@ -179,7 +179,7 @@ class NavigationBar extends React.Component<
                             className="navbar-item"
                             to="/user-update"
                           >
-                            Account Edit
+                            Edit Account Details
                           </NavLink>
 
                           {/* Link for logging out */}

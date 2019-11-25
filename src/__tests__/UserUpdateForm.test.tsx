@@ -387,7 +387,6 @@ describe("UserUpdateForm Component", () => {
             email: "",
             familyName: "Doe",
             givenName: "John",
-            id: "",
             newPassword: "",
             password: "oldpassword",
             username: ""
