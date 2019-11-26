@@ -66,31 +66,6 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
       <label
         className="label"
       >
-        User ID
-        <InputField
-          name="id"
-          onChange={[Function]}
-          value=""
-        >
-          <div
-            className="control"
-          >
-            <input
-              className="input "
-              name="id"
-              onChange={[Function]}
-              value=""
-            />
-          </div>
-        </InputField>
-      </label>
-    </div>
-    <div
-      className="field"
-    >
-      <label
-        className="label"
-      >
         Given name (first name)
         <InputField
           name="givenName"

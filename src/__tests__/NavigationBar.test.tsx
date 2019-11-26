@@ -7,7 +7,6 @@ import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import { CART_QUERY } from "../util/Cart";
 
 const mockUser = (familyName: string, givenName: string, isAdmin: boolean) => ({
   familyName,
@@ -35,9 +34,6 @@ describe("NavigationBar", () => {
 
     // Data requests link is not shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeFalsy();
-
-    // Account details link is not shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeFalsy();
 
     // Logout link is not shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeFalsy();
@@ -70,8 +66,8 @@ describe("NavigationBar", () => {
     // Data requests link is shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
 
-    // Account details link is shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeTruthy();
+    // Account edit link is shown
+    expect(wrapper.exists('Link[to="/user-update"]')).toBeTruthy();
 
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();
@@ -104,8 +100,8 @@ describe("NavigationBar", () => {
     // Data requests link is shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
 
-    // Account details link is shown
-    expect(wrapper.exists('Link[to="/account"]')).toBeTruthy();
+    // Account edit link is shown
+    expect(wrapper.exists('Link[to="/user-update"]')).toBeTruthy();
 
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();

@@ -177,18 +177,9 @@ class NavigationBar extends React.Component<
                           <NavLink
                             activeClassName={activeTab}
                             className="navbar-item"
-                            to="/account"
-                          >
-                            Account
-                          </NavLink>
-
-                          {/* Link to page for editing account details */}
-                          <NavLink
-                            activeClassName={activeTab}
-                            className="navbar-item"
                             to="/user-update"
                           >
-                            Account Edit
+                            Edit Account Details
                           </NavLink>
 
                           {/* Link for logging out */}
