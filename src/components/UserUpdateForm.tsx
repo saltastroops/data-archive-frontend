@@ -190,7 +190,6 @@ class UserUpdateForm extends React.Component<
           email: "",
           familyName: "",
           givenName: "",
-          id: "",
           newPassword: "",
           password: "",
           username: ""
@@ -233,7 +232,6 @@ class UserUpdateForm extends React.Component<
       email,
       familyName,
       givenName,
-      id,
       newPassword,
       password,
       username
