@@ -53,10 +53,13 @@ class CartModal extends React.Component<ICart, any> {
       >
         {(removeFromCart: any) => {
           const cartContent: any = cache.readQuery({ query: CART_QUERY }) || {
-            cart: []
+            cart: { files: [], includeCalibrations: true }
           };
           const groupedCart: any = [];
-          const cart = new Cart(cartContent.cart);
+          const cart = new Cart(
+            cartContent.cart.files,
+            cartContent.cart.includeCalibrations
+          );
           cart.groupByObservation().forEach((v, k) => {
             groupedCart.push({ files: v, id: k, name: v[0].observation.name });
           });

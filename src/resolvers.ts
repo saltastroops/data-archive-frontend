@@ -5,9 +5,9 @@ import { Cart, CART_QUERY, ICartFile } from "./util/Cart";
 export const typeDefs = gql`
   extend type Query {
     """
-    The cart content
+    The cart content.
     """
-    cart: [CartFiles!]!
+    cart: CartContent!
 
     """
     The currently logged in user.
@@ -25,6 +25,14 @@ export const typeDefs = gql`
     Log the user out.
     """
     logout: Boolean
+  }
+
+  """
+  The cart content.
+  """
+  type CartContent {
+    files: [CartFile!]!
+    includeCalibrations: Boolean
   }
 
   """
@@ -124,29 +132,49 @@ export const resolvers = {
     // Add files to the cart
     addToCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
-      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+      const data = cache.readQuery({ query: CART_QUERY });
+      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
 
       // Add the files
       cart.add(files as [ICartFile]);
 
       // Store updated content both in the cache and in local storage
-      localStorage.setItem("cart", JSON.stringify(cart.files));
-      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
-
+      await localStorage.setItem("cart", cart.toJSON());
+      await cache.writeQuery({
+        query: CART_QUERY,
+        data: {
+          cart: {
+            __typename: "CartContent",
+            files: cart.files,
+            includeCalibrations: cart.includeCalibrations
+          }
+        }
+      });
       return true;
     },
 
     // Remove files from the cart
     removeFromCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
-      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+      const data = cache.readQuery({ query: CART_QUERY });
+      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
 
       // Remove the files
       cart.remove(files as [ICartFile]);
 
       // Store updated content both in the cache and in local storage
-      localStorage.setItem("cart", JSON.stringify(cart.files));
-      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
+      await localStorage.setItem("cart", cart.toJSON());
+      console.log(localStorage.getItem("cart"));
+      await cache.writeQuery({
+        query: CART_QUERY,
+        data: {
+          cart: {
+            files: cart.files,
+            includeCalibrations: cart.includeCalibrations,
+            __typename: "CartContent"
+          }
+        }
+      });
 
       return true;
     },
@@ -154,14 +182,47 @@ export const resolvers = {
     // Clear the cart
     clearCart: async (_: any, args: any, { cache }: any) => {
       // Get current cart content
-      const cart = new Cart(cache.readQuery({ query: CART_QUERY }).cart);
+      const data = cache.readQuery({ query: CART_QUERY });
+      const cart = new Cart(data.files, data.includeCalibrations);
 
       // Remove the files
       cart.clear();
 
       // Store updated content both in the cache and in local storage
-      localStorage.setItem("cart", JSON.stringify(cart.files));
-      await cache.writeQuery({ query: CART_QUERY, data: { cart: cart.files } });
+      await localStorage.setItem("cart", cart.toJSON());
+      await cache.writeQuery({
+        query: CART_QUERY,
+        data: {
+          files: cart.files,
+          includeCalibrations: cart.includeCalibrations
+        }
+      });
+
+      return true;
+    },
+
+    // Include calibrations in cart
+    includeCalibrationsInCart: async (
+      _: any,
+      { includeCalibrations }: any,
+      { cache }: any
+    ) => {
+      // Get current cart content
+      const data = cache.readQuery({ query: CART_QUERY });
+      const cart = new Cart(data.files, data.includeCalibrations);
+
+      // Remove the files
+      cart.clear();
+
+      // Store updated content both in the cache and in local storage
+      await localStorage.setItem("cart", cart.toJSON());
+      await cache.writeQuery({
+        query: CART_QUERY,
+        data: {
+          files: cart.files,
+          includeCalibrations: cart.includeCalibrations
+        }
+      });
 
       return true;
     },
