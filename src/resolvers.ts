@@ -164,7 +164,6 @@ export const resolvers = {
 
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
-      console.log(localStorage.getItem("cart"));
       await cache.writeQuery({
         query: CART_QUERY,
         data: {
@@ -193,8 +192,11 @@ export const resolvers = {
       await cache.writeQuery({
         query: CART_QUERY,
         data: {
-          files: cart.files,
-          includeCalibrations: cart.includeCalibrations
+          cart: {
+            files: cart.files,
+            includeCalibrations: cart.includeCalibrations,
+            __typename: "CartContent"
+          }
         }
       });
 
@@ -211,16 +213,19 @@ export const resolvers = {
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(data.files, data.includeCalibrations);
 
-      // Remove the files
-      cart.clear();
+      // Update the flag for including calibrations
+      cart.includeCalibrations = includeCalibrations;
 
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
         query: CART_QUERY,
         data: {
-          files: cart.files,
-          includeCalibrations: cart.includeCalibrations
+          cart: {
+            files: cart.files,
+            includeCalibrations: cart.includeCalibrations,
+            __typename: "CartContent"
+          }
         }
       });
 
