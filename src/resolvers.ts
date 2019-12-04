@@ -211,7 +211,7 @@ export const resolvers = {
     ) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.files, data.includeCalibrations);
+      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
 
       // Update the flag for including calibrations
       cart.includeCalibrations = includeCalibrations;
