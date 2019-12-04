@@ -37,14 +37,14 @@ const client = new ApolloClient({
 const cartContentString = localStorage.getItem("cart");
 const cart = Cart.fromJSON(cartContentString);
 cache.writeQuery({
-  query: CART_QUERY,
   data: {
     cart: {
+      __typename: "CartContent",
       files: cart.files,
-      includeCalibrations: cart.includeCalibrations,
-      __typename: "CartContent"
+      includeCalibrations: cart.includeCalibrations
     }
-  }
+  },
+  query: CART_QUERY
 });
 
 ReactDOM.render(

@@ -4,6 +4,29 @@ import gql from "graphql-tag";
  * The cart of requested files.
  */
 export class Cart {
+  /**
+   * Create a Cart instance from a JSON representation.
+   *
+   * Default values (an empty array for the files, true for the flag to include
+   * calibrations) are used if a property isn't defined in the JSON string, or
+   * if the string is falsy.
+   */
+  static fromJSON(json: string | null): Cart {
+    let o: any;
+    try {
+      o = JSON.parse(json || "{}");
+    } catch (e) {
+      o = {};
+    }
+
+    const files = o.files || [];
+
+    // default to true if the flag for including calibrations is not defined
+    const includeCalibrations = o.includeCalibrations !== false;
+
+    return new Cart(files, includeCalibrations);
+  }
+
   private cartFiles: ICartFile[];
   private includeCalibrationFiles: boolean;
 
@@ -27,29 +50,6 @@ export class Cart {
       files: this.files,
       includeCalibrations: this.includeCalibrations
     });
-  }
-
-  /**
-   * Create a Cart instance from a JSON representation.
-   *
-   * Default values (an empty array for the files, true for the flag to include
-   * calibrations) are used if a property isn't defined in the JSON string, or
-   * if the string is falsy.
-   */
-  static fromJSON(json: string | null): Cart {
-    let o: any;
-    try {
-      o = JSON.parse(json || "{}");
-    } catch (e) {
-      o = {};
-    }
-
-    const files = o.files || [];
-
-    // default to true if the flag for including calibrations is not defined
-    const includeCalibrations = o.includeCalibrations !== false;
-
-    return new Cart(files, includeCalibrations);
   }
 
   /**

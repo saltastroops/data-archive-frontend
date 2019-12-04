@@ -141,14 +141,14 @@ export const resolvers = {
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
-        query: CART_QUERY,
         data: {
           cart: {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations
           }
-        }
+        },
+        query: CART_QUERY
       });
       return true;
     },
@@ -165,14 +165,14 @@ export const resolvers = {
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
-        query: CART_QUERY,
         data: {
           cart: {
+            __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
-            __typename: "CartContent"
+            includeCalibrations: cart.includeCalibrations
           }
-        }
+        },
+        query: CART_QUERY
       });
 
       return true;
@@ -190,14 +190,14 @@ export const resolvers = {
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
-        query: CART_QUERY,
         data: {
           cart: {
+            __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
-            __typename: "CartContent"
+            includeCalibrations: cart.includeCalibrations
           }
-        }
+        },
+        query: CART_QUERY
       });
 
       return true;
@@ -219,14 +219,14 @@ export const resolvers = {
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
-        query: CART_QUERY,
         data: {
           cart: {
+            __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
-            __typename: "CartContent"
+            includeCalibrations: cart.includeCalibrations
           }
-        }
+        },
+        query: CART_QUERY
       });
 
       return true;
