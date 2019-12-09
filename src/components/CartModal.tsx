@@ -188,18 +188,18 @@ class CartModal extends React.Component<ICart, any> {
                                   )}
                                 </tbody>
                               </table>
-                              <div>
-                                <label>
-                                  <LargeCheckbox
-                                    checked={cart.includeCalibrations}
-                                    onChange={updateIncludeCalibrations}
-                                  />{" "}
-                                  Include calibration files
-                                </label>
-                              </div>
                             </div>
                           </div>
                           <div className={"section"}>
+                            <div className="include-calibrations">
+                              <label>
+                                <LargeCheckbox
+                                  checked={cart.includeCalibrations}
+                                  onChange={updateIncludeCalibrations}
+                                />{" "}
+                                Include calibration files
+                              </label>
+                            </div>
                             <div className={"columns cart-buttons-section"}>
                               <div className={"column"}>
                                 {!user ? (
