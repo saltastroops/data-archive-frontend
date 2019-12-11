@@ -15,7 +15,7 @@ import { resolvers, typeDefs } from "./resolvers";
 import cache from "./util/cache";
 
 import * as serviceWorker from "./registerServiceWorker";
-import { CART_QUERY } from "./util/Cart";
+import { Cart, CART_QUERY } from "./util/Cart";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
@@ -35,8 +35,17 @@ const client = new ApolloClient({
 
 // read cart from local storage
 const cartContentString = localStorage.getItem("cart");
-const cartContent = cartContentString ? JSON.parse(cartContentString) : [];
-cache.writeQuery({ query: CART_QUERY, data: { cart: cartContent } });
+const cart = Cart.fromJSON(cartContentString);
+cache.writeQuery({
+  data: {
+    cart: {
+      __typename: "CartContent",
+      files: cart.files,
+      includeCalibrations: cart.includeCalibrations
+    }
+  },
+  query: CART_QUERY
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>

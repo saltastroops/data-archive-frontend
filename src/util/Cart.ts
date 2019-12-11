@@ -4,10 +4,52 @@ import gql from "graphql-tag";
  * The cart of requested files.
  */
 export class Cart {
-  private cartFiles: ICartFile[];
+  /**
+   * Create a Cart instance from a JSON representation.
+   *
+   * Default values (an empty array for the files, true for the flag to include
+   * calibrations) are used if a property isn't defined in the JSON string, or
+   * if the string is falsy.
+   */
+  static fromJSON(json: string | null): Cart {
+    let o: any;
+    try {
+      o = JSON.parse(json || "{}");
+    } catch (e) {
+      o = {};
+    }
 
-  constructor(files: ICartFile[]) {
-    this.cartFiles = files;
+    const files = o.files || [];
+
+    // default to true if the flag for including calibrations is not defined
+    const includeCalibrations = o.includeCalibrations !== false;
+
+    return new Cart(files, includeCalibrations);
+  }
+
+  private cartFiles: ICartFile[];
+  private includeCalibrationFiles: boolean;
+
+  constructor(files: ICartFile[], includeCalibrations: boolean) {
+    this.cartFiles = files || [];
+    if (includeCalibrations !== undefined && includeCalibrations !== null) {
+      this.includeCalibrationFiles = includeCalibrations;
+    } else {
+      this.includeCalibrationFiles = true;
+    }
+  }
+
+  /**
+   * JSON representation of the cart content.
+   *
+   * The string returned by this method is intended to be used with the fromJSON
+   * method.
+   */
+  public toJSON(): string {
+    return JSON.stringify({
+      files: this.files,
+      includeCalibrations: this.includeCalibrations
+    });
   }
 
   /**
@@ -26,6 +68,20 @@ export class Cart {
    */
   public get size() {
     return this.cartFiles.length;
+  }
+
+  /**
+   * Whether calibration files should be included in the data request.
+   */
+  public get includeCalibrations() {
+    return this.includeCalibrationFiles;
+  }
+
+  /**
+   * Set whether calibration files should be included in the data request.
+   */
+  public set includeCalibrations(includeCalibrations: boolean) {
+    this.includeCalibrationFiles = includeCalibrations;
   }
 
   /**
@@ -149,13 +205,13 @@ export interface ICartFile {
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
-      id
-      name
-      observation {
+      files {
         id
         name
+        observation
+        target
       }
-      target
+      includeCalibrations
     }
   }
 `;
@@ -175,5 +231,11 @@ export const REMOVE_FROM_CART_MUTATION = gql`
 export const CLEAR_CART_MUTATION = gql`
   mutation CLEAR_CART_MUTATION {
     clearCart @client
+  }
+`;
+
+export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
+  mutation INCLUDE_CALIBRATIONS_IN_CART($includeCalibrations: Boolean!) {
+    includeCalibrationsInCart(includeCalibrations: $includeCalibrations) @client
   }
 `;
