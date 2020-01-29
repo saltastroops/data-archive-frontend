@@ -7,8 +7,15 @@ import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { AuthProviderType } from "../utils/ObservationQueryParameters";
 
-const mockUser = (familyName: string, givenName: string, isAdmin: boolean) => ({
+const mockUser = (
+  authProvider: AuthProviderType,
+  familyName: string,
+  givenName: string,
+  isAdmin: boolean
+) => ({
+  authProvider,
   familyName,
   givenName,
   isAdmin
@@ -21,16 +28,16 @@ describe("NavigationBar", () => {
     const wrapper = mount(
       <MockedProvider>
         <MemoryRouter>
-          <NavigationBar user={user} />
+          <NavigationBar user={user} openCart={() => false} />
         </MemoryRouter>
       </MockedProvider>
     );
 
     // Login button is shown
-    expect(wrapper.exists('Link[to="/login"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/login"]')).toBeTruthy();
 
     // Registration button is shown
-    expect(wrapper.exists('Link[to="/register"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/register"]')).toBeTruthy();
 
     // Data requests link is not shown
     expect(wrapper.exists('Link[to="/data-requests"]')).toBeFalsy();
@@ -47,12 +54,12 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is a non-administrator", () => {
-    const user = mockUser("surname", "name", false);
+    const user = mockUser("SSDA", "surname", "name", false);
 
     const wrapper = mount(
       <MockedProvider>
         <MemoryRouter>
-          <NavigationBar user={user} />
+          <NavigationBar user={user} openCart={() => false} />
         </MemoryRouter>
       </MockedProvider>
     );
@@ -64,10 +71,10 @@ describe("NavigationBar", () => {
     expect(wrapper.exists('Link[to="/register"]')).toBeFalsy();
 
     // Data requests link is shown
-    expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/data-requests"]')).toBeTruthy();
 
     // Account edit link is shown
-    expect(wrapper.exists('Link[to="/user-update"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/user-update"]')).toBeTruthy();
 
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();
@@ -81,12 +88,12 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is an administrator", () => {
-    const user = mockUser("surname", "name", true);
+    const user = mockUser("SSDA", "surname", "name", true);
 
     const wrapper = mount(
       <MockedProvider>
         <MemoryRouter>
-          <NavigationBar user={user} />
+          <NavigationBar user={user} openCart={() => false} />
         </MemoryRouter>
       </MockedProvider>
     );
@@ -98,16 +105,16 @@ describe("NavigationBar", () => {
     expect(wrapper.exists('Link[to="/register"]')).toBeFalsy();
 
     // Data requests link is shown
-    expect(wrapper.exists('Link[to="/data-requests"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/data-requests"]')).toBeTruthy();
 
     // Account edit link is shown
-    expect(wrapper.exists('Link[to="/user-update"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/user-update"]')).toBeTruthy();
 
     // Logout link is shown
     expect(wrapper.exists('a[data-test="logout"]')).toBeTruthy();
 
     // Admin page link is shown
-    expect(wrapper.exists('Link[to="/admin"]')).toBeTruthy();
+    expect(wrapper.exists('NavLink[to="/admin"]')).toBeTruthy();
 
     // Overall content check
     const navigationBar = wrapper.find(".navbar");
@@ -115,7 +122,7 @@ describe("NavigationBar", () => {
   });
 
   it("calls the logout function when the logout link is clicked", async () => {
-    const user = mockUser("surname", "name", false);
+    const user = mockUser("SSDA", "surname", "name", false);
 
     // logout mock mutation
     let logoutCalled = false;
@@ -149,7 +156,7 @@ describe("NavigationBar", () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <MemoryRouter>
-          <NavigationBar user={user} />
+          <NavigationBar user={user} openCart={() => false} />
         </MemoryRouter>
       </MockedProvider>
     );
@@ -168,12 +175,12 @@ describe("NavigationBar", () => {
   });
 
   it("toggles the visibility of the menu when the burger button is clicked", async () => {
-    const user = mockUser("surname", "name", false);
+    const user = mockUser("SSDA", "surname", "name", false);
 
     const wrapper = mount(
       <MockedProvider>
         <MemoryRouter>
-          <NavigationBar user={user} />
+          <NavigationBar user={user} openCart={() => false} />
         </MemoryRouter>
       </MockedProvider>
     );

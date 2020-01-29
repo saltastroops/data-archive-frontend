@@ -231,7 +231,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
                   "componentId": "sc-htpNat",
-                  "isStatic": true,
+                  "isStatic": false,
                   "lastClassName": "c0",
                   "rules": Array [
                     "
@@ -298,7 +298,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-bwzfXH",
-                              "isStatic": true,
+                              "isStatic": false,
                               "lastClassName": "c1",
                               "rules": Array [
                                 "
@@ -350,7 +350,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -378,7 +378,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="target.name"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -411,7 +411,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -439,7 +439,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="position.ra"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -472,7 +472,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -500,7 +500,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="position.dec"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -533,7 +533,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -561,7 +561,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="target_type.description"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -608,7 +608,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-bwzfXH",
-                              "isStatic": true,
+                              "isStatic": false,
                               "lastClassName": "c1",
                               "rules": Array [
                                 "
@@ -660,7 +660,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -688,7 +688,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="rss_fabry_perot_mode.fabry_perot_mode"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -721,7 +721,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -749,7 +749,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="rss_grating.grating"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -782,7 +782,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -810,7 +810,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="hrs_mode.hrs_mode"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -887,7 +887,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-bwzfXH",
-                              "isStatic": true,
+                              "isStatic": false,
                               "lastClassName": "c1",
                               "rules": Array [
                                 "
@@ -939,7 +939,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -967,7 +967,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="proposal.pi"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1000,7 +1000,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1028,7 +1028,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="proposal.title"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1061,7 +1061,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1089,7 +1089,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="proposal.proposal_code"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1122,7 +1122,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1150,7 +1150,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="observation_time.night"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1183,7 +1183,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1211,7 +1211,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="product_type.product_type"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1244,7 +1244,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1272,7 +1272,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="status.status"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1305,7 +1305,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1333,7 +1333,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="telescope.name"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1366,7 +1366,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1394,7 +1394,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={true}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="observation.data_release"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1468,7 +1468,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-bwzfXH",
-                              "isStatic": true,
+                              "isStatic": false,
                               "lastClassName": "c1",
                               "rules": Array [
                                 "
@@ -1520,7 +1520,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1548,7 +1548,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="instrument.name"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1581,7 +1581,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1609,7 +1609,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="instrument_mode.instrument_mode"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1642,7 +1642,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1670,7 +1670,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="detector_mode.detector_mode"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1703,7 +1703,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1731,7 +1731,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="energy.resolving_power"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1764,7 +1764,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1792,7 +1792,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="energy.min_wavelength"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1825,7 +1825,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1853,7 +1853,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="energy.max_wavelength"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1886,7 +1886,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1914,7 +1914,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="observation_time.exposure_time"
                                 onChange={[Function]}
                                 type="checkbox"
@@ -1947,7 +1947,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                   ],
                                   "componentStyle": ComponentStyle {
                                     "componentId": "sc-bdVaJa",
-                                    "isStatic": true,
+                                    "isStatic": false,
                                     "lastClassName": "c2",
                                     "rules": Array [
                                       "
@@ -1975,7 +1975,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             >
                               <input
                                 checked={false}
-                                className="checkbox c2"
+                                className="c2 checkbox"
                                 name="polarization_mode.name"
                                 onChange={[Function]}
                                 type="checkbox"

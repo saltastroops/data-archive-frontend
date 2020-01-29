@@ -30,6 +30,11 @@ export interface ISearchFormState {
 }
 
 /**
+ * Auth provider types.
+ */
+export type AuthProviderType = "SSDA" | "SDB";
+
+/**
  * The available calibration types.
  */
 export type ProductType = "Arc" | "Bias" | "Flat" | "Science" | "Standard";

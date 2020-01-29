@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import { CART_QUERY } from "../util/Cart";
+import { AuthProviderType } from "../utils/ObservationQueryParameters";
 import CartButton from "./cart/CartButton";
 
 /**
@@ -25,6 +26,7 @@ import CartButton from "./cart/CartButton";
  */
 interface INavigationBarProps {
   user?: {
+    authProvider: AuthProviderType;
     familyName: string;
     givenName: string;
     isAdmin: boolean;
@@ -174,13 +176,15 @@ class NavigationBar extends React.Component<
 
                         <div className="navbar-dropdown">
                           {/* Link to page for editing account details */}
-                          <NavLink
-                            activeClassName={activeTab}
-                            className="navbar-item"
-                            to="/user-update"
-                          >
-                            Edit Account Details
-                          </NavLink>
+                          {user.authProvider === "SSDA" && (
+                            <NavLink
+                              activeClassName={activeTab}
+                              className="navbar-item"
+                              to="/user-update"
+                            >
+                              Edit Account Details
+                            </NavLink>
+                          )}
 
                           {/* Link for logging out */}
                           <NavLink

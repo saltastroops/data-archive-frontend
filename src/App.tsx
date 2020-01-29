@@ -22,8 +22,10 @@ import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
 import { USER_QUERY } from "./graphql/Query";
+import { AuthProviderType } from "./utils/ObservationQueryParameters";
 
 interface IUser {
+  authProvider: AuthProviderType;
   familyName: string;
   givenName: string;
   isAdmin: boolean;
@@ -125,6 +127,7 @@ class App extends React.Component<{}, IAppState> {
             const currentUser =
               data && data.user
                 ? {
+                    authProvider: data.user.authProvider,
                     familyName: data.user.familyName,
                     givenName: data.user.givenName,
                     isAdmin: data.user.roles.some(
@@ -194,7 +197,10 @@ class App extends React.Component<{}, IAppState> {
                     exact={true}
                     path="/user-update"
                     component={() => (
-                      <UserUpdateForm cache={this.cache.userUpdateForm} />
+                      <UserUpdateForm
+                        cache={this.cache.userUpdateForm}
+                        user={currentUser}
+                      />
                     )}
                   />
 

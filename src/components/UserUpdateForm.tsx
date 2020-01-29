@@ -2,9 +2,11 @@ import { validate } from "isemail";
 import * as _ from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { AuthProviderType } from "../utils/ObservationQueryParameters";
 import InputField from "./basicComponents/InputField";
 
 /**
@@ -67,6 +69,12 @@ export interface IUserUpdateFormCache {
 
 interface IUserUpdateFormProps {
   cache?: IUserUpdateFormCache;
+  user?: {
+    authProvider: AuthProviderType;
+    familyName: string;
+    givenName: string;
+    isAdmin: boolean;
+  } | null; // currently logged in user,
 }
 
 const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
@@ -225,6 +233,12 @@ class UserUpdateForm extends React.Component<
   };
 
   render() {
+    const { user } = this.props;
+    // Only users who registerd through the SSDA website
+    // are permitted to update their information.
+    if (user && user.authProvider !== "SSDA") {
+      return <Redirect to={"/"} />;
+    }
     const { errors } = this.state;
     const {
       affiliation,

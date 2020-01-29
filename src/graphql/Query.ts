@@ -52,6 +52,7 @@ const DATA_PREVIEW_QUERY = gql`
 const USER_QUERY = gql`
   query USER_QUERY {
     user {
+      authProvider
       familyName
       givenName
       roles
