@@ -71,7 +71,7 @@ export interface IGeneral {
   proposalCode?: string;
   proposalTitle?: string;
   productTypes: Set<ProductType>;
-  rejected: boolean;
+  rejected: string;
 }
 
 /**
