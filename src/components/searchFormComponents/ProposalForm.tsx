@@ -53,13 +53,13 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
     const updated = new Set<ProductType>(this.props.general.productTypes);
     if (e.target.checked) {
       if (name === "Rejected") {
-        rejected = true;
+        rejected = "Rejected";
       } else {
         updated.add(name);
       }
     } else {
       if (name === "Rejected") {
-        rejected = false;
+        rejected = "";
       } else {
         updated.delete(name);
       }
@@ -229,7 +229,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="rejected-checkbox"
-                  checked={!!rejected}
+                  checked={rejected === "Rejected" ? true : false}
                   data-test="rejected-checkbox"
                   onChange={this.changeCheckbox}
                   name="Rejected"
