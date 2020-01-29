@@ -165,7 +165,12 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
       parseInt(file.id, 10)
     );
-    await create({ variables: { dataFiles: dataFileIds } });
+    // We may assume that no calibrations are included, as the list of data
+    // files is by definition the complete set of files to request (i.e. it
+    // includes calibrations if the initial request included them)
+    await create({
+      variables: { dataFiles: dataFileIds, includeCalibrations: false }
+    });
   };
 }
 
