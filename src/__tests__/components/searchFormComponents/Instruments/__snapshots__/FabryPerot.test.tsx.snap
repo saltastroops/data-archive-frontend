@@ -33,7 +33,7 @@ exports[`FabryPerot should render correctly 1`] = `
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-bdVaJa",
-                "isStatic": true,
+                "isStatic": false,
                 "lastClassName": "c0",
                 "rules": Array [
                   "
@@ -54,7 +54,7 @@ exports[`FabryPerot should render correctly 1`] = `
           forwardedRef={null}
         >
           <div
-            className="control select is-multiple  c0"
+            className="c0 control select is-multiple "
           >
             <select
               multiple={true}
