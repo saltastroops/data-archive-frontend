@@ -96,7 +96,11 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 {mayDownloadAll && (
                   <a
                     className="button download-all is-small is-success is-rounded"
-                    href={`${process.env.REACT_APP_BACKEND_URI}/downloads/data-requests/${id}/${filename}`}
+                    href={`${
+                      process.env.REACT_APP_BACKEND_URI
+                        ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
+                        : ""
+                    }/downloads/data-requests/${id}/${filename}`}
                   >
                     Download all
                   </a>
