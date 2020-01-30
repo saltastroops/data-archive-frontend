@@ -72,10 +72,7 @@ const USER_DATA_REQUESTS_QUERY = gql`
       status
       dataFiles {
         id
-        metadata {
-          name
-          value
-        }
+        name
       }
     }
   }
