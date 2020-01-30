@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ITelescope } from "../../utils/ObservationQueryParameters";
-import { TelescopeDetailsGrid, SubGrid6 } from "../basicComponents/Grids";
+import { TelescopeDetailsGrid } from "../basicComponents/Grids";
 import DetectorModeSelector from "./instruments/DetectorModeSelector";
 import Filters from "./instruments/Filters";
 import HrsMode from "./instruments/HrsMode";
