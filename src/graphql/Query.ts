@@ -52,10 +52,13 @@ const DATA_PREVIEW_QUERY = gql`
 const USER_QUERY = gql`
   query USER_QUERY {
     user {
+      affiliation
       authProvider
+      email
       familyName
       givenName
       roles
+      username
     }
   }
 `;

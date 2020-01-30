@@ -7,10 +7,10 @@ import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import { AuthProviderType } from "../utils/ObservationQueryParameters";
+import { AuthProvider } from "../util/types";
 
 const mockUser = (
-  authProvider: AuthProviderType,
+  authProvider: AuthProvider,
   familyName: string,
   givenName: string,
   isAdmin: boolean

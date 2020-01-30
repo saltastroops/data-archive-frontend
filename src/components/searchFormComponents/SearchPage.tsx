@@ -571,9 +571,9 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           files: [file()],
           id: observationId,
           name: observationName,
-          publicFrom: new Date(metadata[
-            DataKeys.OBSERVATION_PUBLIC_FROM
-          ] as number)
+          publicFrom: new Date(
+            metadata[DataKeys.OBSERVATION_PUBLIC_FROM] as number
+          )
         };
 
         // Store the observation in the map of of observations (to facilitate

@@ -1,12 +1,10 @@
 import { validate } from "isemail";
 import * as _ from "lodash";
 import * as React from "react";
-import { Mutation } from "react-apollo";
-import { Redirect } from "react-router-dom";
+import { Mutation, Query } from "react-apollo";
 import styled from "styled-components";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import { AuthProviderType } from "../utils/ObservationQueryParameters";
 import InputField from "./basicComponents/InputField";
 
 /**
@@ -69,12 +67,6 @@ export interface IUserUpdateFormCache {
 
 interface IUserUpdateFormProps {
   cache?: IUserUpdateFormCache;
-  user?: {
-    authProvider: AuthProviderType;
-    familyName: string;
-    givenName: string;
-    isAdmin: boolean;
-  } | null; // currently logged in user,
 }
 
 const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
@@ -233,12 +225,6 @@ class UserUpdateForm extends React.Component<
   };
 
   render() {
-    const { user } = this.props;
-    // Only users who registerd through the SSDA website
-    // are permitted to update their information.
-    if (user && user.authProvider !== "SSDA") {
-      return <Redirect to={"/"} />;
-    }
     const { errors } = this.state;
     const {
       affiliation,
@@ -252,141 +238,181 @@ class UserUpdateForm extends React.Component<
     } = this.state.userInput;
 
     return (
-      <Mutation
-        mutation={UPDATE_USER_MUTATION}
-        refetchQueries={[{ query: USER_QUERY }]}
-      >
-        {(updateUser: any, { loading }: any) => {
+      <Query query={USER_QUERY}>
+        {({ data }: any) => {
+          const currentUser =
+            data && data.user
+              ? {
+                  affiliation: data.user.affiliation,
+                  authProvider: data.user.authProvider,
+                  email: data.user.email,
+                  familyName: data.user.familyName,
+                  givenName: data.user.givenName,
+
+                  username: data.user.username
+                }
+              : null;
+
+          if (currentUser && currentUser.authProvider !== "SSDA") {
+            return (
+              <ErrorMessage>
+                You did not use SSDA credetianls, hence you are not allowed to
+                update user information.
+              </ErrorMessage>
+            );
+          }
+
           return (
-            <Form onSubmit={e => this.onHandleSubmit(e, updateUser)}>
-              <fieldset disabled={loading} aria-disabled={loading}>
-                <Heading>Update your account</Heading>
-                {errors.responseError ? (
-                  <ErrorMessage>{errors.responseError}</ErrorMessage>
-                ) : null}
+            <Mutation
+              mutation={UPDATE_USER_MUTATION}
+              refetchQueries={[{ query: USER_QUERY }]}
+            >
+              {(updateUser: any, { loading }: any) => {
+                return (
+                  <Form onSubmit={e => this.onHandleSubmit(e, updateUser)}>
+                    <fieldset disabled={loading} aria-disabled={loading}>
+                      <Heading>Update your account</Heading>
+                      {errors.responseError ? (
+                        <ErrorMessage>{errors.responseError}</ErrorMessage>
+                      ) : null}
 
-                {/* Given name */}
-                <div className="field">
-                  <label className="label">
-                    Given name (first name)
-                    <InputField
-                      error={errors.givenName}
-                      name={"givenName"}
-                      onChange={this.onInputChange}
-                      value={givenName}
-                    />
-                  </label>
-                </div>
+                      {/* Given name */}
+                      <div className="field">
+                        <label className="label">
+                          Given name (first name)
+                          <InputField
+                            error={errors.givenName}
+                            name={"givenName"}
+                            onChange={this.onInputChange}
+                            defaultValue={
+                              currentUser ? currentUser.givenName : givenName
+                            }
+                          />
+                        </label>
+                      </div>
 
-                {/* Family name */}
-                <div className="field">
-                  <label className="label">
-                    Family name (surname)
-                    <InputField
-                      error={errors.familyName}
-                      name={"familyName"}
-                      onChange={this.onInputChange}
-                      value={familyName}
-                    />
-                  </label>
-                </div>
+                      {/* Family name */}
+                      <div className="field">
+                        <label className="label">
+                          Family name (surname)
+                          <InputField
+                            error={errors.familyName}
+                            name={"familyName"}
+                            onChange={this.onInputChange}
+                            defaultValue={
+                              currentUser ? currentUser.familyName : familyName
+                            }
+                          />
+                        </label>
+                      </div>
 
-                {/* Email address */}
-                <div className="field">
-                  <label className="label">
-                    Email address
-                    <InputField
-                      error={errors.email}
-                      name={"email"}
-                      onChange={this.onInputChange}
-                      value={email}
-                    />
-                  </label>
-                </div>
+                      {/* Email address */}
+                      <div className="field">
+                        <label className="label">
+                          Email address
+                          <InputField
+                            error={errors.email}
+                            name={"email"}
+                            onChange={this.onInputChange}
+                            defaultValue={
+                              currentUser ? currentUser.email : email
+                            }
+                          />
+                        </label>
+                      </div>
 
-                {/* Username */}
-                <div className="field">
-                  <label className="label">
-                    Username
-                    <InputField
-                      error={errors.username}
-                      name={"username"}
-                      onChange={this.onInputChange}
-                      value={username}
-                    />
-                  </label>
-                </div>
+                      {/* Username */}
+                      <div className="field">
+                        <label className="label">
+                          Username
+                          <InputField
+                            error={errors.username}
+                            name={"username"}
+                            onChange={this.onInputChange}
+                            defaultValue={
+                              currentUser ? currentUser.username : username
+                            }
+                          />
+                        </label>
+                      </div>
 
-                {/* Affiliation */}
-                <div className="field">
-                  <label className="label">
-                    Affiliation
-                    <InputField
-                      error={errors.affiliation}
-                      name={"affiliation"}
-                      placeholder={"E.g. University of Cape Town"}
-                      onChange={this.onInputChange}
-                      value={affiliation}
-                    />
-                  </label>
-                </div>
+                      {/* Affiliation */}
+                      <div className="field">
+                        <label className="label">
+                          Affiliation
+                          <InputField
+                            error={errors.affiliation}
+                            name={"affiliation"}
+                            placeholder={"E.g. University of Cape Town"}
+                            onChange={this.onInputChange}
+                            value={
+                              currentUser
+                                ? currentUser.affiliation
+                                : affiliation
+                            }
+                          />
+                        </label>
+                      </div>
 
-                {/* Password */}
-                <div className="field">
-                  <label className="label">
-                    Password
-                    <InputField
-                      error={errors.password}
-                      name={"password"}
-                      onChange={this.onInputChange}
-                      type={"password"}
-                      value={password}
-                    />
-                  </label>
-                </div>
+                      {/* Password */}
+                      <div className="field">
+                        <label className="label">
+                          Password
+                          <InputField
+                            error={errors.password}
+                            name={"password"}
+                            onChange={this.onInputChange}
+                            type={"password"}
+                            value={password}
+                          />
+                        </label>
+                      </div>
 
-                {/* New password */}
-                <div className="field">
-                  <label className="label">
-                    New password
-                    <InputField
-                      error={errors.newPassword}
-                      name={"newPassword"}
-                      onChange={this.onInputChange}
-                      placeholder={"At least 7 characters"}
-                      type={"password"}
-                      value={newPassword}
-                    />
-                  </label>
-                </div>
+                      {/* New password */}
+                      <div className="field">
+                        <label className="label">
+                          New password
+                          <InputField
+                            error={errors.newPassword}
+                            name={"newPassword"}
+                            onChange={this.onInputChange}
+                            placeholder={"At least 7 characters"}
+                            type={"password"}
+                            value={newPassword}
+                          />
+                        </label>
+                      </div>
 
-                {/* Retype New password */}
-                <div className="field">
-                  <label className="label">
-                    Retype New password
-                    <InputField
-                      error={errors.confirmNewPassword}
-                      name={"confirmNewPassword"}
-                      onChange={this.onInputChange}
-                      type={"password"}
-                      value={confirmNewPassword}
-                    />
-                  </label>
-                </div>
+                      {/* Retype New password */}
+                      <div className="field">
+                        <label className="label">
+                          Retype New password
+                          <InputField
+                            error={errors.confirmNewPassword}
+                            name={"confirmNewPassword"}
+                            onChange={this.onInputChange}
+                            type={"password"}
+                            value={confirmNewPassword}
+                          />
+                        </label>
+                      </div>
 
-                {/* Submit */}
-                <button
-                  className="button is-success is-fullwidth is-rounded"
-                  data-test="update"
-                  type={"submit"}
-                >
-                  {loading ? "Updating..." : "Update"}
-                </button>
-              </fieldset>
-            </Form>
+                      {/* Submit */}
+                      <button
+                        className="button is-success is-fullwidth is-rounded"
+                        data-test="update"
+                        type={"submit"}
+                      >
+                        {loading ? "Updating..." : "Update"}
+                      </button>
+                    </fieldset>
+                  </Form>
+                );
+              }}
+            </Mutation>
           );
         }}
-      </Mutation>
+      </Query>
     );
   }
 

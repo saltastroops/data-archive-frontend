@@ -22,14 +22,7 @@ import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
 import { USER_QUERY } from "./graphql/Query";
-import { AuthProviderType } from "./utils/ObservationQueryParameters";
-
-interface IUser {
-  authProvider: AuthProviderType;
-  familyName: string;
-  givenName: string;
-  isAdmin: boolean;
-}
+import { IUser } from "./util/types";
 
 interface IProtectedRouteProps {
   component: any;
@@ -197,10 +190,7 @@ class App extends React.Component<{}, IAppState> {
                     exact={true}
                     path="/user-update"
                     component={() => (
-                      <UserUpdateForm
-                        cache={this.cache.userUpdateForm}
-                        user={currentUser}
-                      />
+                      <UserUpdateForm cache={this.cache.userUpdateForm} />
                     )}
                   />
 

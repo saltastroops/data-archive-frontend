@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import { CART_QUERY } from "../util/Cart";
-import { AuthProviderType } from "../utils/ObservationQueryParameters";
+import { AuthProvider } from "../util/types";
 import CartButton from "./cart/CartButton";
 
 /**
@@ -26,7 +26,7 @@ import CartButton from "./cart/CartButton";
  */
 interface INavigationBarProps {
   user?: {
-    authProvider: AuthProviderType;
+    authProvider: AuthProvider;
     familyName: string;
     givenName: string;
     isAdmin: boolean;
