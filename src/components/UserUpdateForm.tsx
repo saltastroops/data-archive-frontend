@@ -243,21 +243,15 @@ class UserUpdateForm extends React.Component<
           const currentUser =
             data && data.user
               ? {
-                  affiliation: data.user.affiliation,
-                  authProvider: data.user.authProvider,
-                  email: data.user.email,
-                  familyName: data.user.familyName,
-                  givenName: data.user.givenName,
-
-                  username: data.user.username
+                  authProvider: data.user.authProvider
                 }
               : null;
 
           if (currentUser && currentUser.authProvider !== "SSDA") {
             return (
               <ErrorMessage>
-                You did not use SSDA credetianls, hence you are not allowed to
-                update user information.
+                You cannot update user details if you have signed in with
+                another authentication provider, such as the SALT Web Manager.
               </ErrorMessage>
             );
           }
@@ -284,9 +278,7 @@ class UserUpdateForm extends React.Component<
                             error={errors.givenName}
                             name={"givenName"}
                             onChange={this.onInputChange}
-                            defaultValue={
-                              currentUser ? currentUser.givenName : givenName
-                            }
+                            value={givenName}
                           />
                         </label>
                       </div>
@@ -299,9 +291,7 @@ class UserUpdateForm extends React.Component<
                             error={errors.familyName}
                             name={"familyName"}
                             onChange={this.onInputChange}
-                            defaultValue={
-                              currentUser ? currentUser.familyName : familyName
-                            }
+                            value={familyName}
                           />
                         </label>
                       </div>
@@ -314,9 +304,7 @@ class UserUpdateForm extends React.Component<
                             error={errors.email}
                             name={"email"}
                             onChange={this.onInputChange}
-                            defaultValue={
-                              currentUser ? currentUser.email : email
-                            }
+                            value={email}
                           />
                         </label>
                       </div>
@@ -329,9 +317,7 @@ class UserUpdateForm extends React.Component<
                             error={errors.username}
                             name={"username"}
                             onChange={this.onInputChange}
-                            defaultValue={
-                              currentUser ? currentUser.username : username
-                            }
+                            value={username}
                           />
                         </label>
                       </div>
@@ -345,11 +331,7 @@ class UserUpdateForm extends React.Component<
                             name={"affiliation"}
                             placeholder={"E.g. University of Cape Town"}
                             onChange={this.onInputChange}
-                            value={
-                              currentUser
-                                ? currentUser.affiliation
-                                : affiliation
-                            }
+                            value={affiliation}
                           />
                         </label>
                       </div>

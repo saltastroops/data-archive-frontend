@@ -68,18 +68,18 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
       >
         Given name (first name)
         <InputField
-          defaultValue=""
           name="givenName"
           onChange={[Function]}
+          value=""
         >
           <div
             className="control"
           >
             <input
               className="input "
-              defaultValue=""
               name="givenName"
               onChange={[Function]}
+              value=""
             />
           </div>
         </InputField>
@@ -93,18 +93,18 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
       >
         Family name (surname)
         <InputField
-          defaultValue=""
           name="familyName"
           onChange={[Function]}
+          value=""
         >
           <div
             className="control"
           >
             <input
               className="input "
-              defaultValue=""
               name="familyName"
               onChange={[Function]}
+              value=""
             />
           </div>
         </InputField>
@@ -118,18 +118,18 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
       >
         Email address
         <InputField
-          defaultValue=""
           name="email"
           onChange={[Function]}
+          value=""
         >
           <div
             className="control"
           >
             <input
               className="input "
-              defaultValue=""
               name="email"
               onChange={[Function]}
+              value=""
             />
           </div>
         </InputField>
@@ -143,18 +143,18 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
       >
         Username
         <InputField
-          defaultValue=""
           name="username"
           onChange={[Function]}
+          value=""
         >
           <div
             className="control"
           >
             <input
               className="input "
-              defaultValue=""
               name="username"
               onChange={[Function]}
+              value=""
             />
           </div>
         </InputField>
