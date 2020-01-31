@@ -618,6 +618,11 @@ class SearchResultsTable extends React.Component<
                     load(
                       `${
                         process.env.REACT_APP_BACKEND_URI
+                          ? process.env.REACT_APP_BACKEND_URI.replace(
+                              /\/+$/,
+                              ""
+                            )
+                          : ""
                       }/data/${dataFileId}/${
                         rowDatum[DataKeys.DATA_FILE_FILENAME]
                       }`

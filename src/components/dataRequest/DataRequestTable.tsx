@@ -96,7 +96,11 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 {mayDownloadAll && (
                   <a
                     className="button download-all is-small is-success is-rounded"
-                    href={`${process.env.REACT_APP_BACKEND_URI}/downloads/data-requests/${id}/${filename}`}
+                    href={`${
+                      process.env.REACT_APP_BACKEND_URI
+                        ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
+                        : ""
+                    }/downloads/data-requests/${id}/${filename}`}
                   >
                     Download all
                   </a>
@@ -143,13 +147,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             <th>Files</th>
           </tr>
           {dataFiles.map(file => {
-            const nameMetadata = file.metadata.find(
-              v => v.name === DataKeys.DATA_FILE_FILENAME
-            );
-            const name = nameMetadata ? nameMetadata.value : null;
             return (
               <tr key={file.id}>
-                <td>{name}</td>
+                <td>{file.name}</td>
               </tr>
             );
           })}

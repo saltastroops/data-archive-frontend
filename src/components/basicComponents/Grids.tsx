@@ -173,6 +173,37 @@ const NumberGrid = styled.div.attrs({
   text-align: left;
 `;
 
+const TelescopeDetailsGrid = styled.div`
+  && {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+  }
+
+  @media (min-width: 700px) {
+    && {
+      grid-template-columns: repeat(3, min-content);
+    }
+  }
+
+  @media (min-width: 900px) {
+    && {
+      grid-template-columns: repeat(4, min-content);
+    }
+  }
+
+  @media (min-width: 1220px) {
+    && {
+      grid-template-columns: repeat(5, min-content);
+    }
+  }
+
+  @media (min-width: 1400px) {
+    && {
+      grid-template-columns: repeat(6, min-content);
+    }
+  }
+`;
+
 const Span = styled.span.attrs({
   className: "span"
 })`
@@ -231,6 +262,7 @@ export {
   TelescopeGrid,
   DataGrid,
   TargetGrid,
+  TelescopeDetailsGrid,
   SubGrid4,
   SubGrid5,
   SubGrid,
