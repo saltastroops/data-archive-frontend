@@ -44,7 +44,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             "displayName": "styled.h1",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "sc-kvZOFW",
+            "styledComponentId": "sc-hqyNC",
             "target": "h1",
             "toString": [Function],
             "warnTooManyClasses": [Function],
