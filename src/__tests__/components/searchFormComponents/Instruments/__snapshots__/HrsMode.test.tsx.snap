@@ -29,7 +29,7 @@ exports[`Hrs Mode should render correctly 1`] = `
               "attrs": Array [],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-bdVaJa",
-                "isStatic": false,
+                "isStatic": true,
                 "lastClassName": "c0",
                 "rules": Array [
                   "
@@ -50,7 +50,7 @@ exports[`Hrs Mode should render correctly 1`] = `
           forwardedRef={null}
         >
           <div
-            className="c0 control select is-multiple "
+            className="control select is-multiple  c0"
           >
             <select
               multiple={true}

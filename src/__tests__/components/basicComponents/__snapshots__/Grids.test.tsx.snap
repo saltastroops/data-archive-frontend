@@ -27,7 +27,7 @@ exports[`Grids  should render all grids correctly 1`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-htpNat",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -55,7 +55,7 @@ exports[`Grids  should render all grids correctly 1`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-container"
+      className="grid-container c0"
     />
   </StyledComponent>
 </styled.div>
@@ -80,7 +80,7 @@ exports[`Grids  should render all grids correctly 2`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-ifAKCX",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -103,7 +103,7 @@ exports[`Grids  should render all grids correctly 2`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-item target-form"
+      className="grid-item target-form c0"
     />
   </StyledComponent>
 </styled.div>
@@ -128,7 +128,7 @@ exports[`Grids  should render all grids correctly 3`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-EHOje",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -151,7 +151,7 @@ exports[`Grids  should render all grids correctly 3`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-item proposal-form"
+      className="grid-item proposal-form c0"
     />
   </StyledComponent>
 </styled.div>
@@ -176,7 +176,7 @@ exports[`Grids  should render all grids correctly 4`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-bZQynM",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -199,7 +199,7 @@ exports[`Grids  should render all grids correctly 4`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-item data-form"
+      className="grid-item data-form c0"
     />
   </StyledComponent>
 </styled.div>
@@ -224,7 +224,7 @@ exports[`Grids  should render all grids correctly 5`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-htoDjs",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -247,7 +247,7 @@ exports[`Grids  should render all grids correctly 5`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-item telescope-form"
+      className="grid-item telescope-form c0"
     />
   </StyledComponent>
 </styled.div>
@@ -271,7 +271,7 @@ exports[`Grids  should render all grids correctly 6`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-gzVnrw",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -293,7 +293,7 @@ exports[`Grids  should render all grids correctly 6`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-item"
+      className="grid-item c0"
     />
   </StyledComponent>
 </styled.div>
@@ -318,7 +318,7 @@ exports[`Grids  should render all grids correctly 7`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-dnqmqq",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -343,7 +343,7 @@ exports[`Grids  should render all grids correctly 7`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 main-grid"
+      className="main-grid c0"
     />
   </StyledComponent>
 </styled.div>
@@ -367,7 +367,7 @@ exports[`Grids  should render all grids correctly 8`] = `
         ],
         "componentStyle": ComponentStyle {
           "componentId": "sc-VigVT",
-          "isStatic": false,
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -391,7 +391,7 @@ exports[`Grids  should render all grids correctly 8`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 sub-grid"
+      className="sub-grid c0"
     />
   </StyledComponent>
 </styled.div>

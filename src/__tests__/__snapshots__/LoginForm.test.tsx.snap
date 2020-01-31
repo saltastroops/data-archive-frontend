@@ -11,7 +11,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
 }
 
 <form
-  className="c0 column is-4 is-offset-4"
+  className="column is-4 is-offset-4 c0"
   data-test="form"
   onSubmit={[Function]}
 >
@@ -27,7 +27,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           ],
           "componentStyle": ComponentStyle {
             "componentId": "sc-bxivhb",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "c1",
             "rules": Array [
               "
@@ -51,7 +51,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       forwardedRef={null}
     >
       <h1
-        className="c1 title is-3"
+        className="title is-3 c1"
       >
         Login to the Data Archive
       </h1>
@@ -187,21 +187,14 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
         data-test="reset-password"
         to="/request-reset-password"
       >
-        <LinkAnchor
+        <a
           className="button is-info is-fullwidth"
           data-test="reset-password"
           href="/request-reset-password"
-          navigate={[Function]}
+          onClick={[Function]}
         >
-          <a
-            className="button is-info is-fullwidth"
-            data-test="reset-password"
-            href="/request-reset-password"
-            onClick={[Function]}
-          >
-            I forgot my password
-          </a>
-        </LinkAnchor>
+          I forgot my password
+        </a>
       </Link>
     </div>
   </fieldset>

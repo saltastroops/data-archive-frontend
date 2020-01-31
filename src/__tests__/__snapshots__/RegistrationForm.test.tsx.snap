@@ -11,7 +11,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
 }
 
 <form
-  className="c0 column is-4 is-offset-4"
+  className="column is-4 is-offset-4 c0"
   onSubmit={[Function]}
 >
   <fieldset
@@ -29,8 +29,8 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
               },
             ],
             "componentStyle": ComponentStyle {
-              "componentId": "sc-gipzik",
-              "isStatic": false,
+              "componentId": "sc-csuQGl",
+              "isStatic": true,
               "lastClassName": "c1",
               "rules": Array [
                 "
@@ -54,7 +54,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
         forwardedRef={null}
       >
         <h1
-          className="c1 title is-3"
+          className="title is-3 c1"
         >
           Create your account
         </h1>
