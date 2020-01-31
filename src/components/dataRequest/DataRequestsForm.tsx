@@ -34,9 +34,14 @@ export interface IDataFile {
 export interface IDataRequest {
   id: string;
   madeAt: string;
-  dataFiles: IDataFile[];
+  dataFiles: IDataRequestFile[];
   status: DataRequestStatus;
   uri: string;
+}
+
+export interface IDataRequestFile {
+  id: string;
+  name: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
