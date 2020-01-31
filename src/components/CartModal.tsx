@@ -170,19 +170,19 @@ class CartModal extends React.Component<ICart, any> {
                                   ) : (
                                     groupedCart.map(
                                       (obz: any, obzIndex: number) => {
-                                        return Array.from(
-                                          obz.files
-                                        ).map((file: any, index: number) => (
-                                          <CartFileRow
-                                            index={index}
-                                            id={file.id}
-                                            key={file.id}
-                                            file={file}
-                                            obzIndex={obzIndex}
-                                            remove={this.remove}
-                                            removeFromCart={removeFromCart}
-                                          />
-                                        ));
+                                        return Array.from(obz.files).map(
+                                          (file: any, index: number) => (
+                                            <CartFileRow
+                                              index={index}
+                                              id={file.id}
+                                              key={file.id}
+                                              file={file}
+                                              obzIndex={obzIndex}
+                                              remove={this.remove}
+                                              removeFromCart={removeFromCart}
+                                            />
+                                          )
+                                        );
                                       }
                                     )
                                   )}
