@@ -120,12 +120,15 @@ class App extends React.Component<{}, IAppState> {
             const currentUser =
               data && data.user
                 ? {
+                    affiliation: data.user.affiliation,
                     authProvider: data.user.authProvider,
+                    email: data.user.email,
                     familyName: data.user.familyName,
                     givenName: data.user.givenName,
                     isAdmin: data.user.roles.some(
                       (role: string) => role === "ADMIN"
-                    )
+                    ),
+                    username: data.user.username
                   }
                 : null;
 
@@ -185,12 +188,16 @@ class App extends React.Component<{}, IAppState> {
                   />
 
                   {/* update user page */}
+                  {/* We are passing a user property because it needs to be used in the componentDidMount() */}
                   <ProtectedRoute
                     user={currentUser}
                     exact={true}
                     path="/user-update"
                     component={() => (
-                      <UserUpdateForm cache={this.cache.userUpdateForm} />
+                      <UserUpdateForm
+                        cache={this.cache.userUpdateForm}
+                        user={currentUser}
+                      />
                     )}
                   />
 

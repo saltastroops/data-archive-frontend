@@ -7,19 +7,7 @@ import wait from "waait";
 import NavigationBar from "../components/NavigationBar";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import { AuthProvider } from "../util/types";
-
-const mockUser = (
-  authProvider: AuthProvider,
-  familyName: string,
-  givenName: string,
-  isAdmin: boolean
-) => ({
-  authProvider,
-  familyName,
-  givenName,
-  isAdmin
-});
+import { mockUser } from "../util/__mocks__/util";
 
 describe("NavigationBar", () => {
   it("shows the correct content when the user is not logged in", () => {
@@ -54,7 +42,12 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is a non-administrator", () => {
-    const user = mockUser("SSDA", "surname", "name", false);
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
 
     const wrapper = mount(
       <MockedProvider>
@@ -88,7 +81,12 @@ describe("NavigationBar", () => {
   });
 
   it("shows the correct content when the user is an administrator", () => {
-    const user = mockUser("SSDA", "surname", "name", true);
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: true
+    });
 
     const wrapper = mount(
       <MockedProvider>
@@ -122,7 +120,12 @@ describe("NavigationBar", () => {
   });
 
   it("calls the logout function when the logout link is clicked", async () => {
-    const user = mockUser("SSDA", "surname", "name", false);
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
 
     // logout mock mutation
     let logoutCalled = false;
@@ -175,7 +178,12 @@ describe("NavigationBar", () => {
   });
 
   it("toggles the visibility of the menu when the burger button is clicked", async () => {
-    const user = mockUser("SSDA", "surname", "name", false);
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
 
     const wrapper = mount(
       <MockedProvider>

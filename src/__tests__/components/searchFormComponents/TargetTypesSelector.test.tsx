@@ -57,8 +57,6 @@ describe("TargetTypesSelector", () => {
       target: { checked: false, value: GALAXY }
     });
     await wait(0);
-    expect(onChange).toHaveBeenCalledWith(
-      new Set<TargetType>([STAR])
-    );
+    expect(onChange).toHaveBeenCalledWith(new Set<TargetType>([STAR]));
   });
 });

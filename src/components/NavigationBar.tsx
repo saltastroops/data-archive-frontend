@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import { CART_QUERY } from "../util/Cart";
-import { AuthProvider } from "../util/types";
+import { IUser } from "../util/types";
 import CartButton from "./cart/CartButton";
 
 /**
@@ -25,12 +25,7 @@ import CartButton from "./cart/CartButton";
  *     must be passed.
  */
 interface INavigationBarProps {
-  user?: {
-    authProvider: AuthProvider;
-    familyName: string;
-    givenName: string;
-    isAdmin: boolean;
-  } | null; // currently logged in user,
+  user?: IUser | null; // currently logged in user,
   cache?: INavigationBarCache;
   openCart: (open: boolean) => void;
 }
