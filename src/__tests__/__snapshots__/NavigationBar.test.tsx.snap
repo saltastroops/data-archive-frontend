@@ -30,7 +30,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -65,15 +65,25 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -84,21 +94,31 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item item"
         to="/data-requests"
       >
-        <Route
-          path="\\\\/data-requests"
+        <Link
+          aria-current={null}
+          className="navbar-item item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/data-requests",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item item"
-            to="/data-requests"
+            href="/data-requests"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -108,8 +128,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             >
               Data Requests
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -132,13 +152,23 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             className="navbar-item"
             to="/user-update"
           >
-            <Route
-              path="\\\\/user-update"
+            <Link
+              aria-current={null}
+              className="navbar-item"
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/user-update",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current={null}
                 className="navbar-item"
-                to="/user-update"
+                href="/user-update"
+                navigate={[Function]}
               >
                 <a
                   aria-current={null}
@@ -148,8 +178,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                 >
                   Edit Account Details
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
           <NavLink
             className="navbar-item"
@@ -157,16 +187,29 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             onClick={[Function]}
             to="/"
           >
-            <Route
-              path="\\\\/"
+            <Link
+              aria-current="page"
+              className="navbar-item active"
+              data-test="logout"
+              onClick={[Function]}
+              style={Object {}}
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current="page"
                 className="navbar-item active"
                 data-test="logout"
+                href="/"
+                navigate={[Function]}
                 onClick={[Function]}
                 style={Object {}}
-                to="/"
               >
                 <a
                   aria-current="page"
@@ -178,8 +221,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                 >
                   Logout
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
         </div>
       </div>
@@ -320,7 +363,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": true,
+                    "isStatic": false,
                     "lastClassName": "c0",
                     "rules": Array [
                       "
@@ -352,7 +395,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
               forwardedRef={null}
             >
               <div
-                className="navbar-item is-large is-link c0"
+                className="c0 navbar-item is-large is-link"
               >
                 <styled.span
                   onClick={[Function]}
@@ -368,7 +411,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-htpNat",
-                          "isStatic": true,
+                          "isStatic": false,
                           "lastClassName": "c1",
                           "rules": Array [
                             "
@@ -397,7 +440,7 @@ background: none;
                     onClick={[Function]}
                   >
                     <span
-                      className="button title is-outlined c1"
+                      className="c1 button title is-outlined"
                       onClick={[Function]}
                     >
                       <span
@@ -430,6 +473,7 @@ background: none;
                           rotation={null}
                           size={null}
                           spin={false}
+                          swapOpacity={false}
                           symbol={false}
                           title=""
                           transform={null}
@@ -465,7 +509,7 @@ background: none;
                               ],
                               "componentStyle": ComponentStyle {
                                 "componentId": "sc-bwzfXH",
-                                "isStatic": true,
+                                "isStatic": false,
                                 "lastClassName": "c2",
                                 "rules": Array [
                                   "
@@ -488,7 +532,7 @@ background: none;
                           forwardedRef={null}
                         >
                           <span
-                            className="is-span c2"
+                            className="c2 is-span"
                           />
                         </StyledComponent>
                       </styled.span>
@@ -535,7 +579,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -570,15 +614,25 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -589,21 +643,31 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item item"
         to="/data-requests"
       >
-        <Route
-          path="\\\\/data-requests"
+        <Link
+          aria-current={null}
+          className="navbar-item item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/data-requests",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item item"
-            to="/data-requests"
+            href="/data-requests"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -613,21 +677,31 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Data Requests
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item"
         to="/admin"
       >
-        <Route
-          path="\\\\/admin"
+        <Link
+          aria-current={null}
+          className="navbar-item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/admin",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item"
-            to="/admin"
+            href="/admin"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -637,8 +711,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Admin
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -661,13 +735,23 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             className="navbar-item"
             to="/user-update"
           >
-            <Route
-              path="\\\\/user-update"
+            <Link
+              aria-current={null}
+              className="navbar-item"
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/user-update",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current={null}
                 className="navbar-item"
-                to="/user-update"
+                href="/user-update"
+                navigate={[Function]}
               >
                 <a
                   aria-current={null}
@@ -677,8 +761,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                 >
                   Edit Account Details
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
           <NavLink
             className="navbar-item"
@@ -686,16 +770,29 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             onClick={[Function]}
             to="/"
           >
-            <Route
-              path="\\\\/"
+            <Link
+              aria-current="page"
+              className="navbar-item active"
+              data-test="logout"
+              onClick={[Function]}
+              style={Object {}}
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current="page"
                 className="navbar-item active"
                 data-test="logout"
+                href="/"
+                navigate={[Function]}
                 onClick={[Function]}
                 style={Object {}}
-                to="/"
               >
                 <a
                   aria-current="page"
@@ -707,8 +804,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                 >
                   Logout
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
         </div>
       </div>
@@ -849,7 +946,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": true,
+                    "isStatic": false,
                     "lastClassName": "c0",
                     "rules": Array [
                       "
@@ -881,7 +978,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
               forwardedRef={null}
             >
               <div
-                className="navbar-item is-large is-link c0"
+                className="c0 navbar-item is-large is-link"
               >
                 <styled.span
                   onClick={[Function]}
@@ -897,7 +994,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-htpNat",
-                          "isStatic": true,
+                          "isStatic": false,
                           "lastClassName": "c1",
                           "rules": Array [
                             "
@@ -926,7 +1023,7 @@ background: none;
                     onClick={[Function]}
                   >
                     <span
-                      className="button title is-outlined c1"
+                      className="c1 button title is-outlined"
                       onClick={[Function]}
                     >
                       <span
@@ -959,6 +1056,7 @@ background: none;
                           rotation={null}
                           size={null}
                           spin={false}
+                          swapOpacity={false}
                           symbol={false}
                           title=""
                           transform={null}
@@ -994,7 +1092,7 @@ background: none;
                               ],
                               "componentStyle": ComponentStyle {
                                 "componentId": "sc-bwzfXH",
-                                "isStatic": true,
+                                "isStatic": false,
                                 "lastClassName": "c2",
                                 "rules": Array [
                                   "
@@ -1017,7 +1115,7 @@ background: none;
                           forwardedRef={null}
                         >
                           <span
-                            className="is-span c2"
+                            className="c2 is-span"
                           />
                         </StyledComponent>
                       </styled.span>
@@ -1064,7 +1162,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -1099,15 +1197,25 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -1118,8 +1226,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -1132,13 +1240,23 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           className=" button is-primary is-outlined"
           to="/login"
         >
-          <Route
-            path="\\\\/login"
+          <Link
+            aria-current={null}
+            className=" button is-primary is-outlined"
+            to={
+              Object {
+                "hash": "",
+                "pathname": "/login",
+                "search": "",
+                "state": null,
+              }
+            }
           >
-            <Link
+            <LinkAnchor
               aria-current={null}
               className=" button is-primary is-outlined"
-              to="/login"
+              href="/login"
+              navigate={[Function]}
             >
               <a
                 aria-current={null}
@@ -1174,6 +1292,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                     rotation={null}
                     size={null}
                     spin={false}
+                    swapOpacity={false}
                     symbol={false}
                     title=""
                     transform={null}
@@ -1198,8 +1317,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                   </FontAwesomeIcon>
                 </span>
               </a>
-            </Link>
-          </Route>
+            </LinkAnchor>
+          </Link>
         </NavLink>
       </div>
       <div
@@ -1209,13 +1328,23 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           className=" button is-info is-outlined"
           to="/register"
         >
-          <Route
-            path="\\\\/register"
+          <Link
+            aria-current={null}
+            className=" button is-info is-outlined"
+            to={
+              Object {
+                "hash": "",
+                "pathname": "/register",
+                "search": "",
+                "state": null,
+              }
+            }
           >
-            <Link
+            <LinkAnchor
               aria-current={null}
               className=" button is-info is-outlined"
-              to="/register"
+              href="/register"
+              navigate={[Function]}
             >
               <a
                 aria-current={null}
@@ -1251,6 +1380,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                     rotation={null}
                     size={null}
                     spin={false}
+                    swapOpacity={false}
                     symbol={false}
                     title=""
                     transform={null}
@@ -1275,8 +1405,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                   </FontAwesomeIcon>
                 </span>
               </a>
-            </Link>
-          </Route>
+            </LinkAnchor>
+          </Link>
         </NavLink>
       </div>
       <Query
@@ -1416,7 +1546,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": true,
+                    "isStatic": false,
                     "lastClassName": "c0",
                     "rules": Array [
                       "
@@ -1448,7 +1578,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
               forwardedRef={null}
             >
               <div
-                className="navbar-item is-large is-link c0"
+                className="c0 navbar-item is-large is-link"
               >
                 <styled.span
                   onClick={[Function]}
@@ -1464,7 +1594,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-htpNat",
-                          "isStatic": true,
+                          "isStatic": false,
                           "lastClassName": "c1",
                           "rules": Array [
                             "
@@ -1493,7 +1623,7 @@ background: none;
                     onClick={[Function]}
                   >
                     <span
-                      className="button title is-outlined c1"
+                      className="c1 button title is-outlined"
                       onClick={[Function]}
                     >
                       <span
@@ -1526,6 +1656,7 @@ background: none;
                           rotation={null}
                           size={null}
                           spin={false}
+                          swapOpacity={false}
                           symbol={false}
                           title=""
                           transform={null}
@@ -1561,7 +1692,7 @@ background: none;
                               ],
                               "componentStyle": ComponentStyle {
                                 "componentId": "sc-bwzfXH",
-                                "isStatic": true,
+                                "isStatic": false,
                                 "lastClassName": "c2",
                                 "rules": Array [
                                   "
@@ -1584,7 +1715,7 @@ background: none;
                           forwardedRef={null}
                         >
                           <span
-                            className="is-span c2"
+                            className="c2 is-span"
                           />
                         </StyledComponent>
                       </styled.span>

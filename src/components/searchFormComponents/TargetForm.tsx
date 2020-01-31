@@ -275,15 +275,11 @@ export const validatedTarget = async (target: ITarget) => {
           return {
             declination:
               `${position.declination}` !== target.declination
-                ? `The given target name resolves to a different declination with ${
-                    target.resolver
-                  }.`
+                ? `The given target name resolves to a different declination with ${target.resolver}.`
                 : "",
             rightAscension:
               `${position.rightAscension}` !== target.rightAscension
-                ? `The given target name resolves to a different right ascension with ${
-                    target.resolver
-                  }.`
+                ? `The given target name resolves to a different right ascension with ${target.resolver}.`
                 : ""
           };
         }
