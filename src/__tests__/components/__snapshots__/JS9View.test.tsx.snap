@@ -92,7 +92,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
                   "componentId": "sc-bdVaJa",
-                  "isStatic": false,
+                  "isStatic": true,
                   "lastClassName": "c0",
                   "rules": Array [
                     "
@@ -146,7 +146,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
                       "attrs": Array [],
                       "componentStyle": ComponentStyle {
                         "componentId": "sc-bwzfXH",
-                        "isStatic": false,
+                        "isStatic": true,
                         "lastClassName": "c1",
                         "rules": Array [
                           "
@@ -209,7 +209,7 @@ exports[`JS9View should display correctly for open=false 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-htpNat",
-                              "isStatic": false,
+                              "isStatic": true,
                               "lastClassName": "c2",
                               "rules": Array [
                                 "
@@ -358,7 +358,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
                   "componentId": "sc-bdVaJa",
-                  "isStatic": false,
+                  "isStatic": true,
                   "lastClassName": "c0",
                   "rules": Array [
                     "
@@ -412,7 +412,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
                       "attrs": Array [],
                       "componentStyle": ComponentStyle {
                         "componentId": "sc-bwzfXH",
-                        "isStatic": false,
+                        "isStatic": true,
                         "lastClassName": "c1",
                         "rules": Array [
                           "
@@ -475,7 +475,7 @@ exports[`JS9View should display correctly for open=true 1`] = `
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
                               "componentId": "sc-htpNat",
-                              "isStatic": false,
+                              "isStatic": true,
                               "lastClassName": "c2",
                               "rules": Array [
                                 "

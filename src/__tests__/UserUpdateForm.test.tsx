@@ -304,6 +304,7 @@ describe("UserUpdateForm Component", () => {
             user: {
               __typename: "User",
               affiliation: "SAAO",
+              authProvider: "SSDA",
               email: "john.doe@example.com",
               familyName: "Doe",
               givenName: "John",
@@ -315,10 +316,13 @@ describe("UserUpdateForm Component", () => {
         }
       }
     ];
+
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <MemoryRouter>
-          <App />
+          <App>
+            <UserUpdateForm />
+          </App>
         </MemoryRouter>
       </MockedProvider>
     );
@@ -408,6 +412,27 @@ describe("UserUpdateForm Component", () => {
             user: {
               __typename: "User",
               affiliation: "SAAO",
+              authProvider: "SSDA",
+              email: "john.doe@example.com",
+              familyName: "Doe",
+              givenName: "John",
+              id: "1",
+              roles: [],
+              username: "john"
+            }
+          }
+        }
+      },
+      {
+        request: {
+          query: USER_QUERY
+        },
+        result: {
+          data: {
+            user: {
+              __typename: "User",
+              affiliation: "SAAO",
+              authProvider: "SSDA",
               email: "john.doe@example.com",
               familyName: "Doe",
               givenName: "John",
@@ -419,6 +444,7 @@ describe("UserUpdateForm Component", () => {
         }
       }
     ];
+
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <UserUpdateForm />

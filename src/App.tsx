@@ -22,12 +22,7 @@ import UserUpdateForm, {
   IUserUpdateFormCache
 } from "./components/UserUpdateForm";
 import { USER_QUERY } from "./graphql/Query";
-
-interface IUser {
-  familyName: string;
-  givenName: string;
-  isAdmin: boolean;
-}
+import { IUser } from "./util/types";
 
 interface IProtectedRouteProps {
   component: any;
@@ -125,6 +120,7 @@ class App extends React.Component<{}, IAppState> {
             const currentUser =
               data && data.user
                 ? {
+                    authProvider: data.user.authProvider,
                     familyName: data.user.familyName,
                     givenName: data.user.givenName,
                     isAdmin: data.user.roles.some(
