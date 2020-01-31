@@ -30,7 +30,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-dxgOiQ",
+            "componentId": "sc-ckVGcZ",
             "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
@@ -48,7 +48,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-dxgOiQ",
+          "styledComponentId": "sc-ckVGcZ",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -73,7 +73,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                       },
                     ],
                     "componentStyle": ComponentStyle {
-                      "componentId": "sc-chPdSV",
+                      "componentId": "sc-kgoBCf",
                       "isStatic": true,
                       "lastClassName": "c1",
                       "rules": Array [
@@ -88,7 +88,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     "displayName": "styled.span",
                     "foldedComponentIds": Array [],
                     "render": [Function],
-                    "styledComponentId": "sc-chPdSV",
+                    "styledComponentId": "sc-kgoBCf",
                     "target": "span",
                     "toString": [Function],
                     "warnTooManyClasses": [Function],
@@ -119,7 +119,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                             },
                           ],
                           "componentStyle": ComponentStyle {
-                            "componentId": "sc-kpOJdX",
+                            "componentId": "sc-dxgOiQ",
                             "isStatic": true,
                             "lastClassName": "c2",
                             "rules": Array [
@@ -134,7 +134,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           "displayName": "styled.input",
                           "foldedComponentIds": Array [],
                           "render": [Function],
-                          "styledComponentId": "sc-kpOJdX",
+                          "styledComponentId": "sc-dxgOiQ",
                           "target": "input",
                           "toString": [Function],
                           "warnTooManyClasses": [Function],
@@ -173,7 +173,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -188,7 +188,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -219,7 +219,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -234,7 +234,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],
@@ -272,7 +272,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -287,7 +287,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -318,7 +318,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -333,7 +333,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],
@@ -371,7 +371,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -386,7 +386,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -417,7 +417,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -432,7 +432,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],
@@ -499,7 +499,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-dxgOiQ",
+            "componentId": "sc-ckVGcZ",
             "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
@@ -517,7 +517,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-dxgOiQ",
+          "styledComponentId": "sc-ckVGcZ",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -542,7 +542,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                       },
                     ],
                     "componentStyle": ComponentStyle {
-                      "componentId": "sc-chPdSV",
+                      "componentId": "sc-kgoBCf",
                       "isStatic": true,
                       "lastClassName": "c1",
                       "rules": Array [
@@ -557,7 +557,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     "displayName": "styled.span",
                     "foldedComponentIds": Array [],
                     "render": [Function],
-                    "styledComponentId": "sc-chPdSV",
+                    "styledComponentId": "sc-kgoBCf",
                     "target": "span",
                     "toString": [Function],
                     "warnTooManyClasses": [Function],
@@ -588,7 +588,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                             },
                           ],
                           "componentStyle": ComponentStyle {
-                            "componentId": "sc-kpOJdX",
+                            "componentId": "sc-dxgOiQ",
                             "isStatic": true,
                             "lastClassName": "c2",
                             "rules": Array [
@@ -603,7 +603,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           "displayName": "styled.input",
                           "foldedComponentIds": Array [],
                           "render": [Function],
-                          "styledComponentId": "sc-kpOJdX",
+                          "styledComponentId": "sc-dxgOiQ",
                           "target": "input",
                           "toString": [Function],
                           "warnTooManyClasses": [Function],
@@ -642,7 +642,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -657,7 +657,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -688,7 +688,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -703,7 +703,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],
@@ -741,7 +741,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -756,7 +756,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -787,7 +787,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -802,7 +802,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],
@@ -840,7 +840,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     },
                   ],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-chPdSV",
+                    "componentId": "sc-kgoBCf",
                     "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
@@ -855,7 +855,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "displayName": "styled.span",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-chPdSV",
+                  "styledComponentId": "sc-kgoBCf",
                   "target": "span",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -886,7 +886,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           },
                         ],
                         "componentStyle": ComponentStyle {
-                          "componentId": "sc-kpOJdX",
+                          "componentId": "sc-dxgOiQ",
                           "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
@@ -901,7 +901,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "displayName": "styled.input",
                         "foldedComponentIds": Array [],
                         "render": [Function],
-                        "styledComponentId": "sc-kpOJdX",
+                        "styledComponentId": "sc-dxgOiQ",
                         "target": "input",
                         "toString": [Function],
                         "warnTooManyClasses": [Function],

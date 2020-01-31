@@ -13,8 +13,10 @@ export const DEFAULT_COORDINATE_SEARCH_RADIUS = 0.05;
 
 /**
  * The maximum allowed radius for a cone search, in degrees.
+ * This should be consistent with the maximum serarch radius enforced by the
+ * backend.
  */
-export const MAXIMUM_COORDINATE_SEARCH_RADIUS = 10;
+export const MAXIMUM_COORDINATE_SEARCH_RADIUS = 1;
 
 /**
  * Parse the given string as a date, and return the date as a string as a
