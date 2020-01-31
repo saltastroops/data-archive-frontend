@@ -188,7 +188,7 @@ class App extends React.Component<{}, IAppState> {
                   />
 
                   {/* update user page */}
-                  {/* We are passing a user property because it needs to be used in the componentDidMount() */}
+                  {/* We are passing a user property because it needs to be used in the componentDidMount method */}
                   <ProtectedRoute
                     user={currentUser}
                     exact={true}

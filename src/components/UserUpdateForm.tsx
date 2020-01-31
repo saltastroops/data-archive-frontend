@@ -245,7 +245,7 @@ class UserUpdateForm extends React.Component<
   render() {
     const { user } = this.props;
 
-    if (!user || (user && user.authProvider !== "SSDA")) {
+    if (user && user.authProvider !== "SSDA") {
       return (
         <ErrorMessage>
           You cannot update user details if you have signed in with another
