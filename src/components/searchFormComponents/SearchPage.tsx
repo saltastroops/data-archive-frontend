@@ -114,7 +114,7 @@ const PaginationContainer = styled.div<{
 }>`
   && {
     display: grid;
-    grid-template-columns: 500px;
+    grid-template-columns: 700px;
     justify-content: center;
     margin-bottom: ${props => props.marginBottom}px;
     margin-top: ${props => props.marginTop}px;
