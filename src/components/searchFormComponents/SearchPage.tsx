@@ -249,7 +249,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         })
                       }
                     >
-                      Manage hedears for display
+                      Manage columns to display
                     </button>
                   </ColumnsButtonContainer>
 
