@@ -49,7 +49,7 @@ const Pagination = (props: IPaginationProps) => {
   const nextIndex = startIndex + itemsOnCurrentPage;
 
   return (
-    <div>
+    <div className="pagination-controls">
       <button
         disabled={startIndex <= 0}
         className="pagination-previous"
