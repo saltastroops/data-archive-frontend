@@ -116,3 +116,7 @@
 .include-calibrations {
   margin-bottom: 2em;
 }
+
+.pagination-controls {
+  text-align: center;
+}
