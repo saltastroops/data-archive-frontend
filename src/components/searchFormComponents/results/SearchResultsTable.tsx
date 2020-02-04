@@ -647,26 +647,7 @@ class SearchResultsTable extends React.Component<
         ) {
           return format(rowDatum[dataKey].toString());
         } else {
-          switch (dataKey) {
-            case DataKeys.MAXIMUM_WAVELENGTH:
-              return rowDatum[dataKey]
-                ? this.convertMetersToNanoMeters(
-                    Number(rowDatum[dataKey])
-                  ).toFixed(2)
-                : rowDatum[dataKey];
-            case DataKeys.MINIMUM_WAVELENGTH:
-              return rowDatum[dataKey]
-                ? this.convertMetersToNanoMeters(
-                    Number(rowDatum[dataKey])
-                  ).toFixed(2)
-                : rowDatum[dataKey];
-            case DataKeys.EXPOSURE_TIME:
-              return rowDatum[dataKey]
-                ? Number(rowDatum[dataKey]).toFixed(2)
-                : rowDatum[dataKey];
-            default:
-              return rowDatum[dataKey];
-          }
+          return rowDatum[dataKey];
         }
       }
     } else {
@@ -682,10 +663,6 @@ class SearchResultsTable extends React.Component<
       }
     }
   };
-  /**
-   * A helper function to convert meters to nanometers.
-   */
-  private convertMetersToNanoMeters = (meters: number) => meters * 1000000000;
 
   /**
    * The renderer for a table data cell. A column index of 0 refers to the
