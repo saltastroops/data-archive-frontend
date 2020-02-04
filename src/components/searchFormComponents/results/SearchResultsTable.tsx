@@ -648,19 +648,19 @@ class SearchResultsTable extends React.Component<
           return format(rowDatum[dataKey].toString());
         } else {
           switch (dataKey) {
-            case "energy.max_wavelength":
+            case DataKeys.MAXIMUM_WAVELENGTH:
               return rowDatum[dataKey]
                 ? this.convertMetersToNanoMeters(
                     Number(rowDatum[dataKey])
                   ).toFixed(2)
                 : rowDatum[dataKey];
-            case "energy.min_wavelength":
+            case DataKeys.MINIMUM_WAVELENGTH:
               return rowDatum[dataKey]
                 ? this.convertMetersToNanoMeters(
                     Number(rowDatum[dataKey])
                   ).toFixed(2)
                 : rowDatum[dataKey];
-            case "observation_time.exposure_time":
+            case DataKeys.EXPOSURE_TIME:
               return rowDatum[dataKey]
                 ? Number(rowDatum[dataKey]).toFixed(2)
                 : rowDatum[dataKey];
