@@ -74,7 +74,12 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.DETECTOR_MODE:
       return { dataKey, name: "Detector Mode", visible: false };
     case DataKeys.EXPOSURE_TIME:
-      return { dataKey, name: "Exposure Time", visible: false };
+      return {
+        dataKey,
+        format: formatNumber(1),
+        name: "Exposure Time (s)",
+        visible: false
+      };
     case DataKeys.FILTER:
       return { dataKey, name: "Filter", visible: false };
     case DataKeys.HRS_MODE:
@@ -84,9 +89,19 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
     case DataKeys.INSTRUMENT_NAME:
       return { dataKey, name: "Instrument", visible: false };
     case DataKeys.MAXIMUM_WAVELENGTH:
-      return { dataKey, name: "Maximum Wavelength", visible: false };
+      return {
+        dataKey,
+        format: formatWavelength,
+        name: "Maximum Wavelength (A)",
+        visible: false
+      };
     case DataKeys.MINIMUM_WAVELENGTH:
-      return { dataKey, name: "Minimum Wavelength", visible: false };
+      return {
+        dataKey,
+        format: formatWavelength,
+        name: "Minimum Wavelength (A)",
+        visible: false
+      };
     case DataKeys.OBSERVATION_NAME:
       return { dataKey, name: "Observation Name", visible: false };
     case DataKeys.OBSERVATION_NIGHT:
@@ -123,7 +138,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return {
         dataKey,
         format: formatNumber(4),
-        name: "Declination",
+        name: "Declination (deg)",
         visible: true
       };
     case DataKeys.TARGET_NAME:
@@ -132,7 +147,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return {
         dataKey,
         format: formatNumber(4),
-        name: "Right Ascension",
+        name: "Right Ascension (deg)",
         visible: true
       };
     case DataKeys.TARGET_TYPE_EXPLANATION:
@@ -235,4 +250,20 @@ function formatNumber(n: number) {
  */
 function formatTimestamp(t: string) {
   return moment(parseInt(t, 10)).format("D MMM YYYY");
+}
+
+/**
+ * A function to format wavelengths.
+ *
+ * Parameters:
+ * -----------
+ * wavelength: string
+ *     Wavelength in meters.
+ *
+ * Returns:
+ * --------
+ * The wavelength in Angstroms, with two fraxctional digits.
+ */
+function formatWavelength(meters: string) {
+  return (Number(meters) * 1e10).toFixed(2);
 }
