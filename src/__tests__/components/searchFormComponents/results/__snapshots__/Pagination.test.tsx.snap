@@ -17,7 +17,7 @@ exports[`Pagination should render correctly with correct props 1`] = `
       disabled={true}
       onClick={[Function]}
     >
-      Previous page
+      Previous results
     </button>
     <a>
       <span
@@ -52,7 +52,7 @@ exports[`Pagination should render correctly with correct props 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Next page
+      Next results
     </button>
   </div>
 </Pagination>
@@ -75,7 +75,7 @@ exports[`Pagination should render correctly with correct props 2`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Previous page
+      Previous results
     </button>
     <a>
       <span
@@ -110,7 +110,7 @@ exports[`Pagination should render correctly with correct props 2`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Next page
+      Next results
     </button>
   </div>
 </Pagination>
@@ -133,7 +133,7 @@ exports[`Pagination should render correctly with correct props 3`] = `
       disabled={true}
       onClick={[Function]}
     >
-      Previous page
+      Previous results
     </button>
     <a>
       <span
@@ -168,7 +168,7 @@ exports[`Pagination should render correctly with correct props 3`] = `
       disabled={true}
       onClick={[Function]}
     >
-      Next page
+      Next results
     </button>
   </div>
 </Pagination>
