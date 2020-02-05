@@ -12,7 +12,7 @@ const ParentGrid = styled.div.attrs({
   padding: 10px;
   gap: 20px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     grid-template-columns: auto;
   }
 `;
@@ -22,11 +22,10 @@ const ParentGridSingle = styled.div.attrs({
   disable: true
 })`
   display: grid;
-  grid-template-columns: auto;
-  padding: 10px;
-  gap: 20px;
-
-  @media (max-width: 900px) {
+  grid-template-columns: 100.7%;
+  padding-left: 10px;
+  @media (max-width: 1023px) {
+    padding-right: 10px;
     grid-template-columns: auto;
   }
 `;
@@ -126,30 +125,12 @@ const SubGrid = styled.div.attrs({
   }
 `;
 
-const RightSubGrid = styled.div.attrs({
-  className: "sub-grid"
-})`
-  && {
-    text-align: right;
-    padding-left: 10px;
-  }
-`;
-
 const SubGrid4 = styled.div.attrs({
   className: "sub-grid4"
 })`
   && {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-  }
-`;
-
-export const SubGrid6 = styled.div.attrs({
-  className: "sub-grid4"
-})`
-  && {
-    display: grid;
-    grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
   }
 `;
 
@@ -162,30 +143,19 @@ const SubGrid5 = styled.div.attrs({
   }
 `;
 
-const NumberGrid = styled.div.attrs({
-  className: "grid-item"
-})`
-  display: grid;
-  grid-template-columns: auto;
-  padding: 6px;
-  gap: 5px;
-  width: 105%
-  text-align: left;
-`;
-
 const TelescopeDetailsGrid = styled.div`
   && {
     display: grid;
     grid-template-columns: repeat(2, min-content);
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 696px) {
     && {
       grid-template-columns: repeat(3, min-content);
     }
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 904px) {
     && {
       grid-template-columns: repeat(4, min-content);
     }
@@ -266,9 +236,7 @@ export {
   SubGrid4,
   SubGrid5,
   SubGrid,
-  RightSubGrid,
   MainGrid,
-  NumberGrid,
   HelpGrid,
   ButtonGrid,
   Span,

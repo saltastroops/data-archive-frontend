@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
+import styled from "styled-components";
 import {
   IGeneral,
   ISearchFormState,
@@ -11,12 +12,9 @@ import { TargetType } from "../../utils/TargetType";
 import { isError, validateDate } from "../../utils/validators";
 import {
   ButtonGrid,
-  MainGrid,
-  NumberGrid,
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
-  Span,
   SubGrid,
   TargetGrid,
   TelescopeGrid
@@ -27,6 +25,19 @@ import ProposalForm from "./ProposalForm";
 import { DEFAULT_LIMIT } from "./SearchPage";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
+
+const SearchButtonsContainer = styled.div.attrs({
+  className: "main-grid"
+})`
+  && {
+    display: grid;
+    grid-template-columns: auto auto 33%;
+    padding: 10px;
+    @media (max-width: 988px) {
+      grid-template-columns: auto;
+    }
+  }
+`;
 
 /**
  * Properties for the search form.
@@ -44,6 +55,7 @@ interface ISearchFormProps {
   error?: Error;
   limitError?: string;
   loading: boolean;
+  openColumnSelector: () => void;
   search: (
     startIndex: number
   ) => ({
@@ -129,7 +141,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
-    const { error, loading } = this.props;
+    const { error, loading, openColumnSelector } = this.props;
     const { general, target, telescope } = this.state;
 
     return (
@@ -150,52 +162,54 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             />
           </TelescopeGrid>
         </ParentGridSingle>
-        <ParentGrid>
-          <ButtonGrid>
-            <MainGrid>
-              <SubGrid>
-                <a
-                  className={"button is-text"}
-                  data-test="reset-all-button"
-                  onClick={this.resetAll}
-                >
-                  reset all
-                </a>
-                <NumberGrid>
-                  <p>Number of results per page</p>
+
+        <div className={"is-pulled-right"}>
+          <br />
+          <a
+            className={"button is-text"}
+            data-test="reset-all-button"
+            onClick={this.resetAll}
+          >
+            reset all
+          </a>
+        </div>
+
+        {error && <div className="has-text-danger">{error.message}</div>}
+        <ButtonGrid>
+          <SearchButtonsContainer>
+            <SubGrid>
+              <div className={"is-text"}>Number of results per page</div>
+              <div className="field is-grouped">
+                <p className="control">
                   <InputField
                     error={general.errors.limit}
                     name={"items-per-page"}
                     value={general.limit}
                     onChange={this.updateItemsPerPage}
                   />
-                </NumberGrid>
-              </SubGrid>
-              <SubGrid>
-                <p />
-              </SubGrid>
-              <SubGrid>
-                <NumberGrid>
-                  <Span>
-                    {error && (
-                      <div className="has-text-danger">{error.message}</div>
-                    )}
-                    <button
-                      disabled={loading}
-                      className={`button is-primary ${loading && "is-loading"}`}
-                      data-test="search-button"
-                      type="button"
-                      value="Search"
-                      onClick={this.onSubmit}
-                    >
-                      search
-                    </button>
-                  </Span>
-                </NumberGrid>
-              </SubGrid>
-            </MainGrid>
-          </ButtonGrid>
-        </ParentGrid>
+                </p>
+                <p className="control">
+                  <button
+                    disabled={loading}
+                    className={`button is-info ${loading && "is-loading"}`}
+                    data-test="search-button"
+                    type="button"
+                    value="Search"
+                    onClick={this.onSubmit}
+                  >
+                    Search
+                  </button>
+                </p>
+              </div>
+            </SubGrid>
+            <SubGrid>
+              <br />
+              <button className={"button"} onClick={openColumnSelector}>
+                Manage columns to display
+              </button>
+            </SubGrid>
+          </SearchButtonsContainer>
+        </ButtonGrid>
       </>
     );
   }
