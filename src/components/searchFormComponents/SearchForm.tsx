@@ -162,7 +162,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                   reset all
                 </a>
                 <NumberGrid>
-                  <p>Number of results</p>
+                  <p>Number of results per page</p>
                   <InputField
                     error={general.errors.limit}
                     name={"items-per-page"}

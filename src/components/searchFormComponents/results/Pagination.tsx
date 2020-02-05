@@ -56,7 +56,7 @@ const Pagination = (props: IPaginationProps) => {
         data-test="pagination-previous"
         onClick={() => fetchPage(previousIndex, itemsPerPage, "PREVIOUS")}
       >
-        Previous page
+        Previous results
       </button>
       <a>
         <span className="pagination-ellipsis">{startIndex + 1}</span>
@@ -73,7 +73,7 @@ const Pagination = (props: IPaginationProps) => {
         data-test="pagination-next"
         onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
       >
-        Next page
+        Next results
       </button>
     </div>
   );
