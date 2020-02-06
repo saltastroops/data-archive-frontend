@@ -647,14 +647,6 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   };
 
   /**
-   * Remove a dummy column
-   */
-  private removeDummyColumn = (
-    columns: ISearchResultsTableColumn[]
-  ): ISearchResultsTableColumn[] =>
-    columns.filter((c: any) => c.dataKey !== "dummyName");
-
-  /**
    * Update the visibility status of a results table column.
    */
   private openColumnSelector = () => {
