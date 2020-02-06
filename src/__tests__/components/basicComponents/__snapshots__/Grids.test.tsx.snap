@@ -8,7 +8,7 @@ exports[`Grids  should render all grids correctly 1`] = `
   gap: 20px;
 }
 
-@media (max-width:900px) {
+@media (max-width:1023px) {
   .c0 {
     grid-template-columns: auto;
   }
@@ -36,7 +36,7 @@ exports[`Grids  should render all grids correctly 1`] = `
   padding: 10px;
   gap: 20px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     grid-template-columns: auto;
   }
 ",
