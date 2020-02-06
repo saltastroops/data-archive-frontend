@@ -165,13 +165,13 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
 
         <div className={"is-pulled-right"}>
           <br />
-          <a
+          <button
             className={"button is-text"}
             data-test="reset-all-button"
             onClick={this.resetAll}
           >
             reset all
-          </a>
+          </button>
         </div>
 
         {error && <div className="has-text-danger">{error.message}</div>}

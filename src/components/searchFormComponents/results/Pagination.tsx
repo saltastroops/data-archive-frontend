@@ -58,7 +58,7 @@ const Pagination = (props: IPaginationProps) => {
       >
         Previous results
       </button>
-      <a>
+      <span className={"tag is-text"}>
         <span className="pagination-ellipsis">{startIndex + 1}</span>
         <span className="pagination-ellipsis">&hellip;</span>
         <span className="pagination-ellipsis">
@@ -66,7 +66,7 @@ const Pagination = (props: IPaginationProps) => {
         </span>
         <span className="pagination-ellipsis">of</span>
         <span className="pagination-ellipsis">{itemsTotal}</span>
-      </a>
+      </span>
       <button
         disabled={startIndex + itemsPerPage >= itemsTotal}
         className="pagination-next"

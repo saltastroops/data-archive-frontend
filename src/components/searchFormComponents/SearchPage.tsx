@@ -13,7 +13,6 @@ import {
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
-import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import {
@@ -149,12 +148,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
   render() {
     const { screenDimensions, searchFormCache } = this.props;
-    const {
-      error: validationError,
-      startIndex,
-      tableColumns,
-      where
-    } = this.state;
+    const { error: validationError, startIndex, where } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend

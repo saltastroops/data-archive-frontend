@@ -4,7 +4,6 @@ import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import { CREATE_DATA_REQUEST } from "../../graphql/Mutations";
 import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
-import DataKeys from "../searchFormComponents/results/DataKeys";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
