@@ -15,6 +15,7 @@ import { USER_DATA_REQUESTS_QUERY } from "../graphql/Query";
 import cache from "../util/cache";
 import {
   CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION,
+  CalibrationLevel,
   Cart,
   CART_QUERY,
   CLEAR_CART_MUTATION,
@@ -74,15 +75,16 @@ class CartModal extends React.Component<ICart, any> {
                   mutation={CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION}
                   refetchQueries={[{ query: CART_QUERY }]}
                 >
-                  {(calibrationLevelToIncludeInCart: any) => {
+                  {(includedCalibrationLevels: any) => {
                     const cartContent: any = cache.readQuery({
                       query: CART_QUERY
                     }) || {
                       cart: {
                         files: [],
                         includeCalibrations: true,
-                        includeRawCalibrationLevel: false,
-                        includeReducedCalibrationLevel: true
+                        includedCalibrationLevels: new Set<CalibrationLevel>([
+                          "REDUCED"
+                        ])
                       }
                     };
 
@@ -90,8 +92,7 @@ class CartModal extends React.Component<ICart, any> {
                     const cart = new Cart(
                       cartContent.cart.files,
                       cartContent.cart.includeCalibrations,
-                      cartContent.cart.includeReducedCalibrationLevel,
-                      cartContent.cart.includeRawCalibrationLevel
+                      cartContent.cart.includedCalibrationLevels
                     );
                     cart.groupByObservation().forEach((v, k) => {
                       groupedCart.push({
@@ -104,10 +105,8 @@ class CartModal extends React.Component<ICart, any> {
                       parseInt(file.id, 10)
                     );
                     const includeCalibrationFiles = cart.includeCalibrations;
-                    const includeReducedCalibrationLevelFiles =
-                      cart.includeReducedCalibrationLevel;
-                    const includeRawCalibrationLevelFiles =
-                      cart.includeRawCalibrationLevel;
+                    const includedCalibrationLevelsFiles =
+                      cart.includedCalibrationLevels;
 
                     const updateIncludeCalibrations = async (
                       event: React.ChangeEvent<HTMLInputElement>
@@ -120,10 +119,22 @@ class CartModal extends React.Component<ICart, any> {
                     const updateIncludeReducedCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      calibrationLevelToIncludeInCart({
+                      if (
+                        event.target.checked &&
+                        !cart.includedCalibrationLevels.includes("REDUCED")
+                      ) {
+                        cart.includedCalibrationLevels.push("REDUCED");
+                      } else {
+                        cart.includedCalibrationLevels.splice(
+                          cart.includedCalibrationLevels.indexOf("REDUCED"),
+                          1
+                        );
+                      }
+
+                      includedCalibrationLevels({
                         variables: {
-                          includeRawCalibrationLevel: includeRawCalibrationLevelFiles,
-                          includeReducedCalibrationLevel: event.target.checked
+                          includedCalibrationLevels:
+                            cart.includedCalibrationLevels
                         }
                       });
                     };
@@ -131,10 +142,21 @@ class CartModal extends React.Component<ICart, any> {
                     const updateIncludeRawCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      calibrationLevelToIncludeInCart({
+                      if (
+                        event.target.checked &&
+                        !cart.includedCalibrationLevels.includes("RAW")
+                      ) {
+                        cart.includedCalibrationLevels.push("RAW");
+                      } else {
+                        cart.includedCalibrationLevels.splice(
+                          cart.includedCalibrationLevels.indexOf("RAW"),
+                          1
+                        );
+                      }
+                      includedCalibrationLevels({
                         variables: {
-                          includeRawCalibrationLevel: event.target.checked,
-                          includeReducedCalibrationLevel: includeReducedCalibrationLevelFiles
+                          includedCalibrationLevels:
+                            cart.includedCalibrationLevels
                         }
                       });
                     };
@@ -251,9 +273,9 @@ class CartModal extends React.Component<ICart, any> {
                                     <div className="calibration-level">
                                       <label>
                                         <LargeCheckbox
-                                          checked={
-                                            cart.includeReducedCalibrationLevel
-                                          }
+                                          checked={cart.includedCalibrationLevels.includes(
+                                            "REDUCED"
+                                          )}
                                           onChange={
                                             updateIncludeReducedCalibrationLevel
                                           }
@@ -264,9 +286,9 @@ class CartModal extends React.Component<ICart, any> {
                                     <div className="calibration-level">
                                       <label>
                                         <LargeCheckbox
-                                          checked={
-                                            cart.includeRawCalibrationLevel
-                                          }
+                                          checked={cart.includedCalibrationLevels.includes(
+                                            "RAW"
+                                          )}
                                           onChange={
                                             updateIncludeRawCalibrationLevel
                                           }
@@ -302,7 +324,8 @@ class CartModal extends React.Component<ICart, any> {
                                                 createDataRequest,
                                                 clearCart,
                                                 dataFileIds,
-                                                includeCalibrationFiles
+                                                includeCalibrationFiles,
+                                                includedCalibrationLevelsFiles
                                               );
                                               if (!error) {
                                                 openCart(false);
@@ -383,10 +406,15 @@ class CartModal extends React.Component<ICart, any> {
     create: any,
     clearCart: any,
     dataFilesIds: number[],
-    includeCalibrations: boolean
+    includeCalibrations: boolean,
+    includedCalibrationLevels: CalibrationLevel[]
   ) => {
     await create({
-      variables: { dataFiles: dataFilesIds, includeCalibrations }
+      variables: {
+        dataFiles: dataFilesIds,
+        includeCalibrations,
+        includedCalibrationLevels
+      }
     });
     await clearCart();
   };

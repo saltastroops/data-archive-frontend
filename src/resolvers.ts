@@ -33,8 +33,7 @@ export const typeDefs = gql`
   type CartContent {
     files: [CartFile!]!
     includeCalibrations: Boolean
-    includeReducedCalibrationLevel: Boolean
-    includeRawCalibrationLevel: Boolean
+    includedCalibrationLevels: [CalibrationLevel!]!
   }
 
   """
@@ -78,6 +77,11 @@ export const typeDefs = gql`
     The SALT Science Database.
     """
     SDB
+  }
+
+  enum CalibrationLevel {
+    REDUCED
+    RAW
   }
 
   """
@@ -138,8 +142,7 @@ export const resolvers = {
       const cart = new Cart(
         data.cart.files,
         data.cart.includeCalibrations,
-        data.cart.includeReducedCalibrationLevel,
-        data.cart.includeRawCalibrationLevel
+        data.cart.includedCalibrationLevels
       );
 
       // Add the files
@@ -153,8 +156,7 @@ export const resolvers = {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations,
-            includeRawCalibrationLevel: cart.includeRawCalibrationLevel,
-            includeReducedCalibrationLevel: cart.includeReducedCalibrationLevel
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -169,8 +171,7 @@ export const resolvers = {
       const cart = new Cart(
         data.cart.files,
         data.cart.includeCalibrations,
-        data.cart.includeReducedCalibrationLevel,
-        data.cart.includeRawCalibrationLevel
+        data.cart.includedCalibrationLevels
       );
 
       // Remove the files
@@ -184,8 +185,7 @@ export const resolvers = {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations,
-            includeRawCalibrationLevel: cart.includeRawCalibrationLevel,
-            includeReducedCalibrationLevel: cart.includeReducedCalibrationLevel
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -201,8 +201,7 @@ export const resolvers = {
       const cart = new Cart(
         data.files,
         data.includeCalibrations,
-        data.cart.includeReducedCalibrationLevel,
-        data.cart.includeRawCalibrationLevel
+        data.cart.includedCalibrationLevels
       );
 
       // Remove the files
@@ -216,8 +215,7 @@ export const resolvers = {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations,
-            includeRawCalibrationLevel: cart.includeRawCalibrationLevel,
-            includeReducedCalibrationLevel: cart.includeReducedCalibrationLevel
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -237,8 +235,7 @@ export const resolvers = {
       const cart = new Cart(
         data.cart.files,
         data.cart.includeCalibrations,
-        data.cart.includeReducedCalibrationLevel,
-        data.cart.includeRawCalibrationLevel
+        data.cart.includedCalibrationLevels
       );
 
       // Update the flag for including calibrations
@@ -252,8 +249,7 @@ export const resolvers = {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations,
-            includeRawCalibrationLevel: cart.includeRawCalibrationLevel,
-            includeReducedCalibrationLevel: cart.includeReducedCalibrationLevel
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -263,9 +259,9 @@ export const resolvers = {
     },
 
     // Include data type in cart
-    calibrationLevelToIncludeInCart: async (
+    includedCalibrationLevelsInCart: async (
       _: any,
-      { includeReducedCalibrationLevel, includeRawCalibrationLevel }: any,
+      { includedCalibrationLevels }: any,
       { cache }: any
     ) => {
       // Get current cart content
@@ -273,14 +269,11 @@ export const resolvers = {
       const cart = new Cart(
         data.cart.files,
         data.cart.includeCalibrations,
-        data.cart.includeReducedCalibrationLevel,
-        data.cart.includeRawCalibrationLevel
+        data.cart.includedCalibrationLevels
       );
 
       // Update the flag for including reduced calibration level
-      cart.includeReducedCalibrationLevel = includeReducedCalibrationLevel;
-      // Update the flag for including raw calibration level
-      cart.includeRawCalibrationLevel = includeRawCalibrationLevel;
+      cart.includedCalibrationLevels = includedCalibrationLevels;
 
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
@@ -290,8 +283,7 @@ export const resolvers = {
             __typename: "CartContent",
             files: cart.files,
             includeCalibrations: cart.includeCalibrations,
-            includeRawCalibrationLevel: cart.includeRawCalibrationLevel,
-            includeReducedCalibrationLevel: cart.includeReducedCalibrationLevel
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY

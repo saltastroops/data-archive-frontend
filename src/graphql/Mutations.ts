@@ -124,13 +124,20 @@ export const CREATE_DATA_REQUEST = gql`
   mutation CREATE_DATA_REQUEST(
     $dataFiles: [Int!]!
     $includeCalibrations: Boolean!
+    $includedCalibrationLevels: [CalibrationLevel!]!
   ) {
     createDataRequest(
       dataFiles: $dataFiles
       includeCalibrations: $includeCalibrations
+      includedCalibrationLevels: $includedCalibrationLevels
     ) {
       status
       message
     }
   }
 `;
+
+export enum CalibrationLevel {
+  REDUCED,
+  RAW
+}
