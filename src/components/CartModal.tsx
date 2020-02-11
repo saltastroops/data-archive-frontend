@@ -14,13 +14,13 @@ import { CREATE_DATA_REQUEST } from "../graphql/Mutations";
 import { USER_DATA_REQUESTS_QUERY } from "../graphql/Query";
 import cache from "../util/cache";
 import {
-  CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION,
   CalibrationLevel,
   Cart,
   CART_QUERY,
   CLEAR_CART_MUTATION,
   ICartFile,
   INCLUDE_CALIBRATIONS_IN_CART_MUTATION,
+  INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
 import CartFileRow from "./cart/CartFileRow";
@@ -72,7 +72,7 @@ class CartModal extends React.Component<ICart, any> {
             {(includeCalibrations: any) => {
               return (
                 <Mutation
-                  mutation={CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION}
+                  mutation={INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION}
                   refetchQueries={[{ query: CART_QUERY }]}
                 >
                   {(includedCalibrationLevels: any) => {
