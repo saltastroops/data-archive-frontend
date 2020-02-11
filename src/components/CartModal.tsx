@@ -258,7 +258,7 @@ class CartModal extends React.Component<ICart, any> {
                                             updateIncludeReducedCalibrationLevel
                                           }
                                         />{" "}
-                                        Product data
+                                        Reduced data
                                       </label>
                                     </div>
                                     <div className="calibration-level">
