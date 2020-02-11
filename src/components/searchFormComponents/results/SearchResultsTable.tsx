@@ -353,7 +353,9 @@ class SearchResultsTable extends React.Component<
         {({ data }: any) => {
           const cart = new Cart(
             data.cart.files || [],
-            data.cart.includeCalibrations
+            data.cart.includeCalibrations,
+            data.cart.includeProductType,
+            data.cart.includeRawType
           );
           return (
             <>

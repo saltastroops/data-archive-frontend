@@ -24,18 +24,57 @@ export class Cart {
     // default to true if the flag for including calibrations is not defined
     const includeCalibrations = o.includeCalibrations !== false;
 
-    return new Cart(files, includeCalibrations);
+    // default the reduced calibration level to true if the flag for including reduced calibration level is not defined
+    const includeReducedCalibrationLevel =
+      o.includeReducedCalibrationLevel !== false;
+
+    // default the raw calibration level to false if the flag for including raw calibration level is not defined
+    const includeRawCalibrationLevel = o.includeRawCalibrationLevel === false;
+
+    const cart = new Cart(
+      files,
+      includeCalibrations,
+      includeReducedCalibrationLevel,
+      includeRawCalibrationLevel
+    );
+
+    return cart;
   }
 
   private cartFiles: ICartFile[];
   private includeCalibrationFiles: boolean;
+  private includeReducedCalibrationLevelFiles: boolean;
+  private includeRawCalibrationLevelFiles: boolean;
 
-  constructor(files: ICartFile[], includeCalibrations: boolean) {
+  constructor(
+    files: ICartFile[],
+    includeCalibrations: boolean,
+    includeReducedCalibrationLevel: boolean,
+    includeRawCalibrationLevel: boolean
+  ) {
     this.cartFiles = files || [];
     if (includeCalibrations !== undefined && includeCalibrations !== null) {
       this.includeCalibrationFiles = includeCalibrations;
     } else {
       this.includeCalibrationFiles = true;
+    }
+
+    if (
+      includeReducedCalibrationLevel !== undefined &&
+      includeReducedCalibrationLevel !== null
+    ) {
+      this.includeReducedCalibrationLevelFiles = includeReducedCalibrationLevel;
+    } else {
+      this.includeReducedCalibrationLevelFiles = true;
+    }
+
+    if (
+      includeRawCalibrationLevel !== undefined &&
+      includeRawCalibrationLevel !== null
+    ) {
+      this.includeRawCalibrationLevelFiles = includeRawCalibrationLevel;
+    } else {
+      this.includeRawCalibrationLevelFiles = false;
     }
   }
 
@@ -48,7 +87,9 @@ export class Cart {
   public toJSON(): string {
     return JSON.stringify({
       files: this.files,
-      includeCalibrations: this.includeCalibrations
+      includeCalibrations: this.includeCalibrations,
+      includeRawCalibrationLevel: this.includeRawCalibrationLevel,
+      includeReducedCalibrationLevel: this.includeReducedCalibrationLevel
     });
   }
 
@@ -68,6 +109,36 @@ export class Cart {
    */
   public get size() {
     return this.cartFiles.length;
+  }
+
+  /**
+   * Whether product files should be included in the data request.
+   */
+  public get includeReducedCalibrationLevel() {
+    return this.includeReducedCalibrationLevelFiles;
+  }
+
+  /**
+   * Set whether product files should be included in the data request.
+   */
+  public set includeReducedCalibrationLevel(
+    includeReducedCalibrationLevel: boolean
+  ) {
+    this.includeReducedCalibrationLevelFiles = includeReducedCalibrationLevel;
+  }
+
+  /**
+   * Whether raw files should be included in the data request.
+   */
+  public get includeRawCalibrationLevel() {
+    return this.includeRawCalibrationLevelFiles;
+  }
+
+  /**
+   * Set whether raw files should be included in the data request.
+   */
+  public set includeRawCalibrationLevel(includeRawCalibrationLevel: boolean) {
+    this.includeRawCalibrationLevelFiles = includeRawCalibrationLevel;
   }
 
   /**
@@ -212,6 +283,8 @@ export const CART_QUERY = gql`
         target
       }
       includeCalibrations
+      includeReducedCalibrationLevel
+      includeRawCalibrationLevel
     }
   }
 `;
@@ -237,5 +310,17 @@ export const CLEAR_CART_MUTATION = gql`
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATIONS_IN_CART($includeCalibrations: Boolean!) {
     includeCalibrationsInCart(includeCalibrations: $includeCalibrations) @client
+  }
+`;
+
+export const CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION = gql`
+  mutation CALIBRATION_LEVEL_TO_INCLUDE_IN_CART_MUTATION(
+    $includeReducedCalibrationLevel: Boolean!
+    $includeRawCalibrationLevel: Boolean!
+  ) {
+    calibrationLevelToIncludeInCart(
+      includeReducedCalibrationLevel: $includeReducedCalibrationLevel
+      includeRawCalibrationLevel: $includeRawCalibrationLevel
+    ) @client
   }
 `;
