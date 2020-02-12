@@ -19,8 +19,8 @@ import {
   CART_QUERY,
   CLEAR_CART_MUTATION,
   ICartFile,
+  INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION,
   INCLUDE_CALIBRATIONS_IN_CART_MUTATION,
-  INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
 import CartFileRow from "./cart/CartFileRow";
@@ -72,10 +72,10 @@ class CartModal extends React.Component<ICart, any> {
             {(includeCalibrations: any) => {
               return (
                 <Mutation
-                  mutation={INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION}
+                  mutation={INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION}
                   refetchQueries={[{ query: CART_QUERY }]}
                 >
-                  {(includedCalibrationLevels: any) => {
+                  {(includeCalibrationLevels: any) => {
                     const cartContent: any = cache.readQuery({
                       query: CART_QUERY
                     }) || {
@@ -105,7 +105,7 @@ class CartModal extends React.Component<ICart, any> {
                       parseInt(file.id, 10)
                     );
                     const includeCalibrationFiles = cart.includeCalibrations;
-                    const includedCalibrationLevelsFiles =
+                    const includedCalibrationLevels =
                       cart.includedCalibrationLevels;
 
                     const updateIncludeCalibrations = async (
@@ -131,7 +131,7 @@ class CartModal extends React.Component<ICart, any> {
                         );
                       }
 
-                      includedCalibrationLevels({
+                      includeCalibrationLevels({
                         variables: {
                           includedCalibrationLevels:
                             cart.includedCalibrationLevels
@@ -153,7 +153,7 @@ class CartModal extends React.Component<ICart, any> {
                           1
                         );
                       }
-                      includedCalibrationLevels({
+                      includeCalibrationLevels({
                         variables: {
                           includedCalibrationLevels:
                             cart.includedCalibrationLevels
@@ -325,7 +325,7 @@ class CartModal extends React.Component<ICart, any> {
                                                 clearCart,
                                                 dataFileIds,
                                                 includeCalibrationFiles,
-                                                includedCalibrationLevelsFiles
+                                                includedCalibrationLevels
                                               );
                                               if (!error) {
                                                 openCart(false);

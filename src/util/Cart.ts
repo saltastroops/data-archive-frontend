@@ -97,14 +97,14 @@ export class Cart {
   }
 
   /**
-   * Whether product, raw, or both files should be included in the data request.
+   * The calibration levels to include in the data request.
    */
   public get includedCalibrationLevels() {
     return this.includedCalibrationLevelsFiles;
   }
 
   /**
-   * Set whether product, raw or both files should be included in the data request.
+   * Set the calibration levels to include in the data request.
    */
   public set includedCalibrationLevels(
     includedCalibrationLevels: CalibrationLevel[]
@@ -285,11 +285,11 @@ export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
   }
 `;
 
-export const INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION = gql`
-  mutation INCLUDED_CALIBRATION_LEVELS_IN_CART_MUTATION(
+export const INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION = gql`
+  mutation INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION(
     $includedCalibrationLevels: CalibrationLevel!
   ) {
-    includedCalibrationLevelsInCart(
+    includeCalibrationLevelsInCart(
       includedCalibrationLevels: $includedCalibrationLevels
     ) @client
   }

@@ -170,8 +170,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       variables: {
         dataFiles: dataFileIds,
         includeCalibrations: false,
-        includeReducedCalibrationLevel: true,
-        includeRawCalibrationLevel: false
+        includedCalibrationLevels: []
       }
     });
   };

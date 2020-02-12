@@ -80,8 +80,8 @@ export const typeDefs = gql`
   }
 
   enum CalibrationLevel {
-    REDUCED
     RAW
+    REDUCED
   }
 
   """
@@ -259,7 +259,7 @@ export const resolvers = {
     },
 
     // Include data type in cart
-    includedCalibrationLevelsInCart: async (
+    includeCalibrationLevelsInCart: async (
       _: any,
       { includedCalibrationLevels }: any,
       { cache }: any
