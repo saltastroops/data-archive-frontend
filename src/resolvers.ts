@@ -79,8 +79,17 @@ export const typeDefs = gql`
     SDB
   }
 
+  """
+  Enumeration of the calibration levels.
+  """
   enum CalibrationLevel {
+    """
+    The raw data
+    """
     RAW
+    """
+    The reduced data
+    """
     REDUCED
   }
 
@@ -272,7 +281,7 @@ export const resolvers = {
         data.cart.includedCalibrationLevels
       );
 
-      // Update the flag for including reduced calibration level
+      // Update included calibration levels
       cart.includedCalibrationLevels = includedCalibrationLevels;
 
       // Store updated content both in the cache and in local storage

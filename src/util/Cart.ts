@@ -25,7 +25,9 @@ export class Cart {
     const includeCalibrations = o.includeCalibrations !== false;
 
     // By default reduced callibration level are included
-    const includedCalibrationLevels = new Array<CalibrationLevel>("REDUCED");
+    const includedCalibrationLevels = new Set<CalibrationLevel>(
+      o.includedCalibrationLevels || ["REDUCED"]
+    );
 
     const cart = new Cart(
       files,
@@ -38,12 +40,12 @@ export class Cart {
 
   private cartFiles: ICartFile[];
   private includeCalibrationFiles: boolean;
-  private includedCalibrationLevelsFiles: CalibrationLevel[];
+  private includedCalibrationLevelsFiles: Set<CalibrationLevel>;
 
   constructor(
     files: ICartFile[],
     includeCalibrations: boolean,
-    includedCalibrationLevels: CalibrationLevel[]
+    includedCalibrationLevels: Set<CalibrationLevel>
   ) {
     this.cartFiles = files || [];
     if (includeCalibrations !== undefined && includeCalibrations !== null) {
@@ -58,9 +60,9 @@ export class Cart {
     ) {
       this.includedCalibrationLevelsFiles = includedCalibrationLevels;
     } else {
-      this.includedCalibrationLevelsFiles = new Array<CalibrationLevel>(
+      this.includedCalibrationLevelsFiles = new Set<CalibrationLevel>([
         "REDUCED"
-      );
+      ]);
     }
   }
 
@@ -74,7 +76,7 @@ export class Cart {
     return JSON.stringify({
       files: this.files,
       includeCalibrations: this.includeCalibrations,
-      includedCalibrationLevels: this.includedCalibrationLevels
+      includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
     });
   }
 
@@ -107,7 +109,7 @@ export class Cart {
    * Set the calibration levels to include in the data request.
    */
   public set includedCalibrationLevels(
-    includedCalibrationLevels: CalibrationLevel[]
+    includedCalibrationLevels: Set<CalibrationLevel>
   ) {
     this.includedCalibrationLevelsFiles = includedCalibrationLevels;
   }
@@ -244,6 +246,9 @@ export interface ICartFile {
   target: string | null;
 }
 
+/**
+ * The available calibration levels.
+ */
 export type CalibrationLevel = "REDUCED" | "RAW";
 
 export const CART_QUERY = gql`

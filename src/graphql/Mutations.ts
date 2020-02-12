@@ -136,8 +136,3 @@ export const CREATE_DATA_REQUEST = gql`
     }
   }
 `;
-
-export enum CalibrationLevel {
-  REDUCED,
-  RAW
-}
