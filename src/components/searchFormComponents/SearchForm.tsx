@@ -152,7 +152,11 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             <TargetGrid>
               <TargetForm target={target} onChange={this.targetChange} />
             </TargetGrid>
-            <div />
+            <div
+              style={{
+                height: "20px"
+              }}
+            />
             <ProposalGrid>
               <ProposalForm general={general} onChange={this.generalChange} />
             </ProposalGrid>
