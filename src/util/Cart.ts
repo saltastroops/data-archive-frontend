@@ -292,7 +292,7 @@ export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
 
 export const INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION(
-    $includedCalibrationLevels: CalibrationLevel!
+    $includedCalibrationLevels: [CalibrationLevel]
   ) {
     includeCalibrationLevelsInCart(
       includedCalibrationLevels: $includedCalibrationLevels

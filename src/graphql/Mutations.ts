@@ -124,7 +124,7 @@ export const CREATE_DATA_REQUEST = gql`
   mutation CREATE_DATA_REQUEST(
     $dataFiles: [Int!]!
     $includeCalibrations: Boolean!
-    $includedCalibrationLevels: [CalibrationLevel!]!
+    $includedCalibrationLevels: [CalibrationLevel]
   ) {
     createDataRequest(
       dataFiles: $dataFiles

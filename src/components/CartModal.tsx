@@ -122,13 +122,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const updateIncludeReducedCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      if (
-                        event.target.checked &&
-                        !cart.includedCalibrationLevels.has("REDUCED")
-                      ) {
-                        cart.includedCalibrationLevels.add("REDUCED");
-                      } else {
+                      if (!event.target.checked) {
                         cart.includedCalibrationLevels.delete("REDUCED");
+                      } else {
+                        cart.includedCalibrationLevels.add("REDUCED");
                       }
 
                       includeCalibrationLevels({
@@ -142,13 +139,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const updateIncludeRawCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      if (
-                        event.target.checked &&
-                        !cart.includedCalibrationLevels.has("RAW")
-                      ) {
-                        cart.includedCalibrationLevels.add("RAW");
-                      } else {
+                      if (!event.target.checked) {
                         cart.includedCalibrationLevels.delete("RAW");
+                      } else {
+                        cart.includedCalibrationLevels.add("RAW");
                       }
                       includeCalibrationLevels({
                         variables: {
@@ -333,7 +327,12 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                               );
                                               if (
                                                 !error &&
-                                                !this.state.error.length
+                                                (cart.includedCalibrationLevels.has(
+                                                  "REDUCED"
+                                                ) ||
+                                                  cart.includedCalibrationLevels.has(
+                                                    "RAW"
+                                                  ))
                                               ) {
                                                 openCart(false);
                                               }
@@ -419,11 +418,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
     // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
     if (!includedCalibrationLevels.length) {
       this.setState({
-        error: "Please make sure Reduced or Raw data is selected."
+        error: "Please make sure reduced or raw data is selected."
       });
       return;
     }
-
     this.setState({
       error: ""
     });
