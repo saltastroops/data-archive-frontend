@@ -3,14 +3,21 @@ import styled from "styled-components";
 import "../../App.css";
 import { HelpMessage } from "./InputField";
 
-const ParentGrid = styled.div.attrs({
+const SearchGrid = styled.div.attrs({
   className: "grid-container",
   disable: true
 })`
   display: grid;
-  grid-template-columns: 50% 50%;
-  padding: 10px;
+  grid-template-columns: auto;
   gap: 20px;
+`;
+
+const ParentGrid = styled.div.attrs({
+  className: "grid-container is-fullhd",
+  disable: true
+})`
+  display: grid;
+  grid-template-columns: 49.5% 1% 49.5%;
 
   @media (max-width: 1023px) {
     grid-template-columns: auto;
@@ -22,10 +29,8 @@ const ParentGridSingle = styled.div.attrs({
   disable: true
 })`
   display: grid;
-  grid-template-columns: 100.7%;
-  padding-left: 10px;
+  grid-template-columns: 100%;
   @media (max-width: 1023px) {
-    padding-right: 10px;
     grid-template-columns: auto;
   }
 `;
@@ -36,6 +41,8 @@ const TargetGrid = styled.div.attrs({
   background-color: #f6f7e1;
   border: 1px solid rgba(246, 247, 225, 0.5);
   text-align: center;
+  width: 100%;
+  padding: 5px;
 `;
 
 const ProposalGrid = styled.div.attrs({
@@ -44,6 +51,7 @@ const ProposalGrid = styled.div.attrs({
   background-color: #f2fffb;
   border: 1px solid rgba(242, 255, 251, 0.5);
   text-align: center;
+  width: 100%;
 `;
 
 const DataGrid = styled.div.attrs({
@@ -229,6 +237,7 @@ export {
   ParentGridSingle,
   ProposalGrid,
   SingleColumnGrid,
+  SearchGrid,
   TelescopeGrid,
   DataGrid,
   TargetGrid,

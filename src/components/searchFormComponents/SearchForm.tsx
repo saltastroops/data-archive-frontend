@@ -15,6 +15,7 @@ import {
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
+  SearchGrid,
   SubGrid,
   TargetGrid,
   TelescopeGrid
@@ -145,15 +146,18 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const { general, target, telescope } = this.state;
 
     return (
-      <>
-        <ParentGrid>
-          <TargetGrid>
-            <TargetForm target={target} onChange={this.targetChange} />
-          </TargetGrid>
-          <ProposalGrid>
-            <ProposalForm general={general} onChange={this.generalChange} />
-          </ProposalGrid>
-        </ParentGrid>
+      <SearchGrid>
+        <ParentGridSingle>
+          <ParentGrid>
+            <TargetGrid>
+              <TargetForm target={target} onChange={this.targetChange} />
+            </TargetGrid>
+            <div />
+            <ProposalGrid>
+              <ProposalForm general={general} onChange={this.generalChange} />
+            </ProposalGrid>
+          </ParentGrid>
+        </ParentGridSingle>
         <ParentGridSingle>
           <TelescopeGrid>
             <TelescopeForm
@@ -210,7 +214,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             </SubGrid>
           </SearchButtonsContainer>
         </ButtonGrid>
-      </>
+      </SearchGrid>
     );
   }
 
