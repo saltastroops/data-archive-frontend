@@ -120,3 +120,6 @@
 .pagination-controls {
   text-align: center;
 }
+.container {
+  max-width: 80%;
+}
