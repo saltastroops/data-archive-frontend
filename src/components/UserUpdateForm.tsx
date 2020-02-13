@@ -1,10 +1,11 @@
 import { validate } from "isemail";
 import * as _ from "lodash";
 import * as React from "react";
-import { Mutation } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import styled from "styled-components";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { IUser } from "../util/types";
 import InputField from "./basicComponents/InputField";
 
 /**
@@ -61,12 +62,14 @@ interface IUserUpdateFormState {
  * The user input and errors are cached.
  */
 export interface IUserUpdateFormCache {
+  edited?: boolean;
   errors?: Partial<IUserUpdateFormInput> & { responseError?: string };
   userInput?: IUserUpdateFormInput;
 }
 
 interface IUserUpdateFormProps {
   cache?: IUserUpdateFormCache;
+  user?: IUser | null;
 }
 
 const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
@@ -160,7 +163,22 @@ class UserUpdateForm extends React.Component<
    */
   componentDidMount() {
     if (this.props.cache) {
-      this.setState(() => (this.props.cache as any) || {});
+      const { user } = this.props;
+      this.setState(() =>
+        this.props.cache && this.props.cache.edited
+          ? (this.props.cache as any)
+          : {
+              userInput: {
+                ...this.state.userInput,
+                affiliation: user && user.affiliation,
+                authProvider: user && user.authProvider,
+                email: user && user.email,
+                familyName: user && user.familyName,
+                givenName: user && user.givenName,
+                username: user && user.username
+              }
+            }
+      );
     }
   }
 
@@ -225,6 +243,16 @@ class UserUpdateForm extends React.Component<
   };
 
   render() {
+    const { user } = this.props;
+
+    if (user && user.authProvider !== "SSDA") {
+      return (
+        <ErrorMessage>
+          You cannot update user details if you have signed in with another
+          authentication provider, such as the SALT Web Manager.
+        </ErrorMessage>
+      );
+    }
     const { errors } = this.state;
     const {
       affiliation,
@@ -384,6 +412,7 @@ class UserUpdateForm extends React.Component<
       () => update,
       () => {
         if (this.props.cache) {
+          this.props.cache.edited = true;
           this.props.cache.errors = _.cloneDeep(this.state.errors);
           this.props.cache.userInput = _.cloneDeep(this.state.userInput);
         }

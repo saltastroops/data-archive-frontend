@@ -98,6 +98,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                     className="button download-all is-small is-success is-rounded"
                     href={`${
                       process.env.REACT_APP_BACKEND_URI
+                        ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
+                        : ""
                     }/downloads/data-requests/${id}/${filename}`}
                   >
                     Download all
@@ -145,13 +147,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             <th>Files</th>
           </tr>
           {dataFiles.map(file => {
-            const nameMetadata = file.metadata.find(
-              v => v.name === DataKeys.DATA_FILE_FILENAME
-            );
-            const name = nameMetadata ? nameMetadata.value : null;
             return (
               <tr key={file.id}>
-                <td>{name}</td>
+                <td>{file.name}</td>
               </tr>
             );
           })}
@@ -165,7 +163,12 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
       parseInt(file.id, 10)
     );
-    await create({ variables: { dataFiles: dataFileIds } });
+    // We may assume that no calibrations are included, as the list of data
+    // files is by definition the complete set of files to request (i.e. it
+    // includes calibrations if the initial request included them)
+    await create({
+      variables: { dataFiles: dataFileIds, includeCalibrations: false }
+    });
   };
 }
 

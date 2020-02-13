@@ -56,7 +56,8 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       },
       Object {
         "dataKey": "observation_time.exposure_time",
-        "name": "Exposure Time",
+        "format": [Function],
+        "name": "Exposure Time (s)",
         "visible": false,
       },
       Object {
@@ -81,12 +82,14 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       },
       Object {
         "dataKey": "energy.max_wavelength",
-        "name": "Maximum Wavelength",
+        "format": [Function],
+        "name": "Maximum Wavelength (A)",
         "visible": false,
       },
       Object {
         "dataKey": "energy.min_wavelength",
-        "name": "Minimum Wavelength",
+        "format": [Function],
+        "name": "Minimum Wavelength (A)",
         "visible": false,
       },
       Object {
@@ -159,7 +162,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       Object {
         "dataKey": "position.dec",
         "format": [Function],
-        "name": "Declination",
+        "name": "Declination (deg)",
         "visible": true,
       },
       Object {
@@ -170,7 +173,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       Object {
         "dataKey": "position.ra",
         "format": [Function],
-        "name": "Right Ascension",
+        "name": "Right Ascension (deg)",
         "visible": true,
       },
       Object {
@@ -269,13 +272,13 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                       Object {
                         "dataKey": "position.ra",
                         "format": [Function],
-                        "name": "Right Ascension",
+                        "name": "Right Ascension (deg)",
                         "visible": true,
                       },
                       Object {
                         "dataKey": "position.dec",
                         "format": [Function],
-                        "name": "Declination",
+                        "name": "Declination (deg)",
                         "visible": true,
                       },
                       Object {
@@ -446,7 +449,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               />
                             </StyledComponent>
                           </styled.input>
-                          Right Ascension
+                          Right Ascension (deg)
                         </label>
                       </li>
                       <li
@@ -507,7 +510,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               />
                             </StyledComponent>
                           </styled.input>
-                          Declination
+                          Declination (deg)
                         </label>
                       </li>
                       <li
@@ -1435,17 +1438,20 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                       },
                       Object {
                         "dataKey": "energy.min_wavelength",
-                        "name": "Minimum Wavelength",
+                        "format": [Function],
+                        "name": "Minimum Wavelength (A)",
                         "visible": false,
                       },
                       Object {
                         "dataKey": "energy.max_wavelength",
-                        "name": "Maximum Wavelength",
+                        "format": [Function],
+                        "name": "Maximum Wavelength (A)",
                         "visible": false,
                       },
                       Object {
                         "dataKey": "observation_time.exposure_time",
-                        "name": "Exposure Time",
+                        "format": [Function],
+                        "name": "Exposure Time (s)",
                         "visible": false,
                       },
                       Object {
@@ -1799,7 +1805,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               />
                             </StyledComponent>
                           </styled.input>
-                          Minimum Wavelength
+                          Minimum Wavelength (A)
                         </label>
                       </li>
                       <li
@@ -1860,7 +1866,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               />
                             </StyledComponent>
                           </styled.input>
-                          Maximum Wavelength
+                          Maximum Wavelength (A)
                         </label>
                       </li>
                       <li
@@ -1921,7 +1927,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               />
                             </StyledComponent>
                           </styled.input>
-                          Exposure Time
+                          Exposure Time (s)
                         </label>
                       </li>
                       <li

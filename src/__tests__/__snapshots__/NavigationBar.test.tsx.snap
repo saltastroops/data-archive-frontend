@@ -307,6 +307,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
       >
         <CartButton
           cartItemsNumber={0}
+          openCart={[Function]}
         >
           <styled.div>
             <StyledComponent
@@ -836,6 +837,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
       >
         <CartButton
           cartItemsNumber={0}
+          openCart={[Function]}
         >
           <styled.div>
             <StyledComponent
@@ -1403,6 +1405,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
       >
         <CartButton
           cartItemsNumber={0}
+          openCart={[Function]}
         >
           <styled.div>
             <StyledComponent

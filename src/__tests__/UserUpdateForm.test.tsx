@@ -8,6 +8,7 @@ import App from "../App";
 import UserUpdateForm from "../components/UserUpdateForm";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { mockUser } from "../util/__mocks__/util";
 import cache from "../util/cache";
 import click from "../util/click";
 jest.mock("../util/cache");
@@ -33,10 +34,12 @@ function inputTyping(wrapper: any, name: string, value: string) {
 
 describe("UserUpdateForm Component", () => {
   it("renders the UserUpdateForm having unpopulated props with no errors", () => {
+    const user = null;
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -45,6 +48,13 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays no errors if submitted inputs are all valid", async () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "Doe",
+      givenName: "John",
+      isAdmin: false
+    });
+
     const mocks = [
       {
         request: {
@@ -67,32 +77,13 @@ describe("UserUpdateForm Component", () => {
             user: {}
           }
         }
-      },
-      {
-        request: {
-          query: USER_QUERY
-        },
-        result: {
-          data: {
-            user: {
-              __typename: "User",
-              affiliation: "SAAO",
-              email: "doe@example.com",
-              familyName: "Doe",
-              givenName: "John",
-              id: "1",
-              roles: [],
-              username: "john.doe"
-            }
-          }
-        }
       }
     ];
 
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -158,10 +149,17 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays an error message if an invalid email address is submitted", async () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -183,10 +181,17 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays an error message if an invalid username is submitted", () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -208,10 +213,17 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays an error message if an invalid password is submitted", () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -246,10 +258,17 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("displays an error message if an invalid confirmed password is submitted", () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "surname",
+      givenName: "name",
+      isAdmin: false
+    });
+
     // UserUpdateForm component wrapper.
     const wrapper = mount(
       <MockedProvider>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -291,6 +310,13 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("should cache values and errors", async () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "Doe",
+      givenName: "John",
+      isAdmin: false
+    });
+
     (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
     // As we are about to mount the App (rather than just the user update form)
     // we need to provide a user query.
@@ -304,6 +330,7 @@ describe("UserUpdateForm Component", () => {
             user: {
               __typename: "User",
               affiliation: "SAAO",
+              authProvider: "SSDA",
               email: "john.doe@example.com",
               familyName: "Doe",
               givenName: "John",
@@ -315,10 +342,13 @@ describe("UserUpdateForm Component", () => {
         }
       }
     ];
+
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
         <MemoryRouter>
-          <App />
+          <App>
+            <UserUpdateForm user={user} />
+          </App>
         </MemoryRouter>
       </MockedProvider>
     );
@@ -377,6 +407,13 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("successfully calls the user update mutation with the correct content", async () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "Doe",
+      givenName: "John",
+      isAdmin: false
+    });
+
     const updateUser = jest.fn();
     const mocks = [
       {
@@ -408,6 +445,7 @@ describe("UserUpdateForm Component", () => {
             user: {
               __typename: "User",
               affiliation: "SAAO",
+              authProvider: "SSDA",
               email: "john.doe@example.com",
               familyName: "Doe",
               givenName: "John",
@@ -419,9 +457,10 @@ describe("UserUpdateForm Component", () => {
         }
       }
     ];
+
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
@@ -452,6 +491,13 @@ describe("UserUpdateForm Component", () => {
   });
 
   it("should show an error if submission fails", async () => {
+    const user = mockUser({
+      authProvider: "SSDA",
+      familyName: "",
+      givenName: "John",
+      isAdmin: false
+    });
+
     const mocks = [
       {
         error: new Error("The server is having a coffee break!"),
@@ -473,7 +519,7 @@ describe("UserUpdateForm Component", () => {
 
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <UserUpdateForm />
+        <UserUpdateForm user={user} />
       </MockedProvider>
     );
 
