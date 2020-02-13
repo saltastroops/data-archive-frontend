@@ -122,10 +122,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const updateIncludeReducedCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      if (!event.target.checked) {
-                        cart.includedCalibrationLevels.delete("REDUCED");
-                      } else {
+                      if (event.target.checked) {
                         cart.includedCalibrationLevels.add("REDUCED");
+                      } else {
+                        cart.includedCalibrationLevels.delete("REDUCED");
                       }
 
                       includeCalibrationLevels({
@@ -139,10 +139,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const updateIncludeRawCalibrationLevel = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
-                      if (!event.target.checked) {
-                        cart.includedCalibrationLevels.delete("RAW");
-                      } else {
+                      if (event.target.checked) {
                         cart.includedCalibrationLevels.add("RAW");
+                      } else {
+                        cart.includedCalibrationLevels.delete("RAW");
                       }
                       includeCalibrationLevels({
                         variables: {
@@ -321,18 +321,13 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                                 clearCart,
                                                 dataFileIds,
                                                 includeCalibrationFiles,
-                                                Array.from(
-                                                  cart.includedCalibrationLevels
-                                                )
+                                                cart.includedCalibrationLevels
                                               );
                                               if (
                                                 !error &&
-                                                (cart.includedCalibrationLevels.has(
-                                                  "REDUCED"
-                                                ) ||
-                                                  cart.includedCalibrationLevels.has(
-                                                    "RAW"
-                                                  ))
+                                                this.isCalibrationLevelIncluded(
+                                                  cart.includedCalibrationLevels
+                                                )
                                               ) {
                                                 openCart(false);
                                               }
@@ -413,10 +408,11 @@ class CartModal extends React.Component<ICart, { error: string }> {
     clearCart: any,
     dataFilesIds: number[],
     includeCalibrations: boolean,
-    includedCalibrationLevels: CalibrationLevel[]
+    includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
+    console.log(this.isCalibrationLevelIncluded(includedCalibrationLevels));
     // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
-    if (!includedCalibrationLevels.length) {
+    if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
       this.setState({
         error: "Please make sure reduced or raw data is selected."
       });
@@ -430,11 +426,16 @@ class CartModal extends React.Component<ICart, { error: string }> {
       variables: {
         dataFiles: dataFilesIds,
         includeCalibrations,
-        includedCalibrationLevels
+        includedCalibrationLevels: Array.from(includedCalibrationLevels)
       }
     });
     await clearCart();
   };
+
+  // Checks if one of the calibration level, reduced or raw, is included.
+  isCalibrationLevelIncluded(includedCalibrationLevels: Set<CalibrationLevel>) {
+    return includedCalibrationLevels.size > 0;
+  }
 }
 
 export default CartModal;
