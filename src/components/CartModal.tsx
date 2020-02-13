@@ -410,7 +410,6 @@ class CartModal extends React.Component<ICart, { error: string }> {
     includeCalibrations: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
-    console.log(this.isCalibrationLevelIncluded(includedCalibrationLevels));
     // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
     if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
       this.setState({
