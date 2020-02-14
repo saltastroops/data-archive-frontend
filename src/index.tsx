@@ -41,7 +41,8 @@ cache.writeQuery({
     cart: {
       __typename: "CartContent",
       files: cart.files,
-      includeCalibrations: cart.includeCalibrations
+      includeCalibrations: cart.includeCalibrations,
+      includedCalibrationLevels: cart.includedCalibrationLevels
     }
   },
   query: CART_QUERY

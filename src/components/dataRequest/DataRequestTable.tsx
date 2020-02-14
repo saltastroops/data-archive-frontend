@@ -167,7 +167,10 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     // files is by definition the complete set of files to request (i.e. it
     // includes calibrations if the initial request included them)
     await create({
-      variables: { dataFiles: dataFileIds, includeCalibrations: false }
+      variables: {
+        dataFiles: dataFileIds,
+        includeCalibrations: false
+      }
     });
   };
 }
