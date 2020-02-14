@@ -31,7 +31,7 @@ const LimitGrid = styled.div.attrs({
   className: "grid-item"
 })`
   display: grid;
-  grid-template-columns: 20%
+  grid-template-columns: 10%
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: left;
 `;
@@ -166,8 +166,9 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             />
           </TelescopeGrid>
         </ParentGridSingle>
+
+        <div className={"is-text"}>Number of results per page</div>
         <LimitGrid>
-          <div className={"is-text"}>Number of results per page</div>
           <div className="field ">
             <p className="control">
               <InputField

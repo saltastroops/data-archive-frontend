@@ -65,7 +65,7 @@ const ButtonGrid = styled.div.attrs({
   className: "grid-item"
 })`
   display: grid;
-  grid-template-columns: 20% 10% 20% 10% 5% 25%
+  grid-template-columns: 5% 10% 15% 10% 5% 45%
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: left;
 
