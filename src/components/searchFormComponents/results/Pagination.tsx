@@ -1,4 +1,9 @@
 import * as React from "react";
+import {
+  faChevronLeft,
+  faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
  * Whether the user is moving to the next or the previous page.
@@ -52,28 +57,28 @@ const Pagination = (props: IPaginationProps) => {
     <div className="pagination-controls">
       <button
         disabled={startIndex <= 0}
-        className="pagination-previous"
+        className="button is-medium is-rounded"
         data-test="pagination-previous"
         onClick={() => fetchPage(previousIndex, itemsPerPage, "PREVIOUS")}
       >
-        Previous results
+        <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <span className={"tag is-text"}>
-        <span className="pagination-ellipsis">{startIndex + 1}</span>
-        <span className="pagination-ellipsis">&hellip;</span>
-        <span className="pagination-ellipsis">
+      <span>
+        <div className="pagination-ellipsis">{startIndex + 1}</div>
+        <div className="pagination-ellipsis">&hellip;</div>
+        <div className="pagination-ellipsis">
           {startIndex + itemsOnCurrentPage}
-        </span>
-        <span className="pagination-ellipsis">of</span>
-        <span className="pagination-ellipsis">{itemsTotal}</span>
+        </div>
+        <div className="pagination-ellipsis">of</div>
+        <div className="pagination-ellipsis">{itemsTotal}</div>
       </span>
       <button
         disabled={startIndex + itemsPerPage >= itemsTotal}
-        className="pagination-next"
+        className="button is-medium is-rounded"
         data-test="pagination-next"
         onClick={() => fetchPage(nextIndex, itemsPerPage, "NEXT")}
       >
-        Next results
+        <FontAwesomeIcon className={""} icon={faChevronRight} />
       </button>
     </div>
   );

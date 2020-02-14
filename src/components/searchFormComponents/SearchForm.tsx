@@ -27,17 +27,13 @@ import { DEFAULT_LIMIT } from "./SearchPage";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 
-const SearchButtonsContainer = styled.div.attrs({
-  className: "main-grid"
+const LimitGrid = styled.div.attrs({
+  className: "grid-item"
 })`
-  && {
-    display: grid;
-    grid-template-columns: auto auto 33%;
-    padding: 10px;
-    @media (max-width: 988px) {
-      grid-template-columns: auto;
-    }
-  }
+  display: grid;
+  grid-template-columns: 20%
+  border: 1px solid rgba(255, 255, 255, 0);
+  text-align: left;
 `;
 
 /**
@@ -170,54 +166,68 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             />
           </TelescopeGrid>
         </ParentGridSingle>
-
-        <div className={"is-pulled-right"}>
-          <br />
-          <button
-            className={"button is-text"}
-            data-test="reset-all-button"
-            onClick={this.resetAll}
-          >
-            reset all
-          </button>
-        </div>
+        <LimitGrid>
+          <div className={"is-text"}>Number of results per page</div>
+          <div className="field ">
+            <p className="control">
+              <InputField
+                error={general.errors.limit}
+                name={"items-per-page"}
+                value={general.limit}
+                onChange={this.updateItemsPerPage}
+              />
+            </p>
+          </div>
+        </LimitGrid>
 
         {error && <div className="has-text-danger">{error.message}</div>}
-        <ButtonGrid>
-          <SearchButtonsContainer>
-            <SubGrid>
-              <div className={"is-text"}>Number of results per page</div>
-              <div className="field is-grouped">
-                <p className="control">
-                  <InputField
-                    error={general.errors.limit}
-                    name={"items-per-page"}
-                    value={general.limit}
-                    onChange={this.updateItemsPerPage}
-                  />
-                </p>
-                <p className="control">
-                  <button
-                    disabled={loading}
-                    className={`button is-info ${loading && "is-loading"}`}
-                    data-test="search-button"
-                    type="button"
-                    value="Search"
-                    onClick={this.onSubmit}
-                  >
-                    Search
-                  </button>
-                </p>
-              </div>
-            </SubGrid>
-            <SubGrid>
-              <br />
-              <button className={"button"} onClick={openColumnSelector}>
-                Manage columns to display
-              </button>
-            </SubGrid>
-          </SearchButtonsContainer>
-        </ButtonGrid>
+        <div>
+          <ButtonGrid>
+            <button
+              disabled={loading}
+              className={`button is-info ${loading && "is-loading"}`}
+              data-test="search-button"
+              type="button"
+              value="Search"
+              onClick={this.onSubmit}
+            >
+              Search
+            </button>
+
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
+
+            <button
+              className={"button is-text has-text-info has-text-left"}
+              type="button"
+              onClick={openColumnSelector}
+            >
+              Manage columns to display
+            </button>
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
+
+            <button
+              className={"button is-text has-text-left"}
+              data-test="reset-all-button"
+              onClick={this.resetAll}
+            >
+              reset all
+            </button>
+
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
+          </ButtonGrid>
+        </div>
       </SearchGrid>
     );
   }
