@@ -73,8 +73,8 @@ class CartModal extends React.Component<ICart, any> {
               }) || {
                 cart: {
                   files: [],
-                  includeStandardCalibrations: false,
-                  includeArcsFlatsBiases: false
+                  includeArcsFlatsBiases: false,
+                  includeStandardCalibrations: false
                 }
               };
               const groupedCart: any = [];
@@ -326,8 +326,8 @@ class CartModal extends React.Component<ICart, any> {
     await create({
       variables: {
         dataFiles: dataFilesIds,
-        includeStandardCalibrations,
-        includeArcsFlatsBiases
+        includeArcsFlatsBiases,
+        includeStandardCalibrations
       }
     });
     await clearCart();
