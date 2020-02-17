@@ -133,7 +133,11 @@ export const resolvers = {
     addToCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases
+      );
 
       // Add the files
       cart.add(files as [ICartFile]);
@@ -145,7 +149,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations
           }
         },
         query: CART_QUERY
@@ -157,7 +162,11 @@ export const resolvers = {
     removeFromCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases
+      );
 
       // Remove the files
       cart.remove(files as [ICartFile]);
@@ -169,7 +178,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations
           }
         },
         query: CART_QUERY
@@ -182,7 +192,11 @@ export const resolvers = {
     clearCart: async (_: any, args: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.files, data.includeCalibrations);
+      const cart = new Cart(
+        data.files,
+        data.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases
+      );
 
       // Remove the files
       cart.clear();
@@ -194,7 +208,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations
           }
         },
         query: CART_QUERY
@@ -206,16 +221,25 @@ export const resolvers = {
     // Include calibrations in cart
     includeCalibrationsInCart: async (
       _: any,
-      { includeCalibrations }: any,
+      { includeStandardCalibrations, includeArcsFlatsBiases }: any,
       { cache }: any
     ) => {
       // Get current cart content
+
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases
+      );
 
       // Update the flag for including calibrations
-      cart.includeCalibrations = includeCalibrations;
-
+      if (includeStandardCalibrations !== undefined) {
+        cart.includeStandardCalibrations = includeStandardCalibrations;
+      }
+      if (includeArcsFlatsBiases !== undefined) {
+        cart.includeArcsFlatsBiases = includeArcsFlatsBiases;
+      }
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
       await cache.writeQuery({
@@ -223,7 +247,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations
           }
         },
         query: CART_QUERY
