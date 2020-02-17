@@ -1,3 +1,4 @@
+import toJson from "enzyme-to-json";
 import gql from "graphql-tag";
 
 /**
@@ -22,21 +23,24 @@ export class Cart {
     const files = o.files || [];
 
     // default to true if the flag for including calibrations is not defined
-    const includeCalibrations = o.includeCalibrations !== false;
-
-    return new Cart(files, includeCalibrations);
+    const includeStandardCalibrations = o.includeStandardCalibrations === true;
+    const includeArcsFlatsBiases = o.includeArcsFlatsBiases === true;
+    return new Cart(files, includeStandardCalibrations, includeArcsFlatsBiases);
   }
 
   private cartFiles: ICartFile[];
-  private includeCalibrationFiles: boolean;
+  private includeStandardCalibrationFiles: boolean;
+  private includeArcsFlatsAndBiasesFiles: boolean;
 
-  constructor(files: ICartFile[], includeCalibrations: boolean) {
+  constructor(
+    files: ICartFile[],
+    includeStandardCalibrations: boolean,
+    includeArcsFlatsBiases: boolean
+  ) {
     this.cartFiles = files || [];
-    if (includeCalibrations !== undefined && includeCalibrations !== null) {
-      this.includeCalibrationFiles = includeCalibrations;
-    } else {
-      this.includeCalibrationFiles = true;
-    }
+
+    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
   }
 
   /**
@@ -48,7 +52,8 @@ export class Cart {
   public toJSON(): string {
     return JSON.stringify({
       files: this.files,
-      includeCalibrations: this.includeCalibrations
+      includeArcsFlatsBiases: this.includeArcsFlatsBiases,
+      includeStandardCalibrations: this.includeStandardCalibrations
     });
   }
 
@@ -71,17 +76,30 @@ export class Cart {
   }
 
   /**
-   * Whether calibration files should be included in the data request.
+   * Whether  standard calibration  files should be added to the data request.
    */
-  public get includeCalibrations() {
-    return this.includeCalibrationFiles;
+  public get includeStandardCalibrations() {
+    return this.includeStandardCalibrationFiles;
   }
 
   /**
-   * Set whether calibration files should be included in the data request.
+   * Set whether standard calibration files should be included in the data request.
    */
-  public set includeCalibrations(includeCalibrations: boolean) {
-    this.includeCalibrationFiles = includeCalibrations;
+  public set includeStandardCalibrations(includeStandardCalibrations: boolean) {
+    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+  }
+  /**
+   * Whether Arcs,Flats, Bias calibration  files should be included in the data request.
+   */
+  public get includeArcsFlatsBiases() {
+    return this.includeArcsFlatsAndBiasesFiles;
+  }
+
+  /**
+   * Set whether Standard calibration files should be included in the data request.
+   */
+  public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
+    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
   }
 
   /**
@@ -211,7 +229,8 @@ export const CART_QUERY = gql`
         observation
         target
       }
-      includeCalibrations
+      includeStandardCalibrations
+      includeArcsFlatsBiases
     }
   }
 `;
@@ -235,7 +254,13 @@ export const CLEAR_CART_MUTATION = gql`
 `;
 
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
-  mutation INCLUDE_CALIBRATIONS_IN_CART($includeCalibrations: Boolean!) {
-    includeCalibrationsInCart(includeCalibrations: $includeCalibrations) @client
+  mutation INCLUDE_CALIBRATIONS_IN_CART(
+    $includeCalibrations: Boolean
+    $includeArcsFlatsBiases: Boolean
+  ) {
+    includeCalibrationsInCart(
+      includeStandardCalibrations: $includeStandardCalibrations
+      includeArcsFlatsBiases: $includeArcsFlatsBiases
+    ) @client
   }
 `;
