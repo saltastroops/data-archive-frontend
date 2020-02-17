@@ -169,8 +169,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     await create({
       variables: {
         dataFiles: dataFileIds,
-        includeStandardCalibrations: false,
-        includeArcsFlatsBiases: false
+        includeArcsFlatsBiases: false,
+        includeStandardCalibrations: false
       }
     });
   };
