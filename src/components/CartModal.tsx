@@ -71,12 +71,17 @@ class CartModal extends React.Component<ICart, any> {
               const cartContent: any = cache.readQuery({
                 query: CART_QUERY
               }) || {
-                cart: { files: [], includeCalibrations: true }
+                cart: {
+                  files: [],
+                  includeStandardCalibrations: false,
+                  includeArcsFlatsBiases: false
+                }
               };
               const groupedCart: any = [];
               const cart = new Cart(
                 cartContent.cart.files,
-                cartContent.cart.includeCalibrations
+                cartContent.cart.includeStandardCalibrations,
+                cartContent.cart.includeArcsFlatsBiases
               );
               cart.groupByObservation().forEach((v, k) => {
                 groupedCart.push({
@@ -88,13 +93,25 @@ class CartModal extends React.Component<ICart, any> {
               const dataFileIds = Array.from(cart.files).map(file =>
                 parseInt(file.id, 10)
               );
-              const includeCalibrationFiles = cart.includeCalibrations;
+              const includeStandardCalibrationFiles =
+                cart.includeStandardCalibrations;
+              const includeArcsFlatsBiasesFiles = cart.includeArcsFlatsBiases;
 
-              const updateIncludeCalibrations = async (
+              const updateIncludeStandardCalibrations = async (
                 event: React.ChangeEvent<HTMLInputElement>
               ) => {
                 includeCalibrations({
-                  variables: { includeCalibrations: event.target.checked }
+                  variables: {
+                    includeStandardCalibrations: event.target.checked
+                  }
+                });
+              };
+
+              const updateIncludeArcsFlatsBiases = async (
+                event: React.ChangeEvent<HTMLInputElement>
+              ) => {
+                includeCalibrations({
+                  variables: { includeArcsFlatsBiases: event.target.checked }
                 });
               };
 
@@ -190,77 +207,88 @@ class CartModal extends React.Component<ICart, any> {
                               </table>
                             </div>
                           </div>
-                          <div className={"section"}>
-                            <div className="include-calibrations">
-                              <label>
-                                <LargeCheckbox
-                                  checked={cart.includeCalibrations}
-                                  onChange={updateIncludeCalibrations}
-                                />{" "}
-                                Include calibration files
-                              </label>
+
+                          <div className={"row"}>
+                            <label>
+                              <LargeCheckbox
+                                name={"Standard"}
+                                checked={cart.includeStandardCalibrations}
+                                onChange={updateIncludeStandardCalibrations}
+                              />{" "}
+                              Standard
+                            </label>
+                            &nbsp; &nbsp;
+                            <label>
+                              <LargeCheckbox
+                                name={"ArcsFlatsBiases"}
+                                checked={cart.includeArcsFlatsBiases}
+                                onChange={updateIncludeArcsFlatsBiases}
+                              />{" "}
+                              Arcs/Flats/Biases
+                            </label>
+                          </div>
+                          <br />
+
+                          <div className={"columns cart-buttons-section"}>
+                            <div className={"column"}>
+                              {!user ? (
+                                <NavLink to={"login"}>
+                                  <button
+                                    className={"button is-primary"}
+                                    onClick={() => openCart(false)}
+                                  >
+                                    <span>
+                                      Login{" "}
+                                      <FontAwesomeIcon icon={faUserPlus} />
+                                    </span>
+                                  </button>
+                                </NavLink>
+                              ) : (
+                                <NavLink to={"data-requests"}>
+                                  <button
+                                    className={"button is-primary"}
+                                    onClick={() => {
+                                      this.createDataRequest(
+                                        createDataRequest,
+                                        clearCart,
+                                        dataFileIds,
+                                        includeStandardCalibrationFiles,
+                                        includeArcsFlatsBiasesFiles
+                                      );
+                                      if (!error) {
+                                        openCart(false);
+                                      }
+                                    }}
+                                  >
+                                    <span>
+                                      Request{" "}
+                                      <FontAwesomeIcon icon={faDownload} />
+                                    </span>
+                                  </button>
+                                </NavLink>
+                              )}
                             </div>
-                            <div className={"columns cart-buttons-section"}>
-                              <div className={"column"}>
-                                {!user ? (
-                                  <NavLink to={"login"}>
-                                    <button
-                                      className={"button is-primary"}
-                                      onClick={() => openCart(false)}
-                                    >
-                                      <span>
-                                        Login{" "}
-                                        <FontAwesomeIcon icon={faUserPlus} />
-                                      </span>
-                                    </button>
-                                  </NavLink>
-                                ) : (
-                                  <NavLink to={"data-requests"}>
-                                    <button
-                                      className={"button is-primary"}
-                                      onClick={() => {
-                                        this.createDataRequest(
-                                          createDataRequest,
-                                          clearCart,
-                                          dataFileIds,
-                                          includeCalibrationFiles
-                                        );
-                                        if (!error) {
-                                          openCart(false);
-                                        }
-                                      }}
-                                    >
-                                      <span>
-                                        Request{" "}
-                                        <FontAwesomeIcon icon={faDownload} />
-                                      </span>
-                                    </button>
-                                  </NavLink>
-                                )}
-                              </div>
-                              <div className={"column"}>
-                                <button
-                                  className={"button is-danger"}
-                                  onClick={() => openCart(false)}
-                                >
-                                  <span>
-                                    Close{" "}
-                                    <FontAwesomeIcon icon={faWindowClose} />
-                                  </span>
-                                </button>
-                              </div>
-                              <div className={"column"}>
-                                <button
-                                  className={"button is-warning"}
-                                  onClick={e =>
-                                    this.remove(e, removeFromCart, cart.files)
-                                  }
-                                >
-                                  <span>
-                                    Clear <FontAwesomeIcon icon={faEraser} />
-                                  </span>
-                                </button>
-                              </div>
+                            <div className={"column"}>
+                              <button
+                                className={"button is-danger"}
+                                onClick={() => openCart(false)}
+                              >
+                                <span>
+                                  Close <FontAwesomeIcon icon={faWindowClose} />
+                                </span>
+                              </button>
+                            </div>
+                            <div className={"column"}>
+                              <button
+                                className={"button is-warning"}
+                                onClick={e =>
+                                  this.remove(e, removeFromCart, cart.files)
+                                }
+                              >
+                                <span>
+                                  Clear <FontAwesomeIcon icon={faEraser} />
+                                </span>
+                              </button>
                             </div>
                           </div>
                         </Modal>
@@ -292,10 +320,15 @@ class CartModal extends React.Component<ICart, any> {
     create: any,
     clearCart: any,
     dataFilesIds: number[],
-    includeCalibrations: boolean
+    includeStandardCalibrations: boolean,
+    includeArcsFlatsBiases: boolean
   ) => {
     await create({
-      variables: { dataFiles: dataFilesIds, includeCalibrations }
+      variables: {
+        dataFiles: dataFilesIds,
+        includeStandardCalibrations,
+        includeArcsFlatsBiases
+      }
     });
     await clearCart();
   };
