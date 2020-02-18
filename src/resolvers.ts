@@ -33,6 +33,7 @@ export const typeDefs = gql`
   type CartContent {
     files: [CartFile!]!
     includeCalibrations: Boolean
+    includedCalibrationLevels: [CalibrationLevel!]!
   }
 
   """
@@ -76,6 +77,20 @@ export const typeDefs = gql`
     The SALT Science Database.
     """
     SDB
+  }
+
+  """
+  Enumeration of the calibration levels.
+  """
+  enum CalibrationLevel {
+    """
+    The raw data
+    """
+    RAW
+    """
+    The reduced data
+    """
+    REDUCED
   }
 
   """
@@ -133,7 +148,11 @@ export const resolvers = {
     addToCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeCalibrations,
+        data.cart.includedCalibrationLevels
+      );
 
       // Add the files
       cart.add(files as [ICartFile]);
@@ -145,7 +164,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeCalibrations: cart.includeCalibrations,
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -157,7 +177,11 @@ export const resolvers = {
     removeFromCart: async (_: any, { files }: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeCalibrations,
+        data.cart.includedCalibrationLevels
+      );
 
       // Remove the files
       cart.remove(files as [ICartFile]);
@@ -169,7 +193,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeCalibrations: cart.includeCalibrations,
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -182,7 +207,11 @@ export const resolvers = {
     clearCart: async (_: any, args: any, { cache }: any) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.files, data.includeCalibrations);
+      const cart = new Cart(
+        data.files,
+        data.includeCalibrations,
+        data.cart.includedCalibrationLevels
+      );
 
       // Remove the files
       cart.clear();
@@ -194,7 +223,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeCalibrations: cart.includeCalibrations,
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
@@ -211,7 +241,11 @@ export const resolvers = {
     ) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
-      const cart = new Cart(data.cart.files, data.cart.includeCalibrations);
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeCalibrations,
+        data.cart.includedCalibrationLevels
+      );
 
       // Update the flag for including calibrations
       cart.includeCalibrations = includeCalibrations;
@@ -223,7 +257,42 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations
+            includeCalibrations: cart.includeCalibrations,
+            includedCalibrationLevels: cart.includedCalibrationLevels
+          }
+        },
+        query: CART_QUERY
+      });
+
+      return true;
+    },
+
+    // Include data type in cart
+    includeCalibrationLevelsInCart: async (
+      _: any,
+      { includedCalibrationLevels }: any,
+      { cache }: any
+    ) => {
+      // Get current cart content
+      const data = cache.readQuery({ query: CART_QUERY });
+      const cart = new Cart(
+        data.cart.files,
+        data.cart.includeCalibrations,
+        data.cart.includedCalibrationLevels
+      );
+
+      // Update included calibration levels
+      cart.includedCalibrationLevels = includedCalibrationLevels;
+
+      // Store updated content both in the cache and in local storage
+      await localStorage.setItem("cart", cart.toJSON());
+      await cache.writeQuery({
+        data: {
+          cart: {
+            __typename: "CartContent",
+            files: cart.files,
+            includeCalibrations: cart.includeCalibrations,
+            includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
         query: CART_QUERY
