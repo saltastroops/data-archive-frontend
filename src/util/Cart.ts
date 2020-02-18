@@ -255,7 +255,7 @@ export const CLEAR_CART_MUTATION = gql`
 
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATIONS_IN_CART(
-    $includeCalibrations: Boolean
+    $includeStandardCalibrations: Boolean
     $includeArcsFlatsBiases: Boolean
   ) {
     includeCalibrationsInCart(
