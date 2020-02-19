@@ -255,8 +255,12 @@ export const resolvers = {
       );
 
       // Update the flag for including calibrations
-      cart.includeStandardCalibrations = includeStandardCalibrations;
-      cart.includeArcsFlatsBiases = includeArcsFlatsBiases;
+      if (includeStandardCalibrations === undefined) {
+        cart.includeStandardCalibrations = includeStandardCalibrations;
+      }
+      if (includeArcsFlatsBiases === undefined) {
+        cart.includeArcsFlatsBiases = includeArcsFlatsBiases;
+      }
 
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
