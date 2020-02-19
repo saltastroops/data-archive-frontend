@@ -348,9 +348,9 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                                 createDataRequest,
                                                 clearCart,
                                                 dataFileIds,
-                                                cart.includeStandardCalibrations,
-                                                cart.includeArcsFlatsBiases,
-                                                cart.includedCalibrationLevels
+                                                includeStandardCalibrations,
+                                                includeArcsFlatsBiases,
+                                                includedCalibrationLevels
                                               );
                                               if (
                                                 !error &&
