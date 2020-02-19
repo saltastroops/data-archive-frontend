@@ -65,12 +65,17 @@ export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
  * --------
  * Search results table column.
  */
+
+/**
+ *
+ * changed the results column name "File" to "Preview" in DATA_FILE_FILENAME
+ */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
     case DataKeys.DATA_CATEGORY:
       return { dataKey, name: "Data Category", visible: true };
     case DataKeys.DATA_FILE_FILENAME:
-      return { dataKey, name: "File", visible: true };
+      return { dataKey, name: "Preview", visible: true };
     case DataKeys.DETECTOR_MODE:
       return { dataKey, name: "Detector Mode", visible: false };
     case DataKeys.EXPOSURE_TIME:
