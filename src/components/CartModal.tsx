@@ -288,7 +288,6 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                       Arcs/Flats/Biases &nbsp; &nbsp;
                                     </label>
                                   </div>
-
                                   <div
                                     className={
                                       "columns calibration-level-section"
@@ -321,6 +320,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                       </label>
                                     </div>
                                   </div>
+                                  &nbsp; &nbsp;
                                   <div
                                     className={"columns cart-buttons-section"}
                                   >
