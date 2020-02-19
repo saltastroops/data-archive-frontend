@@ -278,9 +278,17 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                           updateIncludeStandardCalibrations
                                         }
                                       />{" "}
-                                      Standard
+                                      Standard &nbsp; &nbsp;
+                                    </label>
+                                    <label>
+                                      <LargeCheckbox
+                                        checked={cart.includeArcsFlatsBiases}
+                                        onChange={updateIncludeArcsFlatsBiases}
+                                      />{" "}
+                                      Arcs/Flats/Biases &nbsp; &nbsp;
                                     </label>
                                   </div>
+
                                   <div
                                     className={
                                       "columns calibration-level-section"
@@ -340,6 +348,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                                 createDataRequest,
                                                 clearCart,
                                                 dataFileIds,
+                                                cart.includeStandardCalibrations,
+                                                cart.includeArcsFlatsBiases,
                                                 cart.includedCalibrationLevels
                                               );
                                               if (
@@ -426,6 +436,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
     create: any,
     clearCart: any,
     dataFilesIds: number[],
+    includeStandardCalibrations: boolean,
+    includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
     // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
@@ -442,6 +454,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
     await create({
       variables: {
         dataFiles: dataFilesIds,
+        includeArcsFlatsBiases,
+        includeStandardCalibrations,
         includedCalibrationLevels: Array.from(includedCalibrationLevels)
       }
     });
