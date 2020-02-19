@@ -126,3 +126,8 @@
 .button.has-text-left {
   justify-content: flex-start;
 }
+@media (max-width: 948px) {
+  .container {
+    max-width: 95%;
+  }
+}

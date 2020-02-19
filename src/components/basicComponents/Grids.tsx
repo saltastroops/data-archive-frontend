@@ -19,7 +19,7 @@ const ParentGrid = styled.div.attrs({
   display: grid;
   grid-template-columns: 49.5% 1% 49.5%;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1040px) {
     grid-template-columns: auto;
   }
 `;
@@ -30,9 +30,6 @@ const ParentGridSingle = styled.div.attrs({
 })`
   display: grid;
   grid-template-columns: 100%;
-  @media (max-width: 1023px) {
-    grid-template-columns: auto;
-  }
 `;
 
 const TargetGrid = styled.div.attrs({
@@ -169,7 +166,7 @@ const TelescopeDetailsGrid = styled.div`
     }
   }
 
-  @media (min-width: 904px) {
+  @media (min-width: 941px) {
     && {
       grid-template-columns: repeat(4, min-content);
     }
