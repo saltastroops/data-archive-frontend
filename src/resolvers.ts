@@ -150,7 +150,8 @@ export const resolvers = {
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(
         data.cart.files,
-        data.cart.includeCalibrations,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases,
         data.cart.includedCalibrationLevels
       );
 
@@ -164,7 +165,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations,
             includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
@@ -179,7 +181,8 @@ export const resolvers = {
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(
         data.cart.files,
-        data.cart.includeCalibrations,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases,
         data.cart.includedCalibrationLevels
       );
 
@@ -193,7 +196,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations,
             includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
@@ -209,7 +213,8 @@ export const resolvers = {
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(
         data.files,
-        data.includeCalibrations,
+        data.includeStandardCalibrations,
+        data.includeArcsFlatsBiases,
         data.cart.includedCalibrationLevels
       );
 
@@ -223,7 +228,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations,
             includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
@@ -236,19 +242,21 @@ export const resolvers = {
     // Include calibrations in cart
     includeCalibrationsInCart: async (
       _: any,
-      { includeCalibrations }: any,
+      { includeStandardCalibrations, includeArcsFlatsBiases }: any,
       { cache }: any
     ) => {
       // Get current cart content
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(
         data.cart.files,
-        data.cart.includeCalibrations,
+        data.cart.includeStandardCalibrations,
+        data.cart.includeArcsFlatsBiases,
         data.cart.includedCalibrationLevels
       );
 
       // Update the flag for including calibrations
-      cart.includeCalibrations = includeCalibrations;
+      cart.includeStandardCalibrations = includeStandardCalibrations;
+      cart.includeArcsFlatsBiases = includeArcsFlatsBiases;
 
       // Store updated content both in the cache and in local storage
       await localStorage.setItem("cart", cart.toJSON());
@@ -257,7 +265,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations,
             includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
@@ -277,7 +286,8 @@ export const resolvers = {
       const data = cache.readQuery({ query: CART_QUERY });
       const cart = new Cart(
         data.cart.files,
-        data.cart.includeCalibrations,
+        data.cart.includeArcsFlatsBiases,
+        data.cart.includeStandardCalibrations,
         data.cart.includedCalibrationLevels
       );
 
@@ -291,7 +301,8 @@ export const resolvers = {
           cart: {
             __typename: "CartContent",
             files: cart.files,
-            includeCalibrations: cart.includeCalibrations,
+            includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
+            includeStandardCalibrations: cart.includeStandardCalibrations,
             includedCalibrationLevels: cart.includedCalibrationLevels
           }
         },
