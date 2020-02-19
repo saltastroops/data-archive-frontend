@@ -255,10 +255,10 @@ export const resolvers = {
       );
 
       // Update the flag for including calibrations
-      if (includeStandardCalibrations === undefined) {
+      if (includeStandardCalibrations !== undefined) {
         cart.includeStandardCalibrations = includeStandardCalibrations;
       }
-      if (includeArcsFlatsBiases === undefined) {
+      if (includeArcsFlatsBiases !== undefined) {
         cart.includeArcsFlatsBiases = includeArcsFlatsBiases;
       }
 
