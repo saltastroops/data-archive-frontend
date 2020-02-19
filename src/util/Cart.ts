@@ -22,16 +22,18 @@ export class Cart {
     const files = o.files || [];
 
     // default to true if the flag for including calibrations is not defined
-    const includeCalibrations = o.includeCalibrations !== false;
+    const includeStandardCalibrations = o.includeStandardCalibrations === true;
+    const includeArcsFlatsBiases = o.includeArcsFlatsBiases === true;
 
-    // By default reduced callibration level are included
+    // By default reduced calibration level are included
     const includedCalibrationLevels = new Set<CalibrationLevel>(
       o.includedCalibrationLevels || ["REDUCED"]
     );
 
     const cart = new Cart(
       files,
-      includeCalibrations,
+      includeStandardCalibrations,
+      includeArcsFlatsBiases,
       includedCalibrationLevels
     );
 
@@ -39,20 +41,21 @@ export class Cart {
   }
 
   private cartFiles: ICartFile[];
-  private includeCalibrationFiles: boolean;
+  private includeStandardCalibrationFiles: boolean;
+  private includeArcsFlatsAndBiasesFiles: boolean;
   private includedCalibrationLevelsFiles: Set<CalibrationLevel>;
 
   constructor(
     files: ICartFile[],
     includeCalibrations: boolean,
+    includeStandardCalibrations: boolean,
+    includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) {
     this.cartFiles = files || [];
-    if (includeCalibrations !== undefined && includeCalibrations !== null) {
-      this.includeCalibrationFiles = includeCalibrations;
-    } else {
-      this.includeCalibrationFiles = true;
-    }
+
+    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
 
     if (
       includedCalibrationLevels !== undefined &&
@@ -75,7 +78,8 @@ export class Cart {
   public toJSON(): string {
     return JSON.stringify({
       files: this.files,
-      includeCalibrations: this.includeCalibrations,
+      includeArcsFlatsBiases: this.includeArcsFlatsBiases,
+      includeStandardCalibrations: this.includeStandardCalibrations,
       includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
     });
   }
@@ -115,17 +119,32 @@ export class Cart {
   }
 
   /**
-   * Whether calibration files should be included in the data request.
+   * Whether standard calibration files should be included in the data request.
    */
-  public get includeCalibrations() {
-    return this.includeCalibrationFiles;
+  public get includeStandardCalibrations() {
+    return this.includeStandardCalibrationFiles;
   }
 
   /**
-   * Set whether calibration files should be included in the data request.
+   * Set whether standard calibration files should be included in the data request.
    */
-  public set includeCalibrations(includeCalibrations: boolean) {
-    this.includeCalibrationFiles = includeCalibrations;
+  public set includeStandardCalibrations(includeStandardCalibrations: boolean) {
+    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+  }
+
+  /**
+   * Whether Arcs,Flats and Biases should be added to data request
+   */
+
+  public get includeArcsFlatsBiases() {
+    return this.includeArcsFlatsAndBiasesFiles;
+  }
+
+  /**
+   * Set whether Arcs, Biases or Flats calibration files should be added
+   */
+  public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
+    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
   }
 
   /**
@@ -260,7 +279,8 @@ export const CART_QUERY = gql`
         observation
         target
       }
-      includeCalibrations
+      includeStandardCalibrations
+      includeArcsFlatsBiases
       includedCalibrationLevels
     }
   }
@@ -285,8 +305,14 @@ export const CLEAR_CART_MUTATION = gql`
 `;
 
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
-  mutation INCLUDE_CALIBRATIONS_IN_CART($includeCalibrations: Boolean!) {
-    includeCalibrationsInCart(includeCalibrations: $includeCalibrations) @client
+  mutation INCLUDE_CALIBRATIONS_IN_CART(
+    $includeStandardCalibrations: Boolean
+    $includeArcsFlatsBiases: Boolean
+  ) {
+    includeCalibrationsInCart(
+      includeStandardCalibrations: $includeStandardCalibrations
+      includeArcsFlatsBiases: $includeArcsFlatsBiases
+    ) @client
   }
 `;
 
