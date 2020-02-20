@@ -11,7 +11,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
 }
 
 <form
-  className="column is-4 is-offset-4 c0"
+  className="c0 column is-4 is-offset-4"
   data-test="form"
   onSubmit={[Function]}
 >
@@ -27,7 +27,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           ],
           "componentStyle": ComponentStyle {
             "componentId": "sc-bxivhb",
-            "isStatic": true,
+            "isStatic": false,
             "lastClassName": "c1",
             "rules": Array [
               "
@@ -44,6 +44,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           "styledComponentId": "sc-bxivhb",
           "target": "h1",
           "toString": [Function],
+          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -51,7 +52,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       forwardedRef={null}
     >
       <h1
-        className="title is-3 c1"
+        className="c1 title is-3"
       >
         Login to the Data Archive
       </h1>
@@ -187,14 +188,21 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
         data-test="reset-password"
         to="/request-reset-password"
       >
-        <a
+        <LinkAnchor
           className="button is-info is-fullwidth"
           data-test="reset-password"
           href="/request-reset-password"
-          onClick={[Function]}
+          navigate={[Function]}
         >
-          I forgot my password
-        </a>
+          <a
+            className="button is-info is-fullwidth"
+            data-test="reset-password"
+            href="/request-reset-password"
+            onClick={[Function]}
+          >
+            I forgot my password
+          </a>
+        </LinkAnchor>
       </Link>
     </div>
   </fieldset>

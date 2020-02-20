@@ -11,7 +11,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
 }
 
 <form
-  className="column is-4 is-offset-4 c0"
+  className="c0 column is-4 is-offset-4"
   onSubmit={[Function]}
 >
   <fieldset
@@ -30,7 +30,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             ],
             "componentStyle": ComponentStyle {
               "componentId": "sc-hqyNC",
-              "isStatic": true,
+              "isStatic": false,
               "lastClassName": "c1",
               "rules": Array [
                 "
@@ -47,6 +47,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             "styledComponentId": "sc-hqyNC",
             "target": "h1",
             "toString": [Function],
+            "usesTheme": false,
             "warnTooManyClasses": [Function],
             "withComponent": [Function],
           }
@@ -54,7 +55,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
         forwardedRef={null}
       >
         <h1
-          className="title is-3 c1"
+          className="c1 title is-3"
         >
           Update your account
         </h1>
