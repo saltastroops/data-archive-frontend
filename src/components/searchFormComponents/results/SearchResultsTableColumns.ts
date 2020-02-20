@@ -65,7 +65,6 @@ export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
  * --------
  * Search results table column.
  */
-
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
     case DataKeys.DATA_CATEGORY:

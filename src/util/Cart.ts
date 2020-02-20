@@ -132,7 +132,7 @@ export class Cart {
   }
 
   /**
-   * Whether arcs,flats and biases should be included
+   * Whether arcs, flats and biases should be included.
    */
 
   public get includeArcsFlatsBiases() {
@@ -140,7 +140,7 @@ export class Cart {
   }
 
   /**
-   * Set whether arcs, biases and Flats should be included
+   * Set whether arcs, biases and Flats should be included.
    */
   public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
     this.includeArcsFlatsBiasesFiles = includeArcsFlatsBiases;
