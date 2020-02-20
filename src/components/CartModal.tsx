@@ -84,7 +84,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     }) || {
                       cart: {
                         files: [],
-                        includeCalibrations: true,
+                        includeArcsFlatsBiases: true,
+                        includeStandards: true,
                         includedCalibrationLevels: new Set<CalibrationLevel>([
                           "REDUCED"
                         ])
@@ -94,7 +95,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const groupedCart: any = [];
                     const cart = new Cart(
                       cartContent.cart.files,
-                      cartContent.cart.includeCalibrations,
+                      cartContent.cart.includeStandards,
+                      cartContent.cart.includeArcsFlatsBiases,
                       cartContent.cart.includedCalibrationLevels
                     );
                     cart.groupByObservation().forEach((v, k) => {
@@ -107,15 +109,28 @@ class CartModal extends React.Component<ICart, { error: string }> {
                     const dataFileIds = Array.from(cart.files).map(file =>
                       parseInt(file.id, 10)
                     );
-                    const includeCalibrationFiles = cart.includeCalibrations;
+                    const includeStandards = cart.includeStandards;
+                    const includeArcsFlatsBiases = cart.includeArcsFlatsBiases;
                     const includedCalibrationLevels =
                       cart.includedCalibrationLevels;
 
-                    const updateIncludeCalibrations = async (
+                    const updateIncludeStandardCalibrations = async (
                       event: React.ChangeEvent<HTMLInputElement>
                     ) => {
                       includeCalibrations({
-                        variables: { includeCalibrations: event.target.checked }
+                        variables: {
+                          includeStandards: event.target.checked
+                        }
+                      });
+                    };
+
+                    const updateIncludeArcsFlatsBiases = async (
+                      event: React.ChangeEvent<HTMLInputElement>
+                    ) => {
+                      includeCalibrations({
+                        variables: {
+                          includeArcsFlatsBiases: event.target.checked
+                        }
                       });
                     };
 
@@ -251,15 +266,34 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                     </table>
                                   </div>
                                 </div>
-                                <div className={"section"}>
-                                  <div className="include-calibrations">
-                                    <label>
-                                      <LargeCheckbox
-                                        checked={cart.includeCalibrations}
-                                        onChange={updateIncludeCalibrations}
-                                      />{" "}
-                                      Include calibration files
-                                    </label>
+                                <div>
+                                  <div
+                                    className={
+                                      "columns calibration-level-section"
+                                    }
+                                  >
+                                    <div className="calibration-level">
+                                      <label>
+                                        <LargeCheckbox
+                                          checked={cart.includeStandards}
+                                          onChange={
+                                            updateIncludeStandardCalibrations
+                                          }
+                                        />{" "}
+                                        Standards
+                                      </label>
+                                    </div>
+                                    <div className="calibration-level">
+                                      <label>
+                                        <LargeCheckbox
+                                          checked={cart.includeArcsFlatsBiases}
+                                          onChange={
+                                            updateIncludeArcsFlatsBiases
+                                          }
+                                        />{" "}
+                                        Arcs/Flats/Biases
+                                      </label>
+                                    </div>
                                   </div>
                                   <div
                                     className={
@@ -293,6 +327,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                       </label>
                                     </div>
                                   </div>
+
                                   <div
                                     className={"columns cart-buttons-section"}
                                   >
@@ -320,8 +355,9 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                                 createDataRequest,
                                                 clearCart,
                                                 dataFileIds,
-                                                includeCalibrationFiles,
-                                                cart.includedCalibrationLevels
+                                                includeStandards,
+                                                includeArcsFlatsBiases,
+                                                includedCalibrationLevels
                                               );
                                               if (
                                                 !error &&
@@ -407,7 +443,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
     create: any,
     clearCart: any,
     dataFilesIds: number[],
-    includeCalibrations: boolean,
+    includeStandards: boolean,
+    includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
     // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
@@ -424,7 +461,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
     await create({
       variables: {
         dataFiles: dataFilesIds,
-        includeCalibrations,
+        includeArcsFlatsBiases,
+        includeStandards,
         includedCalibrationLevels: Array.from(includedCalibrationLevels)
       }
     });

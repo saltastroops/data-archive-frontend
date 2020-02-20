@@ -41,7 +41,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       },
       Object {
         "dataKey": "artifact.name",
-        "name": "File",
+        "name": "Preview",
         "visible": true,
       },
       Object {
