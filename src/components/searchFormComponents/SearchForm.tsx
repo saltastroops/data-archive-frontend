@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
+import styled from "styled-components";
 import {
   IGeneral,
   ISearchFormState,
@@ -11,12 +12,10 @@ import { TargetType } from "../../utils/TargetType";
 import { isError, validateDate } from "../../utils/validators";
 import {
   ButtonGrid,
-  MainGrid,
-  NumberGrid,
   ParentGrid,
   ParentGridSingle,
   ProposalGrid,
-  Span,
+  SearchGrid,
   SubGrid,
   TargetGrid,
   TelescopeGrid
@@ -27,6 +26,15 @@ import ProposalForm from "./ProposalForm";
 import { DEFAULT_LIMIT } from "./SearchPage";
 import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
+
+const LimitGrid = styled.div.attrs({
+  className: "grid-item"
+})`
+  display: grid;
+  grid-template-columns: 10%
+  border: 1px solid rgba(255, 255, 255, 0);
+  text-align: left;
+`;
 
 /**
  * Properties for the search form.
@@ -44,6 +52,7 @@ interface ISearchFormProps {
   error?: Error;
   limitError?: string;
   loading: boolean;
+  openColumnSelector: () => void;
   search: (
     startIndex: number
   ) => ({
@@ -133,19 +142,26 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   };
 
   public render() {
-    const { error, loading } = this.props;
+    const { error, loading, openColumnSelector } = this.props;
     const { general, target, telescope } = this.state;
 
     return (
-      <>
-        <ParentGrid>
-          <TargetGrid>
-            <TargetForm target={target} onChange={this.targetChange} />
-          </TargetGrid>
-          <ProposalGrid>
-            <ProposalForm general={general} onChange={this.generalChange} />
-          </ProposalGrid>
-        </ParentGrid>
+      <SearchGrid>
+        <ParentGridSingle>
+          <ParentGrid>
+            <TargetGrid>
+              <TargetForm target={target} onChange={this.targetChange} />
+            </TargetGrid>
+            <div
+              style={{
+                height: "20px"
+              }}
+            />
+            <ProposalGrid>
+              <ProposalForm general={general} onChange={this.generalChange} />
+            </ProposalGrid>
+          </ParentGrid>
+        </ParentGridSingle>
         <ParentGridSingle>
           <TelescopeGrid>
             <TelescopeForm
@@ -154,61 +170,70 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             />
           </TelescopeGrid>
         </ParentGridSingle>
-        <ParentGrid>
+
+        <div className={"is-text"}>Number of results per page</div>
+        <LimitGrid>
+          <div className="field ">
+            <p className="control">
+              <InputField
+                error={general.errors.limit}
+                name={"items-per-page"}
+                value={general.limit}
+                onChange={this.updateItemsPerPage}
+              />
+            </p>
+          </div>
+        </LimitGrid>
+
+        {error && <div className="has-text-danger">{error.message}</div>}
+        <div>
           <ButtonGrid>
-            <MainGrid>
-              <SubGrid>
-                <a
-                  className={"button is-text"}
-                  data-test="reset-all-button"
-                  onClick={this.resetAll}
-                >
-                  reset all
-                </a>
-                <NumberGrid>
-                  <p>Number of results</p>
-                  <InputField
-                    error={general.errors.limit}
-                    name={"items-per-page"}
-                    value={general.limit}
-                    onChange={this.updateItemsPerPage}
-                  />
-                </NumberGrid>
-              </SubGrid>
-              <SubGrid>
-                <p />
-              </SubGrid>
-              <SubGrid>
-                <NumberGrid>
-                  <Span>
-                    {error && (
-                      <div className="has-text-danger">
-                        Network error or data archive API is not responding
-                      </div>
-                    )}
-                    {this.state.isSearchFormError && (
-                      <div className="has-text-danger">
-                        Please make sure that the content of the search form is
-                        valid
-                      </div>
-                    )}
-                    <button
-                      disabled={loading}
-                      className={`button is-primary ${loading && "is-loading"}`}
-                      data-test="search-button"
-                      type="button"
-                      value="Search"
-                      onClick={this.onSubmit}
-                    >
-                      search
-                    </button>
-                  </Span>
-                </NumberGrid>
-              </SubGrid>
-            </MainGrid>
+            <button
+              disabled={loading}
+              className={`button is-info ${loading && "is-loading"}`}
+              data-test="search-button"
+              type="button"
+              value="Search"
+              onClick={this.onSubmit}
+            >
+              Search
+            </button>
+
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
+
+            <button
+              className={"button is-text has-text-info has-text-left"}
+              type="button"
+              onClick={openColumnSelector}
+            >
+              Manage columns to display
+            </button>
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
+
+            <button
+              className={"button is-text has-text-left"}
+              data-test="reset-all-button"
+              onClick={this.resetAll}
+            >
+              reset all
+            </button>
+
+            <div
+              style={{
+                height: "1em"
+              }}
+            />
           </ButtonGrid>
-        </ParentGrid>
-      </>
+        </div>
+      </SearchGrid>
     );
   }
 

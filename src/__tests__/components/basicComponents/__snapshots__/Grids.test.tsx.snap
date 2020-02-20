@@ -3,12 +3,10 @@
 exports[`Grids  should render all grids correctly 1`] = `
 .c0 {
   display: grid;
-  grid-template-columns: 50% 50%;
-  padding: 10px;
-  gap: 20px;
+  grid-template-columns: 49.5% 1% 49.5%;
 }
 
-@media (max-width:900px) {
+@media (max-width:1040px) {
   .c0 {
     grid-template-columns: auto;
   }
@@ -21,22 +19,20 @@ exports[`Grids  should render all grids correctly 1`] = `
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [
           Object {
-            "className": "grid-container",
+            "className": "grid-container is-fullhd",
             "disable": true,
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-htpNat",
-          "isStatic": false,
+          "componentId": "sc-bxivhb",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
   display: grid;
-  grid-template-columns: 50% 50%;
-  padding: 10px;
-  gap: 20px;
+  grid-template-columns: 49.5% 1% 49.5%;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1040px) {
     grid-template-columns: auto;
   }
 ",
@@ -45,7 +41,7 @@ exports[`Grids  should render all grids correctly 1`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-htpNat",
+        "styledComponentId": "sc-bxivhb",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -56,7 +52,7 @@ exports[`Grids  should render all grids correctly 1`] = `
     forwardedRef={null}
   >
     <div
-      className="c0 grid-container"
+      className="grid-container is-fullhd c0"
     />
   </StyledComponent>
 </styled.div>
@@ -67,6 +63,8 @@ exports[`Grids  should render all grids correctly 2`] = `
   background-color: #f6f7e1;
   border: 1px solid rgba(246,247,225,0.5);
   text-align: center;
+  width: 100%;
+  padding: 5px;
 }
 
 <styled.div>
@@ -80,21 +78,23 @@ exports[`Grids  should render all grids correctly 2`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-ifAKCX",
-          "isStatic": false,
+          "componentId": "sc-EHOje",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
   background-color: #f6f7e1;
   border: 1px solid rgba(246, 247, 225, 0.5);
   text-align: center;
+  width: 100%;
+  padding: 5px;
 ",
           ],
         },
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-ifAKCX",
+        "styledComponentId": "sc-EHOje",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -116,6 +116,7 @@ exports[`Grids  should render all grids correctly 3`] = `
   background-color: #f2fffb;
   border: 1px solid rgba(242,255,251,0.5);
   text-align: center;
+  width: 100%;
 }
 
 <styled.div>
@@ -129,21 +130,22 @@ exports[`Grids  should render all grids correctly 3`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-EHOje",
-          "isStatic": false,
+          "componentId": "sc-bZQynM",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
   background-color: #f2fffb;
   border: 1px solid rgba(242, 255, 251, 0.5);
   text-align: center;
+  width: 100%;
 ",
           ],
         },
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-EHOje",
+        "styledComponentId": "sc-bZQynM",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -178,8 +180,8 @@ exports[`Grids  should render all grids correctly 4`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-bZQynM",
-          "isStatic": false,
+          "componentId": "sc-gzVnrw",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -192,7 +194,7 @@ exports[`Grids  should render all grids correctly 4`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-bZQynM",
+        "styledComponentId": "sc-gzVnrw",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -227,8 +229,8 @@ exports[`Grids  should render all grids correctly 5`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-htoDjs",
-          "isStatic": false,
+          "componentId": "sc-dnqmqq",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -241,7 +243,7 @@ exports[`Grids  should render all grids correctly 5`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-htoDjs",
+        "styledComponentId": "sc-dnqmqq",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -260,8 +262,16 @@ exports[`Grids  should render all grids correctly 5`] = `
 
 exports[`Grids  should render all grids correctly 6`] = `
 .c0 {
+  display: grid;
+  grid-template-columns: 5% 10% 15% 10% 5% 45%;
   border: 1px solid rgba(255,255,255,0);
   text-align: left;
+}
+
+@media (max-width:1272px) {
+  .c0 {
+    grid-template-columns: 20%;
+  }
 }
 
 <styled.div>
@@ -275,20 +285,26 @@ exports[`Grids  should render all grids correctly 6`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-gzVnrw",
-          "isStatic": false,
+          "componentId": "sc-htoDjs",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
+  display: grid;
+  grid-template-columns: 5% 10% 15% 10% 5% 45%
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: left;
+
+  @media (max-width: 1272px) {
+    grid-template-columns: 20%
+  }
 ",
           ],
         },
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-gzVnrw",
+        "styledComponentId": "sc-htoDjs",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -323,8 +339,8 @@ exports[`Grids  should render all grids correctly 7`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-dnqmqq",
-          "isStatic": false,
+          "componentId": "sc-iwsKbI",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -339,7 +355,7 @@ exports[`Grids  should render all grids correctly 7`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-dnqmqq",
+        "styledComponentId": "sc-iwsKbI",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
@@ -373,8 +389,8 @@ exports[`Grids  should render all grids correctly 8`] = `
           },
         ],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-VigVT",
-          "isStatic": false,
+          "componentId": "sc-jTzLTM",
+          "isStatic": true,
           "lastClassName": "c0",
           "rules": Array [
             "
@@ -388,7 +404,7 @@ exports[`Grids  should render all grids correctly 8`] = `
         "displayName": "styled.div",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-VigVT",
+        "styledComponentId": "sc-jTzLTM",
         "target": "div",
         "toString": [Function],
         "usesTheme": false,
