@@ -69,6 +69,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       productTypes: new Set<ProductType>(["Science"]),
       rejected: ""
     },
+    isSearchFormError: false,
     target: {
       errors: {},
       resolver: "Simbad",
@@ -95,6 +96,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const newState = {
       ...this.state,
       ...value,
+      isSearchFormError: false,
       telescope: {
         ...value
       }
@@ -108,6 +110,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
   public targetChange = (value: ITarget) => {
     const newState = {
       ...this.state,
+      isSearchFormError: false,
       target: {
         ...value
       }
@@ -123,7 +126,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       ...this.state,
       general: {
         ...value
-      }
+      },
+      isSearchFormError: false
     };
     this.updateState(newState);
   };
@@ -178,7 +182,15 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                 <NumberGrid>
                   <Span>
                     {error && (
-                      <div className="has-text-danger">{error.message}</div>
+                      <div className="has-text-danger">
+                        Network error or data archive API is not responding
+                      </div>
+                    )}
+                    {this.state.isSearchFormError && (
+                      <div className="has-text-danger">
+                        Please make sure that the content of the search form is
+                        valid
+                      </div>
                     )}
                     <button
                       disabled={loading}
@@ -208,20 +220,20 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const target = await validatedTarget(this.state.target);
     const general = this.validatedGeneral(this.state.general);
     const telescope = await validatedTelescope(this.state.telescope);
+    const isSearchFormError = isError(
+      general.errors,
+      target.errors,
+      (telescope && telescope.errors) || {}
+    );
 
     this.updateState({
       ...this.state,
       general,
+      isSearchFormError,
       target,
       telescope
     });
-    if (
-      !isError(
-        general.errors,
-        target.errors,
-        (telescope && telescope.errors) || {}
-      )
-    ) {
+    if (!isSearchFormError) {
       // Search with a start index of 0
       this.props.search(0)({ general, target, telescope });
     }
