@@ -66,10 +66,6 @@ export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
  * Search results table column.
  */
 
-/**
- *
- * changed the results column name "File" to "Preview" in DATA_FILE_FILENAME
- */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
     case DataKeys.DATA_CATEGORY:
