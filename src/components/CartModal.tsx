@@ -85,7 +85,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                       cart: {
                         files: [],
                         includeArcsFlatsBiases: true,
-                        includeStandardCalibrations: true,
+                        includeStandards: true,
                         includedCalibrationLevels: new Set<CalibrationLevel>([
                           "REDUCED"
                         ])
