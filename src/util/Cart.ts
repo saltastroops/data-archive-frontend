@@ -24,18 +24,45 @@ export class Cart {
     // default to true if the flag for including calibrations is not defined
     const includeCalibrations = o.includeCalibrations !== false;
 
-    return new Cart(files, includeCalibrations);
+    // By default reduced callibration level are included
+    const includedCalibrationLevels = new Set<CalibrationLevel>(
+      o.includedCalibrationLevels || ["REDUCED"]
+    );
+
+    const cart = new Cart(
+      files,
+      includeCalibrations,
+      includedCalibrationLevels
+    );
+
+    return cart;
   }
 
   private cartFiles: ICartFile[];
   private includeCalibrationFiles: boolean;
+  private includedCalibrationLevelsFiles: Set<CalibrationLevel>;
 
-  constructor(files: ICartFile[], includeCalibrations: boolean) {
+  constructor(
+    files: ICartFile[],
+    includeCalibrations: boolean,
+    includedCalibrationLevels: Set<CalibrationLevel>
+  ) {
     this.cartFiles = files || [];
     if (includeCalibrations !== undefined && includeCalibrations !== null) {
       this.includeCalibrationFiles = includeCalibrations;
     } else {
       this.includeCalibrationFiles = true;
+    }
+
+    if (
+      includedCalibrationLevels !== undefined &&
+      includedCalibrationLevels !== null
+    ) {
+      this.includedCalibrationLevelsFiles = includedCalibrationLevels;
+    } else {
+      this.includedCalibrationLevelsFiles = new Set<CalibrationLevel>([
+        "REDUCED"
+      ]);
     }
   }
 
@@ -48,7 +75,8 @@ export class Cart {
   public toJSON(): string {
     return JSON.stringify({
       files: this.files,
-      includeCalibrations: this.includeCalibrations
+      includeCalibrations: this.includeCalibrations,
+      includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
     });
   }
 
@@ -68,6 +96,22 @@ export class Cart {
    */
   public get size() {
     return this.cartFiles.length;
+  }
+
+  /**
+   * The calibration levels to include in the data request.
+   */
+  public get includedCalibrationLevels() {
+    return this.includedCalibrationLevelsFiles;
+  }
+
+  /**
+   * Set the calibration levels to include in the data request.
+   */
+  public set includedCalibrationLevels(
+    includedCalibrationLevels: Set<CalibrationLevel>
+  ) {
+    this.includedCalibrationLevelsFiles = includedCalibrationLevels;
   }
 
   /**
@@ -202,6 +246,11 @@ export interface ICartFile {
   target: string | null;
 }
 
+/**
+ * The available calibration levels.
+ */
+export type CalibrationLevel = "REDUCED" | "RAW";
+
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
@@ -212,6 +261,7 @@ export const CART_QUERY = gql`
         target
       }
       includeCalibrations
+      includedCalibrationLevels
     }
   }
 `;
@@ -237,5 +287,15 @@ export const CLEAR_CART_MUTATION = gql`
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATIONS_IN_CART($includeCalibrations: Boolean!) {
     includeCalibrationsInCart(includeCalibrations: $includeCalibrations) @client
+  }
+`;
+
+export const INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION = gql`
+  mutation INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION(
+    $includedCalibrationLevels: [CalibrationLevel]
+  ) {
+    includeCalibrationLevelsInCart(
+      includedCalibrationLevels: $includedCalibrationLevels
+    ) @client
   }
 `;
