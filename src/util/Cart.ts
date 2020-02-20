@@ -22,8 +22,8 @@ export class Cart {
     const files = o.files || [];
 
     // default to true if the flag for including calibrations is not defined
-    const includeStandards = !o.includeStandards !== false;
-    const includeArcsFlatsBiases = !o.includeArcsFlatsBiases !== false;
+    const includeStandards = o.includeStandards !== false;
+    const includeArcsFlatsBiases = o.includeArcsFlatsBiases !== false;
 
     // By default reduced data is included
     const includedCalibrationLevels = new Set<CalibrationLevel>(
@@ -41,8 +41,8 @@ export class Cart {
   }
 
   private cartFiles: ICartFile[];
-  private includeStandardCalibrationFiles: boolean;
-  private includeArcsFlatsAndBiasesFiles: boolean;
+  private includeStandardFiles: boolean;
+  private includeArcsFlatsBiasesFiles: boolean;
   private includedCalibrationLevelsFiles: Set<CalibrationLevel>;
 
   constructor(
@@ -53,8 +53,8 @@ export class Cart {
   ) {
     this.cartFiles = files || [];
 
-    this.includeStandardCalibrationFiles = includeStandards;
-    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
+    this.includeStandardFiles = includeStandards;
+    this.includeArcsFlatsBiasesFiles = includeArcsFlatsBiases;
 
     if (
       includedCalibrationLevels !== undefined &&
@@ -102,14 +102,14 @@ export class Cart {
   }
 
   /**
-   * The calibration levels to include in the data request.
+   * Whether calibration levels should be included.
    */
   public get includedCalibrationLevels() {
     return this.includedCalibrationLevelsFiles;
   }
 
   /**
-   * Set the calibration levels to include in the data request.
+   * Set whether calibration levels should be included.
    */
   public set includedCalibrationLevels(
     includedCalibrationLevels: Set<CalibrationLevel>
@@ -118,32 +118,32 @@ export class Cart {
   }
 
   /**
-   * Whether standard calibration files should be included in the data request.
+   * Whether standards should be included.
    */
   public get includeStandards() {
-    return this.includeStandardCalibrationFiles;
+    return this.includeStandardFiles;
   }
 
   /**
-   * Set whether standard calibration files should be included in the data request.
+   * Set whether standards should be included.
    */
-  public set includeStandards(includeStandardCalibrations: boolean) {
-    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+  public set includeStandards(includeStandards: boolean) {
+    this.includeStandardFiles = includeStandards;
   }
 
   /**
-   * Whether Arcs,Flats and Biases should be added to data request
+   * Whether arcs,flats and biases should be included
    */
 
   public get includeArcsFlatsBiases() {
-    return this.includeArcsFlatsAndBiasesFiles;
+    return this.includeArcsFlatsBiasesFiles;
   }
 
   /**
-   * Set whether Arcs, Biases or Flats calibration files should be requested
+   * Set whether arcs, biases and Flats should be included
    */
   public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
-    this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
+    this.includeArcsFlatsBiasesFiles = includeArcsFlatsBiases;
   }
 
   /**
