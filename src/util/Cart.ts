@@ -22,17 +22,17 @@ export class Cart {
     const files = o.files || [];
 
     // default to true if the flag for including calibrations is not defined
-    const includeStandardCalibrations = o.includeStandardCalibrations === true;
-    const includeArcsFlatsBiases = o.includeArcsFlatsBiases === true;
+    const includeStandards = !o.includeStandards !== false;
+    const includeArcsFlatsBiases = !o.includeArcsFlatsBiases !== false;
 
-    // By default reduced calibration level are included
+    // By default reduced data is included
     const includedCalibrationLevels = new Set<CalibrationLevel>(
       o.includedCalibrationLevels || ["REDUCED"]
     );
 
     const cart = new Cart(
       files,
-      includeStandardCalibrations,
+      includeStandards,
       includeArcsFlatsBiases,
       includedCalibrationLevels
     );
@@ -47,13 +47,13 @@ export class Cart {
 
   constructor(
     files: ICartFile[],
-    includeStandardCalibrations: boolean,
+    includeStandards: boolean,
     includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) {
     this.cartFiles = files || [];
 
-    this.includeStandardCalibrationFiles = includeStandardCalibrations;
+    this.includeStandardCalibrationFiles = includeStandards;
     this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
 
     if (
@@ -78,7 +78,7 @@ export class Cart {
     return JSON.stringify({
       files: this.files,
       includeArcsFlatsBiases: this.includeArcsFlatsBiases,
-      includeStandardCalibrations: this.includeStandardCalibrations,
+      includeStandards: this.includeStandards,
       includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
     });
   }
@@ -120,14 +120,14 @@ export class Cart {
   /**
    * Whether standard calibration files should be included in the data request.
    */
-  public get includeStandardCalibrations() {
+  public get includeStandards() {
     return this.includeStandardCalibrationFiles;
   }
 
   /**
    * Set whether standard calibration files should be included in the data request.
    */
-  public set includeStandardCalibrations(includeStandardCalibrations: boolean) {
+  public set includeStandards(includeStandardCalibrations: boolean) {
     this.includeStandardCalibrationFiles = includeStandardCalibrations;
   }
 
@@ -140,7 +140,7 @@ export class Cart {
   }
 
   /**
-   * Set whether Arcs, Biases or Flats calibration files should be added
+   * Set whether Arcs, Biases or Flats calibration files should be requested
    */
   public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
     this.includeArcsFlatsAndBiasesFiles = includeArcsFlatsBiases;
@@ -278,7 +278,7 @@ export const CART_QUERY = gql`
         observation
         target
       }
-      includeStandardCalibrations
+      includeStandards
       includeArcsFlatsBiases
       includedCalibrationLevels
     }
@@ -305,11 +305,11 @@ export const CLEAR_CART_MUTATION = gql`
 
 export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATIONS_IN_CART(
-    $includeStandardCalibrations: Boolean
+    $includeStandards: Boolean
     $includeArcsFlatsBiases: Boolean
   ) {
     includeCalibrationsInCart(
-      includeStandardCalibrations: $includeStandardCalibrations
+      includeStandards: $includeStandards
       includeArcsFlatsBiases: $includeArcsFlatsBiases
     ) @client
   }
