@@ -31,7 +31,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "sc-kpOJdX",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
               "
@@ -51,7 +51,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
           "styledComponentId": "sc-kpOJdX",
           "target": "div",
           "toString": [Function],
-          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -75,7 +74,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     ],
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-kAzzGY",
-                      "isStatic": false,
+                      "isStatic": true,
                       "lastClassName": "c1",
                       "rules": Array [
                         "
@@ -92,7 +91,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     "styledComponentId": "sc-kAzzGY",
                     "target": "span",
                     "toString": [Function],
-                    "usesTheme": false,
                     "warnTooManyClasses": [Function],
                     "withComponent": [Function],
                   }
@@ -100,7 +98,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                 forwardedRef={null}
               >
                 <span
-                  className="c1 span"
+                  className="span c1"
                 >
                   <styled.input
                     checked={false}
@@ -122,7 +120,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           ],
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-kGXeez",
-                            "isStatic": false,
+                            "isStatic": true,
                             "lastClassName": "c2",
                             "rules": Array [
                               "
@@ -139,7 +137,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                           "styledComponentId": "sc-kGXeez",
                           "target": "input",
                           "toString": [Function],
-                          "usesTheme": false,
                           "warnTooManyClasses": [Function],
                           "withComponent": [Function],
                         }
@@ -150,7 +147,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                     >
                       <input
                         checked={false}
-                        className="c2 checkbox"
+                        className="checkbox c2"
                         data-test="galaxy"
                         onChange={[Function]}
                         type="checkbox"
@@ -177,7 +174,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -194,7 +191,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -202,7 +198,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={false}
@@ -224,7 +220,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -241,7 +237,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -252,7 +247,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   >
                     <input
                       checked={false}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="ism"
                       onChange={[Function]}
                       type="checkbox"
@@ -278,7 +273,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -295,7 +290,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -303,7 +297,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={false}
@@ -325,7 +319,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -342,7 +336,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -353,7 +346,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   >
                     <input
                       checked={false}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="solar-system-body"
                       onChange={[Function]}
                       type="checkbox"
@@ -379,7 +372,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -396,7 +389,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -404,7 +396,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={false}
@@ -426,7 +418,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -443,7 +435,6 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -454,7 +445,7 @@ exports[`TargetTypesSelector should render correctly with no target types 1`] = 
                   >
                     <input
                       checked={false}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="star"
                       onChange={[Function]}
                       type="checkbox"
@@ -509,7 +500,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "sc-kpOJdX",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
               "
@@ -529,7 +520,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
           "styledComponentId": "sc-kpOJdX",
           "target": "div",
           "toString": [Function],
-          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -553,7 +543,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     ],
                     "componentStyle": ComponentStyle {
                       "componentId": "sc-kAzzGY",
-                      "isStatic": false,
+                      "isStatic": true,
                       "lastClassName": "c1",
                       "rules": Array [
                         "
@@ -570,7 +560,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     "styledComponentId": "sc-kAzzGY",
                     "target": "span",
                     "toString": [Function],
-                    "usesTheme": false,
                     "warnTooManyClasses": [Function],
                     "withComponent": [Function],
                   }
@@ -578,7 +567,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                 forwardedRef={null}
               >
                 <span
-                  className="c1 span"
+                  className="span c1"
                 >
                   <styled.input
                     checked={true}
@@ -600,7 +589,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           ],
                           "componentStyle": ComponentStyle {
                             "componentId": "sc-kGXeez",
-                            "isStatic": false,
+                            "isStatic": true,
                             "lastClassName": "c2",
                             "rules": Array [
                               "
@@ -617,7 +606,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                           "styledComponentId": "sc-kGXeez",
                           "target": "input",
                           "toString": [Function],
-                          "usesTheme": false,
                           "warnTooManyClasses": [Function],
                           "withComponent": [Function],
                         }
@@ -628,7 +616,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                     >
                       <input
                         checked={true}
-                        className="c2 checkbox"
+                        className="checkbox c2"
                         data-test="galaxy"
                         onChange={[Function]}
                         type="checkbox"
@@ -655,7 +643,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -672,7 +660,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -680,7 +667,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={true}
@@ -702,7 +689,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -719,7 +706,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -730,7 +716,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   >
                     <input
                       checked={true}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="ism"
                       onChange={[Function]}
                       type="checkbox"
@@ -756,7 +742,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -773,7 +759,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -781,7 +766,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={false}
@@ -803,7 +788,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -820,7 +805,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -831,7 +815,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   >
                     <input
                       checked={false}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="solar-system-body"
                       onChange={[Function]}
                       type="checkbox"
@@ -857,7 +841,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-kAzzGY",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -874,7 +858,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   "styledComponentId": "sc-kAzzGY",
                   "target": "span",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -882,7 +865,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
               forwardedRef={null}
             >
               <span
-                className="c1 span"
+                className="span c1"
               >
                 <styled.input
                   checked={false}
@@ -904,7 +887,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         ],
                         "componentStyle": ComponentStyle {
                           "componentId": "sc-kGXeez",
-                          "isStatic": false,
+                          "isStatic": true,
                           "lastClassName": "c2",
                           "rules": Array [
                             "
@@ -921,7 +904,6 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                         "styledComponentId": "sc-kGXeez",
                         "target": "input",
                         "toString": [Function],
-                        "usesTheme": false,
                         "warnTooManyClasses": [Function],
                         "withComponent": [Function],
                       }
@@ -932,7 +914,7 @@ exports[`TargetTypesSelector should render correctly with target types 1`] = `
                   >
                     <input
                       checked={false}
-                      className="c2 checkbox"
+                      className="checkbox c2"
                       data-test="star"
                       onChange={[Function]}
                       type="checkbox"
