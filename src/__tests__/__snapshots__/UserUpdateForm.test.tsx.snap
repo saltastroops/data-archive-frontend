@@ -29,7 +29,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
               },
             ],
             "componentStyle": ComponentStyle {
-              "componentId": "sc-hmzhuo",
+              "componentId": "sc-frDJqD",
               "isStatic": false,
               "lastClassName": "c1",
               "rules": Array [
@@ -44,7 +44,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
             "displayName": "styled.h1",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "sc-hmzhuo",
+            "styledComponentId": "sc-frDJqD",
             "target": "h1",
             "toString": [Function],
             "usesTheme": false,
