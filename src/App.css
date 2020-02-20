@@ -14,6 +14,7 @@
   -moz-opacity: 0.3;
   z-index: 101;
 }
+
 .signal {
   border: 15px solid #fff;
   border-radius: 30px;
@@ -109,6 +110,7 @@
 .column-group-selector:not(:first-child) {
   margin-top: 1em;
 }
+
 .request-pending {
   font-style: italic;
 }
@@ -120,12 +122,15 @@
 .pagination-controls {
   text-align: center;
 }
+
 .container {
   max-width: 80%;
 }
+
 .button.has-text-left {
   justify-content: flex-start;
 }
+
 @media (max-width: 948px) {
   .container {
     max-width: 95%;
