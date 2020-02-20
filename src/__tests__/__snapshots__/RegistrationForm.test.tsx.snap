@@ -29,7 +29,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
               },
             ],
             "componentStyle": ComponentStyle {
-              "componentId": "sc-csuQGl",
+              "componentId": "sc-jlyJG",
               "isStatic": true,
               "lastClassName": "c1",
               "rules": Array [
@@ -44,7 +44,7 @@ exports[`RegistrationForm Component renders the RegistrationForm having unpopula
             "displayName": "styled.h1",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "sc-csuQGl",
+            "styledComponentId": "sc-jlyJG",
             "target": "h1",
             "toString": [Function],
             "warnTooManyClasses": [Function],
