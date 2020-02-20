@@ -25,7 +25,7 @@ export interface IWhereCondition {}
  */
 export interface ISearchFormState {
   general: IGeneral;
-  isSearchFormError: boolean;
+  hasSearchFormError: boolean;
   target: ITarget;
   telescope: ITelescope;
 }

@@ -2,43 +2,51 @@
 
 exports[`SelectField should render correctly 1`] = `
 <div
-  className="control select danger is-large"
+  className="control "
 >
-  <select
-    onChange={[Function]}
-    value="bbb"
+  <div
+    className="select danger is-large"
   >
-    <option
-      value="aaa"
-    >
-      AAA
-    </option>
-    <option
+    <select
+      onChange={[Function]}
       value="bbb"
     >
-      BBB
-    </option>
-    <option
-      value="ccc"
-    >
-      CCC
-    </option>
-  </select>
+      <option
+        value="aaa"
+      >
+        AAA
+      </option>
+      <option
+        value="bbb"
+      >
+        BBB
+      </option>
+      <option
+        value="ccc"
+      >
+        CCC
+      </option>
+    </select>
+  </div>
 </div>
 `;
 
 exports[`SelectField should render correctly 2`] = `
 <div
-  className="control select "
+  className="control "
 >
-  <select
-    value="aaa"
+  <div
+    className="select "
   >
-    <option
+    <select
       value="aaa"
     >
-      AAA
-    </option>
-  </select>
+      <option
+        value="aaa"
+      >
+        AAA
+      </option>
+    </select>
+  </div>
 </div>
 `;
