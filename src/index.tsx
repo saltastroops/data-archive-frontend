@@ -42,7 +42,7 @@ cache.writeQuery({
       __typename: "CartContent",
       files: cart.files,
       includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
-      includeStandardCalibrations: cart.includeStandardCalibrations,
+      includeStandards: cart.includeStandards,
       includedCalibrationLevels: cart.includedCalibrationLevels
     }
   },
