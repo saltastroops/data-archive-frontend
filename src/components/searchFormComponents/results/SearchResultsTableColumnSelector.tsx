@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
 import DataKeys from "./DataKeys";
 import SearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableColumnGroupSelector from "./SearchResultsTableColumnGroupSelector";

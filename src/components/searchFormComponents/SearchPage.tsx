@@ -13,7 +13,6 @@ import {
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
-import ManageTableResultHeaders from "./results/ManageTableResultHeaders";
 import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import {
@@ -121,14 +120,6 @@ const PaginationContainer = styled.div<{
   }
 `;
 
-const ColumnsButtonContainer = styled.div.attrs({})`
-  && {
-    display: grid;
-    grid-template-columns: 500px;
-    justify-content: center;
-  }
-`;
-
 /**
  * The page for searching observations.
  */
@@ -157,12 +148,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
   render() {
     const { screenDimensions, searchFormCache } = this.props;
-    const {
-      error: validationError,
-      startIndex,
-      tableColumns,
-      where
-    } = this.state;
+    const { error: validationError, startIndex, where } = this.state;
 
     // The search form is a child of a Bulma container div element. The width of
     // this div depends on the screen size. We let the results table extend
@@ -239,25 +225,12 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                     />
                   )}
 
-                  <ColumnsButtonContainer>
-                    <button
-                      className={"button"}
-                      onClick={() =>
-                        this.setState({
-                          ...this.state,
-                          modal: { open: !this.state.modal.open }
-                        })
-                      }
-                    >
-                      Manage columns to display
-                    </button>
-                  </ColumnsButtonContainer>
-
                   <SearchForm
                     cache={searchFormCache}
                     search={this.searchArchive(fetch, preload)}
                     error={validationError || error}
                     loading={loading}
+                    openColumnSelector={this.openColumnSelector}
                   />
                   {results && results.length !== 0 ? (
                     <>
@@ -674,44 +647,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   };
 
   /**
-   * Remove a dummy column
-   */
-  private removeDummyColumn = (
-    columns: ISearchResultsTableColumn[]
-  ): ISearchResultsTableColumn[] =>
-    columns.filter((c: any) => c.dataKey !== "dummyName");
-
-  /**
    * Update the visibility status of a results table column.
    */
-  // private updateResultsTableColumnVisibility = (
-  //   dataKey: string,
-  //   visible: boolean
-  // ) => {
-  //   // Update the state
-  //   const columns = this.state.tableColumns;
-  //   const columnIndex = columns.findIndex(column => column.dataKey === dataKey);
-  //   const updatedColumn = {
-  //     ...columns[columnIndex],
-  //     visible
-  //   };
-  //   if (columnIndex >= 0) {
-  //     const updatedColumns = [
-  //       ...columns.slice(0, columnIndex),
-  //       updatedColumn,
-  //       ...columns.slice(columnIndex + 1)
-  //     ];
-  //     this.setState(
-  //       () => ({
-  //         tableColumns: updatedColumns
-  //       }),
-  //       () => {
-  //         // Keep the cache up-to-date
-  //         this.props.searchPageCache.tableColumns = this.state.tableColumns;
-  //       }
-  //     );
-  //   }
-  // };
+  private openColumnSelector = () => {
+    this.setState({
+      ...this.state,
+      modal: { open: !this.state.modal.open }
+    });
+  };
 }
 
 export default SearchPage;

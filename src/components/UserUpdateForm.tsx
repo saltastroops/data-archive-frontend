@@ -1,7 +1,7 @@
 import { validate } from "isemail";
 import * as _ from "lodash";
 import * as React from "react";
-import { Mutation, Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import { UPDATE_USER_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
