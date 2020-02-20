@@ -119,6 +119,14 @@
   margin-bottom: 2em;
 }
 
+.calibration-level {
+  margin-left: 10px;
+}
+
+.calibration-level-section {
+  width: 400px;
+}
+
 .pagination-controls {
   text-align: center;
 }
