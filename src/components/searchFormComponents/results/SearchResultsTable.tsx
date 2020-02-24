@@ -353,8 +353,7 @@ class SearchResultsTable extends React.Component<
         {({ data }: any) => {
           const cart = new Cart(
             data.cart.files || [],
-            data.cart.includeStandards,
-            data.cart.includeArcsFlatsBiases,
+            data.cart.includedCalibrationTypes,
             data.cart.includedCalibrationLevels
           );
           return (
