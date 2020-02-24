@@ -21,9 +21,10 @@ export class Cart {
 
     const files = o.files || [];
 
-    // default to true if the flag for including calibrations is not defined
-    const includeStandards = o.includeStandards !== false;
-    const includeArcsFlatsBiases = o.includeArcsFlatsBiases !== false;
+    // By default Standards as well Arcs,Bias and Flats are included
+    const includedCalibrationTypes = new Set<CalibrationTypes>(
+      o.includedCalibrationTypes || ["Standards", "Arcs/Bias/Flats"]
+    );
 
     // By default reduced data is included
     const includedCalibrationLevels = new Set<CalibrationLevel>(
@@ -32,8 +33,7 @@ export class Cart {
 
     const cart = new Cart(
       files,
-      includeStandards,
-      includeArcsFlatsBiases,
+      includedCalibrationTypes,
       includedCalibrationLevels
     );
 
@@ -41,20 +41,27 @@ export class Cart {
   }
 
   private cartFiles: ICartFile[];
-  private includeStandardFiles: boolean;
-  private includeArcsFlatsBiasesFiles: boolean;
+  private includedCalibrationTypesFiles: Set<CalibrationTypes>;
   private includedCalibrationLevelsFiles: Set<CalibrationLevel>;
 
   constructor(
     files: ICartFile[],
-    includeStandards: boolean,
-    includeArcsFlatsBiases: boolean,
+    includedCalibrationTypes: Set<CalibrationTypes>,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) {
     this.cartFiles = files || [];
 
-    this.includeStandardFiles = includeStandards;
-    this.includeArcsFlatsBiasesFiles = includeArcsFlatsBiases;
+    if (
+      includedCalibrationTypes !== undefined &&
+      includedCalibrationTypes !== null
+    ) {
+      this.includedCalibrationTypesFiles = includedCalibrationTypes;
+    } else {
+      this.includedCalibrationTypesFiles = new Set<CalibrationTypes>([
+        "Standards",
+        "Arcs/Bias/Flats"
+      ]);
+    }
 
     if (
       includedCalibrationLevels !== undefined &&
@@ -77,9 +84,8 @@ export class Cart {
   public toJSON(): string {
     return JSON.stringify({
       files: this.files,
-      includeArcsFlatsBiases: this.includeArcsFlatsBiases,
-      includeStandards: this.includeStandards,
-      includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
+      includedCalibrationLevels: Array.from(this.includedCalibrationLevels),
+      includedCalibrationTypes: Array.from(this.includedCalibrationTypes)
     });
   }
 
@@ -118,32 +124,19 @@ export class Cart {
   }
 
   /**
-   * Whether standards should be included.
+   * Whether calibration types should be included.
    */
-  public get includeStandards() {
-    return this.includeStandardFiles;
+  public get includedCalibrationTypes() {
+    return this.includedCalibrationTypesFiles;
   }
 
   /**
-   * Set whether standards should be included.
+   * Set whether calibration types should be included.
    */
-  public set includeStandards(includeStandards: boolean) {
-    this.includeStandardFiles = includeStandards;
-  }
-
-  /**
-   * Whether arcs,flats and biases should be included
-   */
-
-  public get includeArcsFlatsBiases() {
-    return this.includeArcsFlatsBiasesFiles;
-  }
-
-  /**
-   * Set whether arcs, biases and Flats should be included
-   */
-  public set includeArcsFlatsBiases(includeArcsFlatsBiases: boolean) {
-    this.includeArcsFlatsBiasesFiles = includeArcsFlatsBiases;
+  public set includedCalibrationTypes(
+    includedCalibrationTypes: Set<CalibrationTypes>
+  ) {
+    this.includedCalibrationTypesFiles = includedCalibrationTypes;
   }
 
   /**
@@ -268,6 +261,10 @@ export interface ICartFile {
  * The available calibration levels.
  */
 export type CalibrationLevel = "REDUCED" | "RAW";
+/**
+ * The available calibration types
+ */
+export type CalibrationTypes = "Standards" | "Arcs/Bias/Flats";
 
 export const CART_QUERY = gql`
   query CART_QUERY {
@@ -278,8 +275,7 @@ export const CART_QUERY = gql`
         observation
         target
       }
-      includeStandards
-      includeArcsFlatsBiases
+      includedCalibrationTypes
       includedCalibrationLevels
     }
   }
@@ -303,14 +299,12 @@ export const CLEAR_CART_MUTATION = gql`
   }
 `;
 
-export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
-  mutation INCLUDE_CALIBRATIONS_IN_CART(
-    $includeStandards: Boolean
-    $includeArcsFlatsBiases: Boolean
+export const INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION = gql`
+  mutation INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION(
+    $includedCalibrationTypes: [CalibrationTypes]
   ) {
-    includeCalibrationsInCart(
-      includeStandards: $includeStandards
-      includeArcsFlatsBiases: $includeArcsFlatsBiases
+    includeCalibrationTypesInCart(
+      includedCalibrationTypes: $includedCalibrationTypes
     ) @client
   }
 `;
