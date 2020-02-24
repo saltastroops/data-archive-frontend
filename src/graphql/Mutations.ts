@@ -123,14 +123,12 @@ export const UPDATE_USER_MUTATION = gql`
 export const CREATE_DATA_REQUEST = gql`
   mutation CREATE_DATA_REQUEST(
     $dataFiles: [Int!]!
-    $includeStandards: Boolean!
-    $includeArcsFlatsBiases: Boolean!
+    $includedCalibrationTypes: [CalibrationTypes!]
     $includedCalibrationLevels: [CalibrationLevel!]
   ) {
     createDataRequest(
       dataFiles: $dataFiles
-      includeStandards: $includeStandards
-      includeArcsFlatsBiases: $includeArcsFlatsBiases
+      includedCalibrationTypes: $includedCalibrationTypes
       includedCalibrationLevels: $includedCalibrationLevels
     ) {
       status
