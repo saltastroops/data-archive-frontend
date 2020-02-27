@@ -15,12 +15,13 @@ import { USER_DATA_REQUESTS_QUERY } from "../graphql/Query";
 import cache from "../util/cache";
 import {
   CalibrationLevel,
+  CalibrationTypes,
   Cart,
   CART_QUERY,
   CLEAR_CART_MUTATION,
   ICartFile,
   INCLUDE_CALIBRATION_LEVELS_IN_CART_MUTATION,
-  INCLUDE_CALIBRATIONS_IN_CART_MUTATION,
+  INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
 import CartFileRow from "./cart/CartFileRow";
@@ -69,7 +70,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
       >
         {(removeFromCart: any) => (
           <Mutation
-            mutation={INCLUDE_CALIBRATIONS_IN_CART_MUTATION}
+            mutation={INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION}
             refetchQueries={[{ query: CART_QUERY }]}
           >
             {(includeCalibrations: any) => {
@@ -279,6 +280,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                           onChange={
                                             updateIncludeStandardCalibrations
                                           }
+                                          name={"Standards"}
                                         />{" "}
                                         Standards
                                       </label>
@@ -290,6 +292,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                           onChange={
                                             updateIncludeArcsFlatsBiases
                                           }
+                                          name={"ArcsFlatsBiases"}
                                         />{" "}
                                         Arcs/Flats/Biases
                                       </label>
@@ -458,11 +461,25 @@ class CartModal extends React.Component<ICart, { error: string }> {
       error: ""
     });
 
+    const calibrations: CalibrationTypes[] = [];
+
+    if (includeStandards) {
+      calibrations.push(
+        "Spectrophotometric standard",
+        "Radial_velocity_standard"
+      );
+    }
+
+    if (includeArcsFlatsBiases) {
+      calibrations.push("Arc", "Flat", "Bias");
+    }
+    if (!includeStandards && !includeArcsFlatsBiases) {
+      calibrations.length = 0;
+    }
     await create({
       variables: {
         dataFiles: dataFilesIds,
-        includeArcsFlatsBiases,
-        includeStandards,
+        includeCalibrationTypes: calibrations,
         includedCalibrationLevels: Array.from(includedCalibrationLevels)
       }
     });
