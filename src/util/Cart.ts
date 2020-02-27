@@ -272,12 +272,12 @@ export type CalibrationLevel = "REDUCED" | "RAW";
 /**
  * The available calibration types
  */
-export type CalibrationTypes =
-  | "Spectrophotometric standard"
-  | "Radial_velocity_standard"
-  | "Arc"
-  | "Flat"
-  | "Bias";
+export type CalibrationType =
+  | "SPECTROPHOTOMETRIC STANDARD"
+  | "RADIAL VELOCITY STANDARD"
+  | "ARC"
+  | "FLAT"
+  | "BIAS";
 
 export const CART_QUERY = gql`
   query CART_QUERY {
@@ -314,11 +314,11 @@ export const CLEAR_CART_MUTATION = gql`
 `;
 
 export const INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION = gql`
-  mutation INCLUDE_CALIBRATIONS_IN_CART(
+  mutation INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION(
     $includeStandards: Boolean
     $includeArcsFlatsBiases: Boolean
   ) {
-    includeCalibrationsInCart(
+    includeCalibrationTypesInCart(
       includeStandards: $includeStandards
       includeArcsFlatsBiases: $includeArcsFlatsBiases
     ) @client
