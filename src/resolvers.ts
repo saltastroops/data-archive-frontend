@@ -32,7 +32,7 @@ export const typeDefs = gql`
   """
   type CartContent {
     files: [CartFile!]!
-    includeCalibrations: Boolean
+    includedCalibrations: Boolean
     includedCalibrationLevels: [CalibrationLevel!]!
   }
 
@@ -93,6 +93,22 @@ export const typeDefs = gql`
     REDUCED
   }
 
+  """
+  Enumeration of calibration types
+  """
+  enum CalibrationType {
+    """
+    Standards
+    """
+    SPECTROPHOTOMETRIC_STANDARD
+    RADIAL_VELOCITY_STANDARD
+    """
+    Arc, Flat, Bias
+    """
+    ARC
+    BIAS
+    FLAT
+  }
   """
   Input for an observation to which a file in the cart is linked
   """
@@ -240,7 +256,7 @@ export const resolvers = {
     },
 
     // Include calibrations in cart
-    includeCalibrationsInCart: async (
+    includeCalibrationTypesInCart: async (
       _: any,
       { includeStandards, includeArcsFlatsBiases }: any,
       { cache }: any
