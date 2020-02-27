@@ -15,7 +15,7 @@ import { USER_DATA_REQUESTS_QUERY } from "../graphql/Query";
 import cache from "../util/cache";
 import {
   CalibrationLevel,
-  CalibrationTypes,
+  CalibrationType,
   Cart,
   CART_QUERY,
   CLEAR_CART_MUTATION,
@@ -461,26 +461,23 @@ class CartModal extends React.Component<ICart, { error: string }> {
       error: ""
     });
 
-    const calibrations: CalibrationTypes[] = [];
+    const calibrations: CalibrationType[] = [];
 
     if (includeStandards) {
       calibrations.push(
-        "Spectrophotometric standard",
-        "Radial_velocity_standard"
+        "SPECTROPHOTOMETRIC STANDARD",
+        "RADIAL VELOCITY STANDARD"
       );
     }
 
     if (includeArcsFlatsBiases) {
-      calibrations.push("Arc", "Flat", "Bias");
-    }
-    if (!includeStandards && !includeArcsFlatsBiases) {
-      calibrations.length = 0;
+      calibrations.push("ARC", "FLAT", "BIAS");
     }
     await create({
       variables: {
         dataFiles: dataFilesIds,
-        includeCalibrationTypes: calibrations,
-        includedCalibrationLevels: Array.from(includedCalibrationLevels)
+        includedCalibrationLevels: Array.from(includedCalibrationLevels),
+        includedCalibrationTypes: calibrations
       }
     });
     await clearCart();
