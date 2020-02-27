@@ -269,6 +269,16 @@ export interface ICartFile {
  */
 export type CalibrationLevel = "REDUCED" | "RAW";
 
+/**
+ * The available calibration types
+ */
+export type CalibrationTypes =
+  | "Spectrophotometric standard"
+  | "Radial_velocity_standard"
+  | "Arc"
+  | "Flat"
+  | "Bias";
+
 export const CART_QUERY = gql`
   query CART_QUERY {
     cart @client {
@@ -303,7 +313,7 @@ export const CLEAR_CART_MUTATION = gql`
   }
 `;
 
-export const INCLUDE_CALIBRATIONS_IN_CART_MUTATION = gql`
+export const INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION = gql`
   mutation INCLUDE_CALIBRATIONS_IN_CART(
     $includeStandards: Boolean
     $includeArcsFlatsBiases: Boolean
