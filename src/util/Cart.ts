@@ -273,8 +273,8 @@ export type CalibrationLevel = "REDUCED" | "RAW";
  * The available calibration types
  */
 export type CalibrationType =
-  | "SPECTROPHOTOMETRIC STANDARD"
-  | "RADIAL VELOCITY STANDARD"
+  | "SPECTROPHOTOMETRIC_STANDARD"
+  | "RADIAL_VELOCITY_STANDARD"
   | "ARC"
   | "FLAT"
   | "BIAS";

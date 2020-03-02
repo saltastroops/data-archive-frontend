@@ -465,8 +465,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
 
     if (includeStandards) {
       calibrationTypes.push(
-        "SPECTROPHOTOMETRIC STANDARD",
-        "RADIAL VELOCITY STANDARD"
+        "SPECTROPHOTOMETRIC_STANDARD",
+        "RADIAL_VELOCITY_STANDARD"
       );
     }
 
