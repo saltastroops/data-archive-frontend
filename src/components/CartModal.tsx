@@ -461,23 +461,23 @@ class CartModal extends React.Component<ICart, { error: string }> {
       error: ""
     });
 
-    const calibrations: CalibrationType[] = [];
+    const calibrationTypes: CalibrationType[] = [];
 
     if (includeStandards) {
-      calibrations.push(
+      calibrationTypes.push(
         "SPECTROPHOTOMETRIC STANDARD",
         "RADIAL VELOCITY STANDARD"
       );
     }
 
     if (includeArcsFlatsBiases) {
-      calibrations.push("ARC", "FLAT", "BIAS");
+      calibrationTypes.push("ARC", "FLAT", "BIAS");
     }
     await create({
       variables: {
         dataFiles: dataFilesIds,
         includedCalibrationLevels: Array.from(includedCalibrationLevels),
-        includedCalibrationTypes: calibrations
+        includedCalibrationTypes: calibrationTypes
       }
     });
     await clearCart();
