@@ -110,11 +110,11 @@ export const typeDefs = gql`
     """
     ARC
     """
-    BIAS
+    Bias
     """
     BIAS
     """
-    FLAT
+    Flat
     """
     FLAT
   }
