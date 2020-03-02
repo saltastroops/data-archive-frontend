@@ -98,9 +98,12 @@ export const typeDefs = gql`
   """
   enum CalibrationType {
     """
-    Standards
+    Spectrophotometric standard
     """
     SPECTROPHOTOMETRIC_STANDARD
+    """
+    Radial velocity standard
+    """
     RADIAL_VELOCITY_STANDARD
     """
     Arc, Flat, Bias
