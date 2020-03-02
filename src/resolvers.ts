@@ -106,10 +106,16 @@ export const typeDefs = gql`
     """
     RADIAL_VELOCITY_STANDARD
     """
-    Arc, Flat, Bias
+    Arc
     """
     ARC
+    """
     BIAS
+    """
+    BIAS
+    """
+    FLAT
+    """
     FLAT
   }
   """
