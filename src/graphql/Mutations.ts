@@ -121,11 +121,15 @@ export const UPDATE_USER_MUTATION = gql`
   }
 `;
 export const CREATE_DATA_REQUEST = gql`
-  mutation CREATE_DATA_REQUEST($dataFiles: [Int!]!) {
+  mutation CREATE_DATA_REQUEST(
+    $dataFiles: [Int!]!
+    $includedCalibrationTypes: [CalibrationType!]
+    $includedCalibrationLevels: [CalibrationLevel!]!
+  ) {
     createDataRequest(
       dataFiles: $dataFiles
-      requestedCalibrationTypes: []
-      requestedCalibrationLevels: []
+      requestedCalibrationTypes: $includedCalibrationTypes
+      requestedCalibrationLevels: $includedCalibrationLevels
     ) {
       status
       message
