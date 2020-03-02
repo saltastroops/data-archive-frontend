@@ -48,7 +48,7 @@ export const SIGNUP_MUTATION = gql`
  * password:
  *     The password.
  * username:
- *     The uusername.
+ *     The username.
  */
 export const LOGIN_MUTATION = gql`
   mutation LOGIN_MUTATION(
@@ -123,15 +123,13 @@ export const UPDATE_USER_MUTATION = gql`
 export const CREATE_DATA_REQUEST = gql`
   mutation CREATE_DATA_REQUEST(
     $dataFiles: [Int!]!
-    $includeStandards: Boolean!
-    $includeArcsFlatsBiases: Boolean!
-    $includedCalibrationLevels: [CalibrationLevel!]
+    $includedCalibrationTypes: [CalibrationType!]
+    $includedCalibrationLevels: [CalibrationLevel!]!
   ) {
     createDataRequest(
       dataFiles: $dataFiles
-      includeStandards: $includeStandards
-      includeArcsFlatsBiases: $includeArcsFlatsBiases
-      includedCalibrationLevels: $includedCalibrationLevels
+      requestedCalibrationTypes: $includedCalibrationTypes
+      requestedCalibrationLevels: $includedCalibrationLevels
     ) {
       status
       message
