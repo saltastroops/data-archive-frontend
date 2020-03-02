@@ -471,7 +471,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
     }
 
     if (includeArcsFlatsBiases) {
-      calibrations.push("ARC", "FLATs", "BIAS");
+      calibrations.push("ARC", "FLAT", "BIAS");
     }
     await create({
       variables: {
