@@ -74,6 +74,8 @@ const USER_DATA_REQUESTS_QUERY = gql`
       madeAt
       uri
       status
+      calibrationLevels
+      calibrationTypes
       dataFiles {
         id
         name

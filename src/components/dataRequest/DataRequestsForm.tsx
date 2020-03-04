@@ -37,11 +37,15 @@ export interface IDataRequest {
   dataFiles: IDataRequestFile[];
   status: DataRequestStatus;
   uri: string;
+  calibrationLevels: string[];
+  calibrationTypes: string[];
 }
 
 export interface IDataRequestFile {
   id: string;
   name: string;
+  calibrationLevel: string;
+  calibrationType: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
