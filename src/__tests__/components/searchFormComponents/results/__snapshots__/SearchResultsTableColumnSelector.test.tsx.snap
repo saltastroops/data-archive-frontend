@@ -35,7 +35,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
         "visible": false,
       },
       Object {
-        "dataKey": "product_type.product_type",
+        "dataKey": "product_category.product_category",
         "name": "Data Category",
         "visible": true,
       },
@@ -854,7 +854,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                         "visible": true,
                       },
                       Object {
-                        "dataKey": "product_type.product_type",
+                        "dataKey": "product_category.product_category",
                         "name": "Data Category",
                         "visible": true,
                       },
@@ -1164,12 +1164,12 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                         </label>
                       </li>
                       <li
-                        key="product_type.product_type"
+                        key="product_category.product_category"
                       >
                         <label>
                           <styled.input
                             checked={true}
-                            name="product_type.product_type"
+                            name="product_category.product_category"
                             onChange={[Function]}
                             type="checkbox"
                           >
@@ -1208,14 +1208,14 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                                 }
                               }
                               forwardedRef={null}
-                              name="product_type.product_type"
+                              name="product_category.product_category"
                               onChange={[Function]}
                               type="checkbox"
                             >
                               <input
                                 checked={true}
                                 className="checkbox c2"
-                                name="product_type.product_type"
+                                name="product_category.product_category"
                                 onChange={[Function]}
                                 type="checkbox"
                               />
