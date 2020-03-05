@@ -4,6 +4,7 @@ import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import { CREATE_DATA_REQUEST } from "../../graphql/Mutations";
 import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
+import { toTitleCase } from "../../utils";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
@@ -65,7 +66,14 @@ const displayedTime = (madeAt: string) => {
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
   render() {
-    const { dataFiles, madeAt, id, status } = this.props.dataRequest;
+    const {
+      dataFiles,
+      madeAt,
+      id,
+      status,
+      calibrationLevels,
+      calibrationTypes
+    } = this.props.dataRequest;
 
     const mayDownloadAll = status === "SUCCESSFUL";
 
@@ -78,83 +86,106 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const filename = `data_request_${id}.zip`;
 
     return (
-      <Table>
-        <thead>
-          <tr>
-            <th colSpan={3}>
-              <p style={{ display: "inline-block" }}>
-                Requested {displayedTime(madeAt)}
-              </p>
-              <p
-                style={{
-                  display: "inline-block",
-                  position: "absolute",
-                  right: 0
-                }}
-              >
-                {mayDownloadAll && (
-                  <a
-                    className="button download-all is-small is-success is-rounded"
-                    href={`${
-                      process.env.REACT_APP_BACKEND_URI
-                        ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
-                        : ""
-                    }/downloads/data-requests/${id}/${filename}`}
-                  >
-                    Download all
-                  </a>
-                )}
-                {(reRequestData || tryAgain) && (
-                  <Mutation
-                    mutation={CREATE_DATA_REQUEST}
-                    refetchQueries={[
-                      {
-                        query: USER_DATA_REQUESTS_QUERY,
-                        variables: {
-                          limit: 5,
-                          startIndex: 0
+      <div className="table-container notification">
+        <Table>
+          <thead>
+            <tr>
+              <th colSpan={2}>
+                <p style={{ display: "inline-block" }}>
+                  Requested {displayedTime(madeAt)}
+                </p>
+              </th>
+              <th>
+                <p
+                  style={{
+                    textAlign: "right"
+                  }}
+                >
+                  {mayDownloadAll && (
+                    <a
+                      className="button download-all is-small is-success is-rounded"
+                      href={`${
+                        process.env.REACT_APP_BACKEND_URI
+                          ? process.env.REACT_APP_BACKEND_URI.replace(
+                              /\/+$/,
+                              ""
+                            )
+                          : ""
+                      }/downloads/data-requests/${id}/${filename}`}
+                    >
+                      Download all
+                    </a>
+                  )}
+                  {(reRequestData || tryAgain) && (
+                    <Mutation
+                      mutation={CREATE_DATA_REQUEST}
+                      refetchQueries={[
+                        {
+                          query: USER_DATA_REQUESTS_QUERY,
+                          variables: {
+                            limit: 5,
+                            startIndex: 0
+                          }
                         }
-                      }
-                    ]}
-                  >
-                    {(createDataRequest: any, { error }: any) => (
-                      <>
-                        <span>{reRequestData ? "Expired" : "Failed"}</span>
-                        <Button
-                          onClick={async () => {
-                            this.recreateDataRequest(createDataRequest);
-                          }}
-                        >
-                          {reRequestData ? "Re-request data" : "Try again"}
-                        </Button>
-                        {error ? (
-                          <ErrorMessage>
-                            {error.message
-                              .replace("Network error: ", "")
-                              .replace("GraphQL error: ", "")}
-                          </ErrorMessage>
-                        ) : null}
-                      </>
-                    )}
-                  </Mutation>
-                )}
-                {pending && <span className="request-pending">Pending</span>}
-              </p>
-            </th>
-          </tr>
-          <tr>
-            <th>Files</th>
-          </tr>
-          {dataFiles.map(file => {
-            return (
-              <tr key={file.id}>
-                <td>{file.name}</td>
-              </tr>
-            );
-          })}
-        </thead>
-        <tbody />
-      </Table>
+                      ]}
+                    >
+                      {(createDataRequest: any, { error }: any) => (
+                        <>
+                          <span>{reRequestData ? "Expired" : "Failed"}</span>
+                          <Button
+                            onClick={async () => {
+                              this.recreateDataRequest(createDataRequest);
+                            }}
+                          >
+                            {reRequestData ? "Re-request data" : "Try again"}
+                          </Button>
+                          {error ? (
+                            <ErrorMessage>
+                              {error.message
+                                .replace("Network error: ", "")
+                                .replace("GraphQL error: ", "")}
+                            </ErrorMessage>
+                          ) : null}
+                        </>
+                      )}
+                    </Mutation>
+                  )}
+                  {pending && <span className="request-pending">Pending</span>}
+                </p>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <b>Requested calibration levels:</b>{" "}
+                {calibrationLevels
+                  .map(level => toTitleCase(level))
+                  .join(", ")
+                  .replace(/,([^,]*)$/, " and $1")}
+              </td>
+              <td colSpan={2}>
+                <b>Requested calibration types:</b>{" "}
+                {calibrationTypes
+                  ? calibrationTypes
+                      .map(type => toTitleCase(type))
+                      .join(", ")
+                      .replace(/,([^,]*)$/, " and $1")
+                  : "None"}
+              </td>
+            </tr>
+            <tr>
+              <th colSpan={3}>Files</th>
+            </tr>
+            {dataFiles.map(file => {
+              return (
+                <tr key={file.id}>
+                  <td colSpan={3}>{file.name}</td>
+                </tr>
+              );
+            })}
+          </thead>
+          <tbody />
+        </Table>
+      </div>
     );
   }
 

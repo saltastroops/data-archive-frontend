@@ -276,18 +276,6 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                     <div className="calibration-level">
                                       <label>
                                         <LargeCheckbox
-                                          checked={cart.includeStandards}
-                                          onChange={
-                                            updateIncludeStandardCalibrations
-                                          }
-                                          name={"Standards"}
-                                        />{" "}
-                                        Standards
-                                      </label>
-                                    </div>
-                                    <div className="calibration-level">
-                                      <label>
-                                        <LargeCheckbox
                                           checked={cart.includeArcsFlatsBiases}
                                           onChange={
                                             updateIncludeArcsFlatsBiases
@@ -295,6 +283,18 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                           name={"ArcsFlatsBiases"}
                                         />{" "}
                                         Arcs/Flats/Biases
+                                      </label>
+                                    </div>
+                                    <div className="calibration-level">
+                                      <label>
+                                        <LargeCheckbox
+                                          checked={cart.includeStandards}
+                                          onChange={
+                                            updateIncludeStandardCalibrations
+                                          }
+                                          name={"Standards"}
+                                        />{" "}
+                                        RV and SpecPhot Standard
                                       </label>
                                     </div>
                                   </div>
