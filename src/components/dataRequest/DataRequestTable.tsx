@@ -2,9 +2,9 @@ import moment from "moment";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
+import { titleCase } from "title-case";
 import { CREATE_DATA_REQUEST } from "../../graphql/Mutations";
 import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
-import { toTitleCase } from "../../utils";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
@@ -74,7 +74,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       calibrationLevels,
       calibrationTypes
     } = this.props.dataRequest;
-
+    console.log(calibrationLevels, calibrationTypes);
     const mayDownloadAll = status === "SUCCESSFUL";
 
     const tryAgain = status === "FAILED";
@@ -158,7 +158,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               <td>
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels
-                  .map(level => toTitleCase(level))
+                  .map(level =>
+                    titleCase(level.toLowerCase().replace(/_/g, " "))
+                  )
                   .join(", ")
                   .replace(/,([^,]*)$/, " and $1")}
               </td>
@@ -166,7 +168,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration types:</b>{" "}
                 {calibrationTypes
                   ? calibrationTypes
-                      .map(type => toTitleCase(type))
+                      .map(type =>
+                        titleCase(type.toLowerCase().replace(/_/g, " "))
+                      )
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
