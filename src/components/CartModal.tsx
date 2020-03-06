@@ -290,7 +290,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         <HelpButton
                                           left={true}
                                           toolTipMessage={
-                                            "Spectrophotometric standard and Radial velocity standard"
+                                            "Spectrophotometric standard and Radial velocity standard." +
+                                            "The standard nearest to the observation is used"
                                           }
                                         />
                                       </HelpGrid>
@@ -306,6 +307,14 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         />{" "}
                                         Arcs/Flats/Biases
                                       </label>
+                                      <HelpGrid>
+                                        <HelpButton
+                                          left={true}
+                                          toolTipMessage={
+                                            "Only charged calibrations are included"
+                                          }
+                                        />
+                                      </HelpGrid>
                                     </div>
                                   </div>
                                   <div
