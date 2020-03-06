@@ -809,12 +809,17 @@ class SearchResultsTable extends React.Component<
    * Return the table width.
    */
   private tableWidth = () => {
+    // The first visible columnis a dummy column, which has the same width as the cart column.
+    // it must be excluded, otherwise the cart column with will be counted twice.
     const overallWidth =
       SearchResultsTable.CART_COLUMN_WIDTH +
-      this.visibleColumns.reduce(
-        (total: number, column, index) => total + this.columnWidth({ index }),
-        0
-      ) +
+      this.visibleColumns
+        .slice(1)
+        .reduce(
+          (total: number, column, index) =>
+            total + this.columnWidth({ index: index + 1 }),
+          0
+        ) +
       scrollbarSize();
 
     return Math.min(overallWidth, this.props.maxWidth);
