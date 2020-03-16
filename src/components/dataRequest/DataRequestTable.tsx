@@ -8,6 +8,13 @@ import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
 import { IDataRequest } from "./DataRequestsForm";
 
 /**
+ * Convert the name to title case
+ * @param name
+ */
+const displayTitleCase = (name: string) => {
+  return titleCase(name.toLowerCase().replace(/_/g, " "));
+};
+/**
  * Properties of the data request table component.
  *
  * Properties:
@@ -74,7 +81,6 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       calibrationLevels,
       calibrationTypes
     } = this.props.dataRequest;
-    console.log(calibrationLevels, calibrationTypes);
     const mayDownloadAll = status === "SUCCESSFUL";
 
     const tryAgain = status === "FAILED";
@@ -158,19 +164,15 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               <td>
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels
-                  .map(level =>
-                    titleCase(level.toLowerCase().replace(/_/g, " "))
-                  )
+                  .map(level => displayTitleCase(level))
                   .join(", ")
                   .replace(/,([^,]*)$/, " and $1")}
               </td>
               <td colSpan={2}>
                 <b>Requested calibration types:</b>{" "}
-                {calibrationTypes
+                {calibrationTypes.length
                   ? calibrationTypes
-                      .map(type =>
-                        titleCase(type.toLowerCase().replace(/_/g, " "))
-                      )
+                      .map(type => displayTitleCase(type))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
