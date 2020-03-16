@@ -16,7 +16,7 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
     name: `filename ${index}`
   })) as IDataRequestFile[];
 
-  const dataReqest = {
+  const dataRequest = {
     calibrationLevels: ["raw"],
     calibrationTypes: [],
     dataFiles,
@@ -28,7 +28,7 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
 
   return mount(
     <MockedProvider>
-      <DataRequestTable dataRequest={dataReqest} />
+      <DataRequestTable dataRequest={dataRequest} />
     </MockedProvider>
   );
 };
