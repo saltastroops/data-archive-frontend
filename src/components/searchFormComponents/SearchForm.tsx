@@ -192,7 +192,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         )}
         {error && (
           <div className="has-text-danger">
-            Network error or data archive api is not responding
+            Network or server error. Please try again later or contact
+            salthelp@salt.ac.za.
           </div>
         )}
         <div>
