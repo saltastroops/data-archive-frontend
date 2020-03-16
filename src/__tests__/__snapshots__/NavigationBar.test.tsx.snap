@@ -285,7 +285,18 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                             "kind": "Field",
                             "name": Object {
                               "kind": "Name",
-                              "value": "includeCalibrations",
+                              "value": "includeStandards",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "includeArcsFlatsBiases",
                             },
                             "selectionSet": undefined,
                           },
@@ -310,7 +321,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 190,
+              "end": 216,
               "start": 0,
             },
           }
@@ -826,7 +837,18 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                             "kind": "Field",
                             "name": Object {
                               "kind": "Name",
-                              "value": "includeCalibrations",
+                              "value": "includeStandards",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "includeArcsFlatsBiases",
                             },
                             "selectionSet": undefined,
                           },
@@ -851,7 +873,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 190,
+              "end": 216,
               "start": 0,
             },
           }
@@ -1405,7 +1427,18 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                             "kind": "Field",
                             "name": Object {
                               "kind": "Name",
-                              "value": "includeCalibrations",
+                              "value": "includeStandards",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "includeArcsFlatsBiases",
                             },
                             "selectionSet": undefined,
                           },
@@ -1430,7 +1463,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 190,
+              "end": 216,
               "start": 0,
             },
           }

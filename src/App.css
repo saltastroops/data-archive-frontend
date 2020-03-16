@@ -121,6 +121,7 @@
 
 .calibration-level {
   margin-left: 10px;
+  margin-bottom: 1em;
 }
 
 .calibration-level-section {
@@ -129,10 +130,6 @@
 
 .pagination-controls {
   text-align: center;
-}
-
-.container {
-  max-width: 80%;
 }
 
 .button.has-text-left {
