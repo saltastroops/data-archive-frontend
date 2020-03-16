@@ -171,7 +171,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               </th>
             </tr>
             <tr>
-              <td>
+              <td colSpan={3}>
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels.length
                   ? calibrationLevels
@@ -180,7 +180,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
               </td>
-              <td colSpan={2}>
+            </tr>
+            <tr>
+              <td colSpan={3}>
                 <b>Requested calibration types:</b>{" "}
                 {calibrationTypes.length
                   ? calibrationTypes
