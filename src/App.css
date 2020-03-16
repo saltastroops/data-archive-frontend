@@ -127,10 +127,8 @@
 .calibration-level-section {
   width: 400px;
 }
-.checkbox-label {
-  margin-left: 0;
-  font-size: 20px;
-  margin-bottom: 1em;
+.cart-heading {
+  margin-bottom: 1.5em;
 }
 
 .pagination-controls {
