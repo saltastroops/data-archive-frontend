@@ -12,7 +12,7 @@ import { IDataRequest } from "./DataRequestsForm";
  *
  * Properties:
  * -----------
- * word:
+ * text:
  *    The string to be converted
  *
  * Returns:
@@ -21,8 +21,8 @@ import { IDataRequest } from "./DataRequestsForm";
  *  Title case string
  *
  */
-const convertToTitleCase = (word: string) => {
-  return titleCase(word.toLowerCase().replace(/_/g, " "));
+const convertToTitleCase = (text: string) => {
+  return titleCase(text.toLowerCase().replace(/_/g, " "));
 };
 /**
  * Properties of the data request table component.
