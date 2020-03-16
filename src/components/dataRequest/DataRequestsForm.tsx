@@ -28,7 +28,7 @@ const ErrorMessage = styled.p.attrs({
 
 export interface IDataFile {
   id: string;
-  metadata: Array<{ [key: string]: any }>;
+  name: string;
 }
 
 export interface IDataRequest {
@@ -44,8 +44,6 @@ export interface IDataRequest {
 export interface IDataRequestFile {
   id: string;
   name: string;
-  calibrationLevel: string;
-  calibrationType: string;
 }
 
 export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
