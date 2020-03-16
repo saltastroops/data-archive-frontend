@@ -324,15 +324,19 @@ exports[`DataRequestTable should render correctly 1`] = `
                   </th>
                 </tr>
                 <tr>
-                  <td>
+                  <td
+                    colSpan={3}
+                  >
                     <b>
                       Requested calibration levels:
                     </b>
                      
                     Raw
                   </td>
+                </tr>
+                <tr>
                   <td
-                    colSpan={2}
+                    colSpan={3}
                   >
                     <b>
                       Requested calibration types:

@@ -4,7 +4,6 @@ import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import {
   DataRequestStatus,
-  IDataFile,
   IDataRequest,
   IDataRequestFile
 } from "../../../components/dataRequest/DataRequestsForm";
@@ -18,13 +17,13 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
   })) as IDataRequestFile[];
 
   const dataReqest = {
+    calibrationLevels: ["raw"],
+    calibrationTypes: [],
+    dataFiles,
     id: "request-1",
     madeAt: "2018-12-01 20:00",
-    dataFiles,
     status,
-    uri: `http://demo/data-request/request-1`,
-    calibrationLevels: ["raw"],
-    calibrationTypes: []
+    uri: `http://demo/data-request/request-1`
   } as IDataRequest;
 
   return mount(
