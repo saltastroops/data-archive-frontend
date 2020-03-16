@@ -809,8 +809,8 @@ class SearchResultsTable extends React.Component<
    * Return the table width.
    */
   private tableWidth = () => {
-    // The first visible column is a dummy column, which has the same width as the cart column.
-    // It must be excluded, otherwise the cart column width will be counted twice.
+    // There is no need to add the width of the shopping cart column as the first visible
+    // column is a dummy column of the same width, and it is located underneath that column.
     const overallWidth =
       this.visibleColumns.reduce(
         (total: number, column, index) => total + this.columnWidth({ index }),
