@@ -270,6 +270,9 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                   </div>
                                 </div>
                                 <div>
+                                  <div className={"checkbox-label"}>
+                                    <label>Include</label>
+                                  </div>
                                   <div
                                     className={
                                       "columns calibration-level-section"
@@ -290,8 +293,8 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         <HelpButton
                                           left={true}
                                           toolTipMessage={
-                                            "Spectrophotometric standard and Radial velocity standard." +
-                                            "The standard nearest to the observation is used"
+                                            "Spectrophotometric and radial velocity standards are included." +
+                                            "In each case the standard taken nearest to the observation is used."
                                           }
                                         />
                                       </HelpGrid>
@@ -311,7 +314,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         <HelpButton
                                           left={true}
                                           toolTipMessage={
-                                            "Only charged calibrations are included"
+                                            "Only calibrations taken as part of the observation are included."
                                           }
                                         />
                                       </HelpGrid>
