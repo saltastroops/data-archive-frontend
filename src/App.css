@@ -127,6 +127,11 @@
 .calibration-level-section {
   width: 400px;
 }
+.checkbox-label {
+  margin-left: 0;
+  font-size: 20px;
+  margin-bottom: 1em;
+}
 
 .pagination-controls {
   text-align: center;
