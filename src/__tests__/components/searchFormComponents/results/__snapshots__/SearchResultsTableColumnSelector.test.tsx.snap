@@ -1215,8 +1215,7 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                               <input
                                 checked={true}
                                 className="checkbox c2"
-                                name="product_type.product_type"
-
+                                name="product_category.product_category"
                                 onChange={[Function]}
                                 type="checkbox"
                               />
