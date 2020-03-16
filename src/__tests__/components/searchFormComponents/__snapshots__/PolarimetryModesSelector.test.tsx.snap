@@ -26,7 +26,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "sc-bwzfXH",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
               "
@@ -46,7 +46,6 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
           "styledComponentId": "sc-bwzfXH",
           "target": "div",
           "toString": [Function],
-          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -77,7 +76,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -94,7 +93,6 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -105,7 +103,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="linear"
                 onChange={[Function]}
                 type="checkbox"
@@ -136,7 +134,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -153,7 +151,6 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -164,7 +161,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="linear-hi"
                 onChange={[Function]}
                 type="checkbox"
@@ -195,7 +192,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -212,7 +209,6 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -223,7 +219,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="circular"
                 onChange={[Function]}
                 type="checkbox"
@@ -254,7 +250,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -271,7 +267,6 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -282,7 +277,7 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="all-stokes"
                 onChange={[Function]}
                 type="checkbox"
@@ -329,7 +324,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "sc-bwzfXH",
-            "isStatic": false,
+            "isStatic": true,
             "lastClassName": "c0",
             "rules": Array [
               "
@@ -349,7 +344,6 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
           "styledComponentId": "sc-bwzfXH",
           "target": "div",
           "toString": [Function],
-          "usesTheme": false,
           "warnTooManyClasses": [Function],
           "withComponent": [Function],
         }
@@ -380,7 +374,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -397,7 +391,6 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -408,7 +401,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="linear"
                 onChange={[Function]}
                 type="checkbox"
@@ -439,7 +432,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -456,7 +449,6 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -467,7 +459,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="linear-hi"
                 onChange={[Function]}
                 type="checkbox"
@@ -498,7 +490,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -515,7 +507,6 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -526,7 +517,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="circular"
                 onChange={[Function]}
                 type="checkbox"
@@ -557,7 +548,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   ],
                   "componentStyle": ComponentStyle {
                     "componentId": "sc-bdVaJa",
-                    "isStatic": false,
+                    "isStatic": true,
                     "lastClassName": "c1",
                     "rules": Array [
                       "
@@ -574,7 +565,6 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
                   "styledComponentId": "sc-bdVaJa",
                   "target": "input",
                   "toString": [Function],
-                  "usesTheme": false,
                   "warnTooManyClasses": [Function],
                   "withComponent": [Function],
                 }
@@ -585,7 +575,7 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
             >
               <input
                 checked={false}
-                className="c1 checkbox"
+                className="checkbox c1"
                 data-test="all-stokes"
                 onChange={[Function]}
                 type="checkbox"
