@@ -9,10 +9,20 @@ import { IDataRequest } from "./DataRequestsForm";
 
 /**
  * Convert the name to title case
- * @param name
+ *
+ * Properties:
+ * -----------
+ * word:
+ *    The string to be converted
+ *
+ * Returns:
+ * --------
+ * string :
+ *  Title case string
+ *
  */
-const displayTitleCase = (name: string) => {
-  return titleCase(name.toLowerCase().replace(/_/g, " "));
+const convertToTitleCase = (word: string) => {
+  return titleCase(word.toLowerCase().replace(/_/g, " "));
 };
 /**
  * Properties of the data request table component.
@@ -164,7 +174,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               <td>
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels
-                  .map(level => displayTitleCase(level))
+                  .map(level => convertToTitleCase(level))
                   .join(", ")
                   .replace(/,([^,]*)$/, " and $1")}
               </td>
@@ -172,7 +182,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration types:</b>{" "}
                 {calibrationTypes.length
                   ? calibrationTypes
-                      .map(type => displayTitleCase(type))
+                      .map(type => convertToTitleCase(type))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
