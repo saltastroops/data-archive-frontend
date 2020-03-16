@@ -114,6 +114,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -196,7 +218,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             },
@@ -342,6 +364,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -424,7 +468,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             } => Object {
@@ -532,6 +576,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -628,7 +694,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             },
@@ -737,6 +803,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -833,7 +921,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             } => Object {
@@ -941,6 +1029,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -1037,7 +1147,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             },
@@ -1152,6 +1262,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -1248,7 +1380,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -1403,6 +1535,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -1485,7 +1639,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               } => Object {
@@ -1593,6 +1747,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -1689,7 +1865,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -1798,6 +1974,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -1894,7 +2092,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               } => Object {
@@ -2002,6 +2200,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -2098,7 +2318,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -2213,6 +2433,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -2309,7 +2551,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -2468,6 +2710,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -2550,7 +2814,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 } => Object {
@@ -2658,6 +2922,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -2754,7 +3040,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -2863,6 +3149,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -2959,7 +3267,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 } => Object {
@@ -3067,6 +3375,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -3163,7 +3493,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -3278,6 +3608,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "kind": "Field",
                                     "name": Object {
                                       "kind": "Name",
+                                      "value": "calibrationLevels",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "calibrationTypes",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
                                       "value": "dataFiles",
                                     },
                                     "selectionSet": Object {
@@ -3374,7 +3726,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 232,
+                      "end": 279,
                       "start": 0,
                     },
                   },
@@ -3494,6 +3846,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                               "kind": "Field",
                               "name": Object {
                                 "kind": "Name",
+                                "value": "calibrationLevels",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "calibrationTypes",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
                                 "value": "dataFiles",
                               },
                               "selectionSet": Object {
@@ -3590,7 +3964,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
               ],
               "kind": "Document",
               "loc": Object {
-                "end": 232,
+                "end": 279,
                 "start": 0,
               },
             } => Map {},
@@ -3736,6 +4110,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -3818,7 +4214,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 } => Object {
@@ -3926,6 +4322,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -4022,7 +4440,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -4131,6 +4549,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -4227,7 +4667,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 } => Object {
@@ -4335,6 +4775,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -4431,7 +4893,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -4546,6 +5008,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "kind": "Field",
                                     "name": Object {
                                       "kind": "Name",
+                                      "value": "calibrationLevels",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "calibrationTypes",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
                                       "value": "dataFiles",
                                     },
                                     "selectionSet": Object {
@@ -4642,7 +5126,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 232,
+                      "end": 279,
                       "start": 0,
                     },
                   },
@@ -4779,6 +5263,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -4861,7 +5367,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -4981,6 +5487,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -5077,7 +5605,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -5219,6 +5747,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                     "kind": "Field",
                                     "name": Object {
                                       "kind": "Name",
+                                      "value": "calibrationLevels",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "calibrationTypes",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
                                       "value": "dataFiles",
                                     },
                                     "selectionSet": Object {
@@ -5301,7 +5851,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                     ],
                     "kind": "Document",
                     "loc": Object {
-                      "end": 232,
+                      "end": 279,
                       "start": 0,
                     },
                   },
@@ -5432,6 +5982,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -5528,7 +6100,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -5691,6 +6263,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -5773,7 +6367,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               } => Object {
@@ -5881,6 +6475,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -5977,7 +6593,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -6086,6 +6702,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -6182,7 +6820,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               } => Object {
@@ -6290,6 +6928,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                 "kind": "Field",
                                 "name": Object {
                                   "kind": "Name",
+                                  "value": "calibrationLevels",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "calibrationTypes",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
                                   "value": "dataFiles",
                                 },
                                 "selectionSet": Object {
@@ -6386,7 +7046,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 232,
+                  "end": 279,
                   "start": 0,
                 },
               },
@@ -6501,6 +7161,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                                   "kind": "Field",
                                   "name": Object {
                                     "kind": "Name",
+                                    "value": "calibrationLevels",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
+                                    "value": "calibrationTypes",
+                                  },
+                                  "selectionSet": undefined,
+                                },
+                                Object {
+                                  "alias": undefined,
+                                  "arguments": Array [],
+                                  "directives": Array [],
+                                  "kind": "Field",
+                                  "name": Object {
+                                    "kind": "Name",
                                     "value": "dataFiles",
                                   },
                                   "selectionSet": Object {
@@ -6597,7 +7279,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   ],
                   "kind": "Document",
                   "loc": Object {
-                    "end": 232,
+                    "end": 279,
                     "start": 0,
                   },
                 },
@@ -6610,7 +7292,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.4",
+        "version": "2.6.0",
         "watchQuery": [Function],
       }
     }
@@ -6724,6 +7406,28 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                             "kind": "Field",
                             "name": Object {
                               "kind": "Name",
+                              "value": "calibrationLevels",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "calibrationTypes",
+                            },
+                            "selectionSet": undefined,
+                          },
+                          Object {
+                            "alias": undefined,
+                            "arguments": Array [],
+                            "directives": Array [],
+                            "kind": "Field",
+                            "name": Object {
+                              "kind": "Name",
                               "value": "dataFiles",
                             },
                             "selectionSet": Object {
@@ -6806,7 +7510,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 232,
+              "end": 279,
               "start": 0,
             },
           }
