@@ -270,7 +270,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                   </div>
                                 </div>
                                 <div>
-                                  <div className={"checkbox-label"}>
+                                  <div className={"cart-heading"}>
                                     <label>Include</label>
                                   </div>
                                   <div
@@ -293,7 +293,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         <HelpButton
                                           left={true}
                                           toolTipMessage={
-                                            "Spectrophotometric and radial velocity standards are included." +
+                                            "Spectrophotometric and radial velocity standards are included. " +
                                             "In each case the standard taken nearest to the observation is used."
                                           }
                                         />
