@@ -24,6 +24,8 @@ import {
   INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
+import { HelpGrid, SubGrid } from "./basicComponents/Grids";
+import HelpButton from "./basicComponents/HelpButton";
 import CartFileRow from "./cart/CartFileRow";
 
 interface ICart {
@@ -268,6 +270,9 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                   </div>
                                 </div>
                                 <div>
+                                  <div className={"cart-heading"}>
+                                    <label>Include</label>
+                                  </div>
                                   <div
                                     className={
                                       "columns calibration-level-section"
@@ -284,6 +289,15 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         />{" "}
                                         Arcs/Flats/Biases
                                       </label>
+                                      <HelpGrid>
+                                        <HelpButton
+                                          left={true}
+                                          toolTipMessage={
+                                            "Spectrophotometric and radial velocity standards are included. " +
+                                            "In each case the standard taken nearest to the observation is used."
+                                          }
+                                        />
+                                      </HelpGrid>
                                     </div>
                                     <div className="calibration-level">
                                       <label>
@@ -296,6 +310,14 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         />{" "}
                                         RV and SpecPhot Standard
                                       </label>
+                                      <HelpGrid>
+                                        <HelpButton
+                                          left={true}
+                                          toolTipMessage={
+                                            "Only calibrations taken as part of the observation are included."
+                                          }
+                                        />
+                                      </HelpGrid>
                                     </div>
                                   </div>
                                   <div

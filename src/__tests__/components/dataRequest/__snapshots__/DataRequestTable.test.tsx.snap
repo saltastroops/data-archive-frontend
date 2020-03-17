@@ -218,7 +218,7 @@ exports[`DataRequestTable should render correctly 1`] = `
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.4",
+        "version": "2.6.0",
         "watchQuery": [Function],
       }
     }
@@ -271,7 +271,7 @@ exports[`DataRequestTable should render correctly 1`] = `
               ],
               "componentStyle": ComponentStyle {
                 "componentId": "sc-bdVaJa",
-                "isStatic": false,
+                "isStatic": true,
                 "lastClassName": "dPKlrP",
                 "rules": Array [
                   "
@@ -286,7 +286,6 @@ exports[`DataRequestTable should render correctly 1`] = `
               "styledComponentId": "sc-bdVaJa",
               "target": "table",
               "toString": [Function],
-              "usesTheme": false,
               "warnTooManyClasses": [Function],
               "withComponent": [Function],
             }
@@ -294,7 +293,7 @@ exports[`DataRequestTable should render correctly 1`] = `
           forwardedRef={null}
         >
           <table
-            className="table is-striped is-narrowed is-hoverable is-fullwidth"
+            className="table is-striped is-narrowed is-hoverable is-fullwidth "
           >
             <thead>
               <tr>

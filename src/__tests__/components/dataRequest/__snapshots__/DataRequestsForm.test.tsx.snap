@@ -6610,7 +6610,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.4",
+        "version": "2.6.0",
         "watchQuery": [Function],
       }
     }

@@ -185,14 +185,15 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
           </div>
         </LimitGrid>
 
-        {error && (
-          <div className="has-text-danger">
-            Network error or data archive API is not responding.
-          </div>
-        )}
         {this.state.hasSearchFormError && (
           <div className="has-text-danger">
-            Please make sure that all form content is valid.
+            Please make sure that all form content is valid
+          </div>
+        )}
+        {error && (
+          <div className="has-text-danger">
+            Network or server error. Please try again later or contact
+            salthelp@salt.ac.za.
           </div>
         )}
         <div>
@@ -207,13 +208,11 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             >
               Search
             </button>
-
             <div
               style={{
                 height: "1em"
               }}
             />
-
             <button
               className={"button is-text has-text-info has-text-left"}
               type="button"
@@ -226,7 +225,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                 height: "1em"
               }}
             />
-
             <button
               className={"button is-text has-text-left"}
               data-test="reset-all-button"
@@ -234,12 +232,12 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             >
               reset all
             </button>
-
             <div
               style={{
                 height: "1em"
               }}
             />
+            >>>>>>>>> Temporary merge branch 2
           </ButtonGrid>
         </div>
       </SearchGrid>

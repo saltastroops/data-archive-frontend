@@ -5,7 +5,7 @@
  */
 const DataKeys = {
   CART: "cart",
-  DATA_CATEGORY: "product_type.product_type",
+  DATA_CATEGORY: "product_category.product_category",
   DATA_FILE_FILENAME: "artifact.name",
   DATA_FILE_ID: "artifact.artifact_id",
   DETECTOR_MODE: "detector_mode.detector_mode",
