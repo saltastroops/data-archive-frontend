@@ -62,12 +62,21 @@ const ButtonGrid = styled.div.attrs({
   className: "grid-item"
 })`
   display: grid;
-  grid-template-columns: 5% 10% 15% 10% 5% 45%
+  grid-template-columns: 8% 10% 20% 10% 8% 34%
   border: 1px solid rgba(255, 255, 255, 0);
   text-align: left;
 
   @media (max-width: 1272px) {
-    grid-template-columns: 20%
+    grid-template-columns: 22%
+  }
+  @media (max-width: 1192px) {
+    grid-template-columns: 30%
+  }
+  @media (max-width: 764px) {
+    grid-template-columns: 40%
+  }
+  @media (max-width: 598px) {
+    grid-template-columns: 50%
   }
 `;
 

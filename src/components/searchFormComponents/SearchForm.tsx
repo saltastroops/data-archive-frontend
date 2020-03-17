@@ -16,7 +16,6 @@ import {
   ParentGridSingle,
   ProposalGrid,
   SearchGrid,
-  SubGrid,
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
@@ -237,7 +236,6 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
                 height: "1em"
               }}
             />
-            >>>>>>>>> Temporary merge branch 2
           </ButtonGrid>
         </div>
       </SearchGrid>
