@@ -226,6 +226,10 @@ exports[`DataRequestTable should render correctly 1`] = `
     <DataRequestTable
       dataRequest={
         Object {
+          "calibrationLevels": Array [
+            "RAW",
+          ],
+          "calibrationTypes": Array [],
           "dataFiles": Array [
             Object {
               "id": "file-0",
@@ -259,100 +263,129 @@ exports[`DataRequestTable should render correctly 1`] = `
         }
       }
     >
-      <styled.table>
-        <StyledComponent
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [
-                Object {
-                  "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
-                },
-              ],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "dPKlrP",
-                "rules": Array [
-                  "
+      <div
+        className="table-container notification"
+      >
+        <styled.table>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bdVaJa",
+                  "isStatic": true,
+                  "lastClassName": "dPKlrP",
+                  "rules": Array [
+                    "
   && {
   }
 ",
-                ],
-              },
-              "displayName": "styled.table",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "table",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
+                  ],
+                },
+                "displayName": "styled.table",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bdVaJa",
+                "target": "table",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
             }
-          }
-          forwardedRef={null}
-        >
-          <table
-            className="table is-striped is-narrowed is-hoverable is-fullwidth "
+            forwardedRef={null}
           >
-            <thead>
-              <tr>
-                <th
-                  colSpan={3}
-                >
-                  <p
-                    style={
-                      Object {
-                        "display": "inline-block",
-                      }
-                    }
+            <table
+              className="table is-striped is-narrowed is-hoverable is-fullwidth "
+            >
+              <thead>
+                <tr>
+                  <th
+                    colSpan={2}
                   >
-                    Requested 
-                    on 1 Dec 2018 at 20:00
-                  </p>
-                  <p
-                    style={
-                      Object {
-                        "display": "inline-block",
-                        "position": "absolute",
-                        "right": 0,
+                    <p
+                      style={
+                        Object {
+                          "display": "inline-block",
+                        }
                       }
-                    }
-                  >
-                    <a
-                      className="button download-all is-small is-success is-rounded"
-                      href="http://test/downloads/data-requests/request-1/data_request_request-1.zip"
                     >
-                      Download all
-                    </a>
-                  </p>
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  Files
-                </th>
-              </tr>
-              <tr
-                key="file-0"
-              >
-                <td />
-              </tr>
-              <tr
-                key="file-1"
-              >
-                <td />
-              </tr>
-              <tr
-                key="file-2"
-              >
-                <td />
-              </tr>
-            </thead>
-            <tbody />
-          </table>
-        </StyledComponent>
-      </styled.table>
+                      Requested 
+                      on 1 Dec 2018 at 20:00
+                    </p>
+                  </th>
+                  <th>
+                    <p
+                      style={
+                        Object {
+                          "textAlign": "right",
+                        }
+                      }
+                    >
+                      <a
+                        className="button download-all is-small is-success is-rounded"
+                        href="http://test/downloads/data-requests/request-1/data_request_request-1.zip"
+                      >
+                        Download all
+                      </a>
+                    </p>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <b>
+                      Requested calibration levels:
+                    </b>
+                     
+                    Raw
+                  </td>
+                  <td
+                    colSpan={2}
+                  >
+                    <b>
+                      Requested calibration types:
+                    </b>
+                     
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    colSpan={3}
+                  >
+                    Files
+                  </th>
+                </tr>
+                <tr
+                  key="file-0"
+                >
+                  <td
+                    colSpan={3}
+                  />
+                </tr>
+                <tr
+                  key="file-1"
+                >
+                  <td
+                    colSpan={3}
+                  />
+                </tr>
+                <tr
+                  key="file-2"
+                >
+                  <td
+                    colSpan={3}
+                  />
+                </tr>
+              </thead>
+              <tbody />
+            </table>
+          </StyledComponent>
+        </styled.table>
+      </div>
     </DataRequestTable>
   </ApolloProvider>
 </MockedProvider>

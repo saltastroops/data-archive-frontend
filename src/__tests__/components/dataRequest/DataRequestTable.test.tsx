@@ -22,6 +22,8 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
 
   const dataReqest = {
     dataFiles,
+    calibrationLevels: ["RAW"],
+    calibrationTypes: [],
     id: "request-1",
     madeAt: "2018-12-01 20:00",
     status,
