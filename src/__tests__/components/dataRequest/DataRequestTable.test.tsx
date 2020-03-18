@@ -4,23 +4,21 @@ import * as React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import {
   DataRequestStatus,
-  IDataFile,
-  IDataRequest
+  IDataRequest,
+  IDataRequestFile
 } from "../../../components/dataRequest/DataRequestsForm";
 import DataRequestTable from "../../../components/dataRequest/DataRequestTable";
 import DataKeys from "../../../components/searchFormComponents/results/DataKeys";
 
 const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
-  const df: IDataFile = {
-    id: `file-${1}a`,
-    metadata: [{ [DataKeys.DATA_FILE_FILENAME]: `filename ${1}a` }]
-  };
   const dataFiles = ["1", "2", "3"].map((id, index) => ({
     id: `file-${index}`,
-    metadata: [{ [DataKeys.DATA_FILE_FILENAME]: `filename ${index}` }]
-  })) as IDataFile[];
+    name: `filename ${index}`
+  })) as IDataRequestFile[];
 
-  const dataReqest = {
+  const dataRequest = {
+    calibrationLevels: ["raw"],
+    calibrationTypes: [],
     dataFiles,
     id: "request-1",
     madeAt: "2018-12-01 20:00",
@@ -30,7 +28,7 @@ const dummyDataRequestsWrapper = (status: DataRequestStatus) => {
 
   return mount(
     <MockedProvider>
-      <DataRequestTable dataRequest={dataReqest} />
+      <DataRequestTable dataRequest={dataRequest} />
     </MockedProvider>
   );
 };
