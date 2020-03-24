@@ -283,7 +283,9 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     // Check that the radius is not too large
     if (searchConeRadiusValue > MAXIMUM_COORDINATE_SEARCH_RADIUS) {
       throw new Error(
-        `The radius for a cone search must not be greater than ${MAXIMUM_COORDINATE_SEARCH_RADIUS} degrees.`
+        `The search radius for a search around a target position must not be greater than ${MAXIMUM_COORDINATE_SEARCH_RADIUS} degree${
+          MAXIMUM_COORDINATE_SEARCH_RADIUS !== 1 ? "s" : ""
+        }.`
       );
     }
   }
