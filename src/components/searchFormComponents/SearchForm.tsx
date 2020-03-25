@@ -194,7 +194,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
           <div className="has-text-danger">
             {error.message
               ? error.message
-              : "Network or server error. Please try again later or contact salthelp@salt.ac.za."}
+              : "Something's wrong. Please try again later or contact salthelp@salt.ac.za."}
           </div>
         )}
         <div>
