@@ -269,6 +269,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                   ) : (
                     <ResultsPlaceholder>
                       {!loading &&
+                        !error &&
                         results &&
                         results.length === 0 &&
                         this.state.where && (
