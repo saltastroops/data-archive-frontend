@@ -219,9 +219,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     // includes calibrations if the initial request included them)
     await create({
       variables: {
+        dataFiles: dataFileIds,
         includedCalibrationLevels: calibrationLevels,
-        includedCalibrationTypes: calibrationTypes,
-        dataFiles: dataFileIds
+        includedCalibrationTypes: calibrationTypes
       }
     });
   };
