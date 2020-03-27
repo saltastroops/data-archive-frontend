@@ -210,6 +210,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
   }
 
   recreateDataRequest = async (create: any) => {
+    const { calibrationLevels, calibrationTypes } = this.props.dataRequest;
     const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
       parseInt(file.id, 10)
     );
@@ -218,8 +219,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     // includes calibrations if the initial request included them)
     await create({
       variables: {
-        dataFiles: dataFileIds,
-        includeCalibrations: false
+        includedCalibrationLevels: calibrationLevels,
+        includedCalibrationTypes: calibrationTypes,
+        dataFiles: dataFileIds
       }
     });
   };
