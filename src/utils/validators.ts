@@ -193,7 +193,9 @@ export const validateRightAscension = (ra: string): string | undefined => {
  *    The validation error, or undefined if the string is valid.
  */
 export const validateSearchConeRadius = (
-  radius: string
+  radius: string,
+  rightAscension: string | undefined,
+  declination: string | undefined
 ): string | undefined => {
   // Empty strings are valid
   if (!radius) {
@@ -203,6 +205,9 @@ export const validateSearchConeRadius = (
   // Validate the radius value
   if (!isFloat(radius) || Number(radius) <= 0) {
     return "The cone search radius must be a positive number.";
+  }
+  if (!rightAscension || !declination) {
+    return "Search radius can only be provided when both right ascension and declination are provided.";
   }
 
   // The radius value is valid
