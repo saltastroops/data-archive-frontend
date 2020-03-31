@@ -110,11 +110,6 @@ const validateLoginForm = (loginInput: {
     errors.username = `Username cannot be empty.`;
   }
 
-  // Check if the submitted username contains upper case characters
-  if (loginInput.username !== loginInput.username.toLowerCase()) {
-    errors.username = "Username must be in lowercase";
-  }
-
   // Check if the password is secure enough
   if (loginInput.password.length <= 6) {
     errors.password = "Password should be at least 7 characters long";
