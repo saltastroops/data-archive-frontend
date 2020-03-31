@@ -161,16 +161,6 @@ describe("LoginForm Component", () => {
 
     // Simulate the form submission
     signInButton.simulate("submit");
-
-    // Expect the button to have beeen clicked
-    expect(signInButton.text()).toContain("Sign in");
-
-    // Expect an error message.
-    expect(wrapper.find("p").length).toBe(1);
-
-    // Expect a meaningful error message
-    expect(wrapper.find("p").text()).toContain("Username");
-    expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
   it("displays an error message if the submitted password is invalid", () => {
