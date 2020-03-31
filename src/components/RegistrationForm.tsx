@@ -90,11 +90,6 @@ const validateRegistrationField = (
     errors.username = `Username cannot be empty.`;
   }
 
-  // // Check if the submitted username contains upper case characters.
-  // if (registrationInput.username !== registrationInput.username.toLowerCase()) {
-  //   errors.username = "Username must be in lowercase";
-  // }
-
   // Check if the submitted email address is valid.
   if (!validate(registrationInput.email, { minDomainAtoms: 2 })) {
     errors.email = "Email address is invalid";
