@@ -89,14 +89,6 @@ const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
     errors.email = "Email address is invalid";
   }
 
-  // Check if the new username contains upper case characters.
-  if (
-    updateInput.username &&
-    updateInput.username !== updateInput.username.toLowerCase()
-  ) {
-    errors.username = "Username must be in lowercase";
-  }
-
   // Check if the new password is secure enough.
   if (updateInput.newPassword && updateInput.newPassword.length <= 6) {
     errors.newPassword = "Password should be at least 7 characters long";

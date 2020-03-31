@@ -180,38 +180,6 @@ describe("UserUpdateForm Component", () => {
     expect(wrapper.find("p").text()).toContain("invalid");
   });
 
-  it("displays an error message if an invalid username is submitted", () => {
-    const user = mockUser({
-      authProvider: "SSDA",
-      familyName: "surname",
-      givenName: "name",
-      isAdmin: false
-    });
-
-    // UserUpdateForm component wrapper.
-    const wrapper = mount(
-      <MockedProvider>
-        <UserUpdateForm user={user} />
-      </MockedProvider>
-    );
-
-    // Simulate state change when the password input field value changes.
-    inputTyping(wrapper, "password", "oldpassword");
-
-    // Simulate state change when the username input field value changes.
-    inputTyping(wrapper, "username", "Updateusername");
-
-    // Simulate the submitting of the form.
-    wrapper.find('[data-test="update"]').simulate("submit");
-
-    // Expect an error message.
-    expect(wrapper.find("p").length).toBe(1);
-
-    // Expect meaningful error message
-    expect(wrapper.find("p").text()).toContain("Username");
-    expect(wrapper.find("p").text()).toContain("lowercase");
-  });
-
   it("displays an error message if an invalid password is submitted", () => {
     const user = mockUser({
       authProvider: "SSDA",
