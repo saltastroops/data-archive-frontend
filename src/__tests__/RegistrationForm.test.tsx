@@ -195,7 +195,7 @@ describe("RegistrationForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    // Simulate the submiting of the form.
+    // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
@@ -229,7 +229,7 @@ describe("RegistrationForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    // Simulate the submiting of the form.
+    // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
@@ -263,7 +263,7 @@ describe("RegistrationForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    // Simulate the submiting of the form.
+    // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
@@ -272,33 +272,6 @@ describe("RegistrationForm Component", () => {
     // Expect meaningful error message
     expect(wrapper.find("p").text()).toContain("Email address");
     expect(wrapper.find("p").text()).toContain("invalid");
-  });
-
-  it("displays an error message if an invalid username is submitted", () => {
-    // RegistrationForm component wrapper.
-    const wrapper = mount(
-      <MockedProvider>
-        <RegistrationForm />
-      </MockedProvider>
-    );
-
-    // RegistrationForm component instance
-    const instance = wrapper.find("RegistrationForm").instance() as any;
-
-    // Set the state with valid information
-    instance.setState({ userInput: updatedState.userInput });
-
-    // Spy on the setState function.
-    const setState = jest.spyOn(instance, "setState");
-
-    // Simulate state change when the username input field value changes.
-    inputTyping(wrapper, "username", "sJ");
-
-    // Expect setState to have been called
-    expect(setState.mock.calls.length).toBe(1);
-
-    // Simulate the submiting of the form.
-    wrapper.find('[data-test="signUp"]').simulate("submit");
   });
 
   it("displays an error message if an invalid password is submitted", () => {
@@ -324,7 +297,7 @@ describe("RegistrationForm Component", () => {
     // Expect setState to have been called
     expect(setState.mock.calls.length).toBe(1);
 
-    // Simulate the submiting of the form.
+    // Simulate the submitting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
 
     // Expect an error message.
