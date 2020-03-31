@@ -299,13 +299,6 @@ describe("RegistrationForm Component", () => {
 
     // Simulate the submiting of the form.
     wrapper.find('[data-test="signUp"]').simulate("submit");
-
-    // Expect an error message.
-    expect(wrapper.find("p").length).toBe(1);
-
-    // Expect meaningful error message
-    expect(wrapper.find("p").text()).toContain("Username");
-    expect(wrapper.find("p").text()).toContain("lowercase");
   });
 
   it("displays an error message if an invalid password is submitted", () => {
