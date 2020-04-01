@@ -100,7 +100,9 @@ export const validateDate = (date: string): string | undefined => {
  * string :
  *    The validation error, or undefined if the string is valid.
  */
-export const validateDeclination = (dec: string): string | undefined => {
+export const validateDeclination = (
+  dec: string | undefined
+): string | undefined => {
   // Empty strings are valid
   if (!dec) {
     return undefined;
@@ -148,7 +150,9 @@ export const validateDeclination = (dec: string): string | undefined => {
  * string :
  *    The validation error, or undefined if the string is valid.
  */
-export const validateRightAscension = (ra: string): string | undefined => {
+export const validateRightAscension = (
+  ra: string | undefined
+): string | undefined => {
   // Empty strings are valid
   if (!ra) {
     return undefined;

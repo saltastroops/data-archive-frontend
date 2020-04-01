@@ -223,6 +223,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
   const rightAscensions = targetPosition.rightAscensions;
   const declinations = targetPosition.declinations;
   const radius = targetPosition.searchConeRadius;
+  console.log("XXX: ", rightAscensions, declinations);
   if (rightAscensions.length === 1 && declinations.length === 1) {
     // Cone search
     conditions.push(
@@ -236,7 +237,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     );
   } else {
     // Right ascension range
-    if (rightAscensions.length) {
+    if (rightAscensions.length == 2) {
       const ra1 = rightAscensions[0];
       const ra2 = rightAscensions[1];
       if (ra1 < ra2) {
@@ -260,11 +261,24 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     }
 
     // Declination range
-    if (declinations.length) {
-      conditions.push(
-        greaterEqual(DataKeys.TARGET_DECLINATION, declinations[0])
-      );
-      conditions.push(lessEqual(DataKeys.TARGET_DECLINATION, declinations[1]));
+    if (declinations.length == 2) {
+      const dec1 = declinations[0];
+      const dec2 = declinations[1];
+      if (dec1 < dec2) {
+        conditions.push(
+          greaterEqual(DataKeys.TARGET_DECLINATION, declinations[0])
+        );
+        conditions.push(
+          lessEqual(DataKeys.TARGET_DECLINATION, declinations[1])
+        );
+      } else {
+        conditions.push(
+          greaterEqual(DataKeys.TARGET_DECLINATION, declinations[1])
+        );
+        conditions.push(
+          lessEqual(DataKeys.TARGET_DECLINATION, declinations[0])
+        );
+      }
     }
   }
 
