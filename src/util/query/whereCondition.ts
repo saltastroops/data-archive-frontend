@@ -223,7 +223,6 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
   const rightAscensions = targetPosition.rightAscensions;
   const declinations = targetPosition.declinations;
   const radius = targetPosition.searchConeRadius;
-  console.log("XXX: ", rightAscensions, declinations);
   if (rightAscensions.length === 1 && declinations.length === 1) {
     // Cone search
     conditions.push(
@@ -261,7 +260,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     }
 
     // Declination range
-    if (declinations.length == 2) {
+    if (declinations.length) {
       const dec1 = declinations[0];
       const dec2 = declinations[1];
       if (dec1 < dec2) {
