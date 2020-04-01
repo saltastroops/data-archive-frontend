@@ -260,7 +260,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     }
 
     // Declination range
-    if (declinations.length) {
+    if (declinations.length === 2) {
       const dec1 = declinations[0];
       const dec2 = declinations[1];
       if (dec1 < dec2) {
