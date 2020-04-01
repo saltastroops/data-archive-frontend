@@ -132,47 +132,6 @@ describe("LoginForm Component", () => {
     expect(wrapper.find("p").length).toBe(0);
   });
 
-  it("displays an error message if the submitted username is invalid", async () => {
-    // LoginForm component wrapper.
-    const wrapper = mount(
-      <MockedProvider>
-        <MemoryRouter initialEntries={["/login"]}>
-          <LoginForm />
-        </MemoryRouter>
-      </MockedProvider>
-    );
-
-    // LoginForm component instance
-    const instance = wrapper.find("LoginForm").instance() as any;
-
-    // Set the state with valid information
-    instance.setState({ userInput: updatedState.userInput });
-
-    // Spy on the setState function.
-    const setState = jest.spyOn(instance, "setState");
-
-    // Simulate state change when the username input field value changes.
-    inputTyping(wrapper, "username", "sJ");
-
-    // Expect setState to have been called
-    expect(setState.mock.calls.length).toBe(1);
-
-    const signInButton = wrapper.find('[data-test="signIn"]');
-
-    // Simulate the form submission
-    signInButton.simulate("submit");
-
-    // Expect the button to have beeen clicked
-    expect(signInButton.text()).toContain("Sign in");
-
-    // Expect an error message.
-    expect(wrapper.find("p").length).toBe(1);
-
-    // Expect a meaningful error message
-    expect(wrapper.find("p").text()).toContain("Username");
-    expect(wrapper.find("p").text()).toContain("lowercase");
-  });
-
   it("displays an error message if the submitted password is invalid", () => {
     // LoginForm component wrapper
     const wrapper = mount(
