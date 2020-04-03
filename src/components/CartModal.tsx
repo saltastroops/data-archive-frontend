@@ -472,7 +472,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
     includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
-    // If there is at leaast one data file in the data request
+    // If there is no data file in the data request, raise an error and abort data request creation
     if (!this.isDatafileIncluded(dataFilesIds)) {
       this.setState({
         error:
@@ -514,12 +514,12 @@ class CartModal extends React.Component<ICart, { error: string }> {
     await clearCart();
   };
 
-  // Checks if one of the calibration level, reduced or raw, is included.
+  // Check if one of the calibration levels, reduced or raw, is included.
   isCalibrationLevelIncluded(includedCalibrationLevels: Set<CalibrationLevel>) {
     return includedCalibrationLevels.size > 0;
   }
 
-  // Check if there is at least one data file id on the request
+  // Check if there is at least one data file id in the request
   isDatafileIncluded(dataFileIds: number[]) {
     return dataFileIds.length > 0;
   }
