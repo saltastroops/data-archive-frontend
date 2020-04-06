@@ -306,12 +306,12 @@ export const validatedTarget = async (target: ITarget) => {
       declination:
         raDecChangeError && raDecChangeError.declination
           ? raDecChangeError.declination
-          : validateDeclination(target.declination || ""),
+          : validateDeclination(target.declination),
       name: targetNameError,
       rightAscension:
         raDecChangeError && raDecChangeError.rightAscension
           ? raDecChangeError.rightAscension
-          : validateRightAscension(target.rightAscension || ""),
+          : validateRightAscension(target.rightAscension),
       searchConeRadius: validateSearchConeRadius(
         target.searchConeRadius,
         target.rightAscension,
