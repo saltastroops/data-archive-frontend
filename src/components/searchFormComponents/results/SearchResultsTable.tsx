@@ -535,7 +535,7 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              {rowDatum.meta.available ? (
+              {rowDatum.meta.available && (
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
@@ -543,7 +543,7 @@ class SearchResultsTable extends React.Component<
                     this.updateCart(e, [file], addToCart, removeFromCart)
                   }
                 />
-              ) : null}
+              )}
             </span>
           </div>
         );
@@ -562,14 +562,14 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {rowDatum.meta.observation.available ? (
+              {rowDatum.meta.observation.available && (
                 <LargeCheckbox
                   checked={allInCart}
                   onChange={e =>
                     this.updateCart(e, files, addToCart, removeFromCart)
                   }
                 />
-              ) : null}
+              )}
             </span>
           </div>
         );
