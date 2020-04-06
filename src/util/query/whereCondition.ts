@@ -261,23 +261,13 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
 
     // Declination range
     if (declinations.length === 2) {
-      const dec1 = declinations[0];
-      const dec2 = declinations[1];
-      if (dec1 < dec2) {
-        conditions.push(
-          greaterEqual(DataKeys.TARGET_DECLINATION, declinations[0])
-        );
-        conditions.push(
-          lessEqual(DataKeys.TARGET_DECLINATION, declinations[1])
-        );
-      } else {
-        conditions.push(
-          greaterEqual(DataKeys.TARGET_DECLINATION, declinations[1])
-        );
-        conditions.push(
-          lessEqual(DataKeys.TARGET_DECLINATION, declinations[0])
-        );
-      }
+      let minDec =
+        declinations[0] < declinations[1] ? declinations[0] : declinations[1];
+      let maxDec =
+        declinations[0] < declinations[1] ? declinations[1] : declinations[0];
+
+      conditions.push(greaterEqual(DataKeys.TARGET_DECLINATION, minDec));
+      conditions.push(lessEqual(DataKeys.TARGET_DECLINATION, maxDec));
     }
   }
 
