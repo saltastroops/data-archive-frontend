@@ -364,13 +364,13 @@ Object {
     Object {
       "GREATER_EQUAL": Object {
         "column": "position.dec",
-        "value": -11,
+        "value": -12,
       },
     },
     Object {
       "LESS_EQUAL": Object {
         "column": "position.dec",
-        "value": -12,
+        "value": -11,
       },
     },
   ],
