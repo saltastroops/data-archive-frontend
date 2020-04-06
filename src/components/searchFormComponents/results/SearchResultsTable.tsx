@@ -535,13 +535,15 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              <LargeCheckbox
-                data-test="observation-header-input"
-                checked={cart.contains(file.cartContent)}
-                onChange={e =>
-                  this.updateCart(e, [file], addToCart, removeFromCart)
-                }
-              />
+              {rowDatum.meta.available && (
+                <LargeCheckbox
+                  data-test="observation-header-input"
+                  checked={cart.contains(file.cartContent)}
+                  onChange={e =>
+                    this.updateCart(e, [file], addToCart, removeFromCart)
+                  }
+                />
+              )}
             </span>
           </div>
         );
@@ -560,12 +562,14 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              <LargeCheckbox
-                checked={allInCart}
-                onChange={e =>
-                  this.updateCart(e, files, addToCart, removeFromCart)
-                }
-              />
+              {rowDatum.meta.observation.available && (
+                <LargeCheckbox
+                  checked={allInCart}
+                  onChange={e =>
+                    this.updateCart(e, files, addToCart, removeFromCart)
+                  }
+                />
+              )}
             </span>
           </div>
         );
@@ -659,7 +663,11 @@ class SearchResultsTable extends React.Component<
         cart.contains(file.cartContent)
       );
       if (columnIndex === 1) {
-        return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
+        if (rowDatum.meta.observation.available) {
+          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
+        } else {
+          return <i>Proprietary</i>;
+        }
       } else {
         return "";
       }
