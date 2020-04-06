@@ -236,7 +236,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
     );
   } else {
     // Right ascension range
-    if (rightAscensions.length == 2) {
+    if (rightAscensions.length === 2) {
       const ra1 = rightAscensions[0];
       const ra2 = rightAscensions[1];
       if (ra1 < ra2) {
@@ -261,9 +261,9 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
 
     // Declination range
     if (declinations.length === 2) {
-      let minDec =
+      const minDec =
         declinations[0] < declinations[1] ? declinations[0] : declinations[1];
-      let maxDec =
+      const maxDec =
         declinations[0] < declinations[1] ? declinations[1] : declinations[0];
 
       conditions.push(greaterEqual(DataKeys.TARGET_DECLINATION, minDec));
