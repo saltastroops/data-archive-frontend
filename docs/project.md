@@ -12,7 +12,7 @@ cd /path/to/root/folder
 Use `create-react-app` to create a new React app.
 
 ```cfml
-create-react-app frontend --scripts-version=react-scripts-ts
+create-react-app frontend --template typescript
 ```
 
 The above command will create a react application of name frontend and, the 
