@@ -1,7 +1,7 @@
 import {
-  faShoppingCart,
   faInfo,
-  faInfoCircle
+  faInfoCircle,
+  faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import scrollbarSize from "dom-helpers/util/scrollbarSize";
