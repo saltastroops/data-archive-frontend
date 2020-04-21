@@ -12,6 +12,7 @@ const DataKeys = {
   EXPOSURE_TIME: "observation_time.exposure_time",
   FILTER: "filter.name",
   HRS_MODE: "hrs_mode.hrs_mode",
+  INFO: "info",
   INSTRUMENT_MODE: "instrument_mode.instrument_mode",
   INSTRUMENT_NAME: "instrument.name",
   MAXIMUM_WAVELENGTH: "energy.max_wavelength",

@@ -32,6 +32,11 @@ export function searchResultsTableColumns(
       name: "Observation",
       visible: true
     },
+    {
+      dataKey: DataKeys.INFO,
+      name: "Info",
+      visible: true
+    },
     ...sort(
       tableColumns.filter(
         column => column.dataKey !== DataKeys.OBSERVATION_NAME && column.visible

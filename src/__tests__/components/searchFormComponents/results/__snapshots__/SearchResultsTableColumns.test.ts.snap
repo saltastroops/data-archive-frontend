@@ -12,6 +12,11 @@ Array [
     "name": "Observation",
     "visible": true,
   },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
+    "visible": true,
+  },
 ]
 `;
 
@@ -27,6 +32,11 @@ Array [
     "name": "Observation",
     "visible": true,
   },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
+    "visible": true,
+  },
 ]
 `;
 
@@ -40,6 +50,11 @@ Array [
   Object {
     "dataKey": "observation_group.name",
     "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
     "visible": true,
   },
 ]

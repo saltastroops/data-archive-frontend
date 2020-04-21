@@ -71,6 +71,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
         "visible": false,
       },
       Object {
+        "dataKey": "info",
+        "name": "info",
+        "visible": false,
+      },
+      Object {
         "dataKey": "instrument_mode.instrument_mode",
         "name": "Instrument Mode",
         "visible": false,

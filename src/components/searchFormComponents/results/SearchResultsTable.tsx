@@ -1,4 +1,8 @@
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faInfo,
+  faInfoCircle
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
@@ -610,6 +614,14 @@ class SearchResultsTable extends React.Component<
     }
     if (!rowDatum.meta.observationHeader) {
       // A normal table row
+      if (dataKey === DataKeys.INFO) {
+        if (rowDatum[DataKeys.OBSERVATION_STATUS] === "Rejected") {
+          return (
+            <FontAwesomeIcon icon={faInfo} color={"hsl(348, 100%, 61%)"} />
+          );
+        }
+      }
+
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         if (rowDatum[DataKeys.DATA_FILE_ID]) {
           return rowDatum.meta.available ? (
