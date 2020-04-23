@@ -1,13 +1,12 @@
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import styled from "styled-components";
 
-interface IWarningButtonProps {
+interface IWarningTooltipProps {
   toolTipMessage: string;
 }
 
-class WarningButton extends React.Component<IWarningButtonProps, any> {
+class WarningTooltip extends React.Component<IWarningTooltipProps, any> {
   render() {
     const { toolTipMessage } = this.props;
     return (
@@ -20,4 +19,4 @@ class WarningButton extends React.Component<IWarningButtonProps, any> {
     );
   }
 }
-export default WarningButton;
+export default WarningTooltip;

@@ -23,7 +23,7 @@ import {
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
-import WarningButton from "../../basicComponents/WarningButton";
+import WarningTooltip from "../../basicComponents/WarningButton";
 import { JS9ViewContext } from "../../JS9View";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
@@ -505,11 +505,11 @@ class SearchResultsTable extends React.Component<
                                       )}
                                     </AutoSizer>
                                   </GridColumn>
-                                  <ReactTooltip />
                                 </GridRow>
                               );
                             }}
                           </ScrollSync>
+                          <ReactTooltip />
                         </div>
                       </>
                     )}
@@ -634,9 +634,9 @@ class SearchResultsTable extends React.Component<
       if (dataKey === DataKeys.INFO) {
         if (rowDatum[DataKeys.OBSERVATION_STATUS] === "Rejected") {
           return (
-            <WarningButton
+            <WarningTooltip
               toolTipMessage={
-                "This observation is marked as deleted, its data could be incorrect."
+                "This observation is marked as rejected. Its data might not be of science grade.."
               }
             />
           );
@@ -644,9 +644,9 @@ class SearchResultsTable extends React.Component<
 
         if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Science Verification") {
           return (
-            <WarningButton
+            <WarningTooltip
               toolTipMessage={
-                "This observation belongs to a proposal which is for science verication. Its data could be incorrect."
+                "This observation belongs to a proposal which is for science verification. Its data might not be of science grade."
               }
             />
           );
@@ -654,9 +654,9 @@ class SearchResultsTable extends React.Component<
 
         if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Commissioning") {
           return (
-            <WarningButton
+            <WarningTooltip
               toolTipMessage={
-                "This observation belongs to a proposal which is commissioned. Its data could be incorrect."
+                "This observation belongs to a commissioning proposal. Its data might not be of science grade."
               }
             />
           );
