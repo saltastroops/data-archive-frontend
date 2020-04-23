@@ -35,7 +35,8 @@ export function searchResultsTableColumns(
     {
       dataKey: DataKeys.INFO,
       name: "Info",
-      visible: true
+      visible: true,
+      width: 50
     },
     ...sort(
       tableColumns.filter(
@@ -133,6 +134,8 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
       return { dataKey, name: "PI", visible: false };
     case DataKeys.PROPOSAL_TITLE:
       return { dataKey, name: "Proposal Title", visible: false };
+    case DataKeys.PROPOSAL_TYPE:
+      return { dataKey, name: "Proposal Type", visible: false };
     case DataKeys.RSS_FABRY_PEROT_MODE:
       return { dataKey, name: "RSS Fabry-Perot Mode", visible: false };
     case DataKeys.RSS_GRATING:

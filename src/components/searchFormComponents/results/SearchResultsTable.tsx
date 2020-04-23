@@ -1,14 +1,12 @@
-import {
-  faInfo,
-  faInfoCircle,
-  faShoppingCart
-} from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
+import { debounce } from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import Query from "react-apollo/Query";
+import ReactTooltip from "react-tooltip";
 import {
   AutoSizer,
   Grid,
@@ -25,6 +23,7 @@ import {
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import WarningButton from "../../basicComponents/WarningButton";
 import { JS9ViewContext } from "../../JS9View";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
@@ -155,6 +154,12 @@ function cmp(
 
   return 0;
 }
+
+// Handle tooltip to rebuild when the component is rendered.
+const rebuildTooltip = debounce(() => ReactTooltip.rebuild(), 200, {
+  leading: false,
+  trailing: true
+});
 
 /**
  * The table of search results.
@@ -331,6 +336,11 @@ class SearchResultsTable extends React.Component<
     };
   }
 
+  componentDidMount() {
+    // Rebuild the tooltip when it is re-rendered.
+    rebuildTooltip();
+  }
+
   /**
    * Render the search results table.
    *
@@ -385,7 +395,10 @@ class SearchResultsTable extends React.Component<
                           <ScrollSync>
                             {({ onScroll, scrollLeft, scrollTop }) => {
                               return (
-                                <GridRow data-test="search-results-table">
+                                <GridRow
+                                  data-test="search-results-table"
+                                  onScroll={rebuildTooltip}
+                                >
                                   <CartContainer top={0}>
                                     <Grid
                                       cellRenderer={this.cartHeaderRenderer}
@@ -430,7 +443,10 @@ class SearchResultsTable extends React.Component<
                                     />
                                   </CartContainer>
                                   <GridColumn>
-                                    <AutoSizer disableHeight={true}>
+                                    <AutoSizer
+                                      disableHeight={true}
+                                      onResize={rebuildTooltip}
+                                    >
                                       {({ width }) => (
                                         <div>
                                           <div
@@ -489,6 +505,7 @@ class SearchResultsTable extends React.Component<
                                       )}
                                     </AutoSizer>
                                   </GridColumn>
+                                  <ReactTooltip />
                                 </GridRow>
                               );
                             }}
@@ -617,7 +634,31 @@ class SearchResultsTable extends React.Component<
       if (dataKey === DataKeys.INFO) {
         if (rowDatum[DataKeys.OBSERVATION_STATUS] === "Rejected") {
           return (
-            <FontAwesomeIcon icon={faInfo} color={"hsl(348, 100%, 61%)"} />
+            <WarningButton
+              toolTipMessage={
+                "This observation is marked as deleted, its data could be incorrect."
+              }
+            />
+          );
+        }
+
+        if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Science Verification") {
+          return (
+            <WarningButton
+              toolTipMessage={
+                "This observation belongs to a proposal which is for science verication. Its data could be incorrect."
+              }
+            />
+          );
+        }
+
+        if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Commissioning") {
+          return (
+            <WarningButton
+              toolTipMessage={
+                "This observation belongs to a proposal which is commissioned. Its data could be incorrect."
+              }
+            />
           );
         }
       }

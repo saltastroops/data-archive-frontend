@@ -26,6 +26,7 @@ const DataKeys = {
   PROPOSAL_CODE: "proposal.proposal_code",
   PROPOSAL_PI: "proposal.pi",
   PROPOSAL_TITLE: "proposal.title",
+  PROPOSAL_TYPE: "proposal_type.proposal_type",
   RSS_FABRY_PEROT_MODE: "rss_fabry_perot_mode.fabry_perot_mode",
   RSS_GRATING: "rss_grating.grating",
   SPECTRAL_RESOLUTION: "energy.resolving_power",
