@@ -503,6 +503,13 @@ class SearchResultsTable extends React.Component<
   }
 
   /**
+   * Check if there is an observation group file which is not public
+   */
+  private notAllFilesPublic = (files: IFile[]) => {
+    return files.some((file: IFile) => !file.available);
+  };
+
+  /**
    * A factory for the renderer rendering the cells of the first column, which
    * lets the user put files into the cart (or remove them from the cart).
    */
@@ -535,7 +542,7 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              {rowDatum.meta.available && (
+              {rowDatum.available && rowDatum.meta.available && (
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
@@ -562,14 +569,15 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {rowDatum.meta.observation.available && (
-                <LargeCheckbox
-                  checked={allInCart}
-                  onChange={e =>
-                    this.updateCart(e, files, addToCart, removeFromCart)
-                  }
-                />
-              )}
+              {!this.notAllFilesPublic(files) &&
+                rowDatum.meta.observation.available && (
+                  <LargeCheckbox
+                    checked={allInCart}
+                    onChange={e =>
+                      this.updateCart(e, files, addToCart, removeFromCart)
+                    }
+                  />
+                )}
             </span>
           </div>
         );
@@ -612,7 +620,7 @@ class SearchResultsTable extends React.Component<
       // A normal table row
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         if (rowDatum[DataKeys.DATA_FILE_ID]) {
-          return rowDatum.meta.available ? (
+          return rowDatum.available && rowDatum.meta.available ? (
             <JS9ViewContext.Consumer>
               {({ load, open }) => (
                 <button
@@ -662,11 +670,16 @@ class SearchResultsTable extends React.Component<
       const allInCart = files.every((file: IFile) =>
         cart.contains(file.cartContent)
       );
+
       if (columnIndex === 1) {
-        if (rowDatum.meta.observation.available) {
+        if (!this.notAllFilesPublic(files)) {
           return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
         } else {
-          return <i>Proprietary</i>;
+          return files.length > 1 && rowDatum.meta.observation.available ? (
+            <i>Some data is proprietary</i>
+          ) : (
+            <i>Proprietary</i>
+          );
         }
       } else {
         return "";

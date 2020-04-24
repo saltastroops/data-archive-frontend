@@ -512,8 +512,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         ? metadata[DataKeys.OBSERVATION_ID].toString()
         : `Calibration-${calibrationCounter++}`;
       const file = () => {
+        const ownedByUser = result.ownedByUser;
+        const isPublic = now > metadata[DataKeys.OBSERVATION_PUBLIC_FROM];
         return {
           ...metadata,
+          available: ownedByUser || isPublic,
           cartContent: {
             id: metadata[DataKeys.DATA_FILE_ID].toString(),
             name: metadata[DataKeys.DATA_FILE_FILENAME],
