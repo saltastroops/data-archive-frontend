@@ -636,7 +636,7 @@ class SearchResultsTable extends React.Component<
           return (
             <WarningTooltip
               toolTipMessage={
-                "This observation is marked as rejected. Its data might not be of science grade.."
+                "This observation is marked as rejected. Its data might not be of science grade."
               }
             />
           );
@@ -646,7 +646,7 @@ class SearchResultsTable extends React.Component<
           return (
             <WarningTooltip
               toolTipMessage={
-                "This observation belongs to a proposal which is for science verification. Its data might not be of science grade."
+                "This observation belongs to a science verification proposal. Its data might not be of science grade."
               }
             />
           );
