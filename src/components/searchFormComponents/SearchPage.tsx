@@ -94,7 +94,6 @@ export interface IObservation {
   files: [IFile];
   id: number | string;
   name: string;
-  publicFrom: Date;
 }
 
 /**
@@ -547,10 +546,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           available: ownedByUser || isPublic,
           files: [file()],
           id: observationId,
-          name: observationName,
-          publicFrom: new Date(metadata[
-            DataKeys.OBSERVATION_PUBLIC_FROM
-          ] as number)
+          name: observationName
         };
 
         // Store the observation in the map of of observations (to facilitate
