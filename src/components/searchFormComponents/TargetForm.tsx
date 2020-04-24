@@ -78,10 +78,8 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           ...target.errors,
           name:
             targetName === ""
-              ? "Please provide target name to resolve."
-              : `Resolver ${resolver} is temporally unavailable or Target "${
-                  target.name
-                }" could not be resolved.`
+              ? "Please provide the target name to resolve."
+              : `Oops, something went wrong. Please use another resolver or try again later..`
         }
       });
     }
