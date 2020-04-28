@@ -2,7 +2,10 @@ import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
-import { ProductType } from "../../../utils/ObservationQueryParameters";
+import {
+  ProductType,
+  StatusValue
+} from "../../../utils/ObservationQueryParameters";
 
 const onChange = jest.fn();
 
@@ -10,7 +13,11 @@ describe("Proposal Form", () => {
   it("should render", () => {
     expect(
       <ProposalForm
-        general={{ productTypes: new Set<ProductType>(), errors: {} }}
+        general={{
+          productTypes: new Set<ProductType>(),
+          statusValues: new Set<StatusValue>(),
+          errors: {}
+        }}
         onChange={onChange}
       />
     ).toBeDefined();
@@ -21,7 +28,11 @@ describe("Proposal Form", () => {
       toJson(
         shallow(
           <ProposalForm
-            general={{ productTypes: new Set<ProductType>(), errors: {} }}
+            general={{
+              productTypes: new Set<ProductType>(),
+              statusValues: new Set<StatusValue>(),
+              errors: {}
+            }}
             onChange={onChange}
           />
         )
@@ -35,7 +46,8 @@ describe("Proposal Form", () => {
             general={{
               errors: {},
               productTypes: new Set<ProductType>(),
-              proposalTitle: "hello"
+              proposalTitle: "hello",
+              statusValues: new Set<StatusValue>()
             }}
             onChange={onChange}
           />
@@ -53,7 +65,8 @@ describe("Proposal Form", () => {
                 proposalTitle: "invalid proposal title"
               },
               productTypes: new Set<ProductType>(),
-              proposalCode: "Code1"
+              proposalCode: "Code1",
+              statusValues: new Set<StatusValue>()
             }}
             onChange={onChange}
           />
@@ -67,7 +80,11 @@ describe("Proposal form on change", () => {
   it("should call onChange with the correct value", () => {
     const wrapper = mount(
       <ProposalForm
-        general={{ productTypes: new Set<ProductType>(), errors: {} }}
+        general={{
+          productTypes: new Set<ProductType>(),
+          statusValues: new Set<StatusValue>(),
+          errors: {}
+        }}
         onChange={onChange}
       />
     );
@@ -81,7 +98,8 @@ describe("Proposal form on change", () => {
     expect(onChange).toBeCalledWith({
       errors: { principalInvestigator: "" },
       principalInvestigator: "John Doe",
-      productTypes: new Set<ProductType>()
+      productTypes: new Set<ProductType>(),
+      statusValues: new Set<StatusValue>()
     });
 
     // Proposal code
@@ -93,7 +111,8 @@ describe("Proposal form on change", () => {
     expect(onChange).toBeCalledWith({
       errors: { proposalCode: "" },
       productTypes: new Set<ProductType>(),
-      proposalCode: "2019-1-SCI-042"
+      proposalCode: "2019-1-SCI-042",
+      statusValues: new Set<StatusValue>()
     });
 
     // Proposal title
@@ -107,7 +126,8 @@ describe("Proposal form on change", () => {
     expect(onChange).toBeCalledWith({
       errors: { proposalTitle: "" },
       productTypes: new Set<ProductType>(),
-      proposalTitle: "2019-1-SCI-042"
+      proposalTitle: "2019-1-SCI-042",
+      statusValues: new Set<StatusValue>()
     });
   });
 });

@@ -159,7 +159,7 @@ exports[`Proposal Form render correctly 1`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Include rejected observations
       </h5>
     </styled.div>
   </styled.div>
@@ -343,7 +343,7 @@ exports[`Proposal Form render correctly 2`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Include rejected observations
       </h5>
     </styled.div>
   </styled.div>
@@ -529,7 +529,7 @@ exports[`Proposal Form render correctly 3`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Include rejected observations
       </h5>
     </styled.div>
   </styled.div>

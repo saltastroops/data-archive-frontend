@@ -194,12 +194,10 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   }
 
   // Observation status
-  if (general.rejected) {
+  if (general.statusValues) {
     conditions.push(
-      isIn(DataKeys.OBSERVATION_STATUS, ["Accepted", general.rejected])
+      isIn(DataKeys.OBSERVATION_STATUS, Array.from(general.statusValues))
     );
-  } else {
-    conditions.push(isIn(DataKeys.OBSERVATION_STATUS, ["Accepted"]));
   }
 
   return and(conditions);

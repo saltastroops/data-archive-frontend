@@ -9,14 +9,6 @@ Object {
         "value": "Doe",
       },
     },
-    Object {
-      "IS_IN": Object {
-        "column": "status.status",
-        "values": Array [
-          "Accepted",
-        ],
-      },
-    },
   ],
 }
 `;
@@ -30,14 +22,6 @@ Object {
         "value": "2-SCI",
       },
     },
-    Object {
-      "IS_IN": Object {
-        "column": "status.status",
-        "values": Array [
-          "Accepted",
-        ],
-      },
-    },
   ],
 }
 `;
@@ -49,14 +33,6 @@ Object {
       "EQUALS": Object {
         "column": "observation_time.night",
         "value": "2019-02-17",
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "status.status",
-        "values": Array [
-          "Accepted",
-        ],
       },
     },
   ],
@@ -82,14 +58,6 @@ Object {
       "CONTAINS": Object {
         "column": "proposal.proposal_code",
         "value": "2019-1-SCI-042",
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "status.status",
-        "values": Array [
-          "Accepted",
-        ],
       },
     },
   ],
@@ -125,14 +93,6 @@ Object {
       "CONTAINS": Object {
         "column": "proposal.proposal_code",
         "value": "2019-1-SCI-042",
-      },
-    },
-    Object {
-      "IS_IN": Object {
-        "column": "status.status",
-        "values": Array [
-          "Accepted",
-        ],
       },
     },
   ],
