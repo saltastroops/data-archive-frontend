@@ -14,9 +14,9 @@ describe("Proposal Form", () => {
     expect(
       <ProposalForm
         general={{
+          errors: {},
           productTypes: new Set<ProductType>(),
-          statusValues: new Set<StatusValue>(),
-          errors: {}
+          statusValues: new Set<StatusValue>()
         }}
         onChange={onChange}
       />
@@ -29,9 +29,9 @@ describe("Proposal Form", () => {
         shallow(
           <ProposalForm
             general={{
+              errors: {},
               productTypes: new Set<ProductType>(),
-              statusValues: new Set<StatusValue>(),
-              errors: {}
+              statusValues: new Set<StatusValue>()
             }}
             onChange={onChange}
           />
@@ -81,9 +81,9 @@ describe("Proposal form on change", () => {
     const wrapper = mount(
       <ProposalForm
         general={{
+          errors: {},
           productTypes: new Set<ProductType>(),
-          statusValues: new Set<StatusValue>(),
-          errors: {}
+          statusValues: new Set<StatusValue>()
         }}
         onChange={onChange}
       />
