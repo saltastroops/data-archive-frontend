@@ -502,7 +502,7 @@ class SearchResultsTable extends React.Component<
   /**
    * Check if the observation group files are not all available
    */
-  private notAllFilesAvailabe = (files: IFile[]) => {
+  private notAllFilesAvailable = (files: IFile[]) => {
     return files.some((file: IFile) => !file.available);
   };
 
@@ -566,7 +566,7 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {!this.notAllFilesAvailabe(files) && (
+              {!this.notAllFilesAvailable(files) && (
                 <LargeCheckbox
                   checked={allInCart}
                   onChange={e =>
@@ -668,12 +668,8 @@ class SearchResultsTable extends React.Component<
       );
 
       if (columnIndex === 1) {
-        if (this.notAllFilesAvailabe(files)) {
-          return files.length === 1 ? (
-            <i>Proprietary</i>
-          ) : (
-            <i>Some or all proprietary</i>
-          );
+        if (this.notAllFilesAvailable(files)) {
+          return <i>Proprietary</i>;
         } else {
           return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
         }
