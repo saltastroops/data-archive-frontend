@@ -90,7 +90,6 @@ export interface ISearchPageCache {
 }
 
 export interface IObservation {
-  available: boolean;
   files: [IFile];
   id: number | string;
   name: string;
@@ -535,15 +534,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // identifier used by the telescope for the observation. If there is
         // no such identifier for the observation, only the telescope name is
         // used.
-        // It is assumed that an observation is public if and only if the
-        // currently considered data file is public, and that it is owned by the
-        // user if the currently considered data file is owned by the user.
-        // The assumptions are valid because both properties are indeed defined
-        // per observation (and not per data file).
-        const ownedByUser = result.ownedByUser;
-        const isPublic = now > metadata[DataKeys.OBSERVATION_PUBLIC_FROM];
         const observation: IObservation = {
-          available: ownedByUser || isPublic,
           files: [file()],
           id: observationId,
           name: observationName

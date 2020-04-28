@@ -58,7 +58,6 @@ interface ISearchResultsTableState {
  *     The observation's index in the list of observations.
  */
 interface IRowDatumMeta {
-  available: boolean;
   observation: any;
   observationFileIndex: number;
   observationHeader: boolean;
@@ -287,7 +286,6 @@ class SearchResultsTable extends React.Component<
       const observation = result;
       data.push({
         meta: {
-          available: observation.available,
           observation,
           observationFileIndex: -1,
           observationHeader: true,
@@ -298,7 +296,6 @@ class SearchResultsTable extends React.Component<
       result.files.forEach((file, observationFileIndex) => {
         data.push({
           meta: {
-            available: observation.available,
             observation,
             observationFileIndex,
             observationHeader: false,
@@ -503,9 +500,9 @@ class SearchResultsTable extends React.Component<
   }
 
   /**
-   * Check if there is an observation group file which is not public
+   * Check if the observation group files are not all available
    */
-  private notAllFilesPublic = (files: IFile[]) => {
+  private notAllFilesAvailabe = (files: IFile[]) => {
     return files.some((file: IFile) => !file.available);
   };
 
@@ -542,7 +539,7 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              {rowDatum.available && rowDatum.meta.available && (
+              {rowDatum.available && (
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
@@ -569,15 +566,14 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {!this.notAllFilesPublic(files) &&
-                rowDatum.meta.observation.available && (
-                  <LargeCheckbox
-                    checked={allInCart}
-                    onChange={e =>
-                      this.updateCart(e, files, addToCart, removeFromCart)
-                    }
-                  />
-                )}
+              {!this.notAllFilesAvailabe(files) && (
+                <LargeCheckbox
+                  checked={allInCart}
+                  onChange={e =>
+                    this.updateCart(e, files, addToCart, removeFromCart)
+                  }
+                />
+              )}
             </span>
           </div>
         );
@@ -620,7 +616,7 @@ class SearchResultsTable extends React.Component<
       // A normal table row
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         if (rowDatum[DataKeys.DATA_FILE_ID]) {
-          return rowDatum.available && rowDatum.meta.available ? (
+          return rowDatum.available ? (
             <JS9ViewContext.Consumer>
               {({ load, open }) => (
                 <button
@@ -672,14 +668,14 @@ class SearchResultsTable extends React.Component<
       );
 
       if (columnIndex === 1) {
-        if (!this.notAllFilesPublic(files)) {
-          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
-        } else {
-          return files.length > 1 && rowDatum.meta.observation.available ? (
-            <i>Some data is proprietary</i>
-          ) : (
+        if (this.notAllFilesAvailabe(files)) {
+          return files.length === 1 ? (
             <i>Proprietary</i>
+          ) : (
+            <i>Some or all proprietary</i>
           );
+        } else {
+          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
         }
       } else {
         return "";
