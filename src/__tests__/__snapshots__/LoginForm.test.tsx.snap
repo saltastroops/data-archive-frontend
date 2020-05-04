@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Component renders the LoginForm component having unpopulated props with no errors 1`] = `
+.c0.c0 {
+  padding: 1px;
+}
+
+.c1.c1 {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+<form
+  className="column is-4 is-offset-4 c0"
+  data-test="form"
+  onSubmit={[Function]}
+>
+  <styled.h1>
+    <StyledComponent
+      forwardedComponent={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [
+            Object {
+              "className": "title is-3",
+            },
+          ],
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bxivhb",
+            "isStatic": true,
+            "lastClassName": "c1",
+            "rules": Array [
+              "
+  && {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+",
+            ],
+          },
+          "displayName": "styled.h1",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "sc-bxivhb",
+          "target": "h1",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        }
+      }
+      forwardedRef={null}
+    >
+      <h1
+        className="title is-3 c1"
+      >
+        Login to the Data Archive
+      </h1>
+    </StyledComponent>
+  </styled.h1>
+  <fieldset
+    aria-disabled={false}
+    disabled={false}
+  >
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Login with
+        <div
+          className="control is-child"
+        >
+          <SelectField
+            className="authProvider"
+            name="authProvider"
+            onChange={[Function]}
+            value="SSDA"
+          >
+            <div
+              className="control "
+            >
+              <div
+                className="select authProvider"
+              >
+                <select
+                  name="authProvider"
+                  onChange={[Function]}
+                  value="SSDA"
+                >
+                  <option
+                    value="SSDA"
+                  >
+                    SAAO/SALT Data Archive
+                  </option>
+                  <option
+                    value="SDB"
+                  >
+                    SALT Web Manager
+                  </option>
+                </select>
+              </div>
+            </div>
+          </SelectField>
+        </div>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Username
+        <div
+          className="control is-child"
+        >
+          <InputField
+            error=""
+            id="username"
+            name="username"
+            onChange={[Function]}
+            type="text"
+            value=""
+          >
+            <div
+              className="control"
+            >
+              <input
+                className="input "
+                id="username"
+                name="username"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+          </InputField>
+        </div>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Password
+        <div
+          className="control is-child"
+        >
+          <InputField
+            error=""
+            id="password"
+            name="password"
+            onChange={[Function]}
+            type="password"
+            value=""
+          >
+            <div
+              className="control"
+            >
+              <input
+                className="input "
+                id="password"
+                name="password"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </InputField>
+        </div>
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <button
+        className="button is-success is-fullwidth"
+        data-test="signIn"
+      >
+        Sign in
+      </button>
+    </div>
+    <div
+      className="field"
+    >
+      <Link
+        className="button is-info is-fullwidth"
+        data-test="reset-password"
+        to="/request-reset-password"
+      >
+        <a
+          className="button is-info is-fullwidth"
+          data-test="reset-password"
+          href="/request-reset-password"
+          onClick={[Function]}
+        >
+          I forgot my password
+        </a>
+      </Link>
+    </div>
+  </fieldset>
+</form>
+`;

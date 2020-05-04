@@ -1,0 +1,147 @@
+.dimScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  z-index: 101;
+}
+
+.signal {
+  border: 15px solid #fff;
+  border-radius: 30px;
+  height: 130px;
+  left: 50%;
+  margin: -15px 0 0 -15px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  width: 130px;
+
+  animation: pulsate 1s ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 2;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.search-results.table {
+  margin-bottom: 20px;
+}
+
+.search-results.cell {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  white-space: nowrap;
+}
+
+.search-results.cell.header {
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.search-results.cell.header.cart {
+  cursor: text;
+}
+
+.search-results.cell span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-results.observation-header {
+  background-color: #f2fffb;
+  border-bottom: 1px solid lightgray;
+  border-top: 2px solid lightgray;
+}
+
+.search-results.file-row-even {
+  background-color: rgb(245, 245, 245);
+}
+
+.search-results.file-row-odd {
+  background-color: white;
+}
+
+.ReactVirtualized__Grid {
+  outline: none;
+}
+
+.styles_modal__gNwvD {
+  max-width: 1224px;
+  width: 100%;
+}
+
+.cart-table-scroll-vertically {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.cart-buttons-section {
+  width: 400px;
+}
+
+.fixed-header {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.column-group-selector:not(:first-child) {
+  margin-top: 1em;
+}
+
+.request-pending {
+  font-style: italic;
+}
+
+.include-calibrations {
+  margin-bottom: 2em;
+}
+
+.calibration-level {
+  margin-left: 10px;
+  margin-bottom: 1em;
+}
+
+.calibration-level-section {
+  width: 400px;
+}
+.cart-heading {
+  margin-bottom: 1.5em;
+  font-weight: bold;
+}
+
+.pagination-controls {
+  text-align: center;
+}
+
+.button.has-text-left {
+  justify-content: flex-start;
+}
+
+@media (max-width: 948px) {
+  .container {
+    max-width: 95%;
+  }
+}

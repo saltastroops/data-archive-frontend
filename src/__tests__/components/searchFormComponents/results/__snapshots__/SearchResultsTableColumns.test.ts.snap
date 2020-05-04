@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 1`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observation_group.name",
+    "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
+    "visible": true,
+    "width": 50,
+  },
+]
+`;
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 2`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observation_group.name",
+    "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
+    "visible": true,
+    "width": 50,
+  },
+]
+`;
+
+exports[`SearchResultsTableColumns searchResultsTableColumns should generate the correct table columns 3`] = `
+Array [
+  Object {
+    "dataKey": "dummyName",
+    "name": "dummy",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "observation_group.name",
+    "name": "Observation",
+    "visible": true,
+  },
+  Object {
+    "dataKey": "info",
+    "name": "Info",
+    "visible": true,
+    "width": 50,
+  },
+]
+`;

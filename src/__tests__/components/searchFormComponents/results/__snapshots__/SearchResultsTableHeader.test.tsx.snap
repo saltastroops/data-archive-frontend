@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsTableHeader should render correctly 1`] = `
+<SearchResultsTableHeader
+  dataKey="ProposalTitle"
+  sort={[MockFunction]}
+  style={Object {}}
+>
+  <div
+    className="search-results cell header"
+    data-test="header"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <span>
+      Proposal Title
+    </span>
+  </div>
+</SearchResultsTableHeader>
+`;

@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rss Polarimetry Imaging should render correctly 1`] = `
+.c0 {
+  width: 95%;
+}
+
+<RssPolarimetryModeSelector
+  onSelect={[MockFunction]}
+  rssPolarimetryModes={Array []}
+>
+  <div>
+    <p>
+      RSS polarimetry mode
+    </p>
+    <MultiSelectField
+      name="rssPolarimetry"
+      onChange={[Function]}
+      value={Array []}
+    >
+      <styled.div
+        className="control select is-multiple "
+      >
+        <StyledComponent
+          className="control select is-multiple "
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-bdVaJa",
+                "isStatic": true,
+                "lastClassName": "c0",
+                "rules": Array [
+                  "
+  width: 95%;
+",
+                ],
+              },
+              "displayName": "styled.div",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "sc-bdVaJa",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+        >
+          <div
+            className="control select is-multiple  c0"
+          >
+            <select
+              multiple={true}
+              name="rssPolarimetry"
+              onChange={[Function]}
+              size={6}
+              style={
+                Object {
+                  "width": "216px",
+                }
+              }
+              value={Array []}
+            >
+              <AllOption>
+                <option
+                  value="All"
+                >
+                  All
+                </option>
+              </AllOption>
+              <option
+                key="All Stokes"
+                value="All Stokes"
+              >
+                All Stokes
+              </option>
+              <option
+                key="Circular"
+                value="Circular"
+              >
+                Circular
+              </option>
+              <option
+                key="Linear"
+                value="Linear"
+              >
+                Linear
+              </option>
+              <option
+                key="Linear Hi"
+                value="Linear Hi"
+              >
+                Linear Hi
+              </option>
+            </select>
+          </div>
+        </StyledComponent>
+      </styled.div>
+    </MultiSelectField>
+  </div>
+</RssPolarimetryModeSelector>
+`;

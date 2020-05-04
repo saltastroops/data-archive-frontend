@@ -1,0 +1,480 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generalWhereCondition should map a Principal Investigator to a contains condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.pi",
+        "value": "Doe",
+      },
+    },
+  ],
+}
+`;
+
+exports[`generalWhereCondition should map a proposal code to a contains condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.proposal_code",
+        "value": "2-SCI",
+      },
+    },
+  ],
+}
+`;
+
+exports[`generalWhereCondition should map an observation night to a greater equal and less equal condition spanning one night 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "EQUALS": Object {
+        "column": "observation_time.night",
+        "value": "2019-02-17",
+      },
+    },
+  ],
+}
+`;
+
+exports[`generalWhereCondition should map input data correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "EQUALS": Object {
+        "column": "observation_time.night",
+        "value": "2019-05-13",
+      },
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.pi",
+        "value": "Sipho",
+      },
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.proposal_code",
+        "value": "2019-1-SCI-042",
+      },
+    },
+  ],
+}
+`;
+
+exports[`generalWhereCondition should map input data correctly 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "AND": Array [
+        Object {
+          "GREATER_EQUAL": Object {
+            "column": "observation_time.night",
+            "value": "2019-05-01",
+          },
+        },
+        Object {
+          "LESS_EQUAL": Object {
+            "column": "observation_time.night",
+            "value": "2019-05-13",
+          },
+        },
+      ],
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.pi",
+        "value": "Sipho",
+      },
+    },
+    Object {
+      "CONTAINS": Object {
+        "column": "proposal.proposal_code",
+        "value": "2019-1-SCI-042",
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map a single position to a within condition 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "WITHIN_RADIUS": Object {
+        "declination": -5,
+        "declinationColumn": "position.dec",
+        "radius": 0.04,
+        "rightAscension": 17,
+        "rightAscensionColumn": "position.ra",
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": -0.55,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": -0.45,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 5,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 9,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": -0.55,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": -0.45,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 3`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": -10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 4`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": -10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map declination ranges to less than and greater than conditions 5`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 115,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 200,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": 10,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": 12,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 12.95,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 13.05,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 2`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 12.95,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 13.05,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": 12,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": 13,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 3`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 4,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 355,
+      },
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 4`] = `
+Object {
+  "AND": Array [
+    Object {
+      "OR": Array [
+        Object {
+          "AND": Array [
+            Object {
+              "GREATER_EQUAL": Object {
+                "column": "position.ra",
+                "value": 355,
+              },
+            },
+            Object {
+              "LESS_EQUAL": Object {
+                "column": "position.ra",
+                "value": 360,
+              },
+            },
+          ],
+        },
+        Object {
+          "AND": Array [
+            Object {
+              "GREATER_EQUAL": Object {
+                "column": "position.ra",
+                "value": 0,
+              },
+            },
+            Object {
+              "LESS_EQUAL": Object {
+                "column": "position.ra",
+                "value": 4,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`targetWhereCondition should map right ascension ranges to less than and greater than conditions 5`] = `
+Object {
+  "AND": Array [
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.ra",
+        "value": 4,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.ra",
+        "value": 355,
+      },
+    },
+    Object {
+      "GREATER_EQUAL": Object {
+        "column": "position.dec",
+        "value": -12,
+      },
+    },
+    Object {
+      "LESS_EQUAL": Object {
+        "column": "position.dec",
+        "value": -11,
+      },
+    },
+  ],
+}
+`;
+
+exports[`telescopeWhereCondition should map All correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map All together with other items correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;
+
+exports[`telescopeWhereCondition should map conditions correctly 1`] = `
+Object {
+  "AND": Array [
+    Object {
+      "IS_IN": Object {
+        "column": "detector_mode.detector_mode",
+        "values": Array [
+          "Normal",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "filter.name",
+        "values": Array [
+          "Johnson U",
+          "Cousins I",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "hrs_mode.hrs_mode",
+        "values": Array [
+          "High Stability",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument.name",
+        "values": Array [
+          "RSS",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "instrument_mode.instrument_mode",
+        "values": Array [
+          "Imaging",
+          "Spectroscopy",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_fabry_perot_mode.fabry_perot_mode",
+        "values": Array [
+          "MR",
+          "HR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "rss_grating.grating",
+        "values": Array [
+          "pg0900",
+          "pg1800",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "polarization_mode.name",
+        "values": Array [
+          "LINEAR",
+        ],
+      },
+    },
+    Object {
+      "IS_IN": Object {
+        "column": "telescope.name",
+        "values": Array [
+          "Lesedi",
+          "SALT",
+        ],
+      },
+    },
+  ],
+}
+`;
+
+exports[`telescopeWhereCondition should map empty arrays correctly 1`] = `
+Object {
+  "AND": Array [],
+}
+`;

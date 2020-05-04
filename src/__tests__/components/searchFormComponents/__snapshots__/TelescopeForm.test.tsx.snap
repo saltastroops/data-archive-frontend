@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Telescope form rendering should render correctly 1`] = `
+<Fragment>
+  <styled.div>
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <InstrumentSelector
+      instruments={
+        Array [
+          "RSS",
+        ]
+      }
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <InstrumentModeSelector
+      instrumentModes={
+        Array [
+          "MOS",
+          "Fabry Perot",
+          "Spectropolarimetry",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "RSS",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorModes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "RSS",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "RSS",
+        ]
+      }
+      onSelect={[Function]}
+    />
+    <RssFabryPerotModeSelector
+      onSelect={[Function]}
+    />
+    <RssGratingSelector
+      onSelect={[Function]}
+    />
+    <RssPolarimetryModeSelector
+      onSelect={[Function]}
+    />
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Telescope form rendering should render correctly 2`] = `
+<Fragment>
+  <styled.div>
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <InstrumentSelector
+      instruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <InstrumentModeSelector
+      instrumentModes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorModes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "Lesedi",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "SHOC",
+        ]
+      }
+      onSelect={[Function]}
+    />
+  </styled.div>
+</Fragment>
+`;
+
+exports[`Telescope form rendering should render correctly 3`] = `
+<Fragment>
+  <styled.div>
+    <TelescopeSelector
+      onSelect={[Function]}
+      telescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <InstrumentSelector
+      instruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      onSelect={[Function]}
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <InstrumentModeSelector
+      instrumentModes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <DetectorModeSelector
+      detectorModes={
+        Array [
+          "All",
+        ]
+      }
+      onSelect={[Function]}
+      selectedInstruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      selectedTelescopes={
+        Array [
+          "SALT",
+        ]
+      }
+    />
+    <Filters
+      filters={
+        Array [
+          "All",
+        ]
+      }
+      instruments={
+        Array [
+          "Salticam",
+        ]
+      }
+      onSelect={[Function]}
+    />
+  </styled.div>
+</Fragment>
+`;

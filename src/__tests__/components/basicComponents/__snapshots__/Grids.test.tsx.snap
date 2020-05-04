@@ -1,0 +1,443 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grids  should render all grids correctly 1`] = `
+.c0 {
+  display: grid;
+  grid-template-columns: 49.5% 1% 49.5%;
+}
+
+@media (max-width:1040px) {
+  .c0 {
+    grid-template-columns: auto;
+  }
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-container is-fullhd",
+            "disable": true,
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bxivhb",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  display: grid;
+  grid-template-columns: 49.5% 1% 49.5%;
+
+  @media (max-width: 1040px) {
+    grid-template-columns: auto;
+  }
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bxivhb",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-container is-fullhd c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 2`] = `
+.c0 {
+  background-color: #f6f7e1;
+  border: 1px solid rgba(246,247,225,0.5);
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-item target-form",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-EHOje",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  background-color: #f6f7e1;
+  border: 1px solid rgba(246, 247, 225, 0.5);
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-EHOje",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item target-form c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 3`] = `
+.c0 {
+  background-color: #f2fffb;
+  border: 1px solid rgba(242,255,251,0.5);
+  text-align: center;
+  width: 100%;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-item proposal-form",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bZQynM",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  background-color: #f2fffb;
+  border: 1px solid rgba(242, 255, 251, 0.5);
+  text-align: center;
+  width: 100%;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bZQynM",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item proposal-form c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 4`] = `
+.c0 {
+  background-color: #e0edf9;
+  border: 1px solid rgba(224,237,249,0.5);
+  text-align: center;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-item data-form",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-gzVnrw",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  background-color: #e0edf9;
+  border: 1px solid rgba(224, 237, 249, 0.5);
+  text-align: center;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-gzVnrw",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item data-form c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 5`] = `
+.c0 {
+  background-color: #fff4fa;
+  border: 1px solid rgba(255,244,250,0.5);
+  text-align: center;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-item telescope-form",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-dnqmqq",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  background-color: #fff4fa;
+  border: 1px solid rgba(255, 244, 250, 0.5);
+  text-align: center;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-dnqmqq",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item telescope-form c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 6`] = `
+.c0 {
+  display: grid;
+  grid-template-columns: 8% 10% 20% 10% 8% 34%;
+  border: 1px solid rgba(255,255,255,0);
+  text-align: left;
+}
+
+@media (max-width:1272px) {
+  .c0 {
+    grid-template-columns: 22%;
+  }
+}
+
+@media (max-width:1192px) {
+  .c0 {
+    grid-template-columns: 30%;
+  }
+}
+
+@media (max-width:764px) {
+  .c0 {
+    grid-template-columns: 40%;
+  }
+}
+
+@media (max-width:598px) {
+  .c0 {
+    grid-template-columns: 50%;
+  }
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "grid-item",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-htoDjs",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+
+  display: grid;
+  grid-template-columns: 8% 10% 20% 10% 8% 34%
+  border: 1px solid rgba(255, 255, 255, 0);
+  text-align: left;
+
+  @media (max-width: 1272px) {
+    grid-template-columns: 22%
+  }
+  @media (max-width: 1192px) {
+    grid-template-columns: 30%
+  }
+  @media (max-width: 764px) {
+    grid-template-columns: 40%
+  }
+  @media (max-width: 598px) {
+    grid-template-columns: 50%
+  }
+
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-htoDjs",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="grid-item c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 7`] = `
+.c0.c0 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "main-grid",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-iwsKbI",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  && {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+  }
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-iwsKbI",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="main-grid c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
+
+exports[`Grids  should render all grids correctly 8`] = `
+.c0.c0 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+<styled.div>
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [
+          Object {
+            "className": "sub-grid",
+          },
+        ],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-jTzLTM",
+          "isStatic": true,
+          "lastClassName": "c0",
+          "rules": Array [
+            "
+  && {
+    text-align: left;
+    padding-left: 10px;
+  }
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-jTzLTM",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  >
+    <div
+      className="sub-grid c0"
+    />
+  </StyledComponent>
+</styled.div>
+`;
