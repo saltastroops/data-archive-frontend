@@ -65,20 +65,25 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           declination: ``,
           errors: {
             ...target.errors,
-            name: `Target ${target.name} could not be resolved.`
+            name: `Target "${target.name}" could not be resolved.`
           },
           rightAscension: ``
         });
       }
     } catch (err) {
+      const targetName = (target.name || "").trim();
       onChange({
         ...target,
         errors: {
           ...target.errors,
-          name: err.message
+          name:
+            targetName === ""
+              ? "Please provide the target name to resolve."
+              : `Oops, something went wrong. Please use another resolver or try again later..`
         }
       });
     }
+
     this.updateLoadingStatus(false);
   };
 
