@@ -36,6 +36,7 @@ class SearchResultsTableColumnSelector extends React.Component<
     const generalDataKeys = [
       DataKeys.PROPOSAL_PI,
       DataKeys.PROPOSAL_TITLE,
+      DataKeys.PROPOSAL_TYPE,
       DataKeys.PROPOSAL_CODE,
       DataKeys.OBSERVATION_NIGHT,
       DataKeys.DATA_CATEGORY,

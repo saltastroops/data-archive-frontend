@@ -2,9 +2,11 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
+import { debounce } from "lodash";
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import Query from "react-apollo/Query";
+import ReactTooltip from "react-tooltip";
 import {
   AutoSizer,
   Grid,
@@ -21,6 +23,7 @@ import {
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
+import WarningTooltip from "../../basicComponents/WarningButton";
 import { JS9ViewContext } from "../../JS9View";
 import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
@@ -58,7 +61,6 @@ interface ISearchResultsTableState {
  *     The observation's index in the list of observations.
  */
 interface IRowDatumMeta {
-  available: boolean;
   observation: any;
   observationFileIndex: number;
   observationHeader: boolean;
@@ -151,6 +153,12 @@ function cmp(
 
   return 0;
 }
+
+// Handle tooltip to rebuild when the component is rendered.
+const rebuildTooltip = debounce(() => ReactTooltip.rebuild(), 200, {
+  leading: false,
+  trailing: true
+});
 
 /**
  * The table of search results.
@@ -287,7 +295,6 @@ class SearchResultsTable extends React.Component<
       const observation = result;
       data.push({
         meta: {
-          available: observation.available,
           observation,
           observationFileIndex: -1,
           observationHeader: true,
@@ -298,7 +305,6 @@ class SearchResultsTable extends React.Component<
       result.files.forEach((file, observationFileIndex) => {
         data.push({
           meta: {
-            available: observation.available,
             observation,
             observationFileIndex,
             observationHeader: false,
@@ -325,6 +331,11 @@ class SearchResultsTable extends React.Component<
       sortedRowData: List(),
       unsortedRowData: List()
     };
+  }
+
+  componentDidMount() {
+    // Rebuild the tooltip when it is re-rendered.
+    rebuildTooltip();
   }
 
   /**
@@ -381,7 +392,10 @@ class SearchResultsTable extends React.Component<
                           <ScrollSync>
                             {({ onScroll, scrollLeft, scrollTop }) => {
                               return (
-                                <GridRow data-test="search-results-table">
+                                <GridRow
+                                  data-test="search-results-table"
+                                  onScroll={rebuildTooltip}
+                                >
                                   <CartContainer top={0}>
                                     <Grid
                                       cellRenderer={this.cartHeaderRenderer}
@@ -426,7 +440,10 @@ class SearchResultsTable extends React.Component<
                                     />
                                   </CartContainer>
                                   <GridColumn>
-                                    <AutoSizer disableHeight={true}>
+                                    <AutoSizer
+                                      disableHeight={true}
+                                      onResize={rebuildTooltip}
+                                    >
                                       {({ width }) => (
                                         <div>
                                           <div
@@ -489,6 +506,7 @@ class SearchResultsTable extends React.Component<
                               );
                             }}
                           </ScrollSync>
+                          <ReactTooltip />
                         </div>
                       </>
                     )}
@@ -501,6 +519,13 @@ class SearchResultsTable extends React.Component<
       </Query>
     );
   }
+
+  /**
+   * Check if the observation group files are not all available
+   */
+  private notAllFilesAvailable = (files: IFile[]) => {
+    return files.some((file: IFile) => !file.available);
+  };
 
   /**
    * A factory for the renderer rendering the cells of the first column, which
@@ -535,7 +560,7 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              {rowDatum.meta.available && (
+              {rowDatum.available && (
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
@@ -562,7 +587,7 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {rowDatum.meta.observation.available && (
+              {!this.notAllFilesAvailable(files) && (
                 <LargeCheckbox
                   checked={allInCart}
                   onChange={e =>
@@ -610,9 +635,41 @@ class SearchResultsTable extends React.Component<
     }
     if (!rowDatum.meta.observationHeader) {
       // A normal table row
+      if (dataKey === DataKeys.INFO) {
+        if (rowDatum[DataKeys.OBSERVATION_STATUS] === "Rejected") {
+          return (
+            <WarningTooltip
+              toolTipMessage={
+                "This observation is marked as rejected. Its data might not be of science grade."
+              }
+            />
+          );
+        }
+
+        if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Science Verification") {
+          return (
+            <WarningTooltip
+              toolTipMessage={
+                "This observation belongs to a science verification proposal. Its data might not be of science grade."
+              }
+            />
+          );
+        }
+
+        if (rowDatum[DataKeys.PROPOSAL_TYPE] === "Commissioning") {
+          return (
+            <WarningTooltip
+              toolTipMessage={
+                "This observation belongs to a commissioning proposal. Its data might not be of science grade."
+              }
+            />
+          );
+        }
+      }
+
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         if (rowDatum[DataKeys.DATA_FILE_ID]) {
-          return rowDatum.meta.available ? (
+          return rowDatum.available ? (
             <JS9ViewContext.Consumer>
               {({ load, open }) => (
                 <button
@@ -662,11 +719,12 @@ class SearchResultsTable extends React.Component<
       const allInCart = files.every((file: IFile) =>
         cart.contains(file.cartContent)
       );
+
       if (columnIndex === 1) {
-        if (rowDatum.meta.observation.available) {
-          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
-        } else {
+        if (this.notAllFilesAvailable(files)) {
           return <i>Proprietary</i>;
+        } else {
+          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
         }
       } else {
         return "";

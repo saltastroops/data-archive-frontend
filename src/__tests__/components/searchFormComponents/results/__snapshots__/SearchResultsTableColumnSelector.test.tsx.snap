@@ -71,6 +71,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
         "visible": false,
       },
       Object {
+        "dataKey": "info",
+        "name": "info",
+        "visible": false,
+      },
+      Object {
         "dataKey": "instrument_mode.instrument_mode",
         "name": "Instrument Mode",
         "visible": false,
@@ -137,6 +142,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
       Object {
         "dataKey": "proposal.title",
         "name": "Proposal Title",
+        "visible": false,
+      },
+      Object {
+        "dataKey": "proposal_type.proposal_type",
+        "name": "Proposal Type",
         "visible": false,
       },
       Object {
@@ -843,6 +853,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                         "visible": false,
                       },
                       Object {
+                        "dataKey": "proposal_type.proposal_type",
+                        "name": "Proposal Type",
+                        "visible": false,
+                      },
+                      Object {
                         "dataKey": "proposal.proposal_code",
                         "name": "Proposal Code",
                         "visible": false,
@@ -1039,6 +1054,67 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             </StyledComponent>
                           </styled.input>
                           Proposal Title
+                        </label>
+                      </li>
+                      <li
+                        key="proposal_type.proposal_type"
+                      >
+                        <label>
+                          <styled.input
+                            checked={false}
+                            name="proposal_type.proposal_type"
+                            onChange={[Function]}
+                            type="checkbox"
+                          >
+                            <StyledComponent
+                              checked={false}
+                              forwardedComponent={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "attrs": Array [
+                                    Object {
+                                      "className": "checkbox",
+                                      "type": "checkbox",
+                                    },
+                                  ],
+                                  "componentStyle": ComponentStyle {
+                                    "componentId": "sc-bdVaJa",
+                                    "isStatic": true,
+                                    "lastClassName": "c2",
+                                    "rules": Array [
+                                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                    ],
+                                  },
+                                  "displayName": "styled.input",
+                                  "foldedComponentIds": Array [],
+                                  "render": [Function],
+                                  "styledComponentId": "sc-bdVaJa",
+                                  "target": "input",
+                                  "toString": [Function],
+                                  "warnTooManyClasses": [Function],
+                                  "withComponent": [Function],
+                                }
+                              }
+                              forwardedRef={null}
+                              name="proposal_type.proposal_type"
+                              onChange={[Function]}
+                              type="checkbox"
+                            >
+                              <input
+                                checked={false}
+                                className="checkbox c2"
+                                name="proposal_type.proposal_type"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                            </StyledComponent>
+                          </styled.input>
+                          Proposal Type
                         </label>
                       </li>
                       <li
