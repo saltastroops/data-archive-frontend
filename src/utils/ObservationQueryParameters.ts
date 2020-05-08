@@ -38,7 +38,7 @@ export type ProductType = "Arc" | "Bias" | "Flat" | "Science" | "Standard";
 /**
  * The observation status values.
  */
-export type StatusValue = "Accepted" | "Rejected";
+export type Status = "Accepted" | "Rejected";
 
 /**
  * An interface for query parameters related to general information.
@@ -67,7 +67,7 @@ export interface IGeneralErrors {
   proposalCode?: string;
   proposalTitle?: string;
   productTypes?: string;
-  statusValues?: string;
+  observationStatuses?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
@@ -77,7 +77,7 @@ export interface IGeneral {
   proposalCode?: string;
   proposalTitle?: string;
   productTypes: Set<ProductType>;
-  statusValues: Set<StatusValue>;
+  observationStatuses: Set<Status>;
 }
 
 /**

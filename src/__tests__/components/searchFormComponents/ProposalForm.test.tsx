@@ -2,10 +2,7 @@ import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
 import ProposalForm from "../../../components/searchFormComponents/ProposalForm";
-import {
-  ProductType,
-  StatusValue
-} from "../../../utils/ObservationQueryParameters";
+import { ProductType, Status } from "../../../utils/ObservationQueryParameters";
 
 const onChange = jest.fn();
 
@@ -15,8 +12,8 @@ describe("Proposal Form", () => {
       <ProposalForm
         general={{
           errors: {},
-          productTypes: new Set<ProductType>(),
-          statusValues: new Set<StatusValue>()
+          observationStatuses: new Set<Status>(),
+          productTypes: new Set<ProductType>()
         }}
         onChange={onChange}
       />
@@ -30,8 +27,8 @@ describe("Proposal Form", () => {
           <ProposalForm
             general={{
               errors: {},
-              productTypes: new Set<ProductType>(),
-              statusValues: new Set<StatusValue>()
+              observationStatuses: new Set<Status>(),
+              productTypes: new Set<ProductType>()
             }}
             onChange={onChange}
           />
@@ -45,9 +42,9 @@ describe("Proposal Form", () => {
           <ProposalForm
             general={{
               errors: {},
+              observationStatuses: new Set<Status>(),
               productTypes: new Set<ProductType>(),
-              proposalTitle: "hello",
-              statusValues: new Set<StatusValue>()
+              proposalTitle: "hello"
             }}
             onChange={onChange}
           />
@@ -64,9 +61,9 @@ describe("Proposal Form", () => {
                 proposalCode: "invalid proposal code",
                 proposalTitle: "invalid proposal title"
               },
+              observationStatuses: new Set<Status>(),
               productTypes: new Set<ProductType>(),
-              proposalCode: "Code1",
-              statusValues: new Set<StatusValue>()
+              proposalCode: "Code1"
             }}
             onChange={onChange}
           />
@@ -82,8 +79,8 @@ describe("Proposal form on change", () => {
       <ProposalForm
         general={{
           errors: {},
-          productTypes: new Set<ProductType>(),
-          statusValues: new Set<StatusValue>()
+          observationStatuses: new Set<Status>(),
+          productTypes: new Set<ProductType>()
         }}
         onChange={onChange}
       />
@@ -97,9 +94,9 @@ describe("Proposal form on change", () => {
     });
     expect(onChange).toBeCalledWith({
       errors: { principalInvestigator: "" },
+      observationStatuses: new Set<Status>(),
       principalInvestigator: "John Doe",
-      productTypes: new Set<ProductType>(),
-      statusValues: new Set<StatusValue>()
+      productTypes: new Set<ProductType>()
     });
 
     // Proposal code
@@ -110,9 +107,9 @@ describe("Proposal form on change", () => {
     });
     expect(onChange).toBeCalledWith({
       errors: { proposalCode: "" },
+      observationStatuses: new Set<Status>(),
       productTypes: new Set<ProductType>(),
-      proposalCode: "2019-1-SCI-042",
-      statusValues: new Set<StatusValue>()
+      proposalCode: "2019-1-SCI-042"
     });
 
     // Proposal title
@@ -125,9 +122,9 @@ describe("Proposal form on change", () => {
     });
     expect(onChange).toBeCalledWith({
       errors: { proposalTitle: "" },
+      observationStatuses: new Set<Status>(),
       productTypes: new Set<ProductType>(),
-      proposalTitle: "2019-1-SCI-042",
-      statusValues: new Set<StatusValue>()
+      proposalTitle: "2019-1-SCI-042"
     });
   });
 });

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   IGeneral,
   ProductType,
-  StatusValue
+  Status
 } from "../../utils/ObservationQueryParameters";
 import {
   HelpGrid,
@@ -56,26 +56,26 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
     const updatedProductTypes = new Set<ProductType>(
       this.props.general.productTypes
     );
-    const updatedStatusValues = new Set<StatusValue>(
-      this.props.general.statusValues
+    const updatedStatuses = new Set<Status>(
+      this.props.general.observationStatuses
     );
     if (e.target.checked) {
       if (name === "Rejected") {
-        updatedStatusValues.add(name);
+        updatedStatuses.add(name);
       } else {
         updatedProductTypes.add(name);
       }
     } else {
       if (name === "Rejected") {
-        updatedStatusValues.delete(name);
+        updatedStatuses.delete(name);
       } else {
         updatedProductTypes.delete(name);
       }
     }
     this.props.onChange({
       ...this.props.general,
-      productTypes: updatedProductTypes,
-      statusValues: updatedStatusValues
+      observationStatuses: updatedStatuses,
+      productTypes: updatedProductTypes
     });
   };
 
@@ -87,7 +87,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       observationNight,
       proposalCode,
       proposalTitle,
-      statusValues
+      observationStatuses
     } = this.props.general;
     return (
       <>
@@ -228,7 +228,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
 
         <SingleColumnGrid>
           <SubGrid>
-            <h5 className={"title is-5"}>Include rejected observations</h5>
+            <h5 className={"title is-5"}>Rejected observations</h5>
           </SubGrid>
         </SingleColumnGrid>
         <SingleColumnGrid>
@@ -237,13 +237,13 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="rejected-checkbox"
-                  checked={statusValues.has("Rejected")}
+                  checked={observationStatuses.has("Rejected")}
                   data-test="rejected-checkbox"
                   onChange={this.changeCheckbox}
                   name="Rejected"
                 />
               </Span>
-              <Span>Rejected</Span>
+              <Span>Include rejected observations</Span>
             </label>
           </SubGrid>
         </SingleColumnGrid>

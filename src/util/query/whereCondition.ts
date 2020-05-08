@@ -194,9 +194,9 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   }
 
   // Observation status
-  if (general.statusValues) {
+  if (general.observationStatuses) {
     conditions.push(
-      isIn(DataKeys.OBSERVATION_STATUS, Array.from(general.statusValues))
+      isIn(DataKeys.OBSERVATION_STATUS, Array.from(general.observationStatuses))
     );
   }
 
