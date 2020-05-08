@@ -61,7 +61,6 @@ interface ISearchResultsTableState {
  *     The observation's index in the list of observations.
  */
 interface IRowDatumMeta {
-  available: boolean;
   observation: any;
   observationFileIndex: number;
   observationHeader: boolean;
@@ -296,7 +295,6 @@ class SearchResultsTable extends React.Component<
       const observation = result;
       data.push({
         meta: {
-          available: observation.available,
           observation,
           observationFileIndex: -1,
           observationHeader: true,
@@ -307,7 +305,6 @@ class SearchResultsTable extends React.Component<
       result.files.forEach((file, observationFileIndex) => {
         data.push({
           meta: {
-            available: observation.available,
             observation,
             observationFileIndex,
             observationHeader: false,
@@ -524,6 +521,13 @@ class SearchResultsTable extends React.Component<
   }
 
   /**
+   * Check if the observation group files are not all available
+   */
+  private notAllFilesAvailable = (files: IFile[]) => {
+    return files.some((file: IFile) => !file.available);
+  };
+
+  /**
    * A factory for the renderer rendering the cells of the first column, which
    * lets the user put files into the cart (or remove them from the cart).
    */
@@ -556,7 +560,7 @@ class SearchResultsTable extends React.Component<
         return (
           <div className={this.rowClassName(rowIndex)} key={key} style={style}>
             <span>
-              {rowDatum.meta.available && (
+              {rowDatum.available && (
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
@@ -583,7 +587,7 @@ class SearchResultsTable extends React.Component<
             style={style}
           >
             <span>
-              {rowDatum.meta.observation.available && (
+              {!this.notAllFilesAvailable(files) && (
                 <LargeCheckbox
                   checked={allInCart}
                   onChange={e =>
@@ -665,7 +669,7 @@ class SearchResultsTable extends React.Component<
 
       if (dataKey === DataKeys.DATA_FILE_FILENAME) {
         if (rowDatum[DataKeys.DATA_FILE_ID]) {
-          return rowDatum.meta.available ? (
+          return rowDatum.available ? (
             <JS9ViewContext.Consumer>
               {({ load, open }) => (
                 <button
@@ -715,11 +719,12 @@ class SearchResultsTable extends React.Component<
       const allInCart = files.every((file: IFile) =>
         cart.contains(file.cartContent)
       );
+
       if (columnIndex === 1) {
-        if (rowDatum.meta.observation.available) {
-          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
-        } else {
+        if (this.notAllFilesAvailable(files)) {
           return <i>Proprietary</i>;
+        } else {
+          return <i>{allInCart ? "Unselect all" : "Select all"}</i>;
         }
       } else {
         return "";
