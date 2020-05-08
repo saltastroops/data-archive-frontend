@@ -63,21 +63,21 @@ export type Status = "Accepted" | "Rejected";
 export interface IGeneralErrors {
   limit?: string;
   observationNight?: string;
+  observationStatuses?: string;
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
   productTypes?: string;
-  observationStatuses?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
   limit: string;
   observationNight?: string;
+  observationStatuses: Set<Status>;
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
   productTypes: Set<ProductType>;
-  observationStatuses: Set<Status>;
 }
 
 /**
