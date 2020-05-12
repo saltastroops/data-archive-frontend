@@ -159,7 +159,7 @@ exports[`Proposal Form render correctly 1`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Rejected observations
       </h5>
     </styled.div>
   </styled.div>
@@ -176,7 +176,7 @@ exports[`Proposal Form render correctly 1`] = `
           />
         </styled.span>
         <styled.span>
-          Rejected
+          Include rejected observations
         </styled.span>
       </label>
     </styled.div>
@@ -343,7 +343,7 @@ exports[`Proposal Form render correctly 2`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Rejected observations
       </h5>
     </styled.div>
   </styled.div>
@@ -360,7 +360,7 @@ exports[`Proposal Form render correctly 2`] = `
           />
         </styled.span>
         <styled.span>
-          Rejected
+          Include rejected observations
         </styled.span>
       </label>
     </styled.div>
@@ -529,7 +529,7 @@ exports[`Proposal Form render correctly 3`] = `
       <h5
         className="title is-5"
       >
-        Data status
+        Rejected observations
       </h5>
     </styled.div>
   </styled.div>
@@ -546,7 +546,7 @@ exports[`Proposal Form render correctly 3`] = `
           />
         </styled.span>
         <styled.span>
-          Rejected
+          Include rejected observations
         </styled.span>
       </label>
     </styled.div>

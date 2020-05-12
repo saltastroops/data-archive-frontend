@@ -1,6 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { IGeneral, ProductType } from "../../utils/ObservationQueryParameters";
+import {
+  IGeneral,
+  ProductType,
+  Status
+} from "../../utils/ObservationQueryParameters";
 import {
   HelpGrid,
   MainGrid,
@@ -49,25 +53,29 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
   // Add or remove the product type corresponding to the clicked checkbox
   changeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name as any;
-    let { rejected } = this.props.general;
-    const updated = new Set<ProductType>(this.props.general.productTypes);
+    const updatedProductTypes = new Set<ProductType>(
+      this.props.general.productTypes
+    );
+    const updatedStatuses = new Set<Status>(
+      this.props.general.observationStatuses
+    );
     if (e.target.checked) {
       if (name === "Rejected") {
-        rejected = "Rejected";
+        updatedStatuses.add(name);
       } else {
-        updated.add(name);
+        updatedProductTypes.add(name);
       }
     } else {
       if (name === "Rejected") {
-        rejected = "";
+        updatedStatuses.delete(name);
       } else {
-        updated.delete(name);
+        updatedProductTypes.delete(name);
       }
     }
     this.props.onChange({
       ...this.props.general,
-      productTypes: updated,
-      rejected
+      observationStatuses: updatedStatuses,
+      productTypes: updatedProductTypes
     });
   };
 
@@ -79,7 +87,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       observationNight,
       proposalCode,
       proposalTitle,
-      rejected
+      observationStatuses
     } = this.props.general;
     return (
       <>
@@ -220,7 +228,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
 
         <SingleColumnGrid>
           <SubGrid>
-            <h5 className={"title is-5"}>Data status</h5>
+            <h5 className={"title is-5"}>Rejected observations</h5>
           </SubGrid>
         </SingleColumnGrid>
         <SingleColumnGrid>
@@ -229,13 +237,13 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
               <Span>
                 <LargeCheckbox
                   id="rejected-checkbox"
-                  checked={rejected === "Rejected" ? true : false}
+                  checked={observationStatuses.has("Rejected")}
                   data-test="rejected-checkbox"
                   onChange={this.changeCheckbox}
                   name="Rejected"
                 />
               </Span>
-              <Span>Rejected</Span>
+              <Span>Include rejected observations</Span>
             </label>
           </SubGrid>
         </SingleColumnGrid>

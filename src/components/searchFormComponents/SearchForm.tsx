@@ -6,7 +6,8 @@ import {
   ISearchFormState,
   ITarget,
   ITelescope,
-  ProductType
+  ProductType,
+  Status
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
 import { isError, validateDate } from "../../utils/validators";
@@ -75,8 +76,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     general: {
       errors: {},
       limit: DEFAULT_LIMIT,
-      productTypes: new Set<ProductType>(["Science"]),
-      rejected: ""
+      observationStatuses: new Set<Status>(["Accepted"]),
+      productTypes: new Set<ProductType>(["Science"])
     },
     hasSearchFormError: false,
     target: {
