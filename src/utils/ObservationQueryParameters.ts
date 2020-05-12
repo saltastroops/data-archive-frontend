@@ -36,6 +36,11 @@ export interface ISearchFormState {
 export type ProductType = "Arc" | "Bias" | "Flat" | "Science" | "Standard";
 
 /**
+ * The observation status values.
+ */
+export type Status = "Accepted" | "Rejected";
+
+/**
  * An interface for query parameters related to general information.
  *
  * Properties:
@@ -58,21 +63,21 @@ export type ProductType = "Arc" | "Bias" | "Flat" | "Science" | "Standard";
 export interface IGeneralErrors {
   limit?: string;
   observationNight?: string;
+  observationStatuses?: string;
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
   productTypes?: string;
-  rejected?: string;
 }
 export interface IGeneral {
   errors: IGeneralErrors;
   limit: string;
   observationNight?: string;
+  observationStatuses: Set<Status>;
   principalInvestigator?: string;
   proposalCode?: string;
   proposalTitle?: string;
   productTypes: Set<ProductType>;
-  rejected: string;
 }
 
 /**
