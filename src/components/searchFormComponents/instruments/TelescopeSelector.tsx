@@ -8,8 +8,7 @@ interface ITelescopeSelectorProps {
   onSelect: (value: any) => void;
 }
 
-// const TELESCOPES = ["SALT", "1.9 m", "Lesedi"];
-const TELESCOPES = ["SALT"];
+const TELESCOPES = ["SALT"]; //, "1.9 m", "Lesedi"];
 /**
  * A form for selecting telescope names.
  */
