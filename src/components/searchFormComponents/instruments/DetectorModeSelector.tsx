@@ -32,9 +32,9 @@ const detectorModeToDisplay = (instruments: string[], telescopes: string[]) => {
       COMMON_DETECTOR_MODES
     );
   }
-  if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
-    return [];
-  }
+  // if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
+  //   return [];
+  // }
   if (instruments.some(inst => inst === "RSS")) {
     detectorModes = detectorModes.concat(RSS_DETECTOR_MODES);
   }

@@ -5,7 +5,7 @@ import MultiSelectField, {
 } from "../../basicComponents/MultiSelectField";
 
 // Instruments
-const SAAO_INSTRUMENTS: InstrumentName[] = ["SpUpNIC", "SHOC", "HIPPO"];
+// const SAAO_INSTRUMENTS: InstrumentName[] = ["SpUpNIC", "SHOC", "HIPPO"];
 const SALT_INSTRUMENTS: InstrumentName[] = ["Salticam", "RSS", "HRS", "BVIT"];
 
 interface IInstrumentSelectorProps {
@@ -17,15 +17,19 @@ interface IInstrumentSelectorProps {
 const instrumentsToDisplay = (telescopes: string[]) => {
   let instruments: InstrumentName[] = [];
 
-  if (telescopes.length === 0 || telescopes.some(t => "All" === t)) {
-    return SALT_INSTRUMENTS.concat(SAAO_INSTRUMENTS);
-  }
-  if (telescopes.some(t => "SALT" === t)) {
+  // if (telescopes.length === 0 || telescopes.some(t => "All" === t)) {
+  //   return SALT_INSTRUMENTS.concat(SAAO_INSTRUMENTS);
+  // }
+  if (
+    telescopes.length === 0 ||
+    telescopes.some(t => "All" === t) ||
+    telescopes.some(t => "SALT" === t)
+  ) {
     instruments = instruments.concat(SALT_INSTRUMENTS);
   }
-  if (telescopes.some(t => "1.9 m" === t || t === "Lesedi")) {
-    instruments = instruments.concat(SAAO_INSTRUMENTS);
-  }
+  // if (telescopes.some(t => "1.9 m" === t || t === "Lesedi")) {
+  //   instruments = instruments.concat(SAAO_INSTRUMENTS);
+  // }
   return instruments;
 };
 /**
