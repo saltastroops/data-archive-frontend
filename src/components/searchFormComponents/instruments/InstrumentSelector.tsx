@@ -30,7 +30,7 @@ const instrumentsToDisplay = (telescopes: string[]) => {
   // if (telescopes.some(t => "1.9 m" === t || t === "Lesedi")) {
   //   instruments = instruments.concat(SAAO_INSTRUMENTS);
   // }
-  return SALT_INSTRUMENTS; //.concat(SAAO_INSTRUMENTS);
+  return SALT_INSTRUMENTS; // .concat(SAAO_INSTRUMENTS);
 };
 /**
  * A form for selecting InstrumentsSelector-related search parameters.
