@@ -161,8 +161,7 @@ export interface ITargetErrors {
 /**
  * The supported telescope names.
  */
-// export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
-export type TelescopeName = "SALT";
+export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
 
 /**
  * An interface for query parameters related to a telescope.
@@ -211,10 +210,10 @@ export interface ISALT extends ITelescope {
  * name:
  *     The string "Lesedi".
  */
-// export interface ILesedi extends ITelescope {
-//   instrument: IInstrument;
-//   name: "Lesedi";
-// }
+export interface ILesedi extends ITelescope {
+  instrument: IInstrument;
+  name: "Lesedi";
+}
 
 /**
  * An interface for query parameters related to the 1.9 m Telescope.
@@ -226,20 +225,24 @@ export interface ISALT extends ITelescope {
  * name:
  *     The string "1.9 m".
  */
-// export interface IOneDotNineM extends ITelescope {
-//   instrument: IInstrument;
-//   name: "1.9 m";
-// }
+export interface IOneDotNineM extends ITelescope {
+  instrument: IInstrument;
+  name: "1.9 m";
+}
 
 // INSTRUMENTS
 
 /**
  * The available instrument names.
  */
-export type InstrumentName = "Salticam" | "RSS" | "HRS" | "BVIT";
-// | "SpUpNIC"
-// | "SHOC"
-// | "HIPPO";
+export type InstrumentName =
+  | "Salticam"
+  | "RSS"
+  | "HRS"
+  | "BVIT"
+  | "SpUpNIC"
+  | "SHOC"
+  | "HIPPO";
 
 /**
  * The available instrument modes.
@@ -441,15 +444,15 @@ export type BVITFilter = "B" | "H-alpha" | "Open" | "R" | "U" | "V";
  * name:
  *     The string "HIPPO".
  */
-// export interface IHIPPO extends IInstrument {
-//   errors: {
-//     exposureTime?: string;
-//     filter?: string;
-//   };
-//   exposureTime?: string;
-//   filter?: string;
-//   name: "HIPPO";
-// }
+export interface IHIPPO extends IInstrument {
+  errors: {
+    exposureTime?: string;
+    filter?: string;
+  };
+  exposureTime?: string;
+  filter?: string;
+  name: "HIPPO";
+}
 
 /**
  * An interface for query parameters related to SHOC.
@@ -465,15 +468,15 @@ export type BVITFilter = "B" | "H-alpha" | "Open" | "R" | "U" | "V";
  * name:
  *     The string "SHOC".
  */
-// export interface ISHOC extends IInstrument {
-//   errors: {
-//     exposureTime?: string;
-//     filter?: string;
-//   };
-//   exposureTime?: string;
-//   filter?: string;
-//   name: "SHOC";
-// }
+export interface ISHOC extends IInstrument {
+  errors: {
+    exposureTime?: string;
+    filter?: string;
+  };
+  exposureTime?: string;
+  filter?: string;
+  name: "SHOC";
+}
 
 /**
  * An interface for query parameters related to SpUpNIC.
@@ -489,15 +492,15 @@ export type BVITFilter = "B" | "H-alpha" | "Open" | "R" | "U" | "V";
  * name:
  *     The string "SpUpNIC".
  */
-// export interface ISpUpNIC extends IInstrument {
-//   errors: {
-//     exposureTime?: string;
-//     filter?: string;
-//   };
-//   exposureTime?: string;
-//   filter?: string;
-//   name: "SpUpNIC";
-// }
+export interface ISpUpNIC extends IInstrument {
+  errors: {
+    exposureTime?: string;
+    filter?: string;
+  };
+  exposureTime?: string;
+  filter?: string;
+  name: "SpUpNIC";
+}
 
 export interface IFile {
   cartContent: ICartFile;

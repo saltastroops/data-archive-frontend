@@ -32,9 +32,9 @@ const modesToDisplay = (instruments: string[], telescopes: string[]) => {
   ) {
     return RSS_MODES.concat(BVIT_MODES).concat(COMMON_RSS_BVIT_MODES);
   }
-  // if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
-  //   return [];
-  // }
+  if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
+    return [];
+  }
   if (instruments.some(inst => inst === "RSS")) {
     modes = modes.concat(RSS_MODES);
   }
