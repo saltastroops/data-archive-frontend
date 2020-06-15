@@ -78,12 +78,6 @@ exports[`InstrumentsSelector should render correctly 1`] = `
                 BVIT
               </option>
               <option
-                key="HIPPO"
-                value="HIPPO"
-              >
-                HIPPO
-              </option>
-              <option
                 key="HRS"
                 value="HRS"
               >
@@ -96,22 +90,10 @@ exports[`InstrumentsSelector should render correctly 1`] = `
                 RSS
               </option>
               <option
-                key="SHOC"
-                value="SHOC"
-              >
-                SHOC
-              </option>
-              <option
                 key="Salticam"
                 value="Salticam"
               >
                 Salticam
-              </option>
-              <option
-                key="SpUpNIC"
-                value="SpUpNIC"
-              >
-                SpUpNIC
               </option>
             </select>
           </div>
