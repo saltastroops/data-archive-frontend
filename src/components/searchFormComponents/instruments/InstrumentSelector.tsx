@@ -20,17 +20,13 @@ const instrumentsToDisplay = (telescopes: string[]) => {
   if (telescopes.length === 0 || telescopes.some(t => "All" === t)) {
     return SALT_INSTRUMENTS.concat(SAAO_INSTRUMENTS);
   }
-  if (
-    telescopes.length === 0 ||
-    telescopes.some(t => "All" === t) ||
-    telescopes.some(t => "SALT" === t)
-  ) {
+  if (telescopes.some(t => "SALT" === t)) {
     instruments = instruments.concat(SALT_INSTRUMENTS);
   }
   if (telescopes.some(t => "1.9 m" === t || t === "Lesedi")) {
     instruments = instruments.concat(SAAO_INSTRUMENTS);
   }
-  return SALT_INSTRUMENTS.concat(SAAO_INSTRUMENTS);
+  return instruments;
 };
 /**
  * A form for selecting InstrumentsSelector-related search parameters.

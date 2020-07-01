@@ -17,7 +17,6 @@ import {
   ParentGridSingle,
   ProposalGrid,
   SearchGrid,
-  SubGrid,
   TargetGrid,
   TelescopeGrid
 } from "../basicComponents/Grids";
@@ -175,14 +174,14 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         <div className={"is-text"}>Number of results per page</div>
         <LimitGrid>
           <div className="field ">
-            <p className="control">
+            <div className="control">
               <InputField
                 error={general.errors.limit}
                 name={"items-per-page"}
                 value={general.limit}
                 onChange={this.updateItemsPerPage}
               />
-            </p>
+            </div>
           </div>
         </LimitGrid>
 
