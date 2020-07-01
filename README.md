@@ -215,9 +215,9 @@ the commands below:
 ```bash
 cd ~/
 wget https://nginx.org/download/nginx-version.tar.gz
-tar zxvf nginx-1.16.1.tar.gz
+tar zxvf nginx-version.tar.gz
 ```
-Replace 'version' with your current Nginx version
+Replace 'version' with your current Nginx version. 
 After extracting it, go and clone ngx_brotli module from Github using the commands below:
 ```bash
 cd ~/
