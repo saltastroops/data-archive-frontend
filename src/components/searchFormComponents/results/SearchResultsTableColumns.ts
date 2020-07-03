@@ -73,6 +73,8 @@ export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
  */
 function tableColumn(dataKey: string): ISearchResultsTableColumn {
   switch (dataKey) {
+    case DataKeys.CAMERA_ANGLE:
+      return { dataKey, name: "Camera Angle (deg)", visible: false };
     case DataKeys.DATA_CATEGORY:
       return { dataKey, name: "Data Category", visible: true };
     case DataKeys.DATA_FILE_FILENAME:

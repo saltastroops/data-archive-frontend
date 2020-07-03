@@ -4,6 +4,7 @@
  * In general these will be column names from the observations database.
  */
 const DataKeys = {
+  CAMERA_ANGLE: "rss_setup.camera_angle",
   CART: "cart",
   DATA_CATEGORY: "product_category.product_category",
   DATA_FILE_FILENAME: "artifact.name",

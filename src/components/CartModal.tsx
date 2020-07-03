@@ -24,7 +24,7 @@ import {
   INCLUDE_CALIBRATION_TYPES_IN_CART_MUTATION,
   REMOVE_FROM_CART_MUTATION
 } from "../util/Cart";
-import { HelpGrid, SubGrid } from "./basicComponents/Grids";
+import { HelpGrid } from "./basicComponents/Grids";
 import HelpButton from "./basicComponents/HelpButton";
 import CartFileRow from "./cart/CartFileRow";
 

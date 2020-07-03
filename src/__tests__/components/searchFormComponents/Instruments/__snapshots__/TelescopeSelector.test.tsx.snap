@@ -72,18 +72,6 @@ exports[`TelescopeSelector  should render correctly 1`] = `
                 </option>
               </AllOption>
               <option
-                key="1.9 m"
-                value="1.9 m"
-              >
-                1.9 m
-              </option>
-              <option
-                key="Lesedi"
-                value="Lesedi"
-              >
-                Lesedi
-              </option>
-              <option
                 key="SALT"
                 value="SALT"
               >
