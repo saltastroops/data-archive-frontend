@@ -11,12 +11,12 @@ interface IRssGratingSelectorProps {
 // Rss grating
 export const RSS_GRATINGS = [
   "Open",
-  "PG0300",
-  "PG0900",
-  "PG1300",
-  "PG1800",
-  "PG2300",
-  "PG3000"
+  "pg0300",
+  "pg0900",
+  "pg1300",
+  "pg1800",
+  "pg2300",
+  "pg3000"
 ];
 
 /**
@@ -30,7 +30,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
       rssGratings: Array.from(values).map((t: any) => {
-        return t.text.toLowerCase();
+        return t.text;
       })
     });
   };
@@ -45,7 +45,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
       >
         <AllOption />
         {RSS_GRATINGS.sort().map(i => (
-          <option key={i.toLowerCase()} value={i.toLowerCase()}>
+          <option key={i} value={i}>
             {i}
           </option>
         ))}
