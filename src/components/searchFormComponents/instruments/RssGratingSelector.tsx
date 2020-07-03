@@ -30,7 +30,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
     const values = e.currentTarget.selectedOptions;
     onSelect({
       rssGratings: Array.from(values).map((t: any) => {
-        return t.text;
+        return t.text.toLowerCase();
       })
     });
   };
@@ -45,7 +45,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
       >
         <AllOption />
         {RSS_GRATINGS.sort().map(i => (
-          <option key={i} value={i}>
+          <option key={i.toLowerCase()} value={i.toLowerCase()}>
             {i}
           </option>
         ))}
