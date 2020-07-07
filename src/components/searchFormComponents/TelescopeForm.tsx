@@ -40,16 +40,30 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
       });
     };
 
+    const telescopeSelect = (newSelection: any) => {
+      onChange({
+        ...newSelection
+      });
+    };
+
+    const instrumentSelect = (newSelection: any) => {
+      const st = telescope.telescopes ? telescope.telescopes : [];
+      onChange({
+        telescopes: st,
+        ...newSelection
+      });
+    };
+
     return (
       <>
         <TelescopeDetailsGrid>
           <TelescopeSelector
-            onSelect={onSelect}
+            onSelect={telescopeSelect}
             telescopes={selectedTelescopes}
           />
 
           <InstrumentSelector
-            onSelect={onSelect}
+            onSelect={instrumentSelect}
             selectedTelescopes={selectedTelescopes}
             instruments={selectedInstruments}
           />
