@@ -76,32 +76,41 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           {selectedInstruments.some((t: string) => t === "HRS") && (
             <HrsMode hrsModes={telescope.hrsModes} onSelect={onSelect} />
           )}
-          {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
-            <RssFabryPerotModeSelector
-              onSelect={onSelect}
-              rssFabryPerotModes={telescope.rssFabryPerotModes}
-            />
-          )}
+          {selectedInstrumentModes.some(mode => mode === "Fabry Perot") &&
+            !selectedInstruments.find(
+              (t: string) => t === "HRS" || t === "BVIT" || t === "Salticam"
+            ) && (
+              <RssFabryPerotModeSelector
+                onSelect={onSelect}
+                rssFabryPerotModes={telescope.rssFabryPerotModes}
+              />
+            )}
           {selectedInstrumentModes.some(
             mode =>
               mode === "MOS" ||
               mode === "Spectropolarimetry" ||
               mode === "Spectroscopy"
-          ) && (
-            <RssGratingSelector
-              onSelect={onSelect}
-              rssGratings={telescope.rssGratings}
-            />
-          )}
+          ) &&
+            !selectedInstruments.find(
+              (t: string) => t === "HRS" || t === "BVIT" || t === "Salticam"
+            ) && (
+              <RssGratingSelector
+                onSelect={onSelect}
+                rssGratings={telescope.rssGratings}
+              />
+            )}
           {selectedInstrumentModes.some(
             mode =>
               mode === "Polarimetric Imaging" || mode === "Spectropolarimetry"
-          ) && (
-            <RssPolarimetryModeSelector
-              onSelect={onSelect}
-              rssPolarimetryModes={telescope.rssPolarimetryModes}
-            />
-          )}
+          ) &&
+            !selectedInstruments.find(
+              (t: string) => t === "HRS" || t === "BVIT" || t === "Salticam"
+            ) && (
+              <RssPolarimetryModeSelector
+                onSelect={onSelect}
+                rssPolarimetryModes={telescope.rssPolarimetryModes}
+              />
+            )}
         </TelescopeDetailsGrid>
       </>
     );
