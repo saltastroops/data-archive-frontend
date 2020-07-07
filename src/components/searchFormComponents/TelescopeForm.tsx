@@ -68,25 +68,36 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           />
           {selectedInstruments.length <= 1 && (
             <>
-              <InstrumentModeSelector
-                instrumentModes={selectedInstrumentModes}
-                selectedTelescopes={selectedTelescopes}
-                selectedInstruments={selectedInstruments}
-                onSelect={onSelect}
-              />
+              {selectedInstruments.some(
+                i => i === "All" || i === "BVIT" || i === "RSS"
+              ) && (
+                <InstrumentModeSelector
+                  instrumentModes={selectedInstrumentModes}
+                  selectedTelescopes={selectedTelescopes}
+                  selectedInstruments={selectedInstruments}
+                  onSelect={onSelect}
+                />
+              )}
 
-              <DetectorModeSelector
-                detectorModes={selectedDetectorMode}
-                selectedTelescopes={selectedTelescopes}
-                selectedInstruments={selectedInstruments}
-                onSelect={onSelect}
-              />
+              {selectedInstruments.some(i => i === "All" || i === "RSS") && (
+                <DetectorModeSelector
+                  detectorModes={selectedDetectorMode}
+                  selectedTelescopes={selectedTelescopes}
+                  selectedInstruments={selectedInstruments}
+                  onSelect={onSelect}
+                />
+              )}
 
-              <Filters
-                onSelect={onSelect}
-                instruments={selectedInstruments}
-                filters={selectedFilters}
-              />
+              {selectedInstruments.some(
+                i => i === "All" || i === "BVIT" || i === "RSS"
+              ) && (
+                <Filters
+                  onSelect={onSelect}
+                  instruments={selectedInstruments}
+                  filters={selectedFilters}
+                />
+              )}
+
               {selectedInstruments.some((t: string) => t === "HRS") && (
                 <HrsMode hrsModes={telescope.hrsModes} onSelect={onSelect} />
               )}
