@@ -33,7 +33,20 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     const selectedDetectorMode = telescope.detectorModes || ["All"];
     const selectedFilters: string[] = telescope.filters || ["All"];
 
-    const onSelect = (newSelection: any) => {
+    const telescopeSelect = (newSelection: any) => {
+      onChange({
+        ...newSelection
+      });
+    };
+
+    const instrumentSelect = (newSelection: any) => {
+      onChange({
+        telescopes: telescope.telescopes ? telescope.telescopes : [],
+        ...newSelection
+      });
+    };
+
+    const instrumentDetailsSelect = (newSelection: any) => {
       onChange({
         ...telescope,
         ...newSelection
@@ -44,63 +57,81 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
       <>
         <TelescopeDetailsGrid>
           <TelescopeSelector
-            onSelect={onSelect}
+            onSelect={telescopeSelect}
             telescopes={selectedTelescopes}
           />
 
           <InstrumentSelector
-            onSelect={onSelect}
+            onSelect={instrumentSelect}
             selectedTelescopes={selectedTelescopes}
             instruments={selectedInstruments}
           />
+          {selectedInstruments.length <= 1 && (
+            <>
+              {selectedInstruments.some(i => i === "All" || i === "RSS") && (
+                <InstrumentModeSelector
+                  instrumentModes={selectedInstrumentModes}
+                  selectedTelescopes={selectedTelescopes}
+                  selectedInstruments={selectedInstruments}
+                  onSelect={instrumentDetailsSelect}
+                />
+              )}
 
-          <InstrumentModeSelector
-            instrumentModes={selectedInstrumentModes}
-            selectedTelescopes={selectedTelescopes}
-            selectedInstruments={selectedInstruments}
-            onSelect={onSelect}
-          />
+              {selectedInstruments.some(
+                i => i === "All" || i === "RSS" || i === "Salticam"
+              ) && (
+                <DetectorModeSelector
+                  detectorModes={selectedDetectorMode}
+                  selectedTelescopes={selectedTelescopes}
+                  selectedInstruments={selectedInstruments}
+                  onSelect={instrumentDetailsSelect}
+                />
+              )}
 
-          <DetectorModeSelector
-            detectorModes={selectedDetectorMode}
-            selectedTelescopes={selectedTelescopes}
-            selectedInstruments={selectedInstruments}
-            onSelect={onSelect}
-          />
+              {selectedInstruments.some(
+                i => i === "All" || i === "RSS" || i === "Salticam"
+              ) && (
+                <Filters
+                  onSelect={instrumentDetailsSelect}
+                  instruments={selectedInstruments}
+                  filters={selectedFilters}
+                />
+              )}
 
-          <Filters
-            onSelect={onSelect}
-            instruments={selectedInstruments}
-            filters={selectedFilters}
-          />
-          {selectedInstruments.some((t: string) => t === "HRS") && (
-            <HrsMode hrsModes={telescope.hrsModes} onSelect={onSelect} />
-          )}
-          {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
-            <RssFabryPerotModeSelector
-              onSelect={onSelect}
-              rssFabryPerotModes={telescope.rssFabryPerotModes}
-            />
-          )}
-          {selectedInstrumentModes.some(
-            mode =>
-              mode === "MOS" ||
-              mode === "Spectropolarimetry" ||
-              mode === "Spectroscopy"
-          ) && (
-            <RssGratingSelector
-              onSelect={onSelect}
-              rssGratings={telescope.rssGratings}
-            />
-          )}
-          {selectedInstrumentModes.some(
-            mode =>
-              mode === "Polarimetric Imaging" || mode === "Spectropolarimetry"
-          ) && (
-            <RssPolarimetryModeSelector
-              onSelect={onSelect}
-              rssPolarimetryModes={telescope.rssPolarimetryModes}
-            />
+              {selectedInstruments.some((t: string) => t === "HRS") && (
+                <HrsMode
+                  hrsModes={telescope.hrsModes}
+                  onSelect={instrumentDetailsSelect}
+                />
+              )}
+              {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
+                <RssFabryPerotModeSelector
+                  onSelect={instrumentDetailsSelect}
+                  rssFabryPerotModes={telescope.rssFabryPerotModes}
+                />
+              )}
+              {selectedInstrumentModes.some(
+                mode =>
+                  mode === "MOS" ||
+                  mode === "Spectropolarimetry" ||
+                  mode === "Spectroscopy"
+              ) && (
+                <RssGratingSelector
+                  onSelect={instrumentDetailsSelect}
+                  rssGratings={telescope.rssGratings}
+                />
+              )}
+              {selectedInstrumentModes.some(
+                mode =>
+                  mode === "Polarimetric Imaging" ||
+                  mode === "Spectropolarimetry"
+              ) && (
+                <RssPolarimetryModeSelector
+                  onSelect={instrumentDetailsSelect}
+                  rssPolarimetryModes={telescope.rssPolarimetryModes}
+                />
+              )}
+            </>
           )}
         </TelescopeDetailsGrid>
       </>

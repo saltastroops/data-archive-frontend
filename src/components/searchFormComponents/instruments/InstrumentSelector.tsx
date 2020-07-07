@@ -6,7 +6,7 @@ import MultiSelectField, {
 
 // Instruments
 const SAAO_INSTRUMENTS: InstrumentName[] = [];
-const SALT_INSTRUMENTS: InstrumentName[] = ["Salticam", "RSS", "HRS", "BVIT"];
+const SALT_INSTRUMENTS: InstrumentName[] = ["Salticam", "RSS", "HRS"];
 
 interface IInstrumentSelectorProps {
   instruments: string[];
