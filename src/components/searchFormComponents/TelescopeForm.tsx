@@ -47,9 +47,8 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     };
 
     const instrumentSelect = (newSelection: any) => {
-      const st = telescope.telescopes ? telescope.telescopes : [];
       onChange({
-        telescopes: st,
+        telescopes: telescope.telescopes ? telescope.telescopes : [],
         ...newSelection
       });
     };
