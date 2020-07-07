@@ -68,9 +68,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           />
           {selectedInstruments.length <= 1 && (
             <>
-              {selectedInstruments.some(
-                i => i === "All" || i === "BVIT" || i === "RSS"
-              ) && (
+              {selectedInstruments.some(i => i === "All" || i === "RSS") && (
                 <InstrumentModeSelector
                   instrumentModes={selectedInstrumentModes}
                   selectedTelescopes={selectedTelescopes}
@@ -91,8 +89,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
               )}
 
               {selectedInstruments.some(
-                i =>
-                  i === "All" || i === "BVIT" || i === "RSS" || i === "Salticam"
+                i => i === "All" || i === "RSS" || i === "Salticam"
               ) && (
                 <Filters
                   onSelect={onSelect}
