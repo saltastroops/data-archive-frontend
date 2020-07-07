@@ -33,13 +33,6 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     const selectedDetectorMode = telescope.detectorModes || ["All"];
     const selectedFilters: string[] = telescope.filters || ["All"];
 
-    const onSelect = (newSelection: any) => {
-      onChange({
-        ...telescope,
-        ...newSelection
-      });
-    };
-
     const telescopeSelect = (newSelection: any) => {
       onChange({
         ...newSelection
@@ -49,6 +42,13 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
     const instrumentSelect = (newSelection: any) => {
       onChange({
         telescopes: telescope.telescopes ? telescope.telescopes : [],
+        ...newSelection
+      });
+    };
+
+    const instrumentDetailsSelect = (newSelection: any) => {
+      onChange({
+        ...telescope,
         ...newSelection
       });
     };
@@ -73,7 +73,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                   instrumentModes={selectedInstrumentModes}
                   selectedTelescopes={selectedTelescopes}
                   selectedInstruments={selectedInstruments}
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                 />
               )}
 
@@ -84,7 +84,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                   detectorModes={selectedDetectorMode}
                   selectedTelescopes={selectedTelescopes}
                   selectedInstruments={selectedInstruments}
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                 />
               )}
 
@@ -92,18 +92,21 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                 i => i === "All" || i === "RSS" || i === "Salticam"
               ) && (
                 <Filters
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                   instruments={selectedInstruments}
                   filters={selectedFilters}
                 />
               )}
 
               {selectedInstruments.some((t: string) => t === "HRS") && (
-                <HrsMode hrsModes={telescope.hrsModes} onSelect={onSelect} />
+                <HrsMode
+                  hrsModes={telescope.hrsModes}
+                  onSelect={instrumentDetailsSelect}
+                />
               )}
               {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
                 <RssFabryPerotModeSelector
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                   rssFabryPerotModes={telescope.rssFabryPerotModes}
                 />
               )}
@@ -114,7 +117,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                   mode === "Spectroscopy"
               ) && (
                 <RssGratingSelector
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                   rssGratings={telescope.rssGratings}
                 />
               )}
@@ -124,7 +127,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                   mode === "Spectropolarimetry"
               ) && (
                 <RssPolarimetryModeSelector
-                  onSelect={onSelect}
+                  onSelect={instrumentDetailsSelect}
                   rssPolarimetryModes={telescope.rssPolarimetryModes}
                 />
               )}
