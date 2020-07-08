@@ -7,6 +7,8 @@ import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
 import InputField from "./basicComponents/InputField";
 import SelectField from "./basicComponents/SelectField";
+import { HelpGrid } from "./basicComponents/Grids";
+import HelpButton from "./basicComponents/HelpButton";
 
 /**
  * Input for the login form.
@@ -237,7 +239,15 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                 {/* Authentication provider */}
                 <div className="field">
                   <label className="label">
-                    Login with
+                    <HelpGrid>
+                      Login with
+                      <HelpButton
+                        left={true}
+                        toolTipMessage={
+                          "You can login with your web manager credentials or login with your SSDA credentials."
+                        }
+                      />
+                    </HelpGrid>
                     <div className={"control is-child"}>
                       <SelectField
                         className="authProvider"
