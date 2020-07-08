@@ -22,6 +22,7 @@ import {
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
+import InfoMessage from "../basicComponents/InfoMessage";
 
 /**
  * The default maximum number of results a query should return.
@@ -248,6 +249,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             startIndex={pageInfo.startIndex}
                           />
                         </PaginationContainer>
+                        <InfoMessage
+                          message={
+                            "You may scroll horizontally and vertically within the table."
+                          }
+                        />
                         <SearchResultsTable
                           columns={displayedTableColumns}
                           maxWidth={maxResultsTableWidth}
