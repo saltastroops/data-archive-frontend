@@ -6,18 +6,12 @@ interface IInfoMessageProps {
 }
 
 const InfoMessageContainer = styled.div<{}>`
-  opacity: 0.5;
-  margin-left: 1.7%;
+  color: #b5b5b5
+  text-align: center;
 `;
 
 const InfoMessage = (props: IInfoMessageProps) => {
   const { message } = props;
-  return (
-    <InfoMessageContainer>
-      {message.split(/\n/g).map((part: string) => (
-        <p key={part}>{part}</p>
-      ))}
-    </InfoMessageContainer>
-  );
+  return <InfoMessageContainer>{message}</InfoMessageContainer>;
 };
 export default InfoMessage;
