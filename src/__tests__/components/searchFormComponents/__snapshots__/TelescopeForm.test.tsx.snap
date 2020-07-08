@@ -112,55 +112,6 @@ exports[`Telescope form rendering should render correctly 2`] = `
         ]
       }
     />
-    <InstrumentModeSelector
-      instrumentModes={
-        Array [
-          "All",
-        ]
-      }
-      onSelect={[Function]}
-      selectedInstruments={
-        Array [
-          "SHOC",
-        ]
-      }
-      selectedTelescopes={
-        Array [
-          "Lesedi",
-        ]
-      }
-    />
-    <DetectorModeSelector
-      detectorModes={
-        Array [
-          "All",
-        ]
-      }
-      onSelect={[Function]}
-      selectedInstruments={
-        Array [
-          "SHOC",
-        ]
-      }
-      selectedTelescopes={
-        Array [
-          "Lesedi",
-        ]
-      }
-    />
-    <Filters
-      filters={
-        Array [
-          "All",
-        ]
-      }
-      instruments={
-        Array [
-          "SHOC",
-        ]
-      }
-      onSelect={[Function]}
-    />
   </styled.div>
 </Fragment>
 `;
@@ -183,24 +134,6 @@ exports[`Telescope form rendering should render correctly 3`] = `
         ]
       }
       onSelect={[Function]}
-      selectedTelescopes={
-        Array [
-          "SALT",
-        ]
-      }
-    />
-    <InstrumentModeSelector
-      instrumentModes={
-        Array [
-          "All",
-        ]
-      }
-      onSelect={[Function]}
-      selectedInstruments={
-        Array [
-          "Salticam",
-        ]
-      }
       selectedTelescopes={
         Array [
           "SALT",

@@ -47,9 +47,9 @@ describe("Telescope form rendering HRS modes", () => {
   it("should render", () => {
     expect(wrapper).toBeDefined();
   });
-  it("should have six children if HRS is selected", () => {
+  it("should have three children if HRS is selected", () => {
     const telescope = wrapper.find("div.select").children();
-    expect(telescope.length).toEqual(6);
+    expect(telescope.length).toEqual(3);
   });
   it("should have a child with hrsMode ", () => {
     const telescope = wrapper.find('select[name="hrsMode"]');
