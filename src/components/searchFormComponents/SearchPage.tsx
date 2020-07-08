@@ -10,6 +10,7 @@ import {
   IGeneral,
   ITarget
 } from "../../utils/ObservationQueryParameters";
+import InfoMessage from "../basicComponents/InfoMessage";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
@@ -22,7 +23,6 @@ import {
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
-import InfoMessage from "../basicComponents/InfoMessage";
 
 /**
  * The default maximum number of results a query should return.
