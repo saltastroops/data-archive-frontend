@@ -5,10 +5,10 @@ import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
-import InputField from "./basicComponents/InputField";
-import SelectField from "./basicComponents/SelectField";
 import { HelpGrid } from "./basicComponents/Grids";
 import HelpButton from "./basicComponents/HelpButton";
+import InputField from "./basicComponents/InputField";
+import SelectField from "./basicComponents/SelectField";
 
 /**
  * Input for the login form.
