@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { LOGIN_MUTATION } from "../graphql/Mutations";
 import { USER_QUERY } from "../graphql/Query";
+import { HelpGrid } from "./basicComponents/Grids";
+import HelpButton from "./basicComponents/HelpButton";
 import InputField from "./basicComponents/InputField";
 import SelectField from "./basicComponents/SelectField";
 
@@ -237,7 +239,18 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                 {/* Authentication provider */}
                 <div className="field">
                   <label className="label">
-                    Login with
+                    <HelpGrid>
+                      Login with
+                      <HelpButton
+                        left={true}
+                        toolTipMessage={
+                          "You can login with your Data Archive or SALT Web " +
+                          "Manager credentials. Please use your Web " +
+                          "Manager credentials if you want to access your " +
+                          "proprietary SALT data."
+                        }
+                      />
+                    </HelpGrid>
                     <div className={"control is-child"}>
                       <SelectField
                         className="authProvider"

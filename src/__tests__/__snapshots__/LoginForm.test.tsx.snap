@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginForm Component renders the LoginForm component having unpopulated props with no errors 1`] = `
+.c2.c2 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-bottom: 0;
+}
+
+.c3.c3 {
+  margin-left: 5px;
+}
+
 .c0.c0 {
   padding: 1px;
 }
@@ -26,7 +38,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
             },
           ],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bxivhb",
+            "componentId": "sc-ckVGcZ",
             "isStatic": true,
             "lastClassName": "c1",
             "rules": Array [
@@ -41,7 +53,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
           "displayName": "styled.h1",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bxivhb",
+          "styledComponentId": "sc-ckVGcZ",
           "target": "h1",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -67,7 +79,154 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       <label
         className="label"
       >
-        Login with
+        <styled.div>
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  Object {
+                    "className": "field",
+                  },
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-VigVT",
+                  "isStatic": true,
+                  "lastClassName": "c2",
+                  "rules": Array [
+                    "
+  && {
+    display: inline-flex;
+    margin-bottom: 0;
+  }
+",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-VigVT",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+          >
+            <div
+              className="field c2"
+            >
+              Login with
+              <HelpButton
+                left={true}
+                toolTipMessage="You can login with your Data Archive or SALT Web Manager credentials. Please use your Web Manager credentials if you want to access your proprietary SALT data."
+              >
+                <styled.div
+                  className="
+          control
+      "
+                  data-tooltip="You can login with your Data Archive or SALT Web Manager credentials. Please use your Web Manager credentials if you want to access your proprietary SALT data."
+                  onClick={[Function]}
+                >
+                  <StyledComponent
+                    className="
+          control
+      "
+                    data-tooltip="You can login with your Data Archive or SALT Web Manager credentials. Please use your Web Manager credentials if you want to access your proprietary SALT data."
+                    forwardedComponent={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "attrs": Array [
+                          Object {},
+                        ],
+                        "componentStyle": ComponentStyle {
+                          "componentId": "sc-kGXeez",
+                          "isStatic": true,
+                          "lastClassName": "c3",
+                          "rules": Array [
+                            "
+  && {
+    margin-left: 5px;
+  }
+",
+                          ],
+                        },
+                        "displayName": "styled.div",
+                        "foldedComponentIds": Array [],
+                        "render": [Function],
+                        "styledComponentId": "sc-kGXeez",
+                        "target": "div",
+                        "toString": [Function],
+                        "warnTooManyClasses": [Function],
+                        "withComponent": [Function],
+                      }
+                    }
+                    forwardedRef={null}
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="
+          control
+       c3"
+                      data-tooltip="You can login with your Data Archive or SALT Web Manager credentials. Please use your Web Manager credentials if you want to access your proprietary SALT data."
+                      onClick={[Function]}
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              512,
+                              512,
+                              Array [],
+                              "f059",
+                              "M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z",
+                            ],
+                            "iconName": "question-circle",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-question-circle fa-w-16 "
+                          data-icon="question-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </div>
+                  </StyledComponent>
+                </styled.div>
+              </HelpButton>
+            </div>
+          </StyledComponent>
+        </styled.div>
         <div
           className="control is-child"
         >
