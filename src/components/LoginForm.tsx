@@ -244,7 +244,10 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                       <HelpButton
                         left={true}
                         toolTipMessage={
-                          "You can login with your web manager credentials or login with your SSDA credentials."
+                          "You can login with your Data Archive or SALT Web " +
+                          "Manager credentials. Please use your Web " +
+                          "Manager credentials if you want to access your " +
+                          "proprietary SALT data."
                         }
                       />
                     </HelpGrid>
