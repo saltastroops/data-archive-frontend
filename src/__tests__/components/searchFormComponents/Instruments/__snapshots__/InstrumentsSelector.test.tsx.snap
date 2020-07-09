@@ -72,12 +72,6 @@ exports[`InstrumentsSelector should render correctly 1`] = `
                 </option>
               </AllOption>
               <option
-                key="BVIT"
-                value="BVIT"
-              >
-                BVIT
-              </option>
-              <option
                 key="HRS"
                 value="HRS"
               >

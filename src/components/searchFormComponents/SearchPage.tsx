@@ -10,6 +10,7 @@ import {
   IGeneral,
   ITarget
 } from "../../utils/ObservationQueryParameters";
+import InfoMessage from "../basicComponents/InfoMessage";
 import ISearchFormCache from "./ISearchFormCache";
 import DataKeys from "./results/DataKeys";
 import ISearchResultsTableColumn from "./results/ISearchResultsTableColumn";
@@ -248,6 +249,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             startIndex={pageInfo.startIndex}
                           />
                         </PaginationContainer>
+                        <InfoMessage
+                          message={
+                            "You may scroll horizontally and vertically within the table."
+                          }
+                        />
                         <SearchResultsTable
                           columns={displayedTableColumns}
                           maxWidth={maxResultsTableWidth}

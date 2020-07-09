@@ -107,12 +107,6 @@ exports[`Mode Selector should render correctly 1`] = `
               >
                 Spectroscopy
               </option>
-              <option
-                key="Streaming"
-                value="Streaming"
-              >
-                Streaming
-              </option>
             </select>
           </div>
         </StyledComponent>
