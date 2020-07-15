@@ -8,6 +8,7 @@ import { USER_QUERY } from "../graphql/Query";
 import { HelpGrid } from "./basicComponents/Grids";
 import HelpButton from "./basicComponents/HelpButton";
 import InputField from "./basicComponents/InputField";
+import Message from "./basicComponents/Message";
 import SelectField from "./basicComponents/SelectField";
 
 /**
@@ -210,6 +211,10 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     });
   };
 
+  areCookiesEnabled() {
+    return navigator.cookieEnabled;
+  }
+
   render() {
     const { errors, loggedIn } = this.state;
     const { authProvider, password, username } = this.state.userInput;
@@ -230,6 +235,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               data-test={"form"}
               onSubmit={e => this.handleSubmit(e, login)}
             >
+              {!this.areCookiesEnabled && (
+                <Message
+                  message={
+                    "It seems like cookies are disable. Note that, you won't be able to login unless you anable the cookies."
+                  }
+                />
+              )}
+
               <Heading>Login to the Data Archive</Heading>
               {error ? (
                 <ErrorMessage>{errors.responseError}</ErrorMessage>
