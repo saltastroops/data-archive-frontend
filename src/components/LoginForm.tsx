@@ -317,6 +317,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                   <button
                     className="button is-success is-fullwidth"
                     data-test="signIn"
+                    disabled={!this.areCookiesEnabled()}
                   >
                     {loading ? "Signing in..." : "Sign in"}
                   </button>
