@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+/.idea
+
+# VSCODE
+/.vscode
