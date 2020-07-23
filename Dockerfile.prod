@@ -1,5 +1,5 @@
 # Specify a base image.
-FROM node:12-alpine AS alpine
+FROM node:12-slim AS slim
 
 # Project working directory.
 WORKDIR /data-archive-frontend
@@ -7,5 +7,5 @@ WORKDIR /data-archive-frontend
 # Copy the contents of the project to the image
 COPY . .
 
-# Run 'yarn build' when the container starts.
-CMD ["yarn", "build"]
+# Run 'yarn start' when the container starts.
+CMD ["yarn", "start"]
