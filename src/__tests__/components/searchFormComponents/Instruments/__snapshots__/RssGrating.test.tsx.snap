@@ -78,40 +78,40 @@ exports[`RssGrating should render correctly 1`] = `
                 Open
               </option>
               <option
-                key="PG0300"
-                value="PG0300"
+                key="pg0300"
+                value="pg0300"
               >
-                PG0300
+                pg0300
               </option>
               <option
-                key="PG0900"
-                value="PG0900"
+                key="pg0900"
+                value="pg0900"
               >
-                PG0900
+                pg0900
               </option>
               <option
-                key="PG1300"
-                value="PG1300"
+                key="pg1300"
+                value="pg1300"
               >
-                PG1300
+                pg1300
               </option>
               <option
-                key="PG1800"
-                value="PG1800"
+                key="pg1800"
+                value="pg1800"
               >
-                PG1800
+                pg1800
               </option>
               <option
-                key="PG2300"
-                value="PG2300"
+                key="pg2300"
+                value="pg2300"
               >
-                PG2300
+                pg2300
               </option>
               <option
-                key="PG3000"
-                value="PG3000"
+                key="pg3000"
+                value="pg3000"
               >
-                PG3000
+                pg3000
               </option>
             </select>
           </div>

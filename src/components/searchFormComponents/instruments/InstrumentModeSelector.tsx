@@ -30,7 +30,7 @@ const modesToDisplay = (instruments: string[], telescopes: string[]) => {
     (instruments.some(inst => inst === "All") &&
       telescopes.some(t => t === "All" || t === "SALT"))
   ) {
-    return RSS_MODES.concat(BVIT_MODES).concat(COMMON_RSS_BVIT_MODES);
+    return RSS_MODES /*.concat(BVIT_MODES)*/.concat(COMMON_RSS_BVIT_MODES);
   }
   if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
     return [];
