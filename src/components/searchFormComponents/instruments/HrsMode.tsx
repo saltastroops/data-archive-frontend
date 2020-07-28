@@ -9,9 +9,9 @@ interface IHrsModeProps {
 }
 
 const HRS_MODES = [
-  "Low resolution",
-  "Medium resolution",
-  "High resolution",
+  "Low Resolution",
+  "Medium Resolution",
+  "High Resolution",
   "High Stability",
   "Int Cal Fibre"
 ];
