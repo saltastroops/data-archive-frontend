@@ -63,7 +63,8 @@ class SearchResultsTableColumnSelector extends React.Component<
     const saltDataKeys = [
       DataKeys.RSS_FABRY_PEROT_MODE,
       DataKeys.RSS_GRATING,
-      DataKeys.HRS_MODE
+      DataKeys.HRS_MODE,
+      DataKeys.CAMERA_ANGLE
     ];
 
     // convert data keys to table columns

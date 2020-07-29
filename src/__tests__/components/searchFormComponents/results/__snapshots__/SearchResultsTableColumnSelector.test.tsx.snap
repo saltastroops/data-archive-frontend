@@ -30,6 +30,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
   columns={
     Array [
       Object {
+        "dataKey": "rss_setup.camera_angle",
+        "name": "Camera Angle (deg)",
+        "visible": false,
+      },
+      Object {
         "dataKey": "cart",
         "name": "cart",
         "visible": false,
@@ -606,6 +611,11 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                         "name": "HRS Mode",
                         "visible": false,
                       },
+                      Object {
+                        "dataKey": "rss_setup.camera_angle",
+                        "name": "Camera Angle (deg)",
+                        "visible": false,
+                      },
                     ]
                   }
                   onChange={[MockFunction]}
@@ -831,6 +841,67 @@ exports[`SearchResultsTableColumn should render correctly 1`] = `
                             </StyledComponent>
                           </styled.input>
                           HRS Mode
+                        </label>
+                      </li>
+                      <li
+                        key="rss_setup.camera_angle"
+                      >
+                        <label>
+                          <styled.input
+                            checked={false}
+                            name="rss_setup.camera_angle"
+                            onChange={[Function]}
+                            type="checkbox"
+                          >
+                            <StyledComponent
+                              checked={false}
+                              forwardedComponent={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "attrs": Array [
+                                    Object {
+                                      "className": "checkbox",
+                                      "type": "checkbox",
+                                    },
+                                  ],
+                                  "componentStyle": ComponentStyle {
+                                    "componentId": "sc-bdVaJa",
+                                    "isStatic": true,
+                                    "lastClassName": "c2",
+                                    "rules": Array [
+                                      "
+  && {
+    width: 18px;
+    height: 18px;
+  }
+",
+                                    ],
+                                  },
+                                  "displayName": "styled.input",
+                                  "foldedComponentIds": Array [],
+                                  "render": [Function],
+                                  "styledComponentId": "sc-bdVaJa",
+                                  "target": "input",
+                                  "toString": [Function],
+                                  "warnTooManyClasses": [Function],
+                                  "withComponent": [Function],
+                                }
+                              }
+                              forwardedRef={null}
+                              name="rss_setup.camera_angle"
+                              onChange={[Function]}
+                              type="checkbox"
+                            >
+                              <input
+                                checked={false}
+                                className="checkbox c2"
+                                name="rss_setup.camera_angle"
+                                onChange={[Function]}
+                                type="checkbox"
+                              />
+                            </StyledComponent>
+                          </styled.input>
+                          Camera Angle (deg)
                         </label>
                       </li>
                     </ul>
