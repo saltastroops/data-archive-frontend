@@ -11,7 +11,7 @@ This project provides the web frontend for using the SAAO/SALT Data Archive.
 To clone this repository to your development machine, you need to run the following command (assuming that `git` is installed on your machine.
 
 ```bash
-git clone HTTPS://github.com/saltastroops/data-archive-frontend.git frontend
+git clone https://github.com/saltastroops/data-archive-frontend.git frontend
 ```
 
 A directory of name `frontend` with the frontend code will be created.
@@ -66,15 +66,15 @@ To run all the tests of this application execute the command `yarn test` in the 
 
 ### Error tracking
 
-Errors are monitored [Sentry](HTTPS://sentry.io/welcome/) if the environment variable `REACT_APP_SENTRY_DSN` is set in the environment file (see the section on setting up environment variables).
+Errors are monitored [Sentry](https://sentry.io/welcome/) if the environment variable `REACT_APP_SENTRY_DSN` is set in the environment file (see the section on setting up environment variables).
 
 ### Installing and configuring nginx
 
 Start by installing yarn.
 
 ```bash
-curl -sS HTTPS://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb HTTPS://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
 ```
 
@@ -135,7 +135,7 @@ sudo service nginx restart
 Clone the repository,
 
 ```bash
-git clone HTTPS://github.com/saltastroops/data-archive-frontend.git /var/www/frontend
+git clone https://github.com/saltastroops/data-archive-frontend.git /var/www/frontend
 ```
 
 and checkout the correct branch.
@@ -191,12 +191,12 @@ or reboot the server.
 sudo reboot
 ```
 
-The above steps are explained in detail [in this article](HTTPS://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
+The above steps are explained in detail [in this article](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
 
 ## Adding HTTPS to the SALT/SAAO Data Archive
 
 There are some pre-requisites to adding HTTPS to the site. You need Nginx to be running already, the Nginx configuration
-file should be set up properly and we need a user with sudo rights. We will use [Certbot](HTTPS://certbot.eff.org/lets-encrypt/ubuntubionic-nginx) 
+file should be set up properly and we need a user with sudo rights. We will use [Certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx) 
 to add HTTPS to our Archive. 
 
 First ssh into the server you are running your HTTP on using a user with sudo privileges. We the need to run the
