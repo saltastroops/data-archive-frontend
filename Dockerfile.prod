@@ -2,10 +2,10 @@
 FROM node:12-slim AS slim
 
 # Project working directory.
-WORKDIR /data-archive-frontend
+WORKDIR /opt/data-archive-frontend
 
 # Copy the contents of the project to the image
 COPY . .
 
-# Run 'yarn start' when the container starts.
-CMD ["yarn", "start"]
+# Run 'yarn build'.
+RUN yarn build
