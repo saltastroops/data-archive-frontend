@@ -235,10 +235,12 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               data-test={"form"}
               onSubmit={e => this.handleSubmit(e, login)}
             >
-              {!this.areCookiesEnabled && (
+              {this.areCookiesEnabled() ? (
+                <div>{}</div>
+              ) : (
                 <Message
                   message={
-                    "It seems like cookies are disable. Note that, you won't be able to login unless you anable the cookies."
+                    "It seems like cookies are disable. Note that, you won't be able to login unless you enable the cookies."
                   }
                 />
               )}
