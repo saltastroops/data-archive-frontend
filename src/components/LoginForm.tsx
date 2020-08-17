@@ -238,11 +238,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
               {this.areCookiesEnabled() ? (
                 <div>{}</div>
               ) : (
-                <Message
-                  message={
-                    "It seems like cookies are disable. Note that, you won't be able to login unless you enable the cookies."
-                  }
-                />
+                <Message message={"You have to enable cookies to login"} />
               )}
 
               <Heading>Login to the Data Archive</Heading>
