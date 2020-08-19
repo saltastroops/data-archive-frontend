@@ -315,7 +315,11 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                     data-test="signIn"
                     disabled={!this.areCookiesEnabled()}
                   >
-                    {loading ? "Signing in..." : "Sign in"}
+                    {loading
+                      ? "Signing in ..."
+                      : !this.areCookiesEnabled()
+                      ? "Sign in (Enable cookies first)"
+                      : "Sign in"}
                   </button>
                 </div>
                 <div className="field">
