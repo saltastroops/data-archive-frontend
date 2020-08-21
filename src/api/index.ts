@@ -22,13 +22,13 @@ export const baseAxiosClient = (config?: { [key: string]: any }) => ({
     }
   },
 
-  get(url: string) {
-    return this._client.get(url).catch(this._handleError);
+  get(url: string, conf: any = {}) {
+    return this._client.get(url, conf).catch(this._handleError);
   },
 
   post(url: string, data: any) {
     return this._client.post(url, data).catch(this._handleError);
-  }
+  },
 });
 
 /**
@@ -45,7 +45,7 @@ function configuration(config?: { [key: string]: any }) {
   const defaultConfig = {
     ...config,
     baseURL: `${process.env.REACT_APP_BACKEND_URI}`,
-    withCredentials: true
+    withCredentials: true,
   };
 
   return Object.assign({}, defaultConfig, config || {});

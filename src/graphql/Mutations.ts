@@ -131,6 +131,7 @@ export const CREATE_DATA_REQUEST = gql`
       requestedCalibrationTypes: $includedCalibrationTypes
       requestedCalibrationLevels: $includedCalibrationLevels
     ) {
+      dataRequestId
       status
       message
     }
