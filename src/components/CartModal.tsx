@@ -29,6 +29,7 @@ import {
 import { HelpGrid } from "./basicComponents/Grids";
 import HelpButton from "./basicComponents/HelpButton";
 import CartFileRow from "./cart/CartFileRow";
+import moment from "moment";
 
 interface ICart {
   open: boolean;
@@ -546,7 +547,10 @@ class CartModal extends React.Component<
       response = await baseAxiosClient().get(zipUrl, {
         responseType: "blob",
       });
-      fileDownload(response.data, `ssda_data_request_${id}.zip`);
+      fileDownload(
+        response.data,
+        `ssda-data-request-${moment().format("Y-MM-DD")}.zip`
+      );
       this.setState({ requesting: false });
       openCart(false);
       await clearCart();
