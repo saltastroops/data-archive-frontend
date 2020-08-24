@@ -58,12 +58,17 @@ const ErrorMessage = styled.p.attrs({
   }
 `;
 
-class CartModal extends React.Component<ICart, { error: string }> {
+class CartModal extends React.Component<
+  ICart,
+  { error: string; requesting: boolean }
+> {
   state = {
     error: "",
+    requesting: false,
   };
   render() {
     const { open, openCart, user } = this.props;
+    const { requesting } = this.state;
 
     // Get current cart content
 
@@ -365,6 +370,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                         <NavLink to={"login"}>
                                           <button
                                             className={"button is-primary"}
+                                            disabled={requesting}
                                             onClick={() => openCart(false)}
                                           >
                                             <span>
@@ -376,73 +382,42 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                           </button>
                                         </NavLink>
                                       ) : (
-                                        <>
-                                          <NavLink to={"data-requests"}>
-                                            <button
-                                              className={"button is-primary"}
-                                              onClick={() => {
-                                                this.createDataRequest(
-                                                  createDataRequest,
-                                                  clearCart,
-                                                  dataFileIds,
-                                                  includeStandards,
-                                                  includeArcsFlatsBiases,
-                                                  includedCalibrationLevels
-                                                );
-                                                if (
-                                                  !error &&
-                                                  this.isCalibrationLevelIncluded(
-                                                    cart.includedCalibrationLevels
-                                                  )
-                                                ) {
-                                                  openCart(false);
-                                                }
-                                              }}
-                                            >
-                                              <span>
-                                                Request{" "}
-                                                <FontAwesomeIcon
-                                                  icon={faDownload}
-                                                />
-                                              </span>
-                                            </button>
-                                          </NavLink>
-                                          <NavLink to={"data-requests"}>
-                                            <button
-                                              className={"button is-primary"}
-                                              onClick={() => {
-                                                this.newCreateDataRequest(
-                                                  createDataRequest,
-                                                  clearCart,
-                                                  dataFileIds,
-                                                  includeStandards,
-                                                  includeArcsFlatsBiases,
-                                                  includedCalibrationLevels
-                                                );
-                                                if (
-                                                  !error &&
-                                                  this.isCalibrationLevelIncluded(
-                                                    cart.includedCalibrationLevels
-                                                  )
-                                                ) {
-                                                  openCart(false);
-                                                }
-                                              }}
-                                            >
-                                              <span>
-                                                Request Now{" "}
-                                                <FontAwesomeIcon
-                                                  icon={faDownload}
-                                                />
-                                              </span>
-                                            </button>
-                                          </NavLink>
-                                        </>
+                                        <button
+                                          className={"button is-primary"}
+                                          disabled={requesting}
+                                          onClick={() => {
+                                            this.downloadDataRequest(
+                                              createDataRequest,
+                                              clearCart,
+                                              dataFileIds,
+                                              includeStandards,
+                                              includeArcsFlatsBiases,
+                                              includedCalibrationLevels,
+                                              openCart
+                                            );
+                                            if (
+                                              !error &&
+                                              this.isCalibrationLevelIncluded(
+                                                cart.includedCalibrationLevels
+                                              )
+                                            ) {
+                                              openCart(false);
+                                            }
+                                          }}
+                                        >
+                                          <span>
+                                            Download data request{" "}
+                                            <FontAwesomeIcon
+                                              icon={faDownload}
+                                            />
+                                          </span>
+                                        </button>
                                       )}
                                     </div>
                                     <div className={"column"}>
                                       <button
                                         className={"button is-danger"}
+                                        disabled={requesting}
                                         onClick={() => openCart(false)}
                                       >
                                         <span>
@@ -456,6 +431,7 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                     <div className={"column"}>
                                       <button
                                         className={"button is-warning"}
+                                        disabled={requesting}
                                         onClick={(e) =>
                                           this.remove(
                                             e,
@@ -471,6 +447,15 @@ class CartModal extends React.Component<ICart, { error: string }> {
                                       </button>
                                     </div>
                                   </div>
+                                  {requesting && (
+                                    <div className={"notification is-warning"}>
+                                      <p>
+                                        Please wait while while your data
+                                        request is being processed your download
+                                        will start soon.
+                                      </p>
+                                    </div>
+                                  )}
                                 </div>
                               </Modal>
                             )}
@@ -500,13 +485,14 @@ class CartModal extends React.Component<ICart, { error: string }> {
     });
   };
 
-  createDataRequest = async (
+  downloadDataRequest = async (
     create: any,
     clearCart: any,
     dataFilesIds: number[],
     includeStandards: boolean,
     includeArcsFlatsBiases: boolean,
-    includedCalibrationLevels: Set<CalibrationLevel>
+    includedCalibrationLevels: Set<CalibrationLevel>,
+    openCart: (open: boolean) => void
   ) => {
     // If there is no data file in the data request, raise an error and abort data request creation
     if (!this.isDatafileIncluded(dataFilesIds)) {
@@ -524,58 +510,10 @@ class CartModal extends React.Component<ICart, { error: string }> {
       });
       return;
     }
+
     this.setState({
       error: "",
-    });
-
-    const calibrationTypes: CalibrationType[] = [];
-
-    if (includeStandards) {
-      calibrationTypes.push(
-        "SPECTROPHOTOMETRIC_STANDARD",
-        "RADIAL_VELOCITY_STANDARD"
-      );
-    }
-
-    if (includeArcsFlatsBiases) {
-      calibrationTypes.push("ARC", "FLAT", "BIAS");
-    }
-    await create({
-      variables: {
-        dataFiles: dataFilesIds,
-        includedCalibrationLevels: Array.from(includedCalibrationLevels),
-        includedCalibrationTypes: calibrationTypes,
-      },
-    });
-    await clearCart();
-  };
-
-  newCreateDataRequest = async (
-    create: any,
-    clearCart: any,
-    dataFilesIds: number[],
-    includeStandards: boolean,
-    includeArcsFlatsBiases: boolean,
-    includedCalibrationLevels: Set<CalibrationLevel>
-  ) => {
-    // If there is no data file in the data request, raise an error and abort data request creation
-    if (!this.isDatafileIncluded(dataFilesIds)) {
-      this.setState({
-        error:
-          "Please make sure that there is at least one file in your data request.",
-      });
-      return;
-    }
-
-    // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
-    if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
-      this.setState({
-        error: "Please make sure reduced or raw data is selected.",
-      });
-      return;
-    }
-    this.setState({
-      error: "",
+      requesting: true,
     });
 
     const calibrationTypes: CalibrationType[] = [];
@@ -599,22 +537,20 @@ class CartModal extends React.Component<ICart, { error: string }> {
     });
     let response;
     if (dr.data.createDataRequest.status) {
-      // Todo get the zip file  => path /downloads/data-requests/${id}/${filename}
       const id = dr.data.createDataRequest.dataRequestId;
-      const config = {
-        responseType: "blob",
-      };
       const zipUrl = `${
         process.env.REACT_APP_BACKEND_URI
           ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
           : ""
-      }/downloads/data-requests-new/${id}`;
+      }/downloads/data-requests/${id}`;
       response = await baseAxiosClient().get(zipUrl, {
         responseType: "blob",
       });
       fileDownload(response.data, `ssda_data_request_${id}.zip`);
+      this.setState({ requesting: false });
+      openCart(false);
+      await clearCart();
     }
-    await clearCart();
   };
 
   // Check if one of the calibration levels, reduced or raw, is included.
