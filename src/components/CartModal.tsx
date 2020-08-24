@@ -549,7 +549,7 @@ class CartModal extends React.Component<
       });
       fileDownload(
         response.data,
-        `ssda-data-request-${moment().format("Y-MM-DD")}.zip`
+        `DataRequest-${moment().format("Y-MM-DD")}.zip`
       );
       this.setState({ requesting: false });
       openCart(false);
