@@ -11,7 +11,7 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
 }
 
 <form
-  className="column is-4 is-offset-4 c0"
+  className="c0 column is-4 is-offset-4"
   onSubmit={[Function]}
 >
   <fieldset
@@ -19,46 +19,11 @@ exports[`UserUpdateForm Component renders the UserUpdateForm having unpopulated 
     disabled={false}
   >
     <styled.h1>
-      <StyledComponent
-        forwardedComponent={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "attrs": Array [
-              Object {
-                "className": "title is-3",
-              },
-            ],
-            "componentStyle": ComponentStyle {
-              "componentId": "sc-kvZOFW",
-              "isStatic": true,
-              "lastClassName": "c1",
-              "rules": Array [
-                "
-  && {
-    text-align: center;
-    margin: 20px 0 20px 0;
-  }
-",
-              ],
-            },
-            "displayName": "styled.h1",
-            "foldedComponentIds": Array [],
-            "render": [Function],
-            "styledComponentId": "sc-kvZOFW",
-            "target": "h1",
-            "toString": [Function],
-            "warnTooManyClasses": [Function],
-            "withComponent": [Function],
-          }
-        }
-        forwardedRef={null}
+      <h1
+        className="c1 title is-3"
       >
-        <h1
-          className="title is-3 c1"
-        >
-          Update your account
-        </h1>
-      </StyledComponent>
+        Update your account
+      </h1>
     </styled.h1>
     <div
       className="field"

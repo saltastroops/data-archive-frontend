@@ -25,87 +25,58 @@ exports[`FabryPerot should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
+          <select
+            multiple={true}
+            name="fabryPerotModes"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
+              }
+            }
+            value={
+              Array [
+                "All",
+              ]
+            }
           >
-            <select
-              multiple={true}
-              name="fabryPerotModes"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
-              }
-              value={
-                Array [
-                  "All",
-                ]
-              }
+            <AllOption>
+              <option
+                value="All"
+              >
+                All
+              </option>
+            </AllOption>
+            <option
+              key="High Resolution"
+              value="High Resolution"
             >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
-              <option
-                key="High Resolution"
-                value="High Resolution"
-              >
-                High Resolution
-              </option>
-              <option
-                key="Low Resolution"
-                value="Low Resolution"
-              >
-                Low Resolution
-              </option>
-              <option
-                key="Medium Resolution"
-                value="Medium Resolution"
-              >
-                Medium Resolution
-              </option>
-              <option
-                key="Tunable Filter"
-                value="Tunable Filter"
-              >
-                Tunable Filter
-              </option>
-            </select>
-          </div>
-        </StyledComponent>
+              High Resolution
+            </option>
+            <option
+              key="Low Resolution"
+              value="Low Resolution"
+            >
+              Low Resolution
+            </option>
+            <option
+              key="Medium Resolution"
+              value="Medium Resolution"
+            >
+              Medium Resolution
+            </option>
+            <option
+              key="Tunable Filter"
+              value="Tunable Filter"
+            >
+              Tunable Filter
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>

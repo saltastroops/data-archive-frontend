@@ -21,101 +21,72 @@ exports[`RssGrating should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
-          >
-            <select
-              multiple={true}
-              name="rssGratings"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
+          <select
+            multiple={true}
+            name="rssGratings"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
               }
-              value={Array []}
+            }
+            value={Array []}
+          >
+            <AllOption>
+              <option
+                value="All"
+              >
+                All
+              </option>
+            </AllOption>
+            <option
+              key="Open"
+              value="Open"
             >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
-              <option
-                key="Open"
-                value="Open"
-              >
-                Open
-              </option>
-              <option
-                key="pg0300"
-                value="pg0300"
-              >
-                pg0300
-              </option>
-              <option
-                key="pg0900"
-                value="pg0900"
-              >
-                pg0900
-              </option>
-              <option
-                key="pg1300"
-                value="pg1300"
-              >
-                pg1300
-              </option>
-              <option
-                key="pg1800"
-                value="pg1800"
-              >
-                pg1800
-              </option>
-              <option
-                key="pg2300"
-                value="pg2300"
-              >
-                pg2300
-              </option>
-              <option
-                key="pg3000"
-                value="pg3000"
-              >
-                pg3000
-              </option>
-            </select>
-          </div>
-        </StyledComponent>
+              Open
+            </option>
+            <option
+              key="pg0300"
+              value="pg0300"
+            >
+              pg0300
+            </option>
+            <option
+              key="pg0900"
+              value="pg0900"
+            >
+              pg0900
+            </option>
+            <option
+              key="pg1300"
+              value="pg1300"
+            >
+              pg1300
+            </option>
+            <option
+              key="pg1800"
+              value="pg1800"
+            >
+              pg1800
+            </option>
+            <option
+              key="pg2300"
+              value="pg2300"
+            >
+              pg2300
+            </option>
+            <option
+              key="pg3000"
+              value="pg3000"
+            >
+              pg3000
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>
