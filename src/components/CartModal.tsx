@@ -386,15 +386,14 @@ class CartModal extends React.Component<
                                         <button
                                           className={"button is-primary"}
                                           disabled={requesting}
-                                          onClick={() => {
-                                            this.downloadDataRequest(
+                                          onClick={async () => {
+                                            await this.downloadDataRequest(
                                               createDataRequest,
                                               clearCart,
                                               dataFileIds,
                                               includeStandards,
                                               includeArcsFlatsBiases,
                                               includedCalibrationLevels,
-                                              openCart
                                             );
                                             if (
                                               !error &&
@@ -495,7 +494,6 @@ class CartModal extends React.Component<
     includeStandards: boolean,
     includeArcsFlatsBiases: boolean,
     includedCalibrationLevels: Set<CalibrationLevel>,
-    openCart: (open: boolean) => void
   ) => {
     // If there is no data file in the data request, raise an error and abort data request creation
     if (!this.isDatafileIncluded(dataFilesIds)) {
@@ -554,7 +552,6 @@ class CartModal extends React.Component<
         `DataRequest-${moment().format("Y-MM-DD")}.zip`
       );
       this.setState({ requesting: false });
-      openCart(false);
       await clearCart();
     }
   };
