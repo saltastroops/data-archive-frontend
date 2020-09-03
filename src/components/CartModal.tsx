@@ -452,8 +452,10 @@ class CartModal extends React.Component<
                                     <div className={"notification is-warning"}>
                                       <p>
                                         Please wait while while your data
-                                        request is being processed your download
-                                        will start soon.
+                                        request is being processed. Your
+                                        download will start automatically.<br/>
+                                        For large downloads this might take a
+                                        few minutes.
                                       </p>
                                     </div>
                                   )}
