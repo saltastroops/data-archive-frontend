@@ -7,7 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@sentry/browser": "^5.21.1",
-    "@types/is-number": "^7.0.0",
+    "@types/is-number": "^7.0.1",
     "@types/lodash": "^4.14.159",
     "@types/no-scroll": "^2.1.0",
     "@types/node": "^14.6.0",
