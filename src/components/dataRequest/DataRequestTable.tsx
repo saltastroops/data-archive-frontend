@@ -174,6 +174,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
   };
 
   downloadRequest = async (id: string) => {
+    const { madeAt } = this.props.dataRequest;
     this.setState({
       showMessage: true,
     });
@@ -186,7 +187,10 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     const response = await baseAxiosClient().get(zipUrl, {
       responseType: "blob",
     });
-    await fileDownload(response.data, `ssda_data_request_${id}.zip`);
+    await fileDownload(
+      response.data,
+      `DataRequest-${moment(madeAt).format("Y-MM-DD")}.zip`
+    );
     this.props.disableButtons(false);
     this.setState({
       showMessage: false,
