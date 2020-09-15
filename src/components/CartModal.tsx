@@ -393,7 +393,7 @@ class CartModal extends React.Component<
                                               dataFileIds,
                                               includeStandards,
                                               includeArcsFlatsBiases,
-                                              includedCalibrationLevels,
+                                              includedCalibrationLevels
                                             );
                                             if (
                                               !error &&
@@ -452,7 +452,8 @@ class CartModal extends React.Component<
                                       <p>
                                         Please wait while while your data
                                         request is being processed. Your
-                                        download will start automatically.<br/>
+                                        download will start automatically.
+                                        <br />
                                         For large downloads this might take a
                                         few minutes.
                                       </p>
@@ -493,7 +494,7 @@ class CartModal extends React.Component<
     dataFilesIds: number[],
     includeStandards: boolean,
     includeArcsFlatsBiases: boolean,
-    includedCalibrationLevels: Set<CalibrationLevel>,
+    includedCalibrationLevels: Set<CalibrationLevel>
   ) => {
     // If there is no data file in the data request, raise an error and abort data request creation
     if (!this.isDatafileIncluded(dataFilesIds)) {
@@ -537,8 +538,8 @@ class CartModal extends React.Component<
       },
     });
     let response;
-    if (dr.data.createDataRequest.status) {
-      const id = dr.data.createDataRequest.dataRequestId;
+    if (dr.data.createDataRequest.id) {
+      const id = dr.data.createDataRequest.id;
       const zipUrl = `${
         process.env.REACT_APP_BACKEND_URI
           ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
