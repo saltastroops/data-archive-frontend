@@ -11,6 +11,7 @@ interface IHelpButtonProps {
 const HelpButtonContainer = styled.div.attrs({})`
   && {
     margin-left: 5px;
+    margin-top: -2px;
   }
 `;
 
