@@ -193,6 +193,47 @@ sudo reboot
 
 The above steps are explained in detail [in this article](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
 
+## Adding HTTPS to the SALT/SAAO Data Archive
+
+There are some pre-requisites to adding HTTPS to the site. You need Nginx to be running already, the Nginx configuration
+file should be set up properly and we need a user with sudo rights. We will use [Certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx) 
+to add HTTPS to our Archive. 
+
+First ssh into the server you are running your HTTP on using a user with sudo privileges. We the need to run the
+following commands to add the Cerbot PPA to our list of repositories 
+
+```bash
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+```
+Next, we need to install Certbot, run the following command:
+
+```bash
+sudo apt-get install certbot python3-certbot-nginx
+```
+
+Next, we need to get a certificate and have Cerbot edit our Nginx configuration file and the server it, turning HTTP to 
+HTTPS in one step and we can do that with the following command
+
+```bash
+sudo certbot --nginx
+``` 
+Cerbot uses some cronjobs/ systemd timer to renew our certificates automatically before they expire. To see if the
+automatic renewal of the certificate works, run the following command:
+
+```bash
+sudo certbot renew --dry-run
+```
+For the SALT/SAAO Data Archive we are using an API, this API uses HTTP, so you will need to edit the .env file and 
+change REACT_APP_BACKEND_URI to https:seshat.saao.ac.za/api so as to allow its data through since the website will now
+be using  HTTPS. 
+
+To test/ confirm your that your site is properly setup, visit [https://seshat.saao.ac.za](https://seshat.saao.ac.za) and 
+in your browser, you will see the lock icon in the URL bar if it worked correctly. 
+
 ### Adding Brotli to the SAAO/SALT Data Archive
 
 For this Data Archive, since we are using Nginx, we will used ngx_brotli, which is developed and supported by Google. 
