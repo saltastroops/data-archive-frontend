@@ -233,6 +233,7 @@ exports[`LoginForm Component renders the LoginForm component having unpopulated 
       <button
         className="button is-success is-fullwidth"
         data-test="signIn"
+        disabled={false}
       >
         Sign in
       </button>
