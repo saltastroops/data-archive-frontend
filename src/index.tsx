@@ -34,7 +34,12 @@ const client = new ApolloClient({
 } as any);
 
 // read cart from local storage
-const cartContentString = localStorage.getItem("cart");
+let cartContentString;
+try {
+  cartContentString = localStorage.getItem("cart");
+} catch (e) {
+  cartContentString = null;
+}
 const cart = Cart.fromJSON(cartContentString);
 cache.writeQuery({
   data: {
