@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 /**
  * An axios base client responsible for the HTTP requests.
@@ -11,7 +11,7 @@ import axios from "axios";
  * config: object
  *     Configuration parameters for the Axios client.
  */
-export const baseAxiosClient = (config?: { [key: string]: any }) => ({
+export const baseAxiosClient = (config?: AxiosRequestConfig) => ({
   _client: axios.create(configuration(config)),
 
   _handleError(error: any) {
@@ -22,7 +22,7 @@ export const baseAxiosClient = (config?: { [key: string]: any }) => ({
     }
   },
 
-  get(url: string, conf: any = {}) {
+  get(url: string, conf: AxiosRequestConfig = {}) {
     return this._client.get(url, conf).catch(this._handleError);
   },
 

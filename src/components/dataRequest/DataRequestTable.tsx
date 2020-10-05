@@ -194,6 +194,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     this.props.disableButtons(false);
     this.setState({
       showMessage: false,
+
     });
   };
 }

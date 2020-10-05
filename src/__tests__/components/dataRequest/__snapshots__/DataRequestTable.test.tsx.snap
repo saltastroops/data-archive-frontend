@@ -218,7 +218,7 @@ exports[`DataRequestTable should render correctly 1`] = `
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.0",
+        "version": "2.6.10",
         "watchQuery": [Function],
       }
     }
@@ -255,134 +255,101 @@ exports[`DataRequestTable should render correctly 1`] = `
         className="table-container notification"
       >
         <styled.table>
-          <StyledComponent
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [
-                  Object {
-                    "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
-                  },
-                ],
-                "componentStyle": ComponentStyle {
-                  "componentId": "sc-bdVaJa",
-                  "isStatic": true,
-                  "lastClassName": "dPKlrP",
-                  "rules": Array [
-                    "
-  && {
-  }
-",
-                  ],
-                },
-                "displayName": "styled.table",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "sc-bdVaJa",
-                "target": "table",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
+          <table
+            className="table is-striped is-narrowed is-hoverable is-fullwidth"
           >
-            <table
-              className="table is-striped is-narrowed is-hoverable is-fullwidth "
-            >
-              <thead>
-                <tr>
-                  <th
-                    colSpan={2}
-                  >
-                    <p
-                      style={
-                        Object {
-                          "display": "inline-block",
-                        }
+            <thead>
+              <tr>
+                <th
+                  colSpan={2}
+                >
+                  <p
+                    style={
+                      Object {
+                        "display": "inline-block",
                       }
-                    >
-                      Requested 
-                      on 1 Dec 2018 at 20:00
-                    </p>
-                  </th>
-                  <th>
-                    <p
-                      style={
-                        Object {
-                          "textAlign": "right",
-                        }
+                    }
+                  >
+                    Requested 
+                    on 1 Dec 2018 at 20:00
+                  </p>
+                </th>
+                <th>
+                  <p
+                    style={
+                      Object {
+                        "textAlign": "right",
                       }
+                    }
+                  >
+                    <a
+                      className="button download-all is-small is-success is-rounded"
+                      href="http://test/downloads/data-requests/request-1"
                     >
-                      <a
-                        className="button download-all is-small is-success is-rounded"
-                        href="http://test/downloads/data-requests/request-1/data_request_request-1.zip"
-                      >
-                        Download all
-                      </a>
-                    </p>
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    colSpan={3}
-                  >
-                    <b>
-                      Requested calibration levels:
-                    </b>
-                     
-                    Raw
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    colSpan={3}
-                  >
-                    <b>
-                      Requested calibration types:
-                    </b>
-                     
-                    None
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    colSpan={3}
-                  >
-                    Files
-                  </th>
-                </tr>
-                <tr
-                  key="file-0"
+                      Download
+                    </a>
+                  </p>
+                </th>
+              </tr>
+              <tr>
+                <td
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 0
-                  </td>
-                </tr>
-                <tr
-                  key="file-1"
+                  <b>
+                    Requested calibration levels:
+                  </b>
+                   
+                  Raw
+                </td>
+              </tr>
+              <tr>
+                <td
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 1
-                  </td>
-                </tr>
-                <tr
-                  key="file-2"
+                  <b>
+                    Requested calibration types:
+                  </b>
+                   
+                  None
+                </td>
+              </tr>
+              <tr>
+                <th
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 2
-                  </td>
-                </tr>
-              </thead>
-              <tbody />
-            </table>
-          </StyledComponent>
+                  Files
+                </th>
+              </tr>
+              <tr
+                key="file-0"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 0
+                </td>
+              </tr>
+              <tr
+                key="file-1"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 1
+                </td>
+              </tr>
+              <tr
+                key="file-2"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 2
+                </td>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
         </styled.table>
       </div>
     </DataRequestTable>

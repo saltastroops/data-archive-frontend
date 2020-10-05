@@ -5376,7 +5376,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   "startIndex": 0,
                 },
               },
-              "timeout": 3,
+              "timeout": 4,
             },
           },
           "queries": Map {
@@ -7292,7 +7292,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.0",
+        "version": "2.6.10",
         "watchQuery": [Function],
       }
     }

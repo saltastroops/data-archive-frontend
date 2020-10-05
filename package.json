@@ -13,6 +13,7 @@
     "@types/enzyme-to-json": "^1.5.3",
     "@types/is-number": "^7.0.0",
     "@types/jest": "^26.0.10",
+
     "@types/lodash": "^4.14.159",
     "@types/no-scroll": "^2.1.0",
     "@types/node": "^14.6.0",
@@ -37,6 +38,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.3",
     "enzyme-to-json": "^3.5.0",
+
     "express": "^4.17.1",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.11.0",
@@ -50,6 +52,7 @@
     "jest": "^26.4.0",
     "js-file-download": "^0.4.12",
     "lint-staged": "^10.2.11",
+
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "no-scroll": "^2.1.1",
@@ -57,6 +60,7 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-apollo": "^3.1.5",
+
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "react-responsive-modal": "^3.6.0",
@@ -75,6 +79,7 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
+
     "typescript": "^3.9.7",
     "waait": "^1.0.5"
   },
@@ -109,6 +114,21 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/helper-validator-identifier": "^7.10.4"
+    "@babel/helper-validator-identifier": "^7.10.4",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/enzyme-to-json": "^1.5.3",
+    "@types/jest": "^26.0.10",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "enzyme-to-json": "^3.5.0",
+    "jest": "^26.4.0",
+    "jest-styled-components": "^7.0.3",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "react-apollo-test-utils": "^0.0.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0"
   }
 }

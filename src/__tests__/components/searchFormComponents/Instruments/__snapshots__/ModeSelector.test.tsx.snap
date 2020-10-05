@@ -21,95 +21,66 @@ exports[`Mode Selector should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
-          >
-            <select
-              multiple={true}
-              name="instrumentModes"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
+          <select
+            multiple={true}
+            name="instrumentModes"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
               }
-              value={Array []}
+            }
+            value={Array []}
+          >
+            <AllOption>
+              <option
+                value="All"
+              >
+                All
+              </option>
+            </AllOption>
+            <option
+              key="Fabry Perot"
+              value="Fabry Perot"
             >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
-              <option
-                key="Fabry Perot"
-                value="Fabry Perot"
-              >
-                Fabry Perot
-              </option>
-              <option
-                key="Imaging"
-                value="Imaging"
-              >
-                Imaging
-              </option>
-              <option
-                key="MOS"
-                value="MOS"
-              >
-                MOS
-              </option>
-              <option
-                key="Polarimetric Imaging"
-                value="Polarimetric Imaging"
-              >
-                Polarimetric Imaging
-              </option>
-              <option
-                key="Spectropolarimetry"
-                value="Spectropolarimetry"
-              >
-                Spectropolarimetry
-              </option>
-              <option
-                key="Spectroscopy"
-                value="Spectroscopy"
-              >
-                Spectroscopy
-              </option>
-            </select>
-          </div>
-        </StyledComponent>
+              Fabry Perot
+            </option>
+            <option
+              key="Imaging"
+              value="Imaging"
+            >
+              Imaging
+            </option>
+            <option
+              key="MOS"
+              value="MOS"
+            >
+              MOS
+            </option>
+            <option
+              key="Polarimetric Imaging"
+              value="Polarimetric Imaging"
+            >
+              Polarimetric Imaging
+            </option>
+            <option
+              key="Spectropolarimetry"
+              value="Spectropolarimetry"
+            >
+              Spectropolarimetry
+            </option>
+            <option
+              key="Spectroscopy"
+              value="Spectroscopy"
+            >
+              Spectroscopy
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>
