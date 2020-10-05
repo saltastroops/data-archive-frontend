@@ -2,7 +2,7 @@ import isNumber from "is-number";
 import moment from "moment";
 import {
   ITarget,
-  ITargetPosition
+  ITargetPosition,
 } from "../../utils/ObservationQueryParameters";
 
 /**
@@ -50,7 +50,7 @@ export function parseDate(date: string) {
     "D MMM YYYY", // 4 Oct 2019
     "DD MMM YYYY", // 04 Oct 2019
     "D MMMM YYYY", // 4 October 2019
-    "DD MMMM YYYY" // 04 October 2019
+    "DD MMMM YYYY", // 04 October 2019
   ];
   const t = moment.utc(date, dateFormats, true);
   if (!t.isValid()) {
@@ -85,7 +85,7 @@ export function parseObservationNight(night: string) {
   }
 
   // Convert the strings to dates
-  const dates = nights.map(v => parseDate(v));
+  const dates = nights.map((v) => parseDate(v));
 
   // Make sure the date order is correct
   if (
@@ -148,7 +148,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     }
 
     // Convert the strings to degrees
-    rightAscensionValues = rightAscensions.map(ra => parseRightAscension(ra));
+    rightAscensionValues = rightAscensions.map((ra) => parseRightAscension(ra));
 
     // Prevent zero-length ranges
     if (
@@ -173,7 +173,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     }
 
     // Convert the strings to degrees, and sort
-    declinationValues = declinations.map(dec => parseDeclination(dec)).sort();
+    declinationValues = declinations.map((dec) => parseDeclination(dec)).sort();
 
     // Prevent zero-length ranges
     if (
@@ -197,7 +197,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
     return {
       declinations: [],
       rightAscensions: [],
-      searchConeRadius: 0
+      searchConeRadius: 0,
     };
   }
 
@@ -217,8 +217,8 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   if (rightAscensionValues.length === 1 && declinationValues.length !== 1) {
     rightAscensionValues = [
       rightAscensionValues[0] - DEFAULT_COORDINATE_SEARCH_RADIUS,
-      rightAscensionValues[0] + DEFAULT_COORDINATE_SEARCH_RADIUS
-    ].map(ra => {
+      rightAscensionValues[0] + DEFAULT_COORDINATE_SEARCH_RADIUS,
+    ].map((ra) => {
       if (ra < 0) {
         return ra + 360;
       } else if (ra > 360) {
@@ -234,8 +234,8 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   if (declinationValues.length === 1 && rightAscensionValues.length !== 1) {
     declinationValues = [
       declinationValues[0] - DEFAULT_COORDINATE_SEARCH_RADIUS,
-      declinationValues[0] + DEFAULT_COORDINATE_SEARCH_RADIUS
-    ].map(dec => {
+      declinationValues[0] + DEFAULT_COORDINATE_SEARCH_RADIUS,
+    ].map((dec) => {
       if (dec < -90) {
         return -90;
       } else if (dec > 90) {
@@ -301,7 +301,7 @@ export function parseTargetPosition(target: ITarget): ITargetPosition {
   return {
     declinations: declinationValues,
     rightAscensions: rightAscensionValues,
-    searchConeRadius: searchConeRadiusValue
+    searchConeRadius: searchConeRadiusValue,
   };
 }
 

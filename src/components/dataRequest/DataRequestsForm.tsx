@@ -1,12 +1,12 @@
 import moment from "moment";
 import * as React from "react";
-import Query from "react-apollo/Query";
+import { Query } from "react-apollo";
 import styled from "styled-components";
 import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
 import DataRequestTable from "./DataRequestTable";
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -15,7 +15,7 @@ const Heading = styled.h1.attrs({
 `;
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -61,7 +61,7 @@ class DataRequestsForm extends React.Component {
         query={USER_DATA_REQUESTS_QUERY}
         variables={{
           limit: 5,
-          startIndex: 0
+          startIndex: 0,
         }}
         pollInterval={30000}
       >

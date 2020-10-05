@@ -21,65 +21,36 @@ exports[`TelescopeSelector  should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
-          >
-            <select
-              multiple={true}
-              name="telescopes"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
+          <select
+            multiple={true}
+            name="telescopes"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
               }
-              value={Array []}
-            >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
+            }
+            value={Array []}
+          >
+            <AllOption>
               <option
-                key="SALT"
-                value="SALT"
+                value="All"
               >
-                SALT
+                All
               </option>
-            </select>
-          </div>
-        </StyledComponent>
+            </AllOption>
+            <option
+              key="SALT"
+              value="SALT"
+            >
+              SALT
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>

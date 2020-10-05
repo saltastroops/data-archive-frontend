@@ -37,14 +37,14 @@ interface IDataRequestTableProps {
 }
 
 const Table = styled.table.attrs({
-  className: "table is-striped is-narrowed is-hoverable is-fullwidth"
+  className: "table is-striped is-narrowed is-hoverable is-fullwidth",
 })`
   && {
   }
 `;
 
 const Button = styled.button.attrs({
-  className: "button re-request-all is-small is-danger is-rounded"
+  className: "button re-request-all is-small is-danger is-rounded",
 })`
   && {
     margin-left: 10px;
@@ -52,7 +52,7 @@ const Button = styled.button.attrs({
 `;
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -89,7 +89,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       id,
       status,
       calibrationLevels,
-      calibrationTypes
+      calibrationTypes,
     } = this.props.dataRequest;
     const mayDownloadAll = status === "SUCCESSFUL";
 
@@ -114,7 +114,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               <th>
                 <p
                   style={{
-                    textAlign: "right"
+                    textAlign: "right",
                   }}
                 >
                   {mayDownloadAll && (
@@ -127,9 +127,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                               ""
                             )
                           : ""
-                      }/downloads/data-requests/${id}/${filename}`}
+                      }/downloads/data-requests/${id}`}
                     >
-                      Download all
+                      Download
                     </a>
                   )}
                   {(reRequestData || tryAgain) && (
@@ -140,9 +140,9 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                           query: USER_DATA_REQUESTS_QUERY,
                           variables: {
                             limit: 5,
-                            startIndex: 0
-                          }
-                        }
+                            startIndex: 0,
+                          },
+                        },
                       ]}
                     >
                       {(createDataRequest: any, { error }: any) => (
@@ -175,7 +175,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels.length
                   ? calibrationLevels
-                      .map(level => convertToTitleCase(level))
+                      .map((level) => convertToTitleCase(level))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
@@ -186,7 +186,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration types:</b>{" "}
                 {calibrationTypes.length
                   ? calibrationTypes
-                      .map(type => convertToTitleCase(type))
+                      .map((type) => convertToTitleCase(type))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
@@ -195,7 +195,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             <tr>
               <th colSpan={3}>Files</th>
             </tr>
-            {dataFiles.map(file => {
+            {dataFiles.map((file) => {
               return (
                 <tr key={file.id}>
                   <td colSpan={3}>{file.name}</td>
@@ -211,7 +211,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
   recreateDataRequest = async (create: any) => {
     const { calibrationLevels, calibrationTypes } = this.props.dataRequest;
-    const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
+    const dataFileIds = this.props.dataRequest.dataFiles.map((file) =>
       parseInt(file.id, 10)
     );
     // We may assume that no calibrations are included, as the list of data
@@ -221,8 +221,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       variables: {
         dataFiles: dataFileIds,
         includedCalibrationLevels: calibrationLevels,
-        includedCalibrationTypes: calibrationTypes
-      }
+        includedCalibrationTypes: calibrationTypes,
+      },
     });
   };
 }
