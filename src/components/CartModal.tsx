@@ -574,7 +574,7 @@ class CartModal extends React.Component<
       return;
     }
 
-    // If either reduced nor raw checkbox is selected, raise an error and abort data request creation
+    // If neither reduced nor raw checkbox is selected, raise an error and abort data request creation
     if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
       this.setState({
         error: "Please make sure reduced or raw data is selected.",
@@ -605,8 +605,7 @@ class CartModal extends React.Component<
       },
     });
     let response;
-    if (dr.data.createDataRequest.status) {
-      // Todo get the zip file  => path /downloads/data-requests/${id}/${filename}
+    if (dr.data.createDataRequest.id) {
       const id = dr.data.createDataRequest.dataRequestId;
       const config = {
         responseType: "blob",

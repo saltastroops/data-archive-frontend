@@ -129,8 +129,6 @@ export const CREATE_DATA_REQUEST = gql`
       requestedCalibrationLevels: $includedCalibrationLevels
     ) {
       dataRequestId
-      status
-      message
     }
   }
 `;

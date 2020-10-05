@@ -386,7 +386,7 @@ export function parseRightAscension(ra: string): number {
   const ERROR = `${trimmedRA} is not a valid right ascension. Right ascensions must be given as a number of degrees or as hours, minutes and seconds. The value must be between 0 and 360 degrees (24 hours).`;
 
   let value = 0;
-  if (isNumber(trimmedRA as any)) {
+  if (isNumber(trimmedRA)) {
     value += parseFloat(trimmedRA);
   } else {
     // Hours
@@ -516,21 +516,19 @@ export function parseDeclination(dec: string): number {
     value += parseFloat(absolute);
   } else {
     // Degrees
-    // @ts-ignore
     const [degrees, arcminutes, arcseconds, ...rest] = absolute.split(
       /[^\d.]+/
     );
     if (!isNumber(degrees)) {
       throw new Error(ERROR);
-    } // @ts-ignore
+    }
     if (degrees.match(/^\d+$/)) {
-      // @ts-ignore
       value += parseInt(degrees, 10);
     } else {
       if (arcminutes) {
         // Float values are only allowed if there are no arcminutes
         throw new Error(ERROR);
-      } // @ts-ignore
+      }
       value += parseFloat(degrees);
     }
 
@@ -550,7 +548,7 @@ export function parseDeclination(dec: string): number {
     if (arcseconds) {
       if (!isNumber(arcseconds)) {
         throw new Error(ERROR);
-      } // @ts-ignore
+      }
       const arcsecondValue = parseFloat(arcseconds);
       if (arcsecondValue >= 60) {
         throw new Error(ERROR);

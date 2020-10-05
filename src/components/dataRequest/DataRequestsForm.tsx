@@ -55,9 +55,6 @@ export type DataRequestStatus = "EXPIRED" | "FAILED" | "PENDING" | "SUCCESSFUL";
  * requests, and allows them to download and re-request data.
  */
 class DataRequestsForm extends React.Component {
-  state = {
-    areDisableButtons: false,
-  };
   render() {
     return (
       <Query
@@ -82,10 +79,7 @@ class DataRequestsForm extends React.Component {
               </ErrorMessage>
             );
           }
-
           const { dataRequests } = data;
-          const { areDisableButtons } = this.state;
-
           const sortedDataRequests = [...dataRequests];
           sortedDataRequests.sort(
             (a, b) => moment(b.madeAt).valueOf() - moment(a.madeAt).valueOf()
@@ -98,10 +92,8 @@ class DataRequestsForm extends React.Component {
               {sortedDataRequests.map((dataRequest: IDataRequest) => {
                 return (
                   <DataRequestTable
-                    areDisableButtons={areDisableButtons}
                     key={dataRequest.id}
                     dataRequest={dataRequest}
-                    disableButtons={this.disableButtons}
                   />
                 );
               })}
@@ -111,12 +103,6 @@ class DataRequestsForm extends React.Component {
       </Query>
     );
   }
-
-  disableButtons = (areDisabled: boolean) => {
-    this.setState({
-      areDisableButtons: areDisabled,
-    });
-  };
 }
 
 export default DataRequestsForm;

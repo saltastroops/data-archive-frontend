@@ -35,8 +35,6 @@ const convertToTitleCase = (text: string) => {
  */
 interface IDataRequestTableProps {
   dataRequest: IDataRequest;
-  areDisableButtons: boolean;
-  disableButtons: (areDisableButtons: boolean) => void;
 }
 
 const Table = styled.table.attrs({
@@ -69,7 +67,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     showMessage: false,
   };
   render() {
-    const { areDisableButtons, dataRequest } = this.props;
+    const { dataRequest } = this.props;
     const {
       dataFiles,
       madeAt,
@@ -105,7 +103,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                       className={`button download-all is-small is-success is-rounded ${
                         showMessage && "is-loading"
                       }`}
-                      disabled={areDisableButtons}
+                      disabled={showMessage}
                       id={id}
                       onClick={(event) => this.downloadRequest(id)}
                     >
@@ -178,7 +176,6 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
     this.setState({
       showMessage: true,
     });
-    this.props.disableButtons(true);
     const zipUrl = `${
       process.env.REACT_APP_BACKEND_URI
         ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
@@ -191,10 +188,8 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       response.data,
       `DataRequest-${moment(madeAt).format("Y-MM-DD")}.zip`
     );
-    this.props.disableButtons(false);
     this.setState({
       showMessage: false,
-
     });
   };
 }
