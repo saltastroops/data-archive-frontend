@@ -61,7 +61,7 @@ class SearchQuery extends React.Component<
   state = {
     data: undefined,
     error: undefined,
-    loading: false
+    loading: false,
   };
 
   componentDidMount(): void {
@@ -74,7 +74,7 @@ class SearchQuery extends React.Component<
         {this.props.children({
           ...this.state,
           fetch: this.fetch,
-          preload: this.preload
+          preload: this.preload,
         } as any)}
       </>
     );
@@ -100,14 +100,14 @@ class SearchQuery extends React.Component<
     this.setState(() => ({ data: undefined, error: undefined, loading: true }));
     return this.props.client
       .query(options)
-      .then(result =>
+      .then((result) =>
         this.setState(() => ({
           data: result.data,
           error: undefined,
-          loading: false
+          loading: false,
         }))
       )
-      .catch(error =>
+      .catch((error) =>
         this.setState(() => ({ data: undefined, error, loading: false }))
       );
   };

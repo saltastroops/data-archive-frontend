@@ -9,17 +9,17 @@ import JS9View, { JS9ViewContext } from "./components/JS9View";
 import LoginForm, { ILoginFormCache } from "./components/LoginForm";
 import NavigationBar from "./components/NavigationBar";
 import RegistrationForm, {
-  IRegistrationFormCache
+  IRegistrationFormCache,
 } from "./components/RegistrationForm";
 import RequestResetPasswordForm from "./components/RequestResetPasswordForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import ISearchFormCache from "./components/searchFormComponents/ISearchFormCache";
 import SearchPage, {
   DEFAULT_START_INDEX,
-  ISearchPageCache
+  ISearchPageCache,
 } from "./components/searchFormComponents/SearchPage";
 import UserUpdateForm, {
-  IUserUpdateFormCache
+  IUserUpdateFormCache,
 } from "./components/UserUpdateForm";
 import { USER_QUERY } from "./graphql/Query";
 import { IUser } from "./util/types";
@@ -49,14 +49,14 @@ function ProtectedRoute({
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         user ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: props.location }
+              state: { from: props.location },
             }}
           />
         )
@@ -82,9 +82,9 @@ class App extends React.Component<{}, IAppState> {
     js9ViewOpen: false,
     screenDimensions: {
       innerHeight: window.innerHeight,
-      innerWidth: window.innerWidth
+      innerWidth: window.innerWidth,
     },
-    user: undefined
+    user: undefined,
   };
 
   private cache: ICache = {
@@ -92,7 +92,7 @@ class App extends React.Component<{}, IAppState> {
     registrationForm: {},
     searchForm: {},
     searchPage: { startIndex: DEFAULT_START_INDEX },
-    userUpdateForm: {}
+    userUpdateForm: {},
   };
 
   public render() {
@@ -103,7 +103,7 @@ class App extends React.Component<{}, IAppState> {
         value={{
           close: this.js9ViewClose,
           load: this.js9ViewLoad,
-          open: this.js9ViewOpen
+          open: this.js9ViewOpen,
         }}
       >
         <JS9View
@@ -128,7 +128,7 @@ class App extends React.Component<{}, IAppState> {
                     isAdmin: data.user.roles.some(
                       (role: string) => role === "ADMIN"
                     ),
-                    username: data.user.username
+                    username: data.user.username,
                   }
                 : null;
 

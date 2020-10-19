@@ -1,37 +1,37 @@
 import {
   IWhereCondition,
-  IWithinRadiusArguments
+  IWithinRadiusArguments,
 } from "../../utils/ObservationQueryParameters";
 
 type DATABASE_VALUE = string | number | boolean;
 
 export function and(conditions: IWhereCondition[]): IWhereCondition {
   return {
-    AND: conditions
+    AND: conditions,
   };
 }
 
 export function or(conditions: IWhereCondition[]): IWhereCondition {
   return {
-    OR: conditions
+    OR: conditions,
   };
 }
 
 export function not(condition: IWhereCondition): IWhereCondition {
   return {
-    NOT: condition
+    NOT: condition,
   };
 }
 
 export function equals(column: string, value: DATABASE_VALUE): IWhereCondition {
   return {
-    EQUALS: { column, value }
+    EQUALS: { column, value },
   };
 }
 
 export function isNull(column: string) {
   return {
-    IS_NULL: column
+    IS_NULL: column,
   };
 }
 
@@ -40,7 +40,7 @@ export function lessThan(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    LESS_THAN: { column, value }
+    LESS_THAN: { column, value },
   };
 }
 
@@ -49,7 +49,7 @@ export function greaterThan(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    GREATER_THAN: { column, value }
+    GREATER_THAN: { column, value },
   };
 }
 
@@ -58,7 +58,7 @@ export function lessEqual(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    LESS_EQUAL: { column, value }
+    LESS_EQUAL: { column, value },
   };
 }
 
@@ -67,7 +67,7 @@ export function greaterEqual(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    GREATER_EQUAL: { column, value }
+    GREATER_EQUAL: { column, value },
   };
 }
 
@@ -76,7 +76,7 @@ export function isIn(
   values: DATABASE_VALUE[]
 ): IWhereCondition {
   return {
-    IS_IN: { column, values }
+    IS_IN: { column, values },
   };
 }
 
@@ -85,7 +85,7 @@ export function contains(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    CONTAINS: { column, value }
+    CONTAINS: { column, value },
   };
 }
 
@@ -94,7 +94,7 @@ export function startsWith(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    STARTS_WITH: { column, value }
+    STARTS_WITH: { column, value },
   };
 }
 
@@ -103,12 +103,12 @@ export function endsWith(
   value: DATABASE_VALUE
 ): IWhereCondition {
   return {
-    ENDS_WITH: { column, value }
+    ENDS_WITH: { column, value },
   };
 }
 
 export function withinRadius(args: IWithinRadiusArguments): IWhereCondition {
   return {
-    WITHIN_RADIUS: args
+    WITHIN_RADIUS: args,
   };
 }

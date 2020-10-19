@@ -28,28 +28,28 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
         : ["All"];
     const selectedInstruments = telescope.instruments || ["All"];
     const selectedInstrumentModes: string[] = telescope.instrumentModes || [
-      "All"
+      "All",
     ];
     const selectedDetectorMode = telescope.detectorModes || ["All"];
     const selectedFilters: string[] = telescope.filters || ["All"];
 
     const telescopeSelect = (newSelection: any) => {
       onChange({
-        ...newSelection
+        ...newSelection,
       });
     };
 
     const instrumentSelect = (newSelection: any) => {
       onChange({
         telescopes: telescope.telescopes ? telescope.telescopes : [],
-        ...newSelection
+        ...newSelection,
       });
     };
 
     const instrumentDetailsSelect = (newSelection: any) => {
       onChange({
         ...telescope,
-        ...newSelection
+        ...newSelection,
       });
     };
 
@@ -68,7 +68,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
           />
           {selectedInstruments.length <= 1 && (
             <>
-              {selectedInstruments.some(i => i === "All" || i === "RSS") && (
+              {selectedInstruments.some((i) => i === "All" || i === "RSS") && (
                 <InstrumentModeSelector
                   instrumentModes={selectedInstrumentModes}
                   selectedTelescopes={selectedTelescopes}
@@ -78,7 +78,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
               )}
 
               {selectedInstruments.some(
-                i => i === "All" || i === "RSS" || i === "Salticam"
+                (i) => i === "All" || i === "RSS" || i === "Salticam"
               ) && (
                 <DetectorModeSelector
                   detectorModes={selectedDetectorMode}
@@ -89,7 +89,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
               )}
 
               {selectedInstruments.some(
-                i => i === "All" || i === "RSS" || i === "Salticam"
+                (i) => i === "All" || i === "RSS" || i === "Salticam"
               ) && (
                 <Filters
                   onSelect={instrumentDetailsSelect}
@@ -104,14 +104,16 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                   onSelect={instrumentDetailsSelect}
                 />
               )}
-              {selectedInstrumentModes.some(mode => mode === "Fabry Perot") && (
+              {selectedInstrumentModes.some(
+                (mode) => mode === "Fabry Perot"
+              ) && (
                 <RssFabryPerotModeSelector
                   onSelect={instrumentDetailsSelect}
                   rssFabryPerotModes={telescope.rssFabryPerotModes}
                 />
               )}
               {selectedInstrumentModes.some(
-                mode =>
+                (mode) =>
                   mode === "MOS" ||
                   mode === "Spectropolarimetry" ||
                   mode === "Spectroscopy"
@@ -122,7 +124,7 @@ class TelescopeForm extends React.Component<ITelescopeFormProps, {}> {
                 />
               )}
               {selectedInstrumentModes.some(
-                mode =>
+                (mode) =>
                   mode === "Polarimetric Imaging" ||
                   mode === "Spectropolarimetry"
               ) && (
@@ -147,7 +149,7 @@ export const validatedTelescope = (telescope?: ITelescope) => {
   if (telescope) {
     return {
       ...telescope,
-      errors: {}
+      errors: {},
     };
   } else {
     return telescope;

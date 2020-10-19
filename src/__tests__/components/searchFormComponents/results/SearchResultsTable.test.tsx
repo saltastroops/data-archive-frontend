@@ -33,12 +33,12 @@ const dummySearchResults: any[] = [
           id: "fileID-1",
           name: "filename-1",
           observation: { id: "Obs-A", name: "Observation A" },
-          target: null
-        }
-      }
+          target: null,
+        },
+      },
     ],
     id: "obsID-1",
-    name: "obs1"
+    name: "obs1",
   },
   {
     files: [
@@ -56,8 +56,8 @@ const dummySearchResults: any[] = [
           id: "fileID-2",
           name: "filename-2",
           observation: { id: "Obs-B", name: "Observation B" },
-          target: null
-        }
+          target: null,
+        },
       },
       {
         [DataKeys.TARGET_DECLINATION]: -7,
@@ -73,19 +73,19 @@ const dummySearchResults: any[] = [
           id: "fileID-3",
           name: "filename-3",
           observation: { id: "Obs-C", name: "Observation C" },
-          target: null
-        }
-      }
+          target: null,
+        },
+      },
     ],
     id: "obsID-2",
-    name: "obs1"
-  }
+    name: "obs1",
+  },
 ];
 
 const columns: SearchResultsTableColumn[] = [
   { dataKey: "proposal", name: "Proposal", visible: true },
   { dataKey: "pi", name: "Principal Investigator", visible: false },
-  { dataKey: "target", name: "Target Name", visible: true }
+  { dataKey: "target", name: "Target Name", visible: true },
 ];
 
 afterAll(() => {

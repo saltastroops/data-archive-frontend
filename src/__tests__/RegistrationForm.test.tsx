@@ -12,20 +12,20 @@ import click from "../util/click";
 
 jest.mock("../util/cache");
 
-window.matchMedia = jest.fn().mockImplementation(query => {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     addListener: jest.fn(),
     matches: false,
     media: query,
     onchange: null,
-    removeListener: jest.fn()
+    removeListener: jest.fn(),
   };
 });
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
-    target: { name, value }
+    target: { name, value },
   });
 }
 
@@ -38,7 +38,7 @@ const updatedState = {
     familyName: "",
     givenName: "",
     password: "",
-    username: ""
+    username: "",
   },
   userInput: {
     affiliation: "University of Cape Town",
@@ -47,8 +47,8 @@ const updatedState = {
     familyName: "Smith",
     givenName: "John",
     password: "securepassword",
-    username: "sj"
-  }
+    username: "sj",
+  },
 };
 
 describe("RegistrationForm Component", () => {
@@ -72,13 +72,13 @@ describe("RegistrationForm Component", () => {
       familyName: "Smith",
       givenName: "John",
       password: "securepassword",
-      username: "sj"
+      username: "sj",
     };
     const mocks = [
       {
         request: {
           query: SIGNUP_MUTATION,
-          variables: userDetails
+          variables: userDetails,
         },
         result: () => {
           register();
@@ -87,12 +87,12 @@ describe("RegistrationForm Component", () => {
               signup: {
                 __typename: "User",
                 ...userDetails,
-                id: "1"
-              }
-            }
+                id: "1",
+              },
+            },
           };
-        }
-      }
+        },
+      },
     ];
 
     // RegistrationForm component wrapper.
@@ -304,18 +304,8 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").length).toBe(2);
 
     // Expect meaningful error message
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("Password");
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("7 characters");
+    expect(wrapper.find("p").first().text()).toContain("Password");
+    expect(wrapper.find("p").first().text()).toContain("7 characters");
   });
 
   it("displays an error message if an invalid confirmed password is submitted", () => {
@@ -350,18 +340,8 @@ describe("RegistrationForm Component", () => {
     expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("Password");
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("do not");
+    expect(wrapper.find("p").first().text()).toContain("Password");
+    expect(wrapper.find("p").first().text()).toContain("do not");
   });
 
   it("should display an error if the registration fails", async () => {
@@ -372,16 +352,16 @@ describe("RegistrationForm Component", () => {
       familyName: "Smith",
       givenName: "John",
       password: "securepassword",
-      username: "sj"
+      username: "sj",
     };
     const mocks = [
       {
         error: new Error("The server is having a coffee break!"),
         request: {
           query: SIGNUP_MUTATION,
-          variables: userDetails
-        }
-      }
+          variables: userDetails,
+        },
+      },
     ];
 
     // RegistrationForm component wrapper.

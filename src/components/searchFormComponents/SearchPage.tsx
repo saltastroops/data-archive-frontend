@@ -8,7 +8,7 @@ import { prune, whereCondition } from "../../util/query/whereCondition";
 import {
   IFile,
   IGeneral,
-  ITarget
+  ITarget,
 } from "../../utils/ObservationQueryParameters";
 import InfoMessage from "../basicComponents/InfoMessage";
 import ISearchFormCache from "./ISearchFormCache";
@@ -18,7 +18,7 @@ import Pagination, { PaginationDirection } from "./results/Pagination";
 import SearchResultsTable from "./results/SearchResultsTable";
 import {
   availableResultsTableColumns,
-  searchResultsTableColumns
+  searchResultsTableColumns,
 } from "./results/SearchResultsTableColumns";
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
@@ -114,8 +114,8 @@ const PaginationContainer = styled.div<{
     display: grid;
     grid-template-columns: 700px;
     justify-content: center;
-    margin-bottom: ${props => props.marginBottom}px;
-    margin-top: ${props => props.marginTop}px;
+    margin-bottom: ${(props) => props.marginBottom}px;
+    margin-top: ${(props) => props.marginTop}px;
   }
 `;
 
@@ -137,11 +137,11 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
       databaseColumns,
       error: null,
       modal: {
-        open: false
+        open: false,
       },
       startIndex,
       tableColumns,
-      where
+      where,
     };
   }
 
@@ -184,13 +184,13 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           10
         ),
         startIndex,
-        where
-      }
+        where,
+      },
     };
 
     return (
       <ApolloConsumer>
-        {client => (
+        {(client) => (
           <SearchQuery
             client={client}
             options={options}
@@ -237,7 +237,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                         style={{
                           marginLeft: resultsTableContainerMargin,
                           marginRight: resultsTableContainerMargin,
-                          width: maxResultsTableWidth
+                          width: maxResultsTableWidth,
                         }}
                       >
                         <PaginationContainer marginBottom={10} marginTop={20}>
@@ -308,7 +308,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         await this.searchArchive(fetch, preload)(this.state.startIndex)({
           general,
           target,
-          telescope
+          telescope,
         });
       }
     };
@@ -333,7 +333,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     return (startIndex: number) => ({
       general,
       target,
-      telescope
+      telescope,
     }: {
       general: IGeneral;
       target: ITarget;
@@ -351,7 +351,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         // the cache content correctly. We therefore delete all data files from
         // cache before refetching the query. This code is taken from
         // https://medium.com/@martinseanhunt/how-to-invalidate-cached-data-in-apollo-and-handle-updating-paginated-queries-379e4b9e4698
-        Object.keys((cache as any).data.data).forEach(key => {
+        Object.keys((cache as any).data.data).forEach((key) => {
           if (key.match(/^DataFile/)) {
             (cache as any).data.delete(key);
           }
@@ -369,7 +369,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             databaseColumns,
             error: null,
             startIndex,
-            where
+            where,
           }),
           async () => {
             const limit = parseInt(general.limit || DEFAULT_LIMIT, 10);
@@ -380,8 +380,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                 columns: databaseColumns,
                 limit,
                 startIndex: this.state.startIndex,
-                where
-              }
+                where,
+              },
             };
             await fetch(options);
 
@@ -422,8 +422,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
           columns: this.state.databaseColumns,
           limit,
           startIndex,
-          where: this.state.where
-        }
+          where: this.state.where,
+        },
       };
       await fetch(fetchPageOptions);
 
@@ -470,8 +470,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         columns: databaseColumns,
         limit,
         startIndex,
-        where
-      }
+        where,
+      },
     };
     preload(options);
   };
@@ -527,10 +527,10 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
             observation: {
               __typename: "CartObservation",
               id: observationId,
-              name: observationName
+              name: observationName,
             },
-            target: metadata[DataKeys.TARGET_NAME] || null
-          }
+            target: metadata[DataKeys.TARGET_NAME] || null,
+          },
         };
       };
 
@@ -543,7 +543,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
         const observation: IObservation = {
           files: [file()],
           id: observationId,
-          name: observationName
+          name: observationName,
         };
 
         // Store the observation in the map of of observations (to facilitate
@@ -583,8 +583,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
 
     // Add the user-selected table columns
     this.state.tableColumns
-      .filter(column => column.visible)
-      .forEach(column => columns.add(column.dataKey));
+      .filter((column) => column.visible)
+      .forEach((column) => columns.add(column.dataKey));
 
     // Add some columns which should be queried at any rate
     columns.add(DataKeys.DATA_CATEGORY);
@@ -619,22 +619,22 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
     visible: boolean
   ) => {
     const changedColumn = this.state.tableColumns.find(
-      column => column.dataKey === dataKey
+      (column) => column.dataKey === dataKey
     );
     if (!changedColumn) {
       throw new Error(`Unknown data key for table column: ${dataKey}`);
     }
     this.setState(
-      prevState => ({
+      (prevState) => ({
         tableColumns: [
           ...prevState.tableColumns.filter(
-            column => column.dataKey !== dataKey
+            (column) => column.dataKey !== dataKey
           ),
           {
             ...changedColumn,
-            visible
-          }
-        ]
+            visible,
+          },
+        ],
       }),
       () => {
         // Keep the cache up-to-date
@@ -649,7 +649,7 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
   private openColumnSelector = () => {
     this.setState({
       ...this.state,
-      modal: { open: !this.state.modal.open }
+      modal: { open: !this.state.modal.open },
     });
   };
 }

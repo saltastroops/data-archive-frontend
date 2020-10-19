@@ -192,10 +192,10 @@ export const resolvers = {
             files: cart.files,
             includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
             includeStandards: cart.includeStandards,
-            includedCalibrationLevels: cart.includedCalibrationLevels
-          }
+            includedCalibrationLevels: cart.includedCalibrationLevels,
+          },
         },
-        query: CART_QUERY
+        query: CART_QUERY,
       });
       return true;
     },
@@ -223,10 +223,10 @@ export const resolvers = {
             files: cart.files,
             includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
             includeStandards: cart.includeStandards,
-            includedCalibrationLevels: cart.includedCalibrationLevels
-          }
+            includedCalibrationLevels: cart.includedCalibrationLevels,
+          },
         },
-        query: CART_QUERY
+        query: CART_QUERY,
       });
 
       return true;
@@ -255,10 +255,10 @@ export const resolvers = {
             files: cart.files,
             includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
             includeStandards: cart.includeStandards,
-            includedCalibrationLevels: cart.includedCalibrationLevels
-          }
+            includedCalibrationLevels: cart.includedCalibrationLevels,
+          },
         },
-        query: CART_QUERY
+        query: CART_QUERY,
       });
 
       return true;
@@ -296,10 +296,10 @@ export const resolvers = {
             files: cart.files,
             includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
             includeStandards: cart.includeStandards,
-            includedCalibrationLevels: cart.includedCalibrationLevels
-          }
+            includedCalibrationLevels: cart.includedCalibrationLevels,
+          },
         },
-        query: CART_QUERY
+        query: CART_QUERY,
       });
 
       return true;
@@ -332,10 +332,10 @@ export const resolvers = {
             files: cart.files,
             includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
             includeStandards: cart.includeStandards,
-            includedCalibrationLevels: cart.includedCalibrationLevels
-          }
+            includedCalibrationLevels: cart.includedCalibrationLevels,
+          },
         },
-        query: CART_QUERY
+        query: CART_QUERY,
       });
 
       return true;
@@ -365,14 +365,14 @@ export const resolvers = {
       {
         authProvider,
         username,
-        password
+        password,
       }: { authProvider: string; username: string; password: string },
       { cache }: any
     ) => {
       const login = await api.login({
         authProvider,
         password,
-        username
+        username,
       });
 
       // Always true
@@ -393,6 +393,6 @@ export const resolvers = {
 
       // Always true
       return logout.data.success;
-    }
-  }
+    },
+  },
 };

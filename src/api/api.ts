@@ -29,7 +29,7 @@ export default {
     return baseAxiosClient().post("/auth/login", {
       authProvider: credentials.authProvider,
       password: credentials.password,
-      username: credentials.username
+      username: credentials.username,
     });
   },
 
@@ -42,5 +42,5 @@ export default {
    */
   logout: async () => {
     return baseAxiosClient().post("/auth/logout", {});
-  }
+  },
 };

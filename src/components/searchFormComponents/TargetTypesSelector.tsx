@@ -5,7 +5,7 @@ import {
   ISM,
   SOLAR_SYSTEM_BODY,
   STAR,
-  TargetType
+  TargetType,
 } from "../../utils/TargetType";
 import { Span } from "../basicComponents/Grids";
 import { LargeCheckbox } from "../basicComponents/LargeCheckbox";

@@ -9,7 +9,7 @@ import {
   ProposalGrid,
   SubGrid,
   TargetGrid,
-  TelescopeGrid
+  TelescopeGrid,
 } from "../../../components/basicComponents/Grids";
 
 describe("Grids ", () => {

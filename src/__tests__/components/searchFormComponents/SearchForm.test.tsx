@@ -12,13 +12,13 @@ import cache from "../../../util/cache";
 import { CART_QUERY } from "../../../util/Cart";
 import click from "../../../util/click";
 
-window.matchMedia = jest.fn().mockImplementation(query => {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     addListener: jest.fn(),
     matches: false,
     media: query,
     onchange: null,
-    removeListener: jest.fn()
+    removeListener: jest.fn(),
   };
 });
 
@@ -26,15 +26,15 @@ const mocks = [
   {
     request: {
       query: CART_QUERY,
-      variables: { user: "none" }
+      variables: { user: "none" },
     },
     result: {
       data: {
-        cart: []
+        cart: [],
       },
-      loading: false
-    }
-  }
+      loading: false,
+    },
+  },
 ];
 
 const screenDimensions = { innerHeight: 1000, innerWidth: 1400 };
@@ -133,13 +133,13 @@ describe("Search Form", () => {
       'input[data-test="search-cone-radius-input"]'
     );
     searchConeRadiusInput.simulate("change", {
-      target: { value: "invalid radius", name: "searchConeRadius" }
+      target: { value: "invalid radius", name: "searchConeRadius" },
     });
     const observationNightInput = wrapper.find(
       'input[data-test="observation-night-input"]'
     );
     observationNightInput.simulate("change", {
-      target: { value: "invalid date", name: "observationNight" }
+      target: { value: "invalid date", name: "observationNight" },
     });
 
     // Submit the form

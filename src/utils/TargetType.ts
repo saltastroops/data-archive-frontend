@@ -12,5 +12,5 @@ export const TARGET_TYPE_CODES = new Map<TargetType, string>([
   ["Galaxy", "15"],
   ["ISM", "13"],
   ["Solar System Body", "50"],
-  ["Star", "14"]
+  ["Star", "14"],
 ]);

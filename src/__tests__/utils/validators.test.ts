@@ -1,13 +1,13 @@
 import {
   IGeneralErrors,
-  ITargetErrors
+  ITargetErrors,
 } from "../../utils/ObservationQueryParameters";
 import {
   isError,
   isFloat,
   validateDate,
   validateDeclination,
-  validateRightAscension
+  validateRightAscension,
 } from "../../utils/validators";
 
 describe("isFloat should be true if value is float else false", () => {
@@ -265,18 +265,18 @@ describe("validateDeclination", () => {
 describe("isError", () => {
   it("should be true of there is an error in the general state", () => {
     let generalError: IGeneralErrors = {
-      observationNight: "Error"
+      observationNight: "Error",
     };
     expect(isError(generalError, {})).toBeTruthy();
     generalError = {
-      proposalCode: "Error"
+      proposalCode: "Error",
     };
     expect(isError(generalError, {})).toBeTruthy();
   });
   it("should be true if general has more than one error", () => {
     const generalError: IGeneralErrors = {
       observationNight: "Error",
-      principalInvestigator: "Error"
+      principalInvestigator: "Error",
     };
     expect(isError(generalError, {})).toBeTruthy();
   });
@@ -290,11 +290,11 @@ describe("isError", () => {
 
   it("should be true of there is an error in the target state", () => {
     let targetError: ITargetErrors = {
-      rightAscension: "Error"
+      rightAscension: "Error",
     };
     expect(isError({}, targetError)).toBeTruthy();
     targetError = {
-      declination: "Error"
+      declination: "Error",
     };
     expect(isError({}, targetError)).toBeTruthy();
   });
@@ -302,7 +302,7 @@ describe("isError", () => {
     const targetError: ITargetErrors = {
       declination: "Error",
       name: "Error",
-      rightAscension: "Error"
+      rightAscension: "Error",
     };
     expect(isError({}, targetError)).toBeTruthy();
   });

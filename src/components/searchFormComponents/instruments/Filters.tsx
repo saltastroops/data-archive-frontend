@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 const COMMON_ALL_FILTERS = ["H-alpha"];
@@ -29,7 +29,7 @@ const SALTICAM_FILTERS = [
   "SRE 1",
   "SRE 2",
   "SRE 3",
-  "SRE 4"
+  "SRE 4",
 ];
 
 const RSS_FILTERS = [
@@ -100,7 +100,7 @@ const RSS_FILTERS = [
   "SR862-32",
   "Su-S1",
   "Sv-S1",
-  "Sy-S1"
+  "Sy-S1",
 ];
 
 const RSS_SCAM_FILTERS = ["SDSS r'", "SDSS i'", "SDSS z'"];
@@ -115,7 +115,7 @@ const filtersToDisplay = (instrumentsList: string[]) => {
   let filters: string[] = [];
   if (
     instrumentsList.length === 0 ||
-    instrumentsList.some(inst => inst === "All")
+    instrumentsList.some((inst) => inst === "All")
   ) {
     return SALTICAM_FILTERS.concat(HIPPO_SHOC_SPUPNIC_BVIT_FILTERS)
       .concat(RSS_FILTERS)
@@ -124,7 +124,7 @@ const filtersToDisplay = (instrumentsList: string[]) => {
   }
   if (
     instrumentsList.some(
-      inst =>
+      (inst) =>
         inst === "BVIT" ||
         inst === "SpUpNIC" ||
         inst === "SHOC" ||
@@ -133,18 +133,18 @@ const filtersToDisplay = (instrumentsList: string[]) => {
   ) {
     filters = filters.concat(HIPPO_SHOC_SPUPNIC_BVIT_FILTERS);
   }
-  if (instrumentsList.some(inst => inst === "Salticam")) {
+  if (instrumentsList.some((inst) => inst === "Salticam")) {
     filters = filters.concat(SALTICAM_FILTERS);
   }
-  if (instrumentsList.some(inst => inst === "RSS")) {
+  if (instrumentsList.some((inst) => inst === "RSS")) {
     filters = filters.concat(RSS_FILTERS);
   }
-  if (instrumentsList.some(inst => inst === "Salticam" || inst === "RSS")) {
+  if (instrumentsList.some((inst) => inst === "Salticam" || inst === "RSS")) {
     filters = filters.concat(RSS_SCAM_FILTERS);
   }
   if (
     instrumentsList.some(
-      inst =>
+      (inst) =>
         inst === "Salticam" ||
         inst === "RSS" ||
         inst === "BVIT" ||
@@ -170,7 +170,7 @@ const Filters = (props: IFiltersProps) => {
     onSelect({
       filters: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
   const FILTERS_TO_DISPLAY = filtersToDisplay(instruments || []);
@@ -184,7 +184,7 @@ const Filters = (props: IFiltersProps) => {
         value={filters || ["All"]}
       >
         <AllOption />
-        {FILTERS_TO_DISPLAY.sort().map(i => (
+        {FILTERS_TO_DISPLAY.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

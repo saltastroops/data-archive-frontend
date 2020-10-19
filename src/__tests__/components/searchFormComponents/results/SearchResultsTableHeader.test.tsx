@@ -79,11 +79,11 @@ describe("SearchResultsTableHeader", () => {
     expect(sort).toHaveBeenCalledTimes(2);
     expect(sort).toHaveBeenNthCalledWith(1, {
       sortBy: "ProposalTitle",
-      sortDirection: SortDirection.DESC
+      sortDirection: SortDirection.DESC,
     });
     expect(sort).toHaveBeenNthCalledWith(2, {
       sortBy: "ProposalTitle",
-      sortDirection: SortDirection.ASC
+      sortDirection: SortDirection.ASC,
     });
   });
 
@@ -109,7 +109,7 @@ describe("SearchResultsTableHeader", () => {
     // The sort function has been called
     expect(sort).toHaveBeenCalledWith({
       sortBy: "ProposalTitle",
-      sortDirection: SortDirection.ASC
+      sortDirection: SortDirection.ASC,
     });
   });
 });

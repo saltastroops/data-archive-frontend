@@ -406,7 +406,7 @@ class CartModal extends React.Component<
                                           }}
                                         >
                                           <span>
-                                            Download data request{" "}
+                                            Download{" "}
                                             <FontAwesomeIcon
                                               icon={faDownload}
                                             />
@@ -555,6 +555,73 @@ class CartModal extends React.Component<
       this.setState({ requesting: false });
       await clearCart();
     }
+  };
+
+  newCreateDataRequest = async (
+    create: any,
+    clearCart: any,
+    dataFilesIds: number[],
+    includeStandards: boolean,
+    includeArcsFlatsBiases: boolean,
+    includedCalibrationLevels: Set<CalibrationLevel>
+  ) => {
+    // If there is no data file in the data request, raise an error and abort data request creation
+    if (!this.isDatafileIncluded(dataFilesIds)) {
+      this.setState({
+        error:
+          "Please make sure that there is at least one file in your data request.",
+      });
+      return;
+    }
+
+    // If neither the reduced nor raw checkbox is selected, raise an error and
+    // abort the data request creation
+    if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
+      this.setState({
+        error: "Please make sure reduced or raw data is selected.",
+      });
+      return;
+    }
+    this.setState({
+      error: "",
+    });
+
+    const calibrationTypes: CalibrationType[] = [];
+
+    if (includeStandards) {
+      calibrationTypes.push(
+        "SPECTROPHOTOMETRIC_STANDARD",
+        "RADIAL_VELOCITY_STANDARD"
+      );
+    }
+
+    if (includeArcsFlatsBiases) {
+      calibrationTypes.push("ARC", "FLAT", "BIAS");
+    }
+    const dr = await create({
+      variables: {
+        dataFiles: dataFilesIds,
+        includedCalibrationLevels: Array.from(includedCalibrationLevels),
+        includedCalibrationTypes: calibrationTypes,
+      },
+    });
+    let response;
+    if (dr.data.createDataRequest.id) {
+      const id = dr.data.createDataRequest.dataRequestId;
+      const config = {
+        responseType: "blob",
+      };
+      const zipUrl = `${
+        process.env.REACT_APP_BACKEND_URI
+          ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
+          : ""
+      }/downloads/data-requests-new/${id}`;
+      response = await baseAxiosClient().get(zipUrl, {
+        responseType: "blob",
+      });
+      fileDownload(response.data, `ssda_data_request_${id}.zip`);
+    }
+    await clearCart();
   };
 
   // Check if one of the calibration levels, reduced or raw, is included.

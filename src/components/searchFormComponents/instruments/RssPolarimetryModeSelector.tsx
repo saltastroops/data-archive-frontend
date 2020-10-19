@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 interface IRssPolarimetryModeSelectorProps {
@@ -25,7 +25,7 @@ const RssPolarimetryModeSelector = (
     onSelect({
       rssPolarimetryModes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
 
@@ -38,7 +38,7 @@ const RssPolarimetryModeSelector = (
         value={rssPolarimetryModes || ["All"]}
       >
         <AllOption />
-        {RSS_POLARIMETRY.sort().map(i => (
+        {RSS_POLARIMETRY.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

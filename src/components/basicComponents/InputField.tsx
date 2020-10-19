@@ -9,14 +9,14 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * A paragraph with an error message.
  */
 const Error = styled.p.attrs({
-  className: "has-text-danger"
+  className: "has-text-danger",
 })``;
 
 /**
  * A paragraph with an help message.
  */
 export const HelpMessage = styled.p.attrs({
-  className: ""
+  className: "",
 })`
   && {
     max-width: 110%;

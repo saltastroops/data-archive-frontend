@@ -4,13 +4,13 @@ describe("mocking window.matchMedia", () => {
   });
 });
 
-window.matchMedia = jest.fn().mockImplementation(query => {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     addListener: jest.fn(),
     matches: true,
     media: query,
     onchange: null,
-    removeListener: jest.fn()
+    removeListener: jest.fn(),
   };
 });
 

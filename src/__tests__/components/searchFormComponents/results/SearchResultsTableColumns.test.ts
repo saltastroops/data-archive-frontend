@@ -19,7 +19,7 @@ describe("SearchResultsTableColumns", () => {
         DataKeys.PROPOSAL_CODE,
         DataKeys.TELESCOPE_OBSERVATION_ID,
         DataKeys.TARGET_RIGHT_ASCENSION,
-        DataKeys.OBSERVATION_ID
+        DataKeys.OBSERVATION_ID,
       ];
       expect(searchResultsTableColumns(dbColumns)).toMatchSnapshot();
     });

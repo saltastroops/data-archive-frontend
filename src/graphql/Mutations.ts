@@ -56,8 +56,11 @@ export const LOGIN_MUTATION = gql`
     $username: String!
     $password: String!
   ) {
-    login(authProvider: $authProvider, password: $password, username: $username)
-    @client
+    login(
+      authProvider: $authProvider
+      password: $password
+      username: $username
+    ) @client
   }
 `;
 
@@ -128,7 +131,7 @@ export const CREATE_DATA_REQUEST = gql`
       requestedCalibrationTypes: $includedCalibrationTypes
       requestedCalibrationLevels: $includedCalibrationLevels
     ) {
-      id
+      dataRequestId
     }
   }
 `;

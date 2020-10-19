@@ -22,7 +22,7 @@ class SearchResultsTableColumnGroupSelector extends React.Component<
       <div className="column-group-selector">
         <ColumnGroupHeading>{this.props.category}</ColumnGroupHeading>
         <ul>
-          {this.props.columns.map(column => (
+          {this.props.columns.map((column) => (
             <li key={column.dataKey}>
               <label>
                 <LargeCheckbox
