@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 interface IFabryPerotModeProps {
@@ -12,7 +12,7 @@ export const FABRY_PEROT_MODES = [
   "Low Resolution",
   "Medium Resolution",
   "High Resolution",
-  "Tunable Filter"
+  "Tunable Filter",
 ];
 /**
  * A form for selecting the Fabry Perot mode.
@@ -26,7 +26,7 @@ const RssFabryPerotModeSelector = (props: IFabryPerotModeProps) => {
     onSelect({
       rssFabryPerotModes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
 
@@ -39,7 +39,7 @@ const RssFabryPerotModeSelector = (props: IFabryPerotModeProps) => {
         value={rssFabryPerotModes || ["All"]}
       >
         <AllOption />
-        {FABRY_PEROT_MODES.sort().map(i => (
+        {FABRY_PEROT_MODES.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

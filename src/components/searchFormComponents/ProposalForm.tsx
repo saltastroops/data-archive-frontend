@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   IGeneral,
   ProductType,
-  Status
+  Status,
 } from "../../utils/ObservationQueryParameters";
 import {
   HelpGrid,
@@ -11,14 +11,14 @@ import {
   SingleColumnGrid,
   Span,
   SubGrid,
-  SubGrid5
+  SubGrid5,
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
 
 const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
-  type: "checkbox"
+  type: "checkbox",
 })`
   && {
     width: 18px;
@@ -45,8 +45,8 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       [name]: value,
       errors: {
         ...this.props.general.errors,
-        [name]: ""
-      }
+        [name]: "",
+      },
     });
   };
 
@@ -75,7 +75,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
     this.props.onChange({
       ...this.props.general,
       observationStatuses: updatedStatuses,
-      productTypes: updatedProductTypes
+      productTypes: updatedProductTypes,
     });
   };
 
@@ -87,7 +87,7 @@ class ProposalForm extends React.Component<IProposalFormProps, {}> {
       observationNight,
       proposalCode,
       proposalTitle,
-      observationStatuses
+      observationStatuses,
     } = this.props.general;
     return (
       <>

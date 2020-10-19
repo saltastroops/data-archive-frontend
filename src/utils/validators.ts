@@ -1,7 +1,7 @@
 import {
   parseDate,
   parseDeclination,
-  parseRightAscension
+  parseRightAscension,
 } from "../util/query/parse";
 
 // TODO: Update once parse methods are available in util
@@ -234,6 +234,6 @@ export const validateSearchConeRadius = (
  */
 export const isError = (...errorGroups: object[]) => {
   return errorGroups.some((errorGroup: object) =>
-    Object.keys(errorGroup).some(key => (errorGroup as any)[key])
+    Object.keys(errorGroup).some((key) => (errorGroup as any)[key])
   );
 };

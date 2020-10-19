@@ -7,7 +7,7 @@ interface ISearchResultsTableHeaderProps {
   dataKey: string;
   sort: ({
     sortBy,
-    sortDirection
+    sortDirection,
   }: {
     sortBy: string;
     sortDirection: SortDirectionType;
@@ -35,7 +35,7 @@ class SearchResultsTableHeader extends React.Component<
           props.sortBy === props.dataKey
             ? SortDirection.DESC
             : SortDirection.ASC,
-        previousSortBy: props.sortBy
+        previousSortBy: props.sortBy,
       };
     } else {
       return null;
@@ -83,7 +83,7 @@ class SearchResultsTableHeader extends React.Component<
 
     this.props.sort({
       sortBy: this.props.dataKey,
-      sortDirection: nextSortDirection
+      sortDirection: nextSortDirection,
     });
 
     this.setState(() => ({ nextSortDirection: currentSortDirection }));

@@ -4,10 +4,10 @@ export const mockUser = ({
   authProvider,
   familyName,
   givenName,
-  isAdmin
+  isAdmin,
 }: IUser) => ({
   authProvider,
   familyName,
   givenName,
-  isAdmin
+  isAdmin,
 });

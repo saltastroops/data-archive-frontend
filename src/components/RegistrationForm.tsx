@@ -110,7 +110,7 @@ const validateRegistrationField = (
 };
 
 const Form = styled.form.attrs({
-  className: "column is-4 is-offset-4"
+  className: "column is-4 is-offset-4",
 })`
   && {
     padding: 1px;
@@ -118,7 +118,7 @@ const Form = styled.form.attrs({
 `;
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -127,7 +127,7 @@ const Heading = styled.h1.attrs({
 `;
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -151,7 +151,7 @@ class RegistrationForm extends React.Component<
       givenName: "",
       password: "",
       responseError: "",
-      username: ""
+      username: "",
     },
     registered: false,
     userInput: {
@@ -161,8 +161,8 @@ class RegistrationForm extends React.Component<
       familyName: "",
       givenName: "",
       password: "",
-      username: ""
-    }
+      username: "",
+    },
   };
 
   /**
@@ -202,8 +202,8 @@ class RegistrationForm extends React.Component<
           familyName: "",
           givenName: "",
           password: "",
-          username: ""
-        }
+          username: "",
+        },
       });
 
       alert("Successfully registered, Login using your username and password");
@@ -213,8 +213,8 @@ class RegistrationForm extends React.Component<
           ...this.state.errors,
           responseError: error.message
             .replace("Network error: ", "")
-            .replace("GraphQL error: ", "")
-        }
+            .replace("GraphQL error: ", ""),
+        },
       });
     }
   };
@@ -226,8 +226,8 @@ class RegistrationForm extends React.Component<
     this.updateState({
       userInput: {
         ...this.state.userInput,
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
 
@@ -240,7 +240,7 @@ class RegistrationForm extends React.Component<
       familyName,
       givenName,
       password,
-      username
+      username,
     } = this.state.userInput;
 
     if (registered) {
@@ -251,7 +251,7 @@ class RegistrationForm extends React.Component<
       <Mutation mutation={SIGNUP_MUTATION}>
         {(signup: any, { loading }: any) => {
           return (
-            <Form onSubmit={e => this.onHandleSubmit(e, signup)}>
+            <Form onSubmit={(e) => this.onHandleSubmit(e, signup)}>
               <fieldset disabled={loading} aria-disabled={loading}>
                 <Heading>Create your account</Heading>
                 {errors.responseError ? (

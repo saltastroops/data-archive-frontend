@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 interface IHrsModeProps {
@@ -13,7 +13,7 @@ const HRS_MODES = [
   "Medium Resolution",
   "High Resolution",
   "High Stability",
-  "Int Cal Fibre"
+  "Int Cal Fibre",
 ];
 /**
  * A form for selecting HrsMode-related search parameters.
@@ -27,7 +27,7 @@ const HrsMode = (props: IHrsModeProps) => {
     onSelect({
       hrsModes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
 
@@ -40,7 +40,7 @@ const HrsMode = (props: IHrsModeProps) => {
         value={hrsModes || ["All"]}
       >
         <AllOption />
-        {HRS_MODES.sort().map(i => (
+        {HRS_MODES.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

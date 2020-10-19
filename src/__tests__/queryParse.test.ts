@@ -3,7 +3,7 @@ import {
   MAXIMUM_COORDINATE_SEARCH_RADIUS,
   parseDeclination,
   parseRightAscension,
-  parseTargetPosition
+  parseTargetPosition,
 } from "../util/query/parse";
 
 describe("parseRightAscension", () => {
@@ -177,7 +177,7 @@ describe("parseTargetPosition", () => {
     f = () =>
       parseTargetPosition({
         errors: {},
-        rightAscension: "7.890 .. 7.891 .. 8.0"
+        rightAscension: "7.890 .. 7.891 .. 8.0",
       });
     expect(f).toThrow(/neither.*range/);
   });
@@ -210,21 +210,21 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "17",
         errors: {},
-        rightAscension: "0"
+        rightAscension: "0",
       }).rightAscensions[0]
     ).toBeCloseTo(0);
     expect(
       parseTargetPosition({
         declination: "17",
         errors: {},
-        rightAscension: "113.67"
+        rightAscension: "113.67",
       }).rightAscensions[0]
     ).toBeCloseTo(113.67);
     expect(
       parseTargetPosition({
         declination: "17",
         errors: {},
-        rightAscension: "360"
+        rightAscension: "360",
       }).rightAscensions[0]
     ).toBeCloseTo(360);
   });
@@ -234,14 +234,14 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "0 .. 1",
         errors: {},
-        rightAscension: "0 .. 67.9"
+        rightAscension: "0 .. 67.9",
       }).rightAscensions[0]
     ).toBeCloseTo(0);
     expect(
       parseTargetPosition({
         declination: "0 .. 1",
         errors: {},
-        rightAscension: "0 .. 67.9"
+        rightAscension: "0 .. 67.9",
       }).rightAscensions[1]
     ).toBeCloseTo(67.9);
 
@@ -249,14 +249,14 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "0 .. 1",
         errors: {},
-        rightAscension: "113.67 .. 110"
+        rightAscension: "113.67 .. 110",
       }).rightAscensions[0]
     ).toBeCloseTo(113.67);
     expect(
       parseTargetPosition({
         declination: "0 .. 1",
         errors: {},
-        rightAscension: "113.67 .. 110"
+        rightAscension: "113.67 .. 110",
       }).rightAscensions[1]
     ).toBeCloseTo(110);
   });
@@ -265,7 +265,7 @@ describe("parseTargetPosition", () => {
     let rightAscensions = parseTargetPosition({
       declination: "-7 .. -6",
       errors: {},
-      rightAscension: "23"
+      rightAscension: "23",
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       23 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -279,7 +279,7 @@ describe("parseTargetPosition", () => {
     rightAscensions = parseTargetPosition({
       declination: "-7 .. -6",
       errors: {},
-      rightAscension: "0"
+      rightAscension: "0",
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       360 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -290,7 +290,7 @@ describe("parseTargetPosition", () => {
     rightAscensions = parseTargetPosition({
       declination: "-7 .. -6",
       errors: {},
-      rightAscension: "360"
+      rightAscension: "360",
     }).rightAscensions;
     expect(rightAscensions[0]).toBeCloseTo(
       360 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -340,7 +340,7 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "-90",
         errors: {},
-        rightAscension: "9"
+        rightAscension: "9",
       }).declinations[0]
     ).toBeCloseTo(-90);
     expect(
@@ -351,14 +351,14 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "23.8",
         errors: {},
-        rightAscension: "9"
+        rightAscension: "9",
       }).declinations[0]
     ).toBeCloseTo(23.8);
     expect(
       parseTargetPosition({
         declination: "90",
         errors: {},
-        rightAscension: "9"
+        rightAscension: "9",
       }).declinations[0]
     ).toBeCloseTo(90);
   });
@@ -368,14 +368,14 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "-11.6 .. 5.98",
         errors: {},
-        rightAscension: "14 .. 15"
+        rightAscension: "14 .. 15",
       }).declinations[0]
     ).toBeCloseTo(-11.6);
     expect(
       parseTargetPosition({
         declination: "-11.6 .. 5.98",
         errors: {},
-        rightAscension: "14 .. 15"
+        rightAscension: "14 .. 15",
       }).declinations[1]
     ).toBeCloseTo(5.98);
 
@@ -383,14 +383,14 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "67.3 .. -8.76",
         errors: {},
-        rightAscension: "14 .. 15"
+        rightAscension: "14 .. 15",
       }).declinations[0]
     ).toBeCloseTo(-8.76);
     expect(
       parseTargetPosition({
         declination: "67.3 .. -8.76",
         errors: {},
-        rightAscension: "14 .. 15"
+        rightAscension: "14 .. 15",
       }).declinations[1]
     ).toBeCloseTo(67.3);
   });
@@ -399,7 +399,7 @@ describe("parseTargetPosition", () => {
     let declinations = parseTargetPosition({
       declination: "-8",
       errors: {},
-      rightAscension: "17 .. 18"
+      rightAscension: "17 .. 18",
     }).declinations;
     expect(declinations[0]).toBeCloseTo(
       -8 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -413,7 +413,7 @@ describe("parseTargetPosition", () => {
     declinations = parseTargetPosition({
       declination: "-90",
       errors: {},
-      rightAscension: "17 .. 18"
+      rightAscension: "17 .. 18",
     }).declinations;
     expect(declinations[0]).toBeCloseTo(-90, 6);
     expect(declinations[1]).toBeCloseTo(
@@ -424,7 +424,7 @@ describe("parseTargetPosition", () => {
     declinations = parseTargetPosition({
       declination: "90",
       errors: {},
-      rightAscension: "17 .. 18"
+      rightAscension: "17 .. 18",
     }).declinations;
     expect(declinations[0]).toBeCloseTo(
       90 - DEFAULT_COORDINATE_SEARCH_RADIUS,
@@ -468,7 +468,7 @@ describe("parseTargetPosition", () => {
         declination: "-15",
         errors: {},
         searchConeRadius: "2",
-        searchConeRadiusUnits: "arcminutes"
+        searchConeRadiusUnits: "arcminutes",
       });
     expect(f).toThrow("a right ascension and a declination must be given");
   });
@@ -479,7 +479,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "25",
         searchConeRadius: "2",
-        searchConeRadiusUnits: "arcminutes"
+        searchConeRadiusUnits: "arcminutes",
       });
     expect(f).toThrow("a right ascension and a declination must be given");
   });
@@ -491,7 +491,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "3 .. 5",
         searchConeRadius: "2",
-        searchConeRadiusUnits: "arcminutes"
+        searchConeRadiusUnits: "arcminutes",
       });
     expect(f).toThrow(/(range.*radius|radius.*range)/);
 
@@ -501,7 +501,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "124",
         searchConeRadius: "2",
-        searchConeRadiusUnits: "arcminutes"
+        searchConeRadiusUnits: "arcminutes",
       });
     expect(f).toThrow(/(range.*radius|radius.*range)/);
   });
@@ -513,7 +513,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "1",
         searchConeRadius: "hjudeth",
-        searchConeRadiusUnits: "degrees"
+        searchConeRadiusUnits: "degrees",
       });
     expect(f).toThrow(/radius.*positive number/);
   });
@@ -525,7 +525,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "1",
         searchConeRadius: "-13",
-        searchConeRadiusUnits: "arcseconds"
+        searchConeRadiusUnits: "arcseconds",
       });
     expect(f).toThrow(/radius.*positive number/);
 
@@ -535,7 +535,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "1",
         searchConeRadius: "0",
-        searchConeRadiusUnits: "arcseconds"
+        searchConeRadiusUnits: "arcseconds",
       });
     expect(f).toThrow(/radius.*positive number/);
   });
@@ -547,7 +547,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "1",
         searchConeRadius: "" + (MAXIMUM_COORDINATE_SEARCH_RADIUS + 0.0001),
-        searchConeRadiusUnits: "degrees"
+        searchConeRadiusUnits: "degrees",
       });
     expect(f).toThrow(/radius.*greater than/);
   });
@@ -557,7 +557,7 @@ describe("parseTargetPosition", () => {
       parseTargetPosition({
         declination: "9",
         errors: {},
-        rightAscension: "100"
+        rightAscension: "100",
       }).searchConeRadius
     ).toBeCloseTo(DEFAULT_COORDINATE_SEARCH_RADIUS, 6);
   });
@@ -570,7 +570,7 @@ describe("parseTargetPosition", () => {
         declination: "-8",
         errors: {},
         rightAscension: "1",
-        searchConeRadius: "6"
+        searchConeRadius: "6",
       });
     expect(f).toThrow(/supply.*units/);
   });
@@ -582,7 +582,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "4",
         searchConeRadius: "7",
-        searchConeRadiusUnits: "uxfghj"
+        searchConeRadiusUnits: "uxfghj",
       });
     expect(f).toThrow("not supported");
   });
@@ -594,7 +594,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "0",
         searchConeRadius: "0.0234",
-        searchConeRadiusUnits: "degrees"
+        searchConeRadiusUnits: "degrees",
       }).searchConeRadius
     ).toBeCloseTo(0.0234);
     expect(
@@ -603,7 +603,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "0",
         searchConeRadius: "1.8",
-        searchConeRadiusUnits: "arcminutes"
+        searchConeRadiusUnits: "arcminutes",
       }).searchConeRadius
     ).toBeCloseTo(0.03);
     expect(
@@ -612,7 +612,7 @@ describe("parseTargetPosition", () => {
         errors: {},
         rightAscension: "0",
         searchConeRadius: "180",
-        searchConeRadiusUnits: "arcseconds"
+        searchConeRadiusUnits: "arcseconds",
       }).searchConeRadius
     ).toBeCloseTo(0.05);
   });

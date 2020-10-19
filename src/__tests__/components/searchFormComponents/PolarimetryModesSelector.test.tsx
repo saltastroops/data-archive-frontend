@@ -38,7 +38,7 @@ describe("PolarimetryModesSelector", () => {
     );
     const linearHiCheckbox = wrapper.find('input[data-test="linear-hi"]');
     linearHiCheckbox.simulate("change", {
-      target: { checked: true, value: "LINEAR HI" }
+      target: { checked: true, value: "LINEAR HI" },
     });
     await wait(0);
     expect(onChange).toHaveBeenCalledWith(
@@ -56,7 +56,7 @@ describe("PolarimetryModesSelector", () => {
     );
     const circularCheckbox = wrapper.find('input[data-test="circular"]');
     circularCheckbox.simulate("change", {
-      target: { checked: false, value: "CIRCULAR" }
+      target: { checked: false, value: "CIRCULAR" },
     });
     await wait(0);
     expect(onChange).toHaveBeenCalledWith(

@@ -4,13 +4,13 @@ import { MockedProvider } from "react-apollo/test-utils";
 import { MemoryRouter } from "react-router";
 import wait from "waait";
 import RequestResetPasswordForm, {
-  REQUEST_RESET_MUTATION
+  REQUEST_RESET_MUTATION,
 } from "../../components/RequestResetPasswordForm";
 
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
-    target: { name, value }
+    target: { name, value },
   });
 }
 
@@ -48,27 +48,27 @@ describe("RequestResetPasswordForm", () => {
     const updatedState = {
       confirmReset: false,
       errors: {
-        email: ""
+        email: "",
       },
       userInput: {
-        email: "email@xxx.xxx"
-      }
+        email: "email@xxx.xxx",
+      },
     };
     const mocks = [
       {
         request: {
           query: REQUEST_RESET_MUTATION,
-          variables: { email: "xxx" }
+          variables: { email: "xxx" },
         },
         result: {
           data: {
             verifyPasswordResetToken: {
               __typename: "User",
-              id: "XXX"
-            }
-          }
-        }
-      }
+              id: "XXX",
+            },
+          },
+        },
+      },
     ];
 
     // RequestResetPasswordForm component wrapper.
@@ -100,27 +100,27 @@ describe("RequestResetPasswordForm", () => {
     const updatedState = {
       confirmReset: false,
       errors: {
-        email: ""
+        email: "",
       },
       userInput: {
-        email: "xxx"
-      }
+        email: "xxx",
+      },
     };
     const mocks = [
       {
         request: {
           query: REQUEST_RESET_MUTATION,
-          variables: { email: "xxxx" }
+          variables: { email: "xxxx" },
         },
         result: {
           data: {
             verifyPasswordResetToken: {
               __typename: "User",
-              id: "XXX"
-            }
-          }
-        }
-      }
+              id: "XXX",
+            },
+          },
+        },
+      },
     ];
 
     // RequestResetPasswordForm component wrapper.
@@ -166,17 +166,17 @@ describe("RequestResetPasswordForm", () => {
       {
         request: {
           query: REQUEST_RESET_MUTATION,
-          variables: { email: "nhlavu@gmail.com" }
+          variables: { email: "nhlavu@gmail.com" },
         },
         result: {
           data: {
             user: {
               __typename: "User",
-              id: "XXX4"
-            }
-          }
-        }
-      }
+              id: "XXX4",
+            },
+          },
+        },
+      },
     ];
 
     // RequestResetPasswordForm component wrapper.
@@ -214,9 +214,9 @@ describe("RequestResetPasswordForm", () => {
         error: new Error("No user"),
         request: {
           query: REQUEST_RESET_MUTATION,
-          variables: { email: "nhlavu@gmail.com" }
-        }
-      }
+          variables: { email: "nhlavu@gmail.com" },
+        },
+      },
     ];
 
     // RequestResetPasswordForm component wrapper.

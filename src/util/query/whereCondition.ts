@@ -4,7 +4,7 @@ import {
   IObservationQueryParameters,
   ITarget,
   ITelescope,
-  IWhereCondition
+  IWhereCondition,
 } from "../../utils/ObservationQueryParameters";
 import { TARGET_TYPE_CODES } from "../../utils/TargetType";
 import {
@@ -16,7 +16,7 @@ import {
   lessEqual,
   or,
   startsWith,
-  withinRadius
+  withinRadius,
 } from "./operators";
 import { parseObservationNight, parseTargetPosition, trim } from "./parse";
 
@@ -62,8 +62,8 @@ export function whereCondition(queryParameters: IObservationQueryParameters) {
     AND: [
       generalWhereCondition(queryParameters.general),
       targetWhereCondition(queryParameters.target),
-      telescopeWhereCondition(queryParameters.telescope)
-    ]
+      telescopeWhereCondition(queryParameters.telescope),
+    ],
   };
 }
 
@@ -111,7 +111,7 @@ export function prune(condition: object) {
     if (Array.isArray(o)) {
       // Prune all array itens and then remove all empty objects.
       const pruned: any[] = o
-        .map(item => _prune(item))
+        .map((item) => _prune(item))
         .filter((k: any) => Object.keys(k).length);
       return pruned;
     } else if (typeof o === "object") {
@@ -155,14 +155,14 @@ export function generalWhereCondition(general: IGeneral): IWhereCondition {
   const observationNight = trim(general.observationNight);
   if (observationNight) {
     const nights = parseObservationNight(observationNight); // noon SAST
-    const nightStrings = nights.map(night => night.format("YYYY-MM-DD"));
+    const nightStrings = nights.map((night) => night.format("YYYY-MM-DD"));
     if (nightStrings.length === 1) {
       conditions.push(equals(DataKeys.OBSERVATION_NIGHT, nightStrings[0]));
     } else {
       conditions.push(
         and([
           greaterEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[0]),
-          lessEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[1])
+          lessEqual(DataKeys.OBSERVATION_NIGHT, nightStrings[1]),
         ])
       );
     }
@@ -233,7 +233,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
         declinationColumn: DataKeys.TARGET_DECLINATION,
         radius,
         rightAscension: rightAscensions[0],
-        rightAscensionColumn: DataKeys.TARGET_RIGHT_ASCENSION
+        rightAscensionColumn: DataKeys.TARGET_RIGHT_ASCENSION,
       })
     );
   } else {
@@ -250,12 +250,12 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
           or([
             and([
               greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra1),
-              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, 360)
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, 360),
             ]),
             and([
               greaterEqual(DataKeys.TARGET_RIGHT_ASCENSION, 0),
-              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2)
-            ])
+              lessEqual(DataKeys.TARGET_RIGHT_ASCENSION, ra2),
+            ]),
           ])
         );
       }
@@ -279,7 +279,7 @@ export function targetWhereCondition(target: ITarget): IWhereCondition {
   // is how we query for them.
   const targetTypes = target.targetTypes;
   if (targetTypes && targetTypes.size > 0) {
-    const targetTypeConditions = Array.from(targetTypes).map(targetType =>
+    const targetTypeConditions = Array.from(targetTypes).map((targetType) =>
       startsWith(
         DataKeys.TARGET_TYPE_NUMERIC_CODE,
         TARGET_TYPE_CODES.get(targetType) + "."
@@ -389,7 +389,7 @@ function withoutAll(items: string[] | undefined): string[] {
   if (!items) {
     return [];
   }
-  if (items && items.some(item => item.toString() === "All")) {
+  if (items && items.some((item) => item.toString() === "All")) {
     return [];
   }
   return [...items];

@@ -38,7 +38,7 @@ const DataKeys = {
   TARGET_TYPE_EXPLANATION: "target_type.description",
   TARGET_TYPE_NUMERIC_CODE: "target_type.numeric_code",
   TELESCOPE_NAME: "telescope.name",
-  TELESCOPE_OBSERVATION_ID: "observation_group.observation_group_id"
+  TELESCOPE_OBSERVATION_ID: "observation_group.observation_group_id",
 };
 
 export default DataKeys;

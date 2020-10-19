@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 // DETECTOR MODE
@@ -8,7 +8,7 @@ export const COMMON_DETECTOR_MODES = [
   "Normal",
   "Frame Transfer",
   "Slot Mode",
-  "Drift Scan"
+  "Drift Scan",
 ];
 
 export const RSS_DETECTOR_MODES = ["Shuffle"];
@@ -25,23 +25,23 @@ const detectorModeToDisplay = (instruments: string[], telescopes: string[]) => {
   let detectorModes: string[] = [];
   if (
     instruments.length === 0 ||
-    (instruments.some(inst => inst === "All") &&
-      telescopes.some(t => t === "All" || t === "SALT"))
+    (instruments.some((inst) => inst === "All") &&
+      telescopes.some((t) => t === "All" || t === "SALT"))
   ) {
     return RSS_DETECTOR_MODES.concat(SALTICAM_DETECTOR_MODES).concat(
       COMMON_DETECTOR_MODES
     );
   }
-  if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
+  if (telescopes.some((t) => t === "1.9 m" || t === "Lesedi")) {
     return [];
   }
-  if (instruments.some(inst => inst === "RSS")) {
+  if (instruments.some((inst) => inst === "RSS")) {
     detectorModes = detectorModes.concat(RSS_DETECTOR_MODES);
   }
-  if (instruments.some(inst => inst === "Salticam")) {
+  if (instruments.some((inst) => inst === "Salticam")) {
     detectorModes = detectorModes.concat(SALTICAM_DETECTOR_MODES);
   }
-  if (instruments.some(inst => inst === "Salticam" || inst === "RSS")) {
+  if (instruments.some((inst) => inst === "Salticam" || inst === "RSS")) {
     detectorModes = detectorModes.concat(COMMON_DETECTOR_MODES);
   }
 
@@ -55,7 +55,7 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
     onSelect,
     selectedInstruments,
     selectedTelescopes,
-    detectorModes
+    detectorModes,
   } = props;
 
   // Function for handling change events
@@ -64,7 +64,7 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
     onSelect({
       detectorModes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
   const DETECTOR_MODE_TO_DISPLAY = detectorModeToDisplay(
@@ -81,7 +81,7 @@ const DetectorModeSelector = (props: IDetectorModeSelectorProps) => {
         value={detectorModes || ["All"]}
       >
         <AllOption />
-        {DETECTOR_MODE_TO_DISPLAY.sort().map(i => (
+        {DETECTOR_MODE_TO_DISPLAY.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

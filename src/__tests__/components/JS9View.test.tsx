@@ -9,7 +9,7 @@ import JS9View from "../../components/JS9View";
 describe("JS9View", () => {
   (window as any).JS9 = {
     Load: jest.fn(),
-    init: jest.fn()
+    init: jest.fn(),
   };
 
   const onClose = jest.fn();
@@ -89,7 +89,7 @@ describe("JS9View", () => {
     const url2 = "http://some.other.url.saao.ac.za";
 
     (baseAxiosClient as any).mockImplementation(() => ({
-      get: () => ({ data: "image" })
+      get: () => ({ data: "image" }),
     }));
 
     (window as any).JS9.Load.mockReturnValue("image");
@@ -118,7 +118,7 @@ describe("JS9View", () => {
     );
 
     (baseAxiosClient as any).mockImplementation(() => ({
-      get: () => ({ data: "image" })
+      get: () => ({ data: "image" }),
     }));
 
     (window as any).JS9.Load.mockReturnValue("image");
@@ -138,7 +138,7 @@ describe("JS9View", () => {
     const url1 = "http://some.url.saao.ac.za";
 
     (baseAxiosClient as any).mockImplementation(() => ({
-      get: () => ({ data: "image" })
+      get: () => ({ data: "image" }),
     }));
 
     (window as any).JS9.Load.mockReturnValue("image");

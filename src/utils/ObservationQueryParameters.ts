@@ -179,7 +179,7 @@ export interface ITelescope {
   hrsModes?: (HRSMode | "All")[];
   instrumentModes?: (InstrumentMode | "All")[];
   instruments?: (InstrumentName | "All")[];
-  rssFabryPerotModes?:(RSSFabryPerotMode | "All")[];
+  rssFabryPerotModes?: (RSSFabryPerotMode | "All")[];
   rssGratings?: (RSSGrating | "All")[];
   rssPolarimetryModes?: (RSSPolarimetryMode | "All")[];
   telescopes?: (TelescopeName | "All")[];

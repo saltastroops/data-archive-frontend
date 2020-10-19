@@ -406,7 +406,7 @@ class CartModal extends React.Component<
                                           }}
                                         >
                                           <span>
-                                            Download data request{" "}
+                                            Download{" "}
                                             <FontAwesomeIcon
                                               icon={faDownload}
                                             />
@@ -574,7 +574,8 @@ class CartModal extends React.Component<
       return;
     }
 
-    // If neither reduced nor raw checkbox is selected, raise an error and abort data request creation
+    // If neither the reduced nor raw checkbox is selected, raise an error and
+    // abort the data request creation
     if (!this.isCalibrationLevelIncluded(includedCalibrationLevels)) {
       this.setState({
         error: "Please make sure reduced or raw data is selected.",

@@ -5,7 +5,7 @@ import { HelpMessage } from "./InputField";
 
 const SearchGrid = styled.div.attrs({
   className: "grid-container",
-  disable: true
+  disable: true,
 })`
   display: grid;
   grid-template-columns: auto;
@@ -14,7 +14,7 @@ const SearchGrid = styled.div.attrs({
 
 const ParentGrid = styled.div.attrs({
   className: "grid-container is-fullhd",
-  disable: true
+  disable: true,
 })`
   display: grid;
   grid-template-columns: 49.5% 1% 49.5%;
@@ -26,14 +26,14 @@ const ParentGrid = styled.div.attrs({
 
 const ParentGridSingle = styled.div.attrs({
   className: "grid-container",
-  disable: true
+  disable: true,
 })`
   display: grid;
   grid-template-columns: 100%;
 `;
 
 const TargetGrid = styled.div.attrs({
-  className: "grid-item target-form"
+  className: "grid-item target-form",
 })`
   background-color: #f6f7e1;
   border: 1px solid rgba(246, 247, 225, 0.5);
@@ -43,7 +43,7 @@ const TargetGrid = styled.div.attrs({
 `;
 
 const ProposalGrid = styled.div.attrs({
-  className: "grid-item proposal-form"
+  className: "grid-item proposal-form",
 })`
   background-color: #f2fffb;
   border: 1px solid rgba(242, 255, 251, 0.5);
@@ -52,14 +52,14 @@ const ProposalGrid = styled.div.attrs({
 `;
 
 const DataGrid = styled.div.attrs({
-  className: "grid-item data-form"
+  className: "grid-item data-form",
 })`
   background-color: #e0edf9;
   border: 1px solid rgba(224, 237, 249, 0.5);
   text-align: center;
 `;
 const ButtonGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item",
 })`
 
   display: grid;
@@ -83,7 +83,7 @@ const ButtonGrid = styled.div.attrs({
 `;
 
 const TelescopeGrid = styled.div.attrs({
-  className: "grid-item telescope-form"
+  className: "grid-item telescope-form",
 })`
   background-color: #fff4fa;
   border: 1px solid rgba(255, 244, 250, 0.5);
@@ -91,7 +91,7 @@ const TelescopeGrid = styled.div.attrs({
 `;
 
 const MainGrid = styled.div.attrs({
-  className: "main-grid"
+  className: "main-grid",
 })`
   && {
     display: grid;
@@ -101,7 +101,7 @@ const MainGrid = styled.div.attrs({
 `;
 
 const SingleColumnGrid = styled.div.attrs({
-  className: "single-column-grid"
+  className: "single-column-grid",
 })`
   && {
     display: grid;
@@ -111,7 +111,7 @@ const SingleColumnGrid = styled.div.attrs({
 `;
 
 const ResolverGrid = styled.div.attrs({
-  className: "inner-main-grid"
+  className: "inner-main-grid",
 })`
   && {
     display: grid;
@@ -130,7 +130,7 @@ export const ResolverContainer = (props: any) => {
   );
 };
 const HelpGrid = styled.div.attrs({
-  className: "field"
+  className: "field",
 })`
   && {
     display: inline-flex;
@@ -139,7 +139,7 @@ const HelpGrid = styled.div.attrs({
 `;
 
 const SubGrid = styled.div.attrs({
-  className: "sub-grid"
+  className: "sub-grid",
 })`
   && {
     text-align: left;
@@ -148,7 +148,7 @@ const SubGrid = styled.div.attrs({
 `;
 
 const SubGrid4 = styled.div.attrs({
-  className: "sub-grid4"
+  className: "sub-grid4",
 })`
   && {
     display: grid;
@@ -157,7 +157,7 @@ const SubGrid4 = styled.div.attrs({
 `;
 
 const SubGrid5 = styled.div.attrs({
-  className: "sub-grid6"
+  className: "sub-grid6",
 })`
   && {
     display: grid;
@@ -197,7 +197,7 @@ const TelescopeDetailsGrid = styled.div`
 `;
 
 const Span = styled.span.attrs({
-  className: "span"
+  className: "span",
 })`
   && {
     font-size: 22px;
@@ -264,5 +264,5 @@ export {
   ButtonGrid,
   Span,
   Spinner,
-  ResolverGrid
+  ResolverGrid,
 };

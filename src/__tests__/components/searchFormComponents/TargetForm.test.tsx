@@ -16,7 +16,7 @@ describe("TargetForm", () => {
           errors: {},
           resolver: "Simbad",
           searchConeRadiusUnits: "arcseconds",
-          targetTypes: new Set<TargetType>()
+          targetTypes: new Set<TargetType>(),
         }}
         onChange={onChange}
       />
@@ -38,7 +38,7 @@ describe("TargetForm", () => {
               errors: {},
               resolver: "Simbad",
               searchConeRadiusUnits: "arcseconds",
-              targetTypes: new Set<TargetType>()
+              targetTypes: new Set<TargetType>(),
             }}
             onChange={onChange}
           />
@@ -55,7 +55,7 @@ describe("TargetForm", () => {
               name: "NGC 1234",
               resolver: "Simbad",
               searchConeRadiusUnits: "arcseconds",
-              targetTypes: new Set<TargetType>()
+              targetTypes: new Set<TargetType>(),
             }}
             onChange={onChange}
           />
@@ -69,12 +69,12 @@ describe("TargetForm", () => {
           <TargetForm
             target={{
               errors: {
-                name: "this is an error"
+                name: "this is an error",
               },
               resolver: "Simbad",
               searchConeRadius: "12.1",
               searchConeRadiusUnits: "arcminutes",
-              targetTypes: new Set<TargetType>()
+              targetTypes: new Set<TargetType>(),
             }}
             onChange={onChange}
           />
@@ -104,7 +104,7 @@ describe("TargetForm", () => {
       resolver: "Simbad",
       rightAscension: "123.1",
       searchConeRadiusUnits: "arcseconds",
-      targetTypes: new Set<TargetType>()
+      targetTypes: new Set<TargetType>(),
     });
 
     value = "";
@@ -115,7 +115,7 @@ describe("TargetForm", () => {
       resolver: "Simbad",
       rightAscension: "",
       searchConeRadiusUnits: "arcseconds",
-      targetTypes: new Set<TargetType>()
+      targetTypes: new Set<TargetType>(),
     });
 
     value = undefined;
@@ -126,7 +126,7 @@ describe("TargetForm", () => {
       resolver: "Simbad",
       rightAscension: "",
       searchConeRadiusUnits: "arcseconds",
-      targetTypes: new Set<TargetType>()
+      targetTypes: new Set<TargetType>(),
     });
   });
 

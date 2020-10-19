@@ -42,13 +42,13 @@ class SearchResultsTableColumnSelector extends React.Component<
       DataKeys.DATA_CATEGORY,
       DataKeys.OBSERVATION_STATUS,
       DataKeys.TELESCOPE_NAME,
-      DataKeys.OBSERVATION_PUBLIC_FROM
+      DataKeys.OBSERVATION_PUBLIC_FROM,
     ];
     const targetDataKeys = [
       DataKeys.TARGET_NAME,
       DataKeys.TARGET_RIGHT_ASCENSION,
       DataKeys.TARGET_DECLINATION,
-      DataKeys.TARGET_TYPE_EXPLANATION
+      DataKeys.TARGET_TYPE_EXPLANATION,
     ];
     const instrumentDataKeys = [
       DataKeys.INSTRUMENT_NAME,
@@ -58,19 +58,19 @@ class SearchResultsTableColumnSelector extends React.Component<
       DataKeys.MINIMUM_WAVELENGTH,
       DataKeys.MAXIMUM_WAVELENGTH,
       DataKeys.EXPOSURE_TIME,
-      DataKeys.POLARIZATION_MODE
+      DataKeys.POLARIZATION_MODE,
     ];
     const saltDataKeys = [
       DataKeys.RSS_FABRY_PEROT_MODE,
       DataKeys.RSS_GRATING,
       DataKeys.HRS_MODE,
-      DataKeys.CAMERA_ANGLE
+      DataKeys.CAMERA_ANGLE,
     ];
 
     // convert data keys to table columns
     const keysToColumns = (dataKeys: string[]) =>
-      dataKeys.map(dataKey => {
-        const c = columns.find(column => column.dataKey === dataKey);
+      dataKeys.map((dataKey) => {
+        const c = columns.find((column) => column.dataKey === dataKey);
         if (c === undefined) {
           throw new Error(`No table column found for data key "${dataKey}".`);
         }

@@ -30,19 +30,20 @@ export function searchResultsTableColumns(
     {
       dataKey: DataKeys.OBSERVATION_NAME,
       name: "Observation",
-      visible: true
+      visible: true,
     },
     {
       dataKey: DataKeys.INFO,
       name: "Info",
       visible: true,
-      width: 50
+      width: 50,
     },
     ...sort(
       tableColumns.filter(
-        column => column.dataKey !== DataKeys.OBSERVATION_NAME && column.visible
+        (column) =>
+          column.dataKey !== DataKeys.OBSERVATION_NAME && column.visible
       )
-    )
+    ),
   ];
 }
 
@@ -54,7 +55,7 @@ export function searchResultsTableColumns(
  * An array of all available results table columns.
  */
 export function availableResultsTableColumns(): ISearchResultsTableColumn[] {
-  return Object.keys(DataKeys).map(dataKey =>
+  return Object.keys(DataKeys).map((dataKey) =>
     tableColumn((DataKeys as any)[dataKey])
   );
 }
@@ -86,7 +87,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         dataKey,
         format: formatNumber(1),
         name: "Exposure Time (s)",
-        visible: false
+        visible: false,
       };
     case DataKeys.FILTER:
       return { dataKey, name: "Filter", visible: false };
@@ -101,14 +102,14 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         dataKey,
         format: formatWavelength,
         name: "Maximum Wavelength (A)",
-        visible: false
+        visible: false,
       };
     case DataKeys.MINIMUM_WAVELENGTH:
       return {
         dataKey,
         format: formatWavelength,
         name: "Minimum Wavelength (A)",
-        visible: false
+        visible: false,
       };
     case DataKeys.OBSERVATION_NAME:
       return { dataKey, name: "Observation Name", visible: false };
@@ -117,14 +118,14 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         dataKey,
         format: formatTimestamp,
         name: "Observation Night",
-        visible: true
+        visible: true,
       };
     case DataKeys.OBSERVATION_PUBLIC_FROM:
       return {
         dataKey,
         format: formatTimestamp,
         name: "Release Date",
-        visible: true
+        visible: true,
       };
     case DataKeys.OBSERVATION_STATUS:
       return { dataKey, name: "Observation Status", visible: false };
@@ -149,7 +150,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         dataKey,
         format: formatNumber(4),
         name: "Declination (deg)",
-        visible: true
+        visible: true,
       };
     case DataKeys.TARGET_NAME:
       return { dataKey, name: "Target Name", visible: true };
@@ -158,7 +159,7 @@ function tableColumn(dataKey: string): ISearchResultsTableColumn {
         dataKey,
         format: formatNumber(4),
         name: "Right Ascension (deg)",
-        visible: true
+        visible: true,
       };
     case DataKeys.TARGET_TYPE_EXPLANATION:
       return { dataKey, name: "Target Type", visible: false };
@@ -197,7 +198,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
     DataKeys.PROPOSAL_PI,
     DataKeys.PROPOSAL_TITLE,
     DataKeys.TELESCOPE_NAME,
-    DataKeys.INSTRUMENT_NAME
+    DataKeys.INSTRUMENT_NAME,
   ];
 
   // Compare two columns. The following rules are used:
@@ -212,8 +213,8 @@ function sort(columns: ISearchResultsTableColumn[]) {
     column1: ISearchResultsTableColumn,
     column2: ISearchResultsTableColumn
   ) => {
-    const index1 = orderedDataKeys.findIndex(key => column1.dataKey === key);
-    const index2 = orderedDataKeys.findIndex(key => column2.dataKey === key);
+    const index1 = orderedDataKeys.findIndex((key) => column1.dataKey === key);
+    const index2 = orderedDataKeys.findIndex((key) => column2.dataKey === key);
     if (index1 !== -1 && index2 !== -1) {
       return index1 - index2;
     } else if (index1 !== -1 && index2 === -1) {

@@ -19,7 +19,7 @@ import { Cart, CART_QUERY } from "./util/Cart";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN
+    dsn: process.env.REACT_APP_SENTRY_DSN,
   });
 }
 
@@ -27,10 +27,10 @@ const client = new ApolloClient({
   cache,
   link: createHttpLink({
     credentials: "include",
-    uri: process.env.REACT_APP_BACKEND_URI
+    uri: process.env.REACT_APP_BACKEND_URI,
   }),
   resolvers,
-  typeDefs
+  typeDefs,
 } as any);
 
 // read cart from local storage
@@ -48,10 +48,10 @@ cache.writeQuery({
       files: cart.files,
       includeArcsFlatsBiases: cart.includeArcsFlatsBiases,
       includeStandards: cart.includeStandards,
-      includedCalibrationLevels: cart.includedCalibrationLevels
-    }
+      includedCalibrationLevels: cart.includedCalibrationLevels,
+    },
   },
-  query: CART_QUERY
+  query: CART_QUERY,
 });
 
 ReactDOM.render(

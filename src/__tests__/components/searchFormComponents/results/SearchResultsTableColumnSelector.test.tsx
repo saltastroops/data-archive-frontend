@@ -46,12 +46,12 @@ describe("SearchResultsTableColumn", () => {
 
     const proposalInput = wrapper.find('input[name="proposal.proposal_code"]');
     proposalInput.simulate("change", {
-      target: { name: "proposal.proposal_code", checked: false }
+      target: { name: "proposal.proposal_code", checked: false },
     });
 
     const piInput = wrapper.find('input[name="proposal.pi"]');
     piInput.simulate("change", {
-      target: { name: "proposal.pi", checked: true }
+      target: { name: "proposal.pi", checked: true },
     });
 
     expect(onChange).toHaveBeenCalledTimes(2);

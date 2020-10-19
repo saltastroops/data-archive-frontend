@@ -63,7 +63,7 @@ export class Cart {
       this.includedCalibrationLevelsFiles = includedCalibrationLevels;
     } else {
       this.includedCalibrationLevelsFiles = new Set<CalibrationLevel>([
-        "REDUCED"
+        "REDUCED",
       ]);
     }
   }
@@ -79,7 +79,7 @@ export class Cart {
       files: this.files,
       includeArcsFlatsBiases: this.includeArcsFlatsBiases,
       includeStandards: this.includeStandards,
-      includedCalibrationLevels: Array.from(this.includedCalibrationLevels)
+      includedCalibrationLevels: Array.from(this.includedCalibrationLevels),
     });
   }
 
@@ -163,7 +163,7 @@ export class Cart {
    *     Whether the cart contains the file with the given id.
    */
   public contains(file: ICartFile) {
-    return this.cartFiles.some(f => f.id === file.id);
+    return this.cartFiles.some((f) => f.id === file.id);
   }
 
   /**
@@ -176,7 +176,7 @@ export class Cart {
    * @param files
    */
   public add(files: ICartFile[]) {
-    files.forEach(file => {
+    files.forEach((file) => {
       if (!this.contains(file)) {
         this.cartFiles = [...this.cartFiles, file];
       }
@@ -194,7 +194,7 @@ export class Cart {
    */
   public remove(files: ICartFile[]) {
     this.cartFiles = this.cartFiles.filter(
-      file => !files.some(f => file.id === f.id)
+      (file) => !files.some((f) => file.id === f.id)
     );
   }
 
@@ -231,7 +231,7 @@ export class Cart {
    */
   public groupByObservation() {
     const groups = new Map<string, ICartFile[]>();
-    this.cartFiles.forEach(file => {
+    this.cartFiles.forEach((file) => {
       const key = file.observation.id || "";
       if (!groups.has(key)) {
         groups.set(key, []);

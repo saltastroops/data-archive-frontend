@@ -13,7 +13,7 @@ describe("Proposal Form", () => {
         general={{
           errors: {},
           observationStatuses: new Set<Status>(),
-          productTypes: new Set<ProductType>()
+          productTypes: new Set<ProductType>(),
         }}
         onChange={onChange}
       />
@@ -28,7 +28,7 @@ describe("Proposal Form", () => {
             general={{
               errors: {},
               observationStatuses: new Set<Status>(),
-              productTypes: new Set<ProductType>()
+              productTypes: new Set<ProductType>(),
             }}
             onChange={onChange}
           />
@@ -44,7 +44,7 @@ describe("Proposal Form", () => {
               errors: {},
               observationStatuses: new Set<Status>(),
               productTypes: new Set<ProductType>(),
-              proposalTitle: "hello"
+              proposalTitle: "hello",
             }}
             onChange={onChange}
           />
@@ -59,11 +59,11 @@ describe("Proposal Form", () => {
               errors: {
                 principalInvestigator: "invalid Principal Investigator",
                 proposalCode: "invalid proposal code",
-                proposalTitle: "invalid proposal title"
+                proposalTitle: "invalid proposal title",
               },
               observationStatuses: new Set<Status>(),
               productTypes: new Set<ProductType>(),
-              proposalCode: "Code1"
+              proposalCode: "Code1",
             }}
             onChange={onChange}
           />
@@ -80,7 +80,7 @@ describe("Proposal form on change", () => {
         general={{
           errors: {},
           observationStatuses: new Set<Status>(),
-          productTypes: new Set<ProductType>()
+          productTypes: new Set<ProductType>(),
         }}
         onChange={onChange}
       />
@@ -90,26 +90,26 @@ describe("Proposal form on change", () => {
 
     const pi = wrapper.find('input[data-test="principal-investigator-input"]');
     pi.simulate("change", {
-      target: { value: "John Doe", name: "principalInvestigator" }
+      target: { value: "John Doe", name: "principalInvestigator" },
     });
     expect(onChange).toBeCalledWith({
       errors: { principalInvestigator: "" },
       observationStatuses: new Set<Status>(),
       principalInvestigator: "John Doe",
-      productTypes: new Set<ProductType>()
+      productTypes: new Set<ProductType>(),
     });
 
     // Proposal code
 
     const proposalCode = wrapper.find('input[data-test="proposal-code-input"]');
     proposalCode.simulate("change", {
-      target: { value: "2019-1-SCI-042", name: "proposalCode" }
+      target: { value: "2019-1-SCI-042", name: "proposalCode" },
     });
     expect(onChange).toBeCalledWith({
       errors: { proposalCode: "" },
       observationStatuses: new Set<Status>(),
       productTypes: new Set<ProductType>(),
-      proposalCode: "2019-1-SCI-042"
+      proposalCode: "2019-1-SCI-042",
     });
 
     // Proposal title
@@ -118,13 +118,13 @@ describe("Proposal form on change", () => {
       'input[data-test="proposal-title-input"]'
     );
     proposalTitle.simulate("change", {
-      target: { value: "2019-1-SCI-042", name: "proposalTitle" }
+      target: { value: "2019-1-SCI-042", name: "proposalTitle" },
     });
     expect(onChange).toBeCalledWith({
       errors: { proposalTitle: "" },
       observationStatuses: new Set<Status>(),
       productTypes: new Set<ProductType>(),
-      proposalTitle: "2019-1-SCI-042"
+      proposalTitle: "2019-1-SCI-042",
     });
   });
 });
