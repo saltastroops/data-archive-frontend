@@ -8,6 +8,7 @@ import { USER_QUERY } from "../graphql/Query";
 import { HelpGrid } from "./basicComponents/Grids";
 import HelpButton from "./basicComponents/HelpButton";
 import InputField from "./basicComponents/InputField";
+import Message from "./basicComponents/Message";
 import SelectField from "./basicComponents/SelectField";
 
 /**
@@ -69,7 +70,7 @@ interface ILoginFormProps {
 }
 
 const LoginFormParent = styled.form.attrs({
-  className: "column is-4 is-offset-4"
+  className: "column is-4 is-offset-4",
 })`
   && {
     padding: 1px;
@@ -77,7 +78,7 @@ const LoginFormParent = styled.form.attrs({
 `;
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -86,7 +87,7 @@ const Heading = styled.h1.attrs({
 `;
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -129,14 +130,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     errors: {
       password: "",
       responseError: "",
-      username: ""
+      username: "",
     },
     loggedIn: false,
     userInput: {
       authProvider: "SSDA",
       password: "",
-      username: ""
-    }
+      username: "",
+    },
   };
 
   /**
@@ -162,7 +163,7 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     try {
       // Log the user in
       const logUserIn = await login({
-        variables: { ...this.state.userInput }
+        variables: { ...this.state.userInput },
       });
 
       // Update the form according to whether logging in was successful
@@ -171,14 +172,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           errors: {
             password: "",
             responseError: "",
-            username: ""
+            username: "",
           },
           loggedIn: true,
           userInput: {
             authProvider: this.state.userInput.authProvider,
             password: "",
-            username: ""
-          }
+            username: "",
+          },
         });
       }
     } catch (error) {
@@ -187,8 +188,8 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           ...this.state.errors,
           responseError: error.message
             .replace("Network error: ", "")
-            .replace("GraphQL error: ", "")
-        }
+            .replace("GraphQL error: ", ""),
+        },
       });
     }
   };
@@ -205,10 +206,14 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
     this.updateState({
       userInput: {
         ...this.state.userInput,
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
+
+  areCookiesEnabled() {
+    return navigator.cookieEnabled;
+  }
 
   render() {
     const { errors, loggedIn } = this.state;
@@ -228,8 +233,12 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
           return (
             <LoginFormParent
               data-test={"form"}
-              onSubmit={e => this.handleSubmit(e, login)}
+              onSubmit={(e) => this.handleSubmit(e, login)}
             >
+              {!this.areCookiesEnabled() && (
+                <Message message={"You have to enable cookies to login"} />
+              )}
+
               <Heading>Login to the Data Archive</Heading>
               {error ? (
                 <ErrorMessage>{errors.responseError}</ErrorMessage>
@@ -304,8 +313,13 @@ class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
                   <button
                     className="button is-success is-fullwidth"
                     data-test="signIn"
+                    disabled={!this.areCookiesEnabled()}
                   >
-                    {loading ? "Signing in..." : "Sign in"}
+                    {loading
+                      ? "Signing in ..."
+                      : !this.areCookiesEnabled()
+                      ? "Sign in (Enable cookies first)"
+                      : "Sign in"}
                   </button>
                 </div>
                 <div className="field">

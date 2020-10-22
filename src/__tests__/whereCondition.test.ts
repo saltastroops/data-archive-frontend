@@ -3,12 +3,12 @@ import {
   generalWhereCondition,
   targetWhereCondition,
   telescopeWhereCondition,
-  whereCondition
+  whereCondition,
 } from "../util/query/whereCondition";
 import {
   IGeneral,
   IObservationQueryParameters,
-  IRSS
+  IRSS,
 } from "../utils/ObservationQueryParameters";
 import { TargetType } from "../utils/TargetType";
 
@@ -19,35 +19,35 @@ describe("whereCondition", () => {
       observationNight: "2019-02-19",
       principalInvestigator: "John",
       productTypes: new Set(),
-      proposalCode: "SCI"
+      proposalCode: "SCI",
     };
     const target: ITarget = {
       declination: "-42",
       errors: {},
       rightAscension: "12.34",
       searchConeRadius: "0.01",
-      searchConeRadiusUnits: "degrees"
+      searchConeRadiusUnits: "degrees",
     };
     const rss: IRSS = {
       detectorMode: "Normal",
       errors: {},
-      name: "RSS"
+      name: "RSS",
     };
     const salt: ISALT = {
       instrument: rss,
-      name: "SALT"
+      name: "SALT",
     };
     const queryParameters: IObservationQueryParameters = {
       general,
       target,
-      telescope: salt
+      telescope: salt,
     };
     const expected = {
       AND: [
         generalWhereCondition(general),
         targetWhereCondition(target),
-        telescopeWhereCondition(salt)
-      ]
+        telescopeWhereCondition(salt),
+      ],
     };
     expect(whereCondition(queryParameters)).toEqual(expected);
   });
@@ -59,7 +59,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: "invaliddate",
-        productTypes: new Set()
+        productTypes: new Set(),
       });
     expect(f).toThrow(/invaliddate.*valid/);
   });
@@ -69,7 +69,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: "2019-02-29",
-        productTypes: new Set()
+        productTypes: new Set(),
       });
     expect(f).toThrow(/2019-02-29.*valid/);
   });
@@ -79,7 +79,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: "2019-02-29 ..",
-        productTypes: new Set()
+        productTypes: new Set(),
       });
     expect(f).toThrow(/2019-02-29.*valid/);
 
@@ -87,7 +87,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: ".. 2019-02-29",
-        productTypes: new Set()
+        productTypes: new Set(),
       });
     expect(f).toThrow("not a valid");
 
@@ -95,7 +95,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: "2019-02-29 .. 2020",
-        productTypes: new Set()
+        productTypes: new Set(),
       });
     expect(f).toThrow("not a valid");
   });
@@ -105,7 +105,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         observationNight: "2019-02-17",
-        productTypes: new Set()
+        productTypes: new Set(),
       })
     ).toMatchSnapshot();
   });
@@ -115,7 +115,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         principalInvestigator: "Doe",
-        productTypes: new Set()
+        productTypes: new Set(),
       })
     ).toMatchSnapshot();
   });
@@ -125,7 +125,7 @@ describe("generalWhereCondition", () => {
       generalWhereCondition({
         errors: {},
         productTypes: new Set(),
-        proposalCode: "2-SCI"
+        proposalCode: "2-SCI",
       })
     ).toMatchSnapshot();
   });
@@ -137,7 +137,7 @@ describe("generalWhereCondition", () => {
         observationNight: "2019-05-13",
         principalInvestigator: "Sipho",
         productTypes: new Set(),
-        proposalCode: "2019-1-SCI-042"
+        proposalCode: "2019-1-SCI-042",
       })
     ).toMatchSnapshot();
 
@@ -147,7 +147,7 @@ describe("generalWhereCondition", () => {
         observationNight: "2019-05-01 .. 2019-05-13",
         principalInvestigator: "Sipho",
         productTypes: new Set(),
-        proposalCode: "2019-1-SCI-042"
+        proposalCode: "2019-1-SCI-042",
       })
     ).toMatchSnapshot();
   });
@@ -167,7 +167,7 @@ describe("targetWhereCondition", () => {
         errors: {},
         rightAscension: "17",
         searchConeRadius: "0.04",
-        searchConeRadiusUnits: "degrees"
+        searchConeRadiusUnits: "degrees",
       })
     ).toMatchSnapshot();
   });
@@ -180,7 +180,7 @@ describe("targetWhereCondition", () => {
       targetWhereCondition({
         declination: "12 .. 13",
         errors: {},
-        rightAscension: "13"
+        rightAscension: "13",
       })
     ).toMatchSnapshot();
     expect(
@@ -193,7 +193,7 @@ describe("targetWhereCondition", () => {
       targetWhereCondition({
         declination: "-12 .. -11",
         errors: {},
-        rightAscension: "4 ... 355"
+        rightAscension: "4 ... 355",
       })
     ).toMatchSnapshot();
   });
@@ -206,7 +206,7 @@ describe("targetWhereCondition", () => {
       targetWhereCondition({
         declination: "-0.5",
         errors: {},
-        rightAscension: "5 .. 9"
+        rightAscension: "5 .. 9",
       })
     ).toMatchSnapshot();
     expect(
@@ -219,7 +219,7 @@ describe("targetWhereCondition", () => {
       targetWhereCondition({
         declination: "10 .. 12",
         errors: {},
-        rightAscension: "115 .. 200"
+        rightAscension: "115 .. 200",
       })
     ).toMatchSnapshot();
   });
@@ -231,19 +231,23 @@ describe("targetWhereCondition", () => {
     expect(
       targetWhereCondition({
         errors: {},
-        targetTypes: new Set<TargetType>(["Galaxy"])
+        targetTypes: new Set<TargetType>(["Galaxy"]),
       })
     );
     expect(
       targetWhereCondition({
         errors: {},
-        targetTypes: new Set<TargetType>(["Galaxy", "Star"])
+        targetTypes: new Set<TargetType>(["Galaxy", "Star"]),
       })
     );
     expect(
       targetWhereCondition({
         errors: {},
-        targetTypes: new Set<TargetType>(["ISM", "Solar System Body", "Galaxy"])
+        targetTypes: new Set<TargetType>([
+          "ISM",
+          "Solar System Body",
+          "Galaxy",
+        ]),
       })
     );
   });
@@ -261,7 +265,7 @@ describe("telescopeWhereCondition", () => {
         rssFabryPerotModes: ["MR", "HR"],
         rssGratings: ["pg0900", "pg1800"],
         rssPolarimetryModes: ["LINEAR"],
-        telescopes: ["Lesedi", "SALT"]
+        telescopes: ["Lesedi", "SALT"],
       })
     ).toMatchSnapshot();
   });
@@ -277,7 +281,7 @@ describe("telescopeWhereCondition", () => {
         rssFabryPerotModes: [],
         rssGratings: [],
         rssPolarimetryModes: [],
-        telescopes: []
+        telescopes: [],
       })
     ).toMatchSnapshot();
   });
@@ -293,7 +297,7 @@ describe("telescopeWhereCondition", () => {
         rssFabryPerotModes: ["All"],
         rssGratings: ["All"],
         rssPolarimetryModes: ["All"],
-        telescopes: ["All"]
+        telescopes: ["All"],
       })
     ).toMatchSnapshot();
   });
@@ -309,7 +313,7 @@ describe("telescopeWhereCondition", () => {
         rssFabryPerotModes: ["MR", "HR", "All"],
         rssGratings: ["All", "pg0900", "pg1800"],
         rssPolarimetryModes: ["LINEAR", "All"],
-        telescopes: ["Lesedi", "All", "SALT"]
+        telescopes: ["Lesedi", "All", "SALT"],
       })
     ).toMatchSnapshot();
   });

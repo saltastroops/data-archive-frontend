@@ -1,11 +1,12 @@
 import moment from "moment";
 import * as React from "react";
-import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import { titleCase } from "title-case";
-import { CREATE_DATA_REQUEST } from "../../graphql/Mutations";
-import { USER_DATA_REQUESTS_QUERY } from "../../graphql/Query";
 import { IDataRequest } from "./DataRequestsForm";
+import { baseAxiosClient } from "../../api";
+import fileDownload from "js-file-download";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Convert the name to title case
@@ -37,29 +38,9 @@ interface IDataRequestTableProps {
 }
 
 const Table = styled.table.attrs({
-  className: "table is-striped is-narrowed is-hoverable is-fullwidth"
+  className: "table is-striped is-narrowed is-hoverable is-fullwidth",
 })`
   && {
-  }
-`;
-
-const Button = styled.button.attrs({
-  className: "button re-request-all is-small is-danger is-rounded"
-})`
-  && {
-    margin-left: 10px;
-  }
-`;
-
-const ErrorMessage = styled.p.attrs({
-  className: "error tile"
-})`
-  && {
-    text-align: left;
-    margin: 3px 0 3px 0;
-    padding: 2px 0 2px 0;
-    background-color: hsl(348, 100%, 61%);
-    color: white;
   }
 `;
 
@@ -82,24 +63,19 @@ const displayedTime = (madeAt: string) => {
  * A table displaying the content of a data request.
  */
 class DataRequestTable extends React.Component<IDataRequestTableProps> {
+  state = {
+    showMessage: false,
+  };
   render() {
+    const { dataRequest } = this.props;
     const {
       dataFiles,
       madeAt,
       id,
-      status,
       calibrationLevels,
-      calibrationTypes
-    } = this.props.dataRequest;
-    const mayDownloadAll = status === "SUCCESSFUL";
-
-    const tryAgain = status === "FAILED";
-
-    const reRequestData = status === "EXPIRED";
-
-    const pending = status === "PENDING";
-
-    const filename = `data_request_${id}.zip`;
+      calibrationTypes,
+    } = dataRequest;
+    const { showMessage } = this.state;
 
     return (
       <div className="table-container notification">
@@ -114,59 +90,28 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
               <th>
                 <p
                   style={{
-                    textAlign: "right"
+                    textAlign: "right",
                   }}
                 >
-                  {mayDownloadAll && (
-                    <a
-                      className="button download-all is-small is-success is-rounded"
-                      href={`${
-                        process.env.REACT_APP_BACKEND_URI
-                          ? process.env.REACT_APP_BACKEND_URI.replace(
-                              /\/+$/,
-                              ""
-                            )
-                          : ""
-                      }/downloads/data-requests/${id}/${filename}`}
-                    >
-                      Download all
-                    </a>
+                  {showMessage && (
+                    <span className={"has-text-warning"}>
+                      This may take a few minutes...{" "}
+                    </span>
                   )}
-                  {(reRequestData || tryAgain) && (
-                    <Mutation
-                      mutation={CREATE_DATA_REQUEST}
-                      refetchQueries={[
-                        {
-                          query: USER_DATA_REQUESTS_QUERY,
-                          variables: {
-                            limit: 5,
-                            startIndex: 0
-                          }
-                        }
-                      ]}
+                  {
+                    <button
+                      className={`button download-all is-small is-success is-rounded ${
+                        showMessage && "is-loading"
+                      }`}
+                      disabled={showMessage}
+                      id={id}
+                      onClick={(event) => this.downloadRequest(id)}
                     >
-                      {(createDataRequest: any, { error }: any) => (
-                        <>
-                          <span>{reRequestData ? "Expired" : "Failed"}</span>
-                          <Button
-                            onClick={async () => {
-                              this.recreateDataRequest(createDataRequest);
-                            }}
-                          >
-                            {reRequestData ? "Re-request data" : "Try again"}
-                          </Button>
-                          {error ? (
-                            <ErrorMessage>
-                              {error.message
-                                .replace("Network error: ", "")
-                                .replace("GraphQL error: ", "")}
-                            </ErrorMessage>
-                          ) : null}
-                        </>
-                      )}
-                    </Mutation>
-                  )}
-                  {pending && <span className="request-pending">Pending</span>}
+                      <span>
+                        Download <FontAwesomeIcon icon={faDownload} />
+                      </span>
+                    </button>
+                  }
                 </p>
               </th>
             </tr>
@@ -175,7 +120,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration levels:</b>{" "}
                 {calibrationLevels.length
                   ? calibrationLevels
-                      .map(level => convertToTitleCase(level))
+                      .map((level) => convertToTitleCase(level))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
@@ -186,7 +131,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
                 <b>Requested calibration types:</b>{" "}
                 {calibrationTypes.length
                   ? calibrationTypes
-                      .map(type => convertToTitleCase(type))
+                      .map((type) => convertToTitleCase(type))
                       .join(", ")
                       .replace(/,([^,]*)$/, " and $1")
                   : "None"}
@@ -195,7 +140,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
             <tr>
               <th colSpan={3}>Files</th>
             </tr>
-            {dataFiles.map(file => {
+            {dataFiles.map((file) => {
               return (
                 <tr key={file.id}>
                   <td colSpan={3}>{file.name}</td>
@@ -211,7 +156,7 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
 
   recreateDataRequest = async (create: any) => {
     const { calibrationLevels, calibrationTypes } = this.props.dataRequest;
-    const dataFileIds = this.props.dataRequest.dataFiles.map(file =>
+    const dataFileIds = this.props.dataRequest.dataFiles.map((file) =>
       parseInt(file.id, 10)
     );
     // We may assume that no calibrations are included, as the list of data
@@ -221,8 +166,30 @@ class DataRequestTable extends React.Component<IDataRequestTableProps> {
       variables: {
         dataFiles: dataFileIds,
         includedCalibrationLevels: calibrationLevels,
-        includedCalibrationTypes: calibrationTypes
-      }
+        includedCalibrationTypes: calibrationTypes,
+      },
+    });
+  };
+
+  downloadRequest = async (id: string) => {
+    const { madeAt } = this.props.dataRequest;
+    this.setState({
+      showMessage: true,
+    });
+    const zipUrl = `${
+      process.env.REACT_APP_BACKEND_URI
+        ? process.env.REACT_APP_BACKEND_URI.replace(/\/+$/, "")
+        : ""
+    }/downloads/data-requests/${id}`;
+    const response = await baseAxiosClient().get(zipUrl, {
+      responseType: "blob",
+    });
+    await fileDownload(
+      response.data,
+      `DataRequest-${moment(madeAt).format("Y-MM-DD")}.zip`
+    );
+    this.setState({
+      showMessage: false,
     });
   };
 }

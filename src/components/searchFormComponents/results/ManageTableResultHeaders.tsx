@@ -29,7 +29,7 @@ export default class ManageTableResultHeaders extends React.Component<
     left: this.props.displayed,
     leftChecked: [],
     right: this.props.notDisplayed,
-    rightChecked: []
+    rightChecked: [],
   };
 
   handleToggle = (value: any) => () => {
@@ -46,7 +46,7 @@ export default class ManageTableResultHeaders extends React.Component<
       ...this.state,
       checked: newChecked,
       leftChecked: [...intersection(newChecked, this.state.left)],
-      rightChecked: [...intersection(newChecked, this.state.right)]
+      rightChecked: [...intersection(newChecked, this.state.right)],
     });
   };
 
@@ -56,7 +56,7 @@ export default class ManageTableResultHeaders extends React.Component<
       left: [],
       leftChecked: [],
       right: this.state.right.concat(this.state.left),
-      rightChecked: []
+      rightChecked: [],
     });
   };
 
@@ -67,7 +67,7 @@ export default class ManageTableResultHeaders extends React.Component<
       left: not(this.state.left, this.state.leftChecked),
       leftChecked: [],
       right: this.state.right.concat(this.state.leftChecked),
-      rightChecked: []
+      rightChecked: [],
     });
   };
 
@@ -77,7 +77,7 @@ export default class ManageTableResultHeaders extends React.Component<
       left: this.state.left.concat(this.state.right),
       leftChecked: [],
       right: [],
-      rightChecked: []
+      rightChecked: [],
     });
   };
 
@@ -88,7 +88,7 @@ export default class ManageTableResultHeaders extends React.Component<
       left: this.state.left.concat(this.state.rightChecked),
       leftChecked: [],
       right: not(this.state.right, this.state.rightChecked),
-      rightChecked: []
+      rightChecked: [],
     });
   };
 

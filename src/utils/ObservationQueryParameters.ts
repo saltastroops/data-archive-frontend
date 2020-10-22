@@ -174,15 +174,15 @@ export type TelescopeName = "Lesedi" | "SALT" | "1.9 m";
  *     Telescope name.
  */
 export interface ITelescope {
-  detectorModes?: Array<DetectorMode | "All">;
+  detectorModes?: (DetectorMode | "All")[];
   filters?: string[];
-  hrsModes?: Array<HRSMode | "All">;
-  instrumentModes?: Array<InstrumentMode | "All">;
-  instruments?: Array<InstrumentName | "All">;
-  rssFabryPerotModes?: Array<RSSFabryPerotMode | "All">;
-  rssGratings?: Array<RSSGrating | "All">;
-  rssPolarimetryModes?: Array<RSSPolarimetryMode | "All">;
-  telescopes?: Array<TelescopeName | "All">;
+  hrsModes?: (HRSMode | "All")[];
+  instrumentModes?: (InstrumentMode | "All")[];
+  instruments?: (InstrumentName | "All")[];
+  rssFabryPerotModes?: (RSSFabryPerotMode | "All")[];
+  rssGratings?: (RSSGrating | "All")[];
+  rssPolarimetryModes?: (RSSPolarimetryMode | "All")[];
+  telescopes?: (TelescopeName | "All")[];
 }
 
 /**

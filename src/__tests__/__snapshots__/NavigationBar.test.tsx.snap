@@ -30,7 +30,7 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -65,15 +65,25 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -84,21 +94,31 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item item"
         to="/data-requests"
       >
-        <Route
-          path="\\\\/data-requests"
+        <Link
+          aria-current={null}
+          className="navbar-item item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/data-requests",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item item"
-            to="/data-requests"
+            href="/data-requests"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -108,8 +128,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             >
               Data Requests
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -132,13 +152,23 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             className="navbar-item"
             to="/user-update"
           >
-            <Route
-              path="\\\\/user-update"
+            <Link
+              aria-current={null}
+              className="navbar-item"
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/user-update",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current={null}
                 className="navbar-item"
-                to="/user-update"
+                href="/user-update"
+                navigate={[Function]}
               >
                 <a
                   aria-current={null}
@@ -148,8 +178,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                 >
                   Edit Account Details
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
           <NavLink
             className="navbar-item"
@@ -157,16 +187,29 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
             onClick={[Function]}
             to="/"
           >
-            <Route
-              path="\\\\/"
+            <Link
+              aria-current="page"
+              className="navbar-item active"
+              data-test="logout"
+              onClick={[Function]}
+              style={Object {}}
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current="page"
                 className="navbar-item active"
                 data-test="logout"
+                href="/"
+                navigate={[Function]}
                 onClick={[Function]}
                 style={Object {}}
-                to="/"
               >
                 <a
                   aria-current="page"
@@ -178,8 +221,8 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
                 >
                   Logout
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
         </div>
       </div>
@@ -332,194 +375,78 @@ exports[`NavigationBar shows the correct content when the user is a non-administ
           openCart={[Function]}
         >
           <styled.div>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "navbar-item is-large is-link",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    padding: 10px;
-  }
-  && :hover, :focus {
-    
-    background-color: none;
-    text-decoration: none;
-    background-position: 0 -15px;
-    -webkit-transition: background-position .1s linear;
-    -moz-transition: background-position .1s linear;
-    -o-transition: background-position .1s linear;
-    transition: background-position .1s linear;
-",
-                    ],
-                  },
-                  "displayName": "styled.div",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "div",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
+            <div
+              className="c0 navbar-item is-large is-link"
             >
-              <div
-                className="navbar-item is-large is-link c0"
+              <styled.span
+                onClick={[Function]}
               >
-                <styled.span
+                <span
+                  className="c1 button title is-outlined"
                   onClick={[Function]}
                 >
-                  <StyledComponent
-                    forwardedComponent={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "attrs": Array [
-                          Object {
-                            "className": "button title is-outlined",
-                          },
-                        ],
-                        "componentStyle": ComponentStyle {
-                          "componentId": "sc-htpNat",
-                          "isStatic": true,
-                          "lastClassName": "c1",
-                          "rules": Array [
-                            "
-  && {
-  color: hsl(217, 71%, 53%);
-    padding: 0;
-border: none;
-background: none;
-  }
-  
-}
-",
-                          ],
-                        },
-                        "displayName": "styled.span",
-                        "foldedComponentIds": Array [],
-                        "render": [Function],
-                        "styledComponentId": "sc-htpNat",
-                        "target": "span",
-                        "toString": [Function],
-                        "warnTooManyClasses": [Function],
-                        "withComponent": [Function],
-                      }
-                    }
-                    forwardedRef={null}
-                    onClick={[Function]}
+                  <span
+                    className="has-badge-rounded has-badge-danger is-span"
+                    data-badge="0"
                   >
-                    <span
-                      className="button title is-outlined c1"
-                      onClick={[Function]}
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f07a",
+                            "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
+                          ],
+                          "iconName": "shopping-cart",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      swapOpacity={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
                     >
-                      <span
-                        className="has-badge-rounded has-badge-danger is-span"
-                        data-badge="0"
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-shopping-cart fa-w-18 "
+                        data-icon="shopping-cart"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 576 512"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={false}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [
-                                576,
-                                512,
-                                Array [],
-                                "f07a",
-                                "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
-                              ],
-                              "iconName": "shopping-cart",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-shopping-cart fa-w-18 "
-                            data-icon="shopping-cart"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 576 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </span>
-                      <styled.span>
-                        <StyledComponent
-                          forwardedComponent={
-                            Object {
-                              "$$typeof": Symbol(react.forward_ref),
-                              "attrs": Array [
-                                Object {
-                                  "className": "is-span",
-                                },
-                              ],
-                              "componentStyle": ComponentStyle {
-                                "componentId": "sc-bwzfXH",
-                                "isStatic": true,
-                                "lastClassName": "c2",
-                                "rules": Array [
-                                  "
-  && {
-    margin-left: 10px;
-  }
-",
-                                ],
-                              },
-                              "displayName": "styled.span",
-                              "foldedComponentIds": Array [],
-                              "render": [Function],
-                              "styledComponentId": "sc-bwzfXH",
-                              "target": "span",
-                              "toString": [Function],
-                              "warnTooManyClasses": [Function],
-                              "withComponent": [Function],
-                            }
-                          }
-                          forwardedRef={null}
-                        >
-                          <span
-                            className="is-span c2"
-                          />
-                        </StyledComponent>
-                      </styled.span>
-                    </span>
-                  </StyledComponent>
-                </styled.span>
-              </div>
-            </StyledComponent>
+                        <path
+                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </span>
+                  <styled.span>
+                    <span
+                      className="c2 is-span"
+                    />
+                  </styled.span>
+                </span>
+              </styled.span>
+            </div>
           </styled.div>
         </CartButton>
       </Query>
@@ -558,7 +485,7 @@ exports[`NavigationBar shows the correct content when the user is an administrat
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -593,15 +520,25 @@ exports[`NavigationBar shows the correct content when the user is an administrat
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -612,21 +549,31 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item item"
         to="/data-requests"
       >
-        <Route
-          path="\\\\/data-requests"
+        <Link
+          aria-current={null}
+          className="navbar-item item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/data-requests",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item item"
-            to="/data-requests"
+            href="/data-requests"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -636,21 +583,31 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Data Requests
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
       <NavLink
         activeClassName="has-text-weight-bold has-text-link"
         className="navbar-item"
         to="/admin"
       >
-        <Route
-          path="\\\\/admin"
+        <Link
+          aria-current={null}
+          className="navbar-item"
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/admin",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current={null}
             className="navbar-item"
-            to="/admin"
+            href="/admin"
+            navigate={[Function]}
           >
             <a
               aria-current={null}
@@ -660,8 +617,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             >
               Admin
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -684,13 +641,23 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             className="navbar-item"
             to="/user-update"
           >
-            <Route
-              path="\\\\/user-update"
+            <Link
+              aria-current={null}
+              className="navbar-item"
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/user-update",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current={null}
                 className="navbar-item"
-                to="/user-update"
+                href="/user-update"
+                navigate={[Function]}
               >
                 <a
                   aria-current={null}
@@ -700,8 +667,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                 >
                   Edit Account Details
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
           <NavLink
             className="navbar-item"
@@ -709,16 +676,29 @@ exports[`NavigationBar shows the correct content when the user is an administrat
             onClick={[Function]}
             to="/"
           >
-            <Route
-              path="\\\\/"
+            <Link
+              aria-current="page"
+              className="navbar-item active"
+              data-test="logout"
+              onClick={[Function]}
+              style={Object {}}
+              to={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": null,
+                }
+              }
             >
-              <Link
+              <LinkAnchor
                 aria-current="page"
                 className="navbar-item active"
                 data-test="logout"
+                href="/"
+                navigate={[Function]}
                 onClick={[Function]}
                 style={Object {}}
-                to="/"
               >
                 <a
                   aria-current="page"
@@ -730,8 +710,8 @@ exports[`NavigationBar shows the correct content when the user is an administrat
                 >
                   Logout
                 </a>
-              </Link>
-            </Route>
+              </LinkAnchor>
+            </Link>
           </NavLink>
         </div>
       </div>
@@ -884,194 +864,78 @@ exports[`NavigationBar shows the correct content when the user is an administrat
           openCart={[Function]}
         >
           <styled.div>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "navbar-item is-large is-link",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    padding: 10px;
-  }
-  && :hover, :focus {
-    
-    background-color: none;
-    text-decoration: none;
-    background-position: 0 -15px;
-    -webkit-transition: background-position .1s linear;
-    -moz-transition: background-position .1s linear;
-    -o-transition: background-position .1s linear;
-    transition: background-position .1s linear;
-",
-                    ],
-                  },
-                  "displayName": "styled.div",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "div",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
+            <div
+              className="c0 navbar-item is-large is-link"
             >
-              <div
-                className="navbar-item is-large is-link c0"
+              <styled.span
+                onClick={[Function]}
               >
-                <styled.span
+                <span
+                  className="c1 button title is-outlined"
                   onClick={[Function]}
                 >
-                  <StyledComponent
-                    forwardedComponent={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "attrs": Array [
-                          Object {
-                            "className": "button title is-outlined",
-                          },
-                        ],
-                        "componentStyle": ComponentStyle {
-                          "componentId": "sc-htpNat",
-                          "isStatic": true,
-                          "lastClassName": "c1",
-                          "rules": Array [
-                            "
-  && {
-  color: hsl(217, 71%, 53%);
-    padding: 0;
-border: none;
-background: none;
-  }
-  
-}
-",
-                          ],
-                        },
-                        "displayName": "styled.span",
-                        "foldedComponentIds": Array [],
-                        "render": [Function],
-                        "styledComponentId": "sc-htpNat",
-                        "target": "span",
-                        "toString": [Function],
-                        "warnTooManyClasses": [Function],
-                        "withComponent": [Function],
-                      }
-                    }
-                    forwardedRef={null}
-                    onClick={[Function]}
+                  <span
+                    className="has-badge-rounded has-badge-danger is-span"
+                    data-badge="0"
                   >
-                    <span
-                      className="button title is-outlined c1"
-                      onClick={[Function]}
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f07a",
+                            "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
+                          ],
+                          "iconName": "shopping-cart",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      swapOpacity={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
                     >
-                      <span
-                        className="has-badge-rounded has-badge-danger is-span"
-                        data-badge="0"
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-shopping-cart fa-w-18 "
+                        data-icon="shopping-cart"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 576 512"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={false}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [
-                                576,
-                                512,
-                                Array [],
-                                "f07a",
-                                "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
-                              ],
-                              "iconName": "shopping-cart",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-shopping-cart fa-w-18 "
-                            data-icon="shopping-cart"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 576 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </span>
-                      <styled.span>
-                        <StyledComponent
-                          forwardedComponent={
-                            Object {
-                              "$$typeof": Symbol(react.forward_ref),
-                              "attrs": Array [
-                                Object {
-                                  "className": "is-span",
-                                },
-                              ],
-                              "componentStyle": ComponentStyle {
-                                "componentId": "sc-bwzfXH",
-                                "isStatic": true,
-                                "lastClassName": "c2",
-                                "rules": Array [
-                                  "
-  && {
-    margin-left: 10px;
-  }
-",
-                                ],
-                              },
-                              "displayName": "styled.span",
-                              "foldedComponentIds": Array [],
-                              "render": [Function],
-                              "styledComponentId": "sc-bwzfXH",
-                              "target": "span",
-                              "toString": [Function],
-                              "warnTooManyClasses": [Function],
-                              "withComponent": [Function],
-                            }
-                          }
-                          forwardedRef={null}
-                        >
-                          <span
-                            className="is-span c2"
-                          />
-                        </StyledComponent>
-                      </styled.span>
-                    </span>
-                  </StyledComponent>
-                </styled.span>
-              </div>
-            </StyledComponent>
+                        <path
+                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </span>
+                  <styled.span>
+                    <span
+                      className="c2 is-span"
+                    />
+                  </styled.span>
+                </span>
+              </styled.span>
+            </div>
           </styled.div>
         </CartButton>
       </Query>
@@ -1110,7 +974,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
 }
 
 <nav
-  className="navbar is-full-width  "
+  className="navbar is-full-width "
 >
   <div
     className="navbar-brand"
@@ -1145,15 +1009,25 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
         exact={true}
         to="/"
       >
-        <Route
-          exact={true}
-          path="\\\\/"
+        <Link
+          aria-current="page"
+          className="navbar-item item has-text-weight-bold has-text-link"
+          style={Object {}}
+          to={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": null,
+            }
+          }
         >
-          <Link
+          <LinkAnchor
             aria-current="page"
             className="navbar-item item has-text-weight-bold has-text-link"
+            href="/"
+            navigate={[Function]}
             style={Object {}}
-            to="/"
           >
             <a
               aria-current="page"
@@ -1164,8 +1038,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
             >
               Search
             </a>
-          </Link>
-        </Route>
+          </LinkAnchor>
+        </Link>
       </NavLink>
     </div>
     <div
@@ -1178,13 +1052,23 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           className=" button is-primary is-outlined"
           to="/login"
         >
-          <Route
-            path="\\\\/login"
+          <Link
+            aria-current={null}
+            className=" button is-primary is-outlined"
+            to={
+              Object {
+                "hash": "",
+                "pathname": "/login",
+                "search": "",
+                "state": null,
+              }
+            }
           >
-            <Link
+            <LinkAnchor
               aria-current={null}
               className=" button is-primary is-outlined"
-              to="/login"
+              href="/login"
+              navigate={[Function]}
             >
               <a
                 aria-current={null}
@@ -1220,6 +1104,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                     rotation={null}
                     size={null}
                     spin={false}
+                    swapOpacity={false}
                     symbol={false}
                     title=""
                     transform={null}
@@ -1244,8 +1129,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                   </FontAwesomeIcon>
                 </span>
               </a>
-            </Link>
-          </Route>
+            </LinkAnchor>
+          </Link>
         </NavLink>
       </div>
       <div
@@ -1255,13 +1140,23 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           className=" button is-info is-outlined"
           to="/register"
         >
-          <Route
-            path="\\\\/register"
+          <Link
+            aria-current={null}
+            className=" button is-info is-outlined"
+            to={
+              Object {
+                "hash": "",
+                "pathname": "/register",
+                "search": "",
+                "state": null,
+              }
+            }
           >
-            <Link
+            <LinkAnchor
               aria-current={null}
               className=" button is-info is-outlined"
-              to="/register"
+              href="/register"
+              navigate={[Function]}
             >
               <a
                 aria-current={null}
@@ -1297,6 +1192,7 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                     rotation={null}
                     size={null}
                     spin={false}
+                    swapOpacity={false}
                     symbol={false}
                     title=""
                     transform={null}
@@ -1321,8 +1217,8 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
                   </FontAwesomeIcon>
                 </span>
               </a>
-            </Link>
-          </Route>
+            </LinkAnchor>
+          </Link>
         </NavLink>
       </div>
       <Query
@@ -1474,194 +1370,78 @@ exports[`NavigationBar shows the correct content when the user is not logged in 
           openCart={[Function]}
         >
           <styled.div>
-            <StyledComponent
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "navbar-item is-large is-link",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c0",
-                    "rules": Array [
-                      "
-  && {
-    padding: 10px;
-  }
-  && :hover, :focus {
-    
-    background-color: none;
-    text-decoration: none;
-    background-position: 0 -15px;
-    -webkit-transition: background-position .1s linear;
-    -moz-transition: background-position .1s linear;
-    -o-transition: background-position .1s linear;
-    transition: background-position .1s linear;
-",
-                    ],
-                  },
-                  "displayName": "styled.div",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "div",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
+            <div
+              className="c0 navbar-item is-large is-link"
             >
-              <div
-                className="navbar-item is-large is-link c0"
+              <styled.span
+                onClick={[Function]}
               >
-                <styled.span
+                <span
+                  className="c1 button title is-outlined"
                   onClick={[Function]}
                 >
-                  <StyledComponent
-                    forwardedComponent={
-                      Object {
-                        "$$typeof": Symbol(react.forward_ref),
-                        "attrs": Array [
-                          Object {
-                            "className": "button title is-outlined",
-                          },
-                        ],
-                        "componentStyle": ComponentStyle {
-                          "componentId": "sc-htpNat",
-                          "isStatic": true,
-                          "lastClassName": "c1",
-                          "rules": Array [
-                            "
-  && {
-  color: hsl(217, 71%, 53%);
-    padding: 0;
-border: none;
-background: none;
-  }
-  
-}
-",
-                          ],
-                        },
-                        "displayName": "styled.span",
-                        "foldedComponentIds": Array [],
-                        "render": [Function],
-                        "styledComponentId": "sc-htpNat",
-                        "target": "span",
-                        "toString": [Function],
-                        "warnTooManyClasses": [Function],
-                        "withComponent": [Function],
-                      }
-                    }
-                    forwardedRef={null}
-                    onClick={[Function]}
+                  <span
+                    className="has-badge-rounded has-badge-danger is-span"
+                    data-badge="0"
                   >
-                    <span
-                      className="button title is-outlined c1"
-                      onClick={[Function]}
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f07a",
+                            "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
+                          ],
+                          "iconName": "shopping-cart",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      swapOpacity={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
                     >
-                      <span
-                        className="has-badge-rounded has-badge-danger is-span"
-                        data-badge="0"
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-shopping-cart fa-w-18 "
+                        data-icon="shopping-cart"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 576 512"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={false}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [
-                                576,
-                                512,
-                                Array [],
-                                "f07a",
-                                "M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z",
-                              ],
-                              "iconName": "shopping-cart",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-shopping-cart fa-w-18 "
-                            data-icon="shopping-cart"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 576 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </span>
-                      <styled.span>
-                        <StyledComponent
-                          forwardedComponent={
-                            Object {
-                              "$$typeof": Symbol(react.forward_ref),
-                              "attrs": Array [
-                                Object {
-                                  "className": "is-span",
-                                },
-                              ],
-                              "componentStyle": ComponentStyle {
-                                "componentId": "sc-bwzfXH",
-                                "isStatic": true,
-                                "lastClassName": "c2",
-                                "rules": Array [
-                                  "
-  && {
-    margin-left: 10px;
-  }
-",
-                                ],
-                              },
-                              "displayName": "styled.span",
-                              "foldedComponentIds": Array [],
-                              "render": [Function],
-                              "styledComponentId": "sc-bwzfXH",
-                              "target": "span",
-                              "toString": [Function],
-                              "warnTooManyClasses": [Function],
-                              "withComponent": [Function],
-                            }
-                          }
-                          forwardedRef={null}
-                        >
-                          <span
-                            className="is-span c2"
-                          />
-                        </StyledComponent>
-                      </styled.span>
-                    </span>
-                  </StyledComponent>
-                </styled.span>
-              </div>
-            </StyledComponent>
+                        <path
+                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </span>
+                  <styled.span>
+                    <span
+                      className="c2 is-span"
+                    />
+                  </styled.span>
+                </span>
+              </styled.span>
+            </div>
           </styled.div>
         </CartButton>
       </Query>

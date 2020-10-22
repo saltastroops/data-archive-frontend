@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LargeCheckbox = styled.input.attrs({
   className: "checkbox",
-  type: "checkbox"
+  type: "checkbox",
 })`
   && {
     width: 18px;

@@ -218,7 +218,7 @@ exports[`DataRequestTable should render correctly 1`] = `
           },
         },
         "typeDefs": undefined,
-        "version": "2.6.0",
+        "version": "2.6.10",
         "watchQuery": [Function],
       }
     }
@@ -255,134 +255,154 @@ exports[`DataRequestTable should render correctly 1`] = `
         className="table-container notification"
       >
         <styled.table>
-          <StyledComponent
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [
-                  Object {
-                    "className": "table is-striped is-narrowed is-hoverable is-fullwidth",
-                  },
-                ],
-                "componentStyle": ComponentStyle {
-                  "componentId": "sc-bdVaJa",
-                  "isStatic": true,
-                  "lastClassName": "dPKlrP",
-                  "rules": Array [
-                    "
-  && {
-  }
-",
-                  ],
-                },
-                "displayName": "styled.table",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "sc-bdVaJa",
-                "target": "table",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
+          <table
+            className="table is-striped is-narrowed is-hoverable is-fullwidth"
           >
-            <table
-              className="table is-striped is-narrowed is-hoverable is-fullwidth "
-            >
-              <thead>
-                <tr>
-                  <th
-                    colSpan={2}
-                  >
-                    <p
-                      style={
-                        Object {
-                          "display": "inline-block",
-                        }
+            <thead>
+              <tr>
+                <th
+                  colSpan={2}
+                >
+                  <p
+                    style={
+                      Object {
+                        "display": "inline-block",
                       }
-                    >
-                      Requested 
-                      on 1 Dec 2018 at 20:00
-                    </p>
-                  </th>
-                  <th>
-                    <p
-                      style={
-                        Object {
-                          "textAlign": "right",
-                        }
+                    }
+                  >
+                    Requested 
+                    on 1 Dec 2018 at 20:00
+                  </p>
+                </th>
+                <th>
+                  <p
+                    style={
+                      Object {
+                        "textAlign": "right",
                       }
+                    }
+                  >
+                    <button
+                      className="button download-all is-small is-success is-rounded false"
+                      disabled={false}
+                      id="request-1"
+                      onClick={[Function]}
                     >
-                      <a
-                        className="button download-all is-small is-success is-rounded"
-                        href="http://test/downloads/data-requests/request-1/data_request_request-1.zip"
-                      >
-                        Download all
-                      </a>
-                    </p>
-                  </th>
-                </tr>
-                <tr>
-                  <td
-                    colSpan={3}
-                  >
-                    <b>
-                      Requested calibration levels:
-                    </b>
-                     
-                    Raw
-                  </td>
-                </tr>
-                <tr>
-                  <td
-                    colSpan={3}
-                  >
-                    <b>
-                      Requested calibration types:
-                    </b>
-                     
-                    None
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    colSpan={3}
-                  >
-                    Files
-                  </th>
-                </tr>
-                <tr
-                  key="file-0"
+                      <span>
+                        Download 
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={false}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [
+                                512,
+                                512,
+                                Array [],
+                                "f019",
+                                "M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z",
+                              ],
+                              "iconName": "download",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          swapOpacity={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-download fa-w-16 "
+                            data-icon="download"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 512 512"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </span>
+                    </button>
+                  </p>
+                </th>
+              </tr>
+              <tr>
+                <td
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 0
-                  </td>
-                </tr>
-                <tr
-                  key="file-1"
+                  <b>
+                    Requested calibration levels:
+                  </b>
+                   
+                  Raw
+                </td>
+              </tr>
+              <tr>
+                <td
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 1
-                  </td>
-                </tr>
-                <tr
-                  key="file-2"
+                  <b>
+                    Requested calibration types:
+                  </b>
+                   
+                  None
+                </td>
+              </tr>
+              <tr>
+                <th
+                  colSpan={3}
                 >
-                  <td
-                    colSpan={3}
-                  >
-                    filename 2
-                  </td>
-                </tr>
-              </thead>
-              <tbody />
-            </table>
-          </StyledComponent>
+                  Files
+                </th>
+              </tr>
+              <tr
+                key="file-0"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 0
+                </td>
+              </tr>
+              <tr
+                key="file-1"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 1
+                </td>
+              </tr>
+              <tr
+                key="file-2"
+              >
+                <td
+                  colSpan={3}
+                >
+                  filename 2
+                </td>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
         </styled.table>
       </div>
     </DataRequestTable>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InstrumentName } from "../../../utils/ObservationQueryParameters";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 // Instruments
@@ -17,13 +17,13 @@ interface IInstrumentSelectorProps {
 const instrumentsToDisplay = (telescopes: string[]) => {
   let instruments: InstrumentName[] = [];
 
-  if (telescopes.length === 0 || telescopes.some(t => "All" === t)) {
+  if (telescopes.length === 0 || telescopes.some((t) => "All" === t)) {
     return SALT_INSTRUMENTS.concat(SAAO_INSTRUMENTS);
   }
-  if (telescopes.some(t => "SALT" === t)) {
+  if (telescopes.some((t) => "SALT" === t)) {
     instruments = instruments.concat(SALT_INSTRUMENTS);
   }
-  if (telescopes.some(t => "1.9 m" === t || t === "Lesedi")) {
+  if (telescopes.some((t) => "1.9 m" === t || t === "Lesedi")) {
     instruments = instruments.concat(SAAO_INSTRUMENTS);
   }
   return instruments;
@@ -40,7 +40,7 @@ const InstrumentSelector = (props: IInstrumentSelectorProps) => {
     onSelect({
       instruments: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
   const FILTERS_TO_DISPLAY = instrumentsToDisplay(selectedTelescopes || []);
@@ -54,7 +54,7 @@ const InstrumentSelector = (props: IInstrumentSelectorProps) => {
         value={instruments || ["All"]}
       >
         <AllOption />
-        {FILTERS_TO_DISPLAY.sort().map(i => (
+        {FILTERS_TO_DISPLAY.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

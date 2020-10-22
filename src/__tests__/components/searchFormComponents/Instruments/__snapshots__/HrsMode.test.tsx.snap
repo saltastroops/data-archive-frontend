@@ -21,89 +21,60 @@ exports[`Hrs Mode should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
-          >
-            <select
-              multiple={true}
-              name="hrsMode"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
+          <select
+            multiple={true}
+            name="hrsMode"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
               }
-              value={Array []}
+            }
+            value={Array []}
+          >
+            <AllOption>
+              <option
+                value="All"
+              >
+                All
+              </option>
+            </AllOption>
+            <option
+              key="High Resolution"
+              value="High Resolution"
             >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
-              <option
-                key="High Resolution"
-                value="High Resolution"
-              >
-                High Resolution
-              </option>
-              <option
-                key="High Stability"
-                value="High Stability"
-              >
-                High Stability
-              </option>
-              <option
-                key="Int Cal Fibre"
-                value="Int Cal Fibre"
-              >
-                Int Cal Fibre
-              </option>
-              <option
-                key="Low Resolution"
-                value="Low Resolution"
-              >
-                Low Resolution
-              </option>
-              <option
-                key="Medium Resolution"
-                value="Medium Resolution"
-              >
-                Medium Resolution
-              </option>
-            </select>
-          </div>
-        </StyledComponent>
+              High Resolution
+            </option>
+            <option
+              key="High Stability"
+              value="High Stability"
+            >
+              High Stability
+            </option>
+            <option
+              key="Int Cal Fibre"
+              value="Int Cal Fibre"
+            >
+              Int Cal Fibre
+            </option>
+            <option
+              key="Low Resolution"
+              value="Low Resolution"
+            >
+              Low Resolution
+            </option>
+            <option
+              key="Medium Resolution"
+              value="Medium Resolution"
+            >
+              Medium Resolution
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>

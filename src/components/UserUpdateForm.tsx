@@ -104,7 +104,7 @@ const validateUpdateField = (updateInput: IUserUpdateFormInput) => {
 };
 
 const Form = styled.form.attrs({
-  className: "column is-4 is-offset-4"
+  className: "column is-4 is-offset-4",
 })`
   && {
     padding: 1px;
@@ -112,7 +112,7 @@ const Form = styled.form.attrs({
 `;
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -121,7 +121,7 @@ const Heading = styled.h1.attrs({
 `;
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -146,8 +146,8 @@ class UserUpdateForm extends React.Component<
       givenName: "",
       newPassword: "",
       password: "",
-      username: ""
-    }
+      username: "",
+    },
   };
 
   /**
@@ -167,8 +167,8 @@ class UserUpdateForm extends React.Component<
                 email: user && user.email,
                 familyName: user && user.familyName,
                 givenName: user && user.givenName,
-                username: user && user.username
-              }
+                username: user && user.username,
+              },
             }
       );
     }
@@ -202,8 +202,8 @@ class UserUpdateForm extends React.Component<
           givenName: "",
           newPassword: "",
           password: "",
-          username: ""
-        }
+          username: "",
+        },
       });
 
       alert("Successfully updated.");
@@ -216,8 +216,8 @@ class UserUpdateForm extends React.Component<
           ...this.state.errors,
           responseError: error.message
             .replace("Network error: ", "")
-            .replace("GraphQL error: ", "")
-        }
+            .replace("GraphQL error: ", ""),
+        },
       });
     }
   };
@@ -229,8 +229,8 @@ class UserUpdateForm extends React.Component<
     this.updateState({
       userInput: {
         ...this.state.userInput,
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
 
@@ -254,7 +254,7 @@ class UserUpdateForm extends React.Component<
       givenName,
       newPassword,
       password,
-      username
+      username,
     } = this.state.userInput;
 
     return (
@@ -264,7 +264,7 @@ class UserUpdateForm extends React.Component<
       >
         {(updateUser: any, { loading }: any) => {
           return (
-            <Form onSubmit={e => this.onHandleSubmit(e, updateUser)}>
+            <Form onSubmit={(e) => this.onHandleSubmit(e, updateUser)}>
               <fieldset disabled={loading} aria-disabled={loading}>
                 <Heading>Update your account</Heading>
                 {errors.responseError ? (

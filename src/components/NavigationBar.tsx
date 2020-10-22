@@ -4,8 +4,7 @@ import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import * as React from "react";
-import { Mutation } from "react-apollo";
-import Query from "react-apollo/Query";
+import { Mutation, Query } from "react-apollo";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT_MUTATION } from "../graphql/Mutations";
@@ -45,7 +44,7 @@ interface INavigationBarState {
 }
 
 const ErrorMessage = styled.p.attrs({
-  className: "error tile"
+  className: "error tile",
 })`
   && {
     text-align: left;
@@ -58,7 +57,7 @@ const ErrorMessage = styled.p.attrs({
 
 const Nav = styled.nav.attrs({
   ariaLabel: "menu",
-  className: "navbar is-full-width "
+  className: "navbar is-full-width ",
 })``;
 
 class NavigationBar extends React.Component<
@@ -67,7 +66,7 @@ class NavigationBar extends React.Component<
 > {
   public state = {
     errors: { responseError: "" },
-    isMenuActive: false
+    isMenuActive: false,
   };
 
   logout = async (logout: any) => {
@@ -75,16 +74,16 @@ class NavigationBar extends React.Component<
       await logout();
       this.updateState({
         errors: {
-          responseError: ""
-        }
+          responseError: "",
+        },
       });
     } catch (error) {
       this.updateState({
         errors: {
           responseError: error.message
             .replace("Network error: ", "")
-            .replace("GraphQL error: ", "")
-        }
+            .replace("GraphQL error: ", ""),
+        },
       });
     }
   };
@@ -252,8 +251,8 @@ class NavigationBar extends React.Component<
   }
 
   private toggleMenu = () => {
-    this.setState(prevState => ({
-      isMenuActive: !prevState.isMenuActive
+    this.setState((prevState) => ({
+      isMenuActive: !prevState.isMenuActive,
     }));
   };
 

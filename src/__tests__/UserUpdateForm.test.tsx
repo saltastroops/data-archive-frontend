@@ -12,13 +12,13 @@ import { mockUser } from "../util/__mocks__/util";
 import cache from "../util/cache";
 import click from "../util/click";
 jest.mock("../util/cache");
-window.matchMedia = jest.fn().mockImplementation(query => {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     addListener: jest.fn(),
     matches: false,
     media: query,
     onchange: null,
-    removeListener: jest.fn()
+    removeListener: jest.fn(),
   };
 });
 
@@ -28,7 +28,7 @@ window.alert = alert;
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
-    target: { name, value }
+    target: { name, value },
   });
 }
 
@@ -52,7 +52,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "Doe",
       givenName: "John",
-      isAdmin: false
+      isAdmin: false,
     });
 
     const mocks = [
@@ -69,15 +69,15 @@ describe("UserUpdateForm Component", () => {
             newPassword: "",
             password: "",
             roles: [],
-            username: ""
-          }
+            username: "",
+          },
         },
         result: {
           data: {
-            user: {}
-          }
-        }
-      }
+            user: {},
+          },
+        },
+      },
     ];
 
     // UserUpdateForm component wrapper.
@@ -153,7 +153,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     // UserUpdateForm component wrapper.
@@ -185,7 +185,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     // UserUpdateForm component wrapper.
@@ -211,18 +211,8 @@ describe("UserUpdateForm Component", () => {
     expect(wrapper.find("p").length).toBe(2);
 
     // Expect meaningful error message
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("Password");
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("7 characters");
+    expect(wrapper.find("p").first().text()).toContain("Password");
+    expect(wrapper.find("p").first().text()).toContain("7 characters");
   });
 
   it("displays an error message if an invalid confirmed password is submitted", () => {
@@ -230,7 +220,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     // UserUpdateForm component wrapper.
@@ -263,18 +253,8 @@ describe("UserUpdateForm Component", () => {
     expect(wrapper.find("p").length).toBe(1);
 
     // Expect meaningful error message
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("Password");
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("do not");
+    expect(wrapper.find("p").first().text()).toContain("Password");
+    expect(wrapper.find("p").first().text()).toContain("do not");
   });
 
   it("should cache values and errors", async () => {
@@ -282,7 +262,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "Doe",
       givenName: "John",
-      isAdmin: false
+      isAdmin: false,
     });
 
     (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
@@ -291,7 +271,7 @@ describe("UserUpdateForm Component", () => {
     const mocks = [
       {
         request: {
-          query: USER_QUERY
+          query: USER_QUERY,
         },
         result: {
           data: {
@@ -304,11 +284,11 @@ describe("UserUpdateForm Component", () => {
               givenName: "John",
               id: "1",
               roles: [],
-              username: "john"
-            }
-          }
-        }
-      }
+              username: "john",
+            },
+          },
+        },
+      },
     ];
 
     const wrapper = mount(
@@ -379,7 +359,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "Doe",
       givenName: "John",
-      isAdmin: false
+      isAdmin: false,
     });
 
     const updateUser = jest.fn();
@@ -394,19 +374,19 @@ describe("UserUpdateForm Component", () => {
             givenName: "John",
             newPassword: "",
             password: "oldpassword",
-            username: ""
-          }
+            username: "",
+          },
         },
         result: () => {
           updateUser();
           return {
-            data: { id: "1" } // The return value is not used
+            data: { id: "1" }, // The return value is not used
           };
-        }
+        },
       },
       {
         request: {
-          query: USER_QUERY
+          query: USER_QUERY,
         },
         result: {
           data: {
@@ -419,11 +399,11 @@ describe("UserUpdateForm Component", () => {
               givenName: "John",
               id: "1",
               roles: [],
-              username: "john"
-            }
-          }
-        }
-      }
+              username: "john",
+            },
+          },
+        },
+      },
     ];
 
     const wrapper = mount(
@@ -463,7 +443,7 @@ describe("UserUpdateForm Component", () => {
       authProvider: "SSDA",
       familyName: "",
       givenName: "John",
-      isAdmin: false
+      isAdmin: false,
     });
 
     const mocks = [
@@ -479,10 +459,10 @@ describe("UserUpdateForm Component", () => {
             id: "",
             newPassword: "",
             password: "oldpassword",
-            username: ""
-          }
-        }
-      }
+            username: "",
+          },
+        },
+      },
     ];
 
     const wrapper = mount(

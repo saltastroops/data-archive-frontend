@@ -9,7 +9,7 @@ interface ICartButtonProps {
 }
 
 const ButtonContainer = styled.div.attrs({
-  className: "navbar-item is-large is-link"
+  className: "navbar-item is-large is-link",
 })`
   && {
     padding: 10px;
@@ -30,7 +30,7 @@ const ButtonSpan = styled.span.attrs({ className: "is-span" })`
   }
 `;
 const Button = styled.span.attrs({
-  className: "button title is-outlined"
+  className: "button title is-outlined",
 })`
   && {
   color: hsl(217, 71%, 53%);

@@ -7,7 +7,7 @@ import InputField from "./basicComponents/InputField";
 import Message from "./basicComponents/Message";
 
 const Parent = styled.form.attrs({
-  className: "column is-4 is-offset-4"
+  className: "column is-4 is-offset-4",
 })`
   && {
     padding: 1px;
@@ -15,7 +15,7 @@ const Parent = styled.form.attrs({
 `;
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -36,19 +36,19 @@ class RequestResetPasswordForm extends React.Component {
     confirmReset: false,
     errors: {
       email: "",
-      gqlError: ""
+      gqlError: "",
     },
     loading: false,
     userInput: {
-      email: ""
-    }
+      email: "",
+    },
   };
   emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     this.setState({
       ...this.state,
       errors: { email: "", gqlError: "" },
-      userInput: { email: value }
+      userInput: { email: value },
     });
   };
 
@@ -61,7 +61,7 @@ class RequestResetPasswordForm extends React.Component {
 
     if (!validate(email, { minDomainAtoms: 2 })) {
       this.setState({
-        errors: { email: "Email address is invalid", gqlError: "" }
+        errors: { email: "Email address is invalid", gqlError: "" },
       });
       return;
     }
@@ -74,7 +74,7 @@ class RequestResetPasswordForm extends React.Component {
       }
     } catch (e) {
       this.setState({
-        errors: { gqlError: e.message.replace("GraphQL error: ", "") }
+        errors: { gqlError: e.message.replace("GraphQL error: ", "") },
       });
       return;
     }
@@ -103,7 +103,7 @@ class RequestResetPasswordForm extends React.Component {
           <Mutation mutation={REQUEST_RESET_MUTATION} variables={userInput}>
             {(requestResetPassword: any, { loading }: any) => (
               <Parent
-                onSubmit={e => this.submitRequest(e, requestResetPassword)}
+                onSubmit={(e) => this.submitRequest(e, requestResetPassword)}
               >
                 <Heading>Request password reset</Heading>
                 <fieldset disabled={loading} aria-disabled={loading}>

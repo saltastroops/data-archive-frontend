@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router";
 import wait from "waait";
 import ResetPasswordForm, {
   RESET_PASSWORD_MUTATION,
-  VERIFY_TOKEN_QUERY
+  VERIFY_TOKEN_QUERY,
 } from "../../components/ResetPasswordForm";
 import cache from "../../util/cache";
 jest.mock("../../util/cache");
@@ -13,14 +13,14 @@ jest.mock("../../util/cache");
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
-    target: { name, value }
+    target: { name, value },
   });
 }
 
 describe("ResetPasswordForm", () => {
   it("renders the ResetPasswordForm component correctly", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known" } }
+      match: { params: { token: "abc-known" } },
     };
     const wrapper = mount(
       <MockedProvider>
@@ -34,24 +34,24 @@ describe("ResetPasswordForm", () => {
 
   it("successfully display the form if token is valid", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known" } }
+      match: { params: { token: "abc-known" } },
     };
     const mocks: any = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known" }
+          variables: { token: "abc-known" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // ResetPasswordForm component wrapper.
@@ -83,24 +83,24 @@ describe("ResetPasswordForm", () => {
 
   it("display a loading token header on load", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known" } }
+      match: { params: { token: "abc-known" } },
     };
     const mocks = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known" }
+          variables: { token: "abc-known" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "tatus",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // RegistrationForm component wrapper.
@@ -120,25 +120,25 @@ describe("ResetPasswordForm", () => {
 
   it("should not display the form if token is invalid", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-unknown" } }
+      match: { params: { token: "abc-unknown" } },
     };
 
     const mocks = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-unknown" }
+          variables: { token: "abc-unknown" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "A broken token",
-              status: false
-            }
-          }
-        }
-      }
+              status: false,
+            },
+          },
+        },
+      },
     ];
 
     // RegistrationForm component wrapper.
@@ -170,7 +170,7 @@ describe("ResetPasswordForm", () => {
 
   it("should display Error if the ssda API is down", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-unknown" } }
+      match: { params: { token: "abc-unknown" } },
     };
 
     const mocks: any = [
@@ -178,9 +178,9 @@ describe("ResetPasswordForm", () => {
         error: new Error("API down"),
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-unknown" }
-        }
-      }
+          variables: { token: "abc-unknown" },
+        },
+      },
     ];
 
     // RegistrationForm component wrapper.
@@ -205,25 +205,25 @@ describe("ResetPasswordForm", () => {
 
   it("update state when typing a password", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known" } }
+      match: { params: { token: "abc-known" } },
     };
 
     const mocks = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known" }
+          variables: { token: "abc-known" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // Updated userInput state
@@ -231,13 +231,13 @@ describe("ResetPasswordForm", () => {
       confirmReset: false,
       errors: {
         confirmPassword: "",
-        password: ""
+        password: "",
       },
       userInput: {
         confirmPassword: "securepassword",
         password: "securepassword",
-        token: "Token value"
-      }
+        token: "Token value",
+      },
     };
 
     // RegistrationForm component wrapper.
@@ -274,25 +274,25 @@ describe("ResetPasswordForm", () => {
 
   it("display and error if password mismatch ", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known" } }
+      match: { params: { token: "abc-known" } },
     };
 
     const mocks = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known" }
+          variables: { token: "abc-known" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // Updated userInput state
@@ -300,13 +300,13 @@ describe("ResetPasswordForm", () => {
       confirmReset: false,
       errors: {
         confirmPassword: "",
-        password: ""
+        password: "",
       },
       userInput: {
         confirmPassword: "securepassword-1",
         password: "securepassword-2",
-        token: "Token value"
-      }
+        token: "Token value",
+      },
     };
 
     // RegistrationForm component wrapper.
@@ -347,25 +347,25 @@ describe("ResetPasswordForm", () => {
 
   it("display and error if password length less than 7", async () => {
     const defaultProps = {
-      match: { params: { token: "abc-known-2" } }
+      match: { params: { token: "abc-known-2" } },
     };
 
     const mocks = [
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known-2" }
+          variables: { token: "abc-known-2" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // Updated userInput state
@@ -373,12 +373,12 @@ describe("ResetPasswordForm", () => {
       confirmReset: false,
       errors: {
         confirmPassword: "",
-        password: ""
+        password: "",
       },
       userInput: {
         confirmPassword: "secure",
-        password: "secure"
-      }
+        password: "secure",
+      },
     };
 
     // RegistrationForm component wrapper.
@@ -417,7 +417,7 @@ describe("ResetPasswordForm", () => {
   it("should call a mutation query when everything is fine", async () => {
     (cache as any).readQuery.mockImplementation(() => ({ cart: [] }));
     const defaultProps = {
-      match: { params: { token: "abc-known-3" } }
+      match: { params: { token: "abc-known-3" } },
     };
     // Mock function to reset password
     const resetPassword = jest.fn();
@@ -426,7 +426,7 @@ describe("ResetPasswordForm", () => {
       {
         request: {
           query: RESET_PASSWORD_MUTATION,
-          variables: { token: "abc-known-3", password: "XXXXXXx4" }
+          variables: { token: "abc-known-3", password: "XXXXXXx4" },
         },
         result: () => {
           resetPassword({ token: "abc-known-3", password: "XXXXXXx4" });
@@ -434,27 +434,27 @@ describe("ResetPasswordForm", () => {
             data: {
               resetPassword: {
                 __typename: "User",
-                id: "XX"
-              }
-            }
+                id: "XX",
+              },
+            },
           };
-        }
+        },
       },
       {
         request: {
           query: VERIFY_TOKEN_QUERY,
-          variables: { token: "abc-known-3" }
+          variables: { token: "abc-known-3" },
         },
         result: {
           data: {
             passwordResetTokenStatus: {
               __typename: "Status",
               message: "",
-              status: true
-            }
-          }
-        }
-      }
+              status: true,
+            },
+          },
+        },
+      },
     ];
 
     // Updated userInput state
@@ -462,12 +462,12 @@ describe("ResetPasswordForm", () => {
       confirmReset: false,
       errors: {
         confirmPassword: "",
-        password: ""
+        password: "",
       },
       userInput: {
         confirmPassword: "XXXXXXx4",
-        password: "XXXXXXx4"
-      }
+        password: "XXXXXXx4",
+      },
     };
 
     // RegistrationForm component wrapper.
@@ -503,7 +503,7 @@ describe("ResetPasswordForm", () => {
     expect(resetPassword).toHaveBeenCalled();
     expect(resetPassword).toHaveBeenCalledWith({
       password: "XXXXXXx4",
-      token: "abc-known-3"
+      token: "abc-known-3",
     });
   });
 });

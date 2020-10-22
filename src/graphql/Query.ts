@@ -73,7 +73,6 @@ const USER_DATA_REQUESTS_QUERY = gql`
       id
       madeAt
       uri
-      status
       calibrationLevels
       calibrationTypes
       dataFiles {
@@ -88,5 +87,5 @@ export {
   DATA_FILES_QUERY,
   DATA_PREVIEW_QUERY,
   USER_DATA_REQUESTS_QUERY,
-  USER_QUERY
+  USER_QUERY,
 };

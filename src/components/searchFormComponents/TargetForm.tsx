@@ -5,14 +5,14 @@ import { TargetType } from "../../utils/TargetType";
 import {
   validateDeclination,
   validateRightAscension,
-  validateSearchConeRadius
+  validateSearchConeRadius,
 } from "../../utils/validators";
 import {
   HelpGrid,
   MainGrid,
   ResolverContainer,
   SingleColumnGrid,
-  SubGrid
+  SubGrid,
 } from "../basicComponents/Grids";
 import HelpButton from "../basicComponents/HelpButton";
 import InputField from "../basicComponents/InputField";
@@ -38,7 +38,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
   // Function for updating the loading property of the state
   updateLoadingStatus = (loading: boolean) => {
     this.setState(() => ({
-      loading
+      loading,
     }));
   };
 
@@ -48,7 +48,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
     this.updateLoadingStatus(true);
     const resolver = target.resolver;
     onChange({
-      ...target
+      ...target,
     });
 
     try {
@@ -57,7 +57,7 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
         onChange({
           ...target,
           declination: `${p.declination}`,
-          rightAscension: `${p.rightAscension}`
+          rightAscension: `${p.rightAscension}`,
         });
       } else {
         onChange({
@@ -65,9 +65,9 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           declination: ``,
           errors: {
             ...target.errors,
-            name: `Target "${target.name}" could not be resolved.`
+            name: `Target "${target.name}" could not be resolved.`,
           },
-          rightAscension: ``
+          rightAscension: ``,
         });
       }
     } catch (err) {
@@ -79,8 +79,8 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
           name:
             targetName === ""
               ? "Please provide the target name to resolve."
-              : `Oops, something went wrong. Please use another resolver or try again later..`
-        }
+              : `Oops, something went wrong. Please use another resolver or try again later..`,
+        },
       });
     }
 
@@ -111,8 +111,8 @@ class TargetForm extends React.Component<ITargetFormProps, ITargetFormState> {
         [property]: value,
         errors: {
           ...target.errors,
-          [property]: ""
-        }
+          [property]: "",
+        },
       });
     };
 
@@ -275,21 +275,17 @@ export const validatedTarget = async (target: ITarget) => {
   let raDecChangeError;
   if (target.name && target.name !== "") {
     raDecChangeError = await targetPosition(target.name, [target.resolver])
-      .then(position => {
+      .then((position) => {
         if (position) {
           return {
             declination:
               `${position.declination}` !== target.declination
-                ? `The given target name resolves to a different declination with ${
-                    target.resolver
-                  }.`
+                ? `The given target name resolves to a different declination with ${target.resolver}.`
                 : "",
             rightAscension:
               `${position.rightAscension}` !== target.rightAscension
-                ? `The given target name resolves to a different right ascension with ${
-                    target.resolver
-                  }.`
-                : ""
+                ? `The given target name resolves to a different right ascension with ${target.resolver}.`
+                : "",
           };
         }
       })
@@ -321,8 +317,8 @@ export const validatedTarget = async (target: ITarget) => {
         target.searchConeRadius,
         target.rightAscension,
         target.declination
-      )
-    }
+      ),
+    },
   };
 };
 

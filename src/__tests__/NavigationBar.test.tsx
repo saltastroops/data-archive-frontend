@@ -46,7 +46,7 @@ describe("NavigationBar", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     const wrapper = mount(
@@ -85,7 +85,7 @@ describe("NavigationBar", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: true
+      isAdmin: true,
     });
 
     const wrapper = mount(
@@ -124,7 +124,7 @@ describe("NavigationBar", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     // logout mock mutation
@@ -132,28 +132,28 @@ describe("NavigationBar", () => {
     const mocks = [
       {
         request: {
-          query: LOGOUT_MUTATION
+          query: LOGOUT_MUTATION,
         },
         result: () => {
           logoutCalled = true;
           return {
             data: {
-              success: true
-            }
+              success: true,
+            },
           };
-        }
+        },
       },
 
       {
         request: {
-          query: USER_QUERY
+          query: USER_QUERY,
         },
         result: {
           data: {
-            user: null
-          }
-        }
-      }
+            user: null,
+          },
+        },
+      },
     ];
 
     const wrapper = mount(
@@ -182,7 +182,7 @@ describe("NavigationBar", () => {
       authProvider: "SSDA",
       familyName: "surname",
       givenName: "name",
-      isAdmin: false
+      isAdmin: false,
     });
 
     const wrapper = mount(

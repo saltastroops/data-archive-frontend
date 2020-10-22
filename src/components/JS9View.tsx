@@ -81,7 +81,7 @@ class JS9View extends React.Component<IJS9ViewProps, IJS9ViewState> {
     // Close pop up windows sich as the one for displaying the header
     document
       .querySelectorAll("#dhtmlwindowholder .dhtmlwindow")
-      .forEach(e => ((e as HTMLElement).style.display = "none"));
+      .forEach((e) => ((e as HTMLElement).style.display = "none"));
 
     this.props.onClose();
   };
@@ -232,5 +232,5 @@ export const JS9ViewContext = React.createContext({
   },
   open: () => {
     // do nothing
-  }
+  },
 });

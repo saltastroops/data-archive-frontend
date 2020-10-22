@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 // MODES
@@ -12,7 +12,7 @@ export const RSS_MODES = [
   // "MOS Polarimetry",
   "Polarimetric Imaging",
   "Spectropolarimetry",
-  "Spectroscopy"
+  "Spectroscopy",
 ];
 export const BVIT_MODES = ["Streaming"];
 
@@ -27,21 +27,21 @@ const modesToDisplay = (instruments: string[], telescopes: string[]) => {
   let modes: string[] = [];
   if (
     instruments.length === 0 ||
-    (instruments.some(inst => inst === "All") &&
-      telescopes.some(t => t === "All" || t === "SALT"))
+    (instruments.some((inst) => inst === "All") &&
+      telescopes.some((t) => t === "All" || t === "SALT"))
   ) {
     return RSS_MODES /*.concat(BVIT_MODES)*/.concat(COMMON_RSS_BVIT_MODES);
   }
-  if (telescopes.some(t => t === "1.9 m" || t === "Lesedi")) {
+  if (telescopes.some((t) => t === "1.9 m" || t === "Lesedi")) {
     return [];
   }
-  if (instruments.some(inst => inst === "RSS")) {
+  if (instruments.some((inst) => inst === "RSS")) {
     modes = modes.concat(RSS_MODES);
   }
-  if (instruments.some(inst => inst === "BVIT")) {
+  if (instruments.some((inst) => inst === "BVIT")) {
     modes = modes.concat(BVIT_MODES);
   }
-  if (instruments.some(inst => inst === "BVIT" || inst === "RSS")) {
+  if (instruments.some((inst) => inst === "BVIT" || inst === "RSS")) {
     modes = modes.concat(COMMON_RSS_BVIT_MODES);
   }
 
@@ -55,7 +55,7 @@ const InstrumentModeSelector = (props: IInstrumentModeSelectorProps) => {
     onSelect,
     selectedInstruments,
     selectedTelescopes,
-    instrumentModes
+    instrumentModes,
   } = props;
 
   // Function for handling change events
@@ -64,7 +64,7 @@ const InstrumentModeSelector = (props: IInstrumentModeSelectorProps) => {
     onSelect({
       instrumentModes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
   const MODE_TO_DISPLAY = modesToDisplay(
@@ -81,7 +81,7 @@ const InstrumentModeSelector = (props: IInstrumentModeSelectorProps) => {
         value={instrumentModes || ["All"]}
       >
         <AllOption />
-        {MODE_TO_DISPLAY.sort().map(i => (
+        {MODE_TO_DISPLAY.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

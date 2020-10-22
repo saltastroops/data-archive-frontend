@@ -11,6 +11,7 @@ interface IHelpButtonProps {
 const HelpButtonContainer = styled.div.attrs({})`
   && {
     margin-left: 5px;
+    margin-top: -2px;
   }
 `;
 
@@ -26,14 +27,14 @@ const HelpMessage = styled.p<{
     width: 450px;
     opacity: 0.95;
     color: black;
-    left: ${props => (props.left ? 0 : -450)}px;
+    left: ${(props) => (props.left ? 0 : -450)}px;
   }
 `;
 
 class HelpButton extends React.Component<IHelpButtonProps, any> {
   state = {
     mousePositionX: 0,
-    showHelpOf: false
+    showHelpOf: false,
   };
   updateState = (name: boolean) => {
     if (!name) {

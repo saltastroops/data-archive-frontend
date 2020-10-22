@@ -1,6 +1,6 @@
 import {
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
@@ -48,7 +48,7 @@ const Pagination = (props: IPaginationProps) => {
     itemsOnCurrentPage,
     itemsPerPage,
     itemsTotal,
-    startIndex
+    startIndex,
   } = props;
   const previousIndex = startIndex - itemsPerPage;
   const nextIndex = startIndex + itemsOnCurrentPage;

@@ -8,9 +8,9 @@ describe("Cart", () => {
         {
           id: "A",
           name: "File A",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
-        { id: "F", name: "File F" } as ICartFile
+        { id: "F", name: "File F" } as ICartFile,
       ],
       true
     );
@@ -23,15 +23,15 @@ describe("Cart", () => {
         {
           id: "C",
           name: "File C",
-          observation: { id: "Obs-B", name: "Observation B" }
+          observation: { id: "Obs-B", name: "Observation B" },
         } as ICartFile,
         { id: "D", name: "File D" } as ICartFile,
         {
           id: "E",
           name: "File E",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
-        { id: "F", name: "File F" } as ICartFile
+        { id: "F", name: "File F" } as ICartFile,
       ],
       true
     );
@@ -41,7 +41,7 @@ describe("Cart", () => {
   it("should return the correct files", () => {
     const files = [
       { id: "A", name: "File A" } as ICartFile,
-      { id: "F", name: "File F" } as ICartFile
+      { id: "F", name: "File F" } as ICartFile,
     ];
     expect(new Cart(files, true).files).toBe(files);
   });
@@ -50,7 +50,7 @@ describe("Cart", () => {
     const cart = new Cart(
       [
         { id: "A", name: "File A" } as ICartFile,
-        { id: "F", name: "File F" } as ICartFile
+        { id: "F", name: "File F" } as ICartFile,
       ],
       true
     );
@@ -70,7 +70,7 @@ describe("Cart", () => {
         { id: "C", name: "File C" } as ICartFile,
         { id: "D", name: "File D" } as ICartFile,
         { id: "E", name: "File E" } as ICartFile,
-        { id: "F", name: "File F" } as ICartFile
+        { id: "F", name: "File F" } as ICartFile,
       ],
       true
     );
@@ -78,7 +78,7 @@ describe("Cart", () => {
       { id: "A", name: "File A" } as ICartFile,
       { id: "Q", name: "File Q" } as ICartFile,
       { id: "D", name: "File D" } as ICartFile,
-      { id: "R", name: "File R" } as ICartFile
+      { id: "R", name: "File R" } as ICartFile,
     ]);
     expect(cart.size).toBe(8);
     expect(cart.contains({ id: "A" } as ICartFile)).toBe(true);
@@ -99,7 +99,7 @@ describe("Cart", () => {
         { id: "C", name: "File C" } as ICartFile,
         { id: "D", name: "File D" } as ICartFile,
         { id: "E", name: "File E" } as ICartFile,
-        { id: "F", name: "File F" } as ICartFile
+        { id: "F", name: "File F" } as ICartFile,
       ],
       true
     );
@@ -107,7 +107,7 @@ describe("Cart", () => {
       { id: "A", name: "File A" } as ICartFile,
       { id: "Q", name: "File Q" } as ICartFile,
       { id: "D", name: "File D" } as ICartFile,
-      { id: "R", name: "File R" } as ICartFile
+      { id: "R", name: "File R" } as ICartFile,
     ]);
     expect(cart.size).toBe(4);
     expect(cart.contains({ id: "B" } as ICartFile)).toBe(true);
@@ -122,18 +122,18 @@ describe("Cart", () => {
         {
           id: "A",
           name: "File A",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
         {
           id: "D",
           name: "File D",
-          observation: { id: "Obs-B", name: "Observation B" }
+          observation: { id: "Obs-B", name: "Observation B" },
         } as ICartFile,
         {
           id: "C",
           name: "File C",
-          observation: { id: "Obs-D", name: " Observation D" }
-        } as ICartFile
+          observation: { id: "Obs-D", name: " Observation D" },
+        } as ICartFile,
       ],
       true
     );
@@ -147,38 +147,38 @@ describe("Cart", () => {
         {
           id: "A",
           name: "File A",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
         {
           id: "D",
           name: "File D",
-          observation: { id: "Obs-B", name: "Observation B" }
+          observation: { id: "Obs-B", name: "Observation B" },
         } as ICartFile,
         {
           id: "C",
           name: "File C",
-          observation: { id: "Obs-D", name: " Observation D" }
+          observation: { id: "Obs-D", name: " Observation D" },
         } as ICartFile,
         {
           id: "E",
           name: "File E",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
         {
           id: "F",
           name: "File F",
-          observation: { id: "Obs-A", name: "Observation A" }
+          observation: { id: "Obs-A", name: "Observation A" },
         } as ICartFile,
         {
           id: "G",
           name: "File G",
-          observation: { id: "Obs-C", name: "Observation C" }
+          observation: { id: "Obs-C", name: "Observation C" },
         } as ICartFile,
         {
           id: "H",
           name: "File H",
-          observation: { id: "Obs-B", name: "Observation B" }
-        } as ICartFile
+          observation: { id: "Obs-B", name: "Observation B" },
+        } as ICartFile,
       ],
       true
     );
@@ -187,44 +187,44 @@ describe("Cart", () => {
       {
         id: "A",
         name: "File A",
-        observation: { id: "Obs-A", name: "Observation A" }
+        observation: { id: "Obs-A", name: "Observation A" },
       } as ICartFile,
       {
         id: "E",
         name: "File E",
-        observation: { id: "Obs-A", name: "Observation A" }
+        observation: { id: "Obs-A", name: "Observation A" },
       } as ICartFile,
       {
         id: "F",
         name: "File F",
-        observation: { id: "Obs-A", name: "Observation A" }
-      } as ICartFile
+        observation: { id: "Obs-A", name: "Observation A" },
+      } as ICartFile,
     ]);
     expected.set("Obs-B", [
       {
         id: "D",
         name: "File D",
-        observation: { id: "Obs-B", name: "Observation B" }
+        observation: { id: "Obs-B", name: "Observation B" },
       } as ICartFile,
       {
         id: "H",
         name: "File H",
-        observation: { id: "Obs-B", name: "Observation B" }
-      } as ICartFile
+        observation: { id: "Obs-B", name: "Observation B" },
+      } as ICartFile,
     ]);
     expected.set("Obs-C", [
       {
         id: "G",
         name: "File G",
-        observation: { id: "Obs-C", name: "Observation C" }
-      } as ICartFile
+        observation: { id: "Obs-C", name: "Observation C" },
+      } as ICartFile,
     ]);
     expected.set("Obs-D", [
       {
         id: "C",
         name: "File C",
-        observation: { id: "Obs-D", name: " Observation D" }
-      } as ICartFile
+        observation: { id: "Obs-D", name: " Observation D" },
+      } as ICartFile,
     ]);
     expect(cart.groupByObservation()).toEqual(expected);
   });

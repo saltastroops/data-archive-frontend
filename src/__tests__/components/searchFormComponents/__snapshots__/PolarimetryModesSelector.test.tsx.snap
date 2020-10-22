@@ -19,276 +19,82 @@ exports[`PolarimetryModesSelector should render correctly with no polarimetry mo
   polarimetryModes={Set {}}
 >
   <styled.div>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
-            "isStatic": true,
-            "lastClassName": "c0",
-            "rules": Array [
-              "
-  && {
-    margin-top: 5px;
-  }
-
-  label {
-    padding-right: 10px;
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        }
-      }
-      forwardedRef={null}
+    <div
+      className="c0"
     >
-      <div
-        className="c0"
-      >
-        <label>
-          <styled.input
+      <label>
+        <styled.input
+          checked={false}
+          data-test="linear"
+          onChange={[Function]}
+          value="Linear"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="linear"
             onChange={[Function]}
+            type="checkbox"
             value="Linear"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="linear"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Linear"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="linear"
-                onChange={[Function]}
-                type="checkbox"
-                value="Linear"
-              />
-            </StyledComponent>
-          </styled.input>
-          Linear
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Linear
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="linear-hi"
+          onChange={[Function]}
+          value="Linear Hi"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="linear-hi"
             onChange={[Function]}
+            type="checkbox"
             value="Linear Hi"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="linear-hi"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Linear Hi"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="linear-hi"
-                onChange={[Function]}
-                type="checkbox"
-                value="Linear Hi"
-              />
-            </StyledComponent>
-          </styled.input>
-          Linear Hi
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Linear Hi
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="circular"
+          onChange={[Function]}
+          value="Circular"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="circular"
             onChange={[Function]}
+            type="checkbox"
             value="Circular"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="circular"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Circular"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="circular"
-                onChange={[Function]}
-                type="checkbox"
-                value="Circular"
-              />
-            </StyledComponent>
-          </styled.input>
-          Circular
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Circular
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="all-stokes"
+          onChange={[Function]}
+          value="All Stokes"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="all-stokes"
             onChange={[Function]}
+            type="checkbox"
             value="All Stokes"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="all-stokes"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="All Stokes"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="all-stokes"
-                onChange={[Function]}
-                type="checkbox"
-                value="All Stokes"
-              />
-            </StyledComponent>
-          </styled.input>
-          All Stokes
-        </label>
-      </div>
-    </StyledComponent>
+          />
+        </styled.input>
+        All Stokes
+      </label>
+    </div>
   </styled.div>
 </PolarimetryModesSelector>
 `;
@@ -317,276 +123,82 @@ exports[`PolarimetryModesSelector should render correctly with polarimetry modes
   }
 >
   <styled.div>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
-            "isStatic": true,
-            "lastClassName": "c0",
-            "rules": Array [
-              "
-  && {
-    margin-top: 5px;
-  }
-
-  label {
-    padding-right: 10px;
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        }
-      }
-      forwardedRef={null}
+    <div
+      className="c0"
     >
-      <div
-        className="c0"
-      >
-        <label>
-          <styled.input
+      <label>
+        <styled.input
+          checked={false}
+          data-test="linear"
+          onChange={[Function]}
+          value="Linear"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="linear"
             onChange={[Function]}
+            type="checkbox"
             value="Linear"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="linear"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Linear"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="linear"
-                onChange={[Function]}
-                type="checkbox"
-                value="Linear"
-              />
-            </StyledComponent>
-          </styled.input>
-          Linear
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Linear
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="linear-hi"
+          onChange={[Function]}
+          value="Linear Hi"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="linear-hi"
             onChange={[Function]}
+            type="checkbox"
             value="Linear Hi"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="linear-hi"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Linear Hi"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="linear-hi"
-                onChange={[Function]}
-                type="checkbox"
-                value="Linear Hi"
-              />
-            </StyledComponent>
-          </styled.input>
-          Linear Hi
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Linear Hi
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="circular"
+          onChange={[Function]}
+          value="Circular"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="circular"
             onChange={[Function]}
+            type="checkbox"
             value="Circular"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="circular"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="Circular"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="circular"
-                onChange={[Function]}
-                type="checkbox"
-                value="Circular"
-              />
-            </StyledComponent>
-          </styled.input>
-          Circular
-        </label>
-        <label>
-          <styled.input
+          />
+        </styled.input>
+        Circular
+      </label>
+      <label>
+        <styled.input
+          checked={false}
+          data-test="all-stokes"
+          onChange={[Function]}
+          value="All Stokes"
+        >
+          <input
             checked={false}
+            className="c1 checkbox"
             data-test="all-stokes"
             onChange={[Function]}
+            type="checkbox"
             value="All Stokes"
-          >
-            <StyledComponent
-              checked={false}
-              data-test="all-stokes"
-              forwardedComponent={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "attrs": Array [
-                    Object {
-                      "className": "checkbox",
-                      "type": "checkbox",
-                    },
-                  ],
-                  "componentStyle": ComponentStyle {
-                    "componentId": "sc-bdVaJa",
-                    "isStatic": true,
-                    "lastClassName": "c1",
-                    "rules": Array [
-                      "
-  && {
-    width: 18px;
-    height: 18px;
-  }
-",
-                    ],
-                  },
-                  "displayName": "styled.input",
-                  "foldedComponentIds": Array [],
-                  "render": [Function],
-                  "styledComponentId": "sc-bdVaJa",
-                  "target": "input",
-                  "toString": [Function],
-                  "warnTooManyClasses": [Function],
-                  "withComponent": [Function],
-                }
-              }
-              forwardedRef={null}
-              onChange={[Function]}
-              value="All Stokes"
-            >
-              <input
-                checked={false}
-                className="checkbox c1"
-                data-test="all-stokes"
-                onChange={[Function]}
-                type="checkbox"
-                value="All Stokes"
-              />
-            </StyledComponent>
-          </styled.input>
-          All Stokes
-        </label>
-      </div>
-    </StyledComponent>
+          />
+        </styled.input>
+        All Stokes
+      </label>
+    </div>
   </styled.div>
 </PolarimetryModesSelector>
 `;

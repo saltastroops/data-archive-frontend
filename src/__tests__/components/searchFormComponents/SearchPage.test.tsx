@@ -13,13 +13,13 @@ import cache from "../../../util/cache";
 import { CART_QUERY } from "../../../util/Cart";
 import click from "../../../util/click";
 
-window.matchMedia = jest.fn().mockImplementation(query => {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     addListener: jest.fn(),
     matches: false,
     media: query,
     onchange: null,
-    removeListener: jest.fn()
+    removeListener: jest.fn(),
   };
 });
 

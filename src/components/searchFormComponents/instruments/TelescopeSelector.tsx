@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 interface ITelescopeSelectorProps {
@@ -21,7 +21,7 @@ const TelescopeSelector = (props: ITelescopeSelectorProps) => {
     onSelect({
       telescopes: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
 
@@ -34,7 +34,7 @@ const TelescopeSelector = (props: ITelescopeSelectorProps) => {
         value={telescopes || ["All"]}
       >
         <AllOption />
-        {TELESCOPES.sort().map(i => (
+        {TELESCOPES.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

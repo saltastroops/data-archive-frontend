@@ -7,7 +7,7 @@ import {
   ITarget,
   ITelescope,
   ProductType,
-  Status
+  Status,
 } from "../../utils/ObservationQueryParameters";
 import { TargetType } from "../../utils/TargetType";
 import { isError, validateDate } from "../../utils/validators";
@@ -18,7 +18,7 @@ import {
   ProposalGrid,
   SearchGrid,
   TargetGrid,
-  TelescopeGrid
+  TelescopeGrid,
 } from "../basicComponents/Grids";
 import InputField from "../basicComponents/InputField";
 import ISearchFormCache from "./ISearchFormCache";
@@ -28,7 +28,7 @@ import TargetForm, { validatedTarget } from "./TargetForm";
 import TelescopeForm, { validatedTelescope } from "./TelescopeForm";
 
 const LimitGrid = styled.div.attrs({
-  className: "grid-item"
+  className: "grid-item",
 })`
   display: grid;
   grid-template-columns: 10%
@@ -58,7 +58,7 @@ interface ISearchFormProps {
   ) => ({
     general,
     target,
-    telescope
+    telescope,
   }: {
     general: IGeneral;
     target: ITarget;
@@ -76,7 +76,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       errors: {},
       limit: DEFAULT_LIMIT,
       observationStatuses: new Set<Status>(["Accepted"]),
-      productTypes: new Set<ProductType>(["Science"])
+      productTypes: new Set<ProductType>(["Science"]),
     },
     hasSearchFormError: false,
     target: {
@@ -84,11 +84,11 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       resolver: "Simbad",
       searchConeRadius: "",
       searchConeRadiusUnits: "arcseconds",
-      targetTypes: new Set<TargetType>()
+      targetTypes: new Set<TargetType>(),
     },
     telescope: {
-      telescopes: []
-    }
+      telescopes: [],
+    },
   };
 
   /**
@@ -107,8 +107,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       ...value,
       hasSearchFormError: false,
       telescope: {
-        ...value
-      }
+        ...value,
+      },
     };
     this.updateState(newState);
   };
@@ -121,8 +121,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       ...this.state,
       hasSearchFormError: false,
       target: {
-        ...value
-      }
+        ...value,
+      },
     };
     this.updateState(newState);
   };
@@ -134,9 +134,9 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     const newState = {
       ...this.state,
       general: {
-        ...value
+        ...value,
       },
-      hasSearchFormError: false
+      hasSearchFormError: false,
     };
     this.updateState(newState);
   };
@@ -154,7 +154,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
             </TargetGrid>
             <div
               style={{
-                height: "20px"
+                height: "20px",
               }}
             />
             <ProposalGrid>
@@ -197,53 +197,51 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
               : "Something's wrong. Please try again later or contact salthelp@salt.ac.za."}
           </div>
         )}
-        <div>
-          <ButtonGrid>
-            <button
-              disabled={loading}
-              className={`button is-info ${loading && "is-loading"}`}
-              data-test="search-button"
-              type="button"
-              value="Search"
-              onClick={this.onSubmit}
-            >
-              Search
-            </button>
+        <ButtonGrid>
+          <button
+            disabled={loading}
+            className={`button is-info ${loading && "is-loading"}`}
+            data-test="search-button"
+            type="button"
+            value="Search"
+            onClick={this.onSubmit}
+          >
+            Search
+          </button>
 
-            <div
-              style={{
-                height: "1em"
-              }}
-            />
+          <div
+            style={{
+              height: "1em",
+            }}
+          />
 
-            <button
-              className={"button is-text has-text-info has-text-left"}
-              type="button"
-              onClick={openColumnSelector}
-            >
-              Manage columns to display
-            </button>
-            <div
-              style={{
-                height: "1em"
-              }}
-            />
+          <button
+            className={"button is-text has-text-info has-text-left"}
+            type="button"
+            onClick={openColumnSelector}
+          >
+            Manage columns to display
+          </button>
+          <div
+            style={{
+              height: "1em",
+            }}
+          />
 
-            <button
-              className={"button is-text has-text-left"}
-              data-test="reset-all-button"
-              onClick={this.resetAll}
-            >
-              reset all
-            </button>
+          <button
+            className={"button is-text has-text-left"}
+            data-test="reset-all-button"
+            onClick={this.resetAll}
+          >
+            reset all
+          </button>
 
-            <div
-              style={{
-                height: "1em"
-              }}
-            />
-          </ButtonGrid>
-        </div>
+          <div
+            style={{
+              height: "1em",
+            }}
+          />
+        </ButtonGrid>
       </SearchGrid>
     );
   }
@@ -267,7 +265,7 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       general,
       hasSearchFormError,
       target,
-      telescope
+      telescope,
     });
     if (!hasSearchFormError) {
       // Search with a start index of 0
@@ -283,8 +281,8 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
       ...general,
       errors: {
         limit: this.validateLimit(general.limit || ""),
-        observationNight: validateDate(general.observationNight || "")
-      }
+        observationNight: validateDate(general.observationNight || ""),
+      },
     };
   };
 
@@ -326,9 +324,9 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
     this.generalChange({
       ...this.state.general,
       errors: {
-        ...this.state.general.errors
+        ...this.state.general.errors,
       },
-      limit: value
+      limit: value,
     });
   };
 
@@ -342,16 +340,16 @@ class SearchForm extends React.Component<ISearchFormProps, ISearchFormState> {
         errors: {},
         limit: DEFAULT_LIMIT,
         observationStatuses: new Set<Status>(["Accepted"]),
-        productTypes: new Set<ProductType>(["Science"])
+        productTypes: new Set<ProductType>(["Science"]),
       },
       target: {
         errors: {},
         resolver: "Simbad",
         searchConeRadius: "",
         searchConeRadiusUnits: "arcseconds",
-        targetTypes: new Set<TargetType>()
+        targetTypes: new Set<TargetType>(),
       },
-      telescope: {}
+      telescope: {},
     };
     this.updateState(newState);
   };

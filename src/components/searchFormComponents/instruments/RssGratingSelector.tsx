@@ -1,6 +1,6 @@
 import * as React from "react";
 import MultiSelectField, {
-  AllOption
+  AllOption,
 } from "../../basicComponents/MultiSelectField";
 
 interface IRssGratingSelectorProps {
@@ -16,7 +16,7 @@ export const RSS_GRATINGS = [
   "pg1300",
   "pg1800",
   "pg2300",
-  "pg3000"
+  "pg3000",
 ];
 
 /**
@@ -31,7 +31,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
     onSelect({
       rssGratings: Array.from(values).map((t: any) => {
         return t.text;
-      })
+      }),
     });
   };
 
@@ -44,7 +44,7 @@ const RssGratingSelector = (props: IRssGratingSelectorProps) => {
         value={rssGratings || ["All"]}
       >
         <AllOption />
-        {RSS_GRATINGS.sort().map(i => (
+        {RSS_GRATINGS.sort().map((i) => (
           <option key={i} value={i}>
             {i}
           </option>

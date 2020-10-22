@@ -13,7 +13,7 @@ import click from "../util/click";
 // Helper function for simulating input field value change.
 function inputTyping(wrapper: any, name: string, value: string) {
   wrapper.find(`input[name="${name}"]`).simulate("change", {
-    target: { name, value }
+    target: { name, value },
   });
 }
 
@@ -21,12 +21,12 @@ function inputTyping(wrapper: any, name: string, value: string) {
 const updatedState = {
   errors: {
     password: "",
-    username: ""
+    username: "",
   },
   userInput: {
     password: "securepassword",
-    username: "sj"
-  }
+    username: "sj",
+  },
 };
 
 describe("LoginForm Component", () => {
@@ -49,28 +49,28 @@ describe("LoginForm Component", () => {
     const userDetails = {
       authProvider: "SSDA",
       password: "securepassword",
-      username: "sj"
+      username: "sj",
     };
     const login = jest.fn();
     const mocks = [
       {
         request: {
           query: LOGIN_MUTATION,
-          variables: userDetails
+          variables: userDetails,
         },
         result: () => {
           login();
           return {
             data: {
-              login: true
-            }
+              login: true,
+            },
           };
-        }
+        },
       },
 
       {
         request: {
-          query: USER_QUERY
+          query: USER_QUERY,
         },
         result: {
           data: {
@@ -78,11 +78,11 @@ describe("LoginForm Component", () => {
               __typename: "User",
               familyName: "test",
               givenName: "test",
-              roles: []
-            }
-          }
-        }
-      }
+              roles: [],
+            },
+          },
+        },
+      },
     ];
 
     // LoginForm component wrapper.
@@ -106,7 +106,7 @@ describe("LoginForm Component", () => {
     // Expect the properties username and password of the state to have been updated with the correct value
     expect(instance.state.userInput).toMatchObject({
       password: "securepassword",
-      username: "sj"
+      username: "sj",
     });
 
     const signInButton = wrapper.find('[data-test="signIn"]');
@@ -168,25 +168,15 @@ describe("LoginForm Component", () => {
     expect(wrapper.find("p").length).toBe(1);
 
     // Expect a meaningful error message
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("Password");
-    expect(
-      wrapper
-        .find("p")
-        .first()
-        .text()
-    ).toContain("7 characters");
+    expect(wrapper.find("p").first().text()).toContain("Password");
+    expect(wrapper.find("p").first().text()).toContain("7 characters");
   });
 
   it("displays an error message if the login fails", async () => {
     const userDetails = {
       authProvider: "SSDA",
       password: "securepassword",
-      username: "sj"
+      username: "sj",
     };
     const login = jest.fn();
     const mocks = [
@@ -194,9 +184,9 @@ describe("LoginForm Component", () => {
         error: new Error("The server is having a coffee break!"),
         request: {
           query: LOGIN_MUTATION,
-          variables: userDetails
-        }
-      }
+          variables: userDetails,
+        },
+      },
     ];
 
     // LoginForm component wrapper.

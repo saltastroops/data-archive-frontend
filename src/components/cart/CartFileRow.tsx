@@ -18,7 +18,7 @@ interface ICartFileRowProps {
 }
 
 const TableRow = styled.tr<{ even: boolean }>`
-  background-color: ${props => (props.even ? "white" : "whitesmoke")};
+  background-color: ${(props) => (props.even ? "white" : "whitesmoke")};
 `;
 
 const CartFileRow = (props: ICartFileRowProps) => {
@@ -29,7 +29,7 @@ const CartFileRow = (props: ICartFileRowProps) => {
       <td>
         <button
           className={"button is-danger"}
-          onClick={e => remove(e, removeFromCart, [file])}
+          onClick={(e) => remove(e, removeFromCart, [file])}
         >
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>

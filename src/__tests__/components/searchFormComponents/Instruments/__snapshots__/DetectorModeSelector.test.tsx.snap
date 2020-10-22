@@ -21,89 +21,60 @@ exports[`Detector Mode Selector should render correctly 1`] = `
       <styled.div
         className="control select is-multiple "
       >
-        <StyledComponent
-          className="control select is-multiple "
-          forwardedComponent={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "attrs": Array [],
-              "componentStyle": ComponentStyle {
-                "componentId": "sc-bdVaJa",
-                "isStatic": true,
-                "lastClassName": "c0",
-                "rules": Array [
-                  "
-  width: 95%;
-",
-                ],
-              },
-              "displayName": "styled.div",
-              "foldedComponentIds": Array [],
-              "render": [Function],
-              "styledComponentId": "sc-bdVaJa",
-              "target": "div",
-              "toString": [Function],
-              "warnTooManyClasses": [Function],
-              "withComponent": [Function],
-            }
-          }
-          forwardedRef={null}
+        <div
+          className="c0 control select is-multiple "
         >
-          <div
-            className="control select is-multiple  c0"
-          >
-            <select
-              multiple={true}
-              name="detectorModes"
-              onChange={[Function]}
-              size={6}
-              style={
-                Object {
-                  "width": "216px",
-                }
+          <select
+            multiple={true}
+            name="detectorModes"
+            onChange={[Function]}
+            size={6}
+            style={
+              Object {
+                "width": "216px",
               }
-              value={Array []}
+            }
+            value={Array []}
+          >
+            <AllOption>
+              <option
+                value="All"
+              >
+                All
+              </option>
+            </AllOption>
+            <option
+              key="Drift Scan"
+              value="Drift Scan"
             >
-              <AllOption>
-                <option
-                  value="All"
-                >
-                  All
-                </option>
-              </AllOption>
-              <option
-                key="Drift Scan"
-                value="Drift Scan"
-              >
-                Drift Scan
-              </option>
-              <option
-                key="Frame Transfer"
-                value="Frame Transfer"
-              >
-                Frame Transfer
-              </option>
-              <option
-                key="Normal"
-                value="Normal"
-              >
-                Normal
-              </option>
-              <option
-                key="Shuffle"
-                value="Shuffle"
-              >
-                Shuffle
-              </option>
-              <option
-                key="Slot Mode"
-                value="Slot Mode"
-              >
-                Slot Mode
-              </option>
-            </select>
-          </div>
-        </StyledComponent>
+              Drift Scan
+            </option>
+            <option
+              key="Frame Transfer"
+              value="Frame Transfer"
+            >
+              Frame Transfer
+            </option>
+            <option
+              key="Normal"
+              value="Normal"
+            >
+              Normal
+            </option>
+            <option
+              key="Shuffle"
+              value="Shuffle"
+            >
+              Shuffle
+            </option>
+            <option
+              key="Slot Mode"
+              value="Slot Mode"
+            >
+              Slot Mode
+            </option>
+          </select>
+        </div>
       </styled.div>
     </MultiSelectField>
   </div>

@@ -1,25 +1,23 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import scrollbarSize from "dom-helpers/util/scrollbarSize";
 import { List } from "immutable";
 import { debounce } from "lodash";
 import * as React from "react";
-import { Mutation } from "react-apollo";
-import Query from "react-apollo/Query";
+import { Mutation, Query } from "react-apollo";
 import ReactTooltip from "react-tooltip";
 import {
   AutoSizer,
   Grid,
   ScrollSync,
   SortDirection,
-  SortDirectionType
+  SortDirectionType,
 } from "react-virtualized";
 import styled from "styled-components";
 import {
   ADD_TO_CART_MUTATION,
   Cart,
   CART_QUERY,
-  REMOVE_FROM_CART_MUTATION
+  REMOVE_FROM_CART_MUTATION,
 } from "../../../util/Cart";
 import { IFile } from "../../../utils/ObservationQueryParameters";
 import { LargeCheckbox } from "../../basicComponents/LargeCheckbox";
@@ -29,6 +27,7 @@ import { IObservation } from "../SearchPage";
 import DataKeys from "./DataKeys";
 import ISearchResultsTableColumn from "./ISearchResultsTableColumn";
 import SearchResultsTableHeader from "./SearchResultsTableHeader";
+import scrollbarSize from "scrollbar-size";
 
 interface ISearchResultsTableProps {
   columns: ISearchResultsTableColumn[];
@@ -102,7 +101,7 @@ const CartContainer = styled.div<ICartContainerProps>`
   flex: 0 0 25px;
   position: absolute;
   left: 0;
-  top: ${props => props.top}px;
+  top: ${(props) => props.top}px;
   z-index: 10;
 `;
 
@@ -157,7 +156,7 @@ function cmp(
 // Handle tooltip to rebuild when the component is rendered.
 const rebuildTooltip = debounce(() => ReactTooltip.rebuild(), 200, {
   leading: false,
-  trailing: true
+  trailing: true,
 });
 
 /**
@@ -225,7 +224,7 @@ class SearchResultsTable extends React.Component<
    * Return the visible columns.
    */
   private get visibleColumns() {
-    return this.props.columns.filter(column => column.visible);
+    return this.props.columns.filter((column) => column.visible);
   }
   /**
    * The height of the table header in pixels.
@@ -257,7 +256,7 @@ class SearchResultsTable extends React.Component<
 
     return {
       sortedRowData,
-      unsortedRowData
+      unsortedRowData,
     };
   }
 
@@ -278,7 +277,7 @@ class SearchResultsTable extends React.Component<
       const retainObservationHeaders = sortBy === DataKeys.OBSERVATION_NAME;
       return unsortedRowData
         .filter(
-          item => retainObservationHeaders || !item.meta.observationHeader
+          (item) => retainObservationHeaders || !item.meta.observationHeader
         )
         .sort(comparator);
     } else {
@@ -298,9 +297,9 @@ class SearchResultsTable extends React.Component<
           observation,
           observationFileIndex: -1,
           observationHeader: true,
-          observationIndex
+          observationIndex,
         },
-        [DataKeys.OBSERVATION_NAME]: observation.name || ""
+        [DataKeys.OBSERVATION_NAME]: observation.name || "",
       });
       result.files.forEach((file, observationFileIndex) => {
         data.push({
@@ -308,10 +307,10 @@ class SearchResultsTable extends React.Component<
             observation,
             observationFileIndex,
             observationHeader: false,
-            observationIndex
+            observationIndex,
           },
           [DataKeys.OBSERVATION_NAME]: observation.name || "",
-          ...file
+          ...file,
         });
       });
     });
@@ -329,7 +328,7 @@ class SearchResultsTable extends React.Component<
       sortBy: "",
       sortDirection: SortDirection.ASC,
       sortedRowData: List(),
-      unsortedRowData: List()
+      unsortedRowData: List(),
     };
   }
 
@@ -386,7 +385,7 @@ class SearchResultsTable extends React.Component<
                           style={{
                             marginLeft: "auto",
                             marginRight: "auto",
-                            width: this.tableWidth()
+                            width: this.tableWidth(),
                           }}
                         >
                           <ScrollSync>
@@ -422,7 +421,7 @@ class SearchResultsTable extends React.Component<
                                         {
                                           addToCart,
                                           cart,
-                                          removeFromCart
+                                          removeFromCart,
                                         }
                                       )}
                                       columnWidth={
@@ -450,13 +449,13 @@ class SearchResultsTable extends React.Component<
                                             style={{
                                               height:
                                                 SearchResultsTable.HEADER_HEIGHT,
-                                              width: width - scrollbarSize()
+                                              width: width - scrollbarSize(),
                                             }}
                                           >
                                             <Grid
                                               style={{
                                                 overflow: "hidden",
-                                                width: "100%"
+                                                width: "100%",
                                               }}
                                               columnWidth={this.columnWidth}
                                               columnCount={
@@ -475,7 +474,7 @@ class SearchResultsTable extends React.Component<
                                           <div
                                             style={{
                                               height: height - scrollbarSize(),
-                                              width
+                                              width,
                                             }}
                                           >
                                             <Grid
@@ -534,12 +533,12 @@ class SearchResultsTable extends React.Component<
   private cartCellRendererFactory = ({
     addToCart,
     removeFromCart,
-    cart
+    cart,
   }: any) => {
     return ({
       key,
       rowIndex,
-      style
+      style,
     }: {
       key: string;
       rowIndex: number;
@@ -564,7 +563,7 @@ class SearchResultsTable extends React.Component<
                 <LargeCheckbox
                   data-test="observation-header-input"
                   checked={cart.contains(file.cartContent)}
-                  onChange={e =>
+                  onChange={(e) =>
                     this.updateCart(e, [file], addToCart, removeFromCart)
                   }
                 />
@@ -590,7 +589,7 @@ class SearchResultsTable extends React.Component<
               {!this.notAllFilesAvailable(files) && (
                 <LargeCheckbox
                   checked={allInCart}
-                  onChange={e =>
+                  onChange={(e) =>
                     this.updateCart(e, files, addToCart, removeFromCart)
                   }
                 />
@@ -607,7 +606,7 @@ class SearchResultsTable extends React.Component<
    */
   private cartHeaderRenderer = ({
     key,
-    style
+    style,
   }: {
     key: string;
     style: object;
@@ -741,7 +740,7 @@ class SearchResultsTable extends React.Component<
       columnIndex,
       key,
       rowIndex,
-      style
+      style,
     }: {
       columnIndex: number;
       key: string;
@@ -784,7 +783,7 @@ class SearchResultsTable extends React.Component<
   private headerRenderer = ({
     columnIndex,
     key,
-    style
+    style,
   }: {
     columnIndex: number;
     key: string;
@@ -845,7 +844,7 @@ class SearchResultsTable extends React.Component<
    */
   private sort = ({
     sortBy,
-    sortDirection
+    sortDirection,
   }: {
     sortBy: string;
     sortDirection: SortDirectionType;
@@ -911,9 +910,9 @@ class SearchResultsTable extends React.Component<
     removeFromCart: any
   ) => {
     // Get the list of files to add or remove
-    const updatedFiles = files.map(file => ({
+    const updatedFiles = files.map((file) => ({
       __typename: "CartFile",
-      ...file.cartContent
+      ...file.cartContent,
     }));
 
     // Add or remove from the cart, depending on the checkbox state

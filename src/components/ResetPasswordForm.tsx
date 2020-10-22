@@ -8,7 +8,7 @@ import InputField from "./basicComponents/InputField";
 import Message from "./basicComponents/Message";
 
 const Parent = styled.form.attrs({
-  className: "column is-4 is-offset-4"
+  className: "column is-4 is-offset-4",
 })`
   && {
     padding: 1px;
@@ -16,7 +16,7 @@ const Parent = styled.form.attrs({
 `;
 
 const Heading = styled.h1.attrs({
-  className: "title is-3"
+  className: "title is-3",
 })`
   && {
     text-align: center;
@@ -46,12 +46,12 @@ class ResetPasswordForm extends React.Component<any, any> {
     confirmReset: false,
     errors: {
       confirmPassword: "",
-      password: ""
+      password: "",
     },
     userInput: {
       confirmPassword: "",
-      password: ""
-    }
+      password: "",
+    },
   };
   changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -61,9 +61,9 @@ class ResetPasswordForm extends React.Component<any, any> {
         ...this.state.userInput,
         [name]: value,
         errors: {
-          password: ""
-        }
-      }
+          password: "",
+        },
+      },
     });
   };
 
@@ -77,14 +77,14 @@ class ResetPasswordForm extends React.Component<any, any> {
       this.state.userInput.confirmPassword !== this.state.userInput.password
     ) {
       this.setState({
-        errors: { password: "Password do not match" }
+        errors: { password: "Password do not match" },
       });
       return;
     }
 
     if (this.state.userInput.password.length <= 6) {
       this.setState({
-        errors: { password: "Password should be at least 7 characters long" }
+        errors: { password: "Password should be at least 7 characters long" },
       });
       return;
     }
@@ -93,13 +93,13 @@ class ResetPasswordForm extends React.Component<any, any> {
       await resetPassword({
         variables: {
           password,
-          token
-        }
+          token,
+        },
       });
       this.setState({ confirmReset: true });
     } catch (e) {
       this.setState({
-        errors: { password: e.message.replace("GraphQL error: ", "") }
+        errors: { password: e.message.replace("GraphQL error: ", "") },
       });
       return;
     }
@@ -149,7 +149,7 @@ class ResetPasswordForm extends React.Component<any, any> {
             return (
               <Mutation mutation={RESET_PASSWORD_MUTATION}>
                 {(resetPassword: () => void, { loading }: any) => (
-                  <Parent onSubmit={e => this.submitReset(e, resetPassword)}>
+                  <Parent onSubmit={(e) => this.submitReset(e, resetPassword)}>
                     <Heading>Enter your new password</Heading>
                     <fieldset disabled={loading} aria-disabled={loading}>
                       {/* username */}

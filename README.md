@@ -193,3 +193,194 @@ sudo reboot
 
 The above steps are explained in detail [in this article](https://medium.com/@timmykko/deploying-create-react-app-with-nginx-and-ubuntu-e6fe83c5e9e7).
 
+## Adding HTTPS to the SALT/SAAO Data Archive
+
+There are some pre-requisites to adding HTTPS to the site. You need Nginx to be running already, the Nginx configuration
+file should be set up properly and we need a user with sudo rights. We will use [Certbot](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx) 
+to add HTTPS to our Archive. 
+
+First ssh into the server you are running your HTTP on using a user with sudo privileges. We the need to run the
+following commands to add the Cerbot PPA to our list of repositories 
+
+```bash
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+```
+Next, we need to install Certbot, run the following command:
+
+```bash
+sudo apt-get install certbot python3-certbot-nginx
+```
+
+Next, we need to get a certificate and have Cerbot edit our Nginx configuration file and the server it, turning HTTP to 
+HTTPS in one step and we can do that with the following command
+
+```bash
+sudo certbot --nginx
+``` 
+Cerbot uses some cronjobs/ systemd timer to renew our certificates automatically before they expire. To see if the
+automatic renewal of the certificate works, run the following command:
+
+```bash
+sudo certbot renew --dry-run
+```
+For the SALT/SAAO Data Archive we are using an API, this API uses HTTP, so you will need to edit the .env file and 
+change REACT_APP_BACKEND_URI to https:seshat.saao.ac.za/api so as to allow its data through since the website will now
+be using  HTTPS. 
+
+To test/ confirm your that your site is properly setup, visit [https://seshat.saao.ac.za](https://seshat.saao.ac.za) and 
+in your browser, you will see the lock icon in the URL bar if it worked correctly. 
+
+### Adding Brotli to the SAAO/SALT Data Archive
+
+For this Data Archive, since we are using Nginx, we will used ngx_brotli, which is developed and supported by Google. 
+A pre-requisite is that you must already have HTTPS on the server from a trusted source such as [Let's Encrypt](https://certbot.eff.org/)
+
+When your serever has HTTPS and Nginx working, we can now add Brotli. For this to work, you’ll need to compile Brotli 
+using the correct version of Nginx installed. 
+
+First, install required libraries by running the commands below.
+
+```bash
+sudo apt install git libpcre3 libpcre3-dev zlib1g zlib1g-dev openssl libssl-dev
+```
+After that,you need to check the current Nginx version using the command below:
+```bash
+sudo nginx -v
+``` 
+Next, download Nginx that matches the current installed version (which is what we just checked). Then extract it using 
+the commands below:
+```bash
+cd ~/
+wget https://nginx.org/download/nginx-version.tar.gz
+tar zxvf nginx-version.tar.gz
+```
+Replace 'version' with your current Nginx version. 
+After extracting it, go and clone ngx_brotli module from Github using the commands below:
+```bash
+cd ~/
+git clone https://github.com/eustas/ngx_brotli.git
+cd ~/ngx_brotli
+git submodule update --init
+```
+We then need to go into Nginx folder on our home page using the following condition:
+```bash
+cd ~/nginx-version
+```
+Replace 'version' with your current Nginx version.
+
+Then we need to install the following modules:
+
+```bash
+sudo apt-get install libxslt-dev
+sudo apt-get install libgd-dev # for the "error: the HTTP image filter module requires the GD library." error
+sudo apt-get install libgeoip-dev # for the GeoIP package
+```
+Next we need to run the following command:
+```bash
+nginx -V
+```
+From the output of the command above, you might get something similar to this:
+```text
+nginx version: nginx/1.14.0 (Ubuntu)
+built with OpenSSL 1.1.1  11 Sep 2018
+TLS SNI support enabled
+configure arguments: 
+```
+The most import part of the output here is the 'configure arguments', we must copy everything after 'configure arguments'.
+We then run the following command:
+```bash
+./configure --add-dynamic-module=../ngx_brotli configure arguments
+```
+We need to replace 'configure arguments' with what we copied from the nginx -V command,after that press enter.
+Example: ./configure --add-dynamic-module=../ngx_brotli --prefix=/usr/share/nginx. Of course yours will differ but the 
+procedure is the same.
+
+We then run the following commands:
+
+```bash
+make modules
+sudo cp objs/*.so /etc/nginx/modules-available
+sudo cp objs/*.so /usr/share/nginx/modules
+```  
+List files in /etc/nginx/modules-available and you will see:
+
+```text
+ngx_http_brotli_filter_module.so
+ngx_http_brotli_static_module.so
+```
+Now we are ready to load ngx_brotli module. We first run the following command:
+```bash
+sudo nano /etc/nginx/nginx.conf
+```
+We then add the following lines at the top of the file:
+```bash
+load_module modules/ngx_http_brotli_filter_module.so;
+load_module modules/ngx_http_brotli_static_module.so;
+```
+Your nginx.conf file should look similar to this:
+```text
+load_module modules/ngx_http_brotli_filter_module.so;
+load_module modules/ngx_http_brotli_static_module.so;
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+```
+After that, run Nginx test to see if you get any errors, by using the following command:
+```bash
+sudo nginx -t
+```
+
+You should get output similar to the following if everything has gone well:
+```bash
+Output:
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+With Let's Encrypt having added its own information in the file /etc/nginx/sites-available/. You now need to add the 
+following lines to the same file but not on the last server block:
+
+```text
+brotli on;
+brotli_static on;
+brotli_types *;
+```
+The Nginx configuration file should now look similar to the following:
+
+```text
+server {
+    server_name  your_server_name;
+
+    location / {
+        root /var/www/frontend/build;
+        index index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/seshat.saao.ac.za/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/seshat.saao.ac.za/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    brotli on;
+    brotli_static on;
+    brotli_types *;
+}
+```
+Next step is to restart Nginx with this command:
+```bash
+sudo systemctl reload nginx.service
+```
+That should do it!
+
+If you want to see if Brotli is now working properly, you can use [BROTLI PRO](https://www.brotli.pro/)

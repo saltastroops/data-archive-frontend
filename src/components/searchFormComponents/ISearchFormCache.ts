@@ -6,7 +6,7 @@
 import {
   IGeneral,
   ITarget,
-  ITelescope
+  ITelescope,
 } from "../../utils/ObservationQueryParameters";
 
 export default interface ISearchFormCache {
