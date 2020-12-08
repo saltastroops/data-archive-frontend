@@ -117,7 +117,7 @@ class ResetPasswordForm extends React.Component<any, any> {
 
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
-        {({ data, error }: any) => {
+        {({ data, error, loading }: any) => {
           if (error) {
             return (
               <Message
@@ -126,7 +126,7 @@ class ResetPasswordForm extends React.Component<any, any> {
               />
             );
           }
-          if (data.passwordResetTokenStatus) {
+          if (!loading && data.passwordResetTokenStatus) {
             if (!data.passwordResetTokenStatus.status) {
               return (
                 <>
