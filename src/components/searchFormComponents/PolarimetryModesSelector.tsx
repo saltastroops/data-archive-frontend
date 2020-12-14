@@ -34,9 +34,7 @@ const PolarimetryModesDiv = styled.div`
  *     mode, which should take the selected target types as its single
  *     argument.
  */
-export default class PolarimetryModesSelector extends React.Component<
-  IPolarimetryModesSelectorProps
-> {
+export default class PolarimetryModesSelector extends React.Component<IPolarimetryModesSelectorProps> {
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const polarimetryModes =
       this.props.polarimetryModes || new Set<RSSPolarimetryMode>();
