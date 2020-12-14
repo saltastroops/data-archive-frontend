@@ -14,9 +14,7 @@ interface ISearchResultsTableColumnGroupSelectorProps {
   onChange: (dataKey: string, visible: boolean) => void;
 }
 
-class SearchResultsTableColumnGroupSelector extends React.Component<
-  ISearchResultsTableColumnGroupSelectorProps
-> {
+class SearchResultsTableColumnGroupSelector extends React.Component<ISearchResultsTableColumnGroupSelectorProps> {
   render() {
     return (
       <div className="column-group-selector">
