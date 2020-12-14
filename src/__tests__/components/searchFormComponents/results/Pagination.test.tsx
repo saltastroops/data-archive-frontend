@@ -1,7 +1,7 @@
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import Pagination from "../../../../components/searchFormComponents/results/Pagination";
 
 const fetchPage = jest.fn();

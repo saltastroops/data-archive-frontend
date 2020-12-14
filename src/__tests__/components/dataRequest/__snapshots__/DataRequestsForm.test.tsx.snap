@@ -7,216 +7,6 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
   <ApolloProvider
     client={
       ApolloClient {
-        "__operations_cache__": Map {
-          "USER_DATA_REQUESTS_QUERY" => Object {
-            "query": Object {
-              "definitions": Array [
-                Object {
-                  "directives": Array [],
-                  "kind": "OperationDefinition",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "USER_DATA_REQUESTS_QUERY",
-                  },
-                  "operation": "query",
-                  "selectionSet": Object {
-                    "kind": "SelectionSet",
-                    "selections": Array [
-                      Object {
-                        "alias": undefined,
-                        "arguments": Array [
-                          Object {
-                            "kind": "Argument",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "limit",
-                            },
-                            "value": Object {
-                              "kind": "Variable",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "limit",
-                              },
-                            },
-                          },
-                          Object {
-                            "kind": "Argument",
-                            "name": Object {
-                              "kind": "Name",
-                              "value": "startIndex",
-                            },
-                            "value": Object {
-                              "kind": "Variable",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "startIndex",
-                              },
-                            },
-                          },
-                        ],
-                        "directives": Array [],
-                        "kind": "Field",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "dataRequests",
-                        },
-                        "selectionSet": Object {
-                          "kind": "SelectionSet",
-                          "selections": Array [
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "id",
-                              },
-                              "selectionSet": undefined,
-                            },
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "madeAt",
-                              },
-                              "selectionSet": undefined,
-                            },
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "uri",
-                              },
-                              "selectionSet": undefined,
-                            },
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "calibrationLevels",
-                              },
-                              "selectionSet": undefined,
-                            },
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "calibrationTypes",
-                              },
-                              "selectionSet": undefined,
-                            },
-                            Object {
-                              "alias": undefined,
-                              "arguments": Array [],
-                              "directives": Array [],
-                              "kind": "Field",
-                              "name": Object {
-                                "kind": "Name",
-                                "value": "dataFiles",
-                              },
-                              "selectionSet": Object {
-                                "kind": "SelectionSet",
-                                "selections": Array [
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
-                                      "value": "id",
-                                    },
-                                    "selectionSet": undefined,
-                                  },
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
-                                      "value": "name",
-                                    },
-                                    "selectionSet": undefined,
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                  "variableDefinitions": Array [
-                    Object {
-                      "defaultValue": undefined,
-                      "directives": Array [],
-                      "kind": "VariableDefinition",
-                      "type": Object {
-                        "kind": "NamedType",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "Int",
-                        },
-                      },
-                      "variable": Object {
-                        "kind": "Variable",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "limit",
-                        },
-                      },
-                    },
-                    Object {
-                      "defaultValue": undefined,
-                      "directives": Array [],
-                      "kind": "VariableDefinition",
-                      "type": Object {
-                        "kind": "NonNullType",
-                        "type": Object {
-                          "kind": "NamedType",
-                          "name": Object {
-                            "kind": "Name",
-                            "value": "Int",
-                          },
-                        },
-                      },
-                      "variable": Object {
-                        "kind": "Variable",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "startIndex",
-                        },
-                      },
-                    },
-                  ],
-                },
-              ],
-              "kind": "Document",
-              "loc": Object {
-                "end": 266,
-                "start": 0,
-              },
-            },
-            "variables": Object {
-              "limit": 5,
-              "startIndex": 0,
-            },
-          },
-        },
         "cache": InMemoryCache {
           "addTypename": true,
           "cacheKeyRoot": KeyTrie {
@@ -4905,8 +4695,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
             "1" => Object {
               "interval": 30000,
               "options": Object {
-                "children": [Function],
-                "context": Object {},
+                "context": undefined,
                 "displayName": "Query",
                 "fetchPolicy": "network-only",
                 "metadata": Object {
@@ -5123,7 +4912,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   "startIndex": 0,
                 },
               },
-              "timeout": 4,
+              "timeout": 3,
             },
           },
           "queries": Map {
@@ -5368,8 +5157,7 @@ exports[`DataRequestsForm renders the DataRequestForm component correctly 1`] = 
                   },
                 },
                 "options": Object {
-                  "children": [Function],
-                  "context": Object {},
+                  "context": undefined,
                   "displayName": "Query",
                   "metadata": Object {
                     "reactComponent": Object {

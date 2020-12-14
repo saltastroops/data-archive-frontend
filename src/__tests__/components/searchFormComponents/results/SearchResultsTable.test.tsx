@@ -1,14 +1,14 @@
 import SearchResultsTableColumn from "../../../../components/searchFormComponents/results/ISearchResultsTableColumn";
-
-jest.mock("../../../../util/cache");
 import { mount } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import DataKeys from "../../../../components/searchFormComponents/results/DataKeys";
 import SearchResultsTable from "../../../../components/searchFormComponents/results/SearchResultsTable";
 import { IObservation } from "../../../../components/searchFormComponents/SearchPage";
 import cache from "../../../../util/cache";
+
+jest.mock("../../../../util/cache");
 
 // IMPORTANT NOTE
 //

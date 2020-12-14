@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import * as React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { MemoryRouter } from "react-router";
 import wait from "waait";
 import RequestResetPasswordForm, {
@@ -161,7 +161,7 @@ describe("RequestResetPasswordForm", () => {
     expect(wrapper.find("p").text()).toContain("Email address is invalid");
   });
 
-  it("submits the request sucessfully", async () => {
+  it("submits the request successfully", async () => {
     const mocks = [
       {
         request: {
@@ -242,7 +242,7 @@ describe("RequestResetPasswordForm", () => {
     await wait(50);
     wrapper.update();
 
-    // Expect a graphQL rrror.
+    // Expect a graphQL error.
     expect(wrapper.find("Message").text()).toContain("No user");
   });
 });
