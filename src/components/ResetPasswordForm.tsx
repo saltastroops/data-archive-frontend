@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import InputField from "./basicComponents/InputField";
 import Message from "./basicComponents/Message";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Parent = styled.form.attrs({
   className: "column is-4 is-offset-4",
@@ -117,7 +119,7 @@ class ResetPasswordForm extends React.Component<any, any> {
 
     return (
       <Query query={VERIFY_TOKEN_QUERY} variables={{ token }}>
-        {({ data, error }: any) => {
+        {({ data, error, loading }: any) => {
           if (error) {
             return (
               <Message
@@ -126,6 +128,7 @@ class ResetPasswordForm extends React.Component<any, any> {
               />
             );
           }
+          if (loading) return <FontAwesomeIcon icon={faSpinner} />;
           if (data.passwordResetTokenStatus) {
             if (!data.passwordResetTokenStatus.status) {
               return (
@@ -148,14 +151,17 @@ class ResetPasswordForm extends React.Component<any, any> {
             }
             return (
               <Mutation mutation={RESET_PASSWORD_MUTATION}>
-                {(resetPassword: () => void, { loading }: any) => (
+                {(resetPassword: () => void, { tokenLoading }: any) => (
                   <Parent onSubmit={(e) => this.submitReset(e, resetPassword)}>
                     <Heading>Enter your new password</Heading>
-                    <fieldset disabled={loading} aria-disabled={loading}>
+                    <fieldset
+                      disabled={tokenLoading}
+                      aria-disabled={tokenLoading}
+                    >
                       {/* username */}
                       <div className="field">
                         <label className="label">
-                          password
+                          Password
                           <div className={"control is-child"}>
                             <InputField
                               data-test="password"
@@ -187,7 +193,7 @@ class ResetPasswordForm extends React.Component<any, any> {
                       <button
                         className="button is-primary is-fullwidth"
                         data-test="reset-password-submit"
-                        disabled={loading}
+                        disabled={tokenLoading}
                       >
                         {"Reset"}
                       </button>
