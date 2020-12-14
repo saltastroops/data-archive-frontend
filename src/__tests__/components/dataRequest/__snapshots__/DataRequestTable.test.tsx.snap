@@ -7,7 +7,6 @@ exports[`DataRequestTable should render correctly 1`] = `
   <ApolloProvider
     client={
       ApolloClient {
-        "__operations_cache__": Map {},
         "cache": InMemoryCache {
           "addTypename": true,
           "cacheKeyRoot": KeyTrie {
