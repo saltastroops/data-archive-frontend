@@ -129,7 +129,7 @@ class ResetPasswordForm extends React.Component<any, any> {
             );
           }
           if (loading) return <FontAwesomeIcon icon={faSpinner} />;
-          if (!loading && data.passwordResetTokenStatus) {
+          if (data.passwordResetTokenStatus) {
             if (!data.passwordResetTokenStatus.status) {
               return (
                 <>
