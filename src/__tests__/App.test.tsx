@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import * as React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { MemoryRouter } from "react-router-dom";
 import wait from "waait";
 import App from "../App";
