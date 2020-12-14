@@ -161,7 +161,7 @@ class ResetPasswordForm extends React.Component<any, any> {
                       {/* username */}
                       <div className="field">
                         <label className="label">
-                          password
+                          Password
                           <div className={"control is-child"}>
                             <InputField
                               data-test="password"
