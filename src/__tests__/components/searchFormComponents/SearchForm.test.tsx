@@ -1,16 +1,16 @@
 import { mount, shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import * as React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { MemoryRouter } from "react-router";
 
 import wait from "waait";
-jest.mock("../../../util/cache");
 import App from "../../../App";
 import SearchForm from "../../../components/searchFormComponents/SearchForm";
 import cache from "../../../util/cache";
 import { CART_QUERY } from "../../../util/Cart";
 import click from "../../../util/click";
+jest.mock("../../../util/cache");
 
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
