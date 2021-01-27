@@ -23,6 +23,8 @@ import {
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
+import moment from "moment";
+import { CSVLink } from "react-csv";
 
 /**
  * The default maximum number of results a query should return.
@@ -105,6 +107,70 @@ const ResultsPlaceholder = styled.div`
   width: 100%;
   height: 744px;
 `;
+
+export function download(columns: any[], SearchResults: any) {
+  const tableHeaderContent: ISearchResultsTableColumn[] = [];
+  columns.forEach((column) => {
+    if (column.name !== "dummy") {
+      tableHeaderContent.push(column);
+    }
+  });
+  const results: any = {};
+
+  function isNumeric(n: string | number) {
+    return !isNaN(parseFloat(n as string)) && isFinite(n as number);
+  }
+  SearchResults.forEach((result: any) => {
+    result.files.forEach((artifact: any) => {
+      const finalObj: any = {};
+      tableHeaderContent.map((header) => {
+        if (
+          !(header.name in finalObj) &&
+          artifact[header.dataKey] !== undefined
+        ) {
+          if (
+            artifact[header.dataKey] % 1 !== 0 &&
+            isNumeric(artifact[header.dataKey])
+          ) {
+            finalObj[header.name.toLowerCase()] = parseFloat(
+              artifact[header.dataKey]
+            ).toFixed(4);
+            results[artifact["artifact.name"]] = finalObj;
+          } else if (
+            artifact[header.dataKey] % 1 === 0 &&
+            isNumeric(artifact[header.dataKey])
+          ) {
+            finalObj[header.name.toLowerCase()] = moment(
+              parseInt(artifact[header.dataKey], 10)
+            ).format("D MMM YYYY");
+            results[artifact["artifact.name"]] = finalObj;
+          } else {
+            finalObj[header.name.toLowerCase()] = artifact[header.dataKey];
+            results[artifact["artifact.name"]] = finalObj;
+          }
+        }
+      });
+    });
+  });
+  const csvData: any = [];
+  const csvHeaders: any = [];
+
+  Object.keys(results).forEach((key) => {
+    csvData.push(results[key]);
+  });
+
+  tableHeaderContent.forEach((header) => {
+    const finalHeaders: any = {};
+    if (header.name === "Info") {
+      delete finalHeaders[header.name];
+    } else {
+      finalHeaders.label = header.name;
+      finalHeaders.key = header.name.toLowerCase();
+      csvHeaders.push(finalHeaders);
+    }
+  });
+  return [csvData, csvHeaders];
+}
 
 const PaginationContainer = styled.div<{
   marginTop: number;
@@ -249,6 +315,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             startIndex={pageInfo.startIndex}
                           />
                         </PaginationContainer>
+                        <CSVLink
+                          data={download(displayedTableColumns, results)[0]}
+                          headers={download(displayedTableColumns, results)[1]}
+                          filename={"results.csv"}
+                          style={{ marginLeft: 75 }}
+                        >
+                          Download results as CSV
+                        </CSVLink>
                         <InfoMessage
                           message={
                             "You may scroll horizontally and vertically within the table."
