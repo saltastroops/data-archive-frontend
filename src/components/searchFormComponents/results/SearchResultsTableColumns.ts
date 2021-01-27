@@ -273,7 +273,7 @@ function formatTimestamp(t: string) {
  *
  * Returns:
  * --------
- * The wavelength in Angstroms, with two fraxctional digits.
+ * The wavelength in Angstroms, with two fractional digits.
  */
 function formatWavelength(meters: string) {
   return (Number(meters) * 1e10).toFixed(2);
