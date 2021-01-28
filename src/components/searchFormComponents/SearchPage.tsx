@@ -23,7 +23,6 @@ import {
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
-import moment from "moment";
 import { CSVLink } from "react-csv";
 
 /**
@@ -108,68 +107,49 @@ const ResultsPlaceholder = styled.div`
   height: 744px;
 `;
 
-export function download(columns: any[], SearchResults: any) {
-  const tableHeaderContent: ISearchResultsTableColumn[] = [];
-  columns.forEach((column) => {
-    if (column.name !== "dummy") {
-      tableHeaderContent.push(column);
+export function Download(Columns: any[], SearchResults: any) {
+  const IncludedColumns: ISearchResultsTableColumn[] = [];
+  Columns.forEach((column) => {
+    if (
+      column.name !== "dummy" &&
+      column.name !== "Info" &&
+      column.name !== "Preview"
+    ) {
+      IncludedColumns.push(column);
     }
   });
-  const results: any = {};
+  const Results: any = {};
 
-  function isNumeric(n: string | number) {
-    return !isNaN(parseFloat(n as string)) && isFinite(n as number);
-  }
   SearchResults.forEach((result: any) => {
-    result.files.forEach((artifact: any) => {
-      const finalObj: any = {};
-      tableHeaderContent.map((header) => {
-        if (
-          !(header.name in finalObj) &&
-          artifact[header.dataKey] !== undefined
-        ) {
-          if (
-            artifact[header.dataKey] % 1 !== 0 &&
-            isNumeric(artifact[header.dataKey])
-          ) {
-            finalObj[header.name.toLowerCase()] = parseFloat(
-              artifact[header.dataKey]
-            ).toFixed(4);
-            results[artifact["artifact.name"]] = finalObj;
-          } else if (
-            artifact[header.dataKey] % 1 === 0 &&
-            isNumeric(artifact[header.dataKey])
-          ) {
-            finalObj[header.name.toLowerCase()] = moment(
-              parseInt(artifact[header.dataKey], 10)
-            ).format("D MMM YYYY");
-            results[artifact["artifact.name"]] = finalObj;
+    result.files.forEach((file: any) => {
+      const FinalObj: any = {};
+      IncludedColumns.map((header) => {
+        if (!(header.name in FinalObj) && file[header.dataKey] !== undefined) {
+          if (file[header.dataKey] % 1 !== 0 && header.format) {
+            FinalObj[header.name] = header.format(file[header.dataKey]);
+            Results[file["artifact.name"]] = FinalObj;
+          } else if (file[header.dataKey] % 1 === 0 && header.format) {
+            FinalObj[header.name] = header.format(file[header.dataKey]);
+            Results[file["artifact.name"]] = FinalObj;
           } else {
-            finalObj[header.name.toLowerCase()] = artifact[header.dataKey];
-            results[artifact["artifact.name"]] = finalObj;
+            FinalObj[header.name] = file[header.dataKey];
+            Results[file["artifact.name"]] = FinalObj;
           }
         }
       });
     });
   });
-  const csvData: any = [];
-  const csvHeaders: any = [];
+  const CsvData: any = [];
+  const CsvHeaders: any = [];
 
-  Object.keys(results).forEach((key) => {
-    csvData.push(results[key]);
+  Object.keys(Results).forEach((key) => {
+    CsvData.push(Results[key]);
   });
 
-  tableHeaderContent.forEach((header) => {
-    const finalHeaders: any = {};
-    if (header.name === "Info") {
-      delete finalHeaders[header.name];
-    } else {
-      finalHeaders.label = header.name;
-      finalHeaders.key = header.name.toLowerCase();
-      csvHeaders.push(finalHeaders);
-    }
+  IncludedColumns.forEach((column) => {
+    CsvHeaders.push({ label: column.name, key: column.name });
   });
-  return [csvData, csvHeaders];
+  return [CsvData, CsvHeaders];
 }
 
 const PaginationContainer = styled.div<{
@@ -315,19 +295,19 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             startIndex={pageInfo.startIndex}
                           />
                         </PaginationContainer>
-                        <CSVLink
-                          data={download(displayedTableColumns, results)[0]}
-                          headers={download(displayedTableColumns, results)[1]}
-                          filename={"results.csv"}
-                          style={{ marginLeft: 75 }}
-                        >
-                          Download results as CSV
-                        </CSVLink>
                         <InfoMessage
                           message={
                             "You may scroll horizontally and vertically within the table."
                           }
                         />
+                        <CSVLink
+                          data={Download(displayedTableColumns, results)[0]}
+                          headers={Download(displayedTableColumns, results)[1]}
+                          filename={"results.csv"}
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
+                          Download results as CSV
+                        </CSVLink>
                         <SearchResultsTable
                           columns={displayedTableColumns}
                           maxWidth={maxResultsTableWidth}
