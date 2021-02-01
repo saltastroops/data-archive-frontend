@@ -107,49 +107,46 @@ const ResultsPlaceholder = styled.div`
   height: 744px;
 `;
 
-export function Download(Columns: any[], SearchResults: any) {
-  const IncludedColumns: ISearchResultsTableColumn[] = [];
-  Columns.forEach((column) => {
+export function download(
+  columns: ISearchResultsTableColumn[],
+  searchResults: any
+) {
+  const includedColumns: ISearchResultsTableColumn[] = [];
+  columns.forEach((column) => {
     if (
       column.name !== "dummy" &&
       column.name !== "Info" &&
       column.name !== "Preview"
     ) {
-      IncludedColumns.push(column);
+      includedColumns.push(column);
     }
   });
-  const Results: any = {};
+  const results: any = {};
 
-  SearchResults.forEach((result: any) => {
+  searchResults.forEach((result: any) => {
     result.files.forEach((file: any) => {
-      const FinalObj: any = {};
-      IncludedColumns.map((header) => {
-        if (!(header.name in FinalObj) && file[header.dataKey] !== undefined) {
-          if (file[header.dataKey] % 1 !== 0 && header.format) {
-            FinalObj[header.name] = header.format(file[header.dataKey]);
-            Results[file["artifact.name"]] = FinalObj;
-          } else if (file[header.dataKey] % 1 === 0 && header.format) {
-            FinalObj[header.name] = header.format(file[header.dataKey]);
-            Results[file["artifact.name"]] = FinalObj;
-          } else {
-            FinalObj[header.name] = file[header.dataKey];
-            Results[file["artifact.name"]] = FinalObj;
-          }
+      const finalObj: any = {};
+      includedColumns.map((header) => {
+        if (header.format) {
+          finalObj[header.name] = header.format(file[header.dataKey]);
+          results[file["artifact.name"]] = finalObj;
+        } else {
+          finalObj[header.name] = file[header.dataKey];
+          results[file["artifact.name"]] = finalObj;
         }
       });
     });
   });
-  const CsvData: any = [];
-  const CsvHeaders: any = [];
+  const csvData: any = [];
+  const csvHeaders: any = [];
 
-  Object.keys(Results).forEach((key) => {
-    CsvData.push(Results[key]);
+  Object.keys(results).forEach((key) => {
+    csvData.push(results[key]);
   });
-
-  IncludedColumns.forEach((column) => {
-    CsvHeaders.push({ label: column.name, key: column.name });
+  includedColumns.forEach((column) => {
+    csvHeaders.push({ label: column.name, key: column.name });
   });
-  return [CsvData, CsvHeaders];
+  return [csvData, csvHeaders];
 }
 
 const PaginationContainer = styled.div<{
@@ -301,8 +298,8 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                           }
                         />
                         <CSVLink
-                          data={Download(displayedTableColumns, results)[0]}
-                          headers={Download(displayedTableColumns, results)[1]}
+                          data={download(displayedTableColumns, results)[0]}
+                          headers={download(displayedTableColumns, results)[1]}
                           filename={"results.csv"}
                           style={{ display: "flex", justifyContent: "center" }}
                         >
