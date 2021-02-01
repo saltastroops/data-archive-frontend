@@ -112,6 +112,9 @@ export function download(
   searchResults: any
 ) {
   const includedColumns: ISearchResultsTableColumn[] = [];
+  /** We loop through the visible columns of the results table and remove
+   * the columns dummy, Info and Preview
+   */
   columns.forEach((column) => {
     if (
       column.name !== "dummy" &&
@@ -122,6 +125,10 @@ export function download(
     }
   });
   const results: any = {};
+
+  /** We loop through the search results and the columns we filtered and create a new object which contains the
+   * data associated with each fits file
+   */
 
   searchResults.forEach((result: any) => {
     result.files.forEach((file: any) => {
@@ -137,6 +144,9 @@ export function download(
       });
     });
   });
+  /** We then loop through the object of results we created and the object of headers for the search results
+   *  and push push the data data into csvData and the headers into csvHeaders
+   */
   const csvData: any = [];
   const csvHeaders: any = [];
 
