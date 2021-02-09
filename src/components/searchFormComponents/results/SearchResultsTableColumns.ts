@@ -231,7 +231,8 @@ function sort(columns: ISearchResultsTableColumn[]) {
 
 /**
  * Returns a function which formats strings as a a number with a fixed number of
- * digits after the decimal point.
+ * digits after the decimal point. A null value is represented as an empty
+ * string.
  *
  * Parameters:
  * -----------
@@ -243,7 +244,7 @@ function sort(columns: ISearchResultsTableColumn[]) {
  * The format function.
  */
 function formatNumber(n: number) {
-  return (value: string) => Number(value).toFixed(n);
+  return (value: string) => (value !== null ? Number(value).toFixed(n) : "");
 }
 
 /**

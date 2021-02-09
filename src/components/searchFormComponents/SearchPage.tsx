@@ -133,15 +133,14 @@ export function download(
   searchResults.forEach((result: any) => {
     result.files.forEach((file: any) => {
       const finalObj: any = {};
-      includedColumns.map((header) => {
+      includedColumns.forEach((header) => {
         if (header.format) {
           finalObj[header.name] = header.format(file[header.dataKey]);
-          results[file["artifact.name"]] = finalObj;
         } else {
           finalObj[header.name] = file[header.dataKey];
-          results[file["artifact.name"]] = finalObj;
         }
       });
+      results[file["artifact.name"]] = finalObj;
     });
   });
   /** We then loop through the object of results we created and the object of headers for the search results
