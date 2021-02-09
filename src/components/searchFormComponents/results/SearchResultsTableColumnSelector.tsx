@@ -27,7 +27,9 @@ const SelectorColumns = styled.div`
   justify-content: space-between;
 `;
 
-class SearchResultsTableColumnSelector extends React.Component<ISearchResultsTableColumnSelectorProps> {
+class SearchResultsTableColumnSelector extends React.Component<
+  ISearchResultsTableColumnSelectorProps
+> {
   render() {
     const { closeModal, columns, onChange } = this.props;
 

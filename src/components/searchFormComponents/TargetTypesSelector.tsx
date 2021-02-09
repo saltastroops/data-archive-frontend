@@ -40,7 +40,9 @@ const TargetTypesDiv = styled.div`
  *     The function to call when the user selects or unselects a target type,
  *     which should take the selected target types as its single argument.
  */
-export default class TargetTypesSelector extends React.Component<ITargetTypesSelectorProps> {
+export default class TargetTypesSelector extends React.Component<
+  ITargetTypesSelectorProps
+> {
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedTargetTypes = new Set<TargetType>(this.props.targetTypes);
     if (e.target.checked) {
