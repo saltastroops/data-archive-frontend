@@ -24,6 +24,7 @@ import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumn
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
 import { CSVLink } from "react-csv";
+import { LabelKeyObject } from "react-csv/components/CommonPropTypes";
 
 /**
  * The default maximum number of results a query should return.
@@ -109,8 +110,8 @@ const ResultsPlaceholder = styled.div`
 
 export function download(
   columns: ISearchResultsTableColumn[],
-  searchResults: any
-) {
+  searchResults: IObservation[]
+): [{ [key: string]: string }[], LabelKeyObject[]] {
   const includedColumns: ISearchResultsTableColumn[] = [];
   /** We loop through the visible columns of the results table and remove
    * the columns dummy, Info and Preview
@@ -124,15 +125,17 @@ export function download(
       includedColumns.push(column);
     }
   });
-  const results: any = {};
+  const results: { [key: string]: ResultContent } = {};
 
   /** We loop through the search results and the columns we filtered and create a new object which contains the
    * data associated with each fits file
    */
 
-  searchResults.forEach((result: any) => {
-    result.files.forEach((file: any) => {
-      const finalObj: any = {};
+  type ResultContent = { [key: string]: string };
+
+  searchResults.forEach((result: IObservation) => {
+    result.files.forEach((file: IFile) => {
+      const finalObj: ResultContent = {};
       includedColumns.forEach((header) => {
         if (header.format) {
           finalObj[header.name] = header.format(file[header.dataKey]);
@@ -146,8 +149,8 @@ export function download(
   /** We then loop through the object of results we created and the object of headers for the search results
    *  and push push the data data into csvData and the headers into csvHeaders
    */
-  const csvData: any = [];
-  const csvHeaders: any = [];
+  const csvData: ResultContent[] = [];
+  const csvHeaders: LabelKeyObject[] = [];
 
   Object.keys(results).forEach((key) => {
     csvData.push(results[key]);
