@@ -23,6 +23,8 @@ import {
 import SearchResultsTableColumnSelector from "./results/SearchResultsTableColumnSelector";
 import SearchForm from "./SearchForm";
 import SearchQuery from "./SearchQuery";
+import { CSVLink } from "react-csv";
+import { LabelKeyObject } from "react-csv/components/CommonPropTypes";
 
 /**
  * The default maximum number of results a query should return.
@@ -105,6 +107,59 @@ const ResultsPlaceholder = styled.div`
   width: 100%;
   height: 744px;
 `;
+
+export function download(
+  columns: ISearchResultsTableColumn[],
+  searchResults: IObservation[]
+): [{ [key: string]: string }[], LabelKeyObject[]] {
+  const includedColumns: ISearchResultsTableColumn[] = [];
+  /** We loop through the visible columns of the results table and remove
+   * the columns dummy, Info and Preview
+   */
+  columns.forEach((column) => {
+    if (
+      column.name !== "dummy" &&
+      column.name !== "Info" &&
+      column.name !== "Preview"
+    ) {
+      includedColumns.push(column);
+    }
+  });
+  const results: { [key: string]: ResultContent } = {};
+
+  /** We loop through the search results and the columns we filtered and create a new object which contains the
+   * data associated with each fits file
+   */
+
+  type ResultContent = { [key: string]: string };
+
+  searchResults.forEach((result: IObservation) => {
+    result.files.forEach((file: IFile) => {
+      const finalObj: ResultContent = {};
+      includedColumns.forEach((header) => {
+        if (header.format) {
+          finalObj[header.name] = header.format(file[header.dataKey]);
+        } else {
+          finalObj[header.name] = file[header.dataKey];
+        }
+      });
+      results[file["artifact.name"]] = finalObj;
+    });
+  });
+  /** We then loop through the object of results we created and the object of headers for the search results
+   *  and push push the data data into csvData and the headers into csvHeaders
+   */
+  const csvData: ResultContent[] = [];
+  const csvHeaders: LabelKeyObject[] = [];
+
+  Object.keys(results).forEach((key) => {
+    csvData.push(results[key]);
+  });
+  includedColumns.forEach((column) => {
+    csvHeaders.push({ label: column.name, key: column.name });
+  });
+  return [csvData, csvHeaders];
+}
 
 const PaginationContainer = styled.div<{
   marginTop: number;
@@ -254,6 +309,14 @@ class SearchPage extends React.Component<ISearchPageProps, ISearchPageState> {
                             "You may scroll horizontally and vertically within the table."
                           }
                         />
+                        <CSVLink
+                          data={download(displayedTableColumns, results)[0]}
+                          headers={download(displayedTableColumns, results)[1]}
+                          filename={"results.csv"}
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
+                          Download results as CSV
+                        </CSVLink>
                         <SearchResultsTable
                           columns={displayedTableColumns}
                           maxWidth={maxResultsTableWidth}
