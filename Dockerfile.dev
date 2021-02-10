@@ -1,0 +1,8 @@
+# Specify a base image.
+FROM node:12-slim AS slim
+
+# Project working directory.
+WORKDIR /opt/data-archive-frontend
+
+# Run 'yarn start' when the container starts.
+CMD ["yarn", "start"]

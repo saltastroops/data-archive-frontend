@@ -1,0 +1,11 @@
+# Specify a base image.
+FROM node:12-slim AS slim
+
+# Project working directory.
+WORKDIR /opt/data-archive-frontend
+
+# Copy the contents of the project to the image
+COPY . .
+
+# Run 'yarn build'.
+RUN yarn build
