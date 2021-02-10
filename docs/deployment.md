@@ -3,17 +3,18 @@
 
 ## Installation
  
-SSH into it and update!
+SSH into deployment host server and update.
+Run below command once logged in.
 
 ```cfml
 sudo apt-get update
 ```
 
-remove apache2 if it is installed
+Remove apache2 if it is installed
 ```cfml
 sudo apt-get remove apache2
 ```
-Install Nginx
+Install Nginx.
 ```cfml
 sudo apt-get install nginx
 ```
@@ -37,11 +38,11 @@ sudo apt-get install git
 ```
 
 What setup_8.x does is check whether your operating system version is supported and adds the correct repository. 
-This command also installs npm so you don’t have to worry about that.
+This command also installs npm, you don’t have to worry about that.
 
 ### Clone your repository on your machine
 
-make directory `/var/www/`. it it doesnt't exist
+Make directory `/var/www/`. It doesn't exist.
 
 ```cfml
 sudo mkdir /var/www

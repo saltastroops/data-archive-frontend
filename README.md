@@ -40,9 +40,65 @@ Once work on a branch other than master or development is done, that branch shou
 
 Code on the production server should always be pulled from the master branch. All releases should be properly tagged with a version.
 
-#### Travis
+#### Github actions
 
-The code includes a Travis configuration file. It is recommended that Travis is given access to the Github repository and that branch rules enforce that all Travis tests must pass before a pull request can bev merged into the development or master branch.
+GitHub Actions help you automate your software development workflows in the same place you store code and collaborate on
+ pull requests and issues.
+ 
+ To execute GitHub Actions, you must define a workflow for configurable automated process for compiling, building, 
+ testing, packaging, delivering or deploying data archive right on GitHub.
+ 
+ A workflow contains actions, which are the actual processes to be carried out. In order for GitHub to know about any 
+ defined workflow, in your repository root directory, there must be a `.github/workflow/` directory.
+ 
+ Inside the `workflow/` directory you may define `*.yml`  files, which are the actual workflow configuration files.
+```yaml
+# The Data Archive Frontend Development Workflow
+name: Data Archive Frontend Development Workflow
+
+# This workflow is triggered whenever there are new commits pushed to the development branch.
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  job1:
+    # The job for building and testing the code inside the github virtual machine.
+    name: Build and test the app on the github virtual machine
+    # This job is executed on the Linux machine.
+    runs-on: ubuntu-latest
+
+    # The matrix strategy is used to specify the nodejs version to use for the node packages management.
+    strategy:
+      # In this case, nodejs version 10.x is used.
+      # To include more versions, you add them as follows: [8.x, 10.x, 12.x, ...].
+      matrix:
+        node-version: [10.x]
+
+    # The steps to be executed for this job.
+    steps:
+      # This step uses the checkout action to make sure the latest code is used.
+      - name: Use the latest code
+        uses: actions/checkout@v1
+      # This step uses the setup-node action to setup the nodejs environment.
+      - name: Setup the nodejs environment
+        uses: actions/setup-node@v1
+        # The setup-node action accepts parameters.
+        # In this case, the nodejs version parameter specifying the version of nodejs to use is supplied.
+        with:
+          node-version: ${{ matrix.node-version }}
+      # This specifies the commands to run after the build is done.
+      # The first command is for installing the nodejs packages.
+      # The second command is for typescript linting.
+      # The third command is for executing the tests.
+      - run: |
+          yarn install
+          yarn lint
+          yarn test:ci
+        shell: bash
+
+```
 
 ### Step 2: Setting up environment variables
 
@@ -80,13 +136,13 @@ sudo apt-get update && sudo apt-get install yarn
 
 This will also install node.
 
-Make sure that Apache2 is not installed
+Make sure that Apache2 is not installed, remove it if it is installed
 
 ```bash
 sudo apt-get remove apache2
 ``` 
 
-and then install nginx.
+Then install nginx.
 
 ```bash
 sudo apt-get install nginx
@@ -111,6 +167,7 @@ server {
    }
 }
 ```
+IT can help in setting up the above file making the server a secure server by making uri https.
 
 Create a symbolic link in the `sites-enabled` folder to the updated configuration file.
  
@@ -138,26 +195,23 @@ Clone the repository,
 git clone https://github.com/saltastroops/data-archive-frontend.git /var/www/frontend
 ```
 
-and checkout the correct branch.
+Then checkout the correct branch.
 
 ```bash
 cd /var/www/frontend
 git checkout master
 ```
+Note: You must use development branch for development server
 
 Then carry out the steps described in the section on updating the code.
 
 ### Updating the code on the server
 
-Navigate to the code directory,
+Navigate to the code directory,and pull the latest version of the code from the repository.
 
 ```bash
 cd /var/www/frontend
-```
 
-and pull the latest version of the code from the repository.
-
-```bash
 git pull 
 ```
 
@@ -167,15 +221,11 @@ Install all the dependencies,
 yarn install
 ```
 
-remove current build folder if it exists,
+Remove current build folder if it exists, and build the project.
 
 ```bash
 rm -r build
-```
 
-and build the project.
-
-```bash
 yarn build
 ```
 
@@ -185,7 +235,7 @@ If necessary, restart nginx,
 sudo service nginx restart
 ```
 
-or reboot the server.
+Or reboot the server.
 
 ```bash
 sudo reboot
