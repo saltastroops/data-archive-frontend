@@ -52,7 +52,7 @@
     "js-file-download": "^0.4.12",
     "lint-staged": "^10.2.11",
     "lodash": "^4.17.20",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "no-scroll": "^2.1.1",
     "node-zopfli-es": "^1.0.6",
     "prettier": "^2.0.5",
