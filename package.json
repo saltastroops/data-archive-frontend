@@ -38,7 +38,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.3",
     "enzyme-to-json": "^3.5.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.11.0",
     "https": "^1.0.0",
